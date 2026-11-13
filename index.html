@@ -484,6 +484,121 @@ input.tin{height:48px;padding:0 12px}
 .tiplist b{color:var(--ink);font-weight:600}
 .toast{position:absolute;left:50%;bottom:calc(28px + var(--sab));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:11px 15px;border-radius:12px;z-index:120;font:600 13.5px/1.35 var(--f-body);box-shadow:0 6px 18px var(--shadow);max-width:calc(100% - 32px);text-align:center}
 
+/* ---------- v4: Tonight's Three home, browse header + search, full-screen map, check-ins, calmer detail ---------- */
+.sheet{top:0;border-radius:0;box-shadow:none}
+.sheet .credit{display:none}
+.grabber-btn{display:none}
+.handle{touch-action:auto;cursor:default;user-select:auto;-webkit-user-select:auto;border-radius:0;padding-top:0}
+#app[data-view="map"] .sheet{display:none}
+#app:not([data-view="map"]) .fabs{display:none}
+#app.picking .home,#app.picking .sheet,#app.onb .home{visibility:hidden}
+#app.picking .map-pill,#app.onb .map-pill,#app.picking .mapbar,#app.picking .mapcard,#app[data-view="map"] .map-pill{display:none}
+.bw-top{display:flex;align-items:center;gap:8px;padding:calc(var(--sat) + 8px) 0 6px}
+.bw-top .field{flex:1 1 auto;min-width:0;margin:0}
+.bw-top .field input{height:44px;border-radius:22px;padding-right:40px}
+.bw-top .field .i{top:12px}
+.field input[type="search"]::-webkit-search-cancel-button{display:none}
+.q-clear{position:absolute;right:4px;top:4px;width:36px;height:36px;border-radius:18px;border:0;background:none;color:var(--ink-3);display:grid;place-items:center;padding:0}
+.q-clear .i{position:static;width:18px;height:18px}
+.icon-btn{position:relative;flex:none;width:44px;height:44px;border-radius:22px;border:0;background:var(--paper-2);display:grid;place-items:center;color:var(--ink);padding:0}
+.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(--ink-2);display:flex;flex-wrap:wrap;gap:0 5px;align-items:center}
+.quiet .fill{font:600 13.5px/1.4 var(--f-body);color:var(--ink);text-decoration-thickness:1.5px;text-underline-offset:3px;min-height:30px}
+.quiet .fill svg{width:.6em;height:.6em}
+.sheet.searching .tiles,.sheet.searching .subchips,.sheet.searching .resline,.sheet.searching .applied,.sheet.searching .quiet{display:none}
+.been{color:var(--open);font-weight:700;white-space:nowrap}
+.home{position:absolute;top:0;right:0;bottom:0;left:0;z-index:35;background:var(--paper);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:calc(var(--sat) + 12px) calc(16px + var(--sar)) calc(92px + var(--sab)) calc(16px + var(--sal))}
+#app:not([data-view="home"]) .home{display:none}
+.hm-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.hm-top > div:first-child{min-width:0}
+.hm-title{font:700 24px/1.15 var(--f-body);letter-spacing:-.015em;margin:4px 0 0;text-wrap:balance}
+.hm-sub{border:0;background:none;padding:5px 0 3px;margin:0;font:500 13.5px/1.3 var(--f-body);color:var(--ink-2);display:inline-flex;align-items:center;gap:3px;max-width:100%;text-align:left}
+.hm-sub span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hm-sub .i{width:13px;height:13px;flex:none}
+.hm-icons{display:flex;gap:6px;flex:none}
+.hm-ctl{display:flex;gap:6px;margin-top:8px}
+.hm-ctl + .hm-ctl{margin-top:6px}
+.qchip{flex:1 1 0;min-width:0;height:36px;border-radius:18px;border:1px solid var(--rule);background:var(--paper);font:600 13.5px var(--f-body);color:var(--ink-2);padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background .12s,color .12s}
+.qchip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.cards3{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px}
+.card3{position:relative;height:clamp(186px,54vw,236px);border-radius:20px;overflow:hidden;background:var(--c);cursor:pointer;color:#FFFFFF;isolation:isolate;--c:var(--g-play)}
+.card3 .cover{z-index:0}
+.card3 .cover svg{right:auto;bottom:auto;left:50%;top:40%;width:112px;height:112px;margin:-56px 0 0 -56px;stroke:rgba(255,255,255,.6);stroke-width:1.3}   /* no photo: a drawn card in the kind's color with its icon, on purpose */
+.map-pill{left:auto;right:calc(16px + var(--sar));transform:none}
+.been-box .bb-l{flex:1 0 100%}
+.been-box input[type="date"]{width:150px}
+.card3 > img{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.card3::after{content:"";position:absolute;left:0;right:0;bottom:0;top:22%;background:linear-gradient(180deg,rgba(8,10,12,0) 0%,rgba(8,10,12,.6) 52%,rgba(8,10,12,.88) 100%);z-index:2;pointer-events:none}
+.c3-text{position:absolute;left:14px;right:14px;bottom:12px;z-index:3;text-shadow:0 1px 2px rgba(0,0,0,.45)}
+.c3-text h3{font:700 21px/1.12 var(--f-body);letter-spacing:-.01em;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.c3-hook{margin:3px 0 0;font:500 13.5px/1.3 var(--f-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.94}
+.c3-facts{margin:5px 0 0;font:600 13px/1.3 var(--f-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+.c3-facts .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px;background:#C9CDD2}
+.c3-facts .dot.open{background:#6FE0A0}
+.c3-facts .dot.soon{background:#FFC56B}
+.c3-btns{position:absolute;top:10px;right:10px;z-index:3;display:flex;gap:8px}
+.c3-btn{width:40px;height:40px;border-radius:20px;border:0;background:rgba(10,12,14,.5);color:#FFFFFF;display:grid;place-items:center;padding:0}
+.c3-btn .i{width:19px;height:19px}
+.c3-btn[aria-pressed="true"] svg{fill:currentColor}
+.been-mark{position:absolute;top:14px;left:12px;z-index:3;font:600 11.5px/1 var(--f-body);color:#FFFFFF;background:rgba(10,12,14,.55);padding:6px 8px;border-radius:8px}
+.hm-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:50px;margin-top:12px;border-radius:15px;border:1px solid var(--rule-strong);background:var(--paper);font:600 15px var(--f-body);color:var(--ink)}
+.hm-btn.dark{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.hm-btn .i{width:17px;height:17px}
+.home .empty{padding:22px 0 4px}
+.home .band{margin:12px 0 0}
+.home .endnote{padding:16px 0 8px}
+.home .loading{padding:22px 0}
+.mapbar{position:absolute;top:calc(var(--sat) + 9px);left:calc(16px + var(--sal));z-index:20;display:none;gap:8px}
+#app[data-view="map"] .mapbar{display:flex}
+.pillbtn{height:44px;padding:0 16px 0 12px;border-radius:22px;border:0;background:var(--paper);box-shadow:0 2px 10px var(--shadow);font:700 14px var(--f-body);display:flex;align-items:center;gap:6px;color:var(--ink)}
+.mapcard{position:absolute;left:12px;right:12px;bottom:calc(30px + var(--sab));z-index:25;background:var(--paper);border-radius:18px;box-shadow:0 6px 24px var(--shadow);display:grid;grid-template-columns:60px minmax(0,1fr) 20px;gap:12px;align-items:center;padding:10px 12px 10px 10px;border:0;text-align:left;color:var(--ink);--c:var(--g-play)}
+#app:not([data-view="map"]) .mapcard{display:none}
+.mapcard .thumb{width:60px;height:60px}
+.mapcard b{display:block;font:700 16px/1.2 var(--f-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mapcard span span{display:block;margin-top:3px;font:500 13px/1.3 var(--f-body);color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mapcard > .i{width:18px;height:18px;color:var(--ink-3)}
+.mapcredit{position:absolute;left:12px;bottom:calc(6px + var(--sab));z-index:19;font:500 10.5px var(--f-body);color:var(--ink-2);background:var(--paper);padding:2px 7px;border-radius:6px;opacity:.9;pointer-events:none;display:none}
+#app[data-view="map"] .mapcredit{display:block}
+.tabs{margin:0 20px 6px}
+.calbox{margin:0 0 4px;padding:12px;border-radius:12px;background:var(--paper-2);font:500 14px/1.5 var(--f-body);white-space:pre-wrap;overflow-wrap:anywhere;user-select:all;-webkit-user-select:all}
+/* detail, v4 order: photo, name + hook, status + price, actions, what you do, practical, good to know, trust (small) */
+.dt-title{font:800 34px/1.02 var(--f-display);text-transform:none;margin:7px 0 6px}
+.dt-title.long{font-size:27px;line-height:1.05}
+@media (max-width:360px){.dt-title{font-size:30px}.dt-title.long{font-size:24px}}
+.dt-hook{margin:0;font:500 16px/1.4 var(--f-body);color:var(--ink-2);max-width:60ch}
+.dt-status{margin-top:16px}
+.dt-line{margin:0;font:700 16.5px/1.35 var(--f-body);display:flex;flex-wrap:wrap;gap:2px 8px;align-items:baseline;font-variant-numeric:tabular-nums}
+.dt-line .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:currentColor;margin-right:7px;vertical-align:1px}
+.dt-line.open .st{color:var(--open)}.dt-line.soon .st{color:var(--soon)}.dt-line.closed .st{color:var(--closed)}
+.dt-line .pr{color:var(--ink)}
+.dt-line .pr::before{content:"\00b7";margin-right:8px;color:var(--ink-3)}
+.dt-status .aside{font-size:14px}
+.dt-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.dt-acts .mini-btn{margin-top:0;min-height:40px}
+.been-box{margin-top:10px;padding:10px 12px;border-radius:14px;background:var(--paper-2);display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;font:700 14px var(--f-body)}
+.been-box .bb-l{display:inline-flex;align-items:center;gap:6px;color:var(--open)}
+.been-box .bb-l .i{width:17px;height:17px}
+.been-box input[type="date"]{height:38px;min-width:0;max-width:100%;border-radius:10px;border:1px solid var(--rule-strong);background:var(--paper);color:var(--ink);font:500 15px var(--f-body);padding:0 8px}
+.thumbbtn{width:42px;height:38px;border-radius:10px;border:1px solid var(--rule-strong);background:var(--paper);color:var(--ink);display:grid;place-items:center;padding:0}
+.thumbbtn .i{width:18px;height:18px}
+.thumbbtn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.dt-sec h3{font:700 14px/1.3 var(--f-body);margin:18px 0 8px}
+.gtk details{border-bottom:1px solid var(--rule)}
+.gtk details:first-of-type{border-top:1px solid var(--rule)}
+.gtk summary{list-style:none;cursor:pointer;position:relative;padding:13px 30px 13px 0;font:600 15px/1.35 var(--f-body)}
+.gtk summary::-webkit-details-marker{display:none}
+.gtk summary::after{content:"+";position:absolute;right:4px;top:9px;font:500 21px/1.2 var(--f-body);color:var(--ink-3)}
+.gtk details[open] summary::after{content:"\2212"}
+.gtk details p{margin:0 0 12px;font:400 14.5px/1.5 var(--f-body)}
+.gtk details .src{font-size:12.5px;color:var(--ink-3);margin-top:-6px}
+.gtk details .src a{color:var(--ink-2)}
+.trust-s{margin-top:28px;padding-top:14px;border-top:1px solid var(--rule);font:500 12.5px/1.5 var(--f-body);color:var(--ink-3)}
+.trust-s p{margin:0 0 5px;font:inherit;color:inherit}
+.trust-s a{color:var(--ink-2)}
+.trust-s .tick{color:var(--open);font-weight:700}
+.trust-s .tick.warn{color:var(--soon)}
+.trust-s .sources{font-size:12.5px;color:var(--ink-3);margin-top:4px}
+.dt-bar .btn-sq{background:var(--paper)}
+
 /* ---------- self-test ---------- */
 .selftest{position:fixed;top:0;right:0;bottom:0;left:0;z-index:300;background:var(--paper);color:var(--ink);overflow:auto;padding:calc(var(--sat) + 14px) 14px 40px;font:500 13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 .selftest h1{font:900 30px/1 var(--f-display);text-transform:uppercase;margin:0 0 6px}
@@ -513,6 +628,12 @@ input.tin{height:48px;padding:0 12px}
   .toppill{left:calc(var(--side) + 16px)}
   .brand{left:calc(var(--side) + 20px)}
   .map-pill{display:none!important}
+  .sheet .credit{display:block}
+  .handle{padding-top:8px}
+  #app .fabs{display:flex!important}
+  .home{right:auto;width:var(--side);box-shadow:2px 0 18px var(--shadow)}
+  #app.picking .home,#app.picking .sheet{visibility:visible}
+  .mapbar,.mapcard,.mapcredit{display:none!important}
   .detail{right:auto;width:440px;box-shadow:2px 0 24px var(--shadow)}
   .zoomctl{display:flex;flex-direction:column;gap:10px;position:absolute;right:16px;bottom:24px;z-index:20}
   .zoomctl .fab{font:700 22px/1 var(--f-body)}
@@ -571,6 +692,12 @@ input.tin{height:48px;padding:0 12px}
     <symbol id="g-steam" viewBox="0 0 24 24"><path d="M3.5 17.5c2.8 2 14.2 2 17 0"/><path d="M8 14c-1.6-1.8 1.6-3.2 0-5s1.6-3.2 0-5M12 14c-1.6-1.8 1.6-3.2 0-5s1.6-3.2 0-5M16 14c-1.6-1.8 1.6-3.2 0-5s1.6-3.2 0-5"/></symbol>
     <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></symbol>
     <symbol id="i-right" viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M19.5 12h-15M10.5 6l-6 6 6 6"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15.5V3.5M7.5 8 12 3.5 16.5 8"/><path d="M5.5 12.5v6a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-6"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M7.5 10.5 11 3.6a2.1 2.1 0 0 1 2.6 2.4l-.7 3.5h5a2 2 0 0 1 2 2.4l-1.1 6a2.5 2.5 0 0 1-2.4 2.1H7.5zM7.5 10.5H4V20h3.5"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><g transform="rotate(180 12 12)"><path d="M7.5 10.5 11 3.6a2.1 2.1 0 0 1 2.6 2.4l-.7 3.5h5a2 2 0 0 1 2 2.4l-1.1 6a2.5 2.5 0 0 1-2.4 2.1H7.5zM7.5 10.5H4V20h3.5"/></g></symbol>
     <symbol id="star6" viewBox="0 0 24 24"><path d="M12 1 14.2 8.19 21.53 6.5 16.4 12 21.53 17.5 14.2 15.81 12 23 9.8 15.81 2.47 17.5 7.6 12 2.47 6.5 9.8 8.19z"/></symbol>
   </defs>
 </svg>
@@ -599,13 +726,14 @@ input.tin{height:48px;padding:0 12px}
     <span class="credit">Map data: City of Chicago</span>
     <div class="handle" id="sheetHandle">
       <button class="grabber-btn" id="grabber" type="button" aria-label="Expand the list"><span class="grabber"></span></button>
-      <div class="sh-head">
-        <div class="sh-text">
-          <p class="kicker" id="kicker">&nbsp;</p>
-          <h2 class="sentence" id="sentence">I've got <button class="fill" id="fillTime" type="button">1&nbsp;hr<svg class="i"><use href="#i-chev"/></svg></button> <button class="fill" id="fillWhen" type="button">right&nbsp;now<svg class="i"><use href="#i-chev"/></svg></button> near <button class="fill" id="fillLoc" type="button">The&nbsp;Loop<svg class="i"><use href="#i-chev"/></svg></button></h2>
-        </div>
-        <button class="surprise" id="surpriseBtn" type="button" aria-label="Surprise me: one pick that is open and fits your time"><span class="disc"><svg aria-hidden="true"><use href="#star6"/></svg></span>Surprise</button>
+      <div class="bw-top">
+        <button class="icon-btn" id="bwBack" type="button" aria-label="Back to the three picks"><svg class="i"><use href="#i-back"/></svg></button>
+        <div class="field"><svg class="i"><use href="#i-search"/></svg><label class="vh" for="q">Search places and events</label><input id="q" type="search" placeholder="Karaoke, cheese, Pilsen" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"><button class="q-clear" id="qClear" type="button" aria-label="Clear the search" hidden><svg class="i"><use href="#i-close"/></svg></button></div>
+        <button class="icon-btn" id="bwSaved" type="button" aria-label="Saved and Been"><svg class="i"><use href="#i-bookmark"/></svg></button>
       </div>
+      <p class="kicker" id="kicker" hidden>&nbsp;</p>
+      <p class="quiet" id="sentence"><button class="fill" id="fillWhen" type="button">Now</button><span>near</span><button class="fill" id="fillLoc" type="button">The&nbsp;Loop</button><span id="budgetBit" hidden>&middot; <button class="fill" id="fillTime" type="button">1&nbsp;hr</button> only</span></p>
+      <button id="surpriseBtn" type="button" hidden>Surprise</button>
     </div>
     <div class="tiles" id="tiles" role="toolbar" aria-label="Kinds of fun"></div>
     <div class="subchips" id="subchips" role="toolbar" aria-label="Narrow down" hidden></div>
@@ -613,6 +741,10 @@ input.tin{height:48px;padding:0 12px}
     <div class="applied" id="applied" hidden></div>
     <div class="sh-scroll" id="sheetScroll"><div id="listRoot"><p class="loading">Loading Chicago...</p></div></div>
   </section>
+  <section id="home" class="home" aria-label="Three picks"><div id="homeRoot"><p class="loading">Loading Chicago...</p></div></section>
+  <div class="mapbar"><button class="pillbtn" id="mapBack" type="button"><svg class="i"><use href="#i-back"/></svg>Back</button><button class="pillbtn" id="mapList" type="button"><svg class="i"><use href="#i-list"/></svg>List</button></div>
+  <button class="mapcard" id="mapCard" type="button" hidden></button>
+  <span class="mapcredit">Map data: City of Chicago</span>
   <button class="map-pill" id="mapPill" type="button" hidden><svg class="i"><use href="#i-map"/></svg>Map</button>
 
   <section id="detail" class="detail" hidden role="dialog" aria-modal="true" aria-label="Details">
@@ -658,7 +790,9 @@ input.tin{height:48px;padding:0 12px}
 'use strict';
 
 var APP_NAME = 'Chicago Fun Finder';  // THE app name: page title, wordmark, About all read this one constant. Working name until the owner picks one (the earlier proposal was rejected).
-var VERSION = 'v3.1 (2026-11-12)';
+var VERSION = 'v4 (2026-11-12)';
+var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
+var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
 var TZ = 'America/Chicago';
 var DATA_URL = 'activities.json';
@@ -759,8 +893,37 @@ var Platform = (function(){
     sendWith: sendTipWith, body: tipBody,
     writable: function(){ return dbState.writable; }
   };
+  // v4 sharing. share(): the phone's share sheet when the browser has one, else copy. Resolves 'shared' | 'cancelled' | 'copied'; rejects when neither worked.
+  function share(data){
+    var text = String(data.text || '') + (data.url ? '\n' + data.url : '');
+    function viaCopy(){ return copy(text).then(function(){ return 'copied'; }); }
+    try {
+      if (navigator.share) {
+        var payload = {title:String(data.title || ''), text:String(data.text || '')}; if (data.url) payload.url = data.url;
+        return navigator.share(payload).then(function(){ return 'shared'; }, function(e){ if (e && e.name === 'AbortError') return 'cancelled'; return viaCopy(); });
+      }
+    } catch (e) {}
+    return viaCopy();
+  }
+  // Link to one item: "<base>#<id>". Inside claude.ai the page can't see its own public address, so PUBLIC_URL must be set at publish time.
+  function linkFor(id){
+    var base = PUBLIC_URL;
+    if (!base && !onClaude && !inFrame) { try { if (/^https?:$/.test(location.protocol)) base = location.origin + location.pathname + location.search; } catch (e) {} }
+    return base ? String(base).replace(/#.*$/, '') + '#' + id : '';
+  }
+  // Hand the phone a file (.ics). Inside claude.ai a page can't start a download by itself and the downloads capability doesn't allow .ics,
+  // so this resolves false there and the caller shows the details with a Copy button instead.
+  function saveFile(name, text, mime){
+    if (onClaude || inFrame) return Promise.resolve(false);
+    try {
+      var blob = new Blob([text], {type:mime}), url = URL.createObjectURL(blob), a = document.createElement('a');
+      a.href = url; a.download = name; a.style.display = 'none'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){ try { URL.revokeObjectURL(url); } catch (e) {} }, 4000);
+      return Promise.resolve(true);
+    } catch (e) { return Promise.resolve(false); }
+  }
   // Street tiles: only when hosted outside claude.ai. Left empty on purpose (no outside fetches inside claude.ai).
-  return {store:store, makeStore:makeStore, inFrame:inFrame, onClaude:onClaude, telOk:telOk, fetchJSON:fetchJSON, geo:geo, copy:copy, tips:tips, tiles:null};
+  return {store:store, makeStore:makeStore, inFrame:inFrame, onClaude:onClaude, telOk:telOk, fetchJSON:fetchJSON, geo:geo, copy:copy, tips:tips, tiles:null, share:share, linkFor:linkFor, saveFile:saveFile};
 })();
 
 /* ================= small helpers ================= */
@@ -1754,7 +1917,7 @@ function nightBudget(T){ // "rest of the night" = until 2 am (bar closing), neve
 }
 function fitFor(it, st, trav, budget, T){
   var V = visitLengths(it), tr = trav.min, arrive = T + tr * 60000;
-  var B = budget === 'night' ? nightBudget(T) : budget;
+  var B = budget === 'night' ? nightBudget(T) : budget === 'any' ? 1440 : budget;   // v4: 'any' = no time budget (the default; "I've only got..." is in More filters)
   var res = {travel:tr, there:V.typical, typical:V.typical, thereKnown:V.typicalKnown, min:V.min, minSrc:V.minSrc, short:false, wait:0, arrive:arrive, budget:B};
   var sa = statusAt(it, arrive), get, wait = 0, entryTight = false;
   if (sa.open) {
@@ -1814,16 +1977,16 @@ function fitNote(c){
   var f = c.fit, st = c.st || {}; if (!f) return null;
   var tail = f.thereKnown ? '' : ' Length not listed, so we assumed 1 h.';
   var pre = (!st.open && st.opensAt && st.ms && f.kind === 'fits') ? 'Opens in ' + fmtDur(Math.max(1, Math.round((st.opensAt - st.ms) / 60000))) + '. ' : '';
-  var shortTxt = 'a short visit: about ' + fmtDur(f.min) + ' there';
+  var shortTxt = 'about ' + fmtDur(f.min) + ' there';   // v4 plain words: no "fits / tight / short visit" in anything she reads
   switch (f.kind) {
     case 'fits':
-      if (f.short) return {t:pre + 'Fits as ' + shortTxt + (f.shortBy === 'close' && f.closesAt ? ', since it closes at ' + fmtClock(f.closesAt) : '') + '. A full visit is about ' + fmtDur(f.typical) + '.' + tail, warn:false};
-      return {t:pre + (f.spare <= 10 ? 'Just fits. ' : 'Fits. ') + fmtDur(Math.max(0, f.spare)) + ' to spare.' + tail, warn:false};
-    case 'wait': return {t:'Opens at ' + fmtClock(f.opensAt) + '. You\'d wait about ' + f.wait + ' min and ' + (f.short ? shortTxt.replace(/^a short visit: /, 'a short visit (') + ') still fits.' : 'it still fits.') + tail, warn:false};
+      if (f.short) return {t:pre + 'Time for a quick stop: ' + shortTxt + (f.shortBy === 'close' && f.closesAt ? ', since it closes at ' + fmtClock(f.closesAt) : '') + '. A full visit is about ' + fmtDur(f.typical) + '.' + tail, warn:false};
+      return {t:pre + (f.spare <= 10 ? 'Just enough time. ' : 'Enough time. ') + fmtDur(Math.max(0, f.spare)) + ' to spare.' + tail, warn:false};
+    case 'wait': return {t:'Opens at ' + fmtClock(f.opensAt) + '. You\'d wait about ' + f.wait + ' min and ' + (f.short ? 'still have time for a quick stop (' + shortTxt + ').' : 'still have time.') + tail, warn:false};
     case 'tight':
       if (f.entryTight) return {t:'Last entry is ' + fmtClock(f.lastEntryAt) + ' and you\'d get there around ' + fmtClock(f.arrive) + '. Cutting it close.', warn:true};   // v2.2 (C-1)
       return {t:'Closes at ' + fmtClock(f.closesAt) + ', so you\'d only get about ' + f.get + ' min there.' + tail, warn:true};
-    case 'over': return {t:'Needs at least ' + fmtDur(f.needMin) + ' door to door' + (f.min < f.typical ? ' for a short visit' : '') + '. Over by ' + fmtDur(f.over) + '.' + tail, warn:true};
+    case 'over': return {t:'Needs at least ' + fmtDur(f.needMin) + ' door to door' + (f.min < f.typical ? ' for a quick stop' : '') + '. Over by ' + fmtDur(f.over) + '.' + tail, warn:true};
     case 'no': return {t:'It closes before you\'d get much time there.', warn:true};
   }
   return null;
@@ -2059,7 +2222,7 @@ function matchesInterests(it, sel){ // multi-select: an item matches when it has
 /* ================= filters + pipeline (pure: used by the UI and the self-test) ================= */
 var APP_RADIUS = 25;   // v3: no distance cap by default (layout spec 3.10: the reach follows the hour); "How far" is in More filters. The v2 default was 5 mi.
 function appDefaultFilters(){ return ext(defaultFilters(), {radius:APP_RADIUS}); }
-function defaultFilters(){ return {openNow:true, fits:true, radius:5, mode:'transit', who:{}, io:'either', price:{}, walkin:false, kind:'all', social:false, hide21:false, showGone:false, interests:{}, groups:{}, cats:{}, sort:'best'}; }
+function defaultFilters(){ return {openNow:true, fits:true, radius:5, mode:'transit', who:{}, io:'either', price:{}, walkin:false, kind:'all', social:false, hide21:false, showGone:false, notBeen:false, interests:{}, groups:{}, cats:{}, sort:'best'}; }
 function computeItem(it, T, ctx){
   var sig = T + '|' + ctx.lat + ',' + ctx.lng + '|' + ctx.budget + '|' + ctx.mode;
   var cc = it.__cc || (it.__cc = {n:0, m:{}});
@@ -2094,6 +2257,7 @@ function passFilters(c, F){
   }
   if (F.walkin && it.booking !== 'walk-in') return false;
   if (F.hide21 && is21(it)) return false;
+  if (F.notBeen && checkinOf(it.id)) return false;   // v4: "Only places I haven't been"
   if (anyKey(F.who)) {
     var okw = (F.who.date && hasTag(it, 'date')) || (F.who.friends && hasTag(it, 'friends')) || (F.who.solo && hasTag(it, 'solo')) || (F.who.kids && kidsOk(it));
     if (!okw) return false;
@@ -2297,6 +2461,7 @@ function countView(items, T, ctx, F, sel, sub){ // what "Show N things" counts: 
 }
 var BUDGET_LADDER = [30, 60, 90, 120, 180, 'night'];
 function moreTimeFor(items, T, ctx, F, genres, sub){ // first longer time at which each genre (or one genre's sub-chip) gets a fit: {genre: {budget, n}}
+  if (ctx.budget === 'any') return {};   // v4: no time budget, so more time can't help
   var out = {}, need = genres.slice(), i0 = ctx.budget === 'night' ? BUDGET_LADDER.length : BUDGET_LADDER.indexOf(ctx.budget);
   if (i0 < 0) { i0 = 0; while (i0 < BUDGET_LADDER.length && BUDGET_LADDER[i0] !== 'night' && BUDGET_LADDER[i0] <= ctx.budget) i0++; i0--; }
   for (var i = i0 + 1; i < BUDGET_LADDER.length && need.length; i++) {
@@ -2317,9 +2482,9 @@ function appliedFilters(F){ // removable chips under the result line (Baymard pa
   if (F.radius !== APP_RADIUS) a.push({code:'radius', label:'Within ' + fmtRadius(F.radius)});
   if (F.walkin) a.push({code:'walkin', label:'Walk-in only'});
   if (F.hide21) a.push({code:'hide21', label:'No 21+'});
+  if (F.notBeen) a.push({code:'notBeen', label:'Not been yet'});
   for (k in F.interests) if (F.interests[k]) a.push({code:'int:' + k, label:interestLabel(k)});
   if (!F.openNow) a.push({code:'openNow', label:'Incl. closed'});
-  if (!F.fits) a.push({code:'fits', label:'Any length'});
   return a;
 }
 function removeFilter(F, code){ // returns a new filter object without that one filter
@@ -2330,14 +2495,15 @@ function removeFilter(F, code){ // returns a new filter object without that one 
   else if (k === 'mode') G.mode = 'transit';
   else if (k === 'radius') G.radius = APP_RADIUS;
   else if (k === 'openNow' || k === 'fits') G[k] = true;
-  else if (k === 'walkin' || k === 'hide21') G[k] = false;
+  else if (k === 'walkin' || k === 'hide21' || k === 'notBeen') G[k] = false;
   return G;
 }
 
 /* ================= app state ================= */
 var DATA = [], SKIPPED = [], DATA_ERR = null, DATA_LOADED = false;
-var S = {loc:null, budget:120, when:'now', pickAt:'', f:appDefaultFilters()};   // default 2 hrs (main session 2026-11-12: at 1 hr most items don't fit); last choice is remembered
+var S = {loc:null, budget:120, budgetOn:false, when:'now', pickAt:'', f:appDefaultFilters()};   // v4: the time budget is off by default (More filters turns it on); when on, the last amount is remembered
 var UI = {nowOverride:null, sel:null, detailId:null, expand:{}, picking:false, cand:null, firstOpen:false, geoState:'none', lastRes:null, planning:false,
+  view:'home', backView:'home', q:'', three:[], seen3:{}, threeKey:null, threeN:0, homeHTML:null, listTab:'saved', draftB:null,   // v4: home / browse / map, search text, the three picks
   genre:'', sub:'', foldTight:false, foldRest:false, limMore:false, showRing:false, viewKey:null, pinAnim:false, draft:null, surprise:null};   // v3: the picked tile, its sub-chip and the folds
 var savedIds = [];
 function nowMs(){ return UI.nowOverride !== null ? UI.nowOverride : Date.now(); }
@@ -2360,7 +2526,7 @@ function evalTime(){
   return now;
 }
 function nowLocalInput(){ var p = cparts(nowMs()); return p.key + 'T' + pad(p.hh) + ':' + pad(p.mm); }
-function ctxNow(){ return {lat:S.loc.lat, lng:S.loc.lng, budget:S.budget, mode:S.f.mode}; }
+function ctxNow(){ return {lat:S.loc.lat, lng:S.loc.lng, budget:S.budgetOn ? S.budget : 'any', mode:S.f.mode}; }
 function filterCount(F, when){ // v2: the radius has its own chip and is not counted as a "filter" (tester M2)
   var n = 0, k;
   for (k in F.who) if (F.who[k]) n++;
@@ -2368,11 +2534,188 @@ function filterCount(F, when){ // v2: the radius has its own chip and is not cou
   for (k in F.interests) if (F.interests[k]) n++;
   for (k in F.groups) if (F.groups[k]) n++;
   for (k in F.cats) if (F.cats[k]) n++;
-  if (F.io !== 'either') n++; if (F.walkin) n++; if (F.kind !== 'all') n++; if (F.hide21) n++; if (F.social) n++; if (F.showGone) n++;
+  if (F.io !== 'either') n++; if (F.walkin) n++; if (F.kind !== 'all') n++; if (F.hide21) n++; if (F.social) n++; if (F.showGone) n++; if (F.notBeen) n++;
   if (F.mode !== 'transit') n++; if (when && when !== 'now') n++;
   return n;
 }
 function activeFilterCount(){ return filterCount(S.f, S.when); }
+
+/* ================= v4: check-ins, one-line facts, the three picks, search, share, calendar, hash links (pure: the UI and the self-test use them) ================= */
+/* Check-ins ("I've been here"). Kept on this phone as a list of plain records, one per place, so they can sync to an account later:
+   [{id:<item id>, date:'YYYY-MM-DD', rating:1|0|-1, updated_at:<ISO time>}]. Never a photo. */
+var CHECKIN_KEY = 'cff.checkins.v1', RECENT_DAYS = 30;
+var CHECKINS = [];
+function cleanCheckins(a){
+  var seen = {}, out = [];
+  (Array.isArray(a) ? a : []).forEach(function(x){
+    if (!x || typeof x.id !== 'string' || !x.id || !isKey(x.date) || seen[x.id]) return;
+    seen[x.id] = 1; out.push({id:x.id, date:x.date, rating: x.rating === 1 || x.rating === -1 ? x.rating : 0, updated_at:String(x.updated_at || '')});
+  });
+  return out;
+}
+function checkinOf(id, list){ list = list || CHECKINS; for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i]; return null; }
+function withCheckin(list, id, patch, nowIso){ // a new list with this place added or changed
+  var out = [], found = false;
+  list.forEach(function(x){ if (x.id === id) { found = true; out.push(ext(ext(x, patch), {id:id, updated_at:nowIso})); } else out.push(x); });
+  if (!found) out.push(ext(ext({date:'', rating:0}, patch), {id:id, updated_at:nowIso}));
+  return cleanCheckins(out);
+}
+function withoutCheckin(list, id){ return list.filter(function(x){ return x.id !== id; }); }
+function beenRecently(id, todayKey, list){ var ck = checkinOf(id, list); return !!ck && dayDiff(ck.date, todayKey) <= RECENT_DAYS; }   // within the last 30 days (a future date counts too)
+function beenLabel(ck, todayKey){ return 'Been \u00b7 ' + fmtDate(ck.date, todayKey); }
+
+/* One line of facts: "Open till 10 pm · 12 min walk · $$" */
+function statusShort(c){
+  var st = c.st, isEv = c.item.kind === 'event', t = String(c.d && c.d.text || '');
+  if (/^Dark now/.test(t)) return 'Best in daylight';
+  if (st.open && !st.inSession) {
+    if (st.always) return 'Open 24 hours';
+    if (st.lastEntryAt && st.lastEntryAt - st.ms <= 3600000) return 'Last entry ' + fmtWhen(st.lastEntryAt, st.p, true);
+    if (st.endUnknown || !st.closesAt) return isEv ? 'On now' : 'Open now';
+    if (st.key === 'closing') return (isEv ? 'Ends in ' : 'Closes in ') + st.minsLeft + ' min';
+    return (isEv ? 'On till ' : 'Open till ') + fmtWhen(st.closesAt, st.p, true);
+  }
+  if (st.key === 'later' && st.opensAt && !st.inSession) return 'Opens at ' + fmtClock(st.opensAt);
+  return t.split(' \u00b7 ')[0];
+}
+function travelShort(c){
+  if (c.dist === null || c.dist === undefined) return c.citywide ? 'citywide' : '';
+  var tr = c.trav; if (!tr || tr.how === 'unknown') return fmtMi(c.dist);
+  return tr.min + ' min ' + (tr.how === 'walk' ? 'walk' : tr.how === 'CTA' ? 'by CTA' : 'drive');
+}
+function priceShort(it){ return it.price_level === 'free' ? 'Free' : (typeof it.price_level === 'string' ? it.price_level : ''); }
+function factsLine(c){ return [statusShort(c), travelShort(c), priceShort(c.item)].filter(Boolean).join(' \u00b7 '); }
+function hookOf(it){ // the data's `hook`, else the first sentence of the description, trimmed
+  var h = typeof it.hook === 'string' ? it.hook.trim() : '';
+  if (h) return h;
+  var d = String(it.description || '').replace(/\s+/g, ' ').trim(); if (!d) return '';
+  var m = /^(.+?[.!?])(?=\s+[A-Z(\u201c"]|$)/.exec(d), s = m ? m[1] : d;
+  if (s.length > 110) { s = s.slice(0, 108); var i = s.lastIndexOf(' '); if (i > 60) s = s.slice(0, i); s = s.replace(/[\s,;:.\u2013-]+$/, '') + '\u2026'; }
+  else s = s.replace(/\.$/, '');
+  return s;
+}
+
+/* The three picks. Rule: open at the chosen time (or opening within 15 min), reachable, three different kinds,
+   at least one limited-time thing when one qualifies, nothing she checked in to in the last 30 days. "Three more" never repeats until the pool runs out. */
+var REACH_MIN = 45;                    // "reachable" = about 45 min door to door or less, when at least three such places are open
+function tasteScore(c){ return 0; }    // hook for the taste profile (step group D): a higher score moves a place up. Not built yet.
+function strHash(s){ var h = 5381; for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return h >>> 0; }
+function threePool(vm, todayKey, checkins){ // everything that could be one of the three, best first. The order changes each day (strHash) so it isn't always the same three.
+  var all = (vm.all || []).filter(function(c){ return c.bucket === 'fits' && !beenRecently(c.item.id, todayKey, checkins); });
+  var near = all.filter(function(c){ return c.citywide || c.trav.min <= REACH_MIN; });
+  var pool = near.length >= 3 ? near : all;
+  function band(c){ var m = c.trav.min; return m <= 15 ? 0 : m <= 30 ? 1 : m <= REACH_MIN ? 2 : 3; }
+  pool.forEach(function(c){ c.__r = [-(tasteScore(c) || 0), trustRank(c), firstPhoto(c.item) ? 0 : 1, band(c), strHash(String(c.item.id) + '|' + todayKey)]; });
+  pool.sort(function(a, b){ for (var i = 0; i < 5; i++) if (a.__r[i] !== b.__r[i]) return a.__r[i] - b.__r[i]; return 0; });
+  return pool;
+}
+function pickThree(pool, seen){ // -> {picks:[up to 3], wrapped:true when the unseen ones ran out and it started over}
+  seen = seen || {};
+  function choose(list, have){
+    var out = have.slice(), used = {}, ids = {}, i;
+    out.forEach(function(c){ used[c.genre] = 1; ids[c.item.id] = 1; });
+    list = list.filter(function(c){ return !ids[c.item.id]; });
+    if (out.length < 3 && !out.some(function(c){ return c.lim === 'now'; })) {
+      for (i = 0; i < list.length; i++) if (list[i].lim === 'now' && !used[list[i].genre]) { out.push(list[i]); used[list[i].genre] = 1; ids[list[i].item.id] = 1; break; }
+    }
+    [true, false].forEach(function(distinct){
+      list.forEach(function(c){ if (out.length >= 3 || ids[c.item.id] || (distinct && used[c.genre])) return; out.push(c); used[c.genre] = 1; ids[c.item.id] = 1; });
+    });
+    return out;
+  }
+  var unseen = pool.filter(function(c){ return !seen[c.item.id]; });
+  var picks = choose(unseen, []), wrapped = false;
+  if (picks.length < 3 && unseen.length < pool.length) { wrapped = true; picks = choose(pool, picks); }
+  return {picks:picks, wrapped:wrapped};
+}
+
+/* Search: names, kinds, interests/tags and neighborhoods, as you type. Every word must match; small typos are forgiven when nothing matches exactly. */
+function norm(s){ s = String(s === null || s === undefined ? '' : s).toLowerCase(); try { s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); } catch (e) {} return s.replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, ' ').trim(); }
+function searchIndex(it){
+  if (it.__sx) return it.__sx;
+  var g = genreOf(it), name = norm(it.name);
+  var kind = norm([genreName(g), genreShort(g), subName(it, g), catOf(it).label, it.kind === 'event' ? 'event limited time' : ''].join(' '));
+  var tags = norm((Array.isArray(it.tags) ? it.tags : []).join(' ') + ' ' + interestsOf(it).map(interestLabel).join(' '));
+  var hood = norm(it.neighborhood);
+  it.__sx = {name:name, nameW:name.split(' '), kind:kind, kindW:kind.split(' '), tags:tags, tagW:tags.split(' '), hood:hood, hoodW:hood.split(' ')};
+  return it.__sx;
+}
+function editWithin(a, b, max){ // edit distance (a swap of two neighbours counts as 1), or max + 1 when it is more than max
+  var la = a.length, lb = b.length; if (Math.abs(la - lb) > max) return max + 1;
+  var pp = [], prev = [], cur, i, j;
+  for (j = 0; j <= lb; j++) prev[j] = j;
+  for (i = 1; i <= la; i++) {
+    cur = [i]; var best = i;
+    for (j = 1; j <= lb; j++) {
+      var v = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a.charCodeAt(i - 1) === b.charCodeAt(j - 1) ? 0 : 1));
+      if (i > 1 && j > 1 && a.charCodeAt(i - 1) === b.charCodeAt(j - 2) && a.charCodeAt(i - 2) === b.charCodeAt(j - 1)) v = Math.min(v, pp[j - 2] + 1);
+      cur[j] = v; if (v < best) best = v;
+    }
+    if (best > max) return max + 1;
+    pp = prev; prev = cur;
+  }
+  return prev[lb];
+}
+var FUZZY_SCORE = 15;
+function tokenScore(tok, sx){ // 0 = this word isn't in the item
+  function inWords(words, str){ if (str.indexOf(tok) < 0) return 0; for (var i = 0; i < words.length; i++) if (words[i].indexOf(tok) === 0) return 3; return 2; }
+  var n = inWords(sx.nameW, sx.name); if (n) return n === 3 ? 100 : 70;
+  if (inWords(sx.kindW, sx.kind) === 3) return 60;
+  var t = inWords(sx.tagW, sx.tags); if (t === 3) return 50;
+  if (inWords(sx.hoodW, sx.hood) === 3) return 40;
+  if (t === 2 && tok.length >= 3) return 25;
+  if (tok.length >= 4) {
+    var max = tok.length >= 8 ? 2 : 1, all = sx.nameW.concat(sx.kindW, sx.tagW, sx.hoodW);
+    for (var i = 0; i < all.length; i++) {
+      var w = all[i]; if (w.length < 4) continue;
+      if (editWithin(tok, w, max) <= max) return FUZZY_SCORE;
+      if (tok.length >= 5 && w.length > tok.length && editWithin(tok, w.slice(0, tok.length), 1) <= 1) return FUZZY_SCORE;
+    }
+  }
+  return 0;
+}
+function searchItems(items, q){ // [{it, score, fuzzy}] best first
+  var toks = norm(q).split(' ').filter(Boolean); if (!toks.length) return [];
+  var out = [], exact = false, whole = toks.join(' ');
+  items.forEach(function(it){
+    var sx = searchIndex(it), sum = 0, fz = false;
+    for (var i = 0; i < toks.length; i++) { var s = tokenScore(toks[i], sx); if (!s) return; if (s === FUZZY_SCORE) fz = true; sum += s; }
+    if (sx.name === whole) sum += 50;
+    if (!fz) exact = true;
+    out.push({it:it, score:sum, fuzzy:fz});
+  });
+  if (exact) out = out.filter(function(r){ return !r.fuzzy; });
+  out.sort(function(a, b){ return b.score - a.score || (a.it.name < b.it.name ? -1 : a.it.name > b.it.name ? 1 : 0); });
+  return out;
+}
+
+/* Hash links: "#<id>" opens that place. Only plain "#name" hashes pass through claude.ai, so the id is the whole hash. */
+var HASH_WORDS = {selftest:1, tip:1, home:1, browse:1, map:1, been:1, saved:1, search:1};
+function hashItemId(hash){ var s = String(hash || '').replace(/^#/, ''); try { s = decodeURIComponent(s); } catch (e) {} return (/^[A-Za-z0-9][A-Za-z0-9_.-]{1,80}$/.test(s) && !HASH_WORDS[s.toLowerCase()]) ? s : ''; }
+
+/* Share text and calendar entry */
+function whenLine(c){ var b = c.item.kind === 'event' ? untilBadge(c, c.st.p) : null; return String(c.d.text || '') + (b && !b.muted ? ' \u00b7 ' + b.t : ''); }
+function shareText(c, link){ var it = c.item, lines = [it.name, whenLine(c)]; if (it.address) lines.push(it.address); if (link) lines.push(link); return lines.filter(Boolean).join('\n'); }
+function icsStamp(ms){ var d = new Date(ms); return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) + 'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + '00Z'; }
+function icsEsc(s){ return String(s || '').replace(/\\/g, '\\\\').replace(/\r?\n/g, '\\n').replace(/([,;])/g, '\\$1'); }
+function calEvent(c, link){ // when she'd be there: the time she is planning for, else when she'd arrive (or when it next opens)
+  var it = c.item, st = c.st, f = c.fit || {}, start;
+  if (st.open) start = f.arrive || st.ms; else if (st.opensAt) start = st.opensAt; else start = st.ms;
+  start = Math.ceil(start / 300000) * 300000;
+  var end = start + visitLengths(it).typical * 60000;
+  if (st.open && st.closesAt && !st.endUnknown && st.closesAt > start && end > st.closesAt) end = st.closesAt;
+  return {id:String(it.id), title:String(it.name), start:start, end:end, where:String(it.address || ''), link:link || ''};
+}
+function icsFor(ev, stampMs){
+  var L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Chicago Fun Finder//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'BEGIN:VEVENT',
+    'UID:' + ev.id + '-' + icsStamp(ev.start) + '@chicago-fun-finder', 'DTSTAMP:' + icsStamp(stampMs), 'DTSTART:' + icsStamp(ev.start), 'DTEND:' + icsStamp(ev.end), 'SUMMARY:' + icsEsc(ev.title)];
+  if (ev.where) L.push('LOCATION:' + icsEsc(ev.where));
+  if (ev.link) { L.push('URL:' + ev.link); L.push('DESCRIPTION:' + icsEsc(ev.link)); }
+  L.push('END:VEVENT', 'END:VCALENDAR');
+  return L.join('\r\n') + '\r\n';
+}
+function calText(ev, todayKey){ var q = cparts(ev.start); return ev.title + '\n' + fmtDayDate(q.key, todayKey) + ', ' + fmtTime(q.min) + ' \u2013 ' + fmtClock(ev.end) + ' (Chicago time)' + (ev.where ? '\n' + ev.where : '') + (ev.link ? '\n' + ev.link : ''); }
+function gcalLink(ev){ return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(ev.title) + '&dates=' + icsStamp(ev.start) + '/' + icsStamp(ev.end) + (ev.where ? '&location=' + encodeURIComponent(ev.where) : '') + (ev.link ? '&details=' + encodeURIComponent(ev.link) : ''); }
 
 /* ================= spots for "where am I" (approximate points, typed from general knowledge: needs check) ================= */
 var SPOTS = [
@@ -2522,7 +2865,8 @@ var reclusterTimer = null;
 function scheduleRecluster(){ clearTimeout(reclusterTimer); reclusterTimer = setTimeout(recluster, 160); }
 function mapVisibleBox(){ // part of the map not covered by the sheet or the Saved button (screen px inside the map element); layout spec 3.1: y 108 to the sheet top - 16
   var top = isWide() ? 60 : 100, bottom = MV.H - (isWide() ? 20 : 0);
-  if (!isWide() && sheetEl && !sheetEl.hidden) { var vis = sheetEl.offsetHeight - Sheet.y; bottom = Math.max(top + 120, MV.H - vis - 16); }
+  if (!isWide() && !UI.picking) return {top:74, bottom:Math.max(220, MV.H - 120)};   // v4: the map is its own full screen; leave room for the Back button and the card of the picked pin
+  if (!isWide() && sheetEl && !sheetEl.hidden && false) { var vis = sheetEl.offsetHeight - Sheet.y; bottom = Math.max(top + 120, MV.H - vis - 16); }
   return {top:top, bottom:bottom};
 }
 /* v2.1 (tester M-A): the claude.ai frame can start at 0 x 0. A fit made then is lost (minimum zoom, far north).
@@ -2723,8 +3067,19 @@ function onPinActivate(el){
   if (UI.picking) { var it0 = findItem(id); if (it0) setCandidate(it0.lat, it0.lng, it0.name, 'map'); return; }
   if (UI.sel === id || isWide()) { UI.sel = id; recluster(); openDetail(id); return; }
   UI.sel = id; recluster();
-  if (Sheet.state === 'peek') applySheet('half');
-  revealRow(id);
+  renderMapCard();   // v4: the first tap shows the place's card at the bottom of the map; tapping the card (or the pin again) opens it
+}
+function renderMapCard(){
+  var el = $('mapCard'); if (!el) return;
+  var c = (UI.view === 'map' && UI.sel) ? findComputed(UI.sel) : null;
+  if (!c) { el.hidden = true; el.innerHTML = ''; return; }
+  var g = genreOf(c.item);
+  el.style.setProperty('--c', genreColor(g));
+  el.setAttribute('data-id', c.item.id);
+  el.setAttribute('aria-label', c.item.name + '. ' + factsLine(c) + '. Open');
+  el.innerHTML = thumbHTML(c, {}) + '<span><b>' + esc(c.item.name) + '</b><span>' + esc(factsLine(c)) + '</span></span>' + glyphSvg('i-right');
+  el.hidden = false;
+  wireImages(el);
 }
 function onMapTap(px, py){
   if (UI.picking) {
@@ -2732,7 +3087,7 @@ function onMapTap(px, py){
     if (lab === 'Dropped pin' && isLake(u[0], u[1])) { toast('That\'s in the lake. Tap on land.'); return; }
     setCandidate(ll[0], ll[1], lab, 'map'); return;
   }
-  if (UI.sel) { UI.sel = null; recluster(); }
+  if (UI.sel) { UI.sel = null; recluster(); renderMapCard(); }
 }
 function revealRow(id){
   var row = listRoot.querySelector('li[data-id="' + cssEsc(id) + '"]');
@@ -2762,7 +3117,7 @@ function applySheet(name, animate){
     Sheet.state = 'wide'; Sheet.y = 0; sheetEl.dataset.snap = 'wide'; sheetEl.style.transform = ''; scrollEl.style.height = '';
     mapPill.hidden = true; return;
   }
-  if (name === 'wide') name = 'half';
+  name = 'full';   // v4: on phones the list is its own full screen (Browse); the map opens from the Map button
   Sheet.state = name;
   sheetEl.dataset.snap = name;
   sheetEl.classList.toggle('dragging', animate === false);
@@ -2770,7 +3125,7 @@ function applySheet(name, animate){
   sheetEl.style.transform = 'translateY(' + Sheet.y + 'px)';
   var vis = sheetEl.offsetHeight - Sheet.y;
   scrollEl.style.height = Math.max(0, vis - scrollEl.offsetTop) + 'px';
-  mapPill.hidden = name !== 'full' || GEO.failed;
+  updateMapPill();
   $('grabber').setAttribute('aria-label', name === 'full' ? 'Show the map' : 'Expand the list');
   if (animate === false) requestAnimationFrame(function(){ sheetEl.classList.remove('dragging'); });
 }
@@ -2778,6 +3133,7 @@ function bindSheet(){
   var dragging = false, moved = false, startY = 0, base = 0, startState = 'half', samples = [];
   var ORDER = ['full', 'half', 'peek'];
   handleEl.addEventListener('pointerdown', function(e){
+    if (true) return;   // v4: the sheet no longer drags (the list is a full screen); the old drag code below is kept for reference
     if (isWide()) return;
     if (e.target.closest('.fill,.surprise')) return;
     dragging = true; Sheet.drag = true; moved = false; startY = e.clientY; base = Sheet.y; startState = Sheet.state; samples = [[e.timeStamp, e.clientY]];
@@ -2810,14 +3166,32 @@ function bindSheet(){
     if (e.key === 'ArrowUp') { e.preventDefault(); applySheet(ORDER[Math.max(0, i - 1)]); }
     else if (e.key === 'ArrowDown') { e.preventDefault(); applySheet(ORDER[Math.min(2, i + 1)]); }
   });
-  mapPill.addEventListener('click', function(){ applySheet('peek'); });
+  mapPill.addEventListener('click', function(){ showView('map'); });
+}
+/* ----- v4 views: home (the three picks) / browse (kinds grid + list + search) / map (full screen) ----- */
+function updateMapPill(){ if (mapPill) mapPill.hidden = isWide() || GEO.failed || UI.view === 'map' || !!UI.q; }
+function showView(v, opts){
+  opts = opts || {};
+  if (v !== 'home' && v !== 'browse' && v !== 'map') v = 'home';
+  if (v === 'map' && (isWide() || GEO.failed)) v = 'browse';
+  if (v === 'map' && UI.view !== 'map') UI.backView = UI.view || 'home';
+  if (v !== 'browse' && UI.q) { UI.q = ''; var qi = $('q'); if (qi) qi.value = ''; if ($('qClear')) $('qClear').hidden = true; }
+  UI.view = v; UI.sel = null; UI.viewKey = null;
+  $('app').setAttribute('data-view', v);
+  refresh();
+  renderMapCard();
+  if (v === 'map') onViewportChange();
+  if (v === 'browse' && opts.search) setTimeout(function(){ try { $('q').focus(); } catch (e) {} }, 60);
+  if (v === 'home') { var hm = $('home'); if (hm && opts.top) hm.scrollTop = 0; }
 }
 
 /* ================= rendering: header, tiles, list (v3 "calm default", layout spec §3-4) ================= */
 function glyphSvg(id, cls){ return '<svg class="' + (cls || 'i') + '"><use href="#' + id + '"/></svg>'; }
 var CHEV = '<svg class="i sm"><use href="#i-chev"/></svg>';
-function whenLabel(){ if (S.when === 'now') return 'right now'; if (S.when === 'tonight') return 'tonight'; if (S.when === 'weekend') return 'this weekend'; var d = parseDT(S.pickAt); return d && d.min !== null ? DOW_SHORT[wdOfKey(d.key)] + ' ' + fmtTime(d.min) : 'at a time'; }
+function whenLabel(){ if (S.when === 'now') return 'Now'; if (S.when === 'tonight') return 'Tonight'; if (S.when === 'weekend') return 'This weekend'; var d = parseDT(S.pickAt); return d && d.min !== null ? DOW_SHORT[wdOfKey(d.key)] + ' ' + fmtTime(d.min) : 'Pick a day'; }
 function budgetWords(){ return S.budget === 'night' ? 'the rest of the night' : fmtBudget(S.budget); }
+function doableWords(){ return S.budget === 'night' ? 'doable tonight' : 'doable in ' + fmtBudget(S.budget); }   // v4 plain words for the optional time budget
+function openWords(){ return UI.planning ? 'open then' : 'open now'; }
 function timeWord(){ return S.budget === 60 ? 'hour' : 'time'; }
 function fillHTML(txt){ return esc(txt).replace(/ /g, '&nbsp;') + '<svg class="i"><use href="#i-chev"/></svg>'; }
 function renderHeader(res){
@@ -2836,12 +3210,13 @@ function renderHeader(res){
   var lab = S.loc ? S.loc.label : 'The Loop';
   $('fillLoc').innerHTML = fillHTML(lab);
   $('fillLoc').setAttribute('aria-label', 'Where: ' + lab + '. Change');
+  $('budgetBit').hidden = !S.budgetOn;
 }
 function renderTiles(vm){
   var F = S.f, el = $('tiles'), h = '';
   vm.tiles.forEach(function(t){ // v3.1: 4 x 2 grid, all 8 visible; tiles with 0 stay in place, dimmed
     var isL = t.id === 'limited', name = genreName(t.id);
-    var lab = name + ', ' + t.n + (isL ? ' on now' : F.fits ? ' fit your ' + timeWord() : ' open now');
+    var lab = name + ', ' + t.n + (isL ? ' on now' : ' ' + openWords() + (S.budgetOn ? ', ' + doableWords() : ''));
     h += '<button class="tile' + (isL ? ' lt' : '') + (t.n ? '' : ' zero') + '" type="button" data-tile="' + t.id + '" aria-pressed="' + (vm.sel === t.id) + '" aria-label="' + esc(lab) + '" title="' + esc(lab) + '" style="--c:' + (isL ? 'var(--accent)' : genreColor(t.id)) + '">' +
       '<span class="top"><span class="gl"><svg aria-hidden="true"><use href="#' + genreGlyph(t.id) + '"/></svg></span><span class="num">' + t.n + '</span></span><span class="nm">' + esc(genreShort(t.id)) + '</span></button>';
   });
@@ -2856,18 +3231,19 @@ function renderSubchips(vm){
   el.innerHTML = h; el.hidden = !h;
 }
 function resultLine(vm){
-  var F = S.f, openW = UI.planning ? ' open then' : ' open now';
-  if (!vm.sel) return '<b>' + vm.main.length + openW + '</b>' + (F.fits ? ' fit your ' + timeWord() : '');
+  var openW = ' ' + openWords(), bw = S.budgetOn ? ', ' + esc(doableWords()) : '';
+  if (!vm.sel) return '<b>' + vm.main.length + openW + '</b>' + bw;
   if (vm.sel === 'limited') return '<b>' + vm.onNow.length + ' on now</b> · ' + vm.wknd.length + ' ' + esc(comingLabel('wknd', vm.p).toLowerCase());
   var k = vm.kind;
-  return '<b>' + k.fits.length + ' ' + esc(genreName(vm.sel)) + '</b>' + (F.fits ? ' fit your ' + timeWord() : openW) + (k.tight.length ? ' · ' + k.tight.length + ' tight' : '');
+  return '<b>' + k.fits.length + ' ' + esc(genreName(vm.sel)) + '</b>' + openW + bw + (k.tight.length ? ' · ' + k.tight.length + ' closing soon' : '');
 }
 function renderResline(vm){
-  var nf = appliedFilters(S.f).length;
+  var nf = appliedFilters(S.f).length + (S.budgetOn ? 1 : 0);
   $('resline').innerHTML = '<span>' + resultLine(vm) + '</span><button class="mfbtn" type="button" data-act="filters" aria-label="More filters' + (nf ? ', ' + nf + ' on' : '') + '">' + glyphSvg('i-sliders') + 'More filters' + (nf ? '<span class="n">' + nf + '</span>' : '') + '</button>';
 }
 function renderApplied(){
   var a = appliedFilters(S.f), el = $('applied');
+  if (S.budgetOn) a.unshift({code:'tb', label:S.budget === 'night' ? 'Rest of the night' : fmtBudget(S.budget) + ' only'});   // v4: the optional time budget shows as one removable chip
   el.innerHTML = a.map(function(x){ return '<button type="button" data-rm="' + esc(x.code) + '" aria-label="Remove ' + esc(x.label) + '">' + esc(x.label) + '<svg class="i"><use href="#i-close"/></svg></button>'; }).join('');
   el.hidden = !a.length;
 }
@@ -2886,7 +3262,7 @@ function phoneHTML(ph, telOk){ // number as selectable text + Copy; a tel: link 
   if (telOk) h += '<a class="mini-btn" href="tel:' + esc(telHref(ph)) + '">' + glyphSvg('i-phone') + '<span>Call</span></a>';
   return h + '</div>';
 }
-function ribbonSentence(c){ var f = c.fit; var s = f.travel + ' minutes getting there, ' + f.there + ' minutes there' + (f.short ? ' (a short visit)' : ''); if (f.wait) s += ', ' + f.wait + ' minutes waiting for it to open'; if (f.kind === 'fits' || f.kind === 'wait') s += ', ' + f.spare + ' minutes spare'; else if (f.kind === 'over') s += ', over by ' + f.over + ' minutes'; else if (f.kind === 'tight') s += ', but it closes after ' + f.get + ' minutes'; return s + ' (time you have: ' + fmtBudget(S.budget) + ').'; }
+function ribbonSentence(c){ var f = c.fit; var s = f.travel + ' minutes getting there, ' + f.there + ' minutes there' + (f.short ? ' (a quick stop)' : ''); if (f.wait) s += ', ' + f.wait + ' minutes waiting for it to open'; if (f.kind === 'fits' || f.kind === 'wait') s += ', ' + f.spare + ' minutes spare'; else if (f.kind === 'over') s += ', over by ' + f.over + ' minutes'; else if (f.kind === 'tight') s += ', but it closes after ' + f.get + ' minutes'; return s + ' (time you have: ' + fmtBudget(S.budget) + ').'; }
 function pc(n){ return clamp(n, 0, 100).toFixed(1) + '%'; }
 function ribbonHTML(c, big){ // door-to-door bar: on the detail screen only in v3 (layout spec 0.2)
   var f = c.fit;
@@ -2926,11 +3302,12 @@ function rowHTML(c, opt){
   var kick = (opt.kicker || right) ? '<p class="rk"><span>' + esc(opt.kicker || '') + '</span>' + (right || '<span></span>') + '</p>' : '';
   var h = '<p class="status ' + d.tone + '"><span class="st-t"><i class="dot"></i>' + esc(d.text) + (d.sub ? ' · ' + esc(d.sub) : '') + '</span></p>';
   if (c.bucket === 'fits' && !st.open && st.opensAt) h += '<p class="evb">Opens in ' + esc(fmtDur(Math.max(1, Math.round((st.opensAt - st.ms) / 60000)))) + '</p>';
-  var meta = [];
+  var meta = [], ck = checkinOf(it.id), tsh = travelShort(c), prs = priceShort(it);   // v4: one plain line: where · how far · price (· Been)
+  if (opt.been && ck) h = '<p class="meta"><span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' + (ck.rating === 1 ? ' · liked it' : ck.rating === -1 ? ' · not for me' : '') + '</p>';
   if (it.neighborhood) meta.push(esc(shortHood(it.neighborhood)));
-  if (c.dist !== null) meta.push(fmtMi(c.dist) + ' · ' + esc(travelText(c.trav)));
-  else if (c.citywide) meta.push('citywide');
-  if (c.bucket === 'fits' && (f.kind === 'fits' || f.kind === 'wait')) meta.push(f.short ? 'short visit ~' + fmtDur(f.min) : f.thereKnown ? fmtDur(f.there) + ' there' : 'length not listed');
+  if (tsh) meta.push(esc(tsh));
+  if (prs) meta.push(esc(prs));
+  if (ck && !opt.been) meta.push('<span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>');
   h += '<p class="meta">' + meta.join(' · ') + '</p>';
   if (opt.note) { var fn = fitNote(c); if (fn && fn.warn) h += '<p class="fit warn">' + esc(fn.t) + '</p>'; }
   var tl = trustLineText(it, p); if (tl) h += '<p class="trustline"><i></i>' + esc(tl) + '</p>';
@@ -2960,8 +3337,8 @@ function emptyInfo(vm, g, more){ // why a kind has nothing that fits right now, 
   else if (!all.length) body = 'Nothing in ' + genreName(g) + ' matches your filters here.';
   else body = 'Nothing in ' + genreName(g) + ' is open near you ' + (UI.planning ? 'then' : 'right now') + '.';
   var btns = [], m = more && more[g];
-  if (m) btns.push({attr:'data-relax="budget:' + m.budget + '"', label:'Make it ' + (m.budget === 'night' ? 'the rest of the night' : fmtBudget(m.budget)) + ' · ' + m.n + ' fit'});
-  return {title:'Nothing fits ' + budgetWords() + (UI.planning ? ' then.' : ' right now.'), body:body, btns:btns, total:total};
+  if (m) btns.push({attr:'data-relax="budget:' + m.budget + '"', label:'Make it ' + (m.budget === 'night' ? 'the rest of the night' : fmtBudget(m.budget)) + ' · ' + m.n + ' to do'});
+  return {title:'Nothing ' + (S.budgetOn ? 'is ' + doableWords() : 'is open') + (UI.planning ? ' then.' : ' right now.'), body:body, btns:btns, total:total};
 }
 function bestRemoval(g, sub){ // "Remove Date (+3)": the applied filter whose removal brings back the most in this kind
   var a = appliedFilters(S.f); if (!a.length || !DATA_LOADED) return null;
@@ -2983,7 +3360,7 @@ function homeListHTML(vm, more){
   }
   if (!vm.main.length && vm.openNow <= ALL_CLOSED_MAX_OPEN) {
     var fo = vm.firstOpen, btn = '';
-    var body = 'Nothing open fits ' + budgetWords() + ' near ' + (S.loc ? S.loc.label : 'you') + '.';
+    var body = (S.budgetOn ? 'Nothing open is ' + doableWords() : 'Nothing is open') + ' near ' + (S.loc ? S.loc.label : 'you') + '.';
     if (fo) {
       body += ' First to open: ' + fo.item.name + ' at ' + fmtWhen(fo.st.opensAt, p, false) + (fo.dist !== null ? ', ' + travelText(fo.trav).replace(/^about /, '') : '') + '.';
       var q = cparts(fo.st.opensAt);
@@ -3000,7 +3377,7 @@ function homeListHTML(vm, more){
     h += noneRowHTML(g, e.title, e.body, btns);
   });
   h += '</ul>';
-  return h + endnoteHTML('The best pick of each kind that’s ' + (UI.planning ? 'open then' : 'open now') + (F.fits ? ' and fits ' + budgetWords() : '') + ' from ' + (S.loc ? S.loc.label : 'your pin') + '. Tap a kind above to see all of them.');
+  return h + endnoteHTML('The best pick of each kind that’s ' + (UI.planning ? 'open then' : 'open now') + (S.budgetOn ? ' and ' + doableWords() : '') + ' from ' + (S.loc ? S.loc.label : 'your pin') + '. Tap a kind above to see all of them.');
 }
 function foldHTML(key, open, cls, icon, title, n, small){
   return '<button class="fold' + (cls ? ' ' + cls : '') + '" type="button" data-fold="' + key + '" aria-expanded="' + !!open + '"><span class="ic">' + glyphSvg(icon) + '</span><span><b>' + esc(title) + '<em>' + n + '</em></b><small>' + esc(small) + '</small></span><svg class="i chev"><use href="#i-chev"/></svg></button>';
@@ -3010,14 +3387,14 @@ function kindEmptyHTML(vm, g, more){
   if (k.restN) btns.push({attr:'data-fold-open="rest"', label:k.rest.later.length ? 'Show what opens later' : 'Show the rest'});
   var rm = bestRemoval(g, vm.sub); if (rm) btns.push({attr:'data-rm="' + esc(rm.code) + '"', label:'Remove ' + rm.label + ' (+' + rm.n + ')'});
   if (e.total < THIN_GENRE) btns.push({attr:'data-act="tip"', label:g === 'relax' ? 'Know a sauna? Send a tip' : 'Know a place? Send a tip'});
-  return '<div class="empty"><h4>Nothing in ' + esc(genreName(g)) + ' fits ' + esc(budgetWords()) + (UI.planning ? ' then' : ' right now') + '.</h4><p>' + esc(e.body) + '</p><div class="btns">' + btns.map(actBtn).join('') + '</div></div>';
+  return '<div class="empty"><h4>Nothing in ' + esc(genreName(g)) + ' is ' + esc(S.budgetOn ? doableWords() : 'open') + (UI.planning ? ' then' : ' right now') + '.</h4><p>' + esc(e.body) + '</p><div class="btns">' + btns.map(actBtn).join('') + '</div></div>';
 }
 function kindListHTML(vm, more){
   var k = vm.kind, g = vm.sel, F = S.f, h = '', p = vm.p;
-  h += '<h3 class="sec-h"><span>' + (F.fits ? 'Fits your ' + timeWord() : (UI.planning ? 'Open then' : 'Open now')) + '</span><span>' + k.fits.length + '</span></h3>';
+  h += '<h3 class="sec-h"><span>' + (UI.planning ? 'Open then' : 'Open now') + (S.budgetOn ? ', ' + esc(doableWords()) : '') + '</span><span>' + k.fits.length + '</span></h3>';
   h += k.fits.length ? '<ul class="rows">' + k.fits.map(function(c){ return rowHTML(c, {}); }).join('') + '</ul>' : kindEmptyHTML(vm, g, more);
   if (k.tight.length) {
-    h += foldHTML('tight', UI.foldTight, '', 'i-clock', 'Open, but tight', k.tight.length, 'A little over ' + budgetWords() + ', or it closes soon');
+    h += foldHTML('tight', UI.foldTight, '', 'i-clock', 'Cutting it close', k.tight.length, S.budgetOn ? 'A little over ' + budgetWords() + ', or it closes soon' : 'Closes soon after you’d get there');
     if (UI.foldTight) h += '<ul class="rows">' + k.tight.map(function(c){ return rowHTML(c, {note:true}); }).join('') + '</ul>';
   }
   if (k.restN) {
@@ -3060,6 +3437,7 @@ function renderList(res, vm, more){
     return;
   }
   var p = res.p, h = '';
+  if (UI.q) { listRoot.innerHTML = searchListHTML(UI.q); wireImages(listRoot); return; }   // v4: search results replace the list while there is text in the box
   if (GEO.failed) h += '<p class="band info">The map couldn\'t load, so here\'s the list. Everything else works.</p>';   // tester L4
   var hol = holidayName(p.key);
   if (hol) h += '<p class="band">' + esc(hol) + ': holiday hours vary, so call first. ' + (MAJOR_HOLIDAYS[holidayId(p.key)] ? 'Places with no ' + esc(hol) + ' hours on file aren\'t counted as fits.' : 'Places whose own notes mention holiday hours say "call first".') + '</p>';
@@ -3129,7 +3507,7 @@ function filterGoState(count, nFilters, lim, nClear, planning){ // v2 Filters bu
 }
 function wireImages(root){
   Array.prototype.forEach.call(root.querySelectorAll('img[data-fb]'), function(img){
-    function gone(){ if (img.parentNode) img.parentNode.removeChild(img); }
+    function gone(){ var par = img.parentNode; if (!par) return; par.removeChild(img); var cr = par.querySelector('.photo-credit'); if (cr) par.removeChild(cr); }   // v4: no photo, no photo credit
     img.addEventListener('error', gone);
     if (img.complete && img.naturalWidth === 0 && img.getAttribute('src')) gone();
   });
@@ -3141,7 +3519,11 @@ function buildPins(vm, res){ // which pins, small pins and dots each state shows
   function near(c, mi){ return c.dist !== null && c.dist <= mi; }
   function pin(c, o){ if (!ok(c) || seen[c.item.id]) return; seen[c.item.id] = 1; pins.push({c:c, o:o || {}}); }
   function dot(c, o){ if (!ok(c) || seen[c.item.id]) return; seen[c.item.id] = 1; dots.push({c:c, o:o || {}}); }
-  if (!vm.sel) {
+  if (!vm.sel && UI.view === 'map') { // v4: the full-screen map shows everything that is open; it frames the three picks (or what is close by)
+    var three = {}; (UI.three || []).forEach(function(id){ three[id] = 1; });
+    vm.main.forEach(function(c){ pin(c, {tk:c.lim === 'now'}); if (three[c.item.id] && near(c, 10)) focus.push(c); });
+    if (!focus.length) vm.main.forEach(function(c){ if (near(c, 2)) focus.push(c); });
+  } else if (!vm.sel) {
     vm.picks.forEach(function(pk){ pin(pk.c, {tk:pk.c.lim === 'now'}); if (near(pk.c, 10)) focus.push(pk.c); });
     vm.onNow.forEach(function(c){ if (near(c, 1.3)) pin(c, {sm:true, tk:true}); });
     vm.main.forEach(function(c){ dot(c); });
@@ -3158,16 +3540,100 @@ function buildPins(vm, res){ // which pins, small pins and dots each state shows
   }
   res.pins = pins; res.dots = dots; res.focus = focus;
 }
-function viewKey(vm){ return [vm.sel, vm.sub, S.loc ? r1(S.loc.lat * 1000) + ',' + r1(S.loc.lng * 1000) : '', S.budget, S.when, S.pickAt, JSON.stringify(S.f), DATA_LOADED ? 1 : 0].join('|'); }
+function viewKey(vm){ return [UI.view, vm.sel, vm.sub, S.loc ? r1(S.loc.lat * 1000) + ',' + r1(S.loc.lng * 1000) : '', S.budgetOn ? S.budget : 'any', S.when, S.pickAt, JSON.stringify(S.f), DATA_LOADED ? 1 : 0].join('|'); }
 function fitToPins(res, animate){
   var pts = (res.focus || []).map(function(c){ return proj(c.item.lat, c.item.lng); });
   if (!pts.length) { focusOn(S.loc.lat, S.loc.lng, Math.min(S.f.radius, 2), animate); return; }
   pts.push(proj(S.loc.lat, S.loc.lng));
   focusPts(pts, animate);
 }
+/* ----- v4: search results, the three photo cards, the home screen ----- */
+var SEARCH_MAX = 40;
+function searchListHTML(q){
+  var T = evalTime(), ctx = ctxNow(), p = cparts(T), rows = [];
+  searchItems(DATA, q).forEach(function(r){
+    if (rows.length >= SEARCH_MAX) return;
+    var c = computeItem(r.it, T, ctx);
+    if (c.st.key === 'ended' || c.st.key === 'gone') return;
+    c.group = groupOf(c, S.f); annotate(c, p);
+    var sn = subName(c.item, c.genre);
+    rows.push(rowHTML(c, {kicker:genreName(c.genre) + (sn ? ' · ' + sn : ''), hollow:c.st.key === 'season'}));
+  });
+  if (!rows.length) return '<div class="empty"><h4>No match for “' + esc(q) + '”.</h4><p>Try a kind of fun (karaoke, mini golf), an interest (cheese, bugs) or a neighborhood.</p><div class="btns">' + actBtn({attr:'data-act="tip"', label:'Know a place? Send a tip'}) + '</div></div>';
+  return '<h3 class="sec-h"><span>Results</span><span></span></h3><ul class="rows">' + rows.join('') + '</ul>' + endnoteHTML('');
+}
+function cardHTML(c){
+  var it = c.item, g = c.genre || genreOf(it), ph = firstPhoto(it), sv = isSaved(it.id), ck = checkinOf(it.id), hook = hookOf(it), facts = factsLine(c);
+  return '<li class="card3" data-id="' + esc(it.id) + '" tabindex="0" aria-label="' + esc(it.name + '. ' + facts) + '" style="--c:' + genreColor(g) + '">' +
+    '<div class="cover"><svg aria-hidden="true"><use href="#' + genreGlyph(g) + '"/></svg></div>' +
+    (ph ? '<img src="' + esc(ph.file) + '" alt="" data-fb="1">' : '') +
+    (ck ? '<span class="been-mark">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' : '') +
+    '<div class="c3-btns"><button class="c3-btn" type="button" data-share="' + esc(it.id) + '" aria-label="Share ' + esc(it.name) + '">' + glyphSvg('i-share') + '</button>' +
+    '<button class="c3-btn" type="button" data-save="' + esc(it.id) + '" aria-pressed="' + sv + '" aria-label="' + (sv ? 'Saved: ' : 'Save: ') + esc(it.name) + '">' + glyphSvg('i-bookmark') + '</button></div>' +
+    '<div class="c3-text"><h3>' + esc(it.name) + '</h3>' + (hook ? '<p class="c3-hook">' + esc(hook) + '</p>' : '') + '<p class="c3-facts"><i class="dot ' + esc(c.d.tone) + '"></i>' + esc(facts) + '</p></div></li>';
+}
+function threeKey(){ return [S.when, S.pickAt, S.loc ? r1(S.loc.lat * 1000) + ',' + r1(S.loc.lng * 1000) : '', S.budgetOn ? S.budget : 'any', JSON.stringify(S.f), DATA_LOADED ? 1 : 0].join('|'); }
+function updateThree(vm, more){ // keeps the same three on screen until she asks for more, or the place / time / filters change, or one of them closes
+  var key = threeKey(), pool = threePool(vm, cparts(nowMs()).key, CHECKINS), byId = {};
+  pool.forEach(function(c){ byId[c.item.id] = c; });
+  if (key !== UI.threeKey) { UI.threeKey = key; UI.seen3 = {}; UI.three = []; }
+  var still = UI.three.length > 0 && UI.three.every(function(id){ return !!byId[id]; }) && (UI.three.length === 3 || UI.three.length === pool.length);
+  if (more || !still) {
+    if (!more) UI.three.forEach(function(id){ delete UI.seen3[id]; });
+    var r = pickThree(pool, UI.seen3);
+    if (r.wrapped) UI.seen3 = {};
+    UI.three = r.picks.map(function(c){ UI.seen3[c.item.id] = 1; return c.item.id; });
+  }
+  UI.threeN = pool.length;
+  return UI.three.map(function(id){ return byId[id]; }).filter(Boolean);
+}
+function homeTitle(res){
+  if (S.when === 'tonight') return 'Three for tonight';
+  if (UI.planning) return 'Three for ' + fmtDayDate(res.p.key, cparts(nowMs()).key);
+  return 'Three for right now';
+}
+function renderHome(res, vm, picks){
+  var root = $('homeRoot'); if (!root) return;
+  var p = res.p, who = S.f.who, lab = S.loc ? S.loc.label : 'The Loop', h = '';
+  h += '<div class="hm-top"><div><h1 class="hm-title">' + esc(homeTitle(res)) + '</h1>' +
+    '<button class="hm-sub" type="button" data-act="loc" aria-label="Where: ' + esc(lab) + '. Change"><span>' + (UI.planning ? esc(fmtTime(p.min)) + ' · ' : '') + 'near ' + esc(lab) + '</span>' + glyphSvg('i-chev') + '</button></div>' +
+    '<div class="hm-icons"><button class="icon-btn" type="button" data-act="search" aria-label="Search">' + glyphSvg('i-search') + '</button><button class="icon-btn" type="button" data-act="saved" aria-label="Saved and Been">' + glyphSvg('i-bookmark') + '</button></div></div>';
+  h += '<div class="hm-ctl" role="group" aria-label="Who is coming">' + [['date', 'Date'], ['friends', 'Friends'], ['solo', 'Solo']].map(function(x){ return '<button class="qchip" type="button" data-who="' + x[0] + '" aria-pressed="' + !!who[x[0]] + '">' + x[1] + '</button>'; }).join('') + '</div>';
+  var picked = S.when === 'pick' || S.when === 'weekend';
+  h += '<div class="hm-ctl" role="group" aria-label="When">' + '<button class="qchip" type="button" data-when="now" aria-pressed="' + (S.when === 'now') + '">Now</button><button class="qchip" type="button" data-when="tonight" aria-pressed="' + (S.when === 'tonight') + '">Tonight</button>' +
+    '<button class="qchip" type="button" data-when="pick" aria-pressed="' + picked + '">' + (picked ? esc(whenLabel()) : 'Pick a day') + '</button></div>';
+  if (!DATA_LOADED) {
+    h += DATA_ERR ? '<div class="empty"><h3>Couldn\'t load the list.</h3><p>Your saved things are still here. ' + esc(DATA_ERR) + '</p><button class="mini-btn" type="button" data-act="retry">Try again</button></div>' : '<p class="loading">Loading Chicago...</p>';
+  } else {
+    var hol = holidayName(p.key);
+    if (hol) h += '<p class="band">' + esc(hol) + ': holiday hours vary, so call first.</p>';
+    if (UI.pickPast) h += '<p class="band info">That time has already passed, so this shows right now.</p>';
+    if (picks.length) {
+      h += '<ul class="cards3">' + picks.map(cardHTML).join('') + '</ul>';
+      if (UI.threeN > picks.length) h += '<button class="hm-btn" type="button" data-act="more3">Three more</button>';
+    } else {
+      var fo = vm.firstOpen, btn = '', whoOn = anyKey(who) || appliedFilters(S.f).length > 0 || S.budgetOn;
+      var body = 'Nothing we know of is open near ' + lab + (UI.planning ? ' then.' : ' right now.');
+      if (fo) {
+        var q = cparts(fo.st.opensAt);
+        body += ' First to open: ' + fo.item.name + ' (' + fmtWhen(fo.st.opensAt, p, false) + ').';
+        btn = actBtn({attr:'data-plan="' + q.key + 'T' + pad(q.hh) + ':' + pad(q.mm) + '"', label:'Show ' + (q.key === p.key ? '' : dayDiff(p.key, q.key) === 1 ? 'tomorrow ' : DOW_SHORT[q.wd] + ' ') + fmtTime(q.min)});
+      }
+      if (whoOn) btn += ' ' + actBtn({attr:'data-act="clearall"', label:'Clear my filters'});
+      h += '<div class="empty"><h3>' + (UI.planning ? 'Nothing open then.' : 'Nothing open right now.') + '</h3><p>' + esc(body) + '</p><div class="btns">' + btn + '</div></div>';
+    }
+    h += '<button class="hm-btn dark" type="button" data-act="browse">Browse everything' + glyphSvg('i-right') + '</button>';
+    h += '<p class="endnote">Travel times are rough; distances are as the crow flies. <button class="linkbtn" type="button" data-act="tip">Send a tip</button> · <button class="linkbtn" type="button" data-act="about">About</button></p>';
+  }
+  if (h === UI.homeHTML) return;   // nothing changed: leave the photos alone
+  UI.homeHTML = h;
+  root.innerHTML = h;
+  wireImages(root);
+}
 function refresh(){
   if (!S.loc) S.loc = ext(LOOP, {});
-  Platform.store.set('cff.budget.v1', S.budget);
+  Platform.store.set('cff.budget.v1', S.budget); Platform.store.set('cff.budgetOn.v1', !!S.budgetOn);
+  Platform.store.set('cff.who.v1', Object.keys(S.f.who).filter(function(k){ return S.f.who[k]; }));
   var T = evalTime(), ctx = ctxNow();
   var res = DATA_LOADED ? runPipeline(DATA, T, ctx, S.f) : {T:T, p:cparts(T), all:[], groups:{fits:[], tight:[], over:[], later:[], unknown:[], season:[], closed:[], upcoming:[]}, leaving:[], weekend:[], count:0, endingSoon:0};
   if (UI.genre && UI.genre !== 'limited' && !GENRE_BY[UI.genre]) UI.genre = '';
@@ -3177,9 +3643,13 @@ function refresh(){
     var need = !vm.sel ? vm.empty : (vm.kind && !vm.kind.fits.length ? [vm.sel] : []);
     if (need.length) more = moreTimeFor(DATA, T, ctx, S.f, need, vm.kind ? vm.sub : '');
   }
+  var picks = updateThree(vm, !!UI.more3); UI.more3 = false;   // v4: before the pins, so the map can frame the three
   buildPins(vm, res);
   UI.lastRes = res; UI.lastVm = vm; UI.lastMore = more;
+  sheetEl.classList.toggle('searching', !!UI.q);
   renderHeader(res); renderTiles(vm); renderSubchips(vm); renderResline(vm); renderApplied(); renderList(res, vm, more);
+  renderHome(res, vm, picks);
+  updateMapPill();
   updateRing();
   var key = viewKey(vm);
   if (key !== UI.viewKey && !UI.picking && DATA_LOADED) { var first = !UI.viewKey; UI.viewKey = key; UI.pinAnim = !reduceMotion(); fitToPins(res, !first); }
@@ -3221,8 +3691,8 @@ function renderSurprise(){
   var c = UI.surprise, left = 3 - surpriseVeto.length, h = '';
   function flaps(t){ return '<p class="board-name" aria-hidden="true">' + String(t).split(/\s+/).filter(Boolean).slice(0, 12).map(function(w){ return '<span>' + esc(w) + '</span>'; }).join('') + '</p>'; }
   if (!c) {
-    h += '<p class="board-k">Next fun departing</p>' + flaps('No departures') + '<p class="board-line">Nothing open fits ' + esc(budgetWords()) + (UI.planning ? ' then' : ' right now') + (UI.genre ? ' in ' + esc(genreName(UI.genre)) : '') + '.</p>';
-    if (DATA_LOADED && S.budget !== 'night') {
+    h += '<p class="board-k">Next fun departing</p>' + flaps('No departures') + '<p class="board-line">Nothing ' + esc(S.budgetOn ? 'open is ' + doableWords() : 'is open') + (UI.planning ? ' then' : ' right now') + (UI.genre ? ' in ' + esc(genreName(UI.genre)) : '') + '.</p>';
+    if (DATA_LOADED && S.budgetOn && S.budget !== 'night') {
       var T = evalTime(), ctx = ctxNow(), i0 = BUDGET_LADDER.indexOf(S.budget);
       for (var i = Math.max(0, i0 + 1); i < BUDGET_LADDER.length; i++) { var b = BUDGET_LADDER[i]; if (i0 < 0 && b !== 'night' && b <= S.budget) continue; var n = countView(DATA, T, ext(ctx, {budget:b}), S.f, UI.genre, UI.sub); if (n > 0) { h += '<div class="board-btns"><button class="go" type="button" data-relax="budget:' + b + '">Make it ' + esc(b === 'night' ? 'the rest of the night' : fmtBudget(b)) + ' (' + n + (n === 1 ? ' thing' : ' things') + ')</button></div>'; break; } }
     }
@@ -3230,7 +3700,7 @@ function renderSurprise(){
     var f = c.fit || {}, tl = trustLineText(c.item, c.st.p);
     h += '<p class="board-k">' + (surpriseVeto.length >= 3 ? 'Okay, final answer:' : 'Next fun departing · ' + left + (left === 1 ? ' veto left' : ' vetoes left')) + '</p>';
     h += flaps(String(c.item.name).replace(/\s*\([^)]*\)\s*$/, '')) + '<p class="vh">' + esc(c.item.name) + '</p>';
-    h += '<p class="board-line">' + esc(c.d.text) + (c.dist !== null ? ' · ' + esc(travelText(c.trav)) : '') + ' · ' + esc(f.short ? 'a short visit fits your ' + fmtBudget(S.budget) : 'fits your ' + budgetWords()) + '</p>';
+    h += '<p class="board-line">' + esc(c.d.text) + (c.dist !== null ? ' · ' + esc(travelText(c.trav)) : '') + (S.budgetOn ? ' · ' + esc(doableWords()) : '') + '</p>';
     if (tl) h += '<p class="board-line warn">' + esc(tl) + '</p>';
     h += '<div class="board-btns"><button class="go" type="button" data-sx="go">Go. Show me how</button>' + (surpriseVeto.length < 3 ? '<button class="no" type="button" data-sx="veto">Not this one</button>' : '') + '</div>';
   }
@@ -3243,12 +3713,41 @@ function toggleSave(id){
   var i = savedIds.indexOf(id);
   if (i >= 0) savedIds.splice(i, 1); else savedIds.push(id);
   if (!Platform.store.set('cff.saved.v1', savedIds)) toast('This browser isn\'t keeping your saves. They\'ll be lost when you close it.');
+  UI.homeHTML = null;
   refresh();
   if (!$('pSaved').hidden) renderSaved();
 }
+/* ----- v4 check-ins: "I've been here" (the date, an optional thumbs up or down, never a photo) ----- */
+function saveCheckins(){ if (!Platform.store.set(CHECKIN_KEY, CHECKINS)) toast('This browser isn\'t keeping your list. It\'ll be lost when you close it.'); }
+function afterCheckinChange(){ saveCheckins(); UI.homeHTML = null; refresh(); if (!$('pSaved').hidden) renderSaved(); }
+function addCheckin(id, date){ var today = cparts(nowMs()).key; CHECKINS = withCheckin(CHECKINS, id, {date:isKey(date) ? date : today}, new Date().toISOString()); afterCheckinChange(); }
+function editCheckin(id, patch){ if (!checkinOf(id)) return; CHECKINS = withCheckin(CHECKINS, id, patch, new Date().toISOString()); afterCheckinChange(); }
+function removeCheckin(id){ CHECKINS = withoutCheckin(CHECKINS, id); afterCheckinChange(); }
+function beenBoxHTML(ck, todayKey){
+  return '<div class="been-box"><span class="bb-l">' + glyphSvg('i-check') + 'Been here</span><label class="vh" for="beenDate">The day you went</label><input id="beenDate" type="date" max="' + esc(todayKey) + '" value="' + esc(ck.date) + '">' +
+    '<button class="thumbbtn" type="button" data-been="up" aria-pressed="' + (ck.rating === 1) + '" aria-label="Liked it">' + glyphSvg('i-up') + '</button>' +
+    '<button class="thumbbtn" type="button" data-been="down" aria-pressed="' + (ck.rating === -1) + '" aria-label="Not for me">' + glyphSvg('i-down') + '</button>' +
+    '<button class="linkbtn" type="button" data-been="remove">Remove</button></div>';
+}
+function beenListHTML(){
+  if (!CHECKINS.length) return '<div class="empty" style="padding:8px 20px"><svg class="i" style="width:40px;height:40px;color:var(--ink-3)"><use href="#i-check"/></svg><h3 style="margin-top:10px">Nowhere yet.</h3><p>Open a place and tap “I’ve been here”. It keeps the date, and you can change or remove it. No photo needed.</p></div>';
+  if (!DATA_LOADED) return '<p class="loading">Loading Chicago...</p>';
+  var T = evalTime(), ctx = ctxNow(), p = cparts(T), today = cparts(nowMs()).key;
+  var list = CHECKINS.slice().sort(function(a, b){ return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
+  return '<ul class="rows">' + list.map(function(ck){
+    var it = findItem(ck.id);
+    if (!it) return '<li class="row none"><div class="thumb hollow">' + glyphSvg('i-check', '') + '</div><div class="row-main"><h3>' + esc(ck.id) + '</h3><p class="meta"><span class="been">' + esc(beenLabel(ck, today)) + '</span> · no longer in the guide</p></div></li>';
+    var c = computeItem(it, T, ctx); c.group = groupOf(c, S.f); annotate(c, p);
+    return rowHTML(c, {been:true});
+  }).join('') + '</ul>';
+}
+function openLists(tab){ UI.listTab = tab === 'been' ? 'been' : 'saved'; renderSaved(); openPanel('pSaved'); }
 function renderSaved(){
-  var body = $('pSavedBody'), h = '';
-  if (!Platform.store.ok) h += '<p class="band">This browser isn\'t keeping your saves. They\'ll be lost when you close it.</p>';
+  var body = $('pSavedBody'), h = '', tab = UI.listTab === 'been' ? 'been' : 'saved';
+  $('pSavedTitle').textContent = tab === 'been' ? 'Been' : 'Saved';
+  h += '<div class="seg tabs"><button type="button" data-tab="saved" aria-pressed="' + (tab === 'saved') + '">Saved</button><button type="button" data-tab="been" aria-pressed="' + (tab === 'been') + '">Been</button></div>';
+  if (!Platform.store.ok) h += '<p class="band">This browser isn\'t keeping your lists. They\'ll be lost when you close it.</p>';
+  if (tab === 'been') { body.innerHTML = h + beenListHTML(); wireImages(body); return; }
   var items = savedIds.map(findItem).filter(Boolean);
   if (!items.length) { body.innerHTML = h + '<div class="empty" style="padding:8px 20px"><svg class="i" style="width:40px;height:40px;color:var(--ink-3)"><use href="#i-bookmark"/></svg><h3 style="margin-top:10px">Nothing saved yet.</h3><p>Tap the bookmark on anything you\'d do on a free night.</p></div>'; return; }
   var T = evalTime(), ctx = ctxNow(), groups = {open:[], later:[], season:[], other:[]};
@@ -3282,7 +3781,7 @@ function leaveSentence(c){
     var s = go + ' and you\'d be there around ' + fmtClock(f.arrive) + '. ';
     if (f.kind === 'tight' && f.entryTight) return s + 'Last entry is ' + fmtClock(f.lastEntryAt) + ', so you\'d only just make it in.';   // v2.2 (C-1)
     if (f.kind === 'tight') return s + 'It closes at ' + fmtClock(f.closesAt) + ', so you\'d get about ' + f.get + ' min.';
-    if (f.short) return s + 'Keep it to a short visit (about ' + fmtDur(f.min) + ') and you\'d be out around ' + fmtClock(f.arrive + f.min * 60000) + (f.shortBy === 'close' && f.closesAt ? ', before it closes at ' + fmtClock(f.closesAt) : '') + '.';
+    if (f.short) return s + 'Keep it quick (about ' + fmtDur(f.min) + ') and you\'d be out around ' + fmtClock(f.arrive + f.min * 60000) + (f.shortBy === 'close' && f.closesAt ? ', before it closes at ' + fmtClock(f.closesAt) : '') + '.';
     return s + (f.thereKnown ? 'It takes about ' + fmtDur(f.there) : 'We assumed about 1 h there (length not listed)') + ', so you\'d be out around ' + fmtClock(f.arrive + f.there * 60000) + '.';
   }
   if (f.kind === 'wait') return 'It opens at ' + fmtClock(f.opensAt) + '. Leave around ' + fmtClock(f.opensAt - f.travel * 60000) + ' to get there right when it opens.';
@@ -3380,9 +3879,22 @@ function miniMapHTML(c){
   out += '<text class="mm-label" x="' + r1(b[0] + 9 / k) + '" y="' + r1(b[1] - 7 / k) + '" font-size="' + fs.toFixed(2) + '" stroke-width="' + sw.toFixed(2) + '">' + esc(c.item.name.length > 26 ? c.item.name.slice(0, 24) + '...' : c.item.name) + '</text>';
   return '<div class="minimap">' + out + '</svg></div>';
 }
+function bookingLink(it){ // v4: a real booking or ticket link in the data, else the website when booking is required
+  return safeUrl(it.booking_url) || safeUrl(it.ticket_url) || (it.booking === 'required' ? safeUrl(it.website) : '');
+}
+function bookingWord(it){ return (it.kind === 'event' || it.category === 'show-comedy-music' || it.category === 'sports-watch') ? 'Tickets' : 'Reserve'; }
+function goodToKnowHTML(it){ // "Good to know": tap a question to open its answer. No AI runs; the answers come with the data.
+  var list = (Array.isArray(it.good_to_know) ? it.good_to_know : []).filter(function(x){ return x && x.q && x.a; });
+  if (!list.length) return '';
+  return '<section class="dt-sec gtk"><h2>Good to know</h2>' + list.map(function(x){
+    var src = safeUrl(x.source);
+    return '<details><summary>' + esc(x.q) + '</summary><p>' + esc(x.a) + '</p>' + (src ? '<p class="src">Source: <a href="' + esc(src) + '" target="_blank" rel="noopener">' + esc(domainOf(src)) + '</a></p>' : '') + '</details>';
+  }).join('') + '</section>';
+}
 function renderDetail(c, keepScroll){
+  // v4 order: photo, name + hook, status + price, (main button + Share in the bar under your thumb), what you do there, practical facts, good to know, trust and sources (small)
   var it = c.item, cat = catOf(it), st = c.st, d = c.d, p = st.p, tr = trustOf(it, p.key), gid = genreOf(it);
-  var el = $('detail'), sc = $('dtScroll'), top = sc.scrollTop;
+  var el = $('detail'), sc = $('dtScroll'), top = sc.scrollTop, web = safeUrl(it.website), todayKey = cparts(nowMs()).key;
   el.style.setProperty('--c', genreColor(gid));
   var ph = firstPhoto(it), h = '<div class="dt-photo">';
   h += '<div class="cover"><svg aria-hidden="true"><use href="#' + genreGlyph(gid) + '"/></svg><svg class="c2" aria-hidden="true"><use href="#star6"/></svg></div>';
@@ -3393,104 +3905,142 @@ function renderDetail(c, keepScroll){
     h += pu ? '<a class="photo-credit" href="' + esc(pu) + '" target="_blank" rel="noopener">' + cr + '</a>' : '<span class="photo-credit">' + cr + '</span>';
   }
   h += '</div><div class="dt-body"><span class="grabber"></span>';
-  var lim = limitedPhase(c, p), ub = it.kind === 'event' && lim ? untilBadge(c, p) : null;   // v3 (layout spec 4.5): the kicker names the kind; limited things get the ticket badge
-  h += '<p class="dt-kicker">' + esc(genreName(gid)) + (it.kind === 'event' ? ' \u00b7 limited time' : '') + (it.neighborhood ? ' \u00b7 ' + esc(it.neighborhood) : '') + (ub ? ' ' + badgeHTML(ub) : '') + '</p>';
-  h += '<h1 class="dt-title' + (String(it.name).length > 40 ? ' long' : '') + '" id="dtTitle">' + esc(it.name) + '</h1>';   // v2.1 (tester L-C)
-  var io = it.indoor_outdoor === 'both' ? 'indoor and outdoor' : (it.indoor_outdoor || '');
-  h += '<p class="dt-addr">' + esc(it.address || '') + (io ? ' \u00b7 ' + esc(io) : '') + '</p>';
-  h += '<div class="dt-status"><p class="big ' + d.tone + '"><span class="dot"></span><span>' + esc(d.text) + '</span></p>';
-  if (d.sub) h += '<p class="subline">' + esc(d.sub.charAt(0).toUpperCase() + d.sub.slice(1)) + '</p>';
+  // name + hook
+  var lim = limitedPhase(c, p), ub = it.kind === 'event' && lim ? untilBadge(c, p) : null;
+  h += '<p class="dt-kicker">' + esc(genreName(gid)) + (it.kind === 'event' ? ' · limited time' : '') + (it.neighborhood ? ' · ' + esc(shortHood(it.neighborhood)) : '') + (ub ? ' ' + badgeHTML(ub) : '') + '</p>';
+  h += '<h1 class="dt-title' + (String(it.name).length > 40 ? ' long' : '') + '" id="dtTitle">' + esc(it.name) + '</h1>';
+  var hook = hookOf(it);
+  if (hook) h += '<p class="dt-hook">' + esc(hook) + '</p>';
+  // status + price
+  var pr = priceShort(it), tsh = travelShort(c);
+  h += '<div class="dt-status"><p class="dt-line ' + esc(d.tone) + '"><span class="st"><i class="dot"></i>' + esc(d.text) + '</span>' + (pr ? '<span class="pr">' + esc(pr) + '</span>' : '') + '</p>';
+  var sub = [];
+  if (d.sub) sub.push(d.sub.charAt(0).toUpperCase() + d.sub.slice(1));
+  if (tsh) sub.push(tsh + (S.loc ? ' from ' + S.loc.label : ''));
+  if (sub.length) h += '<p class="subline">' + esc(sub.join(' · ')) + '</p>';
   var eb = eventBadge(st); if (eb) h += '<p class="warnline">' + esc(eb) + '</p>';
-  if (st.conflicting) h += '<p class="warnline">Sources disagree on hours \u00b7 call first</p>';
+  if (st.conflicting) h += '<p class="warnline">Sources disagree on hours · call first</p>';
   if (holidayName(p.key) && st.key !== 'maybe' && !closedSet(it)[p.key]) h += '<p class="warnline">' + esc(holidayName(p.key)) + ': holiday hours vary, so call first.</p>';
   var ls = leaveSentence(c); if (ls) h += '<p class="aside">' + esc(ls) + '</p>';
   var f = c.fit;
-  if (f.kind === 'fits' || f.kind === 'tight' || f.kind === 'over' || f.kind === 'wait') {
+  if (S.budgetOn && (f.kind === 'fits' || f.kind === 'tight' || f.kind === 'over' || f.kind === 'wait')) { // the door-to-door bar only when she set a time budget
     h += ribbonHTML(c, true);
     var labs = [f.travel + ' min ' + (c.trav.how === 'walk' ? 'walk' : c.trav.how === 'CTA' ? 'by CTA' : c.trav.switched ? 'drive (no CTA estimate)' : 'drive')];
     if (f.wait) labs.push(f.wait + ' min wait');
-    labs.push(f.short ? 'short visit ~' + fmtDur(f.min) : (f.thereKnown ? 'about ' : 'assumed ') + fmtDur(f.there) + ' there');
+    labs.push(f.short ? 'quick stop ~' + fmtDur(f.min) : (f.thereKnown ? 'about ' : 'assumed ') + fmtDur(f.there) + ' there');
     if (f.kind === 'fits' || f.kind === 'wait') labs.push(fmtDur(Math.max(0, f.spare)) + ' left');
     else if (f.kind === 'over') labs.push('over by ' + fmtDur(f.over));
     else labs.push('closes after ' + f.get + ' min');
     h += '<div class="rb-labels">' + labs.map(function(x){ return '<span>' + esc(x) + '</span>'; }).join('') + '</div>';
-    if (f.min < f.typical) h += '<p class="subline">Short visit: about ' + esc(fmtDur(f.min)) + ' (' + (f.minSrc === 'data' ? 'the shortest worthwhile visit in our listing' : 'our rule of thumb for ' + esc(cat.label.toLowerCase())) + '). A full visit is about ' + esc(fmtDur(f.typical)) + (f.thereKnown ? '' : ' (assumed)') + '.</p>';
+    if (f.min < f.typical) h += '<p class="subline">A quick stop is about ' + esc(fmtDur(f.min)) + ' (' + (f.minSrc === 'data' ? 'the shortest worthwhile time in our listing' : 'our rule of thumb for ' + esc(cat.label.toLowerCase())) + '). A full visit is about ' + esc(fmtDur(f.typical)) + (f.thereKnown ? '' : ' (assumed)') + '.</p>';
   }
   h += '</div>';
-  // trust block
-  h += '<div class="trust"><div class="stamp ' + tr.cls + '" style="--fade:' + tr.fade + '"><span>' + esc(tr.words[0]) + '</span><b>' + esc(tr.words[1]) + '</b><span>' + esc(tr.words[2]) + '</span></div><div>';
-  h += '<h3>' + esc(tr.title) + '</h3>';
-  var srcLink = tr.src ? '<a href="' + esc(tr.src) + '" target="_blank" rel="noopener">' + esc(domainOf(tr.src)) + '</a>' : 'a source we didn\'t record';
-  if (tr.status === 'verified') h += '<p>Our checker confirmed these details on ' + srcLink + '.</p>';
-  else if (tr.status === 'conflicting') h += '<p>Our sources don\'t agree on the hours. See ' + srcLink + ' and the sources below, and call before you go.</p>';
-  else if (tr.status === 'closed') h += '<p>Marked closed for good, per ' + srcLink + '.</p>';
-  else h += '<p>We found these details on ' + srcLink + '. Our checker hasn\'t confirmed them yet. Cutting it close? Call first.</p>';
-  var ckTxt = tr.checked ? esc(fmtDate(tr.checked, '0000')) : 'an unknown date';
-  if (tr.status === 'unverified' || tr.level === 'unverified') h += '<p>Found on ' + ckTxt + (tr.src ? ' at ' + srcLink : '') + ' \u00b7 not double-checked yet</p>';   // challenger C8
-  else h += '<p>Last checked on ' + ckTxt + (tr.src ? ' \u00b7 source: ' + srcLink : '') + '</p>';
-  if (tr.notes) h += '<p class="note">Checker\'s note: ' + esc(tr.notes) + '</p>';
-  if (it.phone) h += phoneHTML(it.phone, Platform.telOk);
-  else if (safeUrl(it.website)) h += '<p class="note">No phone listed. Check <a href="' + esc(safeUrl(it.website)) + '" target="_blank" rel="noopener">their website</a>.</p>';
-  h += '</div></div>';
+  // quiet actions: been here, calendar
+  var ck = checkinOf(it.id);
+  h += '<div class="dt-acts">' + (ck ? '' : '<button class="mini-btn" type="button" data-been="add">' + glyphSvg('i-check') + 'I’ve been here</button>') +
+    '<button class="mini-btn" type="button" data-cal="1">' + glyphSvg('i-cal') + 'Add to calendar</button></div>';
+  if (ck) h += beenBoxHTML(ck, todayKey);
+  // what you do there
+  var hi = (Array.isArray(it.highlights) ? it.highlights : []).filter(Boolean).map(String);
+  if (it.description || hi.length) {
+    h += '<section class="dt-sec"><h2>What you do there</h2>' + (it.description ? '<p>' + esc(it.description) + '</p>' : '');
+    if (hi.length) h += '<ul class="hl" style="margin-top:14px">' + hi.map(function(x){ return '<li>' + glyphSvg(hlIcon(x)) + '<span>' + esc(x) + '</span></li>'; }).join('') + '</ul>';
+    h += '</section>';
+  }
   if (it.kind === 'event') h += '<section class="dt-sec"><h2>Dates</h2>' + eventDatesHTML(it, p, st.ms) + '</section>';
-  // before you go
-  var hls = [];
-  if (it.booking === 'required') hls.push('Booking required. Pick a time online before you go.');
-  else if (it.booking === 'recommended') hls.push('Booking recommended.');
-  else if (it.booking === 'walk-in') hls.push('Walk-ins welcome.');
-  if (it.age_note) hls.push('Ages: ' + it.age_note);
-  (Array.isArray(it.highlights) ? it.highlights : []).forEach(function(x){ if (x) hls.push(String(x)); });
-  if (hls.length) h += '<section class="dt-sec"><h2>Before you go</h2><ul class="hl">' + hls.map(function(x){ return '<li>' + glyphSvg(hlIcon(x)) + '<span>' + esc(x) + '</span></li>'; }).join('') + '</ul></section>';
-  if (it.description) h += '<section class="dt-sec"><h2>What it is</h2><p>' + esc(it.description) + '</p></section>';
+  // practical facts
+  var io = it.indoor_outdoor === 'both' ? 'indoor and outdoor' : (it.indoor_outdoor || '');
+  var priceTxt = it.price_note ? it.price_note : (it.price_level === 'free' ? 'Free.' : it.price_level ? 'Price level ' + it.price_level + '. Exact prices not listed.' : 'Price not listed on their site.');
+  var facts = [];
+  if (it.address) facts.push(['i-pin', it.address + (io ? ' · ' + io : '')]);
+  facts.push(['g-ticket', priceTxt]);
+  facts.push(['i-door', it.booking === 'required' ? 'Booking required. Pick a time online before you go.' : it.booking === 'recommended' ? 'Booking recommended.' : it.booking === 'walk-in' ? 'Walk-ins welcome.' : 'Booking: not stated.']);
+  if (it.age_note) facts.push(['i-age', 'Ages: ' + it.age_note]);
+  h += '<section class="dt-sec"><h2>Practical</h2><ul class="hl">' + facts.map(function(x){ return '<li>' + glyphSvg(x[0]) + '<span>' + esc(x[1]) + '</span></li>'; }).join('') + '</ul>';
+  if (it.phone) h += phoneHTML(it.phone, Platform.telOk);
+  else if (web) h += '<p class="small" style="margin-top:10px">No phone listed. Check <a href="' + esc(web) + '" target="_blank" rel="noopener">their website</a>.</p>';
   // hours
-  h += '<section class="dt-sec"><h2>Hours</h2>';
+  h += '<h3>Hours</h3>';
   var sn = it.season;
-  if (sn && (isKey(sn.open_from) || isKey(sn.open_to))) h += '<p class="small" style="margin-bottom:8px">Season: ' + (isKey(sn.open_from) ? fmtDate(sn.open_from, '0000') : 'start not stated') + ' \u2013 ' + (isKey(sn.open_to) ? fmtDate(sn.open_to, '0000') : 'end not stated') + (sn.note ? '. ' + esc(sn.note) : '') + '</p>';
+  if (sn && (isKey(sn.open_from) || isKey(sn.open_to))) h += '<p class="small" style="margin-bottom:8px">Season: ' + (isKey(sn.open_from) ? fmtDate(sn.open_from, '0000') : 'start not stated') + ' – ' + (isKey(sn.open_to) ? fmtDate(sn.open_to, '0000') : 'end not stated') + (sn.note ? '. ' + esc(sn.note) : '') + '</p>';
   else if (sn && sn.note) h += '<p class="small" style="margin-bottom:8px">' + esc(sn.note) + '</p>';
   h += hoursTableHTML(it, p);
   var lel = lastEntryLine(it, p); if (lel) h += '<p class="small" style="margin-top:8px">' + esc(lel) + '</p>';   // v2.2 (C-1)
   var hvt = hoursValidTo(it); if (hvt) h += '<p class="small" style="margin-top:8px">These weekly hours are confirmed only through ' + esc(fmtDate(hvt.key, p.key)) + '.</p>';   // v2.2 (M-1)
   h += specialDatesHTML(it, p);
   if (it.hours_note) h += '<p class="small" style="margin-top:8px">' + esc(it.hours_note) + '</p>';
-  h += '</section>';
   // getting there
-  h += '<section class="dt-sec"><h2>Getting there</h2>' + miniMapHTML(c) + '<div class="getting">';
+  h += '<h3>Getting there</h3>' + miniMapHTML(c) + '<div class="getting">';
   if (c.dist !== null) h += '<span><b>' + fmtMi(c.dist) + ' as the crow flies</b> from your pin' + (S.loc ? ' (' + esc(S.loc.label) + ')' : '') + '.</span><span>' + esc(travelText(c.trav).replace(/^about/, 'About').replace(/ \(too far for our CTA estimate: Metra or drive\)$/, '')) + '. ' + (c.trav.switched ? 'We don\'t estimate CTA past ' + CTA_MAX_MI + ' miles, so this is a drive time: check Metra, or drive. ' : '') + 'Rough estimate, not a route.</span>';
-  h += '</div><div class="linkrow"><a class="mini-btn" href="' + esc(appleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + 'Apple Maps</a><a class="mini-btn" href="' + esc(googleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + 'Google Maps</a>' + (safeUrl(it.website) ? '<a class="mini-btn" href="' + esc(safeUrl(it.website)) + '" target="_blank" rel="noopener">' + glyphSvg('i-globe') + 'Website</a>' : '') + '</div></section>';
-  // price + booking
-  var priceTxt = it.price_note ? it.price_note : (it.price_level === 'free' ? 'Free.' : it.price_level ? 'Price level ' + it.price_level + '. Exact prices not listed.' : 'Not listed on their site.');
-  h += '<section class="dt-sec"><h2>Price</h2><p>' + esc(priceTxt) + '</p>';
-  h += '<p class="small">Booking: ' + esc(it.booking === 'required' ? 'required' : it.booking === 'recommended' ? 'recommended' : it.booking === 'walk-in' ? 'walk-in' : 'not stated') + (safeUrl(it.website) ? ' \u00b7 <a href="' + esc(safeUrl(it.website)) + '" target="_blank" rel="noopener">' + esc(domainOf(it.website)) + '</a>' : '') + '</p></section>';
-  // sources
+  h += '</div><div class="linkrow"><a class="mini-btn" href="' + esc(appleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + 'Apple Maps</a><a class="mini-btn" href="' + esc(googleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + 'Google Maps</a>' + (web ? '<a class="mini-btn" href="' + esc(web) + '" target="_blank" rel="noopener">' + glyphSvg('i-globe') + 'Website</a>' : '') + '</div></section>';
+  // good to know (only when the data has it)
+  h += goodToKnowHTML(it);
+  // trust and sources, small
+  var srcLink = tr.src ? '<a href="' + esc(tr.src) + '" target="_blank" rel="noopener">' + esc(domainOf(tr.src)) + '</a>' : 'a source we didn\'t record';
+  var ckTxt = tr.checked ? esc(fmtDate(tr.checked, todayKey)) : 'an unknown date';
+  h += '<section class="trust-s" aria-label="How we know">';
+  if (tr.status === 'verified') h += '<p><span class="tick">✓ Hours checked ' + ckTxt + '</span> on ' + srcLink + '.</p>';
+  else if (tr.status === 'conflicting') h += '<p><span class="tick warn">Sources disagree on the hours.</span> See ' + srcLink + ' and the sources below, and call before you go. Last checked ' + ckTxt + '.</p>';
+  else if (tr.status === 'closed') h += '<p>Marked closed for good, per ' + srcLink + '. Last checked ' + ckTxt + '.</p>';
+  else h += '<p><span class="tick warn">Not double-checked yet.</span> Found on ' + ckTxt + (tr.src ? ' at ' + srcLink : '') + '. Cutting it close? Call first.</p>';
+  // public release: never shows verified.notes, checked_by, found_via or photos[].note; only the status, the checked date and the evidence link
   var srcs = (Array.isArray(it.source_urls) ? it.source_urls : []).map(safeUrl).filter(Boolean);
-  h += '<section class="dt-sec"><h2>Sources</h2>' + (srcs.length ? '<ol class="sources">' + srcs.map(function(u){ return '<li><a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(shortUrl(u)) + '</a></li>'; }).join('') + '</ol>' : '<p class="small">No sources recorded.</p>');
-  if (it.found_via) h += '<p class="small" style="margin-top:8px">First heard of it via: ' + esc(it.found_via) + '</p>';
-  if (it.coord_source === 'approximate') h += '<p class="small" style="margin-top:8px">Map point is approximate.</p>';
+  h += srcs.length ? '<p>Sources:</p><ol class="sources">' + srcs.map(function(u){ return '<li><a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(shortUrl(u)) + '</a></li>'; }).join('') + '</ol>' : '<p>No sources recorded.</p>';
+  if (it.coord_source === 'approximate') h += '<p>Map point is approximate.</p>';
   h += '</section></div>';
   sc.innerHTML = h;
   wireImages(sc);
   if (keepScroll) sc.scrollTop = top;
-  // action bar
-  var bar = '', web = safeUrl(it.website), primary;
+  // the bar under your thumb: main button (Tickets / Reserve when there is a booking link, else Directions) + Share + phone
+  var bar = '', primary, book = bookingLink(it);
   if ((st.key === 'season' || st.key === 'gone' || st.key === 'ended') && web) primary = '<a class="btn-primary off" href="' + esc(web) + '" target="_blank" rel="noopener">Check their website' + glyphSvg('i-ext') + '</a>';
-  else if (it.booking === 'required' && web) primary = '<a class="btn-primary" href="' + esc(web) + '" target="_blank" rel="noopener">Book ahead' + glyphSvg('i-ext') + '</a>';
+  else if (book) primary = '<a class="btn-primary" href="' + esc(book) + '" target="_blank" rel="noopener">' + bookingWord(it) + glyphSvg('i-ext') + '</a>';
   else if (tr.callFirst && it.phone && (st.key === 'unknown' || st.key === 'maybe' || (st.open && st.minsLeft !== null && st.minsLeft <= 120)))
     primary = Platform.telOk ? '<a class="btn-primary" href="tel:' + esc(telHref(it.phone)) + '">' + glyphSvg('i-phone') + 'Call first</a>'
                              : '<button class="btn-primary" type="button" data-copy="' + esc(it.phone) + '">' + glyphSvg('i-copy') + 'Copy number, call first</button>';
   else primary = '<a class="btn-primary" href="' + esc(isIOS ? appleMaps(it) : googleMaps(it)) + '" target="_blank" rel="noopener">Directions' + glyphSvg('i-ext') + '</a>';
   bar += primary;
-  if (!it.phone) bar += '<a class="btn-sq" aria-disabled="true">' + glyphSvg('i-phone') + 'No phone</a>';
-  else if (Platform.telOk) bar += '<a class="btn-sq" href="tel:' + esc(telHref(it.phone)) + '">' + glyphSvg('i-phone') + 'Call</a>';
-  else bar += '<button class="btn-sq" type="button" data-copy="' + esc(it.phone) + '" aria-label="Copy the phone number ' + esc(it.phone) + '">' + glyphSvg('i-phone') + '<span>Copy no.</span></button>';
-  bar += /Directions/.test(primary) ? (web ? '<a class="btn-sq" href="' + esc(web) + '" target="_blank" rel="noopener">' + glyphSvg('i-globe') + 'Website</a>' : '') : '<a class="btn-sq" href="' + esc(isIOS ? appleMaps(it) : googleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + 'Go</a>';
+  bar += '<button class="btn-sq" type="button" data-share="' + esc(it.id) + '" aria-label="Share ' + esc(it.name) + '">' + glyphSvg('i-share') + '<span>Share</span></button>';
+  if (!/Directions/.test(primary)) bar += '<a class="btn-sq" href="' + esc(isIOS ? appleMaps(it) : googleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + 'Go</a>';
+  else if (it.phone && Platform.telOk) bar += '<a class="btn-sq" href="tel:' + esc(telHref(it.phone)) + '">' + glyphSvg('i-phone') + 'Call</a>';
+  else if (it.phone) bar += '<button class="btn-sq" type="button" data-copy="' + esc(it.phone) + '" aria-label="Copy the phone number ' + esc(it.phone) + '">' + glyphSvg('i-phone') + '<span>Copy no.</span></button>';
   $('dtBar').innerHTML = bar;
   var sv = isSaved(it.id), sb = $('dtSave');
   sb.classList.toggle('on', sv); sb.setAttribute('aria-pressed', String(sv)); sb.setAttribute('aria-label', sv ? 'Saved' : 'Save');
   el.setAttribute('aria-label', it.name);
 }
+/* ----- v4: share, calendar, the address bar ----- */
+function shareItem(id){
+  var c = findComputed(id); if (!c) return;
+  var link = Platform.linkFor(id);
+  Platform.share({title:c.item.name, text:shareText(c, ''), url:link}).then(function(r){ if (r === 'copied') toast('Copied'); }, function(){
+    openSmall('Share', function(){ $('pSmallBody').innerHTML = '<p class="p-note">Copying isn’t allowed here. Press and hold the text to copy it.</p><pre class="calbox">' + esc(shareText(c, link)) + '</pre>'; });
+  });
+}
+function addToCalendar(id){
+  var c = findComputed(id); if (!c) return;
+  var ev = calEvent(c, Platform.linkFor(id) || safeUrl(c.item.website));
+  Platform.saveFile(String(id).replace(/[^A-Za-z0-9_-]+/g, '-') + '.ics', icsFor(ev, Date.now()), 'text/calendar;charset=utf-8').then(function(saved){
+    if (saved) { toast('Calendar file saved. Open it to add the event.'); return; }
+    openSmall('Add to calendar', function(){
+      var t = calText(ev, cparts(nowMs()).key);
+      $('pSmallBody').innerHTML = '<p class="p-note">A page inside Claude can’t hand your phone a calendar file. Copy these details into a new event, or open Google Calendar with them filled in.</p><pre class="calbox">' + esc(t) + '</pre>' +
+        '<div class="linkrow"><button class="mini-btn" type="button" data-copy="' + esc(t) + '">' + glyphSvg('i-copy') + '<span>Copy</span></button><a class="mini-btn" href="' + esc(gcalLink(ev)) + '" target="_blank" rel="noopener">' + glyphSvg('i-cal') + 'Google Calendar</a></div>';
+    });
+  });
+}
+function setHashFor(id){ // keeps "#<id>" in the address bar while a place is open, so the address itself can be shared; never touches a test-hook hash
+  try {
+    var cur = (location.hash || '').replace(/^#/, '');
+    if (cur && !hashItemId('#' + cur)) return;
+    if (cur === (id || '')) return;
+    history.replaceState(null, '', location.pathname + location.search + (id ? '#' + id : ''));
+  } catch (e) {}
+}
 function openDetail(id){
   var c = findComputed(id); if (!c) return;
   UI.detailId = id;
+  setHashFor(id);
   renderDetail(c, false);
   var el = $('detail'); el.hidden = false; void el.offsetWidth; el.classList.add('on');
   $('app').classList.toggle('dt-open', !isWide());   // v2.1 (tester L-D): no location pill peeking over the photo on phones
@@ -3499,6 +4049,7 @@ function openDetail(id){
 }
 function closeDetail(){
   var el = $('detail'), id = UI.detailId; UI.detailId = null;
+  setHashFor('');
   el.classList.remove('on'); $('app').classList.remove('dt-open');
   setTimeout(function(){ if (!el.classList.contains('on')) el.hidden = true; }, 330);
   if (id) { var row = listRoot.querySelector('[data-id="' + cssEsc(id) + '"]'); if (row) try { row.focus({preventScroll:true}); } catch (e) {} }
@@ -3519,8 +4070,8 @@ function closePanel(id){
   el.classList.remove('on');
   var i = openStack.indexOf(id); if (i >= 0) openStack.splice(i, 1);
   setTimeout(function(){ if (!el.classList.contains('on')) el.hidden = true; }, 320);
-  if (id === 'pLoc') { UI.picking = false; UI.cand = null; mapEl.classList.remove('picking'); $('brand').hidden = true; $('app').classList.remove('onb'); recluster(); }
-  if (id === 'pTime' || id === 'pFilters') { UI.showRing = false; updateRing(); if (id === 'pFilters') UI.draft = null; }
+  if (id === 'pLoc') { UI.picking = false; UI.cand = null; mapEl.classList.remove('picking'); $('brand').hidden = true; $('app').classList.remove('onb'); $('app').classList.remove('picking'); recluster(); }
+  if (id === 'pTime' || id === 'pFilters') { UI.showRing = false; updateRing(); if (id === 'pFilters') { UI.draft = null; UI.draftB = null; } }
   syncScrim();
 }
 function syncScrim(){
@@ -3560,6 +4111,7 @@ function openLocation(first){
   $('pLocClose').hidden = !!first;
   $('brand').hidden = !first;
   $('app').classList.toggle('onb', !!first);
+  $('app').classList.add('picking');   // v4: on phones the home and the list step aside so she can tap the map
   $('spotSearch').value = ''; $('spotResults').innerHTML = '';
   $('quickPicks').innerHTML = QUICK_PICKS.map(function(n){ return '<button class="chip" type="button" data-pick="' + esc(n) + '" aria-pressed="' + (UI.cand.label === n) + '">' + esc(n) + '</button>'; }).join('');
   $('locGo').textContent = 'Start at ' + UI.cand.label;
@@ -3591,21 +4143,21 @@ function renderTime(){
     '<div class="picks" style="justify-content:center">' + BUDGETS.map(function(x){ return '<button class="chip" type="button" data-budget="' + x + '" aria-pressed="' + (x === b) + '">' + (x === 'night' ? 'Rest of the night' : esc(fmtBudget(x))) + '</button>'; }).join('') + '</div>' +
     '<p class="hint" style="justify-content:center">Leaving from <b>&nbsp;' + esc(S.loc.label) + '&nbsp;</b> \u00b7 door to door, one way</p>';
   var r = runPipeline(DATA, evalTime(), ext(ctxNow(), {budget:b}), ext(S.f, {fits:true}));
-  $('pTimeGo').textContent = DATA_LOADED ? 'Show ' + r.groups.fits.length + (r.groups.fits.length === 1 ? ' thing that fits' : ' things that fit') : 'Done';
+  $('pTimeGo').textContent = DATA_LOADED ? 'Show ' + r.groups.fits.length + (r.groups.fits.length === 1 ? ' thing' : ' things') : 'Done';
 }
 function stepBudget(dir){
   var b = S.budget;
   if (b === 'night') { if (dir < 0) b = 180; }
   else { b = b + dir * 30; if (b < 30) b = 30; if (b > 360) b = 'night'; }
-  S.budget = b; renderTime(); refresh();
+  S.budget = b; S.budgetOn = true; renderTime(); refresh();
 }
 
 /* ----- More filters (v3, layout spec 3.10): one sheet, one level, a live "Show N things", batch apply ----- */
 function chipsGroup(items){ return '<div class="chips-w">' + items.map(function(x){ return '<button class="chip" type="button" data-f="' + esc(x[0]) + '" aria-pressed="' + (x[2] ? 'true' : 'false') + '">' + x[1] + '</button>'; }).join('') + '</div>'; }
 function copyF(F){ return JSON.parse(JSON.stringify(F)); }
-function openFilters(){ UI.draft = copyF(S.f); UI.draftReady = DATA_LOADED; UI.showRing = true; updateRing(); renderFilters(); openPanel('pFilters'); }
-function draftCount(F){ return DATA_LOADED ? countView(DATA, evalTime(), ext(ctxNow(), {mode:F.mode}), F, UI.genre, UI.sub) : 0; }
-var LIMIT_TRIES = [['who', {who:{}}], ['price', {price:{}}], ['io', {io:'either'}], ['reach', {mode:'transit', radius:APP_RADIUS}], ['booking', {walkin:false, hide21:false}], ['interests', {interests:{}}], ['always', {fits:false, openNow:false}]];
+function openFilters(){ UI.draft = copyF(S.f); UI.draftB = {on:!!S.budgetOn, val:S.budget}; UI.draftReady = DATA_LOADED; UI.showRing = true; updateRing(); renderFilters(); openPanel('pFilters'); }
+function draftCount(F){ var B = UI.draftB || {on:S.budgetOn, val:S.budget}; return DATA_LOADED ? countView(DATA, evalTime(), ext(ctxNow(), {mode:F.mode, budget:B.on ? B.val : 'any'}), F, UI.genre, UI.sub) : 0; }
+var LIMIT_TRIES = [['who', {who:{}}], ['price', {price:{}}], ['io', {io:'either'}], ['reach', {mode:'transit', radius:APP_RADIUS}], ['booking', {walkin:false, hide21:false}], ['been', {notBeen:false}], ['interests', {interests:{}}], ['always', {openNow:false}]];
 function mostLimitingDraft(F){ // the section whose removal brings back the most (layout spec 3.10 "MOST LIMITING")
   var best = null, bn = 0;
   LIMIT_TRIES.forEach(function(t){ var n = draftCount(ext(F, t[1])); if (n > bn) { bn = n; best = t[0]; } });
@@ -3620,7 +4172,7 @@ function applyDraft(F, code){
     case 'io': F.io = v; break;
     case 'mode': F.mode = v; break;
     case 'radius': F.radius = +v; break;
-    case 'walkin': case 'hide21': case 'openNow': case 'fits': F[k] = !F[k]; break;
+    case 'walkin': case 'hide21': case 'openNow': case 'fits': case 'notBeen': F[k] = !F[k]; break;
   }
   return F;
 }
@@ -3633,6 +4185,9 @@ function renderFilters(){
   function sw(code, on, label, sub){ return '<div class="sw-row"><span>' + label + (sub ? '<small>' + sub + '</small>' : '') + '</span><button class="switch" type="button" data-d="' + code + '" aria-pressed="' + !!on + '" aria-label="' + esc(label) + '"></button></div>'; }
   var h = '';
   h += '<div class="fsec">' + H('Who’s coming', 'who') + chips([['who:date', 'Date', F.who.date], ['who:friends', 'Friends', F.who.friends], ['who:solo', 'Solo', F.who.solo], ['who:kids', 'Kids OK', F.who.kids]]) + '</div>';
+  var B = UI.draftB || {on:!!S.budgetOn, val:S.budget};   // v4: the time budget lives here, off by default
+  h += '<div class="fsec">' + H('I’ve only got…', 'time') + chips([['tb:off', 'No limit', !B.on]].concat([30, 60, 90, 120, 180].map(function(x){ return ['tb:' + x, esc(fmtBudget(x)), B.on && B.val === x]; }))) +
+    '<p class="note">Pick one to hide things you couldn’t get to and enjoy in that time, door to door.</p></div>';
   h += '<div class="fsec">' + H('Price', 'price') + chips([['price:free', 'Free', F.price.free], ['price:$', '$', F.price.$], ['price:$$', '$$', F.price.$$], ['price:$$$', '$$$', F.price.$$$], ['price:$$$$', '$$$$', F.price.$$$$]]) + '</div>';
   h += '<div class="fsec">' + H('Inside or out', 'io') + seg([['io:either', 'Either', F.io === 'either'], ['io:indoor', 'Indoors', F.io === 'indoor'], ['io:outdoor', 'Outdoors', F.io === 'outdoor']]) + '</div>';
   h += '<div class="fsec">' + H('Getting there', 'reach') + seg([['mode:transit', 'Walk + CTA', F.mode === 'transit'], ['mode:walk', 'Walk only', F.mode === 'walk'], ['mode:car', 'I’ll drive', F.mode === 'car']]) +
@@ -3644,7 +4199,8 @@ function renderFilters(){
   if (ia.length) h += '<div class="fsec fsec-int"><h3>Interests' + (lim === 'interests' ? '<span class="lim">Most limiting</span>' : '') + (nPicked ? '<button class="int-clear" type="button" data-d="int-clear">Clear ' + nPicked + '</button>' : '') + '</h3>' +
     '<p class="note int-note">Pick as many as you like: a place shows if it has any of them. The number is how many places in the guide have it.</p>' +
     '<div class="chips-w int">' + ia.map(function(x){ var on = !!F.interests[x.id]; return '<button class="chip" type="button" data-d="int:' + esc(x.id) + '" aria-pressed="' + on + '" aria-label="' + esc(x.label) + ', ' + x.n + ' places">' + esc(x.label) + '<span class="ct">' + x.n + '</span></button>'; }).join('') + '</div></div>';
-  h += '<div class="fsec">' + H('Always on', 'always') + sw('openNow', F.openNow, 'Open now only', 'Off: closed and later things are shown unfolded') + sw('fits', F.fits, 'Fits my time only', 'Off: anything open, however long') + '</div>';
+  h += '<div class="fsec">' + H('Been there', 'been') + sw('notBeen', F.notBeen, 'Only places I haven’t been', CHECKINS.length ? 'Hides the ' + CHECKINS.length + (CHECKINS.length === 1 ? ' place' : ' places') + ' you marked “I’ve been here”' : 'Mark places with “I’ve been here” on their page') + '</div>';
+  h += '<div class="fsec">' + H('Always on', 'always') + sw('openNow', F.openNow, 'Open now only', 'Off: closed and later things are shown unfolded') + '</div>';
   body.innerHTML = h; body.scrollTop = st;
   var go = $('pFiltersGo');
   if (!DATA_LOADED) { go.textContent = 'Done'; go.classList.remove('zero'); go.removeAttribute('aria-disabled'); return; }
@@ -3656,6 +4212,7 @@ function commitFilters(){
   var F = UI.draft; if (!F) { closePanel('pFilters'); return; }
   if (DATA_LOADED && !draftCount(F)) return;   // zero state does nothing (spec 3.10)
   S.f = copyF(F); UI.draft = null;
+  if (UI.draftB) { S.budgetOn = !!UI.draftB.on; if (UI.draftB.on) S.budget = UI.draftB.val; }
   Platform.store.set('cff.radius.v3', S.f.radius); Platform.store.set('cff.mode.v1', S.f.mode);
   if (!S.f.openNow) UI.foldRest = true;
   closePanel('pFilters');
@@ -3669,7 +4226,8 @@ function applyF(code){ // single filter change (pSmall panels, the "Make it 2 hr
   var F = S.f, a = code.split(':'), k = a[0], v = a.slice(1).join(':');
   switch (k) {
     case 'when': S.when = v; if (v === 'pick' && !S.pickAt) { var p = cparts(nowMs()); S.pickAt = addDays(p.key, 1) + 'T19:00'; } break;
-    case 'budget': S.budget = v === 'night' ? 'night' : +v; break;
+    case 'budget': if (v === 'off') S.budgetOn = false; else { S.budget = v === 'night' ? 'night' : +v; S.budgetOn = true; } break;
+    case 'notBeen': F.notBeen = !F.notBeen; break;
     case 'fits': F.fits = !F.fits; break;
     case 'openNow': F.openNow = !F.openNow; break;
     case 'radius': F.radius = +v; Platform.store.set('cff.radius.v3', F.radius); break;
@@ -3691,7 +4249,24 @@ function applyF(code){ // single filter change (pSmall panels, the "Make it 2 hr
 var smallRender = null;
 function openSmall(title, fn){ smallRender = fn; $('pSmallTitle').textContent = title; fn(); openPanel('pSmall'); }
 function smallRadius(){ $('pSmallBody').innerHTML = chipsGroup(RADII.map(function(r){ return ['radius:' + r, fmtRadius(r), S.f.radius === r]; })) + '<div style="margin-top:12px">' + chipsGroup([['mode:transit', 'Walk + CTA', S.f.mode === 'transit'], ['mode:walk', 'Walk only', S.f.mode === 'walk'], ['mode:car', 'Car', S.f.mode === 'car']]) + '</div><p class="hint">Distances are straight-line (as the crow flies). Travel times are rough. With Walk + CTA, places more than ' + CTA_MAX_MI + ' mi away show a drive time (no CTA estimate).</p>'; }
-function smallWhen(){ $('pSmallBody').innerHTML = '<div class="seg">' + [['now', 'Right now'], ['tonight', 'Tonight'], ['weekend', 'This weekend'], ['pick', 'Pick a time']].map(function(x){ return '<button type="button" data-f="when:' + x[0] + '" aria-pressed="' + (S.when === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>' + (S.when === 'pick' ? '<label class="vh" for="pickAt">Date and time (Chicago)</label><input class="dtin" id="pickAt" type="datetime-local" min="' + nowLocalInput() + '" value="' + esc(S.pickAt) + '">' : '') + '<p class="hint">Tonight = 7 pm today. This weekend = Saturday 1 pm, and Limited time opens on this weekend. Chicago time.</p>'; }
+var DAY_PARTS = [[600, 'Morning'], [840, 'Afternoon'], [1140, 'Evening'], [1320, 'Late']];
+function smallWhen(){ // v4: Now / Tonight, or pick a day (next 8 days) and a part of the day, or an exact time
+  var p = cparts(nowMs()), d = parseDT(S.pickAt), on = S.when === 'pick' && d, selKey = on ? d.key : '', selMin = on && d.min !== null ? d.min : 1140, days = '';
+  for (var i = 0; i < 8; i++) { var k = addDays(p.key, i); days += '<button class="chip" type="button" data-day="' + k + '" aria-pressed="' + (k === selKey) + '">' + (i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : DOW_SHORT[wdOfKey(k)] + ' ' + (+k.slice(8))) + '</button>'; }
+  $('pSmallBody').innerHTML = '<div class="seg">' + [['now', 'Now'], ['tonight', 'Tonight']].map(function(x){ return '<button type="button" data-f="when:' + x[0] + '" aria-pressed="' + (S.when === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>' +
+    '<span class="flabel">Or pick a day</span><div class="chips-w" style="display:flex;flex-wrap:wrap;gap:8px">' + days + '</div>' +
+    '<div class="seg" style="margin-top:12px">' + DAY_PARTS.map(function(x){ return '<button type="button" data-part="' + x[0] + '" aria-pressed="' + (on && selMin === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>' +
+    '<label class="flabel" for="pickAt">Or an exact time (Chicago)</label><input class="dtin" style="margin-top:0" id="pickAt" type="datetime-local" min="' + nowLocalInput() + '" value="' + esc(on ? S.pickAt : '') + '">' +
+    '<p class="hint">Tonight is 7 pm today. Morning is 10 am, afternoon 2 pm, evening 7 pm, late 10 pm.</p>' +
+    '<button class="btn-primary" type="button" data-close="pSmall" style="width:100%;margin-top:14px">Done</button>';
+}
+function pickDay(key, min){ // from the day chips and the parts of the day
+  var d = parseDT(S.pickAt), p = cparts(nowMs());
+  if (!isKey(key)) key = (S.when === 'pick' && d) ? d.key : p.key;
+  if (!isNum(min)) min = (S.when === 'pick' && d && d.min !== null) ? d.min : 1140;
+  S.when = 'pick'; S.pickAt = key + 'T' + pad(Math.floor(min / 60)) + ':' + pad(min % 60);
+  refresh();
+}
 
 /* ----- about ----- */
 var VENUE_LINKS = [];   // filled by linkVenues() when the data loads; listed in About under "What we assumed"
@@ -3713,14 +4288,17 @@ function renderAbout(){
   h += '<h3>Data</h3><p>' + nP + ' places \u00b7 ' + nE + ' events \u00b7 ' + nV + ' double-checked' + (newest ? ' \u00b7 newest check ' + fmtDate(newest, todayKey) : '') + '.' + (SKIPPED.length ? ' ' + SKIPPED.length + (SKIPPED.length === 1 ? ' item' : ' items') + ' skipped (missing name or map point, or a likely duplicate).' : '') + (DATA_ERR ? ' Load error: ' + esc(DATA_ERR) : '') + '</p>';
   var fr = freshness();
   h += '<p>' + fr.pct + '% of the list was double-checked in the last 2 weeks.</p>';
-  h += '<h3>How we decide "open"</h3><ul><li>Closed dates come first (holidays, private events), then season dates: a place closed for the season is never shown as open, whatever its weekly hours say.</li><li>Then any special hours for that exact date, then the weekly hours, in Chicago time. Hours that run past midnight belong to the day they start.</li><li>On holidays (Thanksgiving, Christmas Eve and Day, New Year\'s Eve and Day, Easter, Memorial Day, July 4, Labor Day), a place whose notes (including our checker\'s notes) mention holiday closures or holiday hours says "May be closed today, call first" instead of open.</li><li>On Thanksgiving, Christmas Day and New Year\'s Day, a place with no holiday information at all says "Holiday: hours may differ, call first" and is not counted as a fit. It shows as open only if we have its hours for that exact date, or our checker confirmed its regular hours apply that day. Places open 24 hours are left alone.</li><li>A place marked closed by our checker that has a season (or a note like "closed for the season") is closed for the season and listed under "Back in spring", not hidden. Only a place marked closed with no season is "closed for good".</li><li>On Thanksgiving, Christmas Day and New Year\'s Day a place counts as known only when our data covers that exact date (a closed date, hours for that date, a checker\'s confirmation, or a note naming that holiday or date). A note about a different holiday doesn\'t count.</li><li>Special hours come from the hours we list for exact dates and the closed dates. If a note names today\'s date with different hours and we have no hours for that date, it says "Special hours today, call first" and isn\'t counted as a fit.</li><li>Last entry: a place counts as a fit only if you\'d get there at least ' + LAST_ENTRY_MARGIN_MIN + ' minutes before its last entry. When the last-entry time only appears in a note, arriving after it says "call first".</li><li>Shows and ticketed sessions: once one has started (more than ' + SESSION_GRACE_MIN + ' minutes ago) it isn\'t "open"; the app shows the next start time.</li><li>Seasonal places reopen on their season dates (yearly seasons roll over to the next year). If the next season\'s dates aren\'t known by the time it would usually be back, it says "season dates not posted, call first".</li><li>Hours confirmed only up to a date say "hours not posted yet, call first" after it. An event whose last date is only the last day tickets are on sale says so, and never "Ended" or "Last day".</li><li>Parks, gardens and outdoor art that need daylight aren\'t suggested from ' + DARK_AFTER_SUNSET_MIN + ' minutes after sunset until sunrise.</li><li>No hours on file means "hours not confirmed", never "open".</li><li>Anything not double-checked recently says "call first".</li></ul>';
+  h += '<h3>How we decide "open"</h3><ul><li>Closed dates come first (holidays, private events), then season dates: a place closed for the season is never shown as open, whatever its weekly hours say.</li><li>Then any special hours for that exact date, then the weekly hours, in Chicago time. Hours that run past midnight belong to the day they start.</li><li>On holidays (Thanksgiving, Christmas Eve and Day, New Year\'s Eve and Day, Easter, Memorial Day, July 4, Labor Day), a place whose notes (including our checker\'s notes) mention holiday closures or holiday hours says "May be closed today, call first" instead of open.</li><li>On Thanksgiving, Christmas Day and New Year\'s Day, a place with no holiday information at all says "Holiday: hours may differ, call first" and isn\'t suggested. It shows as open only if we have its hours for that exact date, or our checker confirmed its regular hours apply that day. Places open 24 hours are left alone.</li><li>A place marked closed by our checker that has a season (or a note like "closed for the season") is closed for the season and listed under "Back in spring", not hidden. Only a place marked closed with no season is "closed for good".</li><li>On Thanksgiving, Christmas Day and New Year\'s Day a place counts as known only when our data covers that exact date (a closed date, hours for that date, a checker\'s confirmation, or a note naming that holiday or date). A note about a different holiday doesn\'t count.</li><li>Special hours come from the hours we list for exact dates and the closed dates. If a note names today\'s date with different hours and we have no hours for that date, it says "Special hours today, call first" and isn\'t suggested.</li><li>Last entry: a place is suggested only if you\'d get there at least ' + LAST_ENTRY_MARGIN_MIN + ' minutes before its last entry. When the last-entry time only appears in a note, arriving after it says "call first".</li><li>Shows and ticketed sessions: once one has started (more than ' + SESSION_GRACE_MIN + ' minutes ago) it isn\'t "open"; the app shows the next start time.</li><li>Seasonal places reopen on their season dates (yearly seasons roll over to the next year). If the next season\'s dates aren\'t known by the time it would usually be back, it says "season dates not posted, call first".</li><li>Hours confirmed only up to a date say "hours not posted yet, call first" after it. An event whose last date is only the last day tickets are on sale says so, and never "Ended" or "Last day".</li><li>Parks, gardens and outdoor art that need daylight aren\'t suggested from ' + DARK_AFTER_SUNSET_MIN + ' minutes after sunset until sunrise.</li><li>No hours on file means "hours not confirmed", never "open".</li><li>Anything not double-checked recently says "call first".</li></ul>';
   h += assumedHTML();
-  h += '<h3>"I have an hour"</h3><p>An item fits when travel plus its shortest worthwhile visit fits your time, and it stays open long enough after you arrive (at least 30 minutes). The shortest visit comes from our listing when we have it; otherwise it is our rule of thumb: arcades, bars and food stops 30 min, mini golf 40, museums and active places 45, pop-ups 40. Escape rooms, shows, classes, sports and anything you book ahead need their full length. Rows say "short visit" when that\'s what fits.</p>';
+  h += '<h3>The three picks</h3><p>The first screen shows three things that are open at the time you chose (or open within 15 minutes), about ' + REACH_MIN + ' minutes away or less when enough is open, of three different kinds, with one limited-time thing when one qualifies. Places you marked "I\'ve been here" in the last ' + RECENT_DAYS + ' days are left out. "Three more" doesn\'t repeat until it has shown everything.</p>';
+  h += '<h3>"I\'ve only got..."</h3><p>Off unless you turn it on in More filters. With it on, a place is shown when the trip plus the shortest worthwhile time there is within your time, and it stays open long enough after you arrive (at least 30 minutes). The shortest time comes from our listing when we have it; otherwise it is our rule of thumb: arcades, bars and food stops 30 min, mini golf 40, museums and active places 45, pop-ups 40. Escape rooms, shows, classes, sports and anything you book ahead need their full length.</p>';
+  h += '<h3>Been here</h3><p>"I\'ve been here" keeps the place and the date on this phone only. You can change the date or remove it. It never asks for a photo.</p>';
   h += '<h3>Tips</h3><p>Saw something fun on Instagram or anywhere? <button class="linkbtn" type="button" data-act="tip">Send a tip</button>. Each tip is read as a lead and checked at the organizer\'s own site before it goes in the app.</p>';
   h += '<h3>Where you are</h3><p>This version can\'t read your phone\'s location inside claude.ai, so you pick a spot or tap the map. Neighborhood, landmark and L-stop points are approximate (typed from general knowledge, needs check). Community areas come from City data. Distances are straight-line (as the crow flies); travel times use rough rules: walking 20 min per mile and CTA about 10 min plus 4 min per mile, both on 1.3 times the straight-line distance. Driving: 8 min to park, plus 4 min per straight-line mile for the first 3 miles, 2.2 min per mile up to 10 miles and 1.15 min per mile after that, with no rush-hour traffic. With "Walk + CTA" picked, places more than ' + CTA_MAX_MI + ' miles away show the drive time and say so (check Metra).</p>';
   h += '<h3>Map data</h3><p>Community areas and CTA \'L\' lines: City of Chicago Data Portal (datasets igwz-8jzy and xbyr-jnvx), simplified. The river line and the land outside the city are hand-drawn approximations.</p>';
   h += '<blockquote>"This site provides applications using data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one\'s own risk."<br>Source: <a href="https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html" target="_blank" rel="noopener">City of Chicago data terms of use</a></blockquote>';
   h += '<h3>Photo credits</h3>' + (photos.length ? '<ul class="credits">' + photos.map(function(it){ var ph = firstPhoto(it), pu = safeUrl(ph.page_url); return '<li>' + esc(it.name) + ': ' + (pu ? '<a href="' + esc(pu) + '" target="_blank" rel="noopener">' + esc(ph.credit ? photoCredit(ph) : domainOf(pu)) + '</a>' : esc(photoCredit(ph))) + '</li>'; }).join('') + '</ul>' : '<p>No photos are bundled yet. Items show drawn category art instead.</p>');
+  if (CONTACT_EMAIL) h += '<p class="small">Photos belong to their owners. Ask us to remove one: <a href="mailto:' + esc(CONTACT_EMAIL) + '">' + esc(CONTACT_EMAIL) + '</a></p>';
   h += '<h3>Sources</h3><p>Official venue and organizer sites, the Chicago Park District, Choose Chicago and editorial sites as leads. No automated collection from Instagram or Eventbrite. Each item lists its sources.</p>';
   h += '<h3>Look</h3><div class="seg">' + [['auto', 'Auto'], ['light', 'Light'], ['dark', 'Dark']].map(function(x){ return '<button type="button" data-theme="' + x[0] + '" aria-pressed="' + (theme === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>';
   h += '<h3>For testing</h3><p><button class="mini-btn" type="button" data-act="selftest">Run the self-test</button></p><p>' + esc(VERSION) + ' \u00b7 time zone used: ' + TZ + (fmtParts ? '' : ' (built-in US DST rule; this browser has no time zone support)') + '</p>';
@@ -3798,10 +4376,35 @@ function bindUI(){
   $('resline').addEventListener('click', function(e){ if (e.target.closest('[data-act="filters"]')) openFilters(); });
   $('applied').addEventListener('click', function(e){
     var b = e.target.closest('[data-rm]'); if (!b) return;
+    if (b.getAttribute('data-rm') === 'tb') S.budgetOn = false;
     S.f = removeFilter(S.f, b.getAttribute('data-rm'));
     Platform.store.set('cff.radius.v3', S.f.radius); Platform.store.set('cff.mode.v1', S.f.mode);
     refresh();
   });
+  // v4: home, browse header, search, map view, share, check-ins
+  $('home').addEventListener('click', onHomeClick);
+  $('home').addEventListener('keydown', function(e){ if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('card3')) { e.preventDefault(); openDetail(e.target.getAttribute('data-id')); } });
+  $('bwBack').addEventListener('click', function(){ showView('home'); });
+  $('bwSaved').addEventListener('click', function(){ openLists(UI.listTab); });
+  $('q').addEventListener('input', function(){ UI.q = this.value.replace(/\s+/g, ' ').trim(); $('qClear').hidden = !this.value; refresh(); $('sheetScroll').scrollTop = 0; });
+  $('q').addEventListener('keydown', function(e){ if (e.key === 'Enter') { try { this.blur(); } catch (err) {} } });
+  $('qClear').addEventListener('click', function(){ $('q').value = ''; UI.q = ''; this.hidden = true; refresh(); try { $('q').focus(); } catch (err) {} });
+  $('mapBack').addEventListener('click', function(){ showView(UI.backView === 'browse' ? 'browse' : 'home'); });
+  $('mapList').addEventListener('click', function(){ showView('browse'); });
+  $('mapCard').addEventListener('click', function(){ var id = this.getAttribute('data-id'); if (id) openDetail(id); });
+  document.addEventListener('click', function(e){ var b = e.target.closest ? e.target.closest('[data-share]') : null; if (b) { e.stopPropagation(); shareItem(b.getAttribute('data-share')); } }, true);
+  $('dtScroll').addEventListener('click', function(e){
+    var id = UI.detailId; if (!id) return;
+    if (e.target.closest('[data-cal]')) { addToCalendar(id); return; }
+    var b = e.target.closest('[data-been]'); if (!b) return;
+    var a = b.getAttribute('data-been'), ck = checkinOf(id);
+    if (a === 'add') addCheckin(id);
+    else if (a === 'remove') removeCheckin(id);
+    else if (ck && a === 'up') editCheckin(id, {rating:ck.rating === 1 ? 0 : 1});
+    else if (ck && a === 'down') editCheckin(id, {rating:ck.rating === -1 ? 0 : -1});
+  });
+  $('dtScroll').addEventListener('change', function(e){ if (e.target.id === 'beenDate' && UI.detailId && isKey(e.target.value)) editCheckin(UI.detailId, {date:e.target.value}); });
+  $('pSavedBody').addEventListener('click', function(e){ var t = e.target.closest('[data-tab]'); if (t) { UI.listTab = t.getAttribute('data-tab'); renderSaved(); } });
   $('fillTime').addEventListener('click', function(){ renderTime(); UI.showRing = true; updateRing(); openPanel('pTime'); });
   $('fillWhen').addEventListener('click', function(){ openSmall('When?', smallWhen); });
   $('fillLoc').addEventListener('click', function(){ openLocation(false); });
@@ -3813,7 +4416,7 @@ function bindUI(){
     if (a === 'go' && c) { closePanel('pSurprise'); UI.sel = c.item.id; recluster(); openDetail(c.item.id); }
     else if (a === 'veto' && c) { surpriseVeto.push(c.item.id); spinSurprise(); }
   });
-  $('savedBtn').addEventListener('click', function(){ renderSaved(); openPanel('pSaved'); });
+  $('savedBtn').addEventListener('click', function(){ openLists(UI.listTab); });
   $('recenterBtn').addEventListener('click', function(){ UI.viewKey = null; if (UI.lastRes) fitToPins(UI.lastRes, true); else if (S.loc) focusOn(S.loc.lat, S.loc.lng, Math.min(S.f.radius, 3), true); UI.viewKey = UI.lastVm ? viewKey(UI.lastVm) : null; });
   listRoot.addEventListener('click', onListClick);
   listRoot.addEventListener('keydown', function(e){ if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('row') && e.target.getAttribute('data-id')) { e.preventDefault(); openDetail(e.target.getAttribute('data-id')); } });
@@ -3864,21 +4467,27 @@ function bindUI(){
   $('pTimeBody').addEventListener('click', function(e){
     var b = e.target.closest('[data-budget],[data-tb]'); if (!b) return;
     if (b.hasAttribute('data-tb')) stepBudget(b.getAttribute('data-tb') === '+' ? 1 : -1);
-    else { var v = b.getAttribute('data-budget'); S.budget = v === 'night' ? 'night' : +v; renderTime(); refresh(); }
+    else { var v = b.getAttribute('data-budget'); S.budget = v === 'night' ? 'night' : +v; S.budgetOn = true; renderTime(); refresh(); }
   });
   $('pTimeGo').addEventListener('click', function(){ if (!S.f.fits) { S.f.fits = true; refresh(); } closePanel('pTime'); });
   // More filters: changes go into a draft; "Show N things" applies them (spec 3.10)
-  $('pFiltersBody').addEventListener('click', function(e){ var b = e.target.closest('[data-d]'); if (!b || !UI.draft) return; applyDraft(UI.draft, b.getAttribute('data-d')); renderFilters(); });
-  $('pFiltersReset').addEventListener('click', function(){ UI.draft = appDefaultFilters(); renderFilters(); });
+  $('pFiltersBody').addEventListener('click', function(e){ var b = e.target.closest('[data-d]'); if (!b || !UI.draft) return;
+    var code = b.getAttribute('data-d');
+    if (/^tb:/.test(code)) { var tv = code.slice(3), old = UI.draftB || {on:false, val:S.budget}; UI.draftB = tv === 'off' ? {on:false, val:old.val} : {on:true, val:+tv}; }
+    else applyDraft(UI.draft, code);
+    renderFilters(); });
+  $('pFiltersReset').addEventListener('click', function(){ UI.draft = appDefaultFilters(); UI.draftB = {on:false, val:S.budget}; renderFilters(); });
   $('pFiltersGo').addEventListener('click', commitFilters);
   $('pSmallBody').addEventListener('click', function(e){
+    var dy = e.target.closest('[data-day],[data-part]');
+    if (dy) { pickDay(dy.getAttribute('data-day'), dy.hasAttribute('data-part') ? +dy.getAttribute('data-part') : null); if (smallRender) smallRender(); return; }
     var b = e.target.closest('[data-f]'); if (!b) return;
     var code = b.getAttribute('data-f');
     applyF(code);
     if (smallRender) smallRender();
     if (/^when:/.test(code) && code !== 'when:pick') closePanel('pSmall');
   });
-  $('pSmallBody').addEventListener('change', function(e){ if (e.target.id === 'pickAt') { S.pickAt = e.target.value; refresh(); if (smallRender) smallRender(); } });
+  $('pSmallBody').addEventListener('change', function(e){ if (e.target.id === 'pickAt' && parseDT(e.target.value)) { S.when = 'pick'; S.pickAt = e.target.value; refresh(); if (smallRender) smallRender(); } });
   $('pAboutBody').addEventListener('click', function(e){
     var t = e.target.closest('[data-theme]'); if (t) { setTheme(t.getAttribute('data-theme')); renderAbout(); return; }
     var a = e.target.closest('[data-act="selftest"]'); if (a) showSelfTest();
@@ -3888,8 +4497,36 @@ function bindUI(){
   window.addEventListener('hashchange', readHash);
   document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'visible' && DATA_LOADED) refresh(); });
 }
+function onHomeClick(e){
+  var t = e.target;
+  if (t.closest('[data-share]')) return;   // handled by the page-wide Share handler
+  var sv = t.closest('[data-save]'); if (sv) { toggleSave(sv.getAttribute('data-save')); return; }
+  var w = t.closest('[data-who]');
+  if (w) { var k = w.getAttribute('data-who'), was = !!S.f.who[k]; ['date', 'friends', 'solo'].forEach(function(x){ delete S.f.who[x]; }); if (!was) S.f.who[k] = true; refresh(); return; }
+  var wh = t.closest('[data-when]');
+  if (wh) { var v = wh.getAttribute('data-when'); if (v === 'pick') openSmall('When?', smallWhen); else { S.when = v; refresh(); } return; }
+  var pl = t.closest('[data-plan]');
+  if (pl) { S.when = 'pick'; S.pickAt = pl.getAttribute('data-plan'); refresh(); return; }
+  var act = t.closest('[data-act]');
+  if (act) {
+    var a = act.getAttribute('data-act');
+    if (a === 'more3') { UI.more3 = true; refresh(); $('home').scrollTop = 0; }
+    else if (a === 'browse') showView('browse');
+    else if (a === 'search') showView('browse', {search:true});
+    else if (a === 'saved') openLists(UI.listTab);
+    else if (a === 'loc') openLocation(false);
+    else if (a === 'tip') openTip();
+    else if (a === 'about') { renderAbout(); openPanel('pAbout'); }
+    else if (a === 'retry') loadData();
+    else if (a === 'clearall') { S.f = ext(appDefaultFilters(), {radius:S.f.radius, mode:S.f.mode}); S.budgetOn = false; refresh(); }
+    return;
+  }
+  var card = t.closest('.card3[data-id]');
+  if (card) openDetail(card.getAttribute('data-id'));
+}
 function onListClick(e){
   var t = e.target;
+  if (t.closest('[data-share]')) return;
   var sv = t.closest('[data-save]'); if (sv) { e.stopPropagation(); toggleSave(sv.getAttribute('data-save')); return; }
   if (t.closest('[data-stop]')) return;
   var tile = t.closest('[data-tile]');
@@ -3903,7 +4540,7 @@ function onListClick(e){
   var fo = t.closest('[data-fold-open]');
   if (fo) { UI.foldRest = true; refresh(); var fd = listRoot.querySelector('[data-fold="rest"]'); if (fd) $('sheetScroll').scrollTop = Math.max(0, fd.offsetTop - 4); return; }
   var rm = t.closest('[data-rm]');
-  if (rm) { S.f = removeFilter(S.f, rm.getAttribute('data-rm')); Platform.store.set('cff.radius.v3', S.f.radius); Platform.store.set('cff.mode.v1', S.f.mode); refresh(); return; }
+  if (rm) { if (rm.getAttribute('data-rm') === 'tb') S.budgetOn = false; S.f = removeFilter(S.f, rm.getAttribute('data-rm')); Platform.store.set('cff.radius.v3', S.f.radius); Platform.store.set('cff.mode.v1', S.f.mode); refresh(); return; }
   var pl = t.closest('[data-plan]');
   if (pl) { S.when = 'pick'; S.pickAt = pl.getAttribute('data-plan'); refresh(); return; }
   var rx = t.closest('[data-relax]');
@@ -3915,7 +4552,7 @@ function onListClick(e){
       if (code === 'fitsoff') S.f.fits = false;
       else if (code === 'clear') { S.f = ext(appDefaultFilters(), {radius:S.f.radius, mode:S.f.mode}); S.when = 'now'; }
       else if (code === 'showcall') UI.foldRest = true;
-      else if (code) { var a0 = code.split(':'); if (a0[0] === 'budget') S.budget = a0[1] === 'night' ? 'night' : +a0[1]; else if (a0[0] === 'radius') { S.f.radius = +a0[1]; Platform.store.set('cff.radius.v3', S.f.radius); } }
+      else if (code) { var a0 = code.split(':'); if (a0[0] === 'budget') { S.budget = a0[1] === 'night' ? 'night' : +a0[1]; S.budgetOn = true; } else if (a0[0] === 'radius') { S.f.radius = +a0[1]; Platform.store.set('cff.radius.v3', S.f.radius); } }
     });
     refresh(); return;
   }
@@ -4121,7 +4758,7 @@ function runSelfTest(){
     function fitAt(it, key, hhmm, budget){ var T = at(key, hhmm); var tr = travel(distMi(41.88, -87.63, it.lat, it.lng), 'transit'); return fitFor(it, statusAt(it, T), tr, budget, T); }
     var f = fitAt(fp, '2026-11-12', '12:00', 60);
     eq('1 hr, 13 min walk + 45 min: just fits with 2 min spare', [f.kind, f.spare].join(), 'fits,2');
-    eq('fit note', fitNote({fit:f}).t, 'Just fits. 2 min to spare.');
+    eq('time note (v4 plain words)', fitNote({fit:f}).t, 'Just enough time. 2 min to spare.');
     eq('10 pm (closes 11): still fits', fitAt(fp, '2026-11-12', '22:00', 60).kind, 'fits');
     f = fitAt(fp, '2026-11-12', '22:20', 60);
     eq('10:20 pm: tight, 27 min before close', [f.kind, f.get].join(), 'tight,27');
@@ -4269,7 +4906,7 @@ function runSelfTest(){
     var arc = fx({category:'games-arcade', duration_minutes:120, hours:allDays(['11:00', '02:00']), lat:northOf(0.45)});
     var f = fitAt(arc, '2026-11-12', '18:40', 60);
     eq('Arcade (usually 2 h), 12 min walk, 1 hr: fits as a short visit (30 min, category default)', [f.kind, f.short, f.min, f.minSrc].join(), 'fits,true,30,default');
-    eq('short-visit note', fitNote({fit:f, st:statusAt(arc, at('2026-11-12', '18:40'))}).t, 'Fits as a short visit: about 30 min there. A full visit is about 2 h.');
+    eq('short-visit note', fitNote({fit:f, st:statusAt(arc, at('2026-11-12', '18:40'))}).t, 'Time for a quick stop: about 30 min there. A full visit is about 2 h.');
     var arc2 = fx({category:'games-arcade', duration_minutes:120, min_minutes:50, hours:allDays(['11:00', '02:00']), lat:northOf(0.45)});
     f = fitAt(arc2, '2026-11-12', '18:40', 60);
     eq('min_minutes 50 from the data wins: 12 + 50 > 60, over by 2 min', [f.kind, f.minSrc, f.over].join(), 'over,data,2');
@@ -4685,7 +5322,7 @@ function runSelfTest(){
     LIMIT_TRIES.forEach(function(t){ var n = countView(items, T, ctx, ext(Fz, t[1]), '', ''); if (n > bn) { bn = n; lim = t[0]; } });
     eq('...the most limiting section is "Who\'s coming"', lim, 'who');
     eq('Make it longer: Shows first gets a fit at 3 hrs', show(moreTimeFor(items, T, ctx, F, ['shows']).shows), '{"budget":180,"n":1}');
-    eq('applied chips, in order (app defaults: no distance cap)', appliedFilters(ext(appDefaultFilters(), {who:{date:true}, walkin:true, fits:false})).map(function(a){ return a.label; }).join(), 'Date,Walk-in only,Any length');
+    eq('applied chips, in order (app defaults: no distance cap)', appliedFilters(ext(appDefaultFilters(), {who:{date:true}, walkin:true, fits:false})).map(function(a){ return a.label; }).join(), 'Date,Walk-in only');   // v4: the "Any length" chip is gone (the time budget is its own chip)
     eq('...a radius under 25 mi shows as a chip', appliedFilters(ext(appDefaultFilters(), {radius:2})).map(function(a){ return a.label; }).join(), 'Within 2 mi');
     eq('removing one applied chip keeps the rest', JSON.stringify(removeFilter(ext(defaultFilters(), {who:{date:true}, walkin:true}), 'who:date').who) + '|' + removeFilter(ext(defaultFilters(), {walkin:true}), 'who:date').walkin, '{}|true');
     eq('interests match any of their tags (Views = skyline)', runPipeline([fx({tags:['skyline'], hours:open})], T, ctx, ext(F, {interests:{views:true}})).all.length, 1);
@@ -4728,7 +5365,7 @@ function runSelfTest(){
     var a = fx({name:'Early arcade', category:'games-arcade', hours:allDays(['06:00', '22:00']), lat:northOf(0.2)});
     var m = fx({name:'Museum', category:'art-museum', hours:allDays(['10:00', '17:00']), lat:northOf(0.3)});
     var T = at('2026-11-13', '03:30'), res = runPipeline([a, m], T, ctx, F), vm = buildView(res, F, '', '');
-    var keepPlan = UI.planning; UI.planning = false;
+    var keepPlan = UI.planning, keepOn = S.budgetOn, keepB = S.budget; UI.planning = false; S.budgetOn = true; S.budget = 60;   // v4: these empty states are for the optional time budget
     eq('3:30 am: every tile is 0', vm.tiles.map(function(t){ return t.n; }).join(), '0,0,0,0,0,0,0,0');
     eq('...first to open: the 6 am arcade', vm.firstOpen ? vm.firstOpen.item.name + ' ' + fmtClock(vm.firstOpen.st.opensAt) : '', 'Early arcade 6 am');
     var h = homeListHTML(vm, {});
@@ -4739,12 +5376,13 @@ function runSelfTest(){
     var sh = fx({name:'Show', category:'show-comedy-music', hours:allDays(['10:00', '23:00']), duration_minutes:90, lat:northOf(0.1)});
     var T2 = at('2026-11-12', '18:40'), v2 = buildView(runPipeline([sh, a], T2, ctx, F), F, '', '');
     var h2 = homeListHTML(v2, moreTimeFor([sh, a], T2, ctx, F, v2.empty));
-    ok('a kind with 0 fits: a "Nothing fits" row with "Make it 2 hrs · 1 fit"', h2.indexOf('row none') >= 0 && h2.indexOf('Make it 2 hrs · 1 fit') >= 0, h2.slice(0, 200));
+    ok('a kind with nothing doable in 1 hr: a "Nothing is doable in 1 hr" row with "Make it 2 hrs · 1 to do"', h2.indexOf('row none') >= 0 && h2.indexOf('Nothing is doable in 1 hr right now.') >= 0 && h2.indexOf('Make it 2 hrs · 1 to do') >= 0, h2.slice(0, 200));
     var rx = fx({name:'Bathhouse', category:'unique-niche', tags:['sauna'], booking:'required', duration_minutes:90, hours:allDays(['10:00', '23:00']), lat:northOf(0.2)});
     var vr = buildView(runPipeline([rx], T2, ctx, F), F, 'relax', '');
     var hr = kindListHTML(vr, moreTimeFor([rx], T2, ctx, F, ['relax']));
-    ok('Relax tapped with 0 fits: the empty block with "Make it 2 hrs"', hr.indexOf('Nothing in Relax fits') >= 0 && hr.indexOf('Make it 2 hrs') >= 0 && hr.indexOf('Fits your') >= 0, hr.slice(0, 200));
-    UI.planning = keepPlan;
+    ok('Relax tapped with nothing doable: the empty block with "Make it 2 hrs"', hr.indexOf('Nothing in Relax is doable in 1 hr') >= 0 && hr.indexOf('Make it 2 hrs') >= 0 && hr.indexOf('Open now, doable in 1 hr') >= 0, hr.slice(0, 200));
+    ok('v4 plain words: no "fits", "tight" or "short visit" in the list', !/\bfits?\b|\btight\b|short visit/i.test((h2 + hr).replace(/<[^>]*>/g, ' ')), (h2 + hr).replace(/<[^>]*>/g, ' ').slice(0, 300));
+    UI.planning = keepPlan; S.budgetOn = keepOn; S.budget = keepB;
   });
 
   block('v3 remembered genre (localStorage wrapped in try/catch)', function(){
@@ -4759,7 +5397,144 @@ function runSelfTest(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v3.1 (2026-11-12)');
+    eq('version', VERSION, 'v4 (2026-11-12)');
+  });
+
+  /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
+  block('v4 the three picks (picking rule)', function(){
+    var T = at('2026-11-12', '12:00'), ctx = {lat:41.88, lng:-87.63, budget:'any', mode:'transit'}, F = ext(defaultFilters(), {radius:25}), open = allDays(['10:00', '23:00']), today = '2026-11-12';
+    function mk(name, cat, o){ return fx(ext({id:'t-' + name.toLowerCase().replace(/\W+/g, '-'), name:name, category:cat, hours:open, lat:northOf(0.3)}, o || {})); }
+    var arcade = mk('Arcade', 'games-arcade'), golf = mk('Golf', 'mini-golf'), museum = mk('Museum', 'art-museum'), bar = mk('Bar', 'food-drink-experience'), cls = mk('Class', 'classes-workshops', {booking:'walk-in'});
+    var popup = mk('Popup', 'art-museum', {kind:'event', event_dates:[{start:'2026-11-01', end:'2026-12-19'}]});
+    var shut = mk('Shut', 'games-arcade', {hours:allDays(['18:00', '23:00'])}), soon = mk('Soon', 'games-arcade', {hours:allDays(['12:10', '23:00'])}), later = mk('Later', 'games-arcade', {hours:allDays(['12:40', '23:00'])});
+    var far = mk('Far', 'games-arcade', {lat:northOf(20)}), recent = mk('Recent', 'mini-golf'), old = mk('Old', 'mini-golf');
+    var cks = [{id:recent.id, date:'2026-11-02', rating:0}, {id:old.id, date:'2026-10-01', rating:1}];
+    var items = [arcade, golf, museum, bar, cls, popup, shut, soon, later, far, recent, old];
+    function pool(list, c2){ return threePool(buildView(runPipeline(list, T, c2 || ctx, F), F, '', ''), today, cks); }
+    var P = pool(items), ids = P.map(function(c){ return c.item.name; }).sort().join();
+    eq('the pool: open now or opening within 15 min, not far, not been in the last 30 days', ids, 'Arcade,Bar,Class,Golf,Museum,Old,Popup,Soon');
+    var r = pickThree(P, {});
+    eq('three picks', r.picks.length, 3);
+    eq('three different kinds', Object.keys(r.picks.reduce(function(m, c){ m[c.genre] = 1; return m; }, {})).length, 3);
+    ok('one limited-time thing when one qualifies', r.picks.some(function(c){ return c.lim === 'now'; }), r.picks.map(function(c){ return c.item.name; }).join());
+    ok('a place she checked in to 10 days ago is never picked; one from 42 days ago can be', !P.some(function(c){ return c.item.name === 'Recent'; }) && P.some(function(c){ return c.item.name === 'Old'; }), ids);
+    eq('been-recently rule: 10 days yes, exactly 30 yes, 31 no, never been no', [beenRecently('a', today, [{id:'a', date:'2026-11-02'}]), beenRecently('a', today, [{id:'a', date:'2026-10-13'}]), beenRecently('a', today, [{id:'a', date:'2026-10-12'}]), beenRecently('b', today, [{id:'a', date:'2026-11-02'}])].join(), 'true,true,false,false');
+    var seen = {}, shown = [];
+    function round(){ var rr = pickThree(P, seen); rr.picks.forEach(function(c){ shown.push(c.item.id); seen[c.item.id] = 1; }); return rr; }
+    var r1x = round(), r2x = round(), uniq = {}; shown.forEach(function(id){ uniq[id] = 1; });
+    eq('"Three more": the first two rounds show 6 different places', [r1x.wrapped, r2x.wrapped, shown.length, Object.keys(uniq).length].join(), 'false,false,6,6');
+    var left = P.filter(function(c){ return !uniq[c.item.id]; }).map(function(c){ return c.item.id; }).sort().join(), r3x = pickThree(P, seen), r3ids = r3x.picks.map(function(c){ return c.item.id; });
+    eq('...the third round shows the last 2 unseen, then starts over to fill the third card', [r3x.wrapped, r3x.picks.length, P.filter(function(c){ return !uniq[c.item.id]; }).every(function(c){ return r3ids.indexOf(c.item.id) >= 0; }), left.split(',').length].join(), 'true,3,true,2');
+    eq('a far place is used only when fewer than three close ones are open', pool([arcade, museum, far]).map(function(c){ return c.item.name; }).sort().join(), 'Arcade,Far,Museum');
+    eq('nothing open: no picks', pickThree(pool([shut, later]), {}).picks.length, 0);
+    eq('only two open: two picks, no crash', pickThree(pool([arcade, museum]), {}).picks.length, 2);
+    eq('same kind three times is allowed when that is all there is', pickThree(pool([arcade, mk('Arcade B', 'games-arcade'), mk('Arcade C', 'games-arcade')]), {}).picks.length, 3);
+    eq('"who" narrows the pool (Date)', threePool(buildView(runPipeline([mk('Date spot', 'games-arcade', {tags:['date']}), arcade], T, ctx, ext(F, {who:{date:true}})), F, '', ''), today, []).map(function(c){ return c.item.name; }).join(), 'Date spot');
+    eq('a hook for the taste profile exists (returns 0 for now)', typeof tasteScore + '|' + tasteScore(P[0]), 'function|0');
+    eq('no time budget ("any") at 1:30 am: a late bar still has room', fitFor(mk('Late bar', 'food-drink-experience', {hours:allDays(['17:00', '04:00'])}), statusAt(bar, at('2026-11-13', '01:30')), travel(0.3, 'transit'), 'any', at('2026-11-13', '01:30')).budget, 1440);
+  });
+
+  block('v4 one line of facts, hook', function(){
+    var T = at('2026-11-12', '18:40'), ctx = {lat:41.88, lng:-87.63, budget:'any', mode:'transit'};
+    var a = fx({name:'Arcade', price_level:'$$', hours:allDays(['11:00', '22:00']), lat:northOf(0.45)});
+    eq('"Open till 10 pm · 12 min walk · $$"', factsLine(computeItem(a, T, ctx)), 'Open till 10 pm · 12 min walk · $$');
+    eq('closing soon + free', factsLine(computeItem(fx({price_level:'free', hours:allDays(['11:00', '19:10']), lat:northOf(0.1)}), T, ctx)).replace(/\d+ min walk/, 'N min walk'), 'Closes in 30 min · N min walk · Free');
+    eq('opens later, no price', factsLine(computeItem(fx({price_level:'', hours:allDays(['19:00', '23:00']), lat:northOf(0.45)}), T, ctx)), 'Opens at 7 pm · 12 min walk');
+    eq('hook from the data wins', hookOf({hook:'Cats and pinball.', description:'Long text. More.'}), 'Cats and pinball.');
+    eq('else the first sentence of the description', hookOf({description:'An arcade bar with 40 pinball tables. Open late on weekends.'}), 'An arcade bar with 40 pinball tables');
+    var long = hookOf({description:'An indoor mini golf club on Randolph Street\'s restaurant row with two themed 9-hole courses, Library and Lodge, a scratch kitchen and craft cocktails. More.'});
+    ok('a long first sentence is trimmed at a word, with an ellipsis', long.length <= 110 && /…$/.test(long) && long.indexOf('An indoor mini golf club') === 0, long);
+    eq('no description: empty', hookOf({}), '');
+  });
+
+  block('v4 search (names, kinds, interests, neighborhoods; small typos)', function(){
+    var a = fx({name:'Puttery Chicago', category:'mini-golf', tags:['indoor-mini-golf', 'cocktails'], neighborhood:'West Loop'});
+    var b = fx({name:'Kusama Infinity Room', category:'art-museum', tags:['art'], neighborhood:'River North'});
+    var c = fx({name:'Trader Todd\'s', category:'food-drink-experience', tags:['karaoke', 'bars'], neighborhood:'Lakeview'});
+    var d = fx({name:'Beautiful Rind', category:'food-drink-experience', tags:['cheese', 'date'], neighborhood:'Logan Square'});
+    var e = fx({name:'Café Brauer', category:'food-drink-experience', tags:[], neighborhood:'Lincoln Park'});
+    var items = [a, b, c, d, e];
+    function s(q){ return searchItems(items, q).map(function(r){ return r.it.name; }).join('|'); }
+    eq('by name, as you type ("putt")', s('putt'), 'Puttery Chicago');
+    eq('by kind ("mini golf")', s('mini golf'), 'Puttery Chicago');
+    eq('by interest / tag ("karaoke", "cheese")', s('karaoke') + '|' + s('cheese'), 'Trader Todd\'s|Beautiful Rind');
+    eq('by neighborhood ("lakeview", "west loop")', s('lakeview') + '|' + s('West Loop'), 'Trader Todd\'s|Puttery Chicago');
+    eq('small typos: "karoke", "kusma", "putery"', [s('karoke'), s('kusma'), s('putery')].join('|'), 'Trader Todd\'s|Kusama Infinity Room|Puttery Chicago');
+    eq('accents and case don\'t matter ("cafe BRAUER")', s('cafe BRAUER'), 'Café Brauer');
+    eq('every word must match ("karaoke west loop": nothing)', s('karaoke west loop'), '');
+    eq('nonsense: nothing; empty box: nothing', s('zzzzqq') + '|' + s('   '), '|');
+    eq('a name match ranks above a tag match', searchItems([fx({name:'Cheese Shop'}), fx({name:'Wine Bar', tags:['cheese']})], 'cheese').map(function(r){ return r.it.name; }).join('|'), 'Cheese Shop|Wine Bar');
+    eq('typo matches are dropped when something matches exactly ("bars" does not pull in "cars")', searchItems([fx({name:'Cars Museum'}), fx({name:'Wine Room', tags:['bars']})], 'bars').map(function(r){ return r.it.name; }).join('|'), 'Wine Room');
+    eq('edit distance: one letter missing, two swapped, too different', [editWithin('karoke', 'karaoke', 1), editWithin('kuasma', 'kusama', 1), editWithin('golf', 'bowl', 1)].join(), '1,1,2');
+  });
+
+  block('v4 check-ins ("I\'ve been here")', function(){
+    var L = withCheckin([], 'pa-x', {date:'2026-11-12'}, '2026-11-12T20:00:00.000Z');
+    eq('add: one record with the date, no rating, a time stamp', JSON.stringify(L), '[{"id":"pa-x","date":"2026-11-12","rating":0,"updated_at":"2026-11-12T20:00:00.000Z"}]');
+    L = withCheckin(L, 'pa-x', {date:'2026-11-01'}, 't2');
+    eq('edit the date: still one record', L.length + '|' + L[0].date + '|' + L[0].updated_at, '1|2026-11-01|t2');
+    L = withCheckin(L, 'pa-x', {rating:1}, 't3');
+    eq('thumbs up keeps the date', L[0].date + '|' + L[0].rating, '2026-11-01|1');
+    L = withCheckin(L, 'pa-y', {date:'2026-10-05'}, 't4');
+    eq('a second place', L.map(function(x){ return x.id; }).join(), 'pa-x,pa-y');
+    eq('remove one', withoutCheckin(L, 'pa-x').map(function(x){ return x.id; }).join(), 'pa-y');
+    eq('junk in storage is dropped (no date, no id, a duplicate, not a list)', cleanCheckins([{id:'a', date:'2026-11-01'}, {id:'b'}, {date:'2026-11-01'}, {id:'a', date:'2026-11-02'}, null]).length + '|' + cleanCheckins('x').length, '1|0');
+    eq('the mark on cards', beenLabel({date:'2026-11-12'}, '2026-11-20') + '|' + beenLabel({date:'2025-12-30'}, '2026-11-20'), 'Been · Nov 12|Been · Dec 30, 2025');
+    var mem = {}, fake = {getItem:function(k){ return Object.prototype.hasOwnProperty.call(mem, k) ? mem[k] : null; }, setItem:function(k, v){ mem[k] = String(v); }, removeItem:function(k){ delete mem[k]; }};
+    var stg = Platform.makeStore(fake); stg.set(CHECKIN_KEY, L);
+    eq('saved and read back through the Platform store', cleanCheckins(stg.get(CHECKIN_KEY, [])).length, 2);
+    var dead = Platform.makeStore({getItem:function(){ throw new Error('blocked'); }, setItem:function(){ throw new Error('blocked'); }, removeItem:function(){}});
+    eq('blocked storage: no crash, empty list', cleanCheckins(dead.get(CHECKIN_KEY, [])).length + '|' + dead.set(CHECKIN_KEY, L), '0|false');
+    var T = at('2026-11-12', '12:00'), ctx = {lat:41.88, lng:-87.63, budget:'any', mode:'transit'}, open = allDays(['10:00', '23:00']);
+    var been = fx({id:'fx-been', name:'Been', hours:open}), fresh1 = fx({id:'fx-notbeen', name:'Not been', hours:open}), keep = CHECKINS;
+    try {
+      CHECKINS = [{id:'fx-been', date:'2026-06-01', rating:0, updated_at:''}];
+      eq('filter "Only places I haven\'t been"', runPipeline([been, fresh1], T, ctx, ext(defaultFilters(), {notBeen:true})).all.map(function(c){ return c.item.name; }).join(), 'Not been');
+      eq('...off: both', runPipeline([been, fresh1], T, ctx, defaultFilters()).all.length, 2);
+      ok('rows carry a small "Been · Jun 1" mark', rowHTML(annotate(runPipeline([been], T, ctx, defaultFilters()).all[0], cparts(T)), {}).indexOf('Been · Jun 1') > 0, '');
+    } finally { CHECKINS = keep; }
+    eq('the filter shows as a removable chip', appliedFilters(ext(appDefaultFilters(), {notBeen:true})).map(function(a){ return a.label; }).join() + '|' + removeFilter(ext(appDefaultFilters(), {notBeen:true}), 'notBeen').notBeen, 'Not been yet|false');
+  });
+
+  block('v4 hash links, share text, calendar', function(){
+    eq('"#pa-puttery-chicago" is an item link', hashItemId('#pa-puttery-chicago'), 'pa-puttery-chicago');
+    eq('test hooks and screen names are not item links', ['#selftest', '#tip', '#browse', '#map', '#been', '#now=2026-11-12T18:40', '#item=pa-x', '#genre=play&sub=bars', '', '#'].map(hashItemId).join('|'), '|||||||||');
+    eq('an id with dots or capitals still works', hashItemId('#PD-the.catcade_2'), 'PD-the.catcade_2');
+    var T = at('2026-11-12', '18:40'), ctx = {lat:41.88, lng:-87.63, budget:'any', mode:'transit'};
+    var a = fx({id:'pa-arcade', name:'Arcade, Bar; Grill', address:'932 W Randolph St, Chicago, IL 60607', hours:allDays(['11:00', '22:00']), duration_minutes:60, lat:northOf(0.45)});
+    var c = computeItem(a, T, ctx);
+    eq('share text: name, when it is open, address, link', shareText(c, 'https://example.org/app/#pa-arcade'), 'Arcade, Bar; Grill\nOpen till 10 pm\n932 W Randolph St, Chicago, IL 60607\nhttps://example.org/app/#pa-arcade');
+    eq('...without a link (inside claude.ai until PUBLIC_URL is set)', shareText(c, '').split('\n').length, 3);
+    var ev = calEvent(c, 'https://example.org/app/#pa-arcade');
+    eq('calendar entry: starts when she\'d get there (6:52 pm, rounded up to 6:55), for the usual visit length', fmtClock(ev.start) + '|' + fmtClock(ev.end), '6:55 pm|7:55 pm');
+    var ics = icsFor(ev, at('2026-11-12', '18:40'));
+    ok('.ics: UTC times (6:55 pm CST = 00:55Z next day), CRLF lines, commas and semicolons escaped', ics.indexOf('DTSTART:20261113T005500Z\r\n') > 0 && ics.indexOf('DTEND:20261113T015500Z\r\n') > 0 && ics.indexOf('SUMMARY:Arcade\\, Bar\\; Grill\r\n') > 0 && ics.indexOf('LOCATION:932 W Randolph St\\, Chicago\\, IL 60607') > 0 && /^BEGIN:VCALENDAR\r\n/.test(ics) && /END:VCALENDAR\r\n$/.test(ics), ics);
+    eq('...in July the same wall-clock time is 5 hours from UTC (DST)', icsFor({id:'x', title:'t', start:at('2026-07-10', '18:55'), end:at('2026-07-10', '19:55'), where:'', link:''}, 0).indexOf('DTSTART:20260710T235500Z') > 0, true);
+    eq('the copy-instead text', calText(ev, '2026-11-12').split('\n').slice(0, 2).join('|'), 'Arcade, Bar; Grill|Thu, Nov 12, 6:55 pm – 7:55 pm (Chicago time)');
+    var late = computeItem(fx({hours:allDays(['11:00', '19:10']), duration_minutes:120, lat:northOf(0.1)}), T, ctx), ev2 = calEvent(late, '');
+    eq('the entry never runs past closing time', fmtClock(ev2.end), '7:10 pm');
+    eq('main button: a booking link gives Reserve / Tickets, else none (Directions)', [bookingLink({booking_url:'https://x.example/book'}) + ' ' + bookingWord({category:'mini-golf'}), bookingWord({kind:'event'}), bookingLink({booking:'required', website:'https://y.example'}), bookingLink({booking:'walk-in', website:'https://y.example'})].join('|'), 'https://x.example/book Reserve|Tickets|https://y.example|');
+    ok('Platform has share, linkFor and saveFile', typeof Platform.share === 'function' && typeof Platform.linkFor === 'function' && typeof Platform.saveFile === 'function', '');
+  });
+
+  block('v4 page parts and the detail order', function(){
+    ok('home screen, search box, map button and the Been tab exist', !!$('home') && !!$('q') && !!$('mapPill') && !!$('mapCard') && typeof openLists === 'function', '');
+    ok('the app starts on a known view', ['home', 'browse', 'map'].indexOf($('app').getAttribute('data-view')) >= 0, String($('app').getAttribute('data-view')));
+    eq('no counts or badges on the home cards', /class="(?:until|tag|count|num)\b/.test(cardHTML(computeItem(fx({name:'Card', hours:allDays(['00:00', '24:00'])}), at('2026-11-12', '12:00'), {lat:41.88, lng:-87.63, budget:'any', mode:'transit'}))), false);
+    var it = fx({id:'fx-detail', name:'Detail Place', hook:'A hook line.', description:'What it is.', price_level:'$$', booking_url:'https://x.example/book', address:'1 Main St', hours:allDays(['00:00', '24:00']),
+      good_to_know:[{q:'Is there an age limit?', a:'21+ after 5 pm.', source:'https://x.example/faq'}], verified:{status:'verified', checked_on:'2026-11-10', notes:'SECRET-NOTE', checked_by:'SECRET-BY'}, found_via:'SECRET-VIA', photos:[{file:'photos/none.jpg', note:'SECRET-PHOTO-NOTE'}]});
+    var c = computeItem(it, at('2026-11-12', '12:00'), {lat:41.88, lng:-87.63, budget:'any', mode:'transit'});
+    var keepDt = $('dtScroll').innerHTML, keepBar = $('dtBar').innerHTML;
+    renderDetail(c, true);
+    var html = $('dtScroll').innerHTML, bar = $('dtBar').innerHTML, order = ['dt-photo', 'dt-title', 'dt-hook', 'dt-line', 'What you do there', 'Practical', 'Good to know', 'trust-s'].map(function(k){ return html.indexOf(k); });
+    $('dtScroll').innerHTML = keepDt; $('dtBar').innerHTML = keepBar;
+    if (UI.detailId) { var cur = findComputed(UI.detailId); if (cur) renderDetail(cur, true); }
+    ok('detail order: photo, name + hook, status + price, what you do there, practical, good to know, trust', order.every(function(v, i){ return v >= 0 && (i === 0 || v > order[i - 1]); }), order.join());
+    ok('the bar: Reserve (booking link) + Share', bar.indexOf('>Reserve') > 0 && bar.indexOf('data-share="fx-detail"') > 0 && bar.indexOf('https://x.example/book') > 0, bar.slice(0, 200));
+    ok('Good to know: a question you tap open, with its source', html.indexOf('<summary>Is there an age limit?</summary>') > 0 && html.indexOf('x.example') > 0, '');
+    ok('"I\'ve been here" and "Add to calendar" are on the page', html.indexOf('data-been="add"') > 0 && html.indexOf('data-cal="1"') > 0, '');
+    ok('public release: checker notes, checked_by, found_via and photo notes are never shown', !/SECRET/.test(html + bar), 'found a private field');
+    ok('no "fits / tight / short visit" on the detail page', !/\bfits?\b|\btight\b|short visit/i.test(html.replace(/<[^>]*>/g, ' ')), '');
   });
 
   /* ---------- v3.1 checks (2026-11-12): tiles grid, interests from tags, classes under Make ---------- */
@@ -4869,7 +5644,15 @@ function readHash(){
   if (m) setNow(m[1]);
   var lm = /loc=(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/.exec(hsh); // testing hook: #loc=41.892,-87.634
   if (lm && mapEl) { var la = +lm[1], ln = +lm[2]; UI.firstOpen = false; commitLocation({lat:la, lng:ln, label:labelForPoint(la, ln, proj(la, ln)).replace(/^Near /, ''), src:'picked'}); }
-  var bm = /budget=(\d+|night)/.exec(hsh); if (bm) { S.budget = bm[1] === 'night' ? 'night' : +bm[1]; if (mapEl) refresh(); }
+  var bm = /budget=(\d+|night)/.exec(hsh); if (bm) { S.budget = bm[1] === 'night' ? 'night' : +bm[1]; S.budgetOn = true; if (mapEl) refresh(); }
+  // v4: plain "#<id>" opens that place (the only kind of hash that passes through claude.ai); "#browse", "#map", "#been", "#saved", "#search" open those screens.
+  var plain = hsh.replace(/^#/, '').toLowerCase(), hid = hashItemId(hsh);
+  if (hid) UI.pendingItem = hid;
+  var vw = /view=(home|browse|map)/.exec(hsh); if (mapEl && (vw || plain === 'browse' || plain === 'map' || plain === 'home' || plain === 'search')) showView(vw ? vw[1] : plain === 'search' ? 'browse' : plain, {search:plain === 'search'});
+  var whm = /who=(date|friends|solo)/.exec(hsh); if (whm && mapEl) { S.f.who = {}; S.f.who[whm[1]] = true; refresh(); }
+  var qm = /(?:^#|&)q=([^&]*)/.exec(hsh); if (qm && mapEl) { var qv = ''; try { qv = decodeURIComponent(qm[1].replace(/\+/g, ' ')); } catch (e) { qv = qm[1]; } if (UI.view !== 'browse') showView('browse'); $('q').value = qv; UI.q = qv.trim(); $('qClear').hidden = !qv; refresh(); }
+  if (mapEl && (plain === 'been' || plain === 'saved' || /panel=(been|saved)/.test(hsh))) openLists(/been/.test(hsh) ? 'been' : 'saved');
+  var ckm = /checkin=([A-Za-z0-9_.-]+)@(\d{4}-\d{2}-\d{2})/.exec(hsh); if (ckm && mapEl) { CHECKINS = withCheckin(CHECKINS, ckm[1], {date:ckm[2]}, new Date().toISOString()); refresh(); if (!$('pSaved').hidden) renderSaved(); }   // testing hook (not saved)
   var sm = /sheet=(peek|half|full)/.exec(hsh); if (sm && sheetEl) applySheet(sm[1]);
   var gm = /genre=([a-z]+)/.exec(hsh); if (gm && mapEl) { UI.genre = ''; selectGenre(validGenre(gm[1]), {keep:true}); }   // testing hooks: #genre=play, #sub=minigolf, #fold=rest, #panel=filters
   var sbm = /sub=([a-z]+)/.exec(hsh); if (sbm && mapEl && UI.genre) { UI.sub = sbm[1]; refresh(); }
@@ -4878,9 +5661,15 @@ function readHash(){
   if (/panel=surprise/.test(hsh) && mapEl) { var trySurprise = function(){ if (DATA_LOADED) openSurprise(); else setTimeout(trySurprise, 200); }; trySurprise(); }
   var wm = /when=(now|tonight|weekend)/.exec(hsh); if (wm && mapEl) { S.when = wm[1]; refresh(); }
   var im = /item=([a-z0-9-]+)/i.exec(hsh); if (im) UI.pendingItem = im[1];
-  if (UI.pendingItem && DATA_LOADED) { var pid = UI.pendingItem; UI.pendingItem = null; if (findItem(pid)) openDetail(pid); }
+  if (UI.pendingItem && DATA_LOADED) openPending();
   if (/(^|[#&])tip($|&)/.test(hsh) && mapEl) openTip();
   if (/selftest/.test(hsh)) showSelfTest();
+}
+function openPending(){ // a link like "#pa-puttery-chicago": open that place once the list is loaded
+  var pid = UI.pendingItem; UI.pendingItem = null;
+  if (!pid) return;
+  if (findItem(pid)) { if (UI.detailId !== pid) openDetail(pid); }
+  else toast('That link points to something that isn’t in the guide any more.');
 }
 function setNow(v){
   if (v === null || v === undefined || v === '') UI.nowOverride = null;
@@ -4937,10 +5726,11 @@ function loadData(){
     VENUE_LINKS = linkVenues(DATA);   // v2.1 (tester H-A): events inside venues share the venue's closed days
     worldFromData();
     refresh();
-    if (UI.pendingItem) { var pid = UI.pendingItem; UI.pendingItem = null; if (findItem(pid)) openDetail(pid); }
+    if (!$('pSaved').hidden) renderSaved();
+    if (UI.pendingItem) openPending();
   })['catch'](function(e){
     DATA_ERR = 'The file activities.json could not be read (' + (e && e.message ? e.message : 'unknown error') + ').';
-    DATA_LOADED = false; renderList(null);
+    DATA_LOADED = false; renderList(null); refresh();
   });
 }
 function loadGeo(){
@@ -4954,7 +5744,7 @@ function loadGeo(){
     GEO.failed = true;
     var n = $('mapNote'); n.textContent = 'Map couldn\'t load. The list works.'; n.hidden = false;
     if (!isWide()) applySheet('full');
-    refresh();   // shows the "map couldn't load" band inside the list (tester L4)
+    if (UI.view === 'map') showView('browse'); else refresh();   // shows the "map couldn't load" band inside the list (tester L4)
   });
 }
 
@@ -4970,6 +5760,10 @@ function init(){
   UI.genre = validGenre(Platform.store.get('cff.genre.v1', ''));   // v3: the last tile she picked (try/catch inside the store)
   UI.foldRest = false;
   var bg = Platform.store.get('cff.budget.v1', 120); if (bg === 'night' || (isNum(bg) && bg >= 30 && bg <= 360)) S.budget = bg;
+  S.budgetOn = Platform.store.get('cff.budgetOn.v1', false) === true;   // v4: off unless she turned it on in More filters
+  var wh = Platform.store.get('cff.who.v1', []); if (Array.isArray(wh)) wh.forEach(function(k){ if (k === 'date' || k === 'friends' || k === 'solo' || k === 'kids') S.f.who[k] = true; });   // who's coming is remembered
+  CHECKINS = cleanCheckins(Platform.store.get(CHECKIN_KEY, []));
+  UI.view = 'home'; $('app').setAttribute('data-view', 'home');
   var loc = Platform.store.get('cff.loc.v1', null);
   if (loc && isNum(loc.lat) && isNum(loc.lng) && Math.abs(loc.lat - 41.9) < 2 && Math.abs(loc.lng + 87.7) < 3) S.loc = {lat:loc.lat, lng:loc.lng, label:String(loc.label || 'Your pin'), src:loc.src === 'gps' ? 'gps' : 'picked'};
   else { S.loc = ext(LOOP, {}); UI.firstOpen = true; }
@@ -5006,7 +5800,7 @@ window.__cff = {
   setNow: setNow, state: function(){ return S; }, ui: function(){ return UI; }, data: function(){ return DATA; }, lastResult: function(){ return UI.lastRes; },
   refresh: function(){ refresh(); }, openDetail: function(id){ openDetail(id); }, closeDetail: function(){ closeDetail(); },
   setLocation: function(lat, lng, label){ UI.firstOpen = false; commitLocation({lat:lat, lng:lng, label:label || 'Test pin', src:'picked'}); },
-  setFilter: function(code){ applyF(code); }, setBudget: function(b){ S.budget = b; refresh(); },
+  setFilter: function(code){ applyF(code); }, setBudget: function(b){ if (b === 'off' || b === null) S.budgetOn = false; else { S.budget = b; S.budgetOn = true; } refresh(); },
   map: function(){ return {cx:MV.cx, cy:MV.cy, s:MV.s, geoReady:GEO.ready, geoFailed:GEO.failed, areas:GEO.areas.length, lines:GEO.lines.length}; },
   // v2
   holidayId: holidayId, holidaysOf: holidaysOf, easterSunday: easterSunday, holidayNotes: holidayNotes, holidayFlag: holidayFlag, dateHours: dateHours,
@@ -5030,6 +5824,14 @@ window.__cff = {
   // v3.1 (tiles grid, interests from tags, class rule)
   genreShort: genreShort, subName: subName, MAKE_TAGS: MAKE_TAGS, interestList: interestList, interestsOf: interestsOf, interestKey: interestKey, interestLabel: interestLabel,
   matchesInterests: matchesInterests, INTEREST_STOP: INTEREST_STOP, INTEREST_ALIAS: INTEREST_ALIAS,
+  // v4 (the three picks, search, share, calendar, check-ins, hash links)
+  threePool: threePool, pickThree: pickThree, tasteScore: tasteScore, three: function(){ return UI.three.slice(); }, threeMore: function(){ UI.more3 = true; refresh(); return UI.three.slice(); },
+  searchItems: searchItems, search: function(q){ return searchItems(DATA, q).map(function(r){ return r.it.id; }); }, editWithin: editWithin, norm: norm,
+  factsLine: factsLine, statusShort: statusShort, travelShort: travelShort, priceShort: priceShort, hookOf: hookOf,
+  hashItemId: hashItemId, shareText: shareText, shareItem: function(id){ shareItem(id); }, calEvent: calEvent, icsFor: icsFor, calText: calText, addToCalendar: function(id){ addToCalendar(id); },
+  checkins: function(){ return CHECKINS.slice(); }, checkinOf: checkinOf, withCheckin: withCheckin, withoutCheckin: withoutCheckin, cleanCheckins: cleanCheckins, beenRecently: beenRecently,
+  addCheckin: function(id, date){ addCheckin(id, date); }, editCheckin: function(id, patch){ editCheckin(id, patch); }, removeCheckin: function(id){ removeCheckin(id); },
+  setView: function(v){ showView(v); }, openLists: function(tab){ openLists(tab); }, bookingLink: bookingLink, bookingWord: bookingWord,
   Platform: Platform
 };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
