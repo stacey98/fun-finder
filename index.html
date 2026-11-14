@@ -1,59 +1,106 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"></head><body>
 <title>Off-Grid</title>
+<meta name="theme-color" content="#0B0A10">
+<link id="cffFonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500..700&family=Geist:wght@400..700&display=swap">
+<script>
+/* v5.9 boot (design/2026-11-13-themes-v2-spec.md section 6): set the skin, mode and map setting before first paint, so the wrong theme never flashes.
+   Storage keys (JSON, as Platform.store writes them): cff.skin night|sorbet (a saved v1 "clear" or "bold" counts as night), cff.theme auto|light|dark, cff.map standard|themed. */
+(function(){
+  var d = document.documentElement;
+  function g(k){ try { var v = window.localStorage.getItem(k); return v === null ? null : JSON.parse(v); } catch (e) { return null; } }
+  var skin = g('cff.skin') === 'sorbet' ? 'sorbet' : 'night', th = g('cff.theme'), mp = g('cff.map') === 'themed' ? 'themed' : 'standard';
+  d.setAttribute('data-skin', skin); d.setAttribute('data-map', mp);
+  if (th === 'light' || th === 'dark') d.setAttribute('data-theme', th);
+  var fonts = {night:'family=Unbounded:wght@500..700&family=Geist:wght@400..700', sorbet:'family=Fredoka:wght@500..700&family=Figtree:wght@400..800'};
+  try { var lk = document.getElementById('cffFonts'); if (lk) lk.href = 'https://fonts.googleapis.com/css2?' + fonts[skin] + '&display=swap'; } catch (e) {}
+  try {
+    var dark = skin === 'night' || th === 'dark' || (th !== 'light' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', skin === 'night' ? '#0B0A10' : dark ? '#16131C' : '#FCFAFF');
+  } catch (e) {}
+})();
+</script>
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap");
 /* Chicago Fun Finder v1 (app/index.html). Tokens and components copied from design/mockup.html (design spec 2026-11-12).
    Palette: Chicago flag (white, light blue, star red) + CTA signage black on a concrete-grey drawn map. */
+/* v5.9 (design/2026-11-13-themes-v2-spec.md section 5): two skins. Night = always dark (the default, also when data-skin is missing).
+   Sorbet = light, or dark under Mode Dark / Auto on a dark phone. The drawn map's own tokens (--lake, --land-*) are set by JS from MAP_PAL. */
 :root{
-  --paper:#FBFBF8; --paper-2:#F0F1EC; --ink:#15171A; --ink-2:#50555C; --ink-3:#83888F;
-  --rule:#E0E1DB; --rule-strong:#C9CBC4;
-  --accent:#D7192F; --on-accent:#FFFFFF; --accent-soft:#F4C5CB; --lt-bg:#FDF0F1;
-  --shadow:rgba(20,23,26,.16); --scrim:rgba(10,12,14,.45);
-  --open:#12804A; --open-bg:#DCEFE3; --soon:#AD5B00; --soon-bg:#FAE8CF; --closed:#767B82; --closed-bg:#E7E8E3;
-  --lake:#BFE2F1; --lake-hatch:#A9D7EB; --lake-ink:#2C7CA0; --shore:#84C1DB; --river:#A9D7EB;
-  --land-0:#ECEBE5; --land-1:#E7E6DF; --land-2:#EFEEE9; --land-3:#E4E3DB; --area-line:#F8F8F5;
-  --suburb:#DEDDD5; --map-label:#868A8F; --line-casing:#FBFBF8; --you:#15171A; --you-halo:rgba(21,23,26,.12);
-  /* CTA 'L' colors (commonly published CTA values; needs check against a CTA source) */
-  --cta-red:#C60C30; --cta-blue:#00A1DE; --cta-brown:#62361B; --cta-green:#009B3A; --cta-orange:#F9461C; --cta-purple:#522398; --cta-pink:#E27EA6; --cta-yellow:#F9E300;
-  /* 7 genres (v3, layout spec 2.1): Play/Look/Nature/Eat/Shows/Make reuse the v1 group colors; Relax is new */
-  /* v5.4 (owner: "very hard to see if it's Sights versus Limited"): 8 clearly different hues, red / blue / violet for Limited / Play / Sights.
-     Every pair is at least dE76 30 apart, and each is 4.6:1 or more on the paper and with white (checked in the v5.4 report). */
-  --g-limited:#D7192F; --g-play:#1F62D6; --g-look:#8B3FD0; --g-nature:#0E7F68; --g-eat:#976804; --g-shows:#C2257E; --g-make:#C0500A; --g-relax:#336FA0; --on-cat:#FFFFFF;
-  --f-display:"Big Shoulders Display","Big Shoulders","Arial Narrow","Roboto Condensed",sans-serif;
-  --f-body:"Instrument Sans",ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --ease-snap:cubic-bezier(.2,.9,.25,1);
   --sat:env(safe-area-inset-top,0px); --sab:env(safe-area-inset-bottom,0px);
   --sal:env(safe-area-inset-left,0px); --sar:env(safe-area-inset-right,0px);
   --side:420px;
+  --lake:#141A3C; --lake-hatch:#141A3C; --lake-ink:#8FA6FF; --shore:#222C66; --river:#222C66;
+  --land-0:#100E18; --land-1:#100E18; --land-2:#100E18; --land-3:#100E18; --area-line:#2B2640;
+  --suburb:#19161F; --map-label:#A79FBD; --line-casing:#100E18; --you:#F7F5FC; --you-halo:rgba(247,245,252,.16);
+  /* CTA 'L' colors (commonly published CTA values; needs check against a CTA source) */
+  --cta-red:#C60C30; --cta-blue:#00A1DE; --cta-brown:#62361B; --cta-green:#009B3A; --cta-orange:#F9461C; --cta-purple:#522398; --cta-pink:#E27EA6; --cta-yellow:#F9E300;
+}
+/* Night: always dark (default when data-skin is missing). Category colors = v1 Night dark. */
+:root, [data-skin="night"]{
+  --paper:#0B0A10; --paper-2:#15131D; --paper-3:#1C1A26; --ink:#F7F5FC; --ink-2:#BDB8CC; --ink-3:#948EA6;
+  --rule:#24212E; --rule-strong:#363247;
+  --accent:#C6FF3D; --on-accent:#0B0A10; --accent-text:#C6FF3D; --accent-soft:#2C3A0E; --accent-ring:transparent; --lt-bg:#29131D;
+  --hero:radial-gradient(120% 90% at 0% 0%,rgba(139,92,246,.30),transparent 60%),radial-gradient(90% 80% at 100% 0%,rgba(255,95,210,.16),transparent 62%);
+  --surprise:linear-gradient(120deg,#C6FF3D 0%,#5EF2D6 100%); --on-surprise:#0B0A10; --surprise-shadow:0 0 20px rgba(198,255,61,.35);
+  --shadow:rgba(0,0,0,.60); --scrim:rgba(0,0,0,.65); --glow:0 0 20px; --card-shade:35%;
+  --elev-1:none; --elev-2:0 -1px 0 var(--rule),0 -16px 48px rgba(0,0,0,.55);
+  --open:#3BD98E; --open-bg:#142C26; --soon:#FFB547; --soon-bg:#33261A; --closed:#948EA6; --closed-bg:#15131D;
+  --g-limited:#FF4F6E; --g-play:#5AA2FF; --g-look:#B98CFF; --g-nature:#9BE35A; --g-eat:#FFC83D; --g-shows:#FF5FD2; --g-make:#FF8A3D; --g-relax:#3BE3E8; --on-cat:#0B0A10;
+  --f-display:"Unbounded",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-body:"Geist",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display-wt:600; --display-ls:-.01em;
+  --f-card:var(--f-body); --card-wt:650; --card-ls:-.01em;
+  --r-tile:20px; --r-card:24px; --r-sheet:28px; --r-btn:999px; --r-thumb:16px; --r-chip:999px;
+  --tint-on:14%; --tile-rest:var(--paper-2);
+  --hm-title:26px; --sentence:24px; --card-t:17px; --row-t:16px; --tile-n:18px;
+  color-scheme:dark;
+}
+/* Sorbet light */
+[data-skin="sorbet"]{
+  --paper:#FCFAFF; --paper-2:#F3EFFA; --paper-3:#FFFFFF; --ink:#211B2C; --ink-2:#544C62; --ink-3:#675F75;
+  --rule:#EAE4F2; --rule-strong:#D9D0E6;
+  --accent:#211B2C; --on-accent:#FFFFFF; --accent-text:#A82E58; --accent-soft:#F6E3EC; --accent-ring:transparent; --lt-bg:#F7EAF0;
+  --hero:radial-gradient(110% 90% at 0% 0%,rgba(255,196,163,.55),transparent 60%),radial-gradient(90% 80% at 100% 0%,rgba(200,166,255,.45),transparent 62%);
+  --surprise:linear-gradient(120deg,#FFC4A3 0%,#FF9ECF 55%,#C8A6FF 100%); --on-surprise:#2A1020; --surprise-shadow:0 8px 24px rgba(255,120,170,.28);
+  --shadow:rgba(60,40,100,.10); --scrim:rgba(33,27,44,.36); --glow:0 0 0; --card-shade:0%;
+  --elev-1:0 1px 2px rgba(60,40,100,.06),0 8px 24px rgba(60,40,100,.08); --elev-2:0 -12px 40px rgba(60,40,100,.12);
+  --open:#15744A; --open-bg:#DFF0E7; --soon:#995208; --soon-bg:#F8EADF; --closed:#675F75; --closed-bg:#F3EFFA;
+  --g-limited:#BC2843; --g-play:#3A5CCC; --g-look:#6A33B8; --g-nature:#3A7218; --g-eat:#856310; --g-shows:#A82A80; --g-make:#9E4418; --g-relax:#176C80; --on-cat:#FFFFFF;
+  --f-display:"Fredoka",ui-rounded,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-body:"Figtree",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display-wt:600; --display-ls:0;
+  --f-card:var(--f-display); --card-wt:600; --card-ls:0;
+  --r-tile:20px; --r-card:28px; --r-sheet:32px; --r-btn:999px; --r-thumb:18px; --r-chip:999px;
+  --tint-on:10%; --tile-rest:var(--paper-3);
+  --hm-title:30px; --sentence:28px; --card-t:19px; --row-t:17px; --tile-n:20px;
+  color-scheme:light;
+}
+/* Sorbet dark: explicit Dark, and Auto on a dark phone */
+:root[data-theme="dark"][data-skin="sorbet"], :root[data-theme="dark"] [data-skin="sorbet"]{
+  --paper:#16131C; --paper-2:#201C28; --paper-3:#27222F; --ink:#F7F2FB; --ink-2:#C0B7CC; --ink-3:#9C93AA;
+  --rule:#2F2939; --rule-strong:#433B50;
+  --accent:#F7F2FB; --on-accent:#16131C; --accent-text:#FF9EC4; --accent-soft:#43283A; --lt-bg:#36242C;
+  --hero:radial-gradient(110% 90% at 0% 0%,rgba(255,158,207,.20),transparent 60%),radial-gradient(90% 80% at 100% 0%,rgba(200,166,255,.18),transparent 62%);
+  --shadow:rgba(0,0,0,.50); --scrim:rgba(0,0,0,.55); --card-shade:35%;
+  --elev-1:none; --elev-2:0 -1px 0 var(--rule),0 -16px 40px rgba(0,0,0,.5);
+  --open:#6FD9AC; --open-bg:#203530; --soon:#F3BE6A; --soon-bg:#3A2F25; --closed:#9C93AA; --closed-bg:#201C28;
+  --g-limited:#FF7A80; --g-play:#84B6FF; --g-look:#B99CFF; --g-nature:#9FDB86; --g-eat:#EDCB62; --g-shows:#F78FD8; --g-make:#FFAA6A; --g-relax:#6FD8D8; --on-cat:#16131C;
+  color-scheme:dark;
 }
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --paper:#17191C; --paper-2:#22252A; --ink:#F1F2EF; --ink-2:#B3B8BE; --ink-3:#7E848B;
-    --rule:#2C3036; --rule-strong:#3D424A;
-    --accent:#FF4A5C; --on-accent:#1A0407; --accent-soft:#5A1B24; --lt-bg:#2A1A1E;
-    --shadow:rgba(0,0,0,.55); --scrim:rgba(0,0,0,.6);
-    --open:#4CC983; --open-bg:#12301F; --soon:#F2A33A; --soon-bg:#3A2710; --closed:#8E949B; --closed-bg:#272A2F;
-    --lake:#0D2531; --lake-hatch:#123243; --lake-ink:#62AACB; --shore:#1D4A5E; --river:#143546;
-    --land-0:#1F2124; --land-1:#1C1E21; --land-2:#222428; --land-3:#1A1C1F; --area-line:#111315;
-    --suburb:#141618; --map-label:#6D737A; --line-casing:#17191C; --you:#F1F2EF; --you-halo:rgba(241,242,239,.14);
-    --g-limited:#FF4A5C; --g-play:#4FA0FF; --g-look:#C08AFF; --g-nature:#2CC09C; --g-eat:#E8B030; --g-shows:#FF6CB8; --g-make:#FF8C42; --g-relax:#86B8E0; --on-cat:#101114;
+  :root:not([data-theme="light"])[data-skin="sorbet"], :root:not([data-theme="light"]) [data-skin="sorbet"]{
+    --paper:#16131C; --paper-2:#201C28; --paper-3:#27222F; --ink:#F7F2FB; --ink-2:#C0B7CC; --ink-3:#9C93AA;
+    --rule:#2F2939; --rule-strong:#433B50;
+    --accent:#F7F2FB; --on-accent:#16131C; --accent-text:#FF9EC4; --accent-soft:#43283A; --lt-bg:#36242C;
+    --hero:radial-gradient(110% 90% at 0% 0%,rgba(255,158,207,.20),transparent 60%),radial-gradient(90% 80% at 100% 0%,rgba(200,166,255,.18),transparent 62%);
+    --shadow:rgba(0,0,0,.50); --scrim:rgba(0,0,0,.55); --card-shade:35%;
+    --elev-1:none; --elev-2:0 -1px 0 var(--rule),0 -16px 40px rgba(0,0,0,.5);
+    --open:#6FD9AC; --open-bg:#203530; --soon:#F3BE6A; --soon-bg:#3A2F25; --closed:#9C93AA; --closed-bg:#201C28;
+    --g-limited:#FF7A80; --g-play:#84B6FF; --g-look:#B99CFF; --g-nature:#9FDB86; --g-eat:#EDCB62; --g-shows:#F78FD8; --g-make:#FFAA6A; --g-relax:#6FD8D8; --on-cat:#16131C;
     color-scheme:dark;
   }
 }
-:root[data-theme="dark"]{
-  --paper:#17191C; --paper-2:#22252A; --ink:#F1F2EF; --ink-2:#B3B8BE; --ink-3:#7E848B;
-  --rule:#2C3036; --rule-strong:#3D424A;
-  --accent:#FF4A5C; --on-accent:#1A0407; --accent-soft:#5A1B24; --lt-bg:#2A1A1E;
-  --shadow:rgba(0,0,0,.55); --scrim:rgba(0,0,0,.6);
-  --open:#4CC983; --open-bg:#12301F; --soon:#F2A33A; --soon-bg:#3A2710; --closed:#8E949B; --closed-bg:#272A2F;
-  --lake:#0D2531; --lake-hatch:#123243; --lake-ink:#62AACB; --shore:#1D4A5E; --river:#143546;
-  --land-0:#1F2124; --land-1:#1C1E21; --land-2:#222428; --land-3:#1A1C1F; --area-line:#111315;
-  --suburb:#141618; --map-label:#6D737A; --line-casing:#17191C; --you:#F1F2EF; --you-halo:rgba(241,242,239,.14);
-  --g-limited:#FF4A5C; --g-play:#4FA0FF; --g-look:#C08AFF; --g-nature:#2CC09C; --g-eat:#E8B030; --g-shows:#FF6CB8; --g-make:#FF8C42; --g-relax:#86B8E0; --on-cat:#101114;
-  color-scheme:dark;
-}
+@media (max-width:359px){ :root, [data-skin="night"]{ --hm-title:22px; --sentence:20px; } [data-skin="sorbet"]{ --hm-title:26px; --sentence:24px; } }
 
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;height:100%}
@@ -745,6 +792,139 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
   .pulse{animation:none;opacity:.5;transform:scale(1.3)}
   .row.flash{animation:none}
 }
+
+/* ================= v5.9 skins: Night + Sorbet (design/2026-11-13-themes-v2-spec.md sections 5-6) =================
+   One block, placed last so it wins over the older look. No uppercase, no letter-spaced kickers, no ticket notches, no dashed borders,
+   no condensed headings: big headings in the display face (Unbounded / Fredoka), rows and cards in --f-card. */
+body{background:var(--paper)}
+.mlab{font:500 11px/1 var(--f-body);letter-spacing:0;text-transform:none}
+.mlab.lake{font:500 14px/1 var(--f-body);letter-spacing:0}
+.ringlab{font:600 11.5px/1 var(--f-body);letter-spacing:0;text-transform:none}
+.wordmark{font:var(--display-wt) clamp(28px,8.5vw,38px)/1.05 var(--f-display);letter-spacing:var(--display-ls);text-transform:none;text-shadow:none}
+.kicker,.sec-h,.rk,.dt-kicker,.dt-sec h2,.about h3,.flabel,.fsec h3,.both .k,.board-k{text-transform:none;letter-spacing:0;font-size:12.5px;font-weight:600}
+.sec-h{color:var(--ink-2)}
+.sec-h span:last-child,.rk > span:last-child,.fsec h3 .lim{letter-spacing:0}
+.tag{text-transform:none;letter-spacing:0;font:600 11.5px/1 var(--f-body);padding:4px 8px;border-radius:var(--r-chip);top:-1px}
+.until{text-transform:none;letter-spacing:0;font:600 11.5px/1 var(--f-body);border-radius:var(--r-chip);padding:4px 8px;-webkit-mask:none;mask:none}
+.thumb.date small{text-transform:none;letter-spacing:0;font:600 11px/1 var(--f-body);color:var(--accent-text)}
+.thumb.date b{font:600 20px/1 var(--f-display)}
+.hours tr.today td:first-child::after{text-transform:none;letter-spacing:0;font:600 11px var(--f-body);border-radius:var(--r-chip);padding:3px 7px}
+.selftest h1{font:var(--display-wt) 24px/1.1 var(--f-display);text-transform:none}
+/* headings */
+.hm-title{font:var(--display-wt) var(--hm-title)/1.15 var(--f-display);letter-spacing:var(--display-ls)}
+.sentence{font:var(--display-wt) var(--sentence)/1.12 var(--f-display);letter-spacing:var(--display-ls)}
+.p-title{font:var(--display-wt) 22px/1.2 var(--f-display);letter-spacing:var(--display-ls)}
+.panel.loc .p-title{font-size:24px;line-height:1.15}
+.dt-title{font:var(--display-wt) 28px/1.12 var(--f-display);letter-spacing:var(--display-ls);text-transform:none}
+.dt-title.long{font-size:23px;line-height:1.15}
+@media (max-width:360px){.dt-title{font-size:24px}.dt-title.long{font-size:20px}}
+.empty h3,.empty h4,.fr-none{font:var(--display-wt) 20px/1.2 var(--f-display);letter-spacing:var(--display-ls)}
+.dt-status .big{font:var(--display-wt) 24px/1.15 var(--f-display)}
+.both .big b{font:var(--display-wt) 52px/1 var(--f-display)}
+.both .big span{font:var(--display-wt) 20px/1.15 var(--f-display)}
+.bignum b{font:var(--display-wt) 46px/1 var(--f-display);text-transform:none}
+.fr-ren input{font:var(--display-wt) 22px/1.2 var(--f-display)}
+.cluster{font:700 14px/29px var(--f-body)}
+.av{font:700 12px/1 var(--f-body)}
+.tile .num{font:var(--display-wt) var(--tile-n)/1 var(--f-display)}
+.row h3{font:var(--card-wt) var(--row-t)/1.25 var(--f-card);letter-spacing:var(--card-ls)}
+.c3-text h3{font:var(--card-wt) 21px/1.18 var(--f-card);letter-spacing:var(--card-ls)}
+.mapcard b{font:var(--card-wt) 16px/1.2 var(--f-card)}
+/* the "checked" stamp: a plain round badge, no tilt, no dashed inner ring */
+.stamp{transform:none;font:600 11.5px/1.1 var(--f-body);letter-spacing:0;text-transform:none;border-width:2px}
+.stamp::before{display:none}
+.stamp b{font:var(--display-wt) 18px/1 var(--f-display);letter-spacing:0}
+/* no dashed borders anywhere */
+.mk.hollow .mk-body{border-style:solid;opacity:.85}
+.tile.zero{border-style:solid}
+.thumb.hollow{border-style:solid;opacity:.85}
+.trustline i{border-style:solid}
+.strip .stub{border-right:1px solid var(--rule-strong);text-transform:none;letter-spacing:0;font:600 11.5px/1.15 var(--f-body);color:var(--accent-text)}
+/* no ticket notches */
+.strip{-webkit-mask:none;mask:none;border-radius:var(--r-tile);background:var(--paper-3);box-shadow:var(--elev-1),inset 0 0 0 1px var(--rule)}
+/* limited pins: a plain dot with a white ring, top right (the svg stays for tests and screen size, its ticket path is hidden) */
+.tkb{top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:var(--g-limited);box-shadow:0 0 0 2px #FFFFFF;filter:none}
+.tkb path{display:none}
+.cluster .tkb{top:-4px;right:-4px}
+.thumb::before,.cover::before{display:none}
+.thumb{border-radius:var(--r-thumb);background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 70%,var(--paper)))}
+.thumb.date{background:var(--paper-2)}
+.thumb.hollow{background:transparent}
+.cover{background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 70%,var(--paper)))}
+/* surfaces */
+.home,.sheet{background-color:var(--paper);background-image:var(--hero);background-repeat:no-repeat;background-size:100% 340px}
+.panel{background-color:var(--paper);border-radius:var(--r-sheet) var(--r-sheet) 0 0}
+.panel.theme,.panel#pAbout{background-image:var(--hero);background-repeat:no-repeat;background-size:100% 300px}
+.p-foot{background:transparent}
+.card3{border-radius:var(--r-card)}
+.mapcard{border-radius:var(--r-card);background:var(--paper-3);box-shadow:var(--elev-1),0 6px 24px var(--shadow),inset 0 0 0 1px var(--rule)}
+.icon-btn{background:var(--paper-3);box-shadow:var(--elev-1),inset 0 0 0 1px var(--rule)}
+.fab,.pillbtn{background:var(--paper-3);box-shadow:var(--elev-1),0 2px 10px var(--shadow),inset 0 0 0 1px var(--rule)}
+.fab,.icon-btn{width:48px;height:48px;border-radius:24px}
+.pillbtn{height:48px;border-radius:24px}
+.bw-top .field input{height:48px;border-radius:24px;background:var(--paper-3);border:1px solid var(--rule)}
+.bw-top .field .i{top:14px}
+.q-clear{top:6px}
+.qchip,.sc,.chip,.mfbtn{background:var(--paper-3);border:1px solid var(--rule);border-radius:var(--r-chip);height:36px}
+.chip{height:auto;min-height:36px}
+.qchip[aria-pressed="true"],.sc[aria-pressed="true"],.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tile{background:var(--tile-rest);border:1px solid transparent;border-radius:14px}
+.tile[aria-pressed="true"],.tile.zero[aria-pressed="true"]{background:color-mix(in srgb,var(--c) var(--tint-on),var(--paper));border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c),var(--glow) color-mix(in srgb,var(--c) 30%,transparent)}
+.tile.zero{background:transparent;border-color:var(--rule)}
+.hm-btn{border-radius:var(--r-btn);background:var(--paper-3);border:1px solid var(--rule)}
+.hm-btn.dark,.btn-primary{border-radius:var(--r-btn);background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.btn-primary.off,.btn-primary.zero{background:var(--paper-2);color:var(--ink)}
+.btn-2,.btn-outline,.mini-btn,.btn-sq{border-radius:var(--r-btn)}
+.btn-sq{border-radius:18px}
+.seg{border-radius:var(--r-btn);border-color:var(--rule-strong)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.save[aria-pressed="true"],.fab.on,.p-reset,.int-clear,.linkbtn.arm{color:var(--accent-text)}
+.fill{color:var(--accent-text);text-decoration-color:color-mix(in srgb,var(--accent-text) 40%,transparent)}
+.strip .end,.hint .i{color:var(--accent-text)}
+.until{color:var(--accent-text)}
+.until.hot{background:var(--g-limited);color:#FFFFFF;border-color:var(--g-limited)}
+/* the one gradient per screen: Surprise */
+.surprise .disc{background:var(--surprise);color:var(--on-surprise);box-shadow:var(--surprise-shadow)}
+/* Surprise panel: no departures board, just the skin */
+.panel.board{background-color:var(--paper);background-image:var(--hero);background-repeat:no-repeat;background-size:100% 300px;color:var(--ink)}
+.panel.board .p-close{background:var(--paper-2);color:var(--ink)}
+.panel.board .grabber{background:var(--rule-strong)}
+.board-k{color:var(--ink-2)}
+.board-name{gap:0}
+.board-name span{background:none;box-shadow:none;padding:0 .28em 0 0;font:var(--display-wt) 26px/1.15 var(--f-display);text-transform:none;color:var(--ink)}
+.board-line{color:var(--ink-2)}
+.board-line.warn{color:var(--soon)}
+.board-btns .go{height:52px;border-radius:var(--r-btn);background:var(--surprise);color:var(--on-surprise);box-shadow:var(--surprise-shadow)}
+.board-btns .no{height:52px;border-radius:var(--r-btn);background:var(--paper-2);color:var(--ink)}
+/* the drawn fallback map: plain water, no hatching */
+.map,.minimap{background-image:none}
+#app{background:var(--lake)}
+
+/* ----- the theme picker (spec section 6) ----- */
+.panel.theme{max-height:min(560px,calc(100% - var(--sat) - 48px))}
+.th-sw{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:4px 0 0;--pg-ink:var(--ink);--pg-paper:var(--paper)}
+.th-sw button{border:0;background:none;padding:0;text-align:left;color:var(--ink);font:600 14px/1.2 var(--f-body)}
+.th-mini{display:flex;flex-direction:column;justify-content:space-between;height:112px;border-radius:20px;padding:12px;background-color:var(--paper);background-image:var(--hero);color:var(--ink);box-shadow:inset 0 0 0 1px var(--rule)}
+.th-mini .aa{font:var(--display-wt) 28px/1 var(--f-display);letter-spacing:var(--display-ls)}
+.th-mini .dots{display:flex;gap:5px}
+.th-mini .dots i{width:12px;height:12px;border-radius:50%;background:var(--c)}
+.th-mini .pill{display:block;width:44px;height:22px;border-radius:11px;background:var(--surprise)}
+.th-mini .row2{display:flex;justify-content:space-between;align-items:flex-end}
+.th-sw button[aria-pressed="true"] .th-mini{box-shadow:0 0 0 2px var(--pg-paper),0 0 0 4px var(--pg-ink)}
+.th-name{display:flex;align-items:center;gap:6px;margin:8px 2px 0}
+.th-name .i{width:16px;height:16px}
+.th-lab{margin:18px 0 8px;font:600 13px/1.2 var(--f-body);color:var(--ink-2)}
+.seg.th-seg button{min-height:42px}
+.seg.th-seg[aria-disabled="true"]{opacity:.45}
+.seg.th-seg[aria-disabled="true"] button{cursor:not-allowed}
+.th-note{margin:6px 2px 0;font:500 12.5px/1.3 var(--f-body);color:var(--ink-3)}
+.th-foot{margin:18px 2px 4px;font:500 12.5px/1.3 var(--f-body);color:var(--ink-3)}
+#app:has(#pTheme.on) .scrim.on{opacity:.25}
+@media (min-width:900px){
+  .panel.theme{left:auto;right:24px;width:420px;transform:translateX(calc(100% + 40px));border-radius:var(--r-sheet)}
+  .panel.theme.on{transform:none}
+}
+@media (max-width:359px){ .fab,.icon-btn{width:44px;height:44px} .hm-icons{gap:4px} }
 </style>
 <meta name="claude:viewport-fit-sides" content="cover">
 
@@ -804,6 +984,7 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
     <symbol id="k-shows" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" fill-rule="evenodd" d="M12 2a3.6 3.6 0 0 1 3.6 3.6v4.8a3.6 3.6 0 0 1-7.2 0V5.6A3.6 3.6 0 0 1 12 2zM10.1 5.9h3.8v1.3h-3.8zM10.1 8.5h3.8v1.3h-3.8z"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M5.2 11a6.8 6.8 0 0 0 13.6 0M12 18v3.2M8.2 21.4h7.6"/></symbol>
     <symbol id="k-make" viewBox="0 0 24 24"><g transform="rotate(45 12 12)" fill="currentColor" stroke="none"><path d="M9.3 4.4V3.7a2.7 2.7 0 0 1 5.4 0v.7z"/><rect x="9.3" y="5.8" width="5.4" height="10.4"/><path d="M9.3 17.5h5.4L12 23z"/></g></symbol>
     <symbol id="k-relax" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M2 10.8h20v1.4c0 4.2-3.2 6.8-7.2 6.8H9.2C5.2 19 2 16.4 2 12.2z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6.6 19l-1 2.4M17.4 19l1 2.4M8 8.4c-1.2-1.3 1.2-2.2 0-3.4s1.2-2.2 0-3.4M12 8.4c-1.2-1.3 1.2-2.2 0-3.4s1.2-2.2 0-3.4M16 8.4c-1.2-1.3 1.2-2.2 0-3.4s1.2-2.2 0-3.4"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0 0 17c1.3 0 1.9-.8 1.9-1.7 0-1.1-.9-1.5-.9-2.5 0-1 .8-1.7 1.9-1.7h2.2a3.4 3.4 0 0 0 3.4-3.4C20.5 7 16.7 3.5 12 3.5z"/><circle cx="7.6" cy="11.6" r="1.2" fill="currentColor"/><circle cx="10" cy="7.6" r="1.2" fill="currentColor"/><circle cx="14.6" cy="7.6" r="1.2" fill="currentColor"/></symbol>
     <symbol id="star6" viewBox="0 0 24 24"><path d="M12 1 14.2 8.19 21.53 6.5 16.4 12 21.53 17.5 14.2 15.81 12 23 9.8 15.81 2.47 17.5 7.6 12 2.47 6.5 9.8 8.19z"/></symbol>
   </defs>
 </svg>
@@ -848,7 +1029,7 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
     <div class="sh-scroll" id="sheetScroll"><div id="listRoot"><p class="loading">Loading Chicago...</p></div></div>
   </section>
   <section id="home" class="home" aria-label="Three picks"><div id="homeRoot"><p class="loading">Loading Chicago...</p></div></section>
-  <div class="mapbar"><button class="pillbtn" id="mapBack" type="button"><svg class="i"><use href="#i-back"/></svg>Back</button><button class="pillbtn" id="mapList" type="button"><svg class="i"><use href="#i-list"/></svg>List</button></div>
+  <div class="mapbar"><button class="pillbtn" id="mapBack" type="button"><svg class="i"><use href="#i-back"/></svg>Back</button><button class="pillbtn" id="mapList" type="button"><svg class="i"><use href="#i-list"/></svg>List</button><button class="fab" id="mapTheme" type="button" data-act="theme" aria-label="Theme"><svg class="i"><use href="#i-palette"/></svg></button></div>
   <button class="mapcard" id="mapCard" type="button" hidden></button>
   <span class="mapcredit">Map data: City of Chicago</span>
   <button class="map-pill" id="mapPill" type="button" hidden><svg class="i"><use href="#i-map"/></svg>Map</button>
@@ -887,6 +1068,7 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
   <section id="pSaved" class="panel tall" hidden role="dialog" aria-labelledby="pSavedTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pSavedTitle" tabindex="-1">Saved</h2><div class="p-hbtns"><button class="mini-btn" id="wlShare" type="button" aria-label="Share my saved list" hidden><svg class="i"><use href="#i-share"/></svg>Share</button><button class="p-close" type="button" data-close="pSaved" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div></div><div class="p-body" id="pSavedBody" style="padding-left:0;padding-right:0"></div></section>
   <section id="pFriend" class="panel tall" hidden role="dialog" aria-labelledby="pFriendTitle"><span class="grabber"></span><div class="p-head"><div class="fr-t" id="pFriendT"><h2 class="p-title" id="pFriendTitle" tabindex="-1">A friend's list</h2></div><button class="p-close" type="button" data-close="pFriend" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pFriendBody" style="padding-left:0;padding-right:0"></div><div class="p-foot fr-foot" id="pFriendFoot" hidden><label class="vh" for="fName">Their name</label><input id="fName" type="text" maxlength="24" autocomplete="off" enterkeyhint="done" placeholder="Their name"><button class="btn-primary" id="fKeep" type="button">Keep</button></div></section>
   <section id="pAbout" class="panel tall" hidden role="dialog" aria-labelledby="pAboutTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pAboutTitle" tabindex="-1">About</h2><button class="p-close" type="button" data-close="pAbout" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body about" id="pAboutBody"></div></section>
+  <section id="pTheme" class="panel theme" hidden role="dialog" aria-labelledby="pThemeTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pThemeTitle" tabindex="-1">Theme</h2><button class="p-close" type="button" data-close="pTheme" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pThemeBody"></div></section>
   <section id="pTip" class="panel" hidden role="dialog" aria-labelledby="pTipTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pTipTitle" tabindex="-1">Send a tip</h2><button class="p-close" type="button" data-close="pTip" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pTipBody"></div><div class="p-foot"><button class="btn-primary" id="tipGo" type="button">Send tip</button></div></section>
   <section id="pSurprise" class="panel board" hidden role="dialog" aria-labelledby="pSurpriseTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title vh" id="pSurpriseTitle" tabindex="-1">Surprise me</h2><span></span><button class="p-close" type="button" data-close="pSurprise" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pSurpriseBody" aria-live="polite"></div></section>
   <div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
@@ -901,7 +1083,7 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.8 (2026-11-13)';
+var VERSION = 'v5.9 (2026-11-13)';
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
@@ -1792,10 +1974,25 @@ var SESSION_NOTE_RE = /\bshow\s*times?\b|\bshowtimes?\b|\bperformance\s+times?\b
 var SESSION_EVENT_CATS = {'show-comedy-music':1, 'sports-watch':1, 'classes-workshops':1, 'escape-room':1};
 var SESSION_GRACE_MIN = 5;   // arriving up to 5 min after a session starts still counts
 var SESSION_MAX_MIN = 180;   // only an opening this short is one session or show; a longer one (a jazz club with several sets a night) is left alone
+/* v5.9 (owner, WeishFest at 7 pm said "Show in progress · started 4 pm, can't join"): festivals, fairs and markets, and events whose
+   dated window is longer than one show (a door window like 4-10:30 pm), can be joined any time they're open. */
+var JOIN_ANYTIME_TAG_RE = /^(festival|fest|fair|street-?fest|market|carnival|block-?party)$/i;
+function joinAnytime(it){ // pure
+  if (!it) return false;
+  if (it.category === 'seasonal' || it.category === 'festival') return true;
+  if ((Array.isArray(it.tags) ? it.tags : []).some(function(t){ return JOIN_ANYTIME_TAG_RE.test(String(t)); })) return true;
+  if (/fest\b|festival|\bfair\b|\bmarket\b|carnival/i.test(String(it.name || ''))) return true;
+  if (it.kind === 'event') {
+    var ss = eventEntries(it).filter(function(x){ return x.type === 'session' && x.e !== null; });
+    if (ss.length && ss.every(function(x){ return x.e - x.s > SESSION_MAX_MIN * 60000; })) return true;   // a start-end window, not a fixed show start
+  }
+  return false;
+}
 function sessionBased(it){ // '' | 'note' (hours are session/show windows) | 'event' (dated shows or classes)
   if (it.__sb !== undefined) return it.__sb;
   var v = '';
-  if (typeof it.hours_note === 'string' && SESSION_NOTE_RE.test(it.hours_note)) v = 'note';
+  if (joinAnytime(it)) v = '';
+  else if (typeof it.hours_note === 'string' && SESSION_NOTE_RE.test(it.hours_note)) v = 'note';
   else if (it.kind === 'event' && SESSION_EVENT_CATS[it.category] && eventEntries(it).some(function(x){ return x.type === 'session'; })) v = 'event';
   it.__sb = v;
   return v;
@@ -2214,7 +2411,8 @@ function fitNote(c){
     case 'wait': return {t:'Opens at ' + fmtClock(f.opensAt) + '. You\'d wait about ' + f.wait + ' min and ' + (f.short ? 'still have time for a quick stop (' + shortTxt + ').' : 'still have time.') + tail, warn:false};
     case 'tight':
       if (f.entryTight) return {t:'Last entry is ' + fmtClock(f.lastEntryAt) + ' and you\'d get there around ' + fmtClock(f.arrive) + '. Cutting it close.', warn:true};   // v2.2 (C-1)
-      return {t:'Closes at ' + fmtClock(f.closesAt) + ', so you\'d only get about ' + f.get + ' min there.' + tail, warn:true};
+      if (c.anyDay && !(f.get < (f.typical || f.min || 60)) && !(S.budgetOn && isNum(S.budget) && f.get < S.budget)) return null;   // v5.9: in Any-time / Today, only when the time left is really short
+      return {t:'Closes at ' + fmtClock(f.closesAt) + ': only about ' + fmtDur(f.get) + ' there.' + tail, warn:true};   // v5.9: hours, not '225 min'
     case 'over': return {t:'Needs at least ' + fmtDur(f.needMin) + ' door to door' + (f.min < f.typical ? ' for a quick stop' : '') + '. Over by ' + fmtDur(f.over) + '.' + tail, warn:true};
     case 'no': return {t:'It closes before you\'d get much time there.', warn:true};
   }
@@ -2289,10 +2487,10 @@ function tagLabel(t){ var s = String(t).replace(/-/g, ' '); return s.charAt(0).t
 var GENRES = [
   {id:'play', name:'Play', glyph:'g-die', subs:[['games', 'Games & arcades'], ['minigolf', 'Mini golf'], ['racing', 'Racing'], ['escape', 'Escape rooms'], ['move', 'Get moving']]},
   {id:'look', name:'Look & Learn', glyph:'g-frame', subs:[['museums', 'Museums'], ['views', 'Views'], ['art', 'Art & immersive'], ['arch', 'Architecture'], ['odd', 'Odd & curious']]},
-  {id:'nature', name:'Nature & Animals', glyph:'g-leaf', subs:[['animals', 'Animals'], ['gardens', 'Gardens'], ['walks', 'Walks'], ['bugs', 'Bugs']]},
+  {id:'nature', name:'Nature & Animals', glyph:'g-leaf', subs:[['animals', 'Animals & bugs'], ['gardens', 'Gardens'], ['walks', 'Walks']]},
   {id:'eat', name:'Eat & Drink', glyph:'g-cup', subs:[['treats', 'Treats'], ['bars', 'Bars'], ['dinner', 'Dinner with a twist'], ['markets', 'Markets'], ['cheese', 'Cheese']]},
   {id:'shows', name:'Shows & Nights', glyph:'g-mic', subs:[['comedy', 'Comedy'], ['music', 'Music'], ['theater', 'Theater'], ['movies', 'Movies']]},
-  {id:'make', name:'Make Something', glyph:'g-pencil', subs:[['clay', 'Clay & glass'], ['cook', 'Cooking & cocktails'], ['craft', 'Crafts'], ['music', 'Music & dance']]},
+  {id:'make', name:'Make Something', glyph:'g-pencil', subs:[['craft', 'Art & crafts'], ['cook', 'Cooking & cocktails'], ['music', 'Music & dance']]},
   {id:'relax', name:'Relax', glyph:'g-steam', subs:[['baths', 'Baths & saunas'], ['quiet', 'Quiet spots'], ['tea', 'Tea']]}
 ];
 var GENRE_BY = {}; GENRES.forEach(function(g){ GENRE_BY[g.id] = g; });
@@ -2378,14 +2576,15 @@ function labOf(h){ var c = hexRgb(h); if (!c) return null; var r = srgbLin(c[0])
   function f(t){ return t > 0.008856 ? Math.pow(t, 1 / 3) : 7.787 * t + 16 / 116; }
   return [116 * f(Y) - 16, 500 * (f(X) - f(Y)), 200 * (f(Y) - f(Z))]; }
 function deltaE76(a, b){ var p = labOf(a), q = labOf(b); return p && q ? Math.sqrt(Math.pow(p[0] - q[0], 2) + Math.pow(p[1] - q[1], 2) + Math.pow(p[2] - q[2], 2)) : NaN; }
-function kindColorsFor(theme){ // {kind: '#hex', paper: '#hex', onCat: '#hex'} read from the CSS tokens with the theme forced for a moment
-  var de = document.documentElement, keep = de.getAttribute('data-theme'), out = {};
+function kindColorsFor(theme, skin){ // {kind: '#hex', paper: '#hex', onCat: '#hex'} read from the CSS tokens with the theme (and v5.9 skin) forced for a moment
+  var de = document.documentElement, keep = de.getAttribute('data-theme'), keepSkin = de.getAttribute('data-skin'), out = {};
   try {
     if (theme === 'light' || theme === 'dark') de.setAttribute('data-theme', theme);
+    if (skin === 'night' || skin === 'sorbet') de.setAttribute('data-skin', skin);
     var cs = getComputedStyle(de);
     KIND_IDS.forEach(function(k){ out[k] = cs.getPropertyValue('--g-' + k).trim(); });
     out.paper = cs.getPropertyValue('--paper').trim(); out.onCat = cs.getPropertyValue('--on-cat').trim();
-  } finally { if (keep === null) de.removeAttribute('data-theme'); else de.setAttribute('data-theme', keep); }
+  } finally { if (keep === null) de.removeAttribute('data-theme'); else de.setAttribute('data-theme', keep); if (keepSkin === null) de.removeAttribute('data-skin'); else de.setAttribute('data-skin', keepSkin); }
   return out;
 }
 function kindSvg(id, cls){ return '<svg' + (cls ? ' class="' + cls + '"' : '') + ' aria-hidden="true" focusable="false"><use href="#' + kindIcon(id) + '"/></svg>'; }
@@ -2407,8 +2606,7 @@ function subOf(it, g){ // sub-chip of an item inside its genre (adapted from the
       if (cat === 'unique-niche' || cat === 'seasonal') return 'odd';
       return 'museums';
     case 'nature':
-      if (tg(['bugs', 'insects'])) return 'bugs';
-      if (tg(['animals', 'birds']) || /\bzoo|aquarium|\bbird/i.test(n)) return 'animals';
+      if (tg(['animals', 'birds', 'bugs', 'insects']) || /\bzoo|aquarium|\bbird/i.test(n)) return 'animals';   // v5.9: Bugs merged into Animals (owner: chips must not overlap)
       if (/garden|conservatory|arboretum|lily|flower|lights|lightscape|illumination/i.test(n) || tg(['garden', 'plants'])) return 'gardens';
       return 'walks';
     case 'eat':
@@ -2423,7 +2621,6 @@ function subOf(it, g){ // sub-chip of an item inside its genre (adapted from the
       if (tg(['theater', 'ballet', 'magic', 'drag', 'burlesque']) || /nutcracker|carol|neo-futurists|theater|theatre/i.test(n)) return 'theater';
       return 'music';
     case 'make':
-      if (tg(['pottery', 'glassblowing']) || /glass|pottery|clay|ceramic/i.test(n)) return 'clay';
       if (tg(['cooking']) || /chopping block|cooking/i.test(n)) return 'cook';
       if (tg(['dance', 'music']) || /dance|samba|folk/i.test(n)) return 'music';
       return 'craft';
@@ -2441,6 +2638,11 @@ function subName(it, g){ // v3.1: "Mini golf" for Puttery, so a best-pick row sa
   return '';
 }
 var SUB_MIN_ITEMS = 2, SUB_MIN_CHIPS = 2, SUB_MAX = 5;   // spec §2.1: a sub-chip needs 2+ items in the whole dataset; the row needs 2+ such chips
+function subChipsFor(counts, g, picked){ // v5.9 (owner: 'Clay & glass 1 · Crafts 1 · Music & dance 0'): pure -> [[id, name, n]]
+  var gg = GENRE_BY[g]; if (!gg) return [];
+  var ok = gg.subs.filter(function(s){ return (counts[s[0]] || 0) >= SUB_MIN_ITEMS || s[0] === picked; }).map(function(s){ return [s[0], s[1], counts[s[0]] || 0]; });
+  return ok.length >= SUB_MIN_CHIPS ? ok.slice(0, SUB_MAX) : (picked ? ok : []);
+}
 function subsShown(items, g){
   var gg = GENRE_BY[g]; if (!gg) return [];
   var cnt = {};
@@ -2541,6 +2743,7 @@ function computeItem(it, T, ctx){
   var dist = (!cw && isNum(it.lat) && isNum(it.lng)) ? distMi(ctx.lat, ctx.lng, it.lat, it.lng) : null;
   var trav = dist !== null ? travel(dist, ctx.mode) : {min:30, how:'unknown'};
   var st, fit;
+  var T0in = T;
   if (day) { var bt = bestTimeOfDay(it, day, T, trav, ctx.budget); st = bt.st; fit = bt.fit; T = bt.T; }
   else { st = statusAt(it, T); fit = fitAt0(it, st, trav, ctx.budget, T); }
   var d = describe(st, it);
@@ -2555,10 +2758,20 @@ function computeItem(it, T, ctx){
     c.anyDay = day; c.anyT = T;
     var g0 = groupOf(c, {fits:true}), dh = dayHoursText(it, day);
     if (dh && (g0 === 'fits' || g0 === 'tight' || g0 === 'over')) { c.d = {text:dh, tone:'open', sub:''}; c.dayText = true; }
+    var shw = (g0 === 'fits' || g0 === 'tight') ? dayShowTimes(it, day, T0in) : '';
+    if (shw && !dh) { c.d = {text:shw, tone:'open', sub:''}; c.dayText = true; }   // v5.9 (Steppenwolf read 'On then · till 5:25 pm'): a dated show lists its start times
     else if (g0 === 'fits' && it.kind === 'event') { c.d = {text:'On ' + DOW_SHORT[wdOfKey(day)] + (st.closesAt ? ' till ' + fmtClock(st.closesAt) : ''), tone:'open', sub:''}; c.dayText = true; }
   }
   cc.m[sig] = c; cc.n++;
   return c;
+}
+function dayShowTimes(it, day, T0){ // pure: 'Show at 3 pm, 7:30 pm' for a dated show or class on that day (only the ones still ahead), '' otherwise
+  if (it.kind !== 'event' || !sessionBased(it)) return '';
+  var w = anyDayWindow(day, T0), xs = eventEntries(it).filter(function(x){ return x.type === 'session' && cparts(x.s).key === day && x.s >= w.s - SESSION_GRACE_MIN * 60000; });
+  if (!xs.length) return '';
+  xs.sort(function(a, b){ return a.s - b.s; });
+  var sw = sessWord(it);
+  return sw.charAt(0).toUpperCase() + sw.slice(1) + ' at ' + xs.map(function(x){ return fmtClock(x.s); }).join(', ');
 }
 function fitAt0(it, st, trav, budget, T){ return (st.open || st.key === 'later' || st.key === 'closed') ? fitFor(it, st, trav, budget, T) : {kind: st.key === 'unknown' ? 'unknown' : 'closed'}; }
 /* v5.6 (owner 2026-11-13: "if I'm going to Wednesday, I want to be able to do everything. That's how I missed Go Ape"): "Any time" on a
@@ -2889,14 +3102,15 @@ function nowMs(){ return UI.nowOverride !== null ? UI.nowOverride : Date.now(); 
    headlines and empty boxes still said "Happening now", "right now", "is on right now". With a time picked, every screen says
    "then" (rows) or names the time ("Open Mon noon", "Nothing ... is on Mon at noon"). planWhen() is for headlines and sentences,
    tenseText() rewrites the status words of one row; planCtx(T) says whether T is a picked time and whether it is another day. */
+function normWhen(v){ return v === 'tonight' ? 'today' : v; }   // v5.9: a remembered or linked 'tonight' is now 'today'
 function evalTime(){ var t = evalTime0(); UI.planAt = UI.planning ? t : null; return t; }
 function planWhen(sent){ // "Mon noon" (headline) / "Mon at noon" (sentence) when a time is picked; "now" / "right now" otherwise
   if (!UI.planning || !isNum(UI.planAt)) return sent ? 'right now' : 'now';
-  if (UI.anyDay) { var dn = UI.anyDay === cparts(nowMs()).key ? 'today' : DOW_SHORT[wdOfKey(UI.anyDay)]; return sent ? (dn === 'today' ? 'later today' : 'on ' + dn) : dn; }   // v5.6 "Any time": "Wed" / "on Wed"
+  if (UI.anyDay) { var dn = UI.anyDay === cparts(nowMs()).key ? 'today' : DOW_SHORT[wdOfKey(UI.anyDay)]; return sent ? (dn === 'today' ? (UI.today ? 'today' : 'later today') : 'on ' + dn) : dn; }   // v5.6 "Any time": "Wed" / "on Wed"
   var q = cparts(UI.planAt); return DOW_SHORT[q.wd] + (sent ? ' at ' : ' ') + fmtTime(q.min);
 }
 function planCtx(T){
-  if (!UI || !UI.planning || !isNum(UI.planAt)) return {on:false, code:''};
+  if (!UI || !UI.planning || !isNum(UI.planAt) || UI.today) return {on:false, code:''};   // v5.9: Today keeps present-tense rows
   var q = cparts(T), other = q.key !== cparts(nowMs()).key;
   return {on:true, other:other, wd:q.wd, code:'P' + (other ? 'd' + q.wd : 's')};
 }
@@ -2916,7 +3130,7 @@ function restoredSel(list, legacy){ // v5.3: a new visit keeps the picked kinds 
 }
 function evalTime0(){
   var now = nowMs(), p = cparts(now);
-  UI.planning = false; UI.pickPast = false; UI.anyDay = '';
+  UI.planning = false; UI.pickPast = false; UI.anyDay = ''; UI.today = false;
   if (S.when === 'pick') { // v5.6: a picked day with no time = "Any time" that day
     var dA = parseDT(S.pickAt);
     if (dA && dA.min === null) {
@@ -2925,7 +3139,8 @@ function evalTime0(){
       return dA.key === p.key ? now : fromChicago(dA.key, ANY_DAY_START_MIN);
     }
   }
-  if (S.when === 'tonight') { if (p.min < 19 * 60) { UI.planning = true; return fromChicago(p.key, 19 * 60); } return now; }
+  if (S.when === 'tonight') S.when = 'today';   // v5.9: 'Tonight' became 'Today' (owner 2026-11-13); an old 'tonight' reads as today
+  if (S.when === 'today') { UI.planning = true; UI.anyDay = p.key; UI.today = true; return now; }   // v5.9 Today = the rest of today, the picked-day 'Any time' logic from now, with present-tense wording and no planning banner
   if (S.when === 'weekend') {
     if (p.wd === 6 || p.wd === 0) { if (p.min < 13 * 60) { UI.planning = true; return fromChicago(p.key, 13 * 60); } return now; }
     UI.planning = true; return fromChicago(addDays(p.key, 6 - p.wd), 13 * 60);
@@ -3487,7 +3702,109 @@ function bindMap(){
    through map.project(), so everything above keeps working. Inside claude.ai (or any frame), without WebGL, or when MapLibre / the style
    doesn't load within GL_TIMEOUT_MS, the drawn SVG map is used unchanged. OpenFreeMap: free, no key; attribution shown bottom-left. */
 var ML_JS = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js', ML_CSS = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';
-var OFM_STYLE = {light:'https://tiles.openfreemap.org/styles/liberty', dark:'https://tiles.openfreemap.org/styles/dark'};
+var OFM_STYLE = {light:'https://tiles.openfreemap.org/styles/liberty', dark:'https://tiles.openfreemap.org/styles/dark'};   // v5.8 and older; v5.9 uses OFM_BASE for every variant
+/* v5.9 (owner, comparing with Google Maps: "very pastel colors... There's no bunch of buildings showing up when I zoom in. That's like 3D.
+   Very ugly, very hard to read"). One base style, positron, for all five variants (spec 4.1): few layers, no POI or transit-stop icons,
+   no hillshade. Switching variant is a repaint (no setStyle, no tile reload). No 3D at all: every fill-extrusion layer is removed and the
+   map can't be tilted. Flat, faint building footprints from zoom 15 only. Colors: spec 4.2 ("Google-like, chosen by eye", not copied). */
+var OFM_BASE = 'https://tiles.openfreemap.org/styles/positron';
+var MAP_VARIANTS = ['std-light', 'std-dark', 'night', 'sorbet-light', 'sorbet-dark'];
+var MAP_ROLES = { // role: [std-light, std-dark, night, sorbet-light, sorbet-dark] (spec 4.2; cta is softer than the spec's .8/.75/.7, as she asked for thinner, softer lines)
+  land:['#F1F3F4', '#202226', '#100E18', '#F6F2FA', '#1C1923'], park:['#CFEBD6', '#1C3027', '#11261F', '#D7F0E1', '#1D2D29'], wood:['#C6E6CE', '#1B2E25', '#10241D', '#CFEBDA', '#1C2B27'],
+  water:['#A9D3F2', '#14243A', '#141A3C', '#CBDAFA', '#222A4A'], shore:['#A9D3F2', '#14243A', '#2C3C96', '#CBDAFA', '#222A4A'], waterway:['#8EC3EA', '#1C3150', '#222C66', '#B6C9F5', '#2C3560'],
+  building:['#E6E8EB', '#2A2D32', '#19161F', '#EEE8F5', '#25212C'], buildingLine:['#DADDE1', '#313439', '#221E2B', '#E3DAEE', '#2D2836'],
+  path:['#DDE0E4', '#3A3E45', '#2E2944', '#E3DBEC', '#39334A'], minor:['#FFFFFF', '#34373D', '#2B2640', '#FFFFFF', '#322D3C'], minorCase:['#E0E3E7', '#26292E', '#17141F', '#E9E1F1', '#25212D'],
+  major:['#FFFFFF', '#40444B', '#3A3358', '#FFFFFF', '#3E3849'], majorCase:['#D3D7DC', '#2A2D33', '#1B1727', '#DCCFEA', '#27222F'], majorSubtle:['#DDE0E4', '#3A3E45', '#332D4D', '#E3D8EE', '#39334A'],
+  motor:['#FCDC8C', '#5D636D', '#6A48C4', '#FFD2BE', '#7A5470'], motorCase:['#EDBF5A', '#2A2D33', '#2A1F52', '#F2B39C', '#3A2A38'], motorSubtle:['#F5CD72', '#4A4F58', '#4E3796', '#F7C3AE', '#5E4358'],
+  rail:['#D3D6DB', '#3A3E45', '#2B2640', '#DCD3E6', '#3A3445'], aero:['#E6E8EB', '#2A2D32', '#19161F', '#EEE8F5', '#25212C'], boundary:['#C3C7CD', '#4A4F57', '#3A3450', '#CFC4DC', '#4A4356'],
+  roadText:['#474C54', '#B0B6BE', '#CEC8DE', '#544A62', '#C6BDD2'], roadHalo:['#FFFFFF', '#202226', '#100E18', '#FFFFFF', '#1C1923'],
+  placeText:['#3A3F46', '#C3C8CE', '#ECE8F5', '#352D40', '#E8E1EF'], hoodText:['#656A73', '#8E949C', '#A79FBD', '#70667E', '#A399B0'],
+  placeHalo:['rgba(255,255,255,.9)', 'rgba(32,34,38,.9)', 'rgba(16,14,24,.9)', 'rgba(255,255,255,.9)', 'rgba(28,25,35,.9)'],
+  waterText:['#1F5585', '#7FA0C8', '#8FA6FF', '#42529A', '#9DAAEA'], ring:['#2E6BD8', '#8AB4F8', '#C6FF3D', '#A82E58', '#FF9EC4'],
+  cta:[0.62, 0.58, 0.58, 0.62, 0.58]
+};
+var MAP_PAL = {};
+MAP_VARIANTS.forEach(function(v, i){ var o = {}; Object.keys(MAP_ROLES).forEach(function(r){ o[r] = MAP_ROLES[r][i]; }); MAP_PAL[v] = o; });
+var MAP_PAINT = [ // [layer, property, role] (spec 4.3)
+  ['background', 'background-color', 'land'], ['park', 'fill-color', 'park'], ['cff-green', 'fill-color', 'park'], ['cff-grass', 'fill-color', 'park'],
+  ['water', 'fill-color', 'water'], ['water', 'fill-outline-color', 'shore'], ['landcover_wood', 'fill-color', 'wood'],
+  ['waterway', 'line-color', 'waterway'], ['building', 'fill-color', 'building'], ['building', 'fill-outline-color', 'buildingLine'],
+  ['tunnel_motorway_casing', 'line-color', 'motorCase'], ['tunnel_motorway_inner', 'line-color', 'motor'],
+  ['aeroway-area', 'fill-color', 'aero'], ['aeroway-runway-casing', 'line-color', 'aero'], ['aeroway-runway', 'line-color', 'path'], ['aeroway-taxiway', 'line-color', 'path'],
+  ['road_area_pier', 'fill-color', 'land'], ['road_pier', 'line-color', 'land'], ['highway_path', 'line-color', 'path'],
+  ['cff-minor-casing', 'line-color', 'minorCase'], ['highway_minor', 'line-color', 'minor'],
+  ['highway_major_casing', 'line-color', 'majorCase'], ['highway_major_inner', 'line-color', 'major'], ['highway_major_subtle', 'line-color', 'majorSubtle'],
+  ['highway_motorway_casing', 'line-color', 'motorCase'], ['highway_motorway_bridge_casing', 'line-color', 'motorCase'],
+  ['highway_motorway_inner', 'line-color', 'motor'], ['highway_motorway_bridge_inner', 'line-color', 'motor'], ['highway_motorway_subtle', 'line-color', 'motorSubtle'],
+  ['railway', 'line-color', 'rail'], ['railway_transit', 'line-color', 'rail'], ['railway_service', 'line-color', 'rail'],
+  ['railway_dashline', 'line-color', 'land'], ['railway_transit_dashline', 'line-color', 'land'], ['railway_service_dashline', 'line-color', 'land'],
+  ['boundary_3', 'line-color', 'boundary'], ['boundary_2', 'line-color', 'boundary'],
+  ['highway-name-minor', 'text-color', 'roadText'], ['highway-name-minor', 'text-halo-color', 'roadHalo'],
+  ['highway-name-major', 'text-color', 'roadText'], ['highway-name-major', 'text-halo-color', 'roadHalo'],
+  ['highway-name-path', 'text-color', 'hoodText'], ['highway-name-path', 'text-halo-color', 'roadHalo'],
+  ['label_other', 'text-color', 'hoodText'],
+  ['water_name_point_label', 'text-color', 'waterText'], ['water_name_line_label', 'text-color', 'waterText'], ['waterway_line_label', 'text-color', 'waterText'],
+  ['water_name_point_label', 'text-halo-color', 'water'], ['water_name_line_label', 'text-halo-color', 'water'], ['waterway_line_label', 'text-halo-color', 'water'],
+  ['cff-ring', 'line-color', 'ring']
+];
+['label_village', 'label_town', 'label_city', 'label_city_capital', 'label_state', 'label_other'].forEach(function(id){ MAP_PAINT.push([id, 'text-halo-color', 'placeHalo']); if (id !== 'label_other') MAP_PAINT.push([id, 'text-color', 'placeText']); });
+var MAP_FIXED_PAINT = [['highway_minor', 'line-opacity', 1], ['tunnel_motorway_casing', 'line-opacity', 0.5], ['tunnel_motorway_inner', 'line-opacity', 0.6], ['building', 'fill-opacity', 0.9],
+  ['highway-name-minor', 'text-halo-width', 1.5], ['highway-name-minor', 'text-halo-blur', 0], ['highway-name-major', 'text-halo-width', 1.5], ['highway-name-major', 'text-halo-blur', 0],
+  ['highway-name-path', 'text-halo-width', 1.2], ['water_name_point_label', 'text-halo-width', 1.2], ['water_name_line_label', 'text-halo-width', 1.2], ['waterway_line_label', 'text-halo-width', 1.2]];
+['label_village', 'label_town', 'label_city', 'label_city_capital', 'label_state', 'label_other'].forEach(function(id){ MAP_FIXED_PAINT.push([id, 'text-halo-width', 1.4], [id, 'text-halo-blur', 0]); });
+var MAP_HIDE = ['landuse_residential', 'airport', 'boundary_disputed', 'landcover_ice_shelf', 'landcover_glacier', 'label_country_1', 'label_country_2', 'label_country_3', 'highway-shield-non-us'];
+var MAP_SHIELDS = ['highway-shield-us-interstate', 'road_shield_us'];
+function isClutterLayer(l){ // pure: map-drawn POI, transit-stop, bus and station icons or labels (positron has none today; a future style might)
+  if (!l || l.type !== 'symbol') return false;
+  return /(^|[_-])(poi|transit|bus|station|stop|subway|aerodrome|airport)([_-]|$)/i.test(l.id) || /railway_?label/i.test(l.id) || /^(poi|aerodrome_label|mountain_peak)$/.test(l['source-layer'] || '');   // whole words: 'water_name_point_label' is not a POI layer
+}
+function glStripExtrusions(map){ // removes every fill-extrusion (3D) layer; returns how many were removed
+  var n = 0, ls = ((map && map.getStyle && map.getStyle()) || {}).layers || [];
+  ls.filter(function(l){ return l.type === 'fill-extrusion'; }).forEach(function(l){ try { map.removeLayer(l.id); n++; } catch (e) {} });
+  return n;
+}
+function mapMode(){ var a = document.documentElement.getAttribute('data-map'); return normMapMode(a === 'themed' || a === 'standard' ? a : Platform.store.get('cff.map', 'standard')); }
+function mapVariantFor(skin, dark, mode){ // pure (spec 4.1 table)
+  if (normMapMode(mode) === 'standard') return dark ? 'std-dark' : 'std-light';
+  return normSkin(skin) === 'night' ? 'night' : (dark ? 'sorbet-dark' : 'sorbet-light');
+}
+function mapVariant(){ var d = document.documentElement.getAttribute('data-map'); return mapVariantFor(currentSkin(), themeIsDark(), d === 'themed' || d === 'standard' ? d : mapMode()); }
+function glPrepBase(map){ // once per style load: no 3D, hides, upright Noto Sans labels, faint footprints from z15, the two added layers
+  GLM.stripped = glStripExtrusions(map);
+  var ls = (map.getStyle() || {}).layers || [];
+  MAP_HIDE.forEach(function(id){ if (map.getLayer(id)) try { map.setLayoutProperty(id, 'visibility', 'none'); } catch (e) {} });
+  ls.forEach(function(l){ if (isClutterLayer(l)) try { map.setLayoutProperty(l.id, 'visibility', 'none'); } catch (e) {} });
+  ls.forEach(function(l){
+    if (l.type !== 'symbol' || !l.layout || !l.layout['text-font']) return;
+    var bold = l.id === 'label_city' || l.id === 'label_city_capital';
+    try { map.setLayoutProperty(l.id, 'text-font', [bold ? 'Noto Sans Bold' : 'Noto Sans Regular']); } catch (e) {}
+  });
+  function lay(id, k, v){ if (map.getLayer(id)) try { map.setLayoutProperty(id, k, v); } catch (e) {} }
+  ['label_other', 'label_state'].forEach(function(id){ lay(id, 'text-transform', 'none'); lay(id, 'text-letter-spacing', 0); });
+  ['water_name_point_label', 'water_name_line_label', 'waterway_line_label'].forEach(function(id){ lay(id, 'text-letter-spacing', 0); });
+  ['label_village', 'label_town', 'label_city', 'label_city_capital'].forEach(function(id){ lay(id, 'icon-image', ''); });
+  ['highway-name-minor', 'highway-name-major'].forEach(function(id){ lay(id, 'text-size', ['interpolate', ['linear'], ['zoom'], 13, 11, 16, 12.5, 18, 14]); });
+  lay('label_other', 'text-size', ['interpolate', ['linear'], ['zoom'], 11, 11, 15, 13]);
+  if (map.getLayer('building')) try { map.setLayerZoomRange('building', 15, 24); } catch (e) {}
+  if (map.getSource('openmaptiles')) {
+    if (!map.getLayer('cff-green')) try { map.addLayer({id:'cff-green', type:'fill', source:'openmaptiles', 'source-layer':'landuse',
+      filter:['match', ['get', 'class'], ['park', 'pitch', 'playground', 'cemetery', 'zoo', 'garden', 'recreation_ground'], true, false], paint:{'fill-color':'#CFEBD6'}}, map.getLayer('water') ? 'water' : undefined); } catch (e) {}
+    if (!map.getLayer('cff-grass')) try { map.addLayer({id:'cff-grass', type:'fill', source:'openmaptiles', 'source-layer':'landcover',   // Chicago's lakefront parks are often grass in landcover (spec "Not checked")
+      filter:['match', ['get', 'class'], ['grass'], true, false], paint:{'fill-color':'#CFEBD6', 'fill-opacity':0.8}}, map.getLayer('water') ? 'water' : undefined); } catch (e) {}
+    if (!map.getLayer('cff-minor-casing')) try { map.addLayer({id:'cff-minor-casing', type:'line', source:'openmaptiles', 'source-layer':'transportation', minzoom:14,
+      filter:['all', ['match', ['geometry-type'], ['LineString', 'MultiLineString'], true, false], ['match', ['get', 'class'], ['minor', 'service'], true, false]],
+      layout:{'line-cap':'round', 'line-join':'round'}, paint:{'line-color':'#E0E3E7', 'line-width':['interpolate', ['exponential', 1.55], ['zoom'], 14, 3.6, 20, 22]}}, map.getLayer('highway_minor') ? 'highway_minor' : undefined); } catch (e) {}
+  }
+}
+function glPaintVariant(map, key){
+  var p = MAP_PAL[key]; if (!p || !map) return 0;
+  var n = 0;
+  MAP_PAINT.forEach(function(r){ if (map.getLayer(r[0])) try { map.setPaintProperty(r[0], r[1], p[r[2]]); n++; } catch (e) {} });
+  MAP_FIXED_PAINT.forEach(function(r){ if (map.getLayer(r[0])) try { map.setPaintProperty(r[0], r[1], r[2]); } catch (e) {} });
+  MAP_SHIELDS.forEach(function(id){ if (map.getLayer(id)) try { map.setLayoutProperty(id, 'visibility', key === 'std-light' ? 'visible' : 'none'); } catch (e) {} });
+  if (map.getLayer('cff-cta')) try { map.setPaintProperty('cff-cta', 'line-opacity', p.cta); } catch (e) {}
+  GLM.variant = key; return n;
+}
 var OFM_ATTRIB = '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> <a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">&copy; OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>';
 var GL_TIMEOUT_MS = 6000, GL_GIVEUP_MS = 30000, GL_PITCH = 0,   /* 2026-11-13: flat by default (she said the tilted map looked 'skewed'); right-drag / two-finger drag still tilts */ GL_FIT_SHRINK = 0.82, EARTH_M = 40075016.686;
 var CTA_HEX = {red:'#C60C30', blue:'#00A1DE', brown:'#62361B', green:'#009B3A', orange:'#F9461C', pink:'#E27EA6', purple:'#522398', yellow:'#F9E300'};
@@ -3503,8 +3820,10 @@ function zoomForScale(s, lat){ return Math.log(EARTH_M * Math.cos(lat * Math.PI 
 function scaleForZoom(z, lat){ return 512 * UNIT_M * Math.pow(2, z) / (EARTH_M * Math.cos(lat * Math.PI / 180)); }
 function viewToCamera(cx, cy, s){ var ll = unproj(cx, cy); return {lat:ll[0], lng:ll[1], zoom:zoomForScale(s, ll[0])}; }
 function hasWebGL(){ try { var cv = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (cv.getContext('webgl2') || cv.getContext('webgl'))); } catch (e) { return false; } }
-function themeIsDark(){ var t = document.documentElement.getAttribute('data-theme'); if (t === 'dark') return true; if (t === 'light') return false; return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
-function glStyleUrl(){ return themeIsDark() ? OFM_STYLE.dark : OFM_STYLE.light; }
+function themeIsDark(){ // v5.9: Night is always dark
+  if (document.documentElement.getAttribute('data-skin') !== 'sorbet') return true;
+  var t = document.documentElement.getAttribute('data-theme'); if (t === 'dark') return true; if (t === 'light') return false; return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
+function glStyleUrl(){ return OFM_BASE; }
 function initMapEngine(){
   var m = null; try { m = /(?:^|[#&])map=(gl|svg)/.exec(location.hash || ''); } catch (e) {}
   var ch = chooseMapEngine({onClaude:Platform.onClaude, inFrame:Platform.inFrame, webgl:hasWebGL(), force:m ? m[1] : ''});
@@ -3535,7 +3854,7 @@ function glStart(){
   mapEl.insertBefore(div, mapEl.firstChild);
   var c = viewToCamera(MV.cx, MV.cy, MV.s);
   GLM.dark = themeIsDark();
-  var map = new window.maplibregl.Map({container:div, style:glStyleUrl(), center:[c.lng, c.lat], zoom:c.zoom, pitch:GL_PITCH, maxPitch:60, minZoom:7, maxZoom:19,
+  var map = new window.maplibregl.Map({container:div, style:glStyleUrl(), center:[c.lng, c.lat], zoom:c.zoom, pitch:0, maxPitch:0, minZoom:7, maxZoom:19,
     attributionControl:false, maxBounds:[[-89.6, 40.9], [-86.0, 42.9]], fadeDuration:120, keyboard:true, cooperativeGestures:false});
   GLM.map = map;
   map.addControl(new window.maplibregl.AttributionControl(), 'bottom-left');   // the OpenFreeMap tile source carries the OpenFreeMap / OpenMapTiles / OpenStreetMap line
@@ -3602,26 +3921,27 @@ function glTuneDark(map){ // returns how many paint values were set (0 on the li
   Object.keys(GL_DARK_PAINT).forEach(function(id){ if (!map.getLayer(id)) return; var pp = GL_DARK_PAINT[id]; Object.keys(pp).forEach(function(k){ try { map.setPaintProperty(id, k, pp[k]); n++; } catch (e) {} }); });
   GLM.tuned = n; return n;
 }
-function glAddExtras(){ // CTA 'L' lines in their colors, 3D buildings for the dark style, the radius ring
+function glAddExtras(){ // v5.9: prep the positron base (no 3D), then our CTA 'L' lines (thin, soft) and the radius ring, then the variant's colors
   var map = GLM.map; if (!map || !GLM.on) return;
-  try { glTuneDark(map); } catch (e) {}
+  try { glPrepBase(map); } catch (e) {}
   try {
-    var before = glFirstSymbol(map), dark = themeIsDark();
-    if (!map.getLayer('building-3d') && !map.getLayer('cff-3d') && map.getSource('openmaptiles')) {
-      map.addLayer({id:'cff-3d', type:'fill-extrusion', source:'openmaptiles', 'source-layer':'building', minzoom:14, filter:['!', ['has', 'hide_3d']],
-        paint:{'fill-extrusion-color':dark ? '#363D48' : '#D9D3C7', 'fill-extrusion-height':['get', 'render_height'], 'fill-extrusion-base':['get', 'render_min_height'], 'fill-extrusion-opacity':0.75}}, before);
-    }
+    var before = glFirstSymbol(map), p = MAP_PAL[mapVariant()] || MAP_PAL['std-light'];
     if (GEO.linesGJ && !map.getSource('cff-cta')) {
       map.addSource('cff-cta', {type:'geojson', data:GEO.linesGJ});
       var col = ['case']; LINE_ORDER.slice().reverse().forEach(function(k){ col.push(['in', k, ['downcase', ['to-string', ['get', 'lines']]]], CTA_HEX[k]); }); col.push('#7A7F87');
-      map.addLayer({id:'cff-cta', type:'line', source:'cff-cta', layout:{'line-join':'round', 'line-cap':'round'}, paint:{'line-color':col, 'line-width':['interpolate', ['linear'], ['zoom'], 10, 1.6, 14, 3.4, 17, 5], 'line-opacity':0.8}}, before);
+      map.addLayer({id:'cff-cta', type:'line', source:'cff-cta', layout:{'line-join':'round', 'line-cap':'round'}, paint:{'line-color':col, 'line-width':['interpolate', ['linear'], ['zoom'], 10, 1, 14, 2, 17, 3.2], 'line-opacity':p.cta}}, before);
     }
     if (!map.getSource('cff-ring')) {
       map.addSource('cff-ring', {type:'geojson', data:{type:'FeatureCollection', features:[]}});
-      map.addLayer({id:'cff-ring', type:'line', source:'cff-ring', paint:{'line-color':dark ? '#9CC3FF' : '#2E6BD8', 'line-width':2, 'line-dasharray':[2, 2], 'line-opacity':0.85}});
+      map.addLayer({id:'cff-ring', type:'line', source:'cff-ring', paint:{'line-color':p.ring, 'line-width':2, 'line-dasharray':[2, 2], 'line-opacity':0.85}});
     }
     glRing();
   } catch (e) {}
+  try { GLM.variant = ''; glPaintVariant(map, mapVariant()); } catch (e) {}
+}
+function glLayerTypes(){ // for tests: the live street map's layers as 'id:type'
+  var map = GLM.map; if (!map || !GLM.on) return null;
+  return (((map.getStyle && map.getStyle()) || {}).layers || []).map(function(l){ return l.id + ':' + l.type + ((l.layout && l.layout.visibility === 'none') ? ':hidden' : ''); });
 }
 function circleRing(lat, lng, mi, n){ // pure: closed ring of [lng, lat] points, mi miles around a point
   var out = [], dLat = mi / 69.055, dLng = mi / (69.172 * Math.cos(lat * Math.PI / 180));
@@ -3634,11 +3954,11 @@ function glRing(){
   var on = !!(S.loc && UI.showRing);
   try { src.setData({type:'FeatureCollection', features:on ? [{type:'Feature', properties:{}, geometry:{type:'LineString', coordinates:circleRing(S.loc.lat, S.loc.lng, S.f.radius, 72)}}] : []}); } catch (e) {}
 }
-function glApplyTheme(){ // light/dark street style follows the app's theme
+function glApplyTheme(){ // v5.9: skin, mode or map setting changed (or the phone went dark): a repaint, never a style reload
+  applyMapTokens();
   var map = GLM.map; if (!map || !GLM.on) return;
-  var dark = themeIsDark(); if (dark === GLM.dark) return;
-  GLM.dark = dark;
-  try { map.setStyle(glStyleUrl()); map.once('idle', glAddExtras); } catch (e) {}
+  clearTimeout(GLM.themeT);
+  GLM.themeT = setTimeout(function(){ var k = mapVariant(); GLM.dark = themeIsDark(); if (k !== GLM.variant) try { glPaintVariant(map, k); } catch (e) {} }, 120);
 }
 
 /* ================= pins + clustering (v3, layout spec 3.11: genre colors, ticket badge, quiet dots) ================= */
@@ -3835,7 +4155,7 @@ function showView(v, opts){
 /* ================= rendering: header, tiles, list (v3 "calm default", layout spec §3-4) ================= */
 function glyphSvg(id, cls){ return '<svg class="' + (cls || 'i') + '"><use href="#' + id + '"/></svg>'; }
 var CHEV = '<svg class="i sm"><use href="#i-chev"/></svg>';
-function whenLabel(){ if (S.when === 'now') return 'Now'; if (S.when === 'tonight') return 'Tonight'; if (S.when === 'weekend') return 'This weekend'; var d = parseDT(S.pickAt); if (d && d.min === null) return (d.key === cparts(nowMs()).key ? 'Today' : DOW_SHORT[wdOfKey(d.key)]) + ' · Any time'; return d ? DOW_SHORT[wdOfKey(d.key)] + ' ' + fmtTime(d.min) : 'Pick a day'; }   // v5.6 "Wed · Any time"
+function whenLabel(){ if (S.when === 'now') return 'Now'; if (S.when === 'today' || S.when === 'tonight') return 'Today'; if (S.when === 'weekend') return 'This weekend'; var d = parseDT(S.pickAt); if (d && d.min === null) return (d.key === cparts(nowMs()).key ? 'Today' : DOW_SHORT[wdOfKey(d.key)]) + ' · Any time'; return d ? DOW_SHORT[wdOfKey(d.key)] + ' ' + fmtTime(d.min) : 'Pick a day'; }   // v5.6 "Wed · Any time"
 function budgetWords(){ return S.budget === 'night' ? 'the rest of the night' : fmtBudget(S.budget); }
 function doableWords(){ return S.budget === 'night' ? 'doable tonight' : 'doable in ' + fmtBudget(S.budget); }   // v4 plain words for the optional time budget
 function openWords(){ return 'open ' + planWhen(false); }   // v5.3: "open Mon noon" when a time is picked
@@ -3843,9 +4163,9 @@ function timeWord(){ return S.budget === 60 ? 'hour' : 'time'; }
 function fillHTML(txt){ return esc(txt).replace(/ /g, '&nbsp;') + '<svg class="i"><use href="#i-chev"/></svg>'; }
 function renderHeader(res){
   var p = res.p, k;
-  if (UI.anyDay) k = 'Planning for ' + fmtDayDate(UI.anyDay, cparts(nowMs()).key) + ' · any time';   // v5.6
-  else if (UI.planning) k = 'Planning for ' + fmtDayDate(p.key, cparts(nowMs()).key) + ' · ' + fmtTime(p.min);
-  else {
+  if (UI.anyDay && !UI.today) k = 'Planning for ' + fmtDayDate(UI.anyDay, cparts(nowMs()).key) + ' · any time';   // v5.6
+  else if (UI.planning && !UI.today) k = 'Planning for ' + fmtDayDate(p.key, cparts(nowMs()).key) + ' · ' + fmtTime(p.min);
+  else {   // v5.9: Today shows the normal day line (not planning ahead)
     k = DOW_LONG[p.wd] + ' · ' + fmtTime(p.min);
     var sun = sunTimes(p.key);
     k += (res.T < sun.rise || res.T > sun.set) ? ' · dark out' : ' · light till ' + fmtClock(sun.set);
@@ -3868,10 +4188,11 @@ function renderTiles(vm){
   vm.tiles.forEach(function(t){ // v3.1: 4 x 2 grid, all 8 visible; tiles with 0 stay in place, dimmed. v5: tap to add or remove (multi-select)
     var isL = t.id === 'limited', name = genreName(t.id);
     // v5.3: a kind tile always shows what that kind has open (never a 0 that reads as "closed"); with Limited on, a small red count says how many of them are limited
-    var ltd = !isL && vm.lim && t.lim ? t.lim : 0;
-    var lab = name + ', ' + t.n + (isL ? ' limited, ' + openWords() : ' ' + openWords() + (S.budgetOn ? ', ' + doableWords() : '') + (vm.lim ? ', ' + (t.lim || 0) + ' limited' : ''));
-    h += '<button class="tile' + (isL ? ' lt' : '') + (t.n ? '' : ' zero') + (ltd ? ' has-ltd' : '') + '" type="button" data-tile="' + t.id + '" aria-pressed="' + tilePressed(vm, t.id) + '" aria-label="' + esc(lab) + '" title="' + esc(lab) + '" style="--c:' + genreColor(t.id) + '">' +
-      '<span class="top"><span class="gl" data-shape="' + esc(KIND_SHAPE[t.id] || '') + '">' + kindSvg(t.id) + '</span><span class="num">' + t.n + '</span></span><span class="nm">' + esc(genreShort(t.id)) + '</span>' + (ltd ? '<span class="ltd" aria-hidden="true">' + ltd + '</span>' : '') + '</button>';
+    // v5.9 (owner: confused by the small red numbers): with Limited on, a kind tile's big number IS its limited count, and there is no bubble
+    var ltd = 0, num = (!isL && vm.lim) ? (t.lim || 0) : t.n;
+    var lab = name + ', ' + num + (isL ? ' limited, ' + openWords() : (vm.lim ? ' limited ' + openWords() : ' ' + openWords() + (S.budgetOn ? ', ' + doableWords() : '')));
+    h += '<button class="tile' + (isL ? ' lt' : '') + (num ? '' : ' zero') + (ltd ? ' has-ltd' : '') + '" type="button" data-tile="' + t.id + '" aria-pressed="' + tilePressed(vm, t.id) + '" aria-label="' + esc(lab) + '" title="' + esc(lab) + '" style="--c:' + genreColor(t.id) + '">' +
+      '<span class="top"><span class="gl" data-shape="' + esc(KIND_SHAPE[t.id] || '') + '">' + kindSvg(t.id) + '</span><span class="num">' + num + '</span></span><span class="nm">' + esc(genreShort(t.id)) + '</span>' + (ltd ? '<span class="ltd" aria-hidden="true">' + ltd + '</span>' : '') + '</button>';
   });
   el.innerHTML = h;
   el.classList.toggle('has-pick', !!vm.sel);
@@ -3879,7 +4200,8 @@ function renderTiles(vm){
 function renderSubchips(vm){
   var el = $('subchips'), h = '', items = [];
   if (vm.lim && !vm.gs.length) items = [['now', 'Running', vm.onNow.length], ['wknd', comingLabel('wknd', vm.p), vm.wknd.length], ['up', 'Coming up', vm.soon.length]];
-  else if (!vm.lim && vm.gs.length === 1) { var g1 = vm.gs[0], n = subCounts(vm, g1); items = subsShown(DATA, g1).map(function(s){ return [s[0], s[1], n[s[0]] || 0]; }); }   // v5: only when exactly one kind is picked
+  else if (!vm.lim && vm.gs.length === 1) { var g1 = vm.gs[0]; items = subChipsFor(subCounts(vm, g1), g1, vm.sub); }   // v5: only when exactly one kind is picked; v5.9: 2+ items in this view, 2+ chips
+  items = items.filter(function(s){ return s[2] > 0 || vm.sub === s[0]; });   // v5.9: never a 0 chip (except the one she picked, so she can unpick it)
   items.forEach(function(s){ h += '<button class="sc' + (s[2] ? '' : ' zero') + '" type="button" data-sub="' + s[0] + '" aria-pressed="' + (vm.sub === s[0]) + '">' + esc(s[1]) + ' <b>' + s[2] + '</b></button>'; });
   el.innerHTML = h; el.hidden = !h;
 }
@@ -4022,7 +4344,7 @@ function homeListHTML(vm, more){
   var h = '', p = vm.p, F = S.f;
   if (vm.ending) {
     var b = untilBadge(vm.ending, p);
-    h += '<button class="strip" type="button" data-tile="limited" aria-label="Ending soon: ' + esc(vm.ending.item.name) + ', ' + esc(b.t) + '. Opens Limited time."><span class="stub">Ending<br>soon</span><span class="tx"><b>' + esc(vm.ending.item.name) + '</b></span><em class="end">' + esc(b.t) + '</em>' + glyphSvg('i-right') + '</button>';
+    h += '<button class="strip" type="button" data-open="' + esc(vm.ending.item.id) + '" aria-label="Ending soon: ' + esc(vm.ending.item.name) + ', ' + esc(b.t) + '. Opens its details."><span class="stub">Ending<br>soon</span><span class="tx"><b>' + esc(vm.ending.item.name) + '</b></span><em class="end">' + esc(b.t) + '</em>' + glyphSvg('i-right') + '</button>';
   }
   if (!vm.main.length && vm.openNow <= ALL_CLOSED_MAX_OPEN) {
     var fo = vm.firstOpen, btn = '';
@@ -4088,6 +4410,16 @@ function kindListHTML(vm, more){
   }
   return h + endnoteHTML('');
 }
+function limShutGroups(shut, anyDay){ // pure: running limited things that aren't open -> {later, closed, unknown}
+  var out = {later:[], closed:[], unknown:[]};
+  (shut || []).forEach(function(c){
+    var st = c.st || {};
+    if (st.key === 'unknown' || st.hoursExpired || st.running) out.unknown.push(c);
+    else if (!anyDay && st.opensAt && st.ms && cparts(st.opensAt).key === cparts(st.ms).key) out.later.push(c);
+    else out.closed.push(c);
+  });
+  return out;
+}
 function limitedListHTML(vm){
   var sub = vm.sub, h = '', p = vm.p;
   if (!sub || sub === 'now') {
@@ -4099,7 +4431,12 @@ function limitedListHTML(vm){
     if (opn.length) h += '<ul class="rows">' + opn.map(limRow).join('') + '</ul>';
     else if (shut.length) h += '<p class="crow" style="padding-top:8px">Nothing limited' + (vm.gs && vm.gs.length ? ' in ' + esc(genreShort(vm.gs.join('+'))) : '') + ' is open ' + esc(planWhen(true)) + '.</p>' + offBtn;
     else h += '<div class="empty"><h4>Nothing limited' + (vm.gs && vm.gs.length ? ' in ' + esc(genreShort(vm.gs.join('+'))) : '') + ' is on ' + esc(planWhen(true).replace(/^on /, '')) + '.</h4><p>' + (vm.soon.length ? 'The next one starts ' + esc(fmtDayDate(startKeyOf(vm.soon[0]), p.key)) + '.' : 'Nothing new is listed yet.') + '</p>' + offBtn + '</div>';
-    if (shut.length) h += '<h3 class="sec-h"><span>Running, open later</span><span>' + shut.length + '</span></h3><ul class="rows">' + shut.map(limRow).join('') + '</ul>';
+    // v5.9 (owner: "why is it open later? It's not open at all yet?"): "open later" only for known hours that open later that day (never in
+    // Any-time / Today, where an item is either open at some point or its hours aren't posted); unknown hours get their own quiet group.
+    var g3 = limShutGroups(shut, !!UI.anyDay);
+    if (g3.later.length) h += '<h3 class="sec-h"><span>Running, open later</span><span>' + g3.later.length + '</span></h3><ul class="rows">' + g3.later.map(limRow).join('') + '</ul>';
+    if (g3.closed.length) h += '<h3 class="sec-h"><span>Running, closed ' + esc(planWhen(false)) + '</span><span>' + g3.closed.length + '</span></h3><ul class="rows">' + g3.closed.map(limRow).join('') + '</ul>';
+    if (g3.unknown.length) h += '<h3 class="sec-h"><span>Hours not posted · call first</span><span>' + g3.unknown.length + '</span></h3><ul class="rows">' + g3.unknown.map(limRow).join('') + '</ul>';
   }
   if (sub !== 'now') {
     var list = sub === 'wknd' ? vm.wknd : vm.soon;
@@ -4131,7 +4468,8 @@ function renderList(res, vm, more){
   UI.quietTrust = fr.preview;
   if (fb) h += '<p class="band">' + esc(fb) + '</p>';
   if (UI.pickPast) h += '<p class="band info">That time has already passed, so this shows right now.</p>';
-  if (UI.anyDay) h += '<p class="band info">Planning ahead: everything open long enough at some point on ' + esc(fmtDayDate(UI.anyDay, cparts(nowMs()).key)) + '. <button class="linkbtn" type="button" data-act="whennow">Back to now</button></p>';   // v5.6
+  if (UI.today) {}   // v5.9: no planning banner for Today
+  else if (UI.anyDay) h += '<p class="band info">Planning ahead: everything open long enough at some point on ' + esc(fmtDayDate(UI.anyDay, cparts(nowMs()).key)) + '. <button class="linkbtn" type="button" data-act="whennow">Back to now</button></p>';   // v5.6
   else if (UI.planning) h += '<p class="band info">Planning ahead: everything below is for ' + esc(fmtDayDate(p.key, cparts(nowMs()).key)) + ' at ' + esc(fmtTime(p.min)) + '. <button class="linkbtn" type="button" data-act="whennow">Back to now</button></p>';
   if (!vm.sel) h += homeListHTML(vm, more);
   else if (vm.lim) h += limitedListHTML(vm);
@@ -4282,7 +4620,6 @@ function updateThree(vm, more){ // keeps the same three on screen until she asks
   return UI.three.map(function(id){ return byId[id]; }).filter(Boolean);
 }
 function homeTitle(res){
-  if (S.when === 'tonight') return 'Three for tonight';
   if (UI.anyDay) return 'Three for ' + (UI.anyDay === cparts(nowMs()).key ? 'today' : DOW_SHORT[wdOfKey(UI.anyDay)]);   // v5.6 "Three for Wed"
   if (UI.planning) return 'Three for ' + fmtDayDate(res.p.key, cparts(nowMs()).key);
   return 'Three for right now';
@@ -4301,11 +4638,11 @@ function renderHome(res, vm, picks){
   var root = $('homeRoot'); if (!root) return;
   var p = res.p, who = S.f.who, lab = locWords(S.loc ? S.loc.label : 'The Loop'), acc = locAccFor(S.loc), h = '';   // v5.5: "near your location ±120 ft"
   h += '<div class="hm-top"><div><h1 class="hm-title">' + esc(homeTitle(res)) + '</h1>' +
-    '<button class="hm-sub" type="button" data-act="loc" aria-label="Where: ' + esc(lab) + (acc ? ', within ' + esc(acc.replace('±', '')) : '') + '. Change"><span>' + (UI.anyDay ? esc(fmtDayDate(UI.anyDay, cparts(nowMs()).key)) + ' · any time · ' : UI.planning ? esc(fmtTime(p.min)) + ' · ' : '') + 'near ' + esc(lab) + (acc ? ' <small class="acc">' + esc(acc).replace(/ /g, '&nbsp;') + '</small>' : '') + '</span>' + glyphSvg('i-chev') + '</button></div>' +
-    '<div class="hm-icons"><button class="icon-btn" type="button" data-act="search" aria-label="Search">' + glyphSvg('i-search') + '</button><button class="icon-btn" type="button" data-act="saved" aria-label="Saved and Been">' + glyphSvg('i-bookmark') + '</button></div></div>';
+    '<button class="hm-sub" type="button" data-act="loc" aria-label="Where: ' + esc(lab) + (acc ? ', within ' + esc(acc.replace('±', '')) : '') + '. Change"><span>' + (UI.today ? 'today · ' : UI.anyDay ? esc(fmtDayDate(UI.anyDay, cparts(nowMs()).key)) + ' · any time · ' : UI.planning ? esc(fmtTime(p.min)) + ' · ' : '') + 'near ' + esc(lab) + (acc ? ' <small class="acc">' + esc(acc).replace(/ /g, '&nbsp;') + '</small>' : '') + '</span>' + glyphSvg('i-chev') + '</button></div>' +
+    '<div class="hm-icons"><button class="icon-btn" type="button" data-act="theme" aria-label="Theme">' + glyphSvg('i-palette') + '</button><button class="icon-btn" type="button" data-act="search" aria-label="Search">' + glyphSvg('i-search') + '</button><button class="icon-btn" type="button" data-act="saved" aria-label="Saved and Been">' + glyphSvg('i-bookmark') + '</button></div></div>';
   h += '<div class="hm-ctl" role="group" aria-label="Who is coming">' + [['date', 'Date'], ['friends', 'Friends'], ['solo', 'Solo']].map(function(x){ return '<button class="qchip" type="button" data-who="' + x[0] + '" aria-pressed="' + !!who[x[0]] + '">' + x[1] + '</button>'; }).join('') + '</div>';
   var picked = S.when === 'pick' || S.when === 'weekend';
-  h += '<div class="hm-ctl" role="group" aria-label="When">' + '<button class="qchip" type="button" data-when="now" aria-pressed="' + (S.when === 'now') + '">Now</button><button class="qchip" type="button" data-when="tonight" aria-pressed="' + (S.when === 'tonight') + '">Tonight</button>' +
+  h += '<div class="hm-ctl" role="group" aria-label="When">' + '<button class="qchip" type="button" data-when="now" aria-pressed="' + (S.when === 'now') + '">Now</button><button class="qchip" type="button" data-when="today" aria-pressed="' + (S.when === 'today') + '">Today</button>' +
     '<button class="qchip" type="button" data-when="pick" aria-pressed="' + picked + '">' + (picked ? esc(whenLabel()) : 'Pick a day') + '</button></div>';
   var hsel = selCode(curSel());   // v5: the kinds picked in Browse also narrow the three; one chip says so and clears it
   if (hsel) h += '<div class="hm-ctl"><button class="qchip selchip" type="button" data-act="clearsel" aria-pressed="true" aria-label="Only ' + esc(genreShort(hsel)) + '. Show everything">Only ' + esc(genreShort(hsel)) + glyphSvg('i-close') + '</button></div>';
@@ -4461,7 +4798,7 @@ function renderSaved(){
   if (!items.length) { body.innerHTML = h + '<div class="empty" style="padding:8px 20px"><svg class="i" style="width:40px;height:40px;color:var(--ink-3)"><use href="#i-bookmark"/></svg><h3 style="margin-top:10px">Nothing saved yet.</h3><p>Tap the bookmark on anything you\'d do on a free night.</p></div>'; return; }
   var T = evalTime(), ctx = ctxNow(), groups = {open:[], later:[], season:[], other:[]};
   items.forEach(function(it){ var c = computeItem(it, T, ctx); var k = c.st.key; (c.st.open ? groups.open : k === 'later' ? groups.later : k === 'season' ? groups.season : groups.other).push(c); });
-  [['open', 'Open ' + planWhen(false)], ['later', UI.planning ? 'Later that day' : 'Later today'], ['season', seasonShelfTitle(cparts(T))], ['other', 'Other']].forEach(function(g){
+  [['open', 'Open ' + planWhen(false)], ['later', UI.planning && !UI.today ? 'Later that day' : 'Later today'], ['season', seasonShelfTitle(cparts(T))], ['other', 'Other']].forEach(function(g){
     if (groups[g[0]].length) h += '<h3 class="sec-h"><span>' + g[1] + '</span><span>' + groups[g[0]].length + '</span></h3><ul class="rows">' + groups[g[0]].map(function(c){ return rowHTML(c, {}); }).join('') + '</ul>';
   });
   body.innerHTML = h;
@@ -4820,7 +5157,7 @@ function hlIcon(t){
 function leaveSentence(c){ return tenseText(leaveSentence0(c), planCtx(c.st.ms)); }   // v5.3
 function leaveSentence0(c){
   var f = c.fit, st = c.st;
-  var go = UI.planning ? 'Leave at ' + fmtClock(st.ms) : 'Leave now';
+  var go = UI.planning && !UI.today ? 'Leave at ' + fmtClock(st.ms) : 'Leave now';
   if (f.kind === 'fits' || f.kind === 'tight' || f.kind === 'over') {
     var s = go + ' and you\'d be there around ' + fmtClock(f.arrive) + '. ';
     if (f.kind === 'tight' && f.entryTight) return s + 'Last entry is ' + fmtClock(f.lastEntryAt) + ', so you\'d only just make it in.';   // v2.2 (C-1)
@@ -5409,7 +5746,7 @@ function showLaterSection(){ // v3: the "later" things live in "Show the rest" i
 function applyF(code){ // single filter change (pSmall panels, the "Make it 2 hrs" buttons, the test hook)
   var F = S.f, a = code.split(':'), k = a[0], v = a.slice(1).join(':');
   switch (k) {
-    case 'when': S.when = v; if (v === 'pick' && !S.pickAt) { var p = cparts(nowMs()); S.pickAt = addDays(p.key, 1); } break;   // v5.6: a picked day starts as "Any time"
+    case 'when': S.when = normWhen(v); if (v === 'pick' && !S.pickAt) { var p = cparts(nowMs()); S.pickAt = addDays(p.key, 1); } break;   // v5.6: a picked day starts as "Any time"
     case 'anytime': { var dk = parseDT(S.pickAt), pk = cparts(nowMs()); S.when = 'pick'; S.pickAt = dk ? dk.key : pk.key; } break;
     case 'budget': if (v === 'off') S.budgetOn = false; else { S.budget = v === 'night' ? 'night' : +v; S.budgetOn = true; } break;
     case 'notBeen': F.notBeen = !F.notBeen; break;
@@ -5438,11 +5775,11 @@ var DAY_PARTS = [[600, 'Morning'], [840, 'Afternoon'], [1140, 'Evening'], [1320,
 function smallWhen(){ // v4: Now / Tonight, or pick a day (next 8 days) and a part of the day, or an exact time
   var p = cparts(nowMs()), d = parseDT(S.pickAt), on = S.when === 'pick' && d, selKey = on ? d.key : '', selMin = on && d.min !== null ? d.min : -1, days = '';   // v5.6: -1 = Any time
   for (var i = 0; i < 8; i++) { var k = addDays(p.key, i); days += '<button class="chip" type="button" data-day="' + k + '" aria-pressed="' + (k === selKey) + '">' + (i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : DOW_SHORT[wdOfKey(k)] + ' ' + (+k.slice(8))) + '</button>'; }
-  $('pSmallBody').innerHTML = '<div class="seg">' + [['now', 'Now'], ['tonight', 'Tonight']].map(function(x){ return '<button type="button" data-f="when:' + x[0] + '" aria-pressed="' + (S.when === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>' +
+  $('pSmallBody').innerHTML = '<div class="seg">' + [['now', 'Now'], ['today', 'Today']].map(function(x){ return '<button type="button" data-f="when:' + x[0] + '" aria-pressed="' + (S.when === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>' +
     '<span class="flabel">Or pick a day</span><div class="chips-w" style="display:flex;flex-wrap:wrap;gap:8px">' + days + '</div>' +
     '<div class="seg" style="margin-top:12px">' + [[-1, 'Any time']].concat(DAY_PARTS).map(function(x){ return '<button type="button" data-part="' + x[0] + '" aria-pressed="' + (on && selMin === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>' +
     '<label class="flabel" for="pickAt">Or an exact time (Chicago)</label><input class="dtin" style="margin-top:0" id="pickAt" type="datetime-local" min="' + nowLocalInput() + '" value="' + esc(on && d.min !== null ? S.pickAt : '') + '">' +
-    '<p class="hint">Any time = everything open long enough that day. Morning is 10 am, afternoon 2 pm, evening 7 pm, late 10 pm. Tonight is 7 pm today.</p>' +
+    '<p class="hint">Any time = everything open long enough that day. Morning is 10 am, afternoon 2 pm, evening 7 pm, late 10 pm. Today = everything open long enough between now and midnight.</p>' +
     '<button class="btn-primary" type="button" data-close="pSmall" style="width:100%;margin-top:14px">Done</button>';
 }
 function pickDay(key, min){ // from the day chips and the parts of the day
@@ -5468,7 +5805,6 @@ function renderAbout(){
   var nP = 0, nE = 0, nV = 0; DATA.forEach(function(it){ if (it.kind === 'event') nE++; else nP++; if (it.verified && it.verified.status === 'verified') nV++; });
   var newest = newestCheck(), todayKey = cparts(nowMs()).key;
   var photos = DATA.filter(function(it){ return firstPhoto(it); });
-  var theme = Platform.store.get('cff.theme', 'auto');
   var h = '<p><b>' + esc(APP_NAME) + '</b> (working name) shows fun things in Chicago that are actually open, how long the trip takes, and how fresh our information is. Hours come from each place\'s own site, and every item shows when they were last checked.</p>';
   h += '<h3>Data</h3><p>' + nP + ' places \u00b7 ' + nE + ' events \u00b7 ' + nV + ' confirmed' + (newest ? ' \u00b7 newest check ' + fmtDate(newest, todayKey) : '') + '.' + (SKIPPED.length ? ' ' + SKIPPED.length + (SKIPPED.length === 1 ? ' item' : ' items') + ' skipped (missing name or map point, or a likely duplicate).' : '') + (DATA_ERR ? ' Load error: ' + esc(DATA_ERR) : '') + '</p>';
   var fr = freshness();
@@ -5485,7 +5821,7 @@ function renderAbout(){
   h += '<h3>Photo credits</h3>' + (photos.length ? '<ul class="credits">' + photos.map(function(it){ var ph = firstPhoto(it), pu = safeUrl(ph.page_url); return '<li>' + esc(it.name) + ': ' + (pu ? '<a href="' + esc(pu) + '" target="_blank" rel="noopener">' + esc(ph.credit ? photoCredit(ph) : domainOf(pu)) + '</a>' : esc(photoCredit(ph))) + '</li>'; }).join('') + '</ul>' : '<p>No photos are bundled yet. Items show drawn category art instead.</p>');
   if (CONTACT_EMAIL) h += '<p class="small">Photos belong to their owners. Ask us to remove one: <a href="mailto:' + esc(CONTACT_EMAIL) + '">' + esc(CONTACT_EMAIL) + '</a></p>';
   h += '<h3>Sources</h3><p>Official venue and organizer sites, the Chicago Park District, Choose Chicago and editorial sites as leads. No automated collection from Instagram or Eventbrite. Each item lists its sources.</p>';
-  h += '<h3>Look</h3><div class="seg">' + [['auto', 'Auto'], ['light', 'Light'], ['dark', 'Dark']].map(function(x){ return '<button type="button" data-theme="' + x[0] + '" aria-pressed="' + (theme === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>';
+  h += '<h3>Theme</h3><div id="aboutTheme">' + themePickerHTML() + '</div>';
   h += '<h3>For testing</h3><p><button class="mini-btn" type="button" data-act="selftest">Run the self-test</button></p><p>' + esc(VERSION) + ' \u00b7 time zone used: ' + TZ + (fmtParts ? '' : ' (built-in US DST rule; this browser has no time zone support)') + '</p>';
   $('pAboutBody').innerHTML = h;
   $('pAboutTitle').textContent = 'About ' + APP_NAME;
@@ -5548,7 +5884,81 @@ function submitTip(){
   }
   Platform.tips.send(tip).then(done, function(){ done({where:'local', code:'error'}); });
 }
-function setTheme(v){ if (v === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', v); Platform.store.set('cff.theme', v); glApplyTheme(); }
+/* ================= v5.9 skins and the theme picker (design/2026-11-13-themes-v2-spec.md section 6) =================
+   cff.skin night|sorbet (default night; a saved v1 'clear' or 'bold' counts as night), cff.theme auto|light|dark (unchanged; Night ignores it
+   but never overwrites it, so going back to Sorbet restores her mode), cff.map standard|themed (default standard). The boot script in the
+   head sets the same attributes before first paint. */
+var SKIN_FONTS = {night:'family=Unbounded:wght@500..700&family=Geist:wght@400..700', sorbet:'family=Fredoka:wght@500..700&family=Figtree:wght@400..800'};
+var THEME_SAVED = true;   // false when storage refused a write ("Only for this visit.")
+function normSkin(v){ return v === 'sorbet' ? 'sorbet' : 'night'; }
+function normMode(v){ return v === 'light' || v === 'dark' ? v : 'auto'; }
+function normMapMode(v){ return v === 'themed' ? 'themed' : 'standard'; }
+function currentSkin(){ return normSkin(document.documentElement.getAttribute('data-skin')); }
+function currentMode(){ return normMode(document.documentElement.getAttribute('data-theme')); }   // the attribute is the truth (set from cff.theme at boot)
+function fontsHref(skin){ return 'https://fonts.googleapis.com/css2?' + SKIN_FONTS[normSkin(skin)] + '&display=swap'; }
+function themeColorNow(){ try { return getComputedStyle(document.documentElement).getPropertyValue('--paper').trim() || '#0B0A10'; } catch (e) { return '#0B0A10'; } }
+function afterThemeChange(){
+  var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', themeColorNow());
+  applyMapTokens(); glApplyTheme();
+  if ($('pTheme') && !$('pTheme').hidden) renderThemePicker();
+  var ab = $('aboutTheme'); if (ab) ab.innerHTML = themePickerHTML();
+}
+function setSkin(v, keep){
+  var s = normSkin(v), de = document.documentElement;
+  de.setAttribute('data-skin', s);
+  var lk = $('cffFonts'); if (lk && lk.getAttribute('href') !== fontsHref(s)) lk.setAttribute('href', fontsHref(s));
+  if (!keep) THEME_SAVED = Platform.store.set('cff.skin', s);
+  afterThemeChange(); return s;
+}
+function setTheme(v, keep){
+  v = normMode(v);
+  if (v === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', v);
+  if (!keep) THEME_SAVED = Platform.store.set('cff.theme', v);
+  afterThemeChange(); return v;
+}
+function setMapMode(v, keep){
+  v = normMapMode(v); document.documentElement.setAttribute('data-map', v);
+  if (!keep) THEME_SAVED = Platform.store.set('cff.map', v);
+  afterThemeChange(); return v;
+}
+function themePickerHTML(){
+  var skin = currentSkin(), mode = currentMode(), mm = mapMode(), night = skin === 'night';
+  var dots = ['play', 'nature', 'shows', 'eat'].map(function(k){ return '<i style="--c:var(--g-' + k + ')"></i>'; }).join('');
+  function sw(id, name){
+    var on = skin === id;
+    return '<button type="button" data-setskin="' + id + '" aria-pressed="' + on + '" aria-label="' + name + ' theme"><span class="th-mini" data-skin="' + id + '"><span class="aa">Aa</span><span class="row2"><span class="dots">' + dots + '</span><span class="pill"></span></span></span>' +
+      '<span class="th-name">' + name + (on ? glyphSvg('i-check') : '') + '</span></button>';
+  }
+  var shown = night ? 'dark' : mode;
+  var h = '<div class="th-sw">' + sw('night', 'Night') + sw('sorbet', 'Sorbet') + '</div>';
+  h += '<p class="th-lab" id="thModeLab">Mode</p><div class="seg th-seg" role="group" aria-labelledby="thModeLab"' + (night ? ' aria-disabled="true"' : '') + '>' + [['auto', 'Auto'], ['light', 'Light'], ['dark', 'Dark']].map(function(x){
+    return '<button type="button" data-mode="' + x[0] + '" aria-pressed="' + (shown === x[0]) + '"' + (night ? ' aria-disabled="true"' : '') + '>' + x[1] + '</button>'; }).join('') + '</div>';
+  if (night) h += '<p class="th-note">Night is always dark.</p>';
+  h += '<p class="th-lab" id="thMapLab">Map</p><div class="seg th-seg" role="group" aria-labelledby="thMapLab">' + [['standard', 'Standard'], ['themed', 'Themed']].map(function(x){
+    return '<button type="button" data-mapstyle="' + x[0] + '" aria-pressed="' + (mm === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>';
+  h += '<p class="th-foot">' + (Platform.store.ok && THEME_SAVED ? 'Saved on this phone.' : 'Only for this visit.') + '</p>';
+  return h;
+}
+function renderThemePicker(){ var b = $('pThemeBody'); if (b) b.innerHTML = themePickerHTML(); }
+function openThemePicker(){ renderThemePicker(); openPanel('pTheme'); }
+function themeClick(e){ // shared by the Theme panel and About; true when the click was a theme control
+  var t = e.target.closest('[data-setskin],[data-mode],[data-mapstyle]'); if (!t) return false;
+  if (t.hasAttribute('data-mode')) { if (t.getAttribute('aria-disabled') === 'true') return true; setTheme(t.getAttribute('data-mode')); }
+  else if (t.hasAttribute('data-mapstyle')) setMapMode(t.getAttribute('data-mapstyle'));
+  else setSkin(t.getAttribute('data-setskin'));
+  return true;
+}
+/* The drawn SVG map (claude.ai, or no tiles) takes the same palette as the street map (spec 4.3, last line). */
+function svgMapTokens(key){
+  var p = MAP_PAL[key] || MAP_PAL['std-dark'];
+  return {'--land-0':p.land, '--land-1':p.land, '--land-2':p.land, '--land-3':p.land, '--area-line':p.minor, '--lake':p.water, '--lake-hatch':p.water, '--lake-ink':p.waterText,
+    '--shore':p.waterway, '--river':p.waterway, '--suburb':p.building, '--map-label':p.hoodText, '--line-casing':p.land};
+}
+function applyMapTokens(){
+  var app = $('app'); if (!app) return;
+  var tk = svgMapTokens(mapVariant());
+  Object.keys(tk).forEach(function(k){ app.style.setProperty(k, tk[k]); });
+}
 
 /* ================= events wiring ================= */
 /* v5.7 (owner on her PC): a mouse wheel over the top of the list screen (search, tiles, sub-chips, result line) did nothing, and a
@@ -5714,7 +6124,8 @@ function bindUI(){
   });
   $('pSmallBody').addEventListener('change', function(e){ if (e.target.id === 'pickAt' && parseDT(e.target.value)) { S.when = 'pick'; S.pickAt = e.target.value; refresh(); if (smallRender) smallRender(); } });
   $('pAboutBody').addEventListener('click', function(e){
-    var t = e.target.closest('[data-theme]'); if (t) { setTheme(t.getAttribute('data-theme')); renderAbout(); return; }
+    if (themeClick(e)) return;   // v5.9: the Theme block (skin, mode, map); the old [data-theme] test also matched <html data-theme>
+
     var a = e.target.closest('[data-act="selftest"]'); if (a) showSelfTest();
     if (e.target.closest('[data-act="tip"]')) { closePanel('pAbout'); openTip(); }
   });
@@ -5729,7 +6140,7 @@ function onHomeClick(e){
   var w = t.closest('[data-who]');
   if (w) { var k = w.getAttribute('data-who'), was = !!S.f.who[k]; ['date', 'friends', 'solo'].forEach(function(x){ delete S.f.who[x]; }); if (!was) S.f.who[k] = true; refresh(); return; }
   var wh = t.closest('[data-when]');
-  if (wh) { var v = wh.getAttribute('data-when'); if (v === 'pick') openSmall('When?', smallWhen); else { S.when = v; refresh(); } return; }
+  if (wh) { var v = wh.getAttribute('data-when'); if (v === 'pick') openSmall('When?', smallWhen); else { S.when = normWhen(v); refresh(); } return; }
   var pl = t.closest('[data-plan]');
   if (pl) { S.when = 'pick'; S.pickAt = pl.getAttribute('data-plan'); refresh(); return; }
   var act = t.closest('[data-act]');
@@ -5742,6 +6153,7 @@ function onHomeClick(e){
     else if (a === 'loc') openLocation(false);
     else if (a === 'tip') openTip();
     else if (a === 'about') { renderAbout(); openPanel('pAbout'); }
+    else if (a === 'theme') openThemePicker();
     else if (a === 'retry') loadData();
     else if (a === 'clearall') { S.f = ext(appDefaultFilters(), {radius:S.f.radius, mode:S.f.mode}); S.budgetOn = false; selectGenre('', {keep:true}); }
     else if (a === 'clearsel') selectGenre('', {keep:true});   // v5: the "Play + Limited" chip on the home screen
@@ -5755,6 +6167,7 @@ function onListClick(e){
   if (t.closest('[data-share]')) return;
   var sv = t.closest('[data-save]'); if (sv) { e.stopPropagation(); toggleSave(sv.getAttribute('data-save')); return; }
   if (t.closest('[data-stop]')) return;
+  var opn = t.closest('[data-open]'); if (opn) { openDetail(opn.getAttribute('data-open')); return; }   // v5.9: the Ending soon banner opens THAT item (it used to switch on Limited)
   var tile = t.closest('[data-tile]');
   if (tile) { if (!$('pSaved').hidden) closePanel('pSaved'); selectGenre(tile.getAttribute('data-tile'), {keep:true, rest:tile.hasAttribute('data-rest')}); return; }
   var fold = t.closest('[data-fold]');
@@ -6525,7 +6938,7 @@ function runSelfTest0(){
     eq('the tag "quiet" alone does not move a garden', genreOf(fx({category:'nature-outdoors', tags:['quiet']})), 'nature');
     eq('seasonal goes by name: market, parade, rink, light show, other', [genreOf(fx({category:'seasonal', name:'Holiday Market'})), genreOf(fx({category:'seasonal', name:'Thanksgiving Parade'})), genreOf(fx({category:'seasonal', name:'Ice Rink at the Park'})), genreOf(fx({category:'seasonal', name:'Lightscape'})), genreOf(fx({category:'seasonal', name:'Christmas exhibit'}))].join(), 'eat,shows,play,nature,look');
     eq('arcade and skyscraper land in different kinds (her example)', [genreOf(fx({category:'games-arcade'})), genreOf(fx({id:'pc-360-chicago', category:'food-drink-experience'}))].join(), 'play,look');
-    eq('sub-chips: mini golf, views, bugs, cheese, baths', [subOf(fx({category:'mini-golf'})), subOf(fx({category:'art-museum', tags:['skyline']})), subOf(fx({category:'unique-niche', genre:'nature-animals', tags:['bugs']})), subOf(fx({category:'unique-niche', genre:'eat-drink', tags:['cheese']})), subOf(fx({category:'unique-niche', tags:['sauna']}))].join(), 'minigolf,views,bugs,cheese,baths');
+    eq('sub-chips: mini golf, views, bugs (in Animals since v5.9), cheese, baths', [subOf(fx({category:'mini-golf'})), subOf(fx({category:'art-museum', tags:['skyline']})), subOf(fx({category:'unique-niche', genre:'nature-animals', tags:['bugs']})), subOf(fx({category:'unique-niche', genre:'eat-drink', tags:['cheese']})), subOf(fx({category:'unique-niche', tags:['sauna']}))].join(), 'minigolf,views,animals,cheese,baths');
     var five = [fx({category:'mini-golf'}), fx({category:'mini-golf'}), fx({category:'escape-room'}), fx({category:'escape-room'}), fx({category:'racing-karting'})];
     eq('sub-chip rule: a chip needs 2+ items (Racing has 1)', subsShown(five, 'play').map(function(s){ return s[0]; }).join(), 'minigolf,escape');
     eq('...and the row needs 2+ such chips', subsShown([fx({category:'mini-golf'}), fx({category:'mini-golf'}), fx({category:'escape-room'})], 'play').length, 0);
@@ -6659,8 +7072,8 @@ function runSelfTest0(){
     eq('running 3, open now 1, shut 2', [v.onNow.length, v.onOpen.length, v.onShut.length].join(), '3,1,2');
     eq('the Limited and Sights tiles count what is open now', v.tiles[0].n + '|' + v.tiles[2].n, '1|1');
     eq('the result line', resultLine(v).replace(/<[^>]+>/g, ''), '1 Sights limited open now · 3 running');
-    var hl = limitedListHTML(v), iRun = hl.indexOf('Running, open later');
-    ok('the list: open ones first, shut ones under "Running, open later"', iRun > 0 && hl.indexOf('Look limited open') < iRun && hl.indexOf('Look limited shut') > iRun, hl.replace(/<[^>]+>/g, ' ').slice(0, 200));
+    var hl = limitedListHTML(v), iRun = hl.search(/Running, (open later|closed)/);   // v5.9: shut ones are split into "open later" (known hours, later today) and "closed"
+    ok('the list: open ones first, shut ones under "Running, open later / closed"', iRun > 0 && hl.indexOf('Look limited open') < iRun && hl.indexOf('Look limited shut') > iRun, hl.replace(/<[^>]+>/g, ' ').slice(0, 200));
     UI.planning = keepPl;
   });
 
@@ -6684,12 +7097,177 @@ function runSelfTest0(){
     eq('Drive mode: the same 20 mi place is still "far" (about ' + carMin(20) + ' min)', reachTier({trav:travel(20, 'car')}), 2);
   });
 
+  block('v5.9 "Today" replaces "Tonight" (owner 2026-11-13)', function(){
+    var keepN = UI.nowOverride, keepW = S.when, keepPk = S.pickAt, keepV = UI.view;
+    try {
+      UI.nowOverride = fromChicago('2026-11-13', 18 * 60);
+      eq('a remembered or linked "tonight" becomes "today"', [normWhen('tonight'), normWhen('now'), normWhen('pick')].join(), 'today,now,pick');
+      S.when = 'today'; var T = evalTime();
+      eq('Today: from now, any-time logic for the rest of today', [T === nowMs(), UI.anyDay, UI.today, ctxNow().day].join('|'), 'true|2026-11-13|true|2026-11-13');
+      S.when = 'pick'; S.pickAt = '2026-11-13'; evalTime(); var dayPick = ctxNow().day;
+      S.when = 'today'; evalTime();
+      eq('...the same day window as picking today with "Any time"', ctxNow().day, dayPick);
+      eq('Today: label and wording', [whenLabel(), planWhen(false), planWhen(true)].join('|'), 'Today|today|today');
+      eq('Today: rows stay in the present tense (not "then")', planCtx(nowMs()).on, false);
+      S.when = 'tonight'; evalTime();
+      eq('an old "tonight" state is read as Today', S.when + '|' + UI.today, 'today|true');
+      S.when = 'today'; refresh();
+      ok('no "Planning ahead" banner and no "Planning for" line for Today', listRoot.innerHTML.indexOf('Planning ahead') < 0 && $('kicker').textContent.indexOf('Planning') < 0, $('kicker').textContent);
+      ok('the When chips are Now / Today / Pick a day', /data-when="today"[^>]*>Today</.test($('homeRoot').innerHTML) && !/Tonight/.test($('homeRoot').innerHTML), 'chips');
+      ok('the headline says today', / today/.test($('resline').textContent + ' ' + $('homeRoot').querySelector('.hm-title').textContent), $('resline').textContent + ' / ' + $('homeRoot').querySelector('.hm-title').textContent);
+    } finally { UI.nowOverride = keepN; S.when = keepW; S.pickAt = keepPk; UI.planning = false; UI.planAt = null; UI.anyDay = ''; UI.today = false; refresh(); }
+  });
+  block('v5.9 sub-chips: merged, 2+ items each, no 0s, 2+ chips or no row, one chip per item', function(){
+    var names = {}; GENRES.forEach(function(g){ names[g.id] = g.subs.map(function(s){ return s[1]; }).join(' / '); });
+    info('final sub-chips: ' + GENRES.map(function(g){ return genreShort(g.id) + ': ' + names[g.id]; }).join(' | '));
+    eq('Make: "Clay & glass" and "Crafts" are one "Art & crafts" chip', names.make, 'Art & crafts / Cooking & cocktails / Music & dance');
+    eq('a pottery class and a craft night land in the same chip', [subOf(fx({category:'classes-workshops', genre:'make', name:'Pottery wheel night', tags:['pottery']}), 'make'), subOf(fx({category:'classes-workshops', genre:'make', name:'Candle making'}), 'make')].join(), 'craft,craft');
+    eq('Nature: Bugs merged into "Animals & bugs"', names.nature, 'Animals & bugs / Gardens / Walks');
+    var dupNames = []; GENRES.forEach(function(g){ var seen = {}; g.subs.forEach(function(s){ if (seen[s[0]]) dupNames.push(g.id + ':' + s[0]); seen[s[0]] = 1; }); });
+    eq('no chip id twice in a kind', dupNames.join(), '');
+    eq('a chip needs 2+ items in this view (Crafts 1, Music 0 -> no row)', subChipsFor({craft:1, music:0, cook:0}, 'make', '').length, 0);
+    eq('2 chips with 2+ items -> the row shows just those', subChipsFor({craft:3, cook:2, music:1}, 'make', '').map(function(s){ return s[0] + '=' + s[2]; }).join(), 'craft=3,cook=2');
+    eq('only 1 chip with 2+ -> no row', subChipsFor({craft:5, cook:1}, 'make', '').length, 0);
+    ok('never a 0 chip', subChipsFor({games:4, minigolf:2, racing:0, escape:0, move:3}, 'play', '').every(function(s){ return s[2] > 0; }), 'zero');
+    eq('a picked chip stays so she can unpick it', subChipsFor({craft:3, cook:0}, 'make', 'cook').map(function(s){ return s[0]; }).join(), 'craft,cook');
+    var items = DATA.filter(function(it){ return genreOf(it) === 'make'; }), bad = items.filter(function(it){ var s = subOf(it, 'make'); return !GENRE_BY.make.subs.some(function(x){ return x[0] === s; }); });
+    eq('every real Make item has exactly one known chip', bad.map(function(it){ return it.id; }).join(), '');
+    var badAll = DATA.filter(function(it){ var g = genreOf(it); return GENRE_BY[g] && !GENRE_BY[g].subs.some(function(x){ return x[0] === subOf(it, g); }); });
+    eq('every real item in every kind maps to one listed chip', badAll.slice(0, 5).map(function(it){ return it.id + ':' + subOf(it); }).join(), '');
+  });
+  block('v5.9 tiles, fit note, Limited groups, show times (owner, iPhone)', function(){
+    eq('Limited groups: unknown hours never under "open later"', (function(){ var g = limShutGroups([{st:{key:'unknown'}}, {st:{key:'later', opensAt:at('2026-11-14', '17:00'), ms:at('2026-11-14', '12:00')}}, {st:{key:'closed'}}], false); return [g.later.length, g.closed.length, g.unknown.length].join(); })(), '1,1,1');
+    eq('...and in Any-time / Today there is no "later" group at all', (function(){ var g = limShutGroups([{st:{key:'later', opensAt:at('2026-11-14', '17:00'), ms:at('2026-11-14', '12:00')}}], true); return g.later.length; })(), 0);
+    var stp = fx({kind:'event', name:'Play at a theatre', category:'show-comedy-music', duration_minutes:145, hours_note:'Evenings at 7:30 PM, weekend matinees at 3 PM.', event_dates:[{start:'2026-11-14T15:00', end:'2026-11-14T17:25'}, {start:'2026-11-14T19:30', end:'2026-11-14T21:55'}]});
+    eq('a dated show on a picked day lists its start times', dayShowTimes(stp, '2026-11-14', at('2026-11-14', '05:00')), 'Show at 3 pm, 7:30 pm');
+    eq('...Today at 6 pm: only the one still ahead', dayShowTimes(stp, '2026-11-14', at('2026-11-14', '18:00')), 'Show at 7:30 pm');
+    var fn = fitNote({anyDay:'2026-11-14', st:{open:true}, fit:{kind:'tight', closesAt:at('2026-11-14', '17:00'), get:225, typical:90, min:60, thereKnown:true}});
+    eq('Any time: "only 225 min" is not shown when that is plenty', fn, null);
+    var fn2 = fitNote({st:{open:true}, fit:{kind:'tight', closesAt:at('2026-11-14', '17:00'), get:40, typical:90, min:60, thereKnown:true}});
+    ok('a real short visit is a short warning in hours and minutes', fn2 && fn2.warn && !/\d{3} min/.test(fn2.t) && /only about/.test(fn2.t), fn2 && fn2.t);
+    var t = $('tiles');
+    if (t && UI.lastVm) { var keepSel = UI.gsel; UI.gsel = {gs:[], lim:true}; refresh(); var bubbles = t.querySelectorAll('.ltd').length; var nums = Array.prototype.map.call(t.querySelectorAll('.tile'), function(el){ return el.getAttribute('data-tile') + '=' + el.querySelector('.num').textContent; }).join();
+      UI.gsel = keepSel; refresh();
+      eq('with Limited on: no red bubbles on the tiles', bubbles, 0);
+      ok('...each kind tile\'s big number is its limited count', /play=\d+/.test(nums), nums); }
+    else info('tiles not rendered here');
+  });  block('v5.9 festivals can be joined any time (owner: WeishFest at 7 pm said "can\'t join")', function(){
+    var wf = fx({kind:'event', name:'WeishFest-like music fest', category:'show-comedy-music', tags:['music', 'friends'], hours_note:'Doors 4 PM. Band A 5:30 PM, Band B 7:15 PM, Band C 9 PM. Ends about 10:30 PM.', event_dates:[{start:'2026-11-14T16:00', end:'2026-11-14T22:30'}]});
+    var s = stx(wf, '2026-11-14', '19:00');
+    ok('a 4-10:30 pm festival at 7 pm is on now, till 10:30 pm (not "in progress")', s.open && /till 10:30 pm/.test(s.d.text) && !/in progress/i.test(s.d.text + ' ' + (s.d.sub || '')), s.d.text + ' | ' + (s.d.sub || ''));
+    var wf2 = fx({kind:'event', name:'Evening concert', category:'show-comedy-music', tags:['music'], event_dates:[{start:'2026-11-14T16:00', end:'2026-11-14T22:30'}]});
+    ok('...the same with no "fest" in the name: a 6.5-hour window is a door window, not a show start', stx(wf2, '2026-11-14', '19:00').open, stx(wf2, '2026-11-14', '19:00').d.text);
+    eq('festival, fair, market tags and the seasonal category join any time', [joinAnytime({tags:['festival']}), joinAnytime({tags:['fair']}), joinAnytime({category:'seasonal'}), joinAnytime({name:'Christmas market'})].join(), 'true,true,true,true');
+    var show = fx({kind:'event', name:'Comedy show', category:'show-comedy-music', event_dates:[{start:'2026-11-14T19:00', end:'2026-11-14T20:30'}]});
+    ok('a 90-minute show that started at 7 is still "in progress" at 7:30', !stx(show, '2026-11-14', '19:30').open && /in progress/i.test(stx(show, '2026-11-14', '19:30').d.text), stx(show, '2026-11-14', '19:30').d.text);
+    var srcOK = /class="strip" type="button" data-open=/.test(String(document.currentScript ? '' : '') + Array.prototype.map.call(document.scripts, function(x){ return x.textContent.indexOf('class="strip"') >= 0 ? x.textContent : ''; }).join(''));
+    ok('the Ending soon banner is built with data-open="<item id>"', srcOK, 'not found');
+    var stp = listRoot.querySelector('.strip');
+    if (stp) ok('...and the one on screen names a real item', !!stp.getAttribute('data-open') && DATA.some(function(it){ return it.id === stp.getAttribute('data-open'); }), stp.outerHTML.slice(0, 120));
+    else info('no Ending soon banner on screen right now');
+  });
+  block('v5.9 map styles: Standard (Google-like) and Themed, no 3D, no transit clutter', function(){    function rgb(h){ var c = hexRgb(h); return c || [0, 0, 0]; }
+    function lum(h){ var c = rgb(h); return (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) / 255; }
+    eq('5 map variants', Object.keys(MAP_PAL).sort().join(), 'night,sorbet-dark,sorbet-light,std-dark,std-light');
+    var roles = Object.keys(MAP_ROLES), badR = [];
+    MAP_VARIANTS.forEach(function(v){ roles.forEach(function(r){ var x = MAP_PAL[v][r]; if (r === 'cta' ? !(x > 0 && x <= 1) : !(hexRgb(x) || /^rgba\(/.test(x))) badR.push(v + '.' + r); }); });
+    eq('every variant has every role as a color (and a CTA opacity)', badR.join(), '');
+    var miss = MAP_PAINT.filter(function(r){ return !Object.prototype.hasOwnProperty.call(MAP_ROLES, r[2]); }).map(function(r){ return r[0] + '/' + r[2]; });
+    eq('every repaint row names a known role', miss.join(), '');
+    var L = MAP_PAL['std-light'];
+    eq('Standard light: white streets and main roads', L.minor + ' ' + L.major, '#FFFFFF #FFFFFF');
+    ok('Standard light: only highways are soft yellow (red > blue, light)', rgb(L.motor)[0] > rgb(L.motor)[2] + 60 && lum(L.motor) > 0.8, L.motor);
+    ok('Standard light: light blue water (blue is the strongest channel)', rgb(L.water)[2] > rgb(L.water)[0] + 40 && lum(L.water) > 0.7, L.water);
+    ok('Standard light: green parks (green is the strongest channel)', rgb(L.park)[1] > rgb(L.park)[0] && rgb(L.park)[1] > rgb(L.park)[2], L.park);
+    ok('Standard light: light grey land, no beige (spread of channels 10 or less)', Math.max.apply(null, rgb(L.land)) - Math.min.apply(null, rgb(L.land)) <= 10 && lum(L.land) > 0.9, L.land);
+    ok('road names readable on land in every variant (4.5:1 or more)', MAP_VARIANTS.every(function(v){ return contrastRatio(MAP_PAL[v].roadText, MAP_PAL[v].land) >= 4.5; }), MAP_VARIANTS.map(function(v){ return v + ' ' + contrastRatio(MAP_PAL[v].roadText, MAP_PAL[v].land).toFixed(1); }).join(', '));
+    ok('CTA lines are softer than before (opacity under .8 everywhere)', MAP_VARIANTS.every(function(v){ return MAP_PAL[v].cta < 0.8; }), MAP_VARIANTS.map(function(v){ return MAP_PAL[v].cta; }).join());
+    eq('which variant shows: Standard follows only light/dark', [mapVariantFor('night', true, 'standard'), mapVariantFor('sorbet', false, 'standard'), mapVariantFor('sorbet', true, 'standard')].join(), 'std-dark,std-light,std-dark');
+    eq('which variant shows: Themed follows the skin', [mapVariantFor('night', true, 'themed'), mapVariantFor('sorbet', false, 'themed'), mapVariantFor('sorbet', true, 'themed')].join(), 'night,sorbet-light,sorbet-dark');
+    eq('a missing map setting means Standard', mapVariantFor('sorbet', false, undefined), 'std-light');
+    eq('the base style is positron for every variant (no style swap)', glStyleUrl(), 'https://tiles.openfreemap.org/styles/positron');
+    ok('glAddExtras adds no fill-extrusion (3D) layer', String(glAddExtras).indexOf('fill-extrusion') < 0 && String(glPrepBase).indexOf("type:'fill-extrusion'") < 0, 'found');
+    var fake = {ls:[{id:'background', type:'background'}, {id:'building', type:'fill'}, {id:'building-3d', type:'fill-extrusion'}, {id:'cff-3d', type:'fill-extrusion'}, {id:'label_city', type:'symbol'}],
+      getStyle:function(){ return {layers:this.ls.slice()}; }, removeLayer:function(id){ this.ls = this.ls.filter(function(l){ return l.id !== id; }); }};
+    eq('3D layers are removed from any style (building-3d, cff-3d)', glStripExtrusions(fake) + '|' + fake.ls.map(function(l){ return l.id; }).join(), '2|background,building,label_city');
+    eq('transit-stop, bus, station and POI labels count as clutter', ['poi_r20', 'poi_transit', 'bus_stop', 'station_label', 'airport'].map(function(id){ return isClutterLayer({id:id, type:'symbol'}); }).join(), 'true,true,true,true,true');
+    eq('...street names, place names, water names and the L lines do not', [isClutterLayer({id:'highway-name-major', type:'symbol'}), isClutterLayer({id:'label_city', type:'symbol'}), isClutterLayer({id:'water_name_line_label', type:'symbol'}), isClutterLayer({id:'railway_transit', type:'line'}), isClutterLayer({id:'water_name_point_label', type:'symbol'})].join(), 'false,false,false,false,false');
+    var lt = glLayerTypes();
+    if (lt) {
+      eq('live street map: no fill-extrusion layer', lt.filter(function(s){ return /:fill-extrusion/.test(s); }).join(), '');
+      eq('live street map: no visible POI / transit-stop symbol layer', lt.filter(function(s){ return /:symbol$/.test(s) && /poi|transit|bus|station/i.test(s); }).join(), '');
+      ok('live street map: our park and minor-casing layers are in', lt.some(function(s){ return /^cff-green:/.test(s); }) && lt.some(function(s){ return /^cff-minor-casing:/.test(s); }), lt.filter(function(s){ return /^cff-/.test(s); }).join());
+      eq('live street map: flat (pitch 0, cannot tilt)', GLM.map.getPitch() + '|' + GLM.map.getMaxPitch(), '0|0');
+      eq('live street map: painted with the variant that should show', GLM.variant, mapVariant());
+    } else info('street map not running here (' + (GLM.why || GLM.state) + '): the live-layer checks run on the website with #map=gl');
+  });
+  block('v5.9 skins (Night, Sorbet) and the theme picker', function(){
+    var de = document.documentElement, k = {skin:de.getAttribute('data-skin'), theme:de.getAttribute('data-theme'), map:de.getAttribute('data-map')};
+    function paper(){ return getComputedStyle(de).getPropertyValue('--paper').trim().toUpperCase(); }
+    function restore(){ de.setAttribute('data-skin', k.skin || 'night'); if (k.theme === null) de.removeAttribute('data-theme'); else de.setAttribute('data-theme', k.theme); de.setAttribute('data-map', k.map || 'standard'); afterThemeChange(); }
+    try {
+      ok('the boot script set data-skin and data-map before the app started', !!k.skin && !!k.map, JSON.stringify(k));
+      eq('skin names: clear and bold from v1 become Night', ['night', 'sorbet', 'clear', 'bold', '', null, 'x'].map(normSkin).join(), 'night,sorbet,night,night,night,night,night');
+      eq('map setting: Standard unless Themed', ['themed', 'standard', '', null, 'retro'].map(normMapMode).join(), 'themed,standard,standard,standard,standard');
+      setSkin('night', true); setTheme('light', true);
+      eq('Night with Mode Light is still dark (paper)', paper(), '#0B0A10');
+      eq('Night: themeIsDark() is true even with Mode Light', themeIsDark(), true);
+      setSkin('sorbet', true);
+      eq('Sorbet light paper', paper(), '#FCFAFF');
+      eq('Sorbet light: themeIsDark() false', themeIsDark(), false);
+      setTheme('dark', true);
+      eq('Sorbet dark paper', paper(), '#16131C');
+      setMapMode('themed', true); eq('Sorbet dark + Themed map = sorbet-dark', mapVariant(), 'sorbet-dark');
+      setMapMode('standard', true); eq('Sorbet dark + Standard map = std-dark', mapVariant(), 'std-dark');
+      eq('the drawn map takes the same palette (lake = water)', getComputedStyle($('app')).getPropertyValue('--lake').trim().toUpperCase(), MAP_PAL['std-dark'].water);
+      ok('fonts follow the skin (Fredoka + Figtree for Sorbet)', /Fredoka/.test($('cffFonts').getAttribute('href')) && /Figtree/.test($('cffFonts').getAttribute('href')), $('cffFonts').getAttribute('href'));
+      eq('theme-color follows the paper', document.querySelector('meta[name="theme-color"]').getAttribute('content').toUpperCase(), '#16131C');
+      setTheme('auto', true); setSkin('night', true);
+      ok('fonts follow the skin (Unbounded + Geist for Night)', /Unbounded/.test($('cffFonts').getAttribute('href')) && /Geist/.test($('cffFonts').getAttribute('href')), $('cffFonts').getAttribute('href'));
+      ok('no Big Shoulders anywhere (display face is Unbounded / Fredoka)', !/Shoulders/i.test(getComputedStyle(de).getPropertyValue('--f-display')) && !/Shoulders/i.test(String(document.querySelector('style') && document.querySelector('style').textContent).slice(0, 4000)), getComputedStyle(de).getPropertyValue('--f-display'));
+      var host = document.createElement('div'); host.style.cssText = 'position:absolute;visibility:hidden;left:-9999px;top:0;width:390px';
+      host.innerHTML = '<p class="kicker">a</p><h3 class="sec-h">b</h3><p class="rk">c</p><span class="tag">d</span><span class="until">e</span><span class="strip"><span class="stub">f</span></span><div class="dt-sec"><h2>g</h2></div><p class="flabel">h</p><div class="tile zero">i</div><div class="mk hollow"><div class="mk-body">j</div></div><span class="thumb hollow">k</span>';
+      $('app').appendChild(host);
+      var up = [], dash = [], spaced = [];
+      Array.prototype.forEach.call(host.querySelectorAll('*'), function(el){ var cs = getComputedStyle(el);
+        if (cs.textTransform === 'uppercase') up.push(el.className || el.tagName);
+        if ([cs.borderTopStyle, cs.borderRightStyle, cs.borderBottomStyle, cs.borderLeftStyle].indexOf('dashed') >= 0) dash.push(el.className || el.tagName);
+        var ls = parseFloat(cs.letterSpacing); if (ls > 0.5) spaced.push((el.className || el.tagName) + ' ' + cs.letterSpacing); });
+      eq('no uppercase labels (kicker, section heads, tags, until, stub, detail heads)', up.join(), '');
+      eq('no dashed borders (zero tile, hollow pin, hollow thumb, stub)', dash.join(), '');
+      eq('no letter-spaced labels', spaced.join(), '');
+      var us = getComputedStyle(host.querySelector('.until')), mk = us.webkitMaskImage || us.maskImage || 'none';
+      eq('no ticket notches on the "until" badge', mk, 'none');
+      host.parentNode.removeChild(host);
+      ok('the Home header has a palette button', /data-act="theme"/.test($('homeRoot').innerHTML), 'missing');
+      ok('the map top bar has a palette button', !!$('mapTheme') && $('mapTheme').getAttribute('aria-label') === 'Theme', 'missing');
+      var pick = document.createElement('div'); pick.innerHTML = themePickerHTML();
+      eq('picker: 2 swatches, Night picked', Array.prototype.map.call(pick.querySelectorAll('[data-setskin]'), function(b){ return b.getAttribute('data-setskin') + '=' + b.getAttribute('aria-pressed'); }).join(), 'night=true,sorbet=false');
+      eq('picker: swatch names for screen readers', Array.prototype.map.call(pick.querySelectorAll('[data-setskin]'), function(b){ return b.getAttribute('aria-label'); }).join(), 'Night theme,Sorbet theme');
+      var segM = pick.querySelector('[aria-labelledby="thModeLab"]');
+      eq('picker under Night: Mode shows Dark, dimmed and disabled', segM.getAttribute('aria-disabled') + '|' + Array.prototype.map.call(segM.querySelectorAll('button'), function(b){ return b.textContent + '=' + b.getAttribute('aria-pressed'); }).join(), 'true|Auto=false,Light=false,Dark=true');
+      ok('picker under Night says "Night is always dark."', pick.textContent.indexOf('Night is always dark.') >= 0, pick.textContent.slice(0, 120));
+      eq('picker: Map Standard / Themed, Standard picked', Array.prototype.map.call(pick.querySelectorAll('[data-mapstyle]'), function(b){ return b.textContent + '=' + b.getAttribute('aria-pressed'); }).join(), 'Standard=true,Themed=false');
+      ok('picker footnote', /Saved on this phone\.|Only for this visit\./.test(pick.textContent), pick.textContent.slice(-40));
+      setSkin('sorbet', true); pick.innerHTML = themePickerHTML(); segM = pick.querySelector('[aria-labelledby="thModeLab"]');
+      eq('picker under Sorbet: Mode is live, no Night note', String(segM.getAttribute('aria-disabled')) + '|' + (pick.textContent.indexOf('Night is always dark.') >= 0), 'null|false');
+      var stA = Platform.store.get('cff.theme', 'auto');
+      var fakeE = {target:{closest:function(){ return {hasAttribute:function(a){ return a === 'data-mode'; }, getAttribute:function(a){ return a === 'aria-disabled' ? 'true' : 'light'; }}; }}};
+      setSkin('night', true); themeClick(fakeE);
+      eq('a tap on the dimmed Mode control under Night changes nothing', Platform.store.get('cff.theme', 'auto'), stA);
+      var mem = {}, fakeLS = {getItem:function(x){ return Object.prototype.hasOwnProperty.call(mem, x) ? mem[x] : null; }, setItem:function(x, v){ mem[x] = String(v); }, removeItem:function(x){ delete mem[x]; }};
+      var st2 = Platform.makeStore(fakeLS); st2.set('cff.skin', 'sorbet'); st2.set('cff.map', 'themed');
+      eq('the choice is stored as JSON the boot script reads', mem['cff.skin'] + '|' + mem['cff.map'], '"sorbet"|"themed"');
+      var deadS = Platform.makeStore({getItem:function(){ throw new Error('x'); }, setItem:function(){ throw new Error('x'); }, removeItem:function(){}});
+      eq('blocked storage: no crash, skin falls back to Night', normSkin(deadS.get('cff.skin', null)) + '|' + deadS.set('cff.skin', 'sorbet'), 'night|false');
+    } finally { restore(); }
+  });
   block('v5.1 look: dark street map, tiles, photo crop, zero filters (tester M3, M4, M5, L4)', function(){
     function lum(hex){ var m = /^#([0-9a-f]{6})$/i.exec(hex); if (!m) return -1; var n = parseInt(m[1], 16); return (0.2126 * (n >> 16 & 255) + 0.7152 * (n >> 8 & 255) + 0.0722 * (n & 255)) / 255; }
-    var bg = lum(GL_DARK_PAINT.background['background-color']);
-    ok('dark map: the lake is clearly bluer than land', parseInt(GL_DARK_PAINT.water['fill-color'].slice(5, 7), 16) - parseInt(GL_DARK_PAINT.background['background-color'].slice(5, 7), 16) >= 40, GL_DARK_PAINT.water['fill-color']);
-    ok('dark map: streets, main roads and expressways are lighter than land', lum(GL_DARK_PAINT.highway_minor['line-color']) - bg > 0.15 && lum(GL_DARK_PAINT.highway_major_inner['line-color']) - bg > 0.3 && lum(GL_DARK_PAINT.highway_motorway_inner['line-color']) - bg > 0.4, [GL_DARK_PAINT.highway_minor['line-color'], GL_DARK_PAINT.highway_major_inner['line-color']].join());
-    ok('dark map: street names are light', lum(GL_DARK_PAINT.highway_name_other['text-color']) > 0.75, GL_DARK_PAINT.highway_name_other['text-color']);
+    var SD = MAP_PAL['std-dark'], bg = lum(SD.land);   // v5.9: the old GL_DARK_PAINT retired; the same checks on the Standard dark palette
+    ok('dark map: the lake is clearly bluer than land', parseInt(SD.water.slice(5, 7), 16) - parseInt(SD.land.slice(5, 7), 16) >= 20, SD.water + ' on ' + SD.land);
+    ok('dark map: streets, main roads and expressways are lighter than land', lum(SD.minor) - bg > 0.05 && lum(SD.major) - bg > 0.1 && lum(SD.motor) - bg > 0.2, [SD.minor, SD.major, SD.motor].join());
+    ok('dark map: street names are light', lum(SD.roadText) > 0.6, SD.roadText);
     eq('dark map tuning does nothing without a map', glTuneDark(null), 0);
     var host = $('tiles');
     if (host) {
@@ -6908,8 +7486,8 @@ function runSelfTest0(){
     var notSolid = icons.filter(function(id){ var s = document.getElementById(id); return !s || !s.querySelector('[fill="currentColor"]'); });
     eq('every icon is a solid silhouette (filled, not a thin outline)', notSolid.join(), '');
     eq('shapes: ' + KIND_IDS.map(function(k){ return genreShort(k) + '=' + KIND_SHAPE[k]; }).join(', '), uniq(shapes), 8);
-    ['light', 'dark'].forEach(function(th){
-      var C = kindColorsFor(th), bad = [], pairs = [], minD = 999, minPair = '';
+    [['night', 'dark', 'Night'], ['sorbet', 'light', 'Sorbet light'], ['sorbet', 'dark', 'Sorbet dark']].forEach(function(sk){   // v5.9: per skin
+      var th = sk[2], C = kindColorsFor(sk[1], sk[0]), bad = [], pairs = [], minD = 999, minPair = '';
       KIND_IDS.forEach(function(k){ if (!hexRgb(C[k])) bad.push(k + '=' + C[k]); });
       eq(th + ': every kind has a color token (--g-kind)', bad.join(), '');
       if (bad.length) return;
@@ -7217,7 +7795,7 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.8 (2026-11-13)');
+    eq('version', VERSION, 'v5.9 (2026-11-13)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -7503,6 +8081,12 @@ function readHash(){
   if (/(?:^#|&)inapp=1/.test(hsh)) UI.wlUA = 'Mozilla/5.0 (iPhone) Instagram 300.0';
   if (/(?:^#|&)frview=1/.test(hsh)) wt.view = true;
   if (wt.saved || wt.fr || wt.key || wt.wl || wt.detail || wt.view) { wt.panel = /panel=saved/.test(hsh) && !wt.wl; UI.wlTest = wt; if (DATA_LOADED) setTimeout(wlTestHooks, 0); }
+  // v5.9 testing hooks (this visit only, nothing saved): #skin=night|sorbet #mode=auto|light|dark #mapstyle=standard|themed #panel=theme #view=map
+  var skm = /(?:^#|&)skin=(night|sorbet)/.exec(hsh); if (skm) setSkin(skm[1], true);
+  var thm = /(?:^#|&)mode=(auto|light|dark)/.exec(hsh); if (thm) setTheme(thm[1], true);
+  var msm = /(?:^#|&)mapstyle=(standard|themed)/.exec(hsh); if (msm) setMapMode(msm[1], true);
+  if (/(?:^#|&)panel=theme/.test(hsh) && mapEl) openThemePicker();
+  var vwm = /(?:^#|&)view=(map|browse)/.exec(hsh); if (vwm && mapEl) setTimeout(function(){ showView(vwm[1]); }, 0);
   var m = /now=(\d{4}-\d{2}-\d{2}T\d{1,2}:\d{2})/.exec(hsh);
   if (m) setNow(m[1]);
   var lm = /loc=(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/.exec(hsh); // testing hook: #loc=41.892,-87.634
@@ -7536,7 +8120,7 @@ function readHash(){
   var fm = /fold=(rest|tight|both)/.exec(hsh); if (fm && mapEl) { if (fm[1] !== 'tight') UI.foldRest = true; if (fm[1] !== 'rest') UI.foldTight = true; refresh(); }
   if (/panel=filters/.test(hsh) && mapEl) { openFilters(); var dm = /draft=([a-z0-9:$-]+)/i.exec(hsh); if (dm) { applyDraft(UI.draft, dm[1]); renderFilters(); } }
   if (/panel=surprise/.test(hsh) && mapEl) { var trySurprise = function(){ if (DATA_LOADED) openSurprise(); else setTimeout(trySurprise, 200); }; trySurprise(); }
-  var wm = /when=(now|tonight|weekend)/.exec(hsh); if (wm && mapEl) { S.when = wm[1]; refresh(); }
+  var wm = /when=(now|today|tonight|weekend)/.exec(hsh); if (wm && mapEl) { S.when = normWhen(wm[1]); refresh(); }
   var pkm = /pick=(\d{4}-\d{2}-\d{2}(?:T\d{1,2}:\d{2})?)/.exec(hsh); if (pkm && mapEl) { S.when = 'pick'; S.pickAt = pkm[1]; refresh(); }   // v5.3 testing hook: #pick=2026-11-16T12:00 (planning mode); v5.6: #pick=2026-11-18 = Wed, any time
   // v5.6 testing hooks: #mode=transit (not saved), #panel=when, #scroll=far (the list scrolled to "Worth the drive")
   var mdm = /mode=(car|transit|walk)/.exec(hsh); if (mdm && mapEl) { S.f.mode = mdm[1]; refresh(); }
@@ -7643,6 +8227,15 @@ function init(){
   sheetEl = $('sheet'); handleEl = $('sheetHandle'); scrollEl = $('sheetScroll'); listRoot = $('listRoot'); mapPill = $('mapPill');
   $('brandName').textContent = APP_NAME; try { document.title = APP_NAME; } catch (e) {}
   var th = Platform.store.get('cff.theme', 'auto'); if (th === 'light' || th === 'dark') document.documentElement.setAttribute('data-theme', th);
+  // v5.9: the head boot script already set these before first paint; repeat here in case a host dropped it. 'clear' / 'bold' (v1) read as night.
+  var de0 = document.documentElement;
+  if (!de0.getAttribute('data-skin')) de0.setAttribute('data-skin', normSkin(Platform.store.get('cff.skin', 'night')));
+  if (!de0.getAttribute('data-map')) de0.setAttribute('data-map', normMapMode(Platform.store.get('cff.map', 'standard')));
+  var lk0 = $('cffFonts'); if (lk0 && lk0.getAttribute('href') !== fontsHref(currentSkin())) lk0.setAttribute('href', fontsHref(currentSkin()));
+  applyMapTokens();
+  if (window.matchMedia) { try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(){ afterThemeChange(); }); } catch (e) {} }
+  $('pThemeBody').addEventListener('click', function(e){ themeClick(e); });
+  $('mapTheme').addEventListener('click', function(){ openThemePicker(); });
   var sv = Platform.store.get('cff.saved.v1', []); savedIds = Array.isArray(sv) ? sv.filter(function(x){ return typeof x === 'string'; }) : [];
   var r = Platform.store.get('cff.radius.v3', APP_RADIUS); if ([0.5, 1, 2, 5, 10, 25].indexOf(r) >= 0) S.f.radius = r;
   // v5.5: Drive is the default. A remembered 'transit' from before v5.5 (the old default) switches to Drive once; after that her pick is kept.
@@ -7744,6 +8337,11 @@ window.__cff = {
   wlRoute: wlRoute, wlKeep: wlKeep, wlUpdate: wlUpdate, wlDefaultName: wlDefaultName, wlInitials: wlInitials, wlWantsText: wlWantsText, wlView: wlView, wlCleanFriends: wlCleanFriends, wlInApp: wlInApp,
   friends: function(){ return FRIENDS.slice(); }, sidOf: function(id){ return ID_SID[id] || null; }, itemBySid: function(s){ return SID_INDEX[s] || null; },
   openListLink: function(raw){ return wlOpen(raw, 'test'); }, shareMyList: function(){ shareMyList(); }, lastShareLink: function(){ return UI.lastShareLink || ''; }, friendView: function(){ return UI.friendView; },
+  // v5.9 skins + map styles
+  MAP_PAL: MAP_PAL, MAP_PAINT: MAP_PAINT, mapVariant: mapVariant, mapVariantFor: mapVariantFor, mapMode: mapMode, isClutterLayer: isClutterLayer, glStripExtrusions: glStripExtrusions,
+  glLayerTypes: glLayerTypes, glMap: function(){ return GLM.map; }, glVariant: function(){ return GLM.variant || ''; },
+  setSkin: function(v, keep){ return setSkin(v, keep); }, setTheme: function(v, keep){ return setTheme(v, keep); }, setMapMode: function(v, keep){ return setMapMode(v, keep); },
+  currentSkin: currentSkin, themeIsDark: themeIsDark, normSkin: normSkin, themePickerHTML: themePickerHTML, openThemePicker: function(){ openThemePicker(); },
   Platform: Platform
 };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
