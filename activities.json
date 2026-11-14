@@ -51466,5 +51466,617 @@
                            "page_url":  "https://santasrocknlights.com/geneva"
                        }
                    ]
+    },
+    {
+        "id":  "ev-pokemon-bnb-logan-arch",
+        "name":  "Pokémon Build \u0026 Battle prerelease at Logan Arch",
+        "kind":  "event",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "pokemon",
+                     "build-and-battle",
+                     "game-store",
+                     "date-idea",
+                     "date",
+                     "friends",
+                     "rainy-day"
+                 ],
+        "description":  "Crack open a brand-new Pokémon set before it hits stores: you get a Build \u0026 Battle Box, build a 40-card deck at the table in 30 minutes, then play three rounds of quick games. A small, cozy Logan Square shop where the seats sell out fast.",
+        "highlights":  [
+                           "Box has a ready 40-card deck, 4 new-set packs and a promo card; Logan Arch adds 3 extra packs",
+                           "30 minutes to build, then 3 rounds of games",
+                           "25 players max, ticket reserves your seat",
+                           "Bring a Pokémon Player ID or get one at the door",
+                           "Energy cards, coins and dice provided"
+                       ],
+        "address":  "2066 N. Milwaukee Ave., Chicago, IL 60647",
+        "neighborhood":  "Logan Square / Bucktown",
+        "lat":  41.9187297,
+        "lng":  -87.6909779,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "$30, Build \u0026 Battle Box and 3 extra packs included",
+        "duration_minutes":  180,
+        "min_minutes":  180,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+                                  [
+                                      "12:00",
+                                      "18:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "12:00",
+                                      "18:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "12:00",
+                                      "18:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "12:00",
+                                      "18:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "12:00",
+                                      "18:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "12:00",
+                                      "18:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Build \u0026 Battle events around each new Pokémon set; dates posted about 2 weeks ahead.",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  null,
+                       "note":  "Build \u0026 Battle events around each new Pokémon set; dates posted about 2 weeks ahead."
+                   },
+        "event_dates":  [
+
+                        ],
+        "end_date_confirmed":  false,
+        "booking":  "required",
+        "age_note":  "",
+        "phone":  "",
+        "website":  "https://www.loganarchchicago.com/",
+        "source_urls":  [
+                            "https://www.loganarchchicago.com/events",
+                            "https://www.loganarchchicago.com/events/2026/11/1/y5mah7olyjxuwlz6v4kvxmjh74wbeu",
+                            "https://www.loganarchchicago.com/",
+                            "https://events.pokemon.com/EventLocator/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.loganarchchicago.com/events/2026/11/1/y5mah7olyjxuwlz6v4kvxmjh74wbeu"
+                     },
+        "taste_checked":  "2026-11-14",
+        "booking_url":  "https://www.loganarchchicago.com/events",
+        "energy":  "chill",
+        "vibe":  "mixed",
+        "moods":  [
+                      "nerdy",
+                      "cozy"
+                  ],
+        "hook":  "Open new Pokémon packs, build a deck, battle 3 rounds",
+        "sid":  369,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-pokemon-bnb-logan-arch-1.jpg",
+                           "credit":  "Logan Arch website",
+                           "page_url":  "https://www.loganarchchicago.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-pokemon-bnb-good-games-chicago",
+        "name":  "Pokémon Build \u0026 Battle prerelease at Good Games Chicago",
+        "kind":  "event",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "pokemon",
+                     "build-and-battle",
+                     "game-store",
+                     "date-idea",
+                     "date",
+                     "friends",
+                     "rainy-day"
+                 ],
+        "description":  "Open a fresh Build \u0026 Battle Box from the newest Pokémon set, build a deck on the spot and play short games against other players weeks before the cards hit stores. Good Games runs several time slots per set in a big play space near DePaul.",
+        "highlights":  [
+                           "Box has a ready 40-card deck, 4 new-set packs and a promo card",
+                           "Several time slots per prerelease weekend",
+                           "Tickets sold online ahead of time"
+                       ],
+        "address":  "1145 W. Webster Ave., Chicago, IL 60614",
+        "neighborhood":  "Lincoln Park",
+        "lat":  41.9214152,
+        "lng":  -87.657637,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "Build \u0026 Battle Box included",
+        "duration_minutes":  180,
+        "min_minutes":  120,
+        "hours":  null,
+        "hours_note":  "Build \u0026 Battle events around each new Pokémon set; dates posted about 2 weeks ahead.",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  null,
+                       "note":  "Build \u0026 Battle events around each new Pokémon set; dates posted about 2 weeks ahead."
+                   },
+        "event_dates":  [
+
+                        ],
+        "end_date_confirmed":  false,
+        "booking":  "required",
+        "age_note":  "",
+        "phone":  "(872) 829-3194",
+        "website":  "https://events.ticketleap.com/events/goodgameschicago",
+        "source_urls":  [
+                            "https://events.ticketleap.com/events/goodgameschicago",
+                            "https://www.goodgamesna.com/event/pokemon-tcg-mega-evolution-pitch-black-prerelease/2026-07-05/1/",
+                            "https://goodgameschicago.ticketleap.com/scr-prerelease/details",
+                            "https://events.pokemon.com/EventLocator/",
+                            "https://fabtcg.com/en/locator/good-games-chicago"
+                        ],
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.goodgamesna.com/contact-us/contact-ggchicago/"
+                     },
+        "taste_checked":  "2026-11-14",
+        "booking_url":  "https://events.ticketleap.com/events/goodgameschicago",
+        "energy":  "chill",
+        "vibe":  "lively",
+        "moods":  [
+                      "nerdy",
+                      "loud"
+                  ],
+        "hook":  "Crack a new Pokémon set early and battle strangers",
+        "sid":  370,
+        "photos":  [
+
+                   ]
+    },
+    {
+        "id":  "ev-pokemon-bnb-dice-dojo",
+        "name":  "Pokémon Build \u0026 Battle prerelease at Chicagoland Games: Dice Dojo",
+        "kind":  "event",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "pokemon",
+                     "build-and-battle",
+                     "game-store",
+                     "date-idea",
+                     "date",
+                     "friends",
+                     "rainy-day"
+                 ],
+        "description":  "A longtime Edgewater game store that hosts a prerelease for each new Pokémon set: open a Build \u0026 Battle Box, build a deck right there and play laid-back games with the new cards before release day.",
+        "highlights":  [
+                           "Box has a ready 40-card deck, 4 new-set packs and a promo card",
+                           "2,000 sq ft open play area and a 1,000-game demo library",
+                           "Tickets sold online through the store\u0027s Pokémon ticket page"
+                       ],
+        "address":  "5550 N. Broadway, Chicago, IL 60640",
+        "neighborhood":  "Edgewater",
+        "lat":  41.9832846,
+        "lng":  -87.6603147,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_note":  "About $25, Build \u0026 Battle Box included",
+        "duration_minutes":  180,
+        "min_minutes":  120,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "10:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "10:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "10:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "10:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "19:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Build \u0026 Battle events around each new Pokémon set; dates posted about 2 weeks ahead.",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  null,
+                       "note":  "Build \u0026 Battle events around each new Pokémon set; dates posted about 2 weeks ahead."
+                   },
+        "event_dates":  [
+
+                        ],
+        "end_date_confirmed":  false,
+        "booking":  "required",
+        "age_note":  "",
+        "phone":  "(773) 728-3656",
+        "website":  "https://www.chicagolandgames.com/",
+        "source_urls":  [
+                            "https://www.chicagolandgames.com/",
+                            "https://www.chicagolandgames.com/events",
+                            "https://events.ticketleap.com/events/dicedojo",
+                            "https://events.ticketleap.com/tickets/dicedojo/pokemon-chaos-rising-prerelease",
+                            "https://events.pokemon.com/EventLocator/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.chicagolandgames.com/find-us"
+                     },
+        "taste_checked":  "2026-11-14",
+        "booking_url":  "https://events.ticketleap.com/events/dicedojo",
+        "energy":  "chill",
+        "vibe":  "lively",
+        "moods":  [
+                      "nerdy",
+                      "loud"
+                  ],
+        "hook":  "Build a Pokémon deck from fresh packs and play the new set",
+        "sid":  371,
+        "photos":  [
+
+                   ]
+    },
+    {
+        "id":  "ev-pokemon-bnb-evanston-games",
+        "name":  "Pokémon Build \u0026 Battle prerelease at Evanston Games \u0026 Cafe",
+        "kind":  "event",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "pokemon",
+                     "build-and-battle",
+                     "game-store",
+                     "date-idea",
+                     "date",
+                     "friends",
+                     "rainy-day"
+                 ],
+        "description":  "Downtown Evanston game store that runs a prerelease for each new Pokémon set: everyone gets a Build \u0026 Battle Box, builds a deck at the table and plays three short rounds. Staff will help first-timers set up a Player ID.",
+        "highlights":  [
+                           "Box has a ready 40-card deck, 4 new-set packs and a promo card",
+                           "3 rounds of games",
+                           "Usually two sessions a day (early afternoon and mid-afternoon), plus a weekday option",
+                           "Staff help you create a Pokémon Player ID",
+                           "Spots are limited, buy tickets ahead"
+                       ],
+        "address":  "1707 Maple Ave., Evanston, IL 60201",
+        "neighborhood":  "Downtown Evanston",
+        "lat":  42.048902,
+        "lng":  -87.6843979,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "$30-35, Build \u0026 Battle Box included",
+        "duration_minutes":  150,
+        "min_minutes":  120,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+                                  [
+                                      "15:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "15:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "15:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "15:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Build \u0026 Battle events around each new Pokémon set; dates posted about 2 weeks ahead.",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  null,
+                       "note":  "Build \u0026 Battle events around each new Pokémon set; dates posted about 2 weeks ahead."
+                   },
+        "event_dates":  [
+
+                        ],
+        "end_date_confirmed":  false,
+        "booking":  "required",
+        "age_note":  "",
+        "phone":  "(224) 999-7615",
+        "website":  "https://www.evanstongames.com/",
+        "source_urls":  [
+                            "https://www.evanstongames.com/",
+                            "https://www.evanstongames.com/collections/pokemon-tournaments",
+                            "https://www.evanstongames.com/collections/pokemon-tournaments/products/pokemon-perfect-order-prerelease-first-ticket-03-15",
+                            "https://events.pokemon.com/EventLocator/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.evanstongames.com/"
+                     },
+        "taste_checked":  "2026-11-14",
+        "booking_url":  "https://www.evanstongames.com/collections/pokemon-tournaments",
+        "energy":  "chill",
+        "vibe":  "mixed",
+        "moods":  [
+                      "nerdy",
+                      "cozy"
+                  ],
+        "hook":  "Open a Build \u0026 Battle Box and play the new set early",
+        "sid":  372,
+        "photos":  [
+
+                   ]
+    },
+    {
+        "id":  "ev-pokemon-bnb-gamers-world-woodfield",
+        "name":  "Pokémon Build \u0026 Battle prerelease at Gamers World Woodfield",
+        "kind":  "event",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "pokemon",
+                     "build-and-battle",
+                     "game-store",
+                     "date-idea",
+                     "date",
+                     "friends",
+                     "rainy-day"
+                 ],
+        "description":  "Gamers World\u0027s Woodfield Mall store hosts a prerelease for each new Pokémon set: open a Build \u0026 Battle Box, make a deck and play the new cards early. Easy to pair with a mall day.",
+        "highlights":  [
+                           "Box has a ready 40-card deck, 4 new-set packs and a promo card",
+                           "Inside Woodfield Mall, unit F117",
+                           "Sign up on the Gamers World booking calendar"
+                       ],
+        "address":  "5 Woodfield Mall, Unit F117, Schaumburg, IL 60173",
+        "neighborhood":  "Schaumburg",
+        "lat":  42.0465894,
+        "lng":  -88.0370689,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "$35",
+        "duration_minutes":  180,
+        "min_minutes":  120,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "18:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Build \u0026 Battle events around each new Pokémon set; dates posted about 2 weeks ahead.",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  null,
+                       "note":  "Build \u0026 Battle events around each new Pokémon set; dates posted about 2 weeks ahead."
+                   },
+        "event_dates":  [
+
+                        ],
+        "end_date_confirmed":  false,
+        "booking":  "required",
+        "age_note":  "",
+        "phone":  "(847) 517-1103",
+        "website":  "https://www.gamersworldchicago.net/locations",
+        "source_urls":  [
+                            "https://www.gamersworldchicago.net/in-store-events",
+                            "https://www.gamersworldchicago.net/booking-calendar/woodfield-delta-reign-prerelease",
+                            "https://events.pokemon.com/EventLocator/"
+                        ],
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.gamersworldchicago.net/locations"
+                     },
+        "taste_checked":  "2026-11-14",
+        "booking_url":  "https://www.gamersworldchicago.net/in-store-events",
+        "energy":  "chill",
+        "vibe":  "lively",
+        "moods":  [
+                      "nerdy",
+                      "loud"
+                  ],
+        "hook":  "Build a Pokémon deck from new packs, then battle at the mall",
+        "sid":  373,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-pokemon-bnb-gamers-world-woodfield-1.jpg",
+                           "credit":  "Gamers World website",
+                           "page_url":  "https://www.gamersworldchicago.net/locations"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-pokemon-free-play-logan-arch-2026-11-28",
+        "name":  "Pokémon TCG Free Play and learn-to-play at Logan Arch",
+        "kind":  "event",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "pokemon",
+                     "game-store",
+                     "date-idea",
+                     "date",
+                     "friends",
+                     "free",
+                     "beginner",
+                     "rainy-day"
+                 ],
+        "description":  "A free, casual Pokémon card afternoon for new players: come early and staff will teach you the game, then play a relaxed free tournament with a borrowed deck. Trading and hanging out are welcome too.",
+        "highlights":  [
+                           "Learn to play from 1 PM",
+                           "Free tournament starts 3 PM, arrive by 2:30",
+                           "Free rental decks (limited number)",
+                           "Everyone who finishes gets at least 2 packs; first place gets 3",
+                           "Needs a Pokémon Player ID (free; can be made in the store)"
+                       ],
+        "address":  "2066 N. Milwaukee Ave., Chicago, IL 60647",
+        "neighborhood":  "Logan Square / Bucktown",
+        "lat":  41.9187297,
+        "lng":  -87.6909779,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  180,
+        "min_minutes":  90,
+        "hours":  null,
+        "hours_note":  "Learn to play from 1 PM; tournament 3-6 PM.",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-28T13:00",
+                                "end":  "2026-11-28T18:00"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "walk-in",
+        "age_note":  "",
+        "phone":  "",
+        "website":  "https://www.loganarchchicago.com/events/2026/11/28/pokemon-tcg-free-play",
+        "source_urls":  [
+                            "https://www.loganarchchicago.com/events/2026/11/28/pokemon-tcg-free-play",
+                            "https://www.loganarchchicago.com/events"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.loganarchchicago.com/events/2026/11/28/pokemon-tcg-free-play"
+                     },
+        "taste_checked":  "2026-11-14",
+        "date_hours":  {
+                           "2026-11-28":  [
+                                              [
+                                                  "13:00",
+                                                  "18:00"
+                                              ]
+                                          ]
+                       },
+        "booking_url":  "https://www.loganarchchicago.com/events/2026/11/28/pokemon-tcg-free-play",
+        "energy":  "chill",
+        "vibe":  "mixed",
+        "moods":  [
+                      "nerdy",
+                      "cheap",
+                      "cozy"
+                  ],
+        "hook":  "Learn Pokémon cards free, then play with a loaner deck",
+        "sid":  374,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-pokemon-free-play-logan-arch-2026-11-28-1.jpg",
+                           "credit":  "Logan Arch website",
+                           "page_url":  "https://www.loganarchchicago.com/"
+                       }
+                   ]
     }
 ]
