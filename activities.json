@@ -6534,7 +6534,6 @@
         "indoor_outdoor":  "indoor",
         "price_level":  "$",
         "duration_minutes":  90,
-        "hours":  null,
         "season":  null,
         "booking":  "walk-in",
         "phone":  "773-472-5900",
@@ -6596,11 +6595,55 @@
         "energy":  "easy",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
-        "hours_note":  "Opens at 9am every day; closing time not posted. Call 773-472-5900 before a late visit.",
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "09:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "09:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "09:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "09:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "09:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "09:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "09:00",
+                                      "00:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Holiday hours can differ. Call 773-472-5900 before a late visit.",
         "verified":  {
                          "status":  "unverified",
                          "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://wavelandbowl.com/about/pricing/"
+                         "evidence_url":  "https://www.google.com/maps/search/Waveland+Bowl+3700+N+Western+Ave+Chicago"
                      },
         "sid":  48,
         "photos":  [
@@ -7047,9 +7090,7 @@
         "indoor_outdoor":  "indoor",
         "price_level":  null,
         "duration_minutes":  60,
-        "hours":  null,
         "season":  null,
-        "booking":  "required",
         "age_note":  "Not stated",
         "phone":  "847-834-7062",
         "website":  "https://greatbiggameshow.com/schaumburg/",
@@ -7091,11 +7132,56 @@
         "energy":  "easy",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
-        "hours_note":  "Book a game time online. Posted opening hours disagree, so check the booking calendar or call 847-834-7062.",
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "10:00",
+                                      "22:30"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "10:00",
+                                      "22:30"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "10:00",
+                                      "22:30"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "10:00",
+                                      "22:30"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:30",
+                                      "22:30"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Book a game time online. Hours can change, so call 847-834-7062 if unsure.",
+        "booking":  "required",
         "verified":  {
                          "status":  "conflicting",
                          "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://greatbiggameshow.com/schaumburg/"
+                         "evidence_url":  "https://www.google.com/maps/search/Great+Big+Game+Show+Woodfield+Mall+Schaumburg"
                      },
         "sid":  52,
         "photos":  [
@@ -18280,7 +18366,6 @@
         "indoor_outdoor":  "indoor",
         "price_level":  null,
         "duration_minutes":  120,
-        "hours":  null,
         "season":  null,
         "booking":  "recommended",
         "age_note":  "Not stated",
@@ -18325,11 +18410,55 @@
         "energy":  "chill",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
-        "hours_note":  "Shows most nights on several stages; times vary by show. Ages 13 and up.",
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "13:00",
+                                      "21:30"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "13:00",
+                                      "21:30"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "13:00",
+                                      "21:30"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "13:00",
+                                      "21:30"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "13:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "20:30"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Shows most nights on several stages, about 2 hours each. Seating opens 45 minutes before showtime. Ages 13 and up.",
         "verified":  {
                          "status":  "unverified",
                          "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.secondcity.com/chicago"
+                         "evidence_url":  "https://www.google.com/maps/search/The+Second+City+1616+N+Wells+St+Chicago+IL+60614"
                      },
         "sid":  125,
         "photos":  [
@@ -21409,7 +21538,6 @@
         "price_level":  "$$",
         "duration_minutes":  90,
         "min_minutes":  40,
-        "hours":  null,
         "booking":  "required",
         "phone":  "312-243-3100",
         "website":  "https://kaisertiger.com/curling",
@@ -21470,10 +21598,54 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "hours_note":  "Curling is by reservation, bookable online up to 4 days ahead. Thursday to Saturday usually sell out; Sunday and Monday nights are quieter.",
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "12:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "12:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "12:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "12:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "12:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "00:00"
+                                  ]
+                              ]
+                  },
         "verified":  {
                          "status":  "unverified",
                          "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://kaisertiger.com/curling"
+                         "evidence_url":  "https://www.google.com/maps/search/Kaiser+Tiger+1415+W+Randolph+St+Chicago"
                      },
         "sid":  149,
         "photos":  [
@@ -21648,7 +21820,6 @@
         "price_level":  "$",
         "duration_minutes":  90,
         "min_minutes":  90,
-        "hours":  null,
         "season":  null,
         "age_note":  "Varies by class; 21+ for BYOB and adults-only sessions; kids\u0027 classes separate",
         "phone":  "",
@@ -21706,13 +21877,57 @@
         "energy":  "chill",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
-        "hours_note":  "No walk-in hours. Every visit is a booked class: pick a date and time online.",
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "17:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "17:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "17:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "17:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "17:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "19:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Every visit is a booked class: pick a date and time online.",
         "booking":  "required",
         "booking_url":  "https://www.colorcocktailfactory.com/",
         "verified":  {
                          "status":  "unverified",
                          "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.colorcocktailfactory.com/"
+                         "evidence_url":  "https://www.google.com/maps/search/Color+Cocktail+Factory+1142+W+18th+St+Chicago"
                      },
         "sid":  151,
         "photos":  [
@@ -22704,7 +22919,6 @@
         "price_level":  "$",
         "duration_minutes":  150,
         "min_minutes":  100,
-        "hours":  null,
         "season":  null,
         "booking":  "walk-in",
         "phone":  "773-769-3999",
@@ -22742,7 +22956,6 @@
                              }
                          ],
         "age_note":  "Film ratings apply",
-        "hours_note":  "No fixed opening hours: the box office opens 30 minutes before the first showtime (on a sample day, showtimes ran about 3:00-9:45 pm). Check daily showtimes or call the box office 773-769-3999.",
         "description":  "A Lincoln Avenue movie house that opened in 1918 as the Pershing Theater and was restored and reopened in 2016, showing new releases alongside repertory and special screenings. Lincoln Square\u0027s restaurants and bars are steps away, so it works for a classic dinner-and-a-movie date.",
         "price_note":  "Members get discounted tickets and concessions.",
         "moods":  [
@@ -22754,10 +22967,73 @@
         "energy":  "chill",
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+
+                              ],
+                      "thu":  [
+
+                              ],
+                      "fri":  [
+
+                              ],
+                      "sat":  [
+
+                              ],
+                      "sun":  [
+
+                              ]
+                  },
+        "date_hours":  {
+                           "2026-11-14":  [
+                                              [
+                                                  "11:30",
+                                                  "21:30"
+                                              ]
+                                          ],
+                           "2026-11-15":  [
+                                              [
+                                                  "11:30",
+                                                  "21:30"
+                                              ]
+                                          ],
+                           "2026-11-16":  [
+                                              [
+                                                  "14:30",
+                                                  "21:45"
+                                              ]
+                                          ],
+                           "2026-11-17":  [
+                                              [
+                                                  "14:30",
+                                                  "21:45"
+                                              ]
+                                          ],
+                           "2026-11-18":  [
+                                              [
+                                                  "14:30",
+                                                  "21:30"
+                                              ]
+                                          ],
+                           "2026-11-19":  [
+                                              [
+                                                  "14:30",
+                                                  "21:15"
+                                              ]
+                                          ]
+                       },
+        "hours_valid_to":  "2026-11-19",
+        "hours_note":  "Showtimes change daily. The box office opens 30 minutes before the first show; the hours shown end at the last showtime.",
         "verified":  {
-                         "status":  "unverified",
+                         "status":  "verified",
                          "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.davistheater.com/"
+                         "evidence_url":  "https://www.davistheater.com/2026-11-16"
                      },
         "sid":  165,
         "photos":  [
@@ -22926,7 +23202,6 @@
         "price_level":  "$$",
         "duration_minutes":  120,
         "min_minutes":  60,
-        "hours":  null,
         "season":  null,
         "age_note":  "Varies by workshop (some family-friendly; wine/cocktail ones are adult)",
         "phone":  "773-657-5507",
@@ -22981,13 +23256,57 @@
         "energy":  "chill",
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
-        "hours_note":  "No walk-in hours. Every visit is a booked workshop: pick a date and time online.",
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "18:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "18:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "18:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "18:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "16:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "21:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Every visit is a booked workshop: pick a date and time online.",
         "booking":  "required",
-        "booking_url":  "https://www.aboveaveragecandlestudio.com/pick-your-experience",
+        "booking_url":  "https://www.aboveaveragecandlestudio.com/",
         "verified":  {
                          "status":  "unverified",
                          "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.aboveaveragecandlestudio.com/pick-your-experience"
+                         "evidence_url":  "https://www.google.com/maps/search/Above+Average+Candle+Studio+3414+W+Foster+Ave+Chicago"
                      },
         "sid":  167,
         "photos":  [
@@ -23532,7 +23851,6 @@
         "price_note":  "Before 6 pm Mon-Fri $3-4/game/person; Sat-Sun daytime $45/lane/hour; evenings $35 (Mon-Wed), $45 (Thu, Sun), $65 (Fri-Sat) per lane per hour; shoes $4-5",
         "duration_minutes":  90,
         "min_minutes":  60,
-        "hours":  null,
         "season":  null,
         "booking":  "recommended",
         "age_note":  "All ages until 9 pm; 21+ after 9 pm; ID after 8 pm",
@@ -23578,7 +23896,6 @@
                              }
                          ],
         "description":  "A lively Logan Square/Avondale bowling alley known for its party atmosphere and weekend Cosmic Bowl under a light show. The kitchen does smash burgers, cheese curds and pizza, with draft beer at the bar.",
-        "hours_note":  "Opening times not posted. Rate periods: \u0027open to 6 PM\u0027 and \u00276 PM to close\u0027; entry cutoffs 11:30 pm Sun-Thu, midnight Fri-Sat; last call 12:30 am. ID after 8 pm, 21+ after 9 pm. Holiday hours not listed (holiday lane rate $45/hr). Cosmic Bowl every Friday and Saturday 7 pm to midnight.",
         "moods":  [
                       "loud",
                       "cheap",
@@ -23587,10 +23904,55 @@
         "energy":  "easy",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "12:00",
+                                      "01:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "12:00",
+                                      "01:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "12:00",
+                                      "01:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "12:00",
+                                      "01:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "12:00",
+                                      "01:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "01:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Last lane entry 11:30 pm Sun-Thu and midnight Fri-Sat; last call 12:30 am. ID after 8 pm, 21+ after 9 pm. Cosmic Bowl Friday and Saturday 7 pm to midnight.",
         "verified":  {
-                         "status":  "unverified",
+                         "status":  "conflicting",
                          "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.drbowl.com/"
+                         "evidence_url":  "https://www.google.com/maps/search/Diversey+River+Bowl+2211+W+Diversey+Pkwy+Chicago"
                      },
         "sid":  175,
         "photos":  [
@@ -23624,9 +23986,7 @@
         "price_level":  "$",
         "duration_minutes":  90,
         "min_minutes":  80,
-        "hours":  null,
         "season":  null,
-        "booking":  "recommended",
         "age_note":  "All ages at parents\u0027 discretion; adult content possible",
         "phone":  "773-251-1539",
         "website":  "https://www.thelincolnlodge.com/",
@@ -23669,12 +24029,140 @@
                                  "source":  "https://www.thelincolnlodge.com/"
                              }
                          ],
-        "hours_note":  "Shows six nights a week, 80-90 minutes each. Check the calendar for show nights and times, or call 773-251-1539.",
         "description":  "A nonprofit stand-up comedy club and training center on Milwaukee Avenue in Logan Square, billed as the nation\u0027s longest-running independent comedy showcase, with cabaret-style tables and a full bar.",
         "price_note":  "See the calendar for prices. No drink minimum. Walk-up tickets are sometimes available, but shows often sell out; groups larger than six should contact the club in advance.",
         "energy":  "chill",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+                                  [
+                                      "19:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "19:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "19:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "18:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "17:30",
+                                      "00:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "17:30",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "date_hours":  {
+                           "2026-11-14":  [
+                                              [
+                                                  "17:00",
+                                                  "23:30"
+                                              ]
+                                          ],
+                           "2026-11-15":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2026-11-16":  [
+
+                                          ],
+                           "2026-11-17":  [
+                                              [
+                                                  "18:00",
+                                                  "22:30"
+                                              ]
+                                          ],
+                           "2026-11-18":  [
+                                              [
+                                                  "18:00",
+                                                  "21:45"
+                                              ]
+                                          ],
+                           "2026-11-19":  [
+                                              [
+                                                  "19:00",
+                                                  "22:30"
+                                              ]
+                                          ],
+                           "2026-11-20":  [
+                                              [
+                                                  "19:00",
+                                                  "00:30"
+                                              ]
+                                          ],
+                           "2026-11-21":  [
+                                              [
+                                                  "18:00",
+                                                  "23:30"
+                                              ]
+                                          ],
+                           "2026-11-22":  [
+                                              [
+                                                  "18:00",
+                                                  "21:30"
+                                              ]
+                                          ],
+                           "2026-11-23":  [
+                                              [
+                                                  "20:00",
+                                                  "21:30"
+                                              ]
+                                          ],
+                           "2026-11-24":  [
+                                              [
+                                                  "18:00",
+                                                  "22:30"
+                                              ]
+                                          ],
+                           "2026-11-25":  [
+                                              [
+                                                  "18:00",
+                                                  "21:30"
+                                              ]
+                                          ],
+                           "2026-11-26":  [
+
+                                          ],
+                           "2026-11-27":  [
+                                              [
+                                                  "19:00",
+                                                  "00:30"
+                                              ]
+                                          ],
+                           "2026-11-28":  [
+                                              [
+                                                  "18:00",
+                                                  "23:30"
+                                              ]
+                                          ]
+                       },
+        "hours_note":  "Shows six nights a week, 80-90 minutes each, with several shows a night on weekends. No drink minimum.",
+        "booking":  "recommended",
         "verified":  {
                          "status":  "unverified",
                          "checked_on":  "2026-11-14",
@@ -33527,11 +34015,7 @@
         "taste_checked":  "2026-11-13",
         "sid":  236,
         "photos":  [
-                       {
-                           "file":  "photos/ps-national-hellenic-museum-1.jpg",
-                           "credit":  "National Hellenic Museum website",
-                           "page_url":  "https://www.nationalhellenicmuseum.org/visit/"
-                       }
+
                    ]
     },
     {
@@ -33872,11 +34356,7 @@
         "taste_checked":  "2026-11-13",
         "sid":  238,
         "photos":  [
-                       {
-                           "file":  "photos/ps-hull-house-museum-1.jpg",
-                           "credit":  "Jane Addams Hull-House Museum (UIC) website",
-                           "page_url":  "https://hullhouse.uic.edu/"
-                       }
+
                    ]
     },
     {
@@ -39885,7 +40365,7 @@
                        {
                            "file":  "photos/ud-kit-kat-lounge-supper-club-1.jpg",
                            "credit":  "Kit Kat Lounge \u0026 Supper Club website",
-                           "page_url":  "https://kitkatchicago.com/"
+                           "page_url":  "https://kitkatchicago.com/drag-brunch/"
                        }
                    ]
     },
@@ -41330,7 +41810,7 @@
                        {
                            "file":  "photos/ud-aroma-workshop-1.jpg",
                            "credit":  "Aroma Workshop website",
-                           "page_url":  "https://www.aromaworkshop.com/"
+                           "page_url":  "https://www.aromaworkshop.com/book-online"
                        }
                    ]
     },
@@ -41409,16 +41889,12 @@
         "price_note":  "About $42 per player; at least $90 per game. The price depends on the day, the game and the group size.",
         "duration_minutes":  60,
         "min_minutes":  60,
-        "hours":  null,
-        "hours_note":  "Game times change by day; open slots show when you book. Closed Thanksgiving.",
         "last_entry_before_close_min":  null,
         "hours_valid_to":  null,
         "season":  null,
         "closed_dates":  [
                              "2026-11-26"
                          ],
-        "booking":  "required",
-        "booking_url":  "https://www.62escape.com/schaumburg#bookexperience",
         "age_note":  "Everyone needs a ticket. Groups with kids under 13 need a paying adult (18+).",
         "phone":  "844-623-7227",
         "website":  "https://www.62escape.com/schaumburg",
@@ -41439,11 +41915,6 @@
                             "https://roomescapeartist.com/2025/01/22/60-escape-schaumburg-lockbuster-video-review/",
                             "https://roomescapeartist.com/2023/02/03/chicago-illinois-escape-room-recommendations"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-13",
-                         "evidence_url":  "https://www.62escape.com/schaumburg#bookexperience"
-                     },
         "name":  "Escape room: 60 to Escape – Schaumburg (Woodfield Mall)",
         "award_note":  "TERPECA 2026 finalist · Best of Morty 2025",
         "moods":  [
@@ -41454,6 +41925,58 @@
         "vibe":  "mixed",
         "hook":  "Award-winning escape rooms, like a 90s video store",
         "taste_checked":  "2026-11-13",
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "10:30",
+                                      "20:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "10:30",
+                                      "20:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "10:30",
+                                      "20:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "10:30",
+                                      "20:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "18:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Game times change by day; book a slot online. Closed Thanksgiving.",
+        "booking":  "required",
+        "booking_url":  "https://www.62escape.com/schaumburg#bookexperience",
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.google.com/maps/search/60+to+Escape+Woodfield+Mall+Schaumburg"
+                     },
         "sid":  288,
         "photos":  [
                        {
@@ -41519,16 +42042,12 @@
         "price_note":  "About $40 per player; at least $90 per game. The price depends on the day, the game and the group size.",
         "duration_minutes":  60,
         "min_minutes":  60,
-        "hours":  null,
-        "hours_note":  "Game times change by day; open slots show when you book. Closed Thanksgiving.",
         "last_entry_before_close_min":  null,
         "hours_valid_to":  null,
         "season":  null,
         "closed_dates":  [
                              "2026-11-26"
                          ],
-        "booking":  "required",
-        "booking_url":  "https://www.62escape.com/illinois#bookexperience",
         "age_note":  "Everyone needs a ticket. Groups with kids under 13 need a paying adult (18+).",
         "phone":  "844-623-7227",
         "website":  "https://www.62escape.com/illinois",
@@ -41547,11 +42066,6 @@
                             "https://morty.app/game/4029/mystery-manor",
                             "https://roomescapeartist.com/2023/02/03/chicago-illinois-escape-room-recommendations"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-13",
-                         "evidence_url":  "https://www.62escape.com/illinois#bookexperience"
-                     },
         "name":  "Escape room: 60 to Escape – Gurnee (Gurnee Mills)",
         "award_note":  "Best of Morty 2025",
         "moods":  [
@@ -41562,6 +42076,58 @@
         "vibe":  "mixed",
         "hook":  "Escape a jungle temple or a haunted manor",
         "taste_checked":  "2026-11-13",
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "11:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "11:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "11:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "11:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "11:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "19:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Game times change by day; book a slot online. Closed Thanksgiving.",
+        "booking":  "required",
+        "booking_url":  "https://www.62escape.com/illinois#bookexperience",
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.google.com/maps/search/60+to+Escape+Gurnee+Mills+6170+W+Grand+Ave+Gurnee"
+                     },
         "sid":  289,
         "photos":  [
                        {
@@ -41621,8 +42187,6 @@
         "price_note":  "$39.99-$59.99 per player, cheaper per player in bigger groups, plus a $0.99 booking fee per player.",
         "duration_minutes":  60,
         "min_minutes":  60,
-        "hours":  null,
-        "hours_note":  "Open daily; game times change by day and show when you book. Closed Thanksgiving and Christmas Day.",
         "last_entry_before_close_min":  null,
         "hours_valid_to":  null,
         "season":  null,
@@ -41630,8 +42194,6 @@
                              "2026-11-26",
                              "2026-12-25"
                          ],
-        "booking":  "recommended",
-        "booking_url":  "https://escapefactorchicago.com/reserve-your-escape-room-oak-brook-elmhurst-chicago/",
         "age_note":  "Ages 6+. Kids 6-12 need one paying adult for every 3 kids. Under 6 free, but must be carried or in a stroller.",
         "phone":  "708-943-7227",
         "website":  "https://escapefactorchicago.com/",
@@ -41651,11 +42213,6 @@
                             "https://roomescapeartist.com/2022/07/14/escape-factor-treehouse-raid-fort-knocks-review/",
                             "https://roomescapeartist.com/2023/02/03/chicago-illinois-escape-room-recommendations"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-13",
-                         "evidence_url":  "https://escapefactorchicago.com/reserve-your-escape-room-oak-brook-elmhurst-chicago/"
-                     },
         "name":  "Escape room: Escape Factor – Forest Park",
         "award_note":  "USA Today 10Best 2025: #3 escape room in the US",
         "moods":  [
@@ -41666,6 +42223,58 @@
         "vibe":  "mixed",
         "hook":  "Escape rooms voted #3 in the US in 2025",
         "taste_checked":  "2026-11-13",
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "11:30",
+                                      "21:15"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "11:30",
+                                      "21:15"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "11:30",
+                                      "21:15"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "11:30",
+                                      "21:15"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "11:30",
+                                      "21:15"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "21:15"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "21:15"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Game times change by day; book a slot online. Closed Thanksgiving and Christmas Day.",
+        "booking":  "required",
+        "booking_url":  "https://escapefactorchicago.com/reserve-your-escape-room-oak-brook-elmhurst-chicago/",
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.google.com/maps/search/Escape+Factor+7228+Madison+St+Forest+Park+IL"
+                     },
         "sid":  290,
         "photos":  [
                        {
@@ -42473,8 +43082,8 @@
         "photos":  [
                        {
                            "file":  "photos/ev-music-box-christmas-sing-along-2026-1.jpg",
-                           "credit":  "Music Box Theatre (courtesy Nicer Collaborative)",
-                           "page_url":  "https://musicboxtheatre.com/"
+                           "credit":  "Music Box Theatre website",
+                           "page_url":  "https://musicboxtheatre.com/about/auditoriums"
                        }
                    ]
     },
@@ -43531,7 +44140,6 @@
         "price_note":  "Day passes from $40; half-day pass from 4 PM to close; free for ages 2 and under. Dry-land attractions and food cost extra.",
         "duration_minutes":  240,
         "min_minutes":  150,
-        "hours":  null,
         "season":  null,
         "closed_dates":  [
 
@@ -43606,13 +44214,56 @@
                                               ]
                                           ]
                        },
-        "hours_valid_to":  "2026-11-20",
-        "hours_note":  "Water park usually 10 am-8 pm; hours are posted a week at a time. Half-day pass from 4 pm to close. Day passes are limited and can sell out.",
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ]
+                  },
+        "hours_valid_to":  null,
+        "hours_note":  "Holiday and school-break hours can differ. Half-day pass from 4 pm to close. Day passes are limited and can sell out.",
         "verified":  {
                          "status":  "verified",
                          "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.greatwolf.com/illinois/water-park",
-                         "source":  "https://www.greatwolf.com/illinois/water-park"
+                         "evidence_url":  "https://www.greatwolf.com/illinois/water-park"
                      },
         "sid":  308,
         "photos":  [
@@ -44005,8 +44656,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-illinois-railway-museum-1.jpg",
-                           "credit":  "Wikimedia Commons (see file page for author and license)",
-                           "page_url":  "https://en.wikipedia.org/wiki/Illinois_Railway_Museum"
+                           "credit":  "Illinois Railway Museum website",
+                           "page_url":  "https://www.irm.org/"
                        }
                    ]
     },
@@ -44397,7 +45048,6 @@
         "price_level":  "$",
         "duration_minutes":  180,
         "min_minutes":  90,
-        "hours":  null,
         "season":  null,
         "closed_dates":  [
 
@@ -44431,12 +45081,55 @@
         "energy":  "active",
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
-        "hours_note":  "Park open daily; gate hours aren\u0027t posted, so call 219-926-1952 before an early or late visit. Nature center 9 am-4 pm daily, closed on major state holidays.",
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "07:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "07:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "07:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "07:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "07:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "07:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "07:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Nature center 9 am-4 pm daily, closed on major state holidays.",
         "verified":  {
                          "status":  "unverified",
                          "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.in.gov/dnr/state-parks/parks-lakes/indiana-dunes-state-park/",
-                         "source":  "https://www.in.gov/dnr/state-parks/parks-lakes/indiana-dunes-state-park/"
+                         "evidence_url":  "https://www.google.com/maps/search/Indiana+Dunes+State+Park+1600+N+25+E+Chesterton+IN"
                      },
         "sid":  315,
         "photos":  [
@@ -45615,7 +46308,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-geneva-lake-shore-path-1.jpg",
-                           "credit":  "VISIT Lake Geneva website",
+                           "credit":  "Visit Lake Geneva website",
                            "page_url":  "https://www.visitlakegeneva.com/things-to-do/shore-path/"
                        }
                    ]
