@@ -32414,7 +32414,11 @@
         "hours_note":  "Thu-Sun 10:00 AM-4:00 PM, closed Mon-Wed. Holiday closures: New Year\u0027s Day, Thanksgiving, day after Thanksgiving, Christmas Eve, Christmas Day, New Year\u0027s Eve (plus Western and Eastern Good Friday and Easter).",
         "description":  "A museum of Greek history, art and the Greek American story at 333 S. Halsted in Greektown, with exhibitions like \u0027The Odyssey Reimagined\u0027 and \u0027Greek Story in America\u0027. Afterward, walk up Halsted for Greek food or pastries.",
         "photos":  [
-
+                       {
+                           "file":  "photos/ps-national-hellenic-museum-1.jpg",
+                           "credit":  "National Hellenic Museum website",
+                           "page_url":  "https://www.nationalhellenicmuseum.org/visit/"
+                       }
                    ]
     },
     {
@@ -32747,7 +32751,11 @@
         "description":  "The preserved home of Hull-House, the famous settlement house founded by Jane Addams, now a museum of the University of Illinois Chicago, with exhibitions on its history of social reform and community life and public tours.",
         "price_note":  "\u0027Admission is always free\u0027. Free 45-minute public tours Tuesdays and Fridays at 2pm (reserve up to 30 days ahead, parties of five or fewer).",
         "photos":  [
-
+                       {
+                           "file":  "photos/ps-hull-house-museum-1.jpg",
+                           "credit":  "Jane Addams Hull-House Museum (UIC) website",
+                           "page_url":  "https://hullhouse.uic.edu/"
+                       }
                    ]
     },
     {
@@ -33947,7 +33955,11 @@
         "hours_note":  "Wednesday through Saturday: 11 AM-5 PM; Sunday, Monday, and Tuesday: Closed; closed Wednesday Nov 25 through Saturday Nov 28, reopening 11 AM Wed Dec 2. December/January holiday closures are not posted: call to confirm (312) 787-7070.",
         "description":  "The home of Poetry magazine in River North: a calm, modern building reached through a tree-lined courtyard, designed to unfold step by step \u0027like a poem\u0027. Inside is a public poetry library and gallery for a quiet read, plus readings, music and other events.",
         "photos":  [
-
+                       {
+                           "file":  "photos/ps-poetry-foundation-1.jpg",
+                           "credit":  "Poetry Foundation website (courtyard)",
+                           "page_url":  "https://www.poetryfoundation.org/visit"
+                       }
                    ]
     },
     {
@@ -34214,6 +34226,3533 @@
                            "file":  "photos/ps-gethsemane-garden-center-1.jpg",
                            "credit":  "Gethsemane Garden Center website",
                            "page_url":  "https://www.gethsemanegardens.com/about/"
+                       }
+                   ]
+    },
+    {
+        "id":  "fgr-activate-river-north",
+        "name":  "Activate River North",
+        "kind":  "place",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "active",
+                     "group",
+                     "rainy-day",
+                     "competitive"
+                 ],
+        "hook":  "Run, dodge and solve your way through glowing game rooms as a team",
+        "description":  "A live-action game arena where your team moves from room to room playing short, physical challenges: dodging laser beams, racing across a light-up floor, shooting glowing hoops, climbing and smashing targets while the room keeps score. It is the closest thing in the city to THE CUBE, with about a dozen different game rooms and levels to beat.",
+        "highlights":  [
+                           "Teams of 2-5; bigger groups split into teams",
+                           "Each game lasts about 1-3 minutes",
+                           "Rooms include Laser, Mega Grid, Hoops, Climb, Control, Hide and Strike",
+                           "Free locker at check-in; wear sneakers and workout clothes",
+                           "Waiver required; arrive 15 minutes early"
+                       ],
+        "address":  "51 E Ohio St, Space 106, Chicago, IL 60611",
+        "neighborhood":  "River North",
+        "lat":  41.8924216,
+        "lng":  -87.6264318,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  26.99,
+        "duration_minutes":  60,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "10:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "10:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "10:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "10:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "22:00"
+                                  ]
+                              ]
+                  },
+        "last_entry_before_close_min":  null,
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "recommended",
+        "age_note":  "Ages 6+. Ages 6-13 need an adult in the building for the whole session. Games are built for adults and can be hard for kids under 10. Minimum 2 players (no solo play).",
+        "phone":  "+1 872-873-3088",
+        "website":  "https://playactivate.com/location/river-north",
+        "source_urls":  [
+                            "https://playactivate.com/location/river-north",
+                            "https://playactivate.com/chicago",
+                            "https://playactivate.com/faq",
+                            "https://playactivate.com/know-before-you-go"
+                        ],
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "booking_url":  "https://playactivate.com/location/river-north",
+        "price_note":  "Activate Tickets from $26.99 per person (Fri evening); booking on another day can save up to 14%. Deposit taken at booking, refunded if cancelled more than 24 hours ahead.",
+        "hours_note":  "Mon-Thu 10 am-10 pm, Fri-Sat 10 am-11 pm, Sun 10 am-10 pm. Last entry and holiday hours not posted; call to confirm holidays.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://playactivate.com/location/river-north",
+                         "source":  "https://playactivate.com/location/river-north"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/fgr-activate-river-north-1.jpg",
+                           "credit":  "Activate website",
+                           "page_url":  "https://playactivate.com/location/river-north"
+                       }
+                   ]
+    },
+    {
+        "id":  "fgr-activate-oak-brook",
+        "name":  "Activate Oak Brook",
+        "kind":  "place",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "active",
+                     "group",
+                     "rainy-day",
+                     "competitive"
+                 ],
+        "hook":  "THE CUBE-style game rooms in the western suburbs",
+        "description":  "Activate\u0027s first Chicago-area arena: teams of 2-5 rotate through themed rooms full of lights, lasers, hoops and pressure pads, each a short challenge where you score points together. Good for a sweaty, laugh-a-lot date or a friends\u0027 night before dinner nearby.",
+        "highlights":  [
+                           "Teams of 2-5; bigger groups split into teams",
+                           "Each game lasts about 1-3 minutes",
+                           "Free locker; wear sneakers",
+                           "Waiver required; arrive 15 minutes early"
+                       ],
+        "address":  "1600 16th St, Unit 6, Oak Brook, IL 60523",
+        "neighborhood":  "Oak Brook (west suburbs)",
+        "lat":  41.8538198,
+        "lng":  -87.9562206,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  24.99,
+        "duration_minutes":  60,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "22:00"
+                                  ]
+                              ]
+                  },
+        "last_entry_before_close_min":  null,
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "recommended",
+        "age_note":  "Ages 6+. Ages 6-13 need an adult in the building for the whole session. Minimum 2 players.",
+        "phone":  "+1 630-756-7563",
+        "website":  "https://playactivate.com/location/oakbrook",
+        "source_urls":  [
+                            "https://playactivate.com/location/oakbrook",
+                            "https://playactivate.com/chicago",
+                            "https://playactivate.com/faq"
+                        ],
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "booking_url":  "https://ecom.roller.app/activateoakbrook/chooseyouradventure/en/products",
+        "price_note":  "Activate Tickets $24.99 per person (Fri evening); other days can be cheaper. Small deposit at booking.",
+        "hours_note":  "Mon-Thu noon-10 pm, Fri-Sat 10 am-11 pm, Sun 10 am-10 pm. Last entry and holiday hours not posted.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://playactivate.com/location/oakbrook",
+                         "source":  "https://playactivate.com/location/oakbrook"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/fgr-activate-oak-brook-1.jpg",
+                           "credit":  "Activate website",
+                           "page_url":  "https://playactivate.com/location/river-north"
+                       }
+                   ]
+    },
+    {
+        "id":  "fgr-activate-naperville",
+        "name":  "Activate Naperville",
+        "kind":  "place",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "active",
+                     "group",
+                     "rainy-day",
+                     "competitive"
+                 ],
+        "hook":  "Glowing team game rooms in Naperville",
+        "description":  "Activate\u0027s Naperville arena at Fox River Commons, with the same format as the city location: your team runs through short, high-energy rooms (lasers, light-up floors, hoops, climbing) and tries to beat its own scores.",
+        "highlights":  [
+                           "Teams of 2-5",
+                           "Each game lasts about 1-3 minutes",
+                           "Wear sneakers; free locker",
+                           "Waiver required; arrive 15 minutes early"
+                       ],
+        "address":  "804 Illinois Route 59, Naperville, IL 60540",
+        "neighborhood":  "Naperville (west suburbs)",
+        "lat":  41.7574154,
+        "lng":  -88.2053356,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  24.99,
+        "duration_minutes":  60,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "22:00"
+                                  ]
+                              ]
+                  },
+        "last_entry_before_close_min":  null,
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "recommended",
+        "age_note":  "Ages 6+. Ages 6-13 need an adult in the building for the whole session. Minimum 2 players.",
+        "phone":  "+1 331-472-0126",
+        "website":  "https://playactivate.com/location/naperville",
+        "source_urls":  [
+                            "https://playactivate.com/location/naperville",
+                            "https://playactivate.com/chicago"
+                        ],
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "booking_url":  "https://ecom.roller.app/activatenaperville/chooseyouradventure/en/products",
+        "price_note":  "Activate Tickets $24.99 per person (Fri evening). Small deposit at booking.",
+        "hours_note":  "Mon-Thu noon-10 pm, Fri-Sat 10 am-11 pm, Sun 10 am-10 pm. Last entry and holiday hours not posted.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://playactivate.com/location/naperville",
+                         "source":  "https://playactivate.com/location/naperville"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/fgr-activate-naperville-1.jpg",
+                           "credit":  "Activate website",
+                           "page_url":  "https://playactivate.com/location/naperville"
+                       }
+                   ]
+    },
+    {
+        "id":  "fgr-flight-club-chicago",
+        "name":  "Flight Club Chicago (social darts)",
+        "kind":  "place",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "bar",
+                     "group",
+                     "rainy-day",
+                     "competitive"
+                 ],
+        "hook":  "High-tech darts where the board keeps score for you",
+        "description":  "A London-born darts bar where each group gets its own oche (a private throwing booth) and a screen that runs fast multiplayer games and scores every throw automatically, so beginners can play against experts. Cozy, vintage-pub styling with a full food and cocktail menu.",
+        "highlights":  [
+                           "Private oche for your group",
+                           "Automatic scoring, several game modes",
+                           "Book online for 2-12 people; 13+ through events",
+                           "Walk-in tables and bar first come, first served"
+                       ],
+        "address":  "111 W Wacker Dr, Chicago, IL 60601",
+        "neighborhood":  "Loop",
+        "lat":  41.886505,
+        "lng":  -87.6314551,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_from":  15,
+        "duration_minutes":  90,
+        "min_minutes":  90,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "15:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "15:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "15:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "12:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "12:00",
+                                      "24:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "24:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "21:00"
+                                  ]
+                              ]
+                  },
+        "last_entry_before_close_min":  null,
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "recommended",
+        "age_note":  "21+ after 6 pm Sunday-Friday and all day Saturday. Under 12 may not throw darts; ages 12-17 must play with an adult.",
+        "phone":  "+1 312-284-2474",
+        "website":  "https://www.flightclubdartsusa.com/chicago",
+        "source_urls":  [
+                            "https://www.flightclubdartsusa.com/chicago"
+                        ],
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "booking_url":  "https://www.sevenrooms.com/explore/flightclubchicago/reservations/create/search?venues=flightclubchicago%2Cacebounce",
+        "price_note":  "From $15 per person for 90 minutes of play.",
+        "hours_note":  "Sun 11 am-9 pm, Mon-Wed 3-11 pm, Thu noon-11 pm, Fri noon-midnight, Sat 11 am-midnight. Last booking time and holiday hours not posted.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.flightclubdartsusa.com/chicago",
+                         "source":  "https://www.flightclubdartsusa.com/chicago"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/fgr-flight-club-chicago-1.jpg",
+                           "credit":  "Flight Club Darts website",
+                           "page_url":  "https://www.flightclubdartsusa.com/chicago"
+                       }
+                   ]
+    },
+    {
+        "id":  "fgr-electric-shuffle-chicago",
+        "name":  "Electric Shuffle Chicago",
+        "kind":  "place",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "bar",
+                     "group",
+                     "rainy-day",
+                     "competitive"
+                 ],
+        "hook":  "Neon shuffleboard that scores itself",
+        "description":  "A retro, neon-lit shuffleboard bar from London where the tables score automatically and offer four game modes with replays, so nobody argues about whose puck counts. Food and drinks are brought to your table while you play, and a DJ plays on Friday nights, Saturdays and at Sunday brunch.",
+        "highlights":  [
+                           "Tables for 2-20 people (up to 12 per table)",
+                           "60- to 90-minute reservations",
+                           "Automatic scoring, four game modes, replays",
+                           "Bar area is open seating for food and drinks only",
+                           "At busy times they ask for at least 4 people"
+                       ],
+        "address":  "488 N La Salle Dr, Chicago, IL 60654",
+        "neighborhood":  "River North",
+        "lat":  41.8906485,
+        "lng":  -87.6327723,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  20,
+        "duration_minutes":  90,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "15:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "15:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "15:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "15:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "15:00",
+                                      "01:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "01:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "22:00"
+                                  ]
+                              ]
+                  },
+        "last_entry_before_close_min":  null,
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "recommended",
+        "age_note":  "21+ after 7 pm. Kids may come with a parent or guardian whose reservation ends by 7 pm.",
+        "phone":  "+1 312-736-7617",
+        "website":  "https://electricshuffle.com/us/chicago",
+        "source_urls":  [
+                            "https://electricshuffle.com/us/chicago",
+                            "https://electricshuffle.com/us/faqs"
+                        ],
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "booking_url":  "https://electricshuffle.com/us/chicago/book",
+        "price_note":  "$20 per person for 90 minutes of shuffleboard in Chicago, charged for every guest in the play space.",
+        "hours_note":  "Mon-Thu 3-11 pm, Fri 3 pm-1 am, Sat 11 am-1 am, Sun 11 am-10 pm. Last booking time and holiday hours not posted. Shortest reservation is 60 min.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://electricshuffle.com/us/chicago",
+                         "source":  "https://electricshuffle.com/us/chicago"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/fgr-electric-shuffle-chicago-1.jpg",
+                           "credit":  "Electric Shuffle website",
+                           "page_url":  "https://electricshuffle.com/us/chicago"
+                       }
+                   ]
+    },
+    {
+        "id":  "fgr-acebounce-chicago",
+        "name":  "AceBounce Chicago (social ping pong)",
+        "kind":  "place",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "bar",
+                     "group",
+                     "rainy-day",
+                     "competitive"
+                 ],
+        "hook":  "Ping pong bar in the Loop, beginners welcome",
+        "description":  "A social ping pong club with rows of orange tables, a full bar and food, where groups rally, play doubles and trash-talk over cocktails. There is also Ping Pong X, a higher-tech table option.",
+        "highlights":  [
+                           "2-12 guests per table",
+                           "Classic tables or Ping Pong X",
+                           "Bar and high-tops are first come, first served",
+                           "Groups of 13+ book through events"
+                       ],
+        "address":  "230 N Clark St, Chicago, IL 60601",
+        "neighborhood":  "Loop",
+        "lat":  41.8865115,
+        "lng":  -87.6311851,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_from":  10,
+        "duration_minutes":  60,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+                                  [
+                                      "16:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "16:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "16:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "15:00",
+                                      "24:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "12:00",
+                                      "24:00"
+                                  ]
+                              ],
+                      "sun":  [
+
+                              ]
+                  },
+        "last_entry_before_close_min":  null,
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "recommended",
+        "age_note":  "All ages until 6 pm; 21+ from 6 pm and all day Saturday.",
+        "phone":  "+1 773-219-0900",
+        "website":  "https://acebounce.com/chicago",
+        "source_urls":  [
+                            "https://acebounce.com/chicago"
+                        ],
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "booking_url":  "https://www.sevenrooms.com/explore/acebounce/reservations/create/search",
+        "price_note":  "Ping pong $10 per person; Ping Pong X $12; beer pong and shuffleboard $10. Session length for that price not stated.",
+        "hours_note":  "Closed Sun-Mon; Tue-Thu 4-10 pm, Fri 3 pm-midnight, Sat noon-midnight. Last entry and holiday hours not posted.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://acebounce.com/chicago",
+                         "source":  "https://acebounce.com/chicago"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/fgr-acebounce-chicago-1.jpg",
+                           "credit":  "AceBounce website",
+                           "page_url":  "https://acebounce.com/chicago"
+                       }
+                   ]
+    },
+    {
+        "id":  "fgr-enchanted-castle-lombard",
+        "name":  "Enchanted Castle (go-karts, laser tag, glow golf)",
+        "kind":  "place",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "go-karts",
+                     "laser-tag",
+                     "mini-golf",
+                     "bumper-cars",
+                     "rainy-day"
+                 ],
+        "hook":  "Go-karts, laser tag, bumper cars and glow golf under one roof",
+        "description":  "A big castle-themed fun center where you can race indoor electric go-karts, play black-light laser tag, ride bumper cars, sneak through a laser maze, try 10-minute escape games and putt nine holes of glow-in-the-dark mini golf. A silly, competitive pick for adults who like to switch games every 15 minutes.",
+        "highlights":  [
+                           "Indoor electric go-karts",
+                           "Black-light laser tag arena",
+                           "Black Knight\u0027s glow-in-the-dark mini golf (9 holes)",
+                           "Bumper cars, laser maze, VR, mini bowling",
+                           "10-minute escape games for up to 6",
+                           "Large arcade with prize counter"
+                       ],
+        "address":  "1103 S Main St, Lombard, IL 60148",
+        "neighborhood":  "Lombard (west suburbs)",
+        "lat":  41.8639671,
+        "lng":  -88.0174597,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_from":  4.75,
+        "duration_minutes":  90,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "12:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "12:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "12:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "12:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "21:00"
+                                  ]
+                              ]
+                  },
+        "date_hours":  {
+                           "2026-11-15":  [
+                                              [
+                                                  "14:00",
+                                                  "21:00"
+                                              ]
+                                          ]
+                       },
+        "last_entry_before_close_min":  null,
+        "season":  null,
+        "closed_dates":  [
+                             "2026-11-26"
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages. Laser tag and bumper cars: 42 in. tall (laser tag recommended 7+). Go-karts: 54 in. to drive alone; 36-53 in. can ride with a paying driver 16+.",
+        "phone":  "+1 630-953-7860",
+        "website":  "https://enchanted.com/",
+        "source_urls":  [
+                            "https://enchanted.com/",
+                            "https://enchanted.com/attractions/",
+                            "https://enchanted.com/attractions/go-karts/",
+                            "https://enchanted.com/wp-content/uploads/2026/06/Attraction-Pricing-EC-2026-6-1-26.pdf"
+                        ],
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "booking_url":  null,
+        "price_note":  "No admission; pay per attraction (tax included): laser tag $9.75, go-karts $9.75, glow mini golf $7.50, bumper cars $6, escape games $10 per guest, laser maze $4.75, VR $7-8 per game, mini bowling $5.50 per game. New FUN Card $3 activation.",
+        "hours_note":  "Mon-Thu noon-9 pm, Fri noon-10 pm, Sat 11 am-10 pm, Sun 11 am-9 pm. Go-karts and laser tag open at 3 pm on weekdays (11 am weekends); during Thanksgiving break Nov 23-27 everything opens at noon. Sun Nov 15 opens to the public at 2 pm (private event). Closed Thanksgiving Day. December holiday hours not posted yet; last entry not posted.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://enchanted.com/",
+                         "source":  "https://enchanted.com/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/fgr-enchanted-castle-lombard-1.jpg",
+                           "credit":  "Enchanted Castle website",
+                           "page_url":  "https://enchanted.com/attractions/go-karts/"
+                       }
+                   ]
+    },
+    {
+        "id":  "fgr-pinball-capital-stone-park",
+        "name":  "Pinball Capital",
+        "kind":  "place",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "pinball",
+                     "arcade",
+                     "rainy-day",
+                     "competitive"
+                 ],
+        "hook":  "130+ pinball machines, one ticket, play all day",
+        "description":  "A pinball hall with more than 130 machines, from mid-1960s classics to 2026 releases, all set to free play once you are in. It also runs leagues and tournaments if you want to get competitive.",
+        "highlights":  [
+                           "130+ machines, 1960s to 2026",
+                           "Entry covers all-day free play",
+                           "Quarter room for short visits",
+                           "Thursday league night includes a free tournament entry",
+                           "Monthly membership available"
+                       ],
+        "address":  "3200 W Le Moyne Ave, Stone Park, IL 60165",
+        "neighborhood":  "Stone Park (west suburbs)",
+        "lat":  41.9055119,
+        "lng":  -87.8734226,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_from":  20,
+        "price_note":  "$20 per person for all-day play. Membership $125/month. A quarter-drop room is available for short visits.",
+        "duration_minutes":  120,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+                                  [
+                                      "15:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "15:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "11:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "21:00"
+                                  ]
+                              ]
+                  },
+        "last_entry_before_close_min":  null,
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "phone":  "+1 708-731-3147",
+        "website":  "https://www.pinballcapital.com/",
+        "source_urls":  [
+                            "https://www.pinballcapital.com/"
+                        ],
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "booking_url":  null,
+        "age_note":  "Welcomes all ages; no age limit stated.",
+        "hours_note":  "Closed Mon-Tue; Wed-Thu 3-10 pm, Fri-Sat 11 am-11 pm, Sun 11 am-9 pm. The venue also advertises half-price \u0027Women\u0027s Day Tuesdays\u0027, although Tuesday is listed as closed; call to check. Last entry and holiday hours not posted.",
+        "verified":  {
+                         "status":  "conflicting",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.pinballcapital.com/",
+                         "source":  "https://www.pinballcapital.com/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/fgr-pinball-capital-stone-park-1.jpg",
+                           "credit":  "Pinball Capital website",
+                           "page_url":  "https://www.pinballcapital.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "fgr-first-ascent-west-loop",
+        "name":  "First Ascent West Loop (climbing gym)",
+        "kind":  "place",
+        "category":  "active",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "climbing",
+                     "active",
+                     "rainy-day",
+                     "solo"
+                 ],
+        "hook":  "50-foot climbing walls with auto-belays for first-timers",
+        "description":  "First Ascent\u0027s newest Chicago gym, with walls up to 50 feet for auto-belay, top-rope and lead climbing plus a big bouldering area, so beginners can clip into an auto-belay while experienced friends climb next to them. It also has a yoga studio, training gear, showers and a workspace.",
+        "highlights":  [
+                           "About 20,000 sq ft, walls up to 50 ft",
+                           "90+ routes and 100+ boulders, beginner to expert",
+                           "Auto-belays: no partner or belay class needed",
+                           "Rental gear package available",
+                           "Yoga classes, Kilter Board, showers, free Wi-Fi workspace"
+                       ],
+        "address":  "100 S Morgan St, Chicago, IL 60607",
+        "neighborhood":  "West Loop",
+        "lat":  41.8800525,
+        "lng":  -87.6523684,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  28,
+        "duration_minutes":  90,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ]
+                  },
+        "date_hours":  {
+                           "2026-12-24":  [
+                                              [
+                                                  "10:00",
+                                                  "16:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  [
+                                              [
+                                                  "10:00",
+                                                  "16:00"
+                                              ]
+                                          ]
+                       },
+        "last_entry_before_close_min":  null,
+        "season":  null,
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-12-25",
+                             "2027-01-01"
+                         ],
+        "booking":  "walk-in",
+        "phone":  "+1 312-374-8090",
+        "website":  "https://faclimbing.com/chicago/west-loop",
+        "source_urls":  [
+                            "https://faclimbing.com/chicago/west-loop",
+                            "https://faclimbing.com/chicago/west-loop/pricing/",
+                            "https://faclimbing.com/"
+                        ],
+        "good_for":  [
+                         "friends",
+                         "date",
+                         "solo"
+                     ],
+        "booking_url":  null,
+        "price_note":  "Adult day pass $28; student or under-18 $23; gear package $11 (shoes $6, harness $5). Family pass $79.",
+        "age_note":  "All ages; kids under 14 need adult supervision on a day pass. Everyone signs a waiver.",
+        "hours_note":  "Mon-Fri 6 am-11 pm, Sat-Sun 10 am-8 pm. Closed Thanksgiving, Dec 25 and Jan 1; 10 am-4 pm on Dec 24 and Dec 31. Last entry not posted.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://faclimbing.com/chicago/west-loop",
+                         "source":  "https://faclimbing.com/chicago/west-loop"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/fgr-first-ascent-west-loop-1.jpg",
+                           "credit":  "First Ascent Climbing website",
+                           "page_url":  "https://faclimbing.com/chicago/west-loop"
+                       }
+                   ]
+    },
+    {
+        "id":  "fgr-first-ascent-block-37",
+        "name":  "First Ascent Block 37 (bouldering)",
+        "kind":  "place",
+        "category":  "active",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "climbing",
+                     "active",
+                     "rainy-day",
+                     "solo",
+                     "short"
+                 ],
+        "hook":  "Bouldering in the middle of the Loop, no ropes needed",
+        "description":  "A bouldering-only gym on the 4th floor of Block 37, with about 10,000 square feet of short walls and 200+ problems from easy to hard. No ropes or harness, just climbing shoes and chalk, which makes it an easy after-work climb or an active first date downtown.",
+        "highlights":  [
+                           "About 10,000 sq ft of bouldering, walls up to 15 ft",
+                           "200+ boulder problems",
+                           "No ropes or belay skills needed",
+                           "Shoe rental available",
+                           "Inside Block 37, right by the Red and Blue Lines"
+                       ],
+        "address":  "108 N State St, 4th Floor, Chicago, IL 60602",
+        "neighborhood":  "Loop",
+        "lat":  41.8838784,
+        "lng":  -87.6285659,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  28,
+        "duration_minutes":  75,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ]
+                  },
+        "last_entry_before_close_min":  null,
+        "season":  null,
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-12-25",
+                             "2027-01-01"
+                         ],
+        "booking":  "walk-in",
+        "phone":  "+1 312-285-2337",
+        "website":  "https://faclimbing.com/chicago/block-37",
+        "source_urls":  [
+                            "https://faclimbing.com/chicago/block-37",
+                            "https://faclimbing.com/chicago/block-37/pricing/"
+                        ],
+        "good_for":  [
+                         "friends",
+                         "date",
+                         "solo"
+                     ],
+        "booking_url":  null,
+        "date_hours":  {
+                           "2026-11-27":  [
+                                              [
+                                                  "10:00",
+                                                  "20:00"
+                                              ]
+                                          ],
+                           "2026-12-24":  [
+                                              [
+                                                  "10:00",
+                                                  "16:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  [
+                                              [
+                                                  "10:00",
+                                                  "16:00"
+                                              ]
+                                          ]
+                       },
+        "price_note":  "Adult day pass $28; student or under-18 $23; gear package $7, shoes $6.",
+        "age_note":  "All ages; kids under 14 need adult supervision on a day pass. Everyone signs a waiver.",
+        "hours_note":  "Mon-Fri 6 am-11 pm, Sat-Sun 10 am-8 pm. Closed Thanksgiving, Dec 25 and Jan 1; Fri Nov 27 10 am-8 pm; Dec 24 and Dec 31 10 am-4 pm. Last entry not posted.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://faclimbing.com/chicago/block-37",
+                         "source":  "https://faclimbing.com/chicago/block-37"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/fgr-first-ascent-block-37-1.jpg",
+                           "credit":  "First Ascent Climbing website",
+                           "page_url":  "https://faclimbing.com/chicago/block-37"
+                       }
+                   ]
+    },
+    {
+        "id":  "fgr-zero-latency-schaumburg",
+        "name":  "Zero Latency VR Schaumburg (free-roam VR arena)",
+        "kind":  "place",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "vr",
+                     "group",
+                     "rainy-day",
+                     "competitive"
+                 ],
+        "hook":  "Free-roam VR: up to 8 friends in one virtual world",
+        "description":  "A free-roam virtual reality arena where up to eight players wear wireless headsets and walk freely around a large open space, seeing each other as avatars while you fight, explore or solve puzzles together. A host walks you through gearing up, so no VR experience is needed.",
+        "highlights":  [
+                           "Up to 8 players per session",
+                           "Games last 15-30 minutes; bundles of 45-60 minutes",
+                           "Includes a 10-15 minute safety briefing",
+                           "Arrive about 20 minutes early",
+                           "Wear comfortable clothes and flat shoes"
+                       ],
+        "address":  "309 W Golf Rd, Schaumburg, IL 60195",
+        "neighborhood":  "Schaumburg (northwest suburbs)",
+        "lat":  42.04917,
+        "lng":  -88.0873848,
+        "indoor_outdoor":  "indoor",
+        "price_level":  null,
+        "price_from":  null,
+        "duration_minutes":  45,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "14:00",
+                                      "19:45"
+                                  ]
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+                                  [
+                                      "14:00",
+                                      "19:45"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "14:00",
+                                      "19:45"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "12:00",
+                                      "19:45"
+                                  ]
+                              ]
+                  },
+        "last_entry_before_close_min":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "recommended",
+        "phone":  "+1 847-722-2046",
+        "website":  "https://zerolatencyvr.com/en/schaumburg",
+        "source_urls":  [
+                            "https://zerolatencyvr.com/en/schaumburg",
+                            "https://zerolatencyvr.com/en/schaumburg/what-to-expect",
+                            "https://zerolatencyvr.com/en/schaumburg/faqs"
+                        ],
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "booking_url":  "https://zerolatencyvr.com/en/schaumburg",
+        "price_note":  "Prices vary by peak/off-peak time and experience; shown only in the booking system.",
+        "age_note":  "13+ (Zero Latency\u0027s general rule; not confirmed for Schaumburg). No players under the influence of alcohol.",
+        "hours_note":  "Pre-opening hours: Sun noon-7:45 pm, Mon 2-7:45 pm, Tue by appointment only, Wed-Thu 2-7:45 pm, Fri noon-10 pm, Sat 11 am-10 pm. Venue opens Dec 4, 2026. Last entry and holiday hours not posted.",
+        "season":  {
+                       "open_from":  "2026-12-04",
+                       "open_to":  null,
+                       "note":  "Coming 4 December 2026."
+                   },
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://zerolatencyvr.com/en/schaumburg",
+                         "source":  "https://zerolatencyvr.com/en/schaumburg"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/fgr-zero-latency-schaumburg-1.jpg",
+                           "credit":  "Zero Latency VR website",
+                           "page_url":  "https://zerolatencyvr.com/en/schaumburg/what-to-expect"
+                       }
+                   ]
+    },
+    {
+        "id":  "fgr-punch-bowl-social-chicago",
+        "name":  "Punch Bowl Social Chicago",
+        "kind":  "place",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "bowling",
+                     "karaoke",
+                     "bar",
+                     "group",
+                     "rainy-day"
+                 ],
+        "hook":  "Bowling, karaoke rooms and darts in one Fulton Market playground",
+        "description":  "A two-floor \u0027adult playground\u0027 in Fulton Market with eight bowling lanes, private karaoke rooms, Dartsee darts and an arcade, plus a 360-degree bar and a diner, so a group can hop between games all night.",
+        "highlights":  [
+                           "8 bowling lanes (shoes included)",
+                           "3 private karaoke rooms, one fits 20",
+                           "Dartsee darts and an arcade",
+                           "Walk-ins welcome; lanes and tables bookable",
+                           "Happy hour Tue-Fri with 50% off games"
+                       ],
+        "address":  "310 N Green St, Chicago, IL 60607",
+        "neighborhood":  "West Loop / Fulton Market",
+        "lat":  41.8872669,
+        "lng":  -87.6490322,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  20,
+        "price_note":  "Bowling per person, shoes included: $20 for 1 hour, $30 for 90 min, $40 for 2 hours off-peak; $25 / $37.50 at peak (Fri-Sat after 6:45 pm). Kids under 12 $10/hour. Socks $7.",
+        "duration_minutes":  90,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "11:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "11:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "11:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "11:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "11:00",
+                                      "01:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "01:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "last_entry_before_close_min":  null,
+        "season":  null,
+        "closed_dates":  [
+                             "2026-11-18"
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages, except 21+ from 10 pm on Friday and Saturday.",
+        "phone":  "+1 312-809-9551",
+        "website":  "https://punchbowlsocial.com/location/chicago",
+        "source_urls":  [
+                            "https://punchbowlsocial.com/location/chicago"
+                        ],
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "booking_url":  "https://punchbowlsocial.reservewithrex.com/package?venue=Chicago",
+        "hours_note":  "Mon-Thu and Sun 11 am-11 pm, Fri-Sat 11 am-1 am. Closed Wed 2026-11-18. Happy hour Tue-Fri 3-6:30 pm. Last entry not posted.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://punchbowlsocial.com/location/chicago",
+                         "source":  "https://punchbowlsocial.com/location/chicago"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/fgr-punch-bowl-social-chicago-1.jpg",
+                           "credit":  "Punch Bowl Social website",
+                           "page_url":  "https://punchbowlsocial.com/location/chicago"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-navy-pier-winter-fireworks-2026",
+        "name":  "Winter Fireworks at Navy Pier (Saturdays)",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "free",
+                     "night",
+                     "views"
+                 ],
+        "moods":  [
+                      "festive",
+                      "romantic",
+                      "cheap"
+                  ],
+        "good_for":  [
+                         "date",
+                         "friends",
+                         "family"
+                     ],
+        "description":  "Fireworks shot over the lake off Navy Pier with the skyline behind them. An easy add-on to dinner or Winter WonderFest.",
+        "hook":  "Free lakefront fireworks every Saturday through Dec 26",
+        "highlights":  [
+                           "Free",
+                           "Every Saturday Nov 21 - Dec 26, 2026",
+                           "Nov 21 show is at 8:30 PM, the rest at 8 PM",
+                           "Over the lake with skyline views"
+                       ],
+        "address":  "Navy Pier, 600 E Grand Ave, Chicago, IL 60611",
+        "neighborhood":  "Streeterville",
+        "lat":  41.89138889,
+        "lng":  -87.59972222,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "duration_minutes":  null,
+        "min_minutes":  20,
+        "hours":  null,
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-21T20:30",
+                                "end":  null
+                            },
+                            {
+                                "start":  "2026-11-28T20:00",
+                                "end":  null
+                            },
+                            {
+                                "start":  "2026-12-05T20:00",
+                                "end":  null
+                            },
+                            {
+                                "start":  "2026-12-12T20:00",
+                                "end":  null
+                            },
+                            {
+                                "start":  "2026-12-19T20:00",
+                                "end":  null
+                            },
+                            {
+                                "start":  "2026-12-26T20:00",
+                                "end":  null
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "walk-in",
+        "age_note":  "all ages",
+        "phone":  "",
+        "website":  "https://navypier.org/pier-events/winter-fireworks/",
+        "source_urls":  [
+                            "https://navypier.org/pier-events/winter-fireworks/",
+                            "https://navypier.org/events-and-public-programs/"
+                        ],
+        "booking_url":  null,
+        "price_note":  "Free",
+        "hours_note":  "Show length not stated; Navy Pier\u0027s calendar sets aside 2 hours per show.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://navypier.org/pier-events/winter-fireworks/",
+                         "source":  "https://navypier.org/pier-events/winter-fireworks/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-navy-pier-winter-fireworks-2026-1.jpg",
+                           "credit":  "Navy Pier (official site)",
+                           "page_url":  "https://navypier.org/pier-events/winter-fireworks/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-chicago-puppet-festival-2027",
+        "name":  "Chicago International Puppet Theater Festival 2027",
+        "kind":  "event",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "rainy-day",
+                     "unusual",
+                     "theater"
+                 ],
+        "moods":  [
+                      "artsy",
+                      "quirky"
+                  ],
+        "good_for":  [
+                         "date",
+                         "friends",
+                         "family"
+                     ],
+        "description":  "Twelve days of puppet theater from around the world at venues across Chicago, from family shows to strange, beautiful late-night pieces for grown-ups. A genuinely unusual date night in the dead of winter.",
+        "hook":  "World puppet shows for grown-ups, Jan 20-31",
+        "highlights":  [
+                           "Jan 20-31, 2027",
+                           "Shows for adults and for families",
+                           "Past years included late-night adult shows",
+                           "Several venues around the city"
+                       ],
+        "address":  "Various venues, Chicago, IL (festival office: 410 S Michigan Ave, Studio 310)",
+        "neighborhood":  "Citywide",
+        "lat":  41.876,
+        "lng":  -87.6245,
+        "indoor_outdoor":  "indoor",
+        "price_level":  null,
+        "duration_minutes":  75,
+        "min_minutes":  40,
+        "hours":  null,
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2027-01-20",
+                                "end":  "2027-01-31"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "age_note":  "varies by show (family and adult shows)",
+        "phone":  "312-753-3234",
+        "website":  "https://chicagopuppetfest.org/",
+        "source_urls":  [
+                            "https://chicagopuppetfest.org/",
+                            "https://chicagopuppetfest.org/events/",
+                            "https://www.choosechicago.com/blog/arts-culture-entertainment/winter-culture-guide-chicago/"
+                        ],
+        "booking_url":  null,
+        "price_note":  "Show prices not posted yet; tickets on sale soon.",
+        "hours_note":  "Show times and venues for 2027 not posted yet. Past shows ran 40-85 min.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://chicagopuppetfest.org/",
+                         "source":  "https://chicagopuppetfest.org/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-chicago-puppet-festival-2027-1.jpg",
+                           "credit":  "Chicago International Puppet Theater Festival website (photo: Richard Termine)",
+                           "page_url":  "https://chicagopuppetfest.org/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-lake-geneva-winterfest-2027",
+        "name":  "Lake Geneva Winterfest and America\u0027s Snow Sculpting Invitational 2027",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "look-learn",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "free",
+                     "day-trip",
+                     "outdoor",
+                     "winter"
+                 ],
+        "moods":  [
+                      "festive",
+                      "outdoorsy",
+                      "cheap"
+                  ],
+        "good_for":  [
+                         "date",
+                         "friends",
+                         "family"
+                     ],
+        "description":  "Fifteen snow-sculpting teams carve giant sculptures on the Geneva Lake shore while you watch, plus an ice sculpture walk downtown and bonfires on the beach. A fun winter day trip about 80 miles from Chicago.",
+        "hook":  "Giant snow sculptures on the lakeshore, free",
+        "highlights":  [
+                           "Feb 3-7, 2027",
+                           "Free to attend",
+                           "15 sculpting teams from the US and abroad",
+                           "Ice sculpture walk and beach bonfires",
+                           "Lake Geneva, Wisconsin (day trip)"
+                       ],
+        "address":  "Riviera Plaza and Flat Iron Park, Lake Geneva, WI 53147",
+        "neighborhood":  "Lake Geneva, WI",
+        "lat":  42.5904,
+        "lng":  -88.4337,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "duration_minutes":  120,
+        "min_minutes":  60,
+        "hours":  null,
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2027-02-03",
+                                "end":  "2027-02-07"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "walk-in",
+        "age_note":  "all ages",
+        "phone":  "",
+        "website":  "https://www.visitlakegeneva.com/winterfest/",
+        "source_urls":  [
+                            "https://www.visitlakegeneva.com/winterfest/"
+                        ],
+        "booking_url":  null,
+        "price_note":  "Free to attend and view",
+        "hours_note":  "Daily times not posted. Teams start Wednesday Feb 3 and finish Saturday; sculptures stay on display through Sunday.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.visitlakegeneva.com/winterfest/",
+                         "source":  "https://www.visitlakegeneva.com/winterfest/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-lake-geneva-winterfest-2027-1.jpg",
+                           "credit":  "VISIT Lake Geneva (official Winterfest page)",
+                           "page_url":  "https://www.visitlakegeneva.com/winterfest/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-orchid-show-chicago-botanic-2027",
+        "name":  "The Orchid Show: Orchids in Orbit (Chicago Botanic Garden)",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "rainy-day",
+                     "flowers",
+                     "photogenic"
+                 ],
+        "moods":  [
+                      "romantic",
+                      "relaxed",
+                      "artsy"
+                  ],
+        "good_for":  [
+                         "date",
+                         "friends",
+                         "family"
+                     ],
+        "description":  "More than 10,000 orchids fill eight greenhouse rooms with a glowing outer-space theme, a warm tropical escape in the middle of winter. On select evenings it turns into Orchids After Hours with special lighting, cocktails and even silent discos.",
+        "hook":  "10,000 orchids in a space-themed glow, with date nights",
+        "highlights":  [
+                           "Feb 6 - Mar 21, 2027",
+                           "10,000+ orchids in 8 rooms",
+                           "Orchids After Hours evenings with cocktails",
+                           "Silent Disco nights Feb 13 and Mar 13",
+                           "Valentine\u0027s night Feb 14",
+                           "Photographers\u0027 hours every Tuesday"
+                       ],
+        "good_to_know":  "Orchids After Hours (evening times not posted): Feb 12, 19, 20, 26, 27; Mar 4, 5, 6, 11, 12, 18, 19, 20 (lighting, cocktails and food for purchase); Silent Disco Feb 13 and Mar 13; Valentine\u0027s night Feb 14. Tickets go on sale to everyone Jan 19, 2027.",
+        "address":  "Regenstein Center, Chicago Botanic Garden, 1000 Lake Cook Rd, Glencoe, IL 60022",
+        "neighborhood":  "Glencoe",
+        "lat":  42.1478,
+        "lng":  -87.7895,
+        "indoor_outdoor":  "indoor",
+        "price_level":  null,
+        "price_note":  "General admission price not posted yet; tickets on sale to all Jan 19, 2027. Members\u0027 Preview Feb 5 is $30 (members only).",
+        "duration_minutes":  75,
+        "min_minutes":  40,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "10:00",
+                                      "16:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "10:00",
+                                      "16:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "10:00",
+                                      "16:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "10:00",
+                                      "16:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:00",
+                                      "16:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "16:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "16:00"
+                                  ]
+                              ]
+                  },
+        "event_dates":  [
+                            {
+                                "start":  "2027-02-06",
+                                "end":  "2027-03-21"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "recommended",
+        "age_note":  "all ages",
+        "phone":  "(847) 835-5440",
+        "website":  "https://www.chicagobotanic.org/orchid",
+        "source_urls":  [
+                            "https://www.chicagobotanic.org/orchid",
+                            "https://www.chicagobotanic.org/sites/default/files/2026-08/orchid-show-info-sheet-2027.pdf"
+                        ],
+        "booking_url":  "https://secure.chicagobotanic.org/WebStore/shop/ViewItems.aspx?cg=2050\u0026c=12314#12315",
+        "hours_note":  "Daytime show 10 a.m.-4 p.m. daily during the run. Evening After Hours dates are under Good to know; their times are not posted.",
+        "season":  {
+                       "open_from":  "2027-02-06",
+                       "open_to":  "2027-03-21",
+                       "note":  ""
+                   },
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagobotanic.org/orchid",
+                         "source":  "https://www.chicagobotanic.org/orchid"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-orchid-show-chicago-botanic-2027-1.jpg",
+                           "credit":  "Chicago Botanic Garden (official site)",
+                           "page_url":  "https://www.chicagobotanic.org/orchid"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-morton-arboretum-chocolate-weekend-2027",
+        "name":  "Chocolate Weekend at The Morton Arboretum",
+        "kind":  "event",
+        "category":  "food-drink-experience",
+        "genre":  "eat-drink",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "chocolate",
+                     "food",
+                     "rainy-day"
+                 ],
+        "moods":  [
+                      "cozy",
+                      "sweet"
+                  ],
+        "good_for":  [
+                         "date",
+                         "friends",
+                         "family"
+                     ],
+        "description":  "A weekend chocolate expo where artisan chocolatiers and bakers sell small-batch chocolate and treats, with talks by cacao experts on where chocolate comes from. Easy to pair with a winter walk in the Arboretum.",
+        "hook":  "Artisan chocolate expo plus cacao talks",
+        "highlights":  [
+                           "Sat-Sun Feb 6-7, 2027",
+                           "Small-batch chocolate, baked goods and vegan treats",
+                           "Chocolatier and cacao talks (register ahead)",
+                           "Included with Arboretum admission",
+                           "Member tasting event (16+)"
+                       ],
+        "address":  "Visitor Center (parking lot P-1, East Side), The Morton Arboretum, 4100 Illinois Route 53, Lisle, IL 60532",
+        "neighborhood":  "Lisle",
+        "lat":  41.81611111,
+        "lng":  -88.07027778,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_note":  "Included with Arboretum general admission (date-based price shown only when you pick a time; $2 cheaper online than at the gate). Members free; member add-on guest tickets $10.",
+        "duration_minutes":  60,
+        "min_minutes":  30,
+        "hours":  null,
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2027-02-06",
+                                "end":  "2027-02-06"
+                            },
+                            {
+                                "start":  "2027-02-07",
+                                "end":  "2027-02-07"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "walk-in",
+        "age_note":  "all ages (member tasting event 16+)",
+        "phone":  "630-968-0074",
+        "website":  "https://mortonarb.org/explore/activities/events/chocolate-weekend",
+        "source_urls":  [
+                            "https://mortonarb.org/explore/activities/events/chocolate-weekend"
+                        ],
+        "booking_url":  "https://tickets.mortonarb.org/admission",
+        "hours_note":  "2027 expo hours not posted.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://mortonarb.org/explore/activities/events/chocolate-weekend",
+                         "source":  "https://mortonarb.org/explore/activities/events/chocolate-weekend"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-morton-arboretum-chocolate-weekend-2027-1.jpg",
+                           "credit":  "The Morton Arboretum (official site)",
+                           "page_url":  "https://mortonarb.org/explore/activities/events/chocolate-weekend"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-chinatown-lunar-new-year-parade-2027",
+        "name":  "Chinatown Lunar New Year Parade 2027",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "free",
+                     "culture",
+                     "food"
+                 ],
+        "moods":  [
+                      "festive",
+                      "loud",
+                      "cheap"
+                  ],
+        "good_for":  [
+                         "friends",
+                         "date",
+                         "family"
+                     ],
+        "description":  "Dragon and lion dance teams, floats and marching bands wind up Wentworth Avenue under the Chinatown gate to ring in the Lunar New Year. Go early, then stay for dumplings and hot pot in Chinatown.",
+        "hook":  "Dragons and lion dancers up Wentworth Ave",
+        "highlights":  [
+                           "Sunday Feb 14, 2027, 1 PM",
+                           "Starts at 24th St and Wentworth, heads north to Cermak",
+                           "Dragon and lion dancers, floats, marching bands",
+                           "Free to watch"
+                       ],
+        "address":  "Wentworth Ave from 24th St to Cermak Rd, Chicago, IL 60616",
+        "neighborhood":  "Chinatown",
+        "lat":  41.8505,
+        "lng":  -87.632,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "duration_minutes":  90,
+        "min_minutes":  45,
+        "hours":  null,
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2027-02-14T13:00",
+                                "end":  null
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "walk-in",
+        "age_note":  "all ages",
+        "phone":  "",
+        "website":  "https://ccc-foundation.org/lunar-new-year-parade/",
+        "source_urls":  [
+                            "https://ccc-foundation.org/lunar-new-year-parade/",
+                            "https://www.choosechicago.com/events-and-shows/festivals-guide/"
+                        ],
+        "booking_url":  null,
+        "price_note":  "Free street parade",
+        "hours_note":  "Starts 1:00 p.m.; end time not posted.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://ccc-foundation.org/lunar-new-year-parade/",
+                         "source":  "https://ccc-foundation.org/lunar-new-year-parade/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-chinatown-lunar-new-year-parade-2027-1.jpg",
+                           "credit":  "Chicago Chinatown Community Foundation (organizer website)",
+                           "page_url":  "https://ccc-foundation.org/lunar-new-year-parade/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-st-patricks-parade-river-dyeing-2027",
+        "name":  "Chicago St. Patrick\u0027s Day Parade and Green River Dyeing 2027",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "friends",
+                     "free",
+                     "iconic",
+                     "outdoor"
+                 ],
+        "moods":  [
+                      "festive",
+                      "loud",
+                      "cheap"
+                  ],
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "description":  "The Chicago River gets dyed bright green in the morning, then floats, pipe bands and Irish dancers march downtown. The classic only-in-Chicago day out with friends.",
+        "hook":  "The river turns green, then the big parade",
+        "highlights":  [
+                           "Saturday Mar 13, 2027",
+                           "River dyeing seen best along Wacker Drive",
+                           "Parade downtown along the river",
+                           "Free to watch",
+                           "Start times not announced yet"
+                       ],
+        "address":  "Chicago River along Wacker Dr (dyeing); downtown parade route, Chicago, IL",
+        "neighborhood":  "Loop",
+        "lat":  41.8879,
+        "lng":  -87.6245,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free to watch",
+        "duration_minutes":  180,
+        "min_minutes":  30,
+        "hours":  null,
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2027-03-13",
+                                "end":  "2027-03-13"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "walk-in",
+        "age_note":  "all ages",
+        "phone":  "",
+        "website":  "https://www.chicagostpatricksdayparade.org/",
+        "source_urls":  [
+                            "https://www.chicagostpatricksdayparade.org/",
+                            "https://www.choosechicago.com/events-and-shows/festivals-guide/"
+                        ],
+        "booking_url":  null,
+        "hours_note":  "Dyeing time and parade start for 2027 are \u0027TBD\u0027.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagostpatricksdayparade.org/",
+                         "source":  "https://www.chicagostpatricksdayparade.org/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-st-patricks-parade-river-dyeing-2027-1.jpg",
+                           "credit":  "Chicago St. Patrick\u0027s Day Parade (official site)",
+                           "page_url":  "https://www.chicagostpatricksdayparade.org/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-south-side-irish-parade-2027",
+        "name":  "South Side Irish Parade 2027 (Beverly)",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "friends",
+                     "free",
+                     "neighborhood",
+                     "outdoor"
+                 ],
+        "moods":  [
+                      "festive",
+                      "loud",
+                      "cheap"
+                  ],
+        "good_for":  [
+                         "friends",
+                         "family"
+                     ],
+        "description":  "Beverly\u0027s huge neighborhood St. Patrick\u0027s parade, with floats, bagpipes and dancers along Western Avenue and a block-party crowd. A more local feel than the downtown parade, the day after it.",
+        "hook":  "Beverly\u0027s giant neighborhood St. Paddy\u0027s parade",
+        "highlights":  [
+                           "Sunday Mar 14, 2027",
+                           "Along Western Ave in Beverly",
+                           "Free to watch",
+                           "Start time not posted yet"
+                       ],
+        "address":  "Western Ave from 103rd St south toward 115th St, Chicago, IL 60643",
+        "neighborhood":  "Beverly / Morgan Park",
+        "lat":  41.7066,
+        "lng":  -87.6823,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free to watch",
+        "duration_minutes":  120,
+        "min_minutes":  45,
+        "hours":  null,
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2027-03-14",
+                                "end":  "2027-03-14"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "walk-in",
+        "age_note":  "all ages",
+        "phone":  "",
+        "website":  "https://southsideirishparade.org/",
+        "source_urls":  [
+                            "https://southsideirishparade.org/",
+                            "https://www.choosechicago.com/events-and-shows/festivals-guide/"
+                        ],
+        "booking_url":  null,
+        "hours_note":  "2027 start time and route not posted. In 2026 it started at noon at 103rd St and Western Ave and went south to 115th St; not confirmed for 2027.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://southsideirishparade.org/",
+                         "source":  "https://southsideirishparade.org/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-south-side-irish-parade-2027-1.jpg",
+                           "credit":  "South Side Irish Parade (official site)",
+                           "page_url":  "https://southsideirishparade.org/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-midwest-gaming-classic-2027",
+        "name":  "Midwest Gaming Classic 2027 (Milwaukee)",
+        "kind":  "event",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "arcade",
+                     "pinball",
+                     "video-games",
+                     "day-trip",
+                     "rainy-day"
+                 ],
+        "moods":  [
+                      "nerdy",
+                      "loud",
+                      "active"
+                  ],
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "description":  "A giant gaming convention where thousands of arcade cabinets, pinball machines and consoles are set to free play, so you just walk the floor and play everything. The closest thing to an all-you-can-play carnival midway, about 90 miles north in Milwaukee.",
+        "hook":  "Thousands of arcade and pinball games on free play",
+        "highlights":  [
+                           "Apr 23-25, 2027",
+                           "10,000+ games on free play (organizer\u0027s claim)",
+                           "Friday preview night, Saturday full show, Sunday family day",
+                           "200+ vendors",
+                           "Baird Center, Milwaukee (day trip)"
+                       ],
+        "address":  "Baird Center, 400 W Wisconsin Ave, Milwaukee, WI 53203",
+        "neighborhood":  "Downtown Milwaukee, WI",
+        "lat":  43.0387,
+        "lng":  -87.9168,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "duration_minutes":  300,
+        "min_minutes":  120,
+        "hours":  null,
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2027-04-23T18:00",
+                                "end":  "2027-04-24T00:00"
+                            },
+                            {
+                                "start":  "2027-04-24T10:00",
+                                "end":  "2027-04-24T20:00"
+                            },
+                            {
+                                "start":  "2027-04-25T10:00",
+                                "end":  "2027-04-25T17:00"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "recommended",
+        "age_note":  "All ages. Up to two kids 9 and under free with a paid adult on Sat or Sun. The Saturday after party is rated M.",
+        "phone":  "",
+        "website":  "https://www.midwestgamingclassic.com/",
+        "source_urls":  [
+                            "https://www.midwestgamingclassic.com/",
+                            "https://www.midwestgamingclassic.com/attend/",
+                            "https://www.cbs58.com/news/thousands-pack-baird-center-for-last-day-of-midwest-gaming-classic"
+                        ],
+        "price_from":  30,
+        "booking_url":  "https://www.midwestgamingclassic.com/attend/",
+        "price_note":  "Sunday $30, Saturday $55, Friday preview night $50, Sat+Sun $80, 3-day $110, VIG package $190, plus a $5 service fee per admission. Up to two kids 9 and under free with a paid adult ticket on Sat or Sun.",
+        "hours_note":  "Fri Apr 23 preview night 6 PM-midnight (Game Center, Tournament Zone and some rooms; vendors closed); Sat Apr 24 10 AM-8 PM; Sun Apr 25 family day 10 AM-5 PM.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.midwestgamingclassic.com/attend/",
+                         "source":  "https://www.midwestgamingclassic.com/attend/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-midwest-gaming-classic-2027-1.jpg",
+                           "credit":  "Midwest Gaming Classic website",
+                           "page_url":  "https://www.midwestgamingclassic.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-c2e2-2027",
+        "name":  "C2E2: Chicago Comic \u0026 Entertainment Expo 2027",
+        "kind":  "event",
+        "category":  "unique-niche",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "comics",
+                     "cosplay",
+                     "gaming",
+                     "rainy-day"
+                 ],
+        "moods":  [
+                      "nerdy",
+                      "loud"
+                  ],
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "description":  "Chicago\u0027s big comic and pop-culture convention, with celebrity panels, a huge show floor of artists and collectibles, gaming areas and a sea of cosplay. Great people-watching even if you are not a superfan.",
+        "hook":  "Chicago\u0027s giant comics, cosplay and pop-culture con",
+        "highlights":  [
+                           "Apr 30 - May 2, 2027",
+                           "McCormick Place South Building",
+                           "Celebrity guests, panels, gaming and cosplay",
+                           "Kids 6-12 need a Kids ticket; under 6 free",
+                           "Under 16 must be with a parent or guardian"
+                       ],
+        "address":  "McCormick Place South Building, 2301 S Lake Shore Dr, Chicago, IL 60616",
+        "neighborhood":  "Near South Side",
+        "lat":  41.85194444,
+        "lng":  -87.61611111,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "duration_minutes":  240,
+        "min_minutes":  120,
+        "hours":  null,
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2027-04-30T10:00",
+                                "end":  "2027-04-30T19:00"
+                            },
+                            {
+                                "start":  "2027-05-01T10:00",
+                                "end":  "2027-05-01T19:00"
+                            },
+                            {
+                                "start":  "2027-05-02T10:00",
+                                "end":  "2027-05-02T17:00"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "age_note":  "Ticket needed from age 6; ages 6-12 Kids ticket; under 16 with parent or guardian",
+        "phone":  "",
+        "website":  "https://www.c2e2.com/",
+        "source_urls":  [
+                            "https://www.c2e2.com/en-us/about/frequently-asked-questions.html",
+                            "https://www.c2e2.com/en-us.html",
+                            "https://www.c2e2.com/en-us/buy/tickets.html"
+                        ],
+        "price_from":  50.14,
+        "booking_url":  "https://www.c2e2.com/en-us/buy/tickets.html",
+        "price_note":  "Early-bird single day from $50.14 (Fri), Sat $71.94, Sun $61.04, 3-day $137.33; Kids (6-12) single day $28.34; VIP $377.13. Prices include fees and tax; early-bird ends Jan 7, 2027 and prices rise again Apr 16.",
+        "hours_note":  "Fri 10 AM-7 PM, Sat 10 AM-7 PM, Sun 10 AM-5 PM. Panel and After Dark hours announced later.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.c2e2.com/en-us/about/frequently-asked-questions.html",
+                         "source":  "https://www.c2e2.com/en-us/about/frequently-asked-questions.html"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-c2e2-2027-1.jpg",
+                           "credit":  "C2E2 website (press photo gallery)",
+                           "page_url":  "https://www.c2e2.com/en-us/industry/for-press/photo-gallery.html"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-one-of-a-kind-spring-show-2027",
+        "name":  "One of a Kind Spring Show 2027",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "look-learn",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "art",
+                     "shopping",
+                     "rainy-day"
+                 ],
+        "moods":  [
+                      "artsy"
+                  ],
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "description":  "The spring edition of the big artist and maker fair at THE MART, where independent artists, designers and makers sell jewelry, art, ceramics and gifts. Fun for browsing and meeting the people who made the things.",
+        "hook":  "Huge indoor artist and maker fair at THE MART",
+        "highlights":  [
+                           "Apr 30 - May 2, 2027",
+                           "At THE MART (Merchandise Mart)",
+                           "Independent artists, designers and makers"
+                       ],
+        "address":  "THE MART, 222 Merchandise Mart Plaza, Chicago, IL 60654",
+        "neighborhood":  "River North",
+        "lat":  41.8884,
+        "lng":  -87.6355,
+        "indoor_outdoor":  "indoor",
+        "price_level":  null,
+        "duration_minutes":  120,
+        "min_minutes":  60,
+        "hours":  null,
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2027-04-30",
+                                "end":  "2027-05-02"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "walk-in",
+        "age_note":  "Not stated.",
+        "phone":  "",
+        "website":  "https://oneofakindshowchicago.com/",
+        "source_urls":  [
+                            "https://oneofakindshowchicago.com/",
+                            "https://www.choosechicago.com/events-and-shows/festivals-guide/"
+                        ],
+        "booking_url":  null,
+        "price_note":  "Spring 2027 price not posted (the Holiday 2026 show is $15 for all four days).",
+        "hours_note":  "Spring 2027 hours and floor not posted yet; only the dates are out: Apr 30-May 2.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://oneofakindshowchicago.com/",
+                         "source":  "https://oneofakindshowchicago.com/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-one-of-a-kind-spring-show-2027-1.jpg",
+                           "credit":  "One of a Kind Show website (oneofakindshowchicago.com)",
+                           "page_url":  "https://oneofakindshowchicago.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-anime-central-2027",
+        "name":  "Anime Central (ACen) 2027",
+        "kind":  "event",
+        "category":  "unique-niche",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "anime",
+                     "cosplay",
+                     "gaming",
+                     "rainy-day"
+                 ],
+        "moods":  [
+                      "nerdy",
+                      "loud"
+                  ],
+        "good_for":  [
+                         "friends"
+                     ],
+        "description":  "The Midwest\u0027s big anime and manga convention, with cosplay everywhere, guest panels, an exhibit hall of artists and merch, gaming rooms and late-night events. A colorful, high-energy weekend even for casual fans.",
+        "hook":  "The Midwest\u0027s giant anime and cosplay weekend",
+        "highlights":  [
+                           "May 14-16, 2027",
+                           "Donald E. Stephens Convention Center and Hyatt Regency O\u0027Hare, Rosemont",
+                           "Cosplay, panels, exhibit hall, gaming"
+                       ],
+        "address":  "Donald E. Stephens Convention Center, 5555 N River Rd, Rosemont, IL 60018",
+        "neighborhood":  "Rosemont",
+        "lat":  41.9786,
+        "lng":  -87.8625,
+        "indoor_outdoor":  "indoor",
+        "price_level":  null,
+        "duration_minutes":  240,
+        "min_minutes":  120,
+        "hours":  null,
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2027-05-14",
+                                "end":  "2027-05-16"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "age_note":  "Not posted yet.",
+        "phone":  "",
+        "website":  "https://www.acen.org/",
+        "source_urls":  [
+                            "https://www.acen.org/",
+                            "https://rosemont.com/desconvention/event/anime-central-6/"
+                        ],
+        "booking_url":  null,
+        "price_note":  "Badge prices not posted yet",
+        "hours_note":  "2027 hours not posted.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.acen.org/",
+                         "source":  "https://www.acen.org/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-anime-central-2027-1.jpg",
+                           "credit":  "Anime Central website",
+                           "page_url":  "https://www.acen.org/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ud-drunk-shakespeare-chicago",
+        "name":  "Drunk Shakespeare (The Lion Theatre)",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "comedy",
+                     "theater",
+                     "cocktails",
+                     "rainy-day"
+                 ],
+        "hook":  "Shakespeare with one very drunk actor",
+        "description":  "A comedy show where five actors stage a classic story and one of them has had five shots before curtain, so the play goes gloriously sideways. It runs in a lounge with a full cocktail bar; this winter the classic is A Christmas Carol, then Romeo \u0026 Juliet.",
+        "highlights":  [
+                           "Five actors, one has had five shots",
+                           "Cocktails sold during the show",
+                           "Drunk Christmas Carol through Jan 3",
+                           "Drunk Romeo \u0026 Juliet from Jan 7"
+                       ],
+        "address":  "182 N Wabash Ave, Chicago, IL 60601",
+        "neighborhood":  "Loop",
+        "lat":  41.8854184,
+        "lng":  -87.6263807,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "price_from":  53,
+        "duration_minutes":  90,
+        "min_minutes":  90,
+        "hours":  null,
+        "season":  null,
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-12-25"
+                         ],
+        "booking":  "required",
+        "booking_url":  "https://tickets.drunkchristmas.com/pmt/calendar.php?Show=CarolCHI",
+        "age_note":  "21+ only; photo ID checked at the door",
+        "phone":  "",
+        "website":  "https://drunkshakespeare.com/chicago/",
+        "source_urls":  [
+                            "https://drunkshakespeare.com/chicago/",
+                            "https://drunkchristmas.com/chicago/",
+                            "https://tickets.drunkchristmas.com/pmt/calendar.php?Show=CarolCHI",
+                            "https://tickets.drunkshakespeare.com/events/RJChicago/2027-03-25-1900"
+                        ],
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "price_note":  "Drunk Christmas Carol tickets from $53; Drunk Romeo \u0026 Juliet from $49. Prices vary by date.",
+        "hours_note":  "Shows by date, not open hours. Drunk Christmas Carol Nov 11, 2026 to Jan 3, 2027; Drunk Romeo \u0026 Juliet Jan 7 to Apr 4, 2027. Most nights 7 PM; Fridays 5/7/9 PM; Saturdays 3, 5, 7 and 9 PM; Sundays 5 and 7 PM. Weekend shows often \u0027selling out\u0027. No shows on Thanksgiving (Nov 26) or Christmas Day (Dec 25); Dec 24 shows at 3/5/7 PM, Dec 31 at 7 PM only. From January many Mondays and Tuesdays have no show.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://tickets.drunkchristmas.com/pmt/calendar.php?Show=CarolCHI"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ud-drunk-shakespeare-chicago-1.jpg",
+                           "credit":  "Drunk Shakespeare website",
+                           "page_url":  "https://drunkshakespeare.com/chicago/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ud-magic-parlour-chicago",
+        "name":  "The Magic Parlour (Dennis Watkins)",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "magic",
+                     "cocktails",
+                     "dress-up",
+                     "rainy-day"
+                 ],
+        "hook":  "Close-up magic in a secret-feeling parlour",
+        "description":  "Magician Dennis Watkins performs close-up magic for a small audience in a custom-built parlour next to the Goodman Theatre, often pulling guests into the tricks. It is set up as a grown-up night out: dress up and start with a drink from the bar.",
+        "highlights":  [
+                           "Small-room, close-up magic",
+                           "One drink included with each ticket",
+                           "Optional 25-min Encore Room show after",
+                           "Cocktail attire recommended"
+                       ],
+        "address":  "50 W Randolph St, Chicago, IL 60601",
+        "neighborhood":  "Loop (Theatre District)",
+        "lat":  41.8846095,
+        "lng":  -87.6299061,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "price_from":  null,
+        "duration_minutes":  90,
+        "min_minutes":  90,
+        "hours":  null,
+        "season":  null,
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-12-24",
+                             "2026-12-25",
+                             "2026-12-28",
+                             "2026-12-29",
+                             "2026-12-30",
+                             "2026-12-31",
+                             "2027-01-01",
+                             "2027-01-02",
+                             "2027-01-03",
+                             "2027-01-04",
+                             "2027-01-05",
+                             "2027-01-06"
+                         ],
+        "booking":  "required",
+        "booking_url":  "https://www.themagicparlourchicago.com/tickets",
+        "age_note":  "12+; under 16 must be with an adult",
+        "phone":  "312-443-3800",
+        "website":  "https://www.themagicparlourchicago.com/",
+        "source_urls":  [
+                            "https://www.themagicparlourchicago.com/",
+                            "https://www.themagicparlourchicago.com/tickets",
+                            "https://www.themagicparlourchicago.com/your-visit",
+                            "https://my.goodmantheatre.org/18380/18887",
+                            "https://www.goodmantheatre.org/show/the-magic-parlour-26-27/"
+                        ],
+        "good_for":  [
+                         "date"
+                     ],
+        "price_note":  "Seat prices shown only at Goodman checkout; reportedly $93-136 including a drink.",
+        "hours_note":  "Shows by date, not open hours. Performances Nov 14, 2026 to May 2, 2027. Usual week: Thu 7:30 PM, Fri 7:00 and 9:30 PM, Sat 4:30 and 7:30 PM, Sun 2:00 PM; some weeks differ (e.g. Tue Nov 24 and Wed Nov 25 7:30 PM, Sat Nov 28 5:00 and 8:00 PM, Sun Dec 27 2:00 and 5:00 PM, Fri Feb 12 6:00 and 8:30 PM). No shows Thanksgiving (Nov 26), Dec 24-25, or Dec 28 to Jan 6 (winter break). Arrive at least 30 min early; house opens 1 hour before. Box office noon-5 PM daily, 312-443-3800.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://my.goodmantheatre.org/18380/18887"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ud-magic-parlour-chicago-1.jpg",
+                           "credit":  "The Magic Parlour website",
+                           "page_url":  "https://www.themagicparlourchicago.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ud-lizzadro-museum",
+        "name":  "Lizzadro Museum of Lapidary Art",
+        "kind":  "place",
+        "category":  "unique-niche",
+        "genre":  "look-learn",
+        "tags":  [
+                     "date",
+                     "museum",
+                     "gems",
+                     "jade",
+                     "rainy-day",
+                     "quiet",
+                     "suburbs"
+                 ],
+        "hook":  "A whole museum of carved jade and gems",
+        "description":  "A small Oak Brook museum devoted to the art of cutting and carving stone: jade carvings, gemstones, cameos, mosaics, fossils and dioramas, plus a showpiece called Castle Lizzadro.",
+        "highlights":  [
+                           "Jade carvings (Lizzadro and Chang collections)",
+                           "Gemstones, cameos, mosaics, fossils",
+                           "Free on Wednesdays",
+                           "Free parking"
+                       ],
+        "address":  "1220 Kensington Rd, Oak Brook, IL 60523",
+        "neighborhood":  "Oak Brook",
+        "lat":  41.8419517,
+        "lng":  -87.9499741,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_from":  10,
+        "price_note":  "Adults $10, seniors 65+ $8, students/teens/children 7-12 $5, 6 and under free. Free on Wednesdays; members and active-duty military free.",
+        "duration_minutes":  75,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+                                  [
+                                      "10:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "10:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "10:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "12:00",
+                                      "16:00"
+                                  ]
+                              ]
+                  },
+        "season":  null,
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-12-25",
+                             "2027-01-01"
+                         ],
+        "date_hours":  {
+                           "2026-12-24":  [
+                                              [
+                                                  "10:00",
+                                                  "14:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  [
+                                              [
+                                                  "10:00",
+                                                  "16:00"
+                                              ]
+                                          ]
+                       },
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "630-833-1616",
+        "website":  "https://lizzadromuseum.org/",
+        "source_urls":  [
+                            "https://www.lizzadromuseum.org/",
+                            "https://lizzadromuseum.org/visit/"
+                        ],
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "hours_note":  "Last admission not stated. Closes on major holidays; the ones named are Thanksgiving, Christmas and New Year\u0027s Day.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://lizzadromuseum.org/visit/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ud-lizzadro-museum-1.jpg",
+                           "credit":  "Lizzadro Museum website",
+                           "page_url":  "https://lizzadromuseum.org/visit/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ud-flowers-for-dreams-holiday-workshops",
+        "name":  "Flowers for Dreams holiday wreath workshops",
+        "kind":  "place",
+        "category":  "classes-workshops",
+        "genre":  "make-something",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "flowers",
+                     "crafts",
+                     "holiday",
+                     "class"
+                 ],
+        "hook":  "Build your own fresh evergreen wreath",
+        "description":  "Chicago florist Flowers for Dreams runs hands-on holiday workshops in its West Town studio where you build a fresh-cut evergreen or woodland wreath from a buffet of greens, dried accents, berries and ribbon, or a fall centerpiece for Thanksgiving.",
+        "highlights":  [
+                           "Evergreen Wreath: Nov 29-Dec 13",
+                           "Woodland Wreath (grapevine frame): Dec 6 only",
+                           "Thanksgiving Centerpiece: Nov 21-22",
+                           "Welcome drink, pruners and materials included"
+                       ],
+        "address":  "1812 W Hubbard St, Chicago, IL 60622",
+        "neighborhood":  "West Town",
+        "lat":  41.8898877,
+        "lng":  -87.6731032,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "price_from":  105,
+        "duration_minutes":  null,
+        "min_minutes":  null,
+        "hours":  null,
+        "hours_note":  "Ticketed sessions only, all at the Chicago HQ studio, 1812 W Hubbard. Thanksgiving Centerpiece: Sat Nov 21 and Sun Nov 22 at 12:00 and 3:00 PM. Evergreen Wreath: Sun Nov 29 12:00 PM (sold out) and 3:00 PM; Fri Dec 4 5:30 PM; Sat Dec 5 12:00 PM and 3:00 PM (sold out); Sun Dec 13 12:00 PM. Woodland Wreath: Sun Dec 6 at 12:00 and 3:00 PM. Session length not posted.",
+        "closed_dates":  [
+
+                         ],
+        "booking":  "required",
+        "booking_url":  "https://www.flowersfordreams.com/pages/workshops",
+        "age_note":  "Not stated",
+        "phone":  "312-620-1410",
+        "website":  "https://www.flowersfordreams.com/pages/workshops",
+        "source_urls":  [
+                            "https://www.flowersfordreams.com/pages/workshops",
+                            "https://flowersfordreams.com/pages/evergreen-wreath-workshop",
+                            "https://flowersfordreams.com/products/chicago-evergreen-wreath-workshop",
+                            "https://flowersfordreams.com/products/chicago-woodland-wreath-workshop",
+                            "https://flowersfordreams.com/products/chicago-thanksgiving-centerpiece-workshop"
+                        ],
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "price_note":  "Evergreen Wreath and Woodland Wreath $105 per ticket; Thanksgiving Centerpiece $110.",
+        "season":  {
+                       "open_from":  "2026-11-21",
+                       "open_to":  "2026-12-13",
+                       "note":  "2026 holiday workshop season. Nothing listed for January-February 2027."
+                   },
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://flowersfordreams.com/products/chicago-evergreen-wreath-workshop"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ud-flowers-for-dreams-holiday-workshops-1.jpg",
+                           "credit":  "Flowers for Dreams website",
+                           "page_url":  "https://www.flowersfordreams.com/pages/workshops"
+                       }
+                   ]
+    },
+    {
+        "id":  "ud-museum-of-broadcast-communications",
+        "name":  "Museum of Broadcast Communications",
+        "kind":  "place",
+        "category":  "unique-niche",
+        "genre":  "look-learn",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "museum",
+                     "tv",
+                     "radio",
+                     "nostalgia",
+                     "rainy-day"
+                 ],
+        "hook":  "Walk onto the Colbert set, play Bozo\u0027s game",
+        "description":  "A TV and radio history museum in the West Loop, with the original Late Show with Stephen Colbert exhibit, a Johnny Carson centennial show, Svengoolie and Bozo\u0027s Circus (where you can play the Grand Prize Game), plus the Radio Hall of Fame.",
+        "highlights":  [
+                           "Late Show with Stephen Colbert exhibit",
+                           "Play Bozo\u0027s Grand Prize Game",
+                           "Johnny Carson centennial exhibit",
+                           "Radio Hall of Fame"
+                       ],
+        "address":  "440 W Randolph St, Chicago, IL 60606",
+        "neighborhood":  "West Loop (Fulton River District)",
+        "lat":  41.8846038,
+        "lng":  -87.6393207,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  24,
+        "price_note":  "Adults $24; seniors, military, veterans $21; students $19; 6 and under free; members free.",
+        "duration_minutes":  90,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+                                  [
+                                      "11:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "11:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:00",
+                                      "18:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "18:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "17:00"
+                                  ]
+                              ]
+                  },
+        "last_entry_before_close_min":  60,
+        "season":  null,
+        "closed_dates":  [
+                             "2026-11-19",
+                             "2026-11-26",
+                             "2026-12-24",
+                             "2026-12-25",
+                             "2027-01-01"
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "312-245-8200",
+        "website":  "https://www.museum.tv/",
+        "source_urls":  [
+                            "https://www.museum.tv/",
+                            "https://www.museum.tv/visit",
+                            "https://www.museum.tv/exhibits"
+                        ],
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "hours_note":  "Last entry 1 hour before closing. Closed Thu Nov 19, 2026 for private events. Closed Thanksgiving, Christmas Eve, Christmas Day and New Year\u0027s Day.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.museum.tv/visit"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ud-museum-of-broadcast-communications-1.jpg",
+                           "credit":  "Museum of Broadcast Communications website",
+                           "page_url":  "https://www.museum.tv/exhibits"
+                       }
+                   ]
+    },
+    {
+        "id":  "ud-original-chicago-hauntings-bus-tour",
+        "name":  "The Original Chicago Hauntings Ghost Tour (bus)",
+        "kind":  "place",
+        "category":  "unique-niche",
+        "genre":  "look-learn",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "ghosts",
+                     "tour",
+                     "night",
+                     "history"
+                 ],
+        "hook":  "A night bus tour of haunted Chicago",
+        "description":  "A narrated night-time ghost tour by coach through Chicago\u0027s haunted spots, from the team behind the Chicago Hauntings tours. The same company runs walking ghost hunts in Lincoln Park, River North and Prairie Avenue, plus a pizza-and-ghosts walk.",
+        "highlights":  [
+                           "3 hours by narrated coach",
+                           "Meets at the Congress Plaza Hotel",
+                           "Walking ghost hunts too (Lincoln Park)",
+                           "Pizza \u0026 ghosts walking tour too"
+                       ],
+        "address":  "Congress Plaza Hotel, 520 S Michigan Ave, Chicago, IL 60605",
+        "neighborhood":  "South Loop",
+        "lat":  41.8749586,
+        "lng":  -87.6248317,
+        "indoor_outdoor":  "both",
+        "price_level":  "$$$",
+        "price_from":  60.35,
+        "duration_minutes":  180,
+        "min_minutes":  180,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+
+                              ],
+                      "thu":  [
+
+                              ],
+                      "fri":  [
+
+                              ],
+                      "sat":  [
+                                  [
+                                      "19:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "sun":  [
+
+                              ]
+                  },
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "required",
+        "booking_url":  "https://american-ghost-walks.tripworks.com/widgets/tripBuilder?showDetail=0\u0026defaultView=experience\u0026experience=12545",
+        "phone":  "1-833-446-7813",
+        "website":  "https://www.americanghostwalks.com/chicago",
+        "source_urls":  [
+                            "https://www.americanghostwalks.com/chicago"
+                        ],
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "price_note":  "Bus tour from $60.35 per person. Other tours, reportedly: walking tours from $40.91; Devil in the White City bus $69; Resurrection Mary 4-hr bus + pub stop $80.69; Pizza \u0026 Ghost walk $92.16.",
+        "age_note":  "No age rule stated; families with older children are welcome",
+        "hours_note":  "Tour, not open hours: departs Saturdays at 7 PM from the Congress Plaza Hotel and lasts 3 hours, so arrive before 7 PM. Tours run all year. Holiday Saturdays (Nov 28, Dec 26, Jan 2) not confirmed; check the booking calendar.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.americanghostwalks.com/chicago"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ud-original-chicago-hauntings-bus-tour-1.jpg",
+                           "credit":  "American Ghost Walks website",
+                           "page_url":  "https://www.americanghostwalks.com/chicago"
+                       }
+                   ]
+    },
+    {
+        "id":  "ud-kit-kat-lounge-supper-club",
+        "name":  "Kit Kat Lounge \u0026 Supper Club (drag dinner and brunch)",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "drag",
+                     "brunch",
+                     "dinner-show",
+                     "lgbtq"
+                 ],
+        "hook":  "Dinner and brunch with a drag show",
+        "description":  "A Boystown supper club where drag performers put on a show while you eat, with themed drag dinners, weekday cabaret, a Sunday tea dance and a bottomless drag brunch that Time Out has named among the city\u0027s best.",
+        "highlights":  [
+                           "Bottomless drag brunch, two weekend seatings",
+                           "Themed drag dinners on weekends",
+                           "Sunday Tea Dance",
+                           "Patio"
+                       ],
+        "address":  "3524 N Halsted St, Chicago, IL 60657",
+        "neighborhood":  "Lakeview (Northalsted)",
+        "lat":  41.9462413,
+        "lng":  -87.6498048,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  null,
+        "duration_minutes":  120,
+        "min_minutes":  90,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+                                  [
+                                      "16:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "16:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "16:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "16:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "02:00"
+                                  ]
+                              ]
+                  },
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "recommended",
+        "booking_url":  "https://www.opentable.com/r/kit-kat-lounge-and-supper-club-reservations-chicago?restref=195718",
+        "age_note":  "18+ without a parent or guardian; 21+ after 10 PM; 21+ to drink",
+        "phone":  "773-525-1111",
+        "website":  "https://kitkatchicago.com/",
+        "source_urls":  [
+                            "https://kitkatchicago.com/",
+                            "https://kitkatchicago.com/hours/",
+                            "https://kitkatchicago.com/reservation-policy/",
+                            "https://kitkatchicago.com/menus/brunch/"
+                        ],
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "price_note":  "Brunch is a set prix-fixe menu; prices not posted.",
+        "hours_note":  "Kitchen: Tue-Thu to 9 PM, Fri to 11 PM, Sat 11 AM-11 PM, Sun to 3:30 PM. Brunch Sat and Sun, seatings at 11 AM and 1:30 PM, 2-hour limit; brunch is prix-fixe only. Sunday Tea Dance 4-11 PM. Show times not listed. Holiday hours not posted; call to confirm: (773) 525-1111.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://kitkatchicago.com/hours/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ud-kit-kat-lounge-supper-club-1.jpg",
+                           "credit":  "Kit Kat Chicago website",
+                           "page_url":  "https://kitkatchicago.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ud-dinner-detective-chicago",
+        "name":  "The Dinner Detective murder-mystery dinner (Magnificent Mile)",
+        "kind":  "event",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "murder-mystery",
+                     "dinner-show",
+                     "interactive"
+                 ],
+        "hook":  "Solve a murder over a three-hour dinner",
+        "description":  "An interactive comedy murder-mystery that plays out around the tables during a plated multi-course dinner; you play detective all night and the top sleuth wins a prize package.",
+        "highlights":  [
+                           "Multi-course plated dinner included",
+                           "Wait-staff tip included",
+                           "Prize for the Top Sleuth",
+                           "Saturday nights at a downtown hotel"
+                       ],
+        "address":  "Courtyard by Marriott Chicago Downtown Magnificent Mile, 165 E Ontario St, Chicago, IL 60611",
+        "neighborhood":  "Streeterville / Magnificent Mile",
+        "lat":  41.8931221,
+        "lng":  -87.6231005,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "price_from":  77.95,
+        "price_note":  "$77.95 per person plus local taxes, fees and optional performer tip; may rise for in-demand dates and holidays. Includes dinner and wait-staff gratuity.",
+        "duration_minutes":  180,
+        "min_minutes":  180,
+        "hours":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-28T18:00",
+                                "end":  "2026-11-28T21:00"
+                            },
+                            {
+                                "start":  "2026-12-05T18:00",
+                                "end":  "2026-12-05T21:00"
+                            },
+                            {
+                                "start":  "2026-12-12T18:00",
+                                "end":  "2026-12-12T21:00"
+                            },
+                            {
+                                "start":  "2026-12-19T18:00",
+                                "end":  "2026-12-19T21:00"
+                            }
+                        ],
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "required",
+        "booking_url":  "https://www.thedinnerdetective.com/chicago/schedule/",
+        "age_note":  "Adults; teens with adult supervision; no infants or young children",
+        "phone":  "",
+        "website":  "https://www.thedinnerdetective.com/chicago/schedule/",
+        "source_urls":  [
+                            "https://www.thedinnerdetective.com/chicago/schedule/"
+                        ],
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "hours_note":  "6:00-9:00 PM on the listed Saturdays (script: The Hollywood Hit). Ticket sales close at noon the day before. Sat Nov 14 is sold out (waitlist only). More dates \u0027coming soon\u0027.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.thedinnerdetective.com/chicago/schedule/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ud-dinner-detective-chicago-1.jpg",
+                           "credit":  "The Dinner Detective website",
+                           "page_url":  "https://www.thedinnerdetective.com/chicago/schedule/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ud-villa-olivia-snow-tubing",
+        "name":  "Snow tubing at Villa Olivia (Bartlett)",
+        "kind":  "place",
+        "category":  "seasonal",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "snow",
+                     "winter",
+                     "outdoor",
+                     "night",
+                     "suburbs"
+                 ],
+        "hook":  "Night snow tubing in the suburbs",
+        "description":  "A park-district ski hill in Bartlett with its own tubing hill: slide down on a snow tube, ride the magic-carpet lift back up and go again, including under the lights at night.",
+        "highlights":  [
+                           "Tube included",
+                           "Night tubing",
+                           "Magic-carpet lift",
+                           "Ski and snowboard on the same hill"
+                       ],
+        "address":  "1401 W Lake St, Bartlett, IL 60103",
+        "neighborhood":  "Bartlett",
+        "lat":  42.0128505,
+        "lng":  -88.2201811,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "$$",
+        "price_from":  32,
+        "price_note":  "2025-26 rates (2026-27 not posted): weekend/holiday day session $36 ($32 resident); night session $32 ($29 resident). Residents need proof of residency.",
+        "duration_minutes":  120,
+        "min_minutes":  120,
+        "hours":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "recommended",
+        "booking_url":  "https://villa-olivia.theonlysky.com/ecomm3/products/view/",
+        "age_note":  "Must be at least 42 inches tall; waiver required for everyone; no ride-sharing on tubes",
+        "phone":  "630-289-1000",
+        "website":  "https://bartlettparks.org/villa-olivia/snow-tubing/",
+        "source_urls":  [
+                            "https://bartlettparks.org/villa-olivia/",
+                            "https://bartlettparks.org/villa-olivia/snow-tubing/"
+                        ],
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "hours_note":  "2026-27 schedule not posted yet. Last season\u0027s tubing sessions (2 hours each): Sat/Sun/holidays 9 AM-5 PM; night tubing Thu-Fri 5-9:30 PM and Sat/Sun/holidays 5-10 PM. Tickets are time-stamped for 2 hours and sold online by availability; check in at the Pro Shop by the tube hill. Snow line for daily conditions: 630-540-4199.",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  null,
+                       "note":  "Not open yet for 2026-27; the 2025-2026 season has ended and no 2026-27 opening date is posted. Opening depends on snow."
+                   },
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://bartlettparks.org/villa-olivia/snow-tubing/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ud-villa-olivia-snow-tubing-1.jpg",
+                           "credit":  "Bartlett Park District website",
+                           "page_url":  "https://bartlettparks.org/villa-olivia/snow-tubing/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ud-holiday-lights-food-tour",
+        "name":  "Downtown Holiday Lights and Sights Tour (Chicago Food Tours)",
+        "kind":  "event",
+        "category":  "food-drink-experience",
+        "genre":  "eat-drink",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "holiday",
+                     "tour",
+                     "walking",
+                     "tastings"
+                 ],
+        "hook":  "A holiday-lights walk with treats",
+        "description":  "A guided walk through downtown\u0027s holiday displays and decorated landmarks, with stories behind Chicago\u0027s Christmas traditions, a festive drink and holiday tastings along the way, ending at the Christkindlmarket.",
+        "highlights":  [
+                           "About 1 mile on foot",
+                           "Holiday drink + tastings included",
+                           "Max 16 guests",
+                           "Ends at the Christkindlmarket"
+                       ],
+        "address":  "Meets at the Chicago Christmas Tree, Millennium Park (Michigan Ave at Washington St), Chicago, IL",
+        "neighborhood":  "Loop",
+        "lat":  41.8825,
+        "lng":  -87.6225,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "$$$",
+        "price_from":  59,
+        "price_note":  "$59 ages 12+, $35 ages 11 and under. Full refund with 72+ hours\u0027 notice; optional $2 ticket insurance.",
+        "duration_minutes":  120,
+        "min_minutes":  120,
+        "hours":  null,
+        "hours_note":  "Saturdays 3-5 PM on the listed dates. Runs rain, shine or snow. Vegetarian tastings must be chosen when booking; other diets can\u0027t be accommodated.",
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-28T15:00",
+                                "end":  "2026-11-28T17:00"
+                            },
+                            {
+                                "start":  "2026-12-05T15:00",
+                                "end":  "2026-12-05T17:00"
+                            },
+                            {
+                                "start":  "2026-12-12T15:00",
+                                "end":  "2026-12-12T17:00"
+                            },
+                            {
+                                "start":  "2026-12-19T15:00",
+                                "end":  "2026-12-19T17:00"
+                            }
+                        ],
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "required",
+        "booking_url":  "https://chicagofoodtours.com/tour/chicago-holiday-lights-tour/",
+        "age_note":  "All ages (12+ pay the adult rate)",
+        "phone":  "312-932-0800",
+        "website":  "https://chicagofoodtours.com/tour/chicago-holiday-lights-tour/",
+        "source_urls":  [
+                            "https://chicagofoodtours.com/",
+                            "https://chicagofoodtours.com/tour/chicago-holiday-lights-tour/"
+                        ],
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://chicagofoodtours.com/tour/chicago-holiday-lights-tour/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ud-holiday-lights-food-tour-1.jpg",
+                           "credit":  "Chicago Food Tours website",
+                           "page_url":  "https://chicagofoodtours.com/tour/chicago-holiday-lights-tour/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ud-bordel-wicker-park",
+        "name":  "Bordel (cocktail lounge with jazz and burlesque)",
+        "kind":  "place",
+        "category":  "food-drink-experience",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "cocktails",
+                     "jazz",
+                     "burlesque",
+                     "late-night"
+                 ],
+        "hook":  "Cocktails with live jazz and burlesque",
+        "description":  "A moody Wicker Park cocktail bar and cabaret with live entertainment every night it\u0027s open, from jazz to performance art and burlesque acts that sometimes play right on the bar.",
+        "highlights":  [
+                           "Nightly live music and performance",
+                           "Late-night lounge",
+                           "Stage seating for groups",
+                           "Walk-ins welcome when there\u0027s room"
+                       ],
+        "address":  "1721 W Division St, Chicago, IL 60622",
+        "neighborhood":  "Wicker Park",
+        "lat":  41.9030868,
+        "lng":  -87.6708275,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  null,
+        "duration_minutes":  120,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+
+                              ],
+                      "thu":  [
+                                  [
+                                      "18:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "18:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "18:00",
+                                      "03:00"
+                                  ]
+                              ],
+                      "sun":  [
+
+                              ]
+                  },
+        "hours_note":  "Show lineup and times not posted. Walk-ins accepted when possible (\u0027isn\u0027t always possible\u0027). Reservations for up to 14 guests (12 for stage seating) via the Booking Options page; 15-25 guests by email. Holiday hours not posted.",
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "recommended",
+        "booking_url":  "https://www.bordelchicago.com/booking-options",
+        "phone":  "",
+        "website":  "https://www.bordelchicago.com/",
+        "source_urls":  [
+                            "https://www.bordelchicago.com/",
+                            "https://www.bordelchicago.com/booking-options"
+                        ],
+        "good_for":  [
+                         "date"
+                     ],
+        "price_note":  "Drink prices not posted. A $10 per person cover may apply for Stage View tables.",
+        "age_note":  "Not stated",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.bordelchicago.com/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ud-bordel-wicker-park-1.jpg",
+                           "credit":  "Bordel website",
+                           "page_url":  "https://www.bordelchicago.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ud-medieval-times-schaumburg",
+        "name":  "Medieval Times Dinner \u0026 Tournament (Schaumburg)",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "dinner-show",
+                     "jousting",
+                     "horses",
+                     "suburbs"
+                 ],
+        "hook":  "Jousting knights and a four-course feast",
+        "description":  "A castle arena show where knights joust and sword-fight on horseback, with falconry and Andalusian horse dressage, while you eat a four-course feast and cheer for your knight.",
+        "highlights":  [
+                           "Two-hour tournament experience",
+                           "Four-course meal served during the show",
+                           "Falconer and dressage horses",
+                           "Vegetarian, vegan and gluten-free meals on request"
+                       ],
+        "address":  "2001 N Roselle Rd, Schaumburg, IL 60195",
+        "neighborhood":  "Schaumburg",
+        "lat":  42.0649028,
+        "lng":  -88.076194,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "price_from":  78.95,
+        "price_note":  "General Admission: adults $78.95, children $47.95 (feast and show included). Royalty, Celebration and Queen\u0027s Royalty packages cost more. Children under 3 free on an adult\u0027s lap.",
+        "duration_minutes":  120,
+        "min_minutes":  120,
+        "hours":  null,
+        "season":  null,
+        "closed_dates":  [
+                             "2026-11-16",
+                             "2026-11-17",
+                             "2026-11-19",
+                             "2026-11-23",
+                             "2026-11-26",
+                             "2026-11-30"
+                         ],
+        "booking":  "required",
+        "booking_url":  "https://purchase.medievaltimes.com/tickets/purchase/0/0/0/4/0",
+        "age_note":  "All ages; under 3 free on a lap; under 16 must be with a parent or guardian",
+        "phone":  "847-882-1496",
+        "website":  "https://www.medievaltimes.com/chicago",
+        "source_urls":  [
+                            "https://www.medievaltimes.com/castles/schaumburg-il",
+                            "https://www.medievaltimes.com/chicago",
+                            "https://www.medievaltimes.com/experience/faq",
+                            "https://purchase.medievaltimes.com/tickets/purchase/0/0/0/4/0"
+                        ],
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "hours_note":  "Shows by date, not open hours. November show days: Nov 14, 15, 18, 20, 21, 22, 24, 25, 27, 28, 29; no show Nov 16, 17, 19, 23, 26 (Thanksgiving) or 30. Showtimes vary by date (e.g. Fri Nov 20 at 6:45 PM); doors time is in the confirmation email. For December onward, see the booking calendar. Show is about 90 minutes; plan on 2 hours.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.medievaltimes.com/chicago"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ud-medieval-times-schaumburg-1.jpg",
+                           "credit":  "Medieval Times website",
+                           "page_url":  "https://www.medievaltimes.com/chicago"
+                       }
+                   ]
+    },
+    {
+        "id":  "ud-hot-tub-boat-chicago-river",
+        "name":  "Hot Tub Boat on the Chicago River (Chicago Boat Company)",
+        "kind":  "place",
+        "category":  "seasonal",
+        "genre":  "relax",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "winter",
+                     "river",
+                     "hot-tub",
+                     "viral"
+                 ],
+        "hook":  "Drive your own hot tub down the river",
+        "description":  "Captain your own small electric boat with a built-in hot tub and cruise the Chicago River through downtown, soaking with up to five friends in the cold air.",
+        "highlights":  [
+                           "Up to 6 people per boat",
+                           "800 lb combined weight limit",
+                           "You drive (no captain)",
+                           "Bluetooth speaker and cup holders on board"
+                       ],
+        "address":  "Marina City, 300 N State St (Marina Level, Unit EE), Chicago, IL 60654",
+        "neighborhood":  "River North",
+        "lat":  41.8882026,
+        "lng":  -87.6284883,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "$$$",
+        "price_from":  300,
+        "price_note":  "Private 90-min cruise, per boat (up to 6): Wed $300; Thu $300 day / $350 evening; Fri $395 / $425; Sat $425; Sun $395 / $425; holidays $450 Mon-Thu, $475 Fri-Sun.",
+        "duration_minutes":  90,
+        "min_minutes":  90,
+        "hours":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "required",
+        "booking_url":  "https://chicagoboatcompany.com/boats/6-hot-tub-boat-800lb-limit",
+        "age_note":  "13+ (all participants); waiver required for everyone",
+        "phone":  "312-644-6411",
+        "website":  "https://chicagoboatcompany.com/",
+        "source_urls":  [
+                            "https://chicagoboatcompany.com/",
+                            "https://chicagoboatcompany.com/boats/6-hot-tub-boat-800lb-limit"
+                        ],
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "hours_note":  "Booked 90-minute slots, not open hours. Day slots (11:30 AM-3:15 PM) and evening slots (3:15-8:00 PM) on Thu, Fri and Sun; Wed and Sat times not listed. Bookable days are Wed-Sun from Nov 14 (Mon and Tue not bookable; Thanksgiving Nov 26 not bookable). Arrive 45 minutes early. Cruises are rescheduled if it\u0027s 20°F or colder.",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  null,
+                       "note":  "Winter boat (\u0027for the colder months\u0027), with open dates from Nov 14, 2026. Season end date not posted."
+                   },
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://chicagoboatcompany.com/boats/6-hot-tub-boat-800lb-limit"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ud-hot-tub-boat-chicago-river-1.jpg",
+                           "credit":  "Chicago Boat Company website",
+                           "page_url":  "https://chicagoboatcompany.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ud-aroma-workshop",
+        "name":  "Aroma Workshop (make your own perfume)",
+        "kind":  "place",
+        "category":  "classes-workshops",
+        "genre":  "make-something",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "perfume",
+                     "crafts",
+                     "rainy-day"
+                 ],
+        "hook":  "Blend your own signature scent",
+        "description":  "A Lincoln Park perfume shop where a trained perfumer helps you sniff through more than 50 fragrance oils and blend your own custom scent to take home.",
+        "highlights":  [
+                           "50+ fragrance oils to choose from",
+                           "Guided by a trained perfumer",
+                           "Bottle of your blend included",
+                           "Refills of your blend later"
+                       ],
+        "address":  "2110 N Halsted St, Chicago, IL 60614",
+        "neighborhood":  "Lincoln Park",
+        "lat":  41.9203894,
+        "lng":  -87.6489366,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "price_from":  65,
+        "price_note":  "Scent Creation (1-4 people) $65 per person plus tax, bottle included. Groups of 5+: $65 + 20% service fee per person. After-hours party (10-35): $200 rental + $75 per person + 20%. No refunds or exchanges.",
+        "duration_minutes":  60,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "11:30",
+                                      "18:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "11:30",
+                                      "18:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "11:30",
+                                      "18:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "11:30",
+                                      "18:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "11:30",
+                                      "18:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:30",
+                                      "18:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "18:00"
+                                  ]
+                              ]
+                  },
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "required",
+        "booking_url":  "https://www.aromaworkshop.com/book-online",
+        "age_note":  "Not stated",
+        "phone":  "773-871-1985",
+        "website":  "https://www.aromaworkshop.com/",
+        "source_urls":  [
+                            "https://www.aromaworkshop.com/",
+                            "https://www.aromaworkshop.com/contact",
+                            "https://www.aromaworkshop.com/book-online"
+                        ],
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "hours_note":  "Store hours. A Scent Creation session takes about 45-60 minutes; groups of 5+ take 1.5-2 hours. Guests are seated by reservation; book the whole party as one booking. Groups may BYOB (no hard liquor). Holiday hours not posted.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.aromaworkshop.com/book-online"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ud-aroma-workshop-1.jpg",
+                           "credit":  "Aroma Workshop website",
+                           "page_url":  "https://www.aromaworkshop.com/"
                        }
                    ]
     }
