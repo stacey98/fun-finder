@@ -225,8 +225,8 @@ svg{display:block}
 
     <div class="rail" id="rail">
       <button data-dir="up" aria-label="Love it (up)"><span class="lbl" data-key="↑">Love it</span><span class="dot"></span></button>
-      <button data-dir="right" aria-label="Into it (right)"><span class="lbl" data-key="→">Into it</span><span class="dot"></span></button>
-      <button data-dir="left" aria-label="Nah (left)"><span class="lbl" data-key="←">Nah</span><span class="dot"></span></button>
+      <button data-dir="left" aria-label="Into it (left)"><span class="lbl" data-key="←">Into it</span><span class="dot"></span></button>
+      <button data-dir="right" aria-label="Nah (right)"><span class="lbl" data-key="→">Nah</span><span class="dot"></span></button>
       <button data-dir="down" aria-label="Never (down)"><span class="lbl" data-key="↓">Never</span><span class="dot"></span></button>
     </div>
 
@@ -254,12 +254,12 @@ svg{display:block}
 var TOTAL = 24;
 var ICON = {
   up:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2Z"/></svg>',
-  right:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
-  left:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg>',
+  right:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg>',
+  left:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
   down:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M6.5 6.5l11 11"/></svg>',
   tick:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>'
 };
-var WORD = {up:'Love it', right:'Into it', left:'Nah', down:'Never'};
+var WORD = {up:'Love it', right:'Nah', left:'Into it', down:'Never'};
 var KINDS = {
   play:{label:'Play', color:'#5AA2FF', svg:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="9" cy="9" r="1.3" fill="currentColor"/><circle cx="15" cy="15" r="1.3" fill="currentColor"/></svg>'},
   nature:{label:'Nature', color:'#9BE35A', svg:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 19C5 10 11 5 19 5c0 8-5 14-14 14Z"/><path d="M5 19 13 11"/></svg>'},
@@ -293,7 +293,7 @@ for (var s = 0; s < TOTAL; s++) bar.appendChild(document.createElement('i'));
 
 function colorsFor(dir){
   var cs = getComputedStyle(document.body);
-  var key = {up:'love', right:'yes', left:'no', down:'never'}[dir];
+  var key = {up:'love', right:'no', left:'yes', down:'never'}[dir];
   return {c: cs.getPropertyValue('--sw-' + key).trim(), on: cs.getPropertyValue('--sw-' + key + '-on').trim()};
 }
 function render(){
