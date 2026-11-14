@@ -264,8 +264,8 @@
         "photos":  [
                        {
                            "file":  "photos/ev-balloon-museum-emotionair-chicago-1.jpg",
-                           "credit":  "Balloon Museum ticket page (key visual)",
-                           "page_url":  "https://tickets.balloonmuseum.world/chicago/"
+                           "credit":  "Balloon Museum (official blog, EmotionAir Chicago post)",
+                           "page_url":  "https://blog.balloonmuseum.world/balloon-museum-presents-emotionair-art-you-can-feel-chicago/"
                        }
                    ]
     },
@@ -968,7 +968,7 @@
         "photos":  [
                        {
                            "file":  "photos/ev-zoolights-lincoln-park-zoo-1.jpg",
-                           "credit":  "Lincoln Park Zoo (official site)",
+                           "credit":  "Lincoln Park Zoo",
                            "page_url":  "https://www.lpzoo.org/event/zoolights/"
                        }
                    ]
@@ -2539,7 +2539,7 @@
         "photos":  [
                        {
                            "file":  "photos/ev-pokemon-fossil-museum-field-museum-1.jpg",
-                           "credit":  "Field Museum (official site)",
+                           "credit":  "Field Museum",
                            "page_url":  "https://www.fieldmuseum.org/exhibition/pokemon"
                        }
                    ]
@@ -2816,7 +2816,7 @@
         "photos":  [
                        {
                            "file":  "photos/ev-rashid-johnson-mca-1.jpg",
-                           "credit":  "MCA Chicago (official site); artwork by Rashid Johnson",
+                           "credit":  "MCA Chicago",
                            "page_url":  "https://mcachicago.org/whats-on/exhibitions/rashid-johnson-a-poem-for-deep-thinkers/"
                        }
                    ]
@@ -3541,7 +3541,7 @@
         "photos":  [
                        {
                            "file":  "photos/ev-garfield-park-winter-flower-show-1.jpg",
-                           "credit":  "Garfield Park Conservatory website (garfieldconservatory.org)",
+                           "credit":  "Garfield Park Conservatory",
                            "page_url":  "https://garfieldconservatory.org/"
                        }
                    ]
@@ -4441,7 +4441,7 @@
         "photos":  [
                        {
                            "file":  "photos/ev-randolph-street-holiday-market-november-1.jpg",
-                           "credit":  "Randolph Street Market (official site)",
+                           "credit":  "Randolph Street Market",
                            "page_url":  "https://www.randolphstreetmarket.com/"
                        }
                    ]
@@ -4535,7 +4535,7 @@
         "photos":  [
                        {
                            "file":  "photos/ev-randolph-street-holiday-market-december-1.jpg",
-                           "credit":  "Randolph Street Market (official site)",
+                           "credit":  "Randolph Street Market",
                            "page_url":  "https://www.randolphstreetmarket.com/"
                        }
                    ]
@@ -4838,7 +4838,7 @@
         "photos":  [
                        {
                            "file":  "photos/ev-fobab-2026-1.jpg",
-                           "credit":  "FoBAB / Illinois Craft Brewers Guild (official site)",
+                           "credit":  "FoBAB",
                            "page_url":  "https://www.fobab.com/"
                        }
                    ]
@@ -6787,7 +6787,7 @@
         "photos":  [
                        {
                            "file":  "photos/pa-pinstripes-oak-brook-1.jpg",
-                           "credit":  "Pinstripes website",
+                           "credit":  "Pinstripes",
                            "page_url":  "https://www.pinstripes.com/oak-brook"
                        }
                    ]
@@ -7314,7 +7314,7 @@
         "photos":  [
                        {
                            "file":  "photos/pa-sluggers-wrigleyville-1.jpg",
-                           "credit":  "Sluggers website",
+                           "credit":  "Sluggers",
                            "page_url":  "https://www.sluggersbar.com/"
                        }
                    ]
@@ -7850,8 +7850,8 @@
         "photos":  [
                        {
                            "file":  "photos/pa-big-mini-putt-wicker-park-1.jpg",
-                           "credit":  "Big Mini Putt Club website (bigminiputtclub.com)",
-                           "page_url":  "https://bigminiputtclub.com/"
+                           "credit":  "Big Mini Putt Club",
+                           "page_url":  "http://www.bigminiputtclub.com/minigolf"
                        }
                    ]
     },
@@ -7975,8 +7975,8 @@
         "photos":  [
                        {
                            "file":  "photos/pa-big-mini-putt-lakeview-1.jpg",
-                           "credit":  "Big Mini Putt Club website (bigminiputtclub.com)",
-                           "page_url":  "https://bigminiputtclub.com/"
+                           "credit":  "Big Mini Putt Club",
+                           "page_url":  "http://www.bigminiputtclub.com/golflakeview"
                        }
                    ]
     },
@@ -9129,7 +9129,7 @@
         "photos":  [
                        {
                            "file":  "photos/pa-f1-arcade-chicago-1.jpg",
-                           "credit":  "F1 Arcade website",
+                           "credit":  "F1 Arcade",
                            "page_url":  "https://f1arcade.com/us/chicago"
                        }
                    ]
@@ -9261,7 +9261,7 @@
         "photos":  [
                        {
                            "file":  "photos/pa-the-escape-game-river-north-1.jpg",
-                           "credit":  "The Escape Game website (theescapegame.com), River North location image",
+                           "credit":  "The Escape Game",
                            "page_url":  "https://theescapegame.com/chicago/"
                        }
                    ]
@@ -9400,7 +9400,7 @@
         "photos":  [
                        {
                            "file":  "photos/pa-paniq-logan-square-1.jpg",
-                           "credit":  "PanIQ Escape Room website",
+                           "credit":  "PanIQ Escape Room",
                            "page_url":  "https://paniqescaperoom.com/chicago"
                        }
                    ]
@@ -9974,7 +9974,7 @@
         "photos":  [
                        {
                            "file":  "photos/pa-spf-pickleball-lincoln-park-1.jpg",
-                           "credit":  "SPF website",
+                           "credit":  "SPF Pickleball",
                            "page_url":  "https://www.playspf.com/"
                        }
                    ]
@@ -10143,7 +10143,7 @@
         "photos":  [
                        {
                            "file":  "photos/pa-urban-air-lincoln-park-1.jpg",
-                           "credit":  "Urban Air website",
+                           "credit":  "Urban Air",
                            "page_url":  "https://www.urbanair.com/illinois-lincoln-park"
                        }
                    ]
@@ -12652,7 +12652,7 @@
         "photos":  [
                        {
                            "file":  "photos/pc-butterfly-house-navy-pier-1.jpg",
-                           "credit":  "The Butterfly House website",
+                           "credit":  "The Butterfly House",
                            "page_url":  "https://www.butterflyhousechicago.com/"
                        }
                    ]
@@ -13372,7 +13372,7 @@
         "photos":  [
                        {
                            "file":  "photos/pc-national-museum-of-mexican-art-1.jpg",
-                           "credit":  "National Museum of Mexican Art website",
+                           "credit":  "National Museum of Mexican Art",
                            "page_url":  "https://www.nationalmuseumofmexicanart.org/visit"
                        }
                    ]
@@ -13670,8 +13670,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-chicago-history-museum-1.jpg",
-                           "credit":  "Goldnpuppy / Wikimedia Commons, CC BY-SA 3.0",
-                           "page_url":  "https://commons.wikimedia.org/wiki/File:Chicago_History_Museum.jpg"
+                           "credit":  "Chicago History Museum",
+                           "page_url":  "https://www.chicagohistory.org/exhibitions/"
                        }
                    ]
     },
@@ -14141,7 +14141,7 @@
         "photos":  [
                        {
                            "file":  "photos/pc-chicago-architecture-center-1.jpg",
-                           "credit":  "Chicago Architecture Center website",
+                           "credit":  "Chicago Architecture Center",
                            "page_url":  "https://www.architecture.org/"
                        }
                    ]
@@ -15495,8 +15495,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-skydeck-chicago-1.jpg",
-                           "credit":  "Skydeck Chicago website",
-                           "page_url":  "https://theskydeck.com/"
+                           "credit":  "Skydeck Chicago",
+                           "page_url":  "https://theskydeck.com/the-ledge/"
                        }
                    ]
     },
@@ -15676,7 +15676,7 @@
         "photos":  [
                        {
                            "file":  "photos/pc-garfield-park-conservatory-1.jpg",
-                           "credit":  "Garfield Park Conservatory website (garfieldconservatory.org)",
+                           "credit":  "Garfield Park Conservatory",
                            "page_url":  "https://garfieldconservatory.org/"
                        }
                    ]
@@ -15845,8 +15845,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-lincoln-park-conservatory-1.jpg",
-                           "credit":  "Krzysztof Ziarnek, Kenraiz / Wikimedia Commons, CC BY-SA 4.0",
-                           "page_url":  "https://commons.wikimedia.org/wiki/File:Lincoln_Park_Conservatory_kz01.jpg"
+                           "credit":  "Chicago Park District",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-park-conservatory"
                        }
                    ]
     },
@@ -16789,8 +16789,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-montrose-point-bird-sanctuary-1.jpg",
-                           "credit":  "Theemausoliam / Wikimedia Commons, CC BY-SA 4.0",
-                           "page_url":  "https://commons.wikimedia.org/wiki/File:Montrose_Point_Bird_Sanctuary_Summer_Cropped.jpg"
+                           "credit":  "Chicago Park District",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-park-montrose-point-bird-sanctuary"
                        }
                    ]
     },
