@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"></head><body>
-<title>Chicago Fun Finder</title>
+<title>Off-Grid</title>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@600;700;800;900&display=swap");
@@ -195,6 +195,9 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .tile[aria-pressed="true"]::after{content:"\2713";position:absolute;top:4px;right:5px;width:14px;height:14px;border-radius:50%;background:var(--c);color:var(--on-cat);font:800 9px/14px var(--f-body);text-align:center}
 .tile.lt[aria-pressed="true"]::after{color:var(--on-accent)}
 .tiles.has-pick .tile:not([aria-pressed="true"]) .gl{opacity:.75}
+/* v5.3: with Limited on, a kind tile keeps its open count and shows its limited count in Limited's color, top right */
+.tile .ltd{position:absolute;top:4px;right:4px;min-width:16px;height:16px;padding:0 4px;box-sizing:border-box;border-radius:8px;background:var(--accent);color:var(--on-accent);font:800 10px/16px var(--f-body);text-align:center;font-variant-numeric:tabular-nums}
+.tile.has-ltd[aria-pressed="true"]::after{display:none}
 @media (max-width:359px){ /* 320 px phones: a little more room so "Eat & drink" stays on one line */
   .tiles{padding:8px 10px 0;gap:4px}
   .tile{padding:5px 4px 4px 6px}
@@ -819,8 +822,8 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
 (function(){
 'use strict';
 
-var APP_NAME = 'Chicago Fun Finder';  // THE app name: page title, wordmark, About all read this one constant. Working name until the owner picks one (the earlier proposal was rejected).
-var VERSION = 'v5.2 (2026-11-13)';
+var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
+var VERSION = 'v5.3 (2026-11-13)';
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
@@ -1833,7 +1836,7 @@ function entryGate(it, st){
 }
 function describe(st, it){
   var d = describeCore(st, it);
-  if (st.seasonReopened && (st.open || st.key === 'later' || st.key === 'closed')) d = ext(d, {sub:(d.sub ? d.sub + ' · ' : '') + 'season should have started; not re-checked yet'});   // v2.2 (H-3)
+  if (st.seasonReopened && (st.open || st.key === 'later' || st.key === 'closed')) d = ext(d, {sub:(d.sub ? d.sub + ' · ' : '') + 'season start not confirmed'});   // v5.3: plain words   // v2.2 (H-3)
   return d;
 }
 function describeCore(st, it){
@@ -2079,7 +2082,7 @@ function trustOf(it, todayKey){
     o.level = 'stale'; o.cls = 'stale'; o.fade = 0.6; o.words = ['Checked', fmtMonthDay(ck), 'call first'];
     o.title = 'Checked ' + fmtDate(ck, todayKey) + '. Call first.'; o.short = 'Call first'; o.callFirst = true; return o;
   }
-  o.level = 'unverified'; o.cls = ''; o.words = ['Found', ck ? fmtMonthDay(ck) : 'date ?', 'not checked']; o.title = 'Not double-checked yet'; o.short = 'Not double-checked'; o.callFirst = true;
+  o.level = 'unverified'; o.cls = ''; o.words = ['Found', ck ? fmtMonthDay(ck) : 'date ?', 'not checked']; o.title = 'Not confirmed yet'; o.short = 'Not confirmed'; o.callFirst = true;
   return o;
 }
 
@@ -2332,7 +2335,8 @@ var APP_RADIUS = 25;   // v3: no distance cap by default (layout spec 3.10: the 
 function appDefaultFilters(){ return ext(defaultFilters(), {radius:APP_RADIUS}); }
 function defaultFilters(){ return {openNow:true, fits:true, radius:5, mode:'transit', who:{}, io:'either', price:{}, walkin:false, kind:'all', social:false, hide21:false, showGone:false, notBeen:false, interests:{}, groups:{}, cats:{}, sort:'best'}; }
 function computeItem(it, T, ctx){
-  var sig = T + '|' + ctx.lat + ',' + ctx.lng + '|' + ctx.budget + '|' + ctx.mode;
+  var pcx = planCtx(T);   // v5.3: a picked time never says "now" (the wording is part of the cached row)
+  var sig = T + '|' + ctx.lat + ',' + ctx.lng + '|' + ctx.budget + '|' + ctx.mode + '|' + pcx.code;
   var cc = it.__cc || (it.__cc = {n:0, m:{}});
   if (cc.m[sig]) return cc.m[sig];
   if (cc.n > 8) { cc.m = {}; cc.n = 0; }
@@ -2347,6 +2351,7 @@ function computeItem(it, T, ctx){
   else if (fit.kind === 'dark') d = ext(d, {sub:(d.sub ? d.sub + ' · ' : '') + 'dark by the time you\'d get there: best in daylight'});
   else if (fit.noEntry && st.open) d = ext(d, {tone:'soon', sub:'last entry ' + fmtClock(fit.lastEntryAt) + ', before you\'d get there'});
   else if (fit.entryNotes && st.open) d = ext(d, {tone:'soon', sub: fit.entryBare ? 'it has a last-entry time we don\'t have: call first' : 'last entry about ' + fmtClock(fit.lastEntryAt) + ' (from its notes), you\'d arrive after it: call first'});
+  if (pcx.on) d = ext(d, {text:tenseText(d.text, pcx), sub:d.sub ? tenseText(d.sub, pcx) : d.sub});
   var c = {item:it, dist:dist, trav:trav, st:st, fit:fit, d:d, citywide:cw};
   cc.m[sig] = c; cc.n++;
   return c;
@@ -2437,7 +2442,7 @@ var TIGHT_OVER_MIN = 30;        // "Open, but tight": over the hour by at most 3
 var ENDING_SOON_DAYS = 7;       // the "Ending soon" strip shows only when something ends within 7 days (main session brief, 2026-11-12)
 var COMING_SEASON_DAYS = 21;    // a place whose season opens within 21 days counts as "coming up" in Limited time (spec §7.3)
 var REST_ORDER = ['longer', 'later', 'unknown', 'closed', 'dates', 'season'];
-function restLabel(k, p){ return {longer:'Needs more than your time', later:'Opens later today', unknown:'Hours not listed · call first', closed:'Closed now', dates:'Later dates', season:seasonShelfTitle(p) + ' · closed for the season'}[k]; }
+function restLabel(k, p){ return {longer:'Needs more than your time', later:UI.planning ? 'Opens later' : 'Opens later today', unknown:'Hours not listed · call first', closed:UI.planning ? 'Closed ' + planWhen(false) : 'Closed now', dates:'Later dates', season:seasonShelfTitle(p) + ' · closed for the season'}[k]; }
 function restShort(k){ return {longer:'longer', later:'later today', unknown:'hours not listed', closed:'closed', dates:'later dates', season:'back in spring'}[k]; }
 function bucketOf(c){ // 'fits' | 'tight' | 'rest' (spec §7.2), from the pipeline group
   var g = c.group, f = c.fit || {};
@@ -2519,7 +2524,7 @@ function buildView(res, F, sel, sub){ // sel: '' | 'play' | 'limited' | 'limited
   vm.onOpen = vm.onNow.filter(function(c){ return c.st.open; });   // v5.1 (tester M1): "on now" = open now; running but shut right now is counted apart
   vm.onShut = vm.onNow.filter(function(c){ return !c.st.open; });
   vm.tiles.push({id:'limited', n:vm.onOpen.length});   // v5.1: open now in the picked kinds (all kinds when none is picked)
-  GENRES.forEach(function(g){ vm.tiles.push({id:g.id, n:s.lim ? vm.limByGenre[g.id] : vm.byGenre[g.id].length}); });   // with Limited on, each kind shows its limited count
+  GENRES.forEach(function(g){ vm.tiles.push({id:g.id, n:vm.byGenre[g.id].length, lim:vm.limByGenre[g.id]}); });   // v5.3: each kind keeps its open count; its limited count is the small second number (owner: "everything is closed")
   GENRES.forEach(function(g){ var m = vm.byGenre[g.id]; if (m.length) vm.picks.push({g:g.id, c:m[0], n:m.length}); else vm.empty.push(g.id); });
   if (s.gs.length && !s.lim) {
     var one = s.gs.length === 1, useSub = one && sub;   // sub-chips only when exactly one kind is picked
@@ -2620,7 +2625,35 @@ var UI = {nowOverride:null, sel:null, detailId:null, expand:{}, picking:false, c
   gsel:{gs:[], lim:false}, sub:'', foldTight:false, foldRest:false, limMore:false, showRing:false, viewKey:null, pinAnim:false, draft:null, surprise:null};   // v3: the picked tile, its sub-chip and the folds
 var savedIds = [];
 function nowMs(){ return UI.nowOverride !== null ? UI.nowOverride : Date.now(); }
-function evalTime(){
+/* v5.3 (owner 2026-11-13: "I pressed filter for Monday at 12 p.m. ... it shows what it is right now"): the time WAS applied, but rows,
+   headlines and empty boxes still said "Happening now", "right now", "is on right now". With a time picked, every screen says
+   "then" (rows) or names the time ("Open Mon noon", "Nothing ... is on Mon at noon"). planWhen() is for headlines and sentences,
+   tenseText() rewrites the status words of one row; planCtx(T) says whether T is a picked time and whether it is another day. */
+function evalTime(){ var t = evalTime0(); UI.planAt = UI.planning ? t : null; return t; }
+function planWhen(sent){ // "Mon noon" (headline) / "Mon at noon" (sentence) when a time is picked; "now" / "right now" otherwise
+  if (!UI.planning || !isNum(UI.planAt)) return sent ? 'right now' : 'now';
+  var q = cparts(UI.planAt); return DOW_SHORT[q.wd] + (sent ? ' at ' : ' ') + fmtTime(q.min);
+}
+function planCtx(T){
+  if (!UI || !UI.planning || !isNum(UI.planAt)) return {on:false, code:''};
+  var q = cparts(T), other = q.key !== cparts(nowMs()).key;
+  return {on:true, other:other, wd:q.wd, code:'P' + (other ? 'd' + q.wd : 's')};
+}
+function tenseText(s, pc){ // pure: the status words of a row for a picked time
+  if (!s || !pc || !pc.on) return s;
+  s = String(s).replace(/Happening now/g, 'On then').replace(/\bright now\b/g, 'then').replace(/\bNow\b/g, 'Then').replace(/\bnow\b/g, 'then')
+    .replace(/^Closes in \d+ min · at /, 'Closes at ').replace(/^Last entry in \d+ min · at /, 'Last entry at ').replace(/ends in \d+ min · at /, 'ends at ');
+  if (pc.other) { // "today" / "tomorrow" would mean the real today; name the day instead
+    var dn = DOW_SHORT[pc.wd], tm = DOW_SHORT[(pc.wd + 1) % 7];
+    s = s.replace(/^Opens later today$/, 'Opens later').replace(/^(Opens at .+?) today\b/, '$1').replace(/^Today at /, dn + ' at ').replace(/\bToday\b/g, dn).replace(/\btoday\b/g, dn).replace(/\btomorrow\b/g, tm);
+  }
+  return s;
+}
+function restoredSel(list, legacy){ // v5.3: a new visit keeps the picked kinds but never switches Limited back on by itself
+  var s = Array.isArray(list) ? normSel(list.filter(function(x){ return typeof x === 'string'; })) : normSel(validGenre(legacy || ''));
+  s.lim = false; return s;
+}
+function evalTime0(){
   var now = nowMs(), p = cparts(now);
   UI.planning = false; UI.pickPast = false;
   if (S.when === 'tonight') { if (p.min < 19 * 60) { UI.planning = true; return fromChicago(p.key, 19 * 60); } return now; }
@@ -2678,14 +2711,15 @@ function beenRecently(id, todayKey, list){ var ck = checkinOf(id, list); return 
 function beenLabel(ck, todayKey){ return 'Been \u00b7 ' + fmtDate(ck.date, todayKey); }
 
 /* One line of facts: "Open till 10 pm · 12 min walk · $$" */
-function statusShort(c){
-  var st = c.st, isEv = c.item.kind === 'event', t = String(c.d && c.d.text || '');
-  if (/^Dark now/.test(t)) return 'Best in daylight';
+function statusShort(c){ return tenseText(statusShort0(c), planCtx(c.st.ms)); }   // v5.3: "On then" for a picked time
+function statusShort0(c){
+  var st = c.st, isEv = c.item.kind === 'event', t = String(c.d && c.d.text || ''), pl = planCtx(st.ms).on;
+  if (/^Dark (now|then)/.test(t)) return 'Best in daylight';
   if (st.open && !st.inSession) {
     if (st.always) return 'Open 24 hours';
     if (st.lastEntryAt && st.lastEntryAt - st.ms <= 3600000) return 'Last entry ' + fmtWhen(st.lastEntryAt, st.p, true);
     if (st.endUnknown || !st.closesAt) return isEv ? 'On now' : 'Open now';
-    if (st.key === 'closing') return (isEv ? 'Ends in ' : 'Closes in ') + st.minsLeft + ' min';
+    if (st.key === 'closing') return pl ? (isEv ? 'Ends ' : 'Closes ') + fmtWhen(st.closesAt, st.p, true) : (isEv ? 'Ends in ' : 'Closes in ') + st.minsLeft + ' min';
     return (isEv ? 'On till ' : 'Open till ') + fmtWhen(st.closesAt, st.p, true);
   }
   if (st.key === 'later' && st.opensAt && !st.inSession) return 'Opens at ' + fmtClock(st.opensAt);
@@ -2819,7 +2853,7 @@ function hashItemId(hash){ var s = String(hash || '').replace(/^#/, ''); try { s
 
 /* Share text and calendar entry */
 function whenLine(c){ var b = c.item.kind === 'event' ? untilBadge(c, c.st.p) : null; return String(c.d.text || '') + (b && !b.muted ? ' \u00b7 ' + b.t : ''); }
-function shareText(c, link){ var it = c.item, lines = [it.name, whenLine(c)]; if (it.address) lines.push(it.address); if (link) lines.push(link); return lines.filter(Boolean).join('\n'); }
+function shareText(c, link){ var it = c.item, lines = [it.name, whenLine(c)]; if (it.address) lines.push(it.address); if (link) lines.push(link); lines.push('via ' + APP_NAME); return lines.filter(Boolean).join('\n'); }   // v5.3: the app name (Off-Grid) signs the share
 function icsStamp(ms){ var d = new Date(ms); return d.getUTCFullYear() + pad(d.getUTCMonth() + 1) + pad(d.getUTCDate()) + 'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + '00Z'; }
 function icsEsc(s){ return String(s || '').replace(/\\/g, '\\\\').replace(/\r?\n/g, '\\n').replace(/([,;])/g, '\\$1'); }
 function calEvent(c, link){ // when she'd be there: the time she is planning for, else when she'd arrive (or when it next opens)
@@ -2831,7 +2865,7 @@ function calEvent(c, link){ // when she'd be there: the time she is planning for
   return {id:String(it.id), title:String(it.name), start:start, end:end, where:String(it.address || ''), link:link || ''};
 }
 function icsFor(ev, stampMs){
-  var L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Chicago Fun Finder//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'BEGIN:VEVENT',
+  var L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Off-Grid//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'BEGIN:VEVENT',
     'UID:' + ev.id + '-' + icsStamp(ev.start) + '@chicago-fun-finder', 'DTSTAMP:' + icsStamp(stampMs), 'DTSTART:' + icsStamp(ev.start), 'DTEND:' + icsStamp(ev.end), 'SUMMARY:' + icsEsc(ev.title)];
   if (ev.where) L.push('LOCATION:' + icsEsc(ev.where));
   if (ev.link) { L.push('URL:' + ev.link); L.push('DESCRIPTION:' + icsEsc(ev.link)); }
@@ -3495,7 +3529,7 @@ var CHEV = '<svg class="i sm"><use href="#i-chev"/></svg>';
 function whenLabel(){ if (S.when === 'now') return 'Now'; if (S.when === 'tonight') return 'Tonight'; if (S.when === 'weekend') return 'This weekend'; var d = parseDT(S.pickAt); return d && d.min !== null ? DOW_SHORT[wdOfKey(d.key)] + ' ' + fmtTime(d.min) : 'Pick a day'; }
 function budgetWords(){ return S.budget === 'night' ? 'the rest of the night' : fmtBudget(S.budget); }
 function doableWords(){ return S.budget === 'night' ? 'doable tonight' : 'doable in ' + fmtBudget(S.budget); }   // v4 plain words for the optional time budget
-function openWords(){ return UI.planning ? 'open then' : 'open now'; }
+function openWords(){ return 'open ' + planWhen(false); }   // v5.3: "open Mon noon" when a time is picked
 function timeWord(){ return S.budget === 60 ? 'hour' : 'time'; }
 function fillHTML(txt){ return esc(txt).replace(/ /g, '&nbsp;') + '<svg class="i"><use href="#i-chev"/></svg>'; }
 function renderHeader(res){
@@ -3507,6 +3541,7 @@ function renderHeader(res){
     k += (res.T < sun.rise || res.T > sun.set) ? ' · dark out' : ' · light till ' + fmtClock(sun.set);
   }
   $('kicker').textContent = k;
+  var tg = document.querySelector('.tagline'); if (tg) tg.textContent = 'Chicago fun that\'s open ' + planWhen(true) + '.';   // v5.3
   $('fillTime').innerHTML = fillHTML(fmtBudget(S.budget));
   $('fillTime').setAttribute('aria-label', 'Time I have: ' + fmtBudget(S.budget) + '. Change');
   $('fillWhen').innerHTML = fillHTML(whenLabel());
@@ -3522,9 +3557,11 @@ function renderTiles(vm){
   var F = S.f, el = $('tiles'), h = '';
   vm.tiles.forEach(function(t){ // v3.1: 4 x 2 grid, all 8 visible; tiles with 0 stay in place, dimmed. v5: tap to add or remove (multi-select)
     var isL = t.id === 'limited', name = genreName(t.id);
-    var lab = name + ', ' + t.n + (isL || vm.lim ? ' limited, open now' :' ' + openWords() + (S.budgetOn ? ', ' + doableWords() : ''));
-    h += '<button class="tile' + (isL ? ' lt' : '') + (t.n ? '' : ' zero') + '" type="button" data-tile="' + t.id + '" aria-pressed="' + tilePressed(vm, t.id) + '" aria-label="' + esc(lab) + '" title="' + esc(lab) + '" style="--c:' + (isL ? 'var(--accent)' : genreColor(t.id)) + '">' +
-      '<span class="top"><span class="gl"><svg aria-hidden="true"><use href="#' + genreGlyph(t.id) + '"/></svg></span><span class="num">' + t.n + '</span></span><span class="nm">' + esc(genreShort(t.id)) + '</span></button>';
+    // v5.3: a kind tile always shows what that kind has open (never a 0 that reads as "closed"); with Limited on, a small red count says how many of them are limited
+    var ltd = !isL && vm.lim && t.lim ? t.lim : 0;
+    var lab = name + ', ' + t.n + (isL ? ' limited, ' + openWords() : ' ' + openWords() + (S.budgetOn ? ', ' + doableWords() : '') + (vm.lim ? ', ' + (t.lim || 0) + ' limited' : ''));
+    h += '<button class="tile' + (isL ? ' lt' : '') + (t.n ? '' : ' zero') + (ltd ? ' has-ltd' : '') + '" type="button" data-tile="' + t.id + '" aria-pressed="' + tilePressed(vm, t.id) + '" aria-label="' + esc(lab) + '" title="' + esc(lab) + '" style="--c:' + (isL ? 'var(--accent)' : genreColor(t.id)) + '">' +
+      '<span class="top"><span class="gl"><svg aria-hidden="true"><use href="#' + genreGlyph(t.id) + '"/></svg></span><span class="num">' + t.n + '</span></span><span class="nm">' + esc(genreShort(t.id)) + '</span>' + (ltd ? '<span class="ltd" aria-hidden="true">' + ltd + '</span>' : '') + '</button>';
   });
   el.innerHTML = h;
   el.classList.toggle('has-pick', !!vm.sel);
@@ -3541,7 +3578,7 @@ function resultLine(vm){
   if (!vm.sel) return '<b>' + vm.main.length + openW + '</b>' + bw;
   if (vm.lim) { // v5.1 (tester M1): "2 Sights limited open now · 8 running · 1 more this weekend"
     var wl = comingLabel('wknd', vm.p), nOpen = (vm.onOpen || []).length;
-    return '<b>' + nOpen + (vm.gs.length ? ' ' + esc(genreShort(vm.gs.join('+'))) : '') + ' limited ' + (UI.planning ? 'open then' : 'open now') + '</b>' + (vm.onNow.length > nOpen ? ' · ' + vm.onNow.length + ' running' : '') +
+    return '<b>' + nOpen + (vm.gs.length ? ' ' + esc(genreShort(vm.gs.join('+'))) : '') + ' limited ' + openWords() + '</b>' + (vm.onNow.length > nOpen ? ' · ' + vm.onNow.length + ' running' : '') +
       (vm.wknd.length ? ' · ' + vm.wknd.length + ' more ' + (wl === 'This weekend' ? 'this weekend' : 'in 3 days') : '');
   }
   var k = vm.kind;
@@ -3551,9 +3588,15 @@ function renderResline(vm){
   var nf = appliedFilters(S.f).length + (S.budgetOn ? 1 : 0);
   $('resline').innerHTML = '<span>' + resultLine(vm) + '</span><button class="mfbtn" type="button" data-act="filters" aria-label="More filters' + (nf ? ', ' + nf + ' on' : '') + '">' + glyphSvg('i-sliders') + 'More filters' + (nf ? '<span class="n">' + nf + '</span>' : '') + '</button>';
 }
+function appliedChips(F, sel, budgetOn, budget){ // v5.3: the chips under the result line; Limited gets its own "Only limited-time" chip so it's clear it narrows the list
+  var a = appliedFilters(F);
+  if (budgetOn) a.unshift({code:'tb', label:budget === 'night' ? 'Rest of the night' : fmtBudget(budget) + ' only'});   // v4: the optional time budget shows as one removable chip
+  if (normSel(sel).lim) a.unshift({code:'lim', label:'Only limited-time'});
+  return a;
+}
+function limOff(){ var s = curSel(); selectGenre(selCode({gs:s.gs, lim:false}), {keep:true}); }   // v5.3: one tap turns Limited off, the picked kinds stay
 function renderApplied(){
-  var a = appliedFilters(S.f), el = $('applied');
-  if (S.budgetOn) a.unshift({code:'tb', label:S.budget === 'night' ? 'Rest of the night' : fmtBudget(S.budget) + ' only'});   // v4: the optional time budget shows as one removable chip
+  var a = appliedChips(S.f, curSel(), S.budgetOn, S.budget), el = $('applied');
   el.innerHTML = a.map(function(x){ return '<button type="button" data-rm="' + esc(x.code) + '" aria-label="Remove ' + esc(x.label) + '">' + esc(x.label) + '<svg class="i"><use href="#i-close"/></svg></button>'; }).join('');
   el.hidden = !a.length;
 }
@@ -3590,7 +3633,7 @@ function ribbonHTML(c, big){ // door-to-door bar: on the detail screen only in v
 function trustLineText(it, p){ // rows show one amber line only for items that aren't fresh (layout spec 3.8)
   var tr = trustOf(it, p.key);
   if (tr.level === 'conflict') return 'Sources disagree · call first';
-  if (tr.level === 'unverified') return UI.quietTrust ? '' : 'Not double-checked yet';
+  if (tr.level === 'unverified') return UI.quietTrust ? '' : 'Not confirmed yet';
   if (tr.level === 'stale') return 'Checked ' + fmtMonthDay(tr.checked) + ' · call first';
   if (tr.callFirst) return tr.short || 'Call first';
   return '';
@@ -3611,7 +3654,7 @@ function rowHTML(c, opt){
   else if (opt.kright) right = '<span>' + esc(opt.kright) + '</span>';
   var kick = (opt.kicker || right) ? '<p class="rk"><span>' + esc(opt.kicker || '') + '</span>' + (right || '<span></span>') + '</p>' : '';
   var h = '<p class="status ' + d.tone + '"><span class="st-t"><i class="dot"></i>' + esc(d.text) + (d.sub ? ' · ' + esc(d.sub) : '') + '</span></p>';
-  if (c.bucket === 'fits' && !st.open && st.opensAt) h += '<p class="evb">Opens in ' + esc(fmtDur(Math.max(1, Math.round((st.opensAt - st.ms) / 60000)))) + '</p>';
+  if (c.bucket === 'fits' && !st.open && st.opensAt) h += '<p class="evb">' + (UI.planning ? 'Opens ' + esc(fmtClock(st.opensAt)) : 'Opens in ' + esc(fmtDur(Math.max(1, Math.round((st.opensAt - st.ms) / 60000))))) + '</p>';
   var meta = [], ck = checkinOf(it.id), tsh = travelShort(c), prs = priceShort(it);   // v4: one plain line: where · how far · price (· Been)
   if (opt.been && ck) h = '<p class="meta"><span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' + (ck.rating === 1 ? ' · liked it' : ck.rating === -1 ? ' · not for me' : '') + '</p>';
   if (it.neighborhood) meta.push(esc(shortHood(it.neighborhood)));
@@ -3644,12 +3687,12 @@ function emptyInfo(vm, g, more){ // why a kind has nothing that fits right now, 
   if (later.length) { var x = later[0]; body = x.item.name + ' opens at ' + fmtClock(x.st.opensAt) + (x.dist !== null ? ', ' + travelText(x.trav).replace(/^about /, '') : '') + '.'; }
   else if (total && booked * 2 >= total) body = 'Most places here are booked ahead for a set time (' + booked + ' of ' + total + ' list class or session times).';
   else if (longer) body = 'Most need longer than ' + budgetWords() + '.';
-  else if (all.some(function(c){ return (c.fit && c.fit.kind === 'dark') || /^Dark now/.test(c.d.text); })) body = 'The outdoor spots here need daylight, and it’s dark ' + (UI.planning ? 'then' : 'now') + '. Holiday light shows are under Limited time.';
+  else if (all.some(function(c){ return (c.fit && c.fit.kind === 'dark') || /^Dark (now|then)/.test(c.d.text); })) body = 'The outdoor spots here need daylight, and it’s dark ' + (UI.planning ? 'then' : 'now') + '. Holiday light shows are under Limited time.';
   else if (!all.length) body = 'Nothing in ' + genreName(g) + ' matches your filters here.';
-  else body = 'Nothing in ' + genreName(g) + ' is open near you ' + (UI.planning ? 'then' : 'right now') + '.';
+  else body = 'Nothing in ' + genreName(g) + ' is open near you ' + planWhen(true) + '.';
   var btns = [], m = more && more[g];
   if (m) btns.push({attr:'data-relax="budget:' + m.budget + '"', label:'Make it ' + (m.budget === 'night' ? 'the rest of the night' : fmtBudget(m.budget)) + ' · ' + m.n + ' to do'});
-  return {title:'Nothing ' + (S.budgetOn ? 'is ' + doableWords() : 'is open') + (UI.planning ? ' then.' : ' right now.'), body:body, btns:btns, total:total};
+  return {title:'Nothing ' + (S.budgetOn ? 'is ' + doableWords() : 'is open') + ' ' + planWhen(true) + '.', body:body, btns:btns, total:total};
 }
 function bestRemoval(g, sub){ // "Remove Date (+3)": the applied filter whose removal brings back the most in this kind
   var a = appliedFilters(S.f); if (!a.length || !DATA_LOADED) return null;
@@ -3677,10 +3720,10 @@ function homeListHTML(vm, more){
       var q = cparts(fo.st.opensAt);
       btn = actBtn({attr:'data-plan="' + q.key + 'T' + pad(q.hh) + ':' + pad(q.mm) + '"', label:'Show ' + (q.key === p.key ? 'what’s open at ' + fmtTime(q.min) : (dayDiff(p.key, q.key) === 1 ? 'tomorrow at ' : DOW_SHORT[q.wd] + ' at ') + fmtTime(q.min))});
     }
-    h += '<div class="empty"><h3>Almost everything is closed ' + (UI.planning ? 'then' : 'at ' + esc(fmtTime(p.min))) + '.</h3><p>' + esc(body) + '</p><div class="btns">' + btn + '</div></div>';
+    h += '<div class="empty"><h3>Almost everything is closed ' + (UI.planning ? esc(planWhen(true)) : 'at ' + esc(fmtTime(p.min))) + '.</h3><p>' + esc(body) + '</p><div class="btns">' + btn + '</div></div>';
     return h + endnoteHTML('');
   }
-  h += '<h3 class="sec-h"><span>' + (UI.planning ? 'Best then' : 'Best right now') + '</span><span>one per kind</span></h3><ul class="rows">';
+  h += '<h3 class="sec-h"><span>' + 'Best ' + esc(planWhen(true).replace(' at ', ' ')) + '</span><span>one per kind</span></h3><ul class="rows">';
   vm.picks.forEach(function(pk){ h += rowHTML(pk.c, {kicker:genreName(pk.g) + (subName(pk.c.item, pk.g) ? ' · ' + subName(pk.c.item, pk.g) : ''), seeall: pk.n > 1 ? {g:pk.g, n:pk.n} : null, kright: pk.n > 1 ? '' : 'the only one'}); });
   vm.empty.forEach(function(g){
     var e = emptyInfo(vm, g, more), btns = e.btns.slice();
@@ -3688,7 +3731,7 @@ function homeListHTML(vm, more){
     h += noneRowHTML(g, e.title, e.body, btns);
   });
   h += '</ul>';
-  return h + endnoteHTML('The best pick of each kind that’s ' + (UI.planning ? 'open then' : 'open now') + (S.budgetOn ? ' and ' + doableWords() : '') + ' from ' + (S.loc ? S.loc.label : 'your pin') + '. Tap a kind above to see all of them.');
+  return h + endnoteHTML('The best pick of each kind that’s ' + openWords() + (S.budgetOn ? ' and ' + doableWords() : '') + ' from ' + (S.loc ? S.loc.label : 'your pin') + '. Tap a kind above to see all of them.');
 }
 function foldHTML(key, open, cls, icon, title, n, small){
   return '<button class="fold' + (cls ? ' ' + cls : '') + '" type="button" data-fold="' + key + '" aria-expanded="' + !!open + '"><span class="ic">' + glyphSvg(icon) + '</span><span><b>' + esc(title) + '<em>' + n + '</em></b><small>' + esc(small) + '</small></span><svg class="i chev"><use href="#i-chev"/></svg></button>';
@@ -3698,11 +3741,11 @@ function kindEmptyHTML(vm, g, more){
   if (k.restN) btns.push({attr:'data-fold-open="rest"', label:k.rest.later.length ? 'Show what opens later' : 'Show the rest'});
   var rm = bestRemoval(g, vm.sub); if (rm) btns.push({attr:'data-rm="' + esc(rm.code) + '"', label:'Remove ' + rm.label + ' (+' + rm.n + ')'});
   if (e.total < THIN_GENRE) btns.push({attr:'data-act="tip"', label:g === 'relax' ? 'Know a sauna? Send a tip' : 'Know a place? Send a tip'});
-  return '<div class="empty"><h4>Nothing in ' + esc(genreName(g)) + ' is ' + esc(S.budgetOn ? doableWords() : 'open') + (UI.planning ? ' then' : ' right now') + '.</h4><p>' + esc(e.body) + '</p><div class="btns">' + btns.map(actBtn).join('') + '</div></div>';
+  return '<div class="empty"><h4>Nothing in ' + esc(genreName(g)) + ' is ' + esc(S.budgetOn ? doableWords() : 'open') + ' ' + esc(planWhen(true)) + '.</h4><p>' + esc(e.body) + '</p><div class="btns">' + btns.map(actBtn).join('') + '</div></div>';
 }
 function kindListHTML(vm, more){
   var k = vm.kind, g = vm.sel, F = S.f, h = '', p = vm.p;
-  h += '<h3 class="sec-h"><span>' + (UI.planning ? 'Open then' : 'Open now') + (S.budgetOn ? ', ' + esc(doableWords()) : '') + '</span><span>' + k.fits.length + '</span></h3>';
+  h += '<h3 class="sec-h"><span>Open ' + esc(planWhen(false)) + (S.budgetOn ? ', ' + esc(doableWords()) : '') + '</span><span>' + k.fits.length + '</span></h3>';
   h += k.fits.length ? '<ul class="rows">' + k.fits.map(function(c){ return rowHTML(c, {}); }).join('') + '</ul>' : kindEmptyHTML(vm, g, more);
   if (k.tight.length) {
     h += foldHTML('tight', UI.foldTight, '', 'i-clock', 'Cutting it close', k.tight.length, S.budgetOn ? 'A little over ' + budgetWords() + ', or it closes soon' : 'Closes soon after you’d get there');
@@ -3723,10 +3766,13 @@ function limitedListHTML(vm){
   var sub = vm.sub, h = '', p = vm.p;
   if (!sub || sub === 'now') {
     var opn = vm.onOpen || vm.onNow, shut = vm.onShut || [], limRow = function(c){ return rowHTML(c, {kicker:genreShort(c.genre), badge:untilBadge(c, p), note:c.bucket !== 'fits'}); };
-    h += '<h3 class="sec-h"><span>' + (UI.planning ? 'Open then' : 'Open now') + '</span><span>ends soonest first</span></h3>';   // v5.1 (tester M1): open now first, running-but-shut apart
+    h += '<h3 class="sec-h"><span>Open ' + esc(planWhen(false)) + '</span><span>ends soonest first</span></h3>';   // v5.1 (tester M1): open now first, running-but-shut apart
+    // v5.3: when nothing limited is open, one tap turns Limited off and shows everything open in the picked kinds
+    var allN = vm.gs && vm.gs.length ? vm.gs.reduce(function(a, g){ return a + (vm.byGenre[g] || []).length; }, 0) : vm.main.length;
+    var offBtn = allN ? '<div class="btns">' + actBtn({attr:'data-rm="lim"', label:(vm.gs && vm.gs.length ? 'All ' + genreShort(vm.gs.join('+')) : 'Everything') + ' open (' + allN + ')'}) + '</div>' : '';
     if (opn.length) h += '<ul class="rows">' + opn.map(limRow).join('') + '</ul>';
-    else if (shut.length) h += '<p class="crow" style="padding-top:8px">Nothing limited' + (vm.gs && vm.gs.length ? ' in ' + esc(genreShort(vm.gs.join('+'))) : '') + ' is open ' + (UI.planning ? 'then' : 'right now') + '.</p>';
-    else h += '<div class="empty"><h4>Nothing limited' + (vm.gs && vm.gs.length ? ' in ' + esc(genreShort(vm.gs.join('+'))) : '') + ' is on right now.</h4><p>' + (vm.soon.length ? 'The next one starts ' + esc(fmtDayDate(startKeyOf(vm.soon[0]), p.key)) + '.' : 'Nothing new is listed yet.') + '</p></div>';
+    else if (shut.length) h += '<p class="crow" style="padding-top:8px">Nothing limited' + (vm.gs && vm.gs.length ? ' in ' + esc(genreShort(vm.gs.join('+'))) : '') + ' is open ' + esc(planWhen(true)) + '.</p>' + offBtn;
+    else h += '<div class="empty"><h4>Nothing limited' + (vm.gs && vm.gs.length ? ' in ' + esc(genreShort(vm.gs.join('+'))) : '') + ' is on ' + esc(planWhen(true)) + '.</h4><p>' + (vm.soon.length ? 'The next one starts ' + esc(fmtDayDate(startKeyOf(vm.soon[0]), p.key)) + '.' : 'Nothing new is listed yet.') + '</p>' + offBtn + '</div>';
     if (shut.length) h += '<h3 class="sec-h"><span>Running, open later</span><span>' + shut.length + '</span></h3><ul class="rows">' + shut.map(limRow).join('') + '</ul>';
   }
   if (sub !== 'now') {
@@ -3805,7 +3851,7 @@ function freshnessOf(items, todayKey){ // v2 (challenger C7): by the share of it
 }
 function freshBandText(fr){
   if (!fr.n) return '';
-  if (fr.preview) return 'Preview: ' + fr.unver + ' of ' + fr.n + ' items aren\'t double-checked yet. Cutting it close? Call first.';   // v2.1: "conflicting" items were checked, so not "still being checked"
+  if (fr.preview) return 'Preview: ' + fr.unver + ' of ' + fr.n + ' not confirmed yet. Call first if it\'s close.';   // v5.3: plain words   // v2.1: "conflicting" items were checked, so not "still being checked"
   if (fr.pct < 70) return 'Only ' + fr.pct + '% of this list was checked in the last 2 weeks. Hours may have changed, so call first.';
   return '';
 }
@@ -3910,7 +3956,7 @@ function homeTitle(res){
   return 'Three for right now';
 }
 function homeEmpty(vm, hsel, lab){ // v5.1 (tester H1): the Home "nothing" box follows the picked kinds, and never says "nothing is open" when things are open
-  var then = UI.planning ? ' then' : ' right now', fo = vm.firstOpen, s = vm.s || normSel(hsel);
+  var then = ' ' + planWhen(true), fo = vm.firstOpen, s = vm.s || normSel(hsel);
   var nOpen = (vm.all || []).filter(function(c){ return c.st.open && inSel(c, s); }).length, nm = hsel ? genreShort(hsel) : '';
   var title = hsel ? 'Nothing ' + nm + ' fits' + then + '.' : nOpen ? 'Nothing fits' + then + '.' : 'Nothing open' + then + '.';
   var body = nOpen ? nOpen + ' open, but ' + (S.budgetOn ? 'none fit in ' + budgetWords() : 'they close too soon') + '.' : hsel ? '' : 'Nothing we know of is open near ' + lab + then + '.';
@@ -4019,7 +4065,7 @@ function renderSurprise(){
   var c = UI.surprise, left = 3 - surpriseVeto.length, h = '';
   function flaps(t){ return '<p class="board-name" aria-hidden="true">' + String(t).split(/\s+/).filter(Boolean).slice(0, 12).map(function(w){ return '<span>' + esc(w) + '</span>'; }).join('') + '</p>'; }
   if (!c) {
-    h += '<p class="board-k">Next fun departing</p>' + flaps('No departures') + '<p class="board-line">Nothing ' + esc(S.budgetOn ? 'open is ' + doableWords() : 'is open') + (UI.planning ? ' then' : ' right now') + (selCode(curSel()) ? ' in ' + esc(genreName(selCode(curSel()))) : '') + '.</p>';
+    h += '<p class="board-k">Next fun departing</p>' + flaps('No departures') + '<p class="board-line">Nothing ' + esc(S.budgetOn ? 'open is ' + doableWords() : 'is open') + ' ' + planWhen(true) + (selCode(curSel()) ? ' in ' + esc(genreName(selCode(curSel()))) : '') + '.</p>';
     if (DATA_LOADED && S.budgetOn && S.budget !== 'night') {
       var T = evalTime(), ctx = ctxNow(), i0 = BUDGET_LADDER.indexOf(S.budget);
       for (var i = Math.max(0, i0 + 1); i < BUDGET_LADDER.length; i++) { var b = BUDGET_LADDER[i]; if (i0 < 0 && b !== 'night' && b <= S.budget) continue; var n = countView(DATA, T, ext(ctx, {budget:b}), S.f, curSel(), UI.sub); if (n > 0) { h += '<div class="board-btns"><button class="go" type="button" data-relax="budget:' + b + '">Make it ' + esc(b === 'night' ? 'the rest of the night' : fmtBudget(b)) + ' (' + n + (n === 1 ? ' thing' : ' things') + ')</button></div>'; break; } }
@@ -4080,7 +4126,7 @@ function renderSaved(){
   if (!items.length) { body.innerHTML = h + '<div class="empty" style="padding:8px 20px"><svg class="i" style="width:40px;height:40px;color:var(--ink-3)"><use href="#i-bookmark"/></svg><h3 style="margin-top:10px">Nothing saved yet.</h3><p>Tap the bookmark on anything you\'d do on a free night.</p></div>'; return; }
   var T = evalTime(), ctx = ctxNow(), groups = {open:[], later:[], season:[], other:[]};
   items.forEach(function(it){ var c = computeItem(it, T, ctx); var k = c.st.key; (c.st.open ? groups.open : k === 'later' ? groups.later : k === 'season' ? groups.season : groups.other).push(c); });
-  [['open', UI.planning ? 'Open then' : 'Open now'], ['later', 'Later today'], ['season', seasonShelfTitle(cparts(T))], ['other', 'Other']].forEach(function(g){
+  [['open', 'Open ' + planWhen(false)], ['later', UI.planning ? 'Later that day' : 'Later today'], ['season', seasonShelfTitle(cparts(T))], ['other', 'Other']].forEach(function(g){
     if (groups[g[0]].length) h += '<h3 class="sec-h"><span>' + g[1] + '</span><span>' + groups[g[0]].length + '</span></h3><ul class="rows">' + groups[g[0]].map(function(c){ return rowHTML(c, {}); }).join('') + '</ul>';
   });
   body.innerHTML = h;
@@ -4102,7 +4148,8 @@ function hlIcon(t){
   if (/food|\bbar\b|drink|beer|wine|cocktail|menu|eat|cheese/.test(t)) return 'g-cup';
   return 'g-spark';
 }
-function leaveSentence(c){
+function leaveSentence(c){ return tenseText(leaveSentence0(c), planCtx(c.st.ms)); }   // v5.3
+function leaveSentence0(c){
   var f = c.fit, st = c.st;
   var go = UI.planning ? 'Leave at ' + fmtClock(st.ms) : 'Leave now';
   if (f.kind === 'fits' || f.kind === 'tight' || f.kind === 'over') {
@@ -4121,15 +4168,15 @@ function leaveSentence(c){
   if (st.key === 'closed' && st.noEntry) return 'Last entry today was ' + fmtClock(st.lastEntryAt) + '.';
   if (st.inSession) return 'This is a timed ' + sessWord(c.item) + ' and it has already started, so you can\'t walk in now.' + (st.opensAt ? ' The next one starts ' + fmtWhen(st.opensAt, st.p, false) + '.' : '');
   if (st.key === 'maybe' && st.entryPassed) return st.lastEntryBare ? 'It may have stopped letting people in for today. Call before you go.' : 'Its notes say last entry is ' + fmtClock(st.lastEntryAt) + ', so it may not let you in now. Call before you go.';
-  if (st.key === 'maybe' && st.holSpecial) return st.holNotPosted ? 'It has special hours today and the times aren\'t posted. Call before you go.' : 'Its notes list different hours for today than the weekly hours, and we haven\'t checked them yet. Call before you go.';
-  if (st.key === 'unknown' && st.hoursExpired) return 'The hours we have are only confirmed through ' + fmtDate(st.validTo, st.p.key) + ', and newer hours weren\'t posted when we checked. Call or check their site.';
+  if (st.key === 'maybe' && st.holSpecial) return st.holNotPosted ? 'It has special hours today and the times aren\'t posted. Call before you go.' : 'Hours may be different today. Call before you go.';
+  if (st.key === 'unknown' && st.hoursExpired) return 'The hours we have are only confirmed through ' + fmtDate(st.validTo, st.p.key) + '. Call or check their site.';
   if (st.key === 'unknown' && st.checkDates) return 'Tickets were on sale through ' + fmtDate(st.ev.lastKey, st.p.key) + ', but no end date was announced, so it may have been extended. Check their site.';
   if (st.key === 'unknown' && st.seasonStale) return 'Its season would usually have started again by now, but we don\'t have this year\'s dates. Call or check their site.';
   if (st.key === 'maybe' && st.holNoInfo) return 'We have no ' + (st.holiday || 'holiday') + ' hours for this one, and many places change hours or close today. Call or check their site before you go.';
   if (st.key === 'maybe' && st.holVenue) return (st.holClosed ? st.holVenue + '\'s listing says it may be closed on ' + (st.holiday || 'this date') : st.holVenue + '\'s hours may be different today') + ', and this is inside it. Call before you go.';
   if (st.key === 'maybe') return st.holClosed ? 'Its own listing says it closes on ' + (st.holiday || 'this date') + '. Call before you go.' : 'Hours may be different today (' + (st.holiday || 'holiday') + '). Call or check their site before you go.';
   if (st.key === 'unknown') return 'We don\'t have confirmed hours for this one. Call or check their site before you go.';
-  if (st.key === 'season') return 'Closed for the season, so it isn\'t an option right now.' + (st.markedClosed ? ' Our checker saw it marked closed on its own site.' : '');
+  if (st.key === 'season') return '';   // v5.3 (owner: fewer words, no talk of how we checked): the status line already says "Closed for the season · back May 1"
   if (f.kind === 'no') return 'It closes before you\'d get there with enough time.';
   return '';
 }
@@ -4310,7 +4357,7 @@ function renderDetail(c, keepScroll){
   if (tr.status === 'verified') h += '<p><span class="tick">✓ Hours checked ' + ckTxt + '</span> on ' + srcLink + '.</p>';
   else if (tr.status === 'conflicting') h += '<p><span class="tick warn">Sources disagree on the hours.</span> See ' + srcLink + ' and the sources below, and call before you go. Last checked ' + ckTxt + '.</p>';
   else if (tr.status === 'closed') h += '<p>Marked closed for good, per ' + srcLink + '. Last checked ' + ckTxt + '.</p>';
-  else h += '<p><span class="tick warn">Not double-checked yet.</span> Found on ' + ckTxt + (tr.src ? ' at ' + srcLink : '') + '. Cutting it close? Call first.</p>';
+  else h += '<p><span class="tick warn">Not confirmed yet.</span> Found ' + ckTxt + (tr.src ? ' on ' + srcLink : '') + '. Call first.</p>';
   // public release: never shows verified.notes, checked_by, found_via or photos[].note; only the status, the checked date and the evidence link
   var srcs = (Array.isArray(it.source_urls) ? it.source_urls : []).map(safeUrl).filter(Boolean);
   h += srcs.length ? '<p>Sources:</p><ol class="sources">' + srcs.map(function(u){ return '<li><a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(shortUrl(u)) + '</a></li>'; }).join('') + '</ol>' : '<p>No sources recorded.</p>';
@@ -4665,11 +4712,11 @@ function renderAbout(){
   var newest = newestCheck(), todayKey = cparts(nowMs()).key;
   var photos = DATA.filter(function(it){ return firstPhoto(it); });
   var theme = Platform.store.get('cff.theme', 'auto');
-  var h = '<p><b>' + esc(APP_NAME) + '</b> (working name) shows fun things in Chicago that are actually open, how long the trip takes, and how fresh our information is. Items are collected from public sources by research agents and then checked against each official site. Every item shows whether it has been checked yet and when.</p>';
-  h += '<h3>Data</h3><p>' + nP + ' places \u00b7 ' + nE + ' events \u00b7 ' + nV + ' double-checked' + (newest ? ' \u00b7 newest check ' + fmtDate(newest, todayKey) : '') + '.' + (SKIPPED.length ? ' ' + SKIPPED.length + (SKIPPED.length === 1 ? ' item' : ' items') + ' skipped (missing name or map point, or a likely duplicate).' : '') + (DATA_ERR ? ' Load error: ' + esc(DATA_ERR) : '') + '</p>';
+  var h = '<p><b>' + esc(APP_NAME) + '</b> (working name) shows fun things in Chicago that are actually open, how long the trip takes, and how fresh our information is. Hours come from each place\'s own site, and every item shows when they were last checked.</p>';
+  h += '<h3>Data</h3><p>' + nP + ' places \u00b7 ' + nE + ' events \u00b7 ' + nV + ' confirmed' + (newest ? ' \u00b7 newest check ' + fmtDate(newest, todayKey) : '') + '.' + (SKIPPED.length ? ' ' + SKIPPED.length + (SKIPPED.length === 1 ? ' item' : ' items') + ' skipped (missing name or map point, or a likely duplicate).' : '') + (DATA_ERR ? ' Load error: ' + esc(DATA_ERR) : '') + '</p>';
   var fr = freshness();
-  h += '<p>' + fr.pct + '% of the list was double-checked in the last 2 weeks.</p>';
-  h += '<h3>How we decide "open"</h3><ul><li>Closed dates come first (holidays, private events), then season dates: a place closed for the season is never shown as open, whatever its weekly hours say.</li><li>Then any special hours for that exact date, then the weekly hours, in Chicago time. Hours that run past midnight belong to the day they start.</li><li>On holidays (Thanksgiving, Christmas Eve and Day, New Year\'s Eve and Day, Easter, Memorial Day, July 4, Labor Day), a place whose notes (including our checker\'s notes) mention holiday closures or holiday hours says "May be closed today, call first" instead of open.</li><li>On Thanksgiving, Christmas Day and New Year\'s Day, a place with no holiday information at all says "Holiday: hours may differ, call first" and isn\'t suggested. It shows as open only if we have its hours for that exact date, or our checker confirmed its regular hours apply that day. Places open 24 hours are left alone.</li><li>A place marked closed by our checker that has a season (or a note like "closed for the season") is closed for the season and listed under "Back in spring", not hidden. Only a place marked closed with no season is "closed for good".</li><li>On Thanksgiving, Christmas Day and New Year\'s Day a place counts as known only when our data covers that exact date (a closed date, hours for that date, a checker\'s confirmation, or a note naming that holiday or date). A note about a different holiday doesn\'t count.</li><li>Special hours come from the hours we list for exact dates and the closed dates. If a note names today\'s date with different hours and we have no hours for that date, it says "Special hours today, call first" and isn\'t suggested.</li><li>Last entry: a place is suggested only if you\'d get there at least ' + LAST_ENTRY_MARGIN_MIN + ' minutes before its last entry. When the last-entry time only appears in a note, arriving after it says "call first".</li><li>Shows and ticketed sessions: once one has started (more than ' + SESSION_GRACE_MIN + ' minutes ago) it isn\'t "open"; the app shows the next start time.</li><li>Seasonal places reopen on their season dates (yearly seasons roll over to the next year). If the next season\'s dates aren\'t known by the time it would usually be back, it says "season dates not posted, call first".</li><li>Hours confirmed only up to a date say "hours not posted yet, call first" after it. An event whose last date is only the last day tickets are on sale says so, and never "Ended" or "Last day".</li><li>Parks, gardens and outdoor art that need daylight aren\'t suggested from ' + DARK_AFTER_SUNSET_MIN + ' minutes after sunset until sunrise.</li><li>No hours on file means "hours not confirmed", never "open".</li><li>Anything not double-checked recently says "call first".</li></ul>';
+  h += '<p>' + fr.pct + '% of the list was confirmed in the last 2 weeks.</p>';
+  h += '<h3>How we decide "open"</h3><ul><li>Closed dates come first (holidays, private events), then season dates: a place closed for the season is never shown as open, whatever its weekly hours say.</li><li>Then any special hours for that exact date, then the weekly hours, in Chicago time. Hours that run past midnight belong to the day they start.</li><li>On holidays (Thanksgiving, Christmas Eve and Day, New Year\'s Eve and Day, Easter, Memorial Day, July 4, Labor Day), a place whose notes mention holiday closures or holiday hours says "May be closed today, call first" instead of open.</li><li>On Thanksgiving, Christmas Day and New Year\'s Day, a place with no holiday information at all says "Holiday: hours may differ, call first" and isn\'t suggested. It shows as open only if we have its hours for that exact date, or its regular hours are confirmed for that day. Places open 24 hours are left alone.</li><li>A place marked closed that has a season (or a note like "closed for the season") is closed for the season and listed under "Back in spring", not hidden. Only a place marked closed with no season is "closed for good".</li><li>On Thanksgiving, Christmas Day and New Year\'s Day a place counts as known only when our data covers that exact date (a closed date, hours for that date, a confirmation, or a note naming that holiday or date). A note about a different holiday doesn\'t count.</li><li>Special hours come from the hours we list for exact dates and the closed dates. If a note names today\'s date with different hours and we have no hours for that date, it says "Special hours today, call first" and isn\'t suggested.</li><li>Last entry: a place is suggested only if you\'d get there at least ' + LAST_ENTRY_MARGIN_MIN + ' minutes before its last entry. When the last-entry time only appears in a note, arriving after it says "call first".</li><li>Shows and ticketed sessions: once one has started (more than ' + SESSION_GRACE_MIN + ' minutes ago) it isn\'t "open"; the app shows the next start time.</li><li>Seasonal places reopen on their season dates (yearly seasons roll over to the next year). If the next season\'s dates aren\'t known by the time it would usually be back, it says "season dates not posted, call first".</li><li>Hours confirmed only up to a date say "hours not posted yet, call first" after it. An event whose last date is only the last day tickets are on sale says so, and never "Ended" or "Last day".</li><li>Parks, gardens and outdoor art that need daylight aren\'t suggested from ' + DARK_AFTER_SUNSET_MIN + ' minutes after sunset until sunrise.</li><li>No hours on file means "hours not confirmed", never "open".</li><li>Anything not double-checked recently says "call first".</li></ul>';
   h += assumedHTML();
   h += '<h3>The three picks</h3><p>The first screen shows three things that are open at the time you chose (or open within 15 minutes), about ' + PICK_NEAR_MIN + ' minutes away or less by the way you chose to get around (further only when fewer than three closer ones are open), of three different kinds, with one limited-time thing when one qualifies. Places you marked "I\'ve been here" in the last ' + RECENT_DAYS + ' days are left out. "Three more" doesn\'t repeat until it has shown everything.</p>';
   h += '<h3>"I\'ve only got..."</h3><p>Off unless you turn it on in More filters. With it on, a place is shown when the trip plus the shortest worthwhile time there is within your time, and it stays open long enough after you arrive (at least 30 minutes). The shortest time comes from our listing when we have it; otherwise it is our rule of thumb: arcades, bars and food stops 30 min, mini golf 40, museums and active places 45, pop-ups 40. Escape rooms, shows, classes, sports and anything you book ahead need their full length.</p>';
@@ -4757,6 +4804,7 @@ function bindUI(){
   $('resline').addEventListener('click', function(e){ if (e.target.closest('[data-act="filters"]')) openFilters(); });
   $('applied').addEventListener('click', function(e){
     var b = e.target.closest('[data-rm]'); if (!b) return;
+    if (b.getAttribute('data-rm') === 'lim') { limOff(); return; }   // v5.3
     if (b.getAttribute('data-rm') === 'tb') S.budgetOn = false;
     S.f = removeFilter(S.f, b.getAttribute('data-rm'));
     Platform.store.set('cff.radius.v3', S.f.radius); Platform.store.set('cff.mode.v1', S.f.mode);
@@ -4912,6 +4960,7 @@ function onListClick(e){
   var fo = t.closest('[data-fold-open]');
   if (fo) { UI.foldRest = true; refresh(); var fd = listRoot.querySelector('[data-fold="rest"]'); if (fd) $('sheetScroll').scrollTop = Math.max(0, fd.offsetTop - 4); return; }
   var rm = t.closest('[data-rm]');
+  if (rm && rm.getAttribute('data-rm') === 'lim') { limOff(); return; }   // v5.3: "All Play open (12)"
   if (rm) { if (rm.getAttribute('data-rm') === 'tb') S.budgetOn = false; S.f = removeFilter(S.f, rm.getAttribute('data-rm')); Platform.store.set('cff.radius.v3', S.f.radius); Platform.store.set('cff.mode.v1', S.f.mode); refresh(); return; }
   var pl = t.closest('[data-plan]');
   if (pl) { S.when = 'pick'; S.pickAt = pl.getAttribute('data-plan'); refresh(); return; }
@@ -4948,6 +4997,10 @@ function fx(o){ return ext({id:'fx-' + (++uid), name:'Fixture', kind:'place', ca
 function fresh(o, extra){ var c = {}; for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k) && k.slice(0, 2) !== '__') c[k] = o[k]; return ext(c, extra); }   // a copy without cached state
 function northOf(mi){ return 41.88 + mi / (3958.8 * Math.PI / 180); }
 function runSelfTest(){
+  var keepPlanST = UI.planning, keepAtST = UI.planAt; UI.planning = false; UI.planAt = null;   // v5.3: the checks expect "now" wording even if the app is in planning mode
+  try { return runSelfTest0(); } finally { UI.planning = keepPlanST; UI.planAt = keepAtST; }
+}
+function runSelfTest0(){
   var R = [];
   function ok(name, cond, info){ R.push({ok:!!cond, name:name, info: cond ? '' : (info || '')}); }
   function eq(name, got, exp){ ok(name, got === exp, 'got ' + show(got) + ', expected ' + show(exp)); }
@@ -5479,9 +5532,11 @@ function runSelfTest(){
   });
 
   block('v2.1 app name (tester L-B) and small fixes', function(){
-    eq('one constant: APP_NAME', APP_NAME, 'Chicago Fun Finder');
+    eq('one constant: APP_NAME is "Off-Grid" (owner 2026-11-13)', APP_NAME, 'Off-Grid');
     eq('page <title> matches APP_NAME', TITLE_AT_LOAD, APP_NAME);
     eq('wordmark matches APP_NAME', $('brandName') ? $('brandName').textContent : '', APP_NAME);
+    ok('share text is signed with the app name', /\nvia Off-Grid$/.test(shareText({item:{name:'X', address:''}, d:{text:'Open'}, st:{p:cparts(Date.now())}}, '')), 'no "via Off-Grid"');
+    ok('the old working name is gone from what people see', (document.body.innerText || document.body.textContent).indexOf('Chicago Fun' + ' Finder') < 0 && document.title.indexOf('Fun' + ' Finder') < 0, 'found "Chicago Fun Finder"');
     ok('the old name is gone from the page', document.body.innerHTML.indexOf('Loop' + 'hole') < 0, 'found it');
   });
 
@@ -5575,7 +5630,7 @@ function runSelfTest(){
   block('v2.2 closed places reopen; end dates not announced (challenger H-3, H-4)', function(){
     var dougOld = fx({category:'mini-golf', hours:{mon:[], tue:[], wed:[], thu:[['11:00', '16:00']], fri:[['11:00', '16:00']], sat:[['09:00', '16:00']], sun:[]}, season:{open_from:'2026-05-01', open_to:'2026-10-30', note:'open from May 1 - October 30 annually'}, verified:{status:'closed', checked_on:'2026-11-12'}});
     var s = stx(dougOld, '2027-05-01', '12:00');
-    eq('Douglass 18 (marked closed, annual season) on Sat May 1, 2027: open per its hours', [s.key, s.d.text, s.d.sub].join(' | '), 'open | Open till 4 pm | season should have started; not re-checked yet');
+    eq('Douglass 18 (marked closed, annual season) on Sat May 1, 2027: open per its hours', [s.key, s.d.text, s.d.sub].join(' | '), 'open | Open till 4 pm | season start not confirmed');
     eq('...closed again for the season after Oct 30, 2027, back May 1', [stx(dougOld, '2027-11-05', '12:00').key, stx(dougOld, '2027-11-05', '12:00').d.sub].join(' | '), 'season | back May 1');
     var dougNew = fresh(dougOld, {id:'fx-doug-new', season:{open_from:'2027-05-01', open_to:'2026-10-30', note:'open from May 1 - October 30 annually. Inverted range.'}});
     eq('Douglass 18, inverted season (overlay shape): Nov 16 closed, May 1 2027 open, Nov 5 2027 closed', [stx(dougNew, '2026-11-16', '12:00').key, stx(dougNew, '2027-05-01', '12:00').key, stx(dougNew, '2027-11-05', '12:00').key].join(), 'season,open,season');
@@ -5747,7 +5802,7 @@ function runSelfTest(){
     var vPL = buildView(res, F, {gs:['play'], lim:true}, '');
     eq('Play + Limited: only limited things in Play', names(vPL.onNow), 'Play limited');
     eq('...view code and list type', vPL.sel + '|' + vPL.lim + '|' + (vPL.kind === null), 'limited+play|true|true');
-    eq('...tile counts follow (Limited, Play, Look ... = limited counts per kind)', vPL.tiles.map(function(t){ return t.n; }).join(), '1,1,1,0,0,0,0,0');
+    eq('...tile counts (v5.3: kinds keep their open count, the limited count is second)', vPL.tiles.map(function(t){ return t.n; }).join() + ' | ' + vPL.tiles.slice(1, 3).map(function(t){ return t.lim; }).join(), '1,2,2,0,0,0,0,0 | 1,1');
     var hl = limitedListHTML(vPL);
     ok('...the list shows Play limited, not Look limited', hl.indexOf('Play limited') >= 0 && hl.indexOf('Look limited') < 0, hl.slice(0, 160));
     var kpPl = UI.planning; UI.planning = false;
@@ -5918,11 +5973,63 @@ function runSelfTest(){
     eq('blocked storage: no crash, falls back to no genre', [dead.ok, dead.get('cff.genre.v1', ''), dead.set('cff.genre.v1', 'play')].join(), 'false,,false');
   });
 
+  /* ---------- v5.3 checks (owner 2026-11-13 on her iPhone: "I pressed filter for Monday at 12 p.m. and everything is closed ... It shows what it is right now") ---------- */
+  block('v5.3 tense words (pure)', function(){
+    var mon = {on:true, other:true, wd:1, code:'Pd1'}, same = {on:true, other:false, wd:5, code:'Ps'};
+    eq('"Happening now · till 5 pm" -> "On then · till 5 pm"', tenseText('Happening now · till 5 pm', mon), 'On then · till 5 pm');
+    eq('another day: "today" / "tomorrow" name the day', tenseText('Closed today · opens tomorrow 9 am', mon), 'Closed Mon · opens Tue 9 am');
+    eq('same day: "Closed now" -> "Closed then", "today" kept', tenseText('Closed now · opens 4 pm', same) + ' | ' + tenseText('Opens at 4 pm today', same), 'Closed then · opens 4 pm | Opens at 4 pm today');
+    eq('countdowns become clock times', [tenseText('Closes in 30 min · at 12:30 pm', mon), tenseText('Last entry in 40 min · at 6 pm', mon), tenseText('Happening now · ends in 20 min · at 1 pm', mon)].join(' | '), 'Closes at 12:30 pm | Last entry at 6 pm | On then · ends at 1 pm');
+    eq('not planning: unchanged', tenseText('Happening now · till 5 pm', {on:false}), 'Happening now · till 5 pm');
+  });
+  block('v5.3 a picked time (Mon Nov 16 noon) never says "now"', function(){
+    var keepN = UI.nowOverride, keepW = S.when, keepPk = S.pickAt, keepB = S.budgetOn;
+    var T = at('2026-11-16', '12:00'), ctx = {lat:41.88, lng:-87.63, budget:'any', mode:'transit'}, F = ext(defaultFilters(), {radius:25});
+    var ev = fx({name:'Pop-up show', kind:'event', category:'art-museum', hours:allDays(['10:00', '17:00']), event_dates:[{start:'2026-11-01', end:'2026-12-19'}], lat:northOf(0.3)});
+    var pp = fx({name:'Arcade', category:'games-arcade', hours:allDays(['10:00', '23:00']), lat:northOf(0.4)});
+    var cl = fx({name:'Late bar', category:'food-drink-experience', hours:allDays(['16:00', '23:00']), lat:northOf(0.5)});
+    var sh = fx({name:'Quick spot', category:'games-arcade', hours:allDays(['09:00', '12:30']), lat:northOf(0.2)});
+    try {
+      UI.nowOverride = at('2026-11-13', '18:00'); S.when = 'pick'; S.pickAt = '2026-11-16T12:00'; S.budgetOn = false;
+      var T2 = evalTime();
+      eq('the picked time is used: planning on, "Mon noon"', [T2 === T, UI.planning, planWhen(false), planWhen(true)].join(' | '), 'true | true | Mon noon | Mon at noon');
+      var items = [ev, pp, cl, sh], res = runPipeline(items, T, ctx, F);
+      var row = function(it){ for (var i = 0; i < res.all.length; i++) if (res.all[i].item === it) return res.all[i]; return null; };
+      eq('event row: "On then · till 5 pm" (was "Happening now · till 5 pm")', row(ev).d.text, 'On then · till 5 pm');
+      eq('closing soon: "Closes at 12:30 pm" (no countdown)', row(sh).d.text, 'Closes at 12:30 pm');
+      eq('opens later that day: no "today"', row(cl).d.text, 'Opens at 4 pm');
+      eq('card facts line', factsLine(row(ev)).split(' · ')[0], 'On till 5 pm');
+      var v0 = buildView(res, F, '', ''), vL = buildView(res, F, 'limited', ''), vLP = buildView(res, F, 'limited+play', ''), vP = buildView(res, F, 'play', '');
+      var txt = function(h){ return String(h).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '); };
+      eq('result line names the time', /^\d+ open Mon noon$/.test(txt(resultLine(v0)).trim()), true);
+      eq('Limited result line', txt(resultLine(vL)).split(' · ')[0].trim(), '1 limited open Mon noon');
+      var hlp = txt(limitedListHTML(vLP));
+      ok('Limited + Play, none on: "Nothing limited in Play is on Mon at noon." (was "is on right now")', hlp.indexOf('Nothing limited in Play is on Mon at noon.') >= 0, hlp.slice(0, 200));
+      ok('...with a one-tap "All Play open (N)" that turns Limited off', /All Play open \(\d+\)/.test(hlp) && limitedListHTML(vLP).indexOf('data-rm="lim"') > 0, hlp.slice(0, 300));
+      eq('Home empty box', homeEmpty(vLP, 'limited+play', 'Lincoln Park').title, 'Nothing Play + Limited fits Mon at noon.');
+      ok('Browse kind list heading "Open Mon noon"', txt(kindListHTML(vP, {})).indexOf('Open Mon noon') >= 0, txt(kindListHTML(vP, {})).slice(0, 120));
+      var screens = [resultLine(v0), resultLine(vL), resultLine(vLP), homeListHTML(v0, {}), limitedListHTML(vL), limitedListHTML(vLP), kindListHTML(vP, {}), homeEmpty(vLP, 'limited+play', 'Lincoln Park').title,
+        leaveSentence(row(ev)), leaveSentence(row(cl)), leaveSentence(row(sh))].concat(res.all.map(function(c){ return c.d.text + ' ' + (c.d.sub || '') + ' ' + factsLine(c); })).map(txt).join(' || ');
+      ok('no "now" / "right now" / "today" anywhere: rows, cards, Home, Browse, Limited, empty boxes, detail sentence', !/\bnow\b|\btoday\b/i.test(screens), (screens.match(/.{0,40}\b(now|today)\b.{0,20}/i) || [''])[0]);
+      eq('tiles with Limited on: Play keeps its open count, its limited count is 0; Sights shows 1 limited', [vL.tiles[1].n >= 1, vL.tiles[1].lim, vL.tiles[2].n, vL.tiles[2].lim].join(), 'true,0,1,1');
+      var ch = appliedChips(F, 'limited+play', false, 120);
+      eq('an "Only limited-time" chip shows while Limited is on, first', ch[0] ? ch[0].code + ':' + ch[0].label : '', 'lim:Only limited-time');
+      eq('...and not when Limited is off', appliedChips(F, 'play', false, 120).some(function(x){ return x.code === 'lim'; }), false);
+      S.when = 'now'; evalTime();
+      eq('back to now: the same row says "Happening now" again (not a stale cached "then")', computeItem(ev, T, ctx).d.text, 'Happening now · till 5 pm');
+    } finally { UI.nowOverride = keepN; S.when = keepW; S.pickAt = keepPk; S.budgetOn = keepB; UI.planning = false; UI.planAt = null; }
+  });
+  block('v5.3 Limited is not switched back on by a new visit', function(){
+    eq('remembered ["limited","play"] comes back as Play only', selCode(restoredSel(['limited', 'play'])), 'play');
+    eq('remembered Limited alone comes back as nothing picked', selCode(restoredSel(['limited'])) + '|' + selCode(restoredSel(null, 'limited')), '|');
+    eq('kinds alone come back unchanged', selCode(restoredSel(['look', 'eat'])), selCode('look+eat'));
+  });
+
   block('v3 page parts', function(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.2 (2026-11-13)');
+    eq('version', VERSION, 'v5.3 (2026-11-13)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -6028,8 +6135,8 @@ function runSelfTest(){
     var T = at('2026-11-12', '18:40'), ctx = {lat:41.88, lng:-87.63, budget:'any', mode:'transit'};
     var a = fx({id:'pa-arcade', name:'Arcade, Bar; Grill', address:'932 W Randolph St, Chicago, IL 60607', hours:allDays(['11:00', '22:00']), duration_minutes:60, lat:northOf(0.45)});
     var c = computeItem(a, T, ctx);
-    eq('share text: name, when it is open, address, link', shareText(c, 'https://example.org/app/#pa-arcade'), 'Arcade, Bar; Grill\nOpen till 10 pm\n932 W Randolph St, Chicago, IL 60607\nhttps://example.org/app/#pa-arcade');
-    eq('...without a link (inside claude.ai until PUBLIC_URL is set)', shareText(c, '').split('\n').length, 3);
+    eq('share text: name, when it is open, address, link', shareText(c, 'https://example.org/app/#pa-arcade'), 'Arcade, Bar; Grill\nOpen till 10 pm\n932 W Randolph St, Chicago, IL 60607\nhttps://example.org/app/#pa-arcade\nvia Off-Grid');
+    eq('...without a link (inside claude.ai until PUBLIC_URL is set): name, when, address, "via Off-Grid"', shareText(c, '').split('\n').length, 4);
     var ev = calEvent(c, 'https://example.org/app/#pa-arcade');
     eq('calendar entry: starts when she\'d get there (6:52 pm, rounded up to 6:55), for the usual visit length', fmtClock(ev.start) + '|' + fmtClock(ev.end), '6:55 pm|7:55 pm');
     var ics = icsFor(ev, at('2026-11-12', '18:40'));
@@ -6132,11 +6239,24 @@ function runSelfTestAsync(){ // checks that need promises or the map files
     Platform.tips.sendWith(badDb, tip, bad).then(function(r){ eq('db refuses the write (view-only): kept on the phone, no more tries this visit', [r.where, r.code, bad.writable].join(), 'local,invalid_argument,false'); }),
     Platform.tips.sendWith(flakyDb, tip, {writable:true}).then(function(r){ eq('db "unavailable" once: retried and saved', [r.where, flaky].join(), 'db,2'); })
   ]).then(function(){ return waitFor(function(){ return GEO.ready || GEO.failed; }, 6000); }).then(function(){
-    if (!GEO.ready) { R.push({ok:true, info:'', name:'map files not loaded here: lake check skipped', note:true}); return R; }
-    var lk = proj(41.90, -87.55), loop = proj(41.8819, -87.6278), oak = proj(41.885, -87.785);
-    eq('tap in Lake Michigan is refused (L1)', isLake(lk[0], lk[1]), true);
-    eq('the Loop is land', isLake(loop[0], loop[1]), false);
-    eq('Oak Park (suburb) is land', isLake(oak[0], oak[1]), false);
+    if (!GEO.ready) R.push({ok:true, info:'', name:'map files not loaded here: lake check skipped', note:true});
+    else {
+      var lk = proj(41.90, -87.55), loop = proj(41.8819, -87.6278), oak = proj(41.885, -87.785);
+      eq('tap in Lake Michigan is refused (L1)', isLake(lk[0], lk[1]), true);
+      eq('the Loop is land', isLake(loop[0], loop[1]), false);
+      eq('Oak Park (suburb) is land', isLake(oak[0], oak[1]), false);
+    }
+    return waitFor(function(){ return DATA_LOADED || DATA_ERR; }, 8000);
+  }).then(function(){ // v5.3 (owner: "Monday at 12 p.m. everything is closed"): the real list, Mon Nov 16 2026 at noon
+    if (!DATA_LOADED) { R.push({ok:true, info:'', name:'real data not loaded here: Monday-noon check skipped', note:true}); return R; }
+    var T = fromChicago('2026-11-16', 720), known = [['pc-art-institute-of-chicago', 'Art Institute'], ['pc-field-museum', 'Field Museum'], ['pc-shedd-aquarium', 'Shedd Aquarium'], ['pc-lincoln-park-zoo', 'Lincoln Park Zoo'], ['pc-griffin-msi', 'Museum of Science and Industry']];
+    known.forEach(function(k){
+      var it = findItem(k[0]);
+      if (!it) { R.push({ok:true, info:'', name:'real data: ' + k[1] + ' not in this list (skipped)', note:true}); return; }
+      var st = statusAt(it, T); ok('real data: ' + k[1] + ' is open Mon Nov 16 at noon', st.open, st.key + ' / ' + describe(st, it).text);
+    });
+    var ctx = {lat:41.9405, lng:-87.6680, budget:'any', mode:'transit'}, res = runPipeline(DATA, T, ctx, appDefaultFilters()), nOpen = res.all.filter(function(c){ return c.st.open; }).length;   // North Center / Lincoln Park edge, nothing picked
+    ok('real data: Mon noon near Lincoln Park / North Center, many things open (' + nOpen + ' open, ' + res.groups.fits.length + ' fit)', nOpen >= 40, nOpen + ' open');
     return R;
   });
 }
@@ -6147,7 +6267,7 @@ function showSelfTest(){
     all.forEach(function(r){ if (r.note) return; if (r.ok) okN++; else bad++; });
     var h = '<button class="p-close" type="button" data-act="closetest" aria-label="Close self-test"><svg class="i"><use href="#i-close"/></svg></button>';
     h += '<h1>Self-test</h1><p class="sum' + (bad ? ' bad' : '') + '">' + okN + ' ok \u00b7 ' + bad + ' FAIL' + (pending ? ' \u00b7 still running...' : '') + '</p>';
-    h += '<p class="env">' + esc(VERSION) + ' \u00b7 ' + esc(new Date().toISOString()) + ' \u00b7 fixtures are made up; the real data is not used.</p><ol>';
+    h += '<p class="env">' + esc(VERSION) + ' \u00b7 ' + esc(new Date().toISOString()) + ' \u00b7 fixtures are made up; only the "real data" lines use the real list.</p><ol>';
     all.forEach(function(r){
       if (r.note) h += '<li class="st-info">' + esc(r.name) + '</li>';
       else h += '<li>' + (r.ok ? '<span class="st-ok">ok</span> ' : '<span class="st-fail">FAIL</span> ') + esc(r.name) + (r.ok ? '' : ' <span class="st-info">(' + esc(r.info) + ')</span>') + '</li>';
@@ -6185,6 +6305,7 @@ function readHash(){
   if (/panel=filters/.test(hsh) && mapEl) { openFilters(); var dm = /draft=([a-z0-9:$-]+)/i.exec(hsh); if (dm) { applyDraft(UI.draft, dm[1]); renderFilters(); } }
   if (/panel=surprise/.test(hsh) && mapEl) { var trySurprise = function(){ if (DATA_LOADED) openSurprise(); else setTimeout(trySurprise, 200); }; trySurprise(); }
   var wm = /when=(now|tonight|weekend)/.exec(hsh); if (wm && mapEl) { S.when = wm[1]; refresh(); }
+  var pkm = /pick=(\d{4}-\d{2}-\d{2}T\d{1,2}:\d{2})/.exec(hsh); if (pkm && mapEl) { S.when = 'pick'; S.pickAt = pkm[1]; refresh(); }   // v5.3 testing hook: #pick=2026-11-16T12:00 (planning mode)
   var im = /item=([a-z0-9-]+)/i.exec(hsh); if (im) UI.pendingItem = im[1];
   if (UI.pendingItem && DATA_LOADED) openPending();
   if (/(^|[#&])tip($|&)/.test(hsh) && mapEl) openTip();
@@ -6285,7 +6406,7 @@ function init(){
   var r = Platform.store.get('cff.radius.v3', APP_RADIUS); if ([0.5, 1, 2, 5, 10, 25].indexOf(r) >= 0) S.f.radius = r;
   var md = Platform.store.get('cff.mode.v1', 'transit'); if (md === 'car' || md === 'transit' || md === 'walk') S.f.mode = md;
   var gl2 = Platform.store.get('cff.genres.v2', null);   // v5: the picked kinds, as a list (e.g. ["limited","play"]); v3/v4 kept one tile as a string
-  UI.gsel = Array.isArray(gl2) ? normSel(gl2.filter(function(x){ return typeof x === 'string'; })) : normSel(validGenre(Platform.store.get('cff.genre.v1', '')));
+  UI.gsel = restoredSel(gl2, Array.isArray(gl2) ? '' : Platform.store.get('cff.genre.v1', ''));   // v5.3: the kinds come back, Limited doesn't (owner 2026-11-13: it stayed on and every kind read 0)
   UI.foldRest = false;
   var bg = Platform.store.get('cff.budget.v1', 120); if (bg === 'night' || (isNum(bg) && bg >= 30 && bg <= 360)) S.budget = bg;
   S.budgetOn = Platform.store.get('cff.budgetOn.v1', false) === true;   // v4: off unless she turned it on in More filters
@@ -6361,6 +6482,9 @@ window.__cff = {
   hashItemId: hashItemId, shareText: shareText, shareItem: function(id){ shareItem(id); }, calEvent: calEvent, icsFor: icsFor, calText: calText, addToCalendar: function(id){ addToCalendar(id); },
   checkins: function(){ return CHECKINS.slice(); }, checkinOf: checkinOf, withCheckin: withCheckin, withoutCheckin: withoutCheckin, cleanCheckins: cleanCheckins, beenRecently: beenRecently,
   addCheckin: function(id, date){ addCheckin(id, date); }, editCheckin: function(id, patch){ editCheckin(id, patch); }, removeCheckin: function(id){ removeCheckin(id); },
+  // v5.3 (planning words, Limited chip, Limited not restored)
+  tenseText: tenseText, planCtx: planCtx, planWhen: planWhen, restoredSel: restoredSel, appliedChips: appliedChips, limOff: function(){ limOff(); },
+  pick: function(v){ if (!v) S.when = 'now'; else { S.when = 'pick'; S.pickAt = v; } refresh(); return UI.planning; },
   setView: function(v){ showView(v); }, openLists: function(tab){ openLists(tab); }, bookingLink: bookingLink, bookingWord: bookingWord,
   Platform: Platform
 };
