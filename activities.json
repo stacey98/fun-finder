@@ -48658,5 +48658,2340 @@
         "photos":  [
 
                    ]
+    },
+    {
+        "id":  "pf-paintball-explosion-east-dundee",
+        "name":  "Paintball Explosion (East Dundee)",
+        "kind":  "place",
+        "category":  "active",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "group-friendly",
+                     "birthday-party",
+                     "speed"
+                 ],
+        "hook":  "Paintball on video-game style fields at old Santa\u0027s Village",
+        "description":  "A big paintball park on the grounds of the old Santa\u0027s Village amusement park, with themed outdoor fields built like video-game sets (Turmoil, Biohazard, Nam, Nuketown) plus low-impact paintball and airsoft. Private parties get their own field and a party leader, which makes it an easy pick for a loud group birthday.",
+        "highlights":  [
+                           "Themed fields modeled on video games",
+                           "Low-impact paintball and airsoft options",
+                           "Rental gear: marker, mask, air tank",
+                           "Private parties get a dedicated party leader"
+                       ],
+        "good_to_know":  "Private parties need at least 10 players and must be booked 5 days ahead. Weekend party: 2.5 hours of private play. Weekday party: 4 hours, start any time 9am-10pm. No alcohol on site. Arrive 30 minutes early.",
+        "address":  "601 Dundee Ave, East Dundee, IL 60118 (Santa\u0027s Village grounds)",
+        "neighborhood":  "East Dundee (northwest suburbs)",
+        "lat":  42.0918201,
+        "lng":  -88.2597813,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "$$$",
+        "price_note":  "$45 try-it package (140 paintballs); $70-$99 full day with rental; $25 with your own gear. Parties $60-$65 per player.",
+        "duration_minutes":  180,
+        "min_minutes":  90,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+
+                              ],
+                      "thu":  [
+
+                              ],
+                      "fri":  [
+
+                              ],
+                      "sat":  [
+                                  [
+                                      "09:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "09:00",
+                                      "17:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Weekdays by private group booking only. No new players after 4pm.",
+        "last_entry_before_close_min":  60,
+        "season":  null,
+        "booking":  "recommended",
+        "booking_url":  "http://pbbomb.pcsparty.com",
+        "age_note":  "Ages 10+",
+        "phone":  "(847) 426-2662",
+        "website":  "https://www.pbbomb.com/",
+        "source_urls":  [
+                            "https://www.pbbomb.com/Hours",
+                            "https://www.pbbomb.com/paintball",
+                            "https://www.pbbomb.com/birthday-party",
+                            "https://www.pbbomb.com/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.pbbomb.com/Hours"
+                     },
+        "energy":  "active",
+        "vibe":  "lively",
+        "moods":  [
+                      "active",
+                      "loud",
+                      "outdoorsy"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  347,
+        "photos":  [
+                       {
+                           "file":  "photos/pf-paintball-explosion-east-dundee-1.jpg",
+                           "credit":  "Paintball Explosion website",
+                           "page_url":  "https://www.pbbomb.com/birthday-party"
+                       }
+                   ]
+    },
+    {
+        "id":  "pf-combat-chicago-oak-lawn",
+        "name":  "Combat Chicago (tactical laser tag, Oak Lawn)",
+        "kind":  "place",
+        "category":  "active",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "group-friendly",
+                     "birthday-party",
+                     "rainy-day"
+                 ],
+        "hook":  "Mission-style laser tag in a 10,000 sq ft movie-set arena",
+        "description":  "Veteran-owned tactical laser tag: teams run missions through a 10,000 sq ft arena dressed as city streets, forest, a hospital and a barber shop. The blasters have rumble recoil and real reload delays and there are no bulky vests, so it plays more like a video game than a kids\u0027 party.",
+        "highlights":  [
+                           "10,000 sq ft themed arena",
+                           "Recoil blasters, no vests",
+                           "Escape rooms and axe throwing in the same building",
+                           "Private party room"
+                       ],
+        "good_to_know":  "Arena holds up to 30 players. Private package covers 14 players with 1 hour of laser tag plus 30 minutes in the party room; extra players can be added. Online reservations required.",
+        "address":  "5520 W 111th St #1, Oak Lawn, IL 60453",
+        "neighborhood":  "Oak Lawn (southwest suburbs)",
+        "lat":  41.6906526,
+        "lng":  -87.7581385,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "$30 public session; private party $350 for 14 players, $25 each extra; unlimited ammo add-on $3",
+        "duration_minutes":  90,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "16:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+
+                              ],
+                      "thu":  [
+                                  [
+                                      "16:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "16:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "12:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "12:00",
+                                      "21:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Tuesday and Wednesday hours not posted; call first.",
+        "closed_dates":  [
+                             "2026-11-14",
+                             "2026-11-15"
+                         ],
+        "season":  null,
+        "booking":  "required",
+        "booking_url":  "https://combatchicago.com/book-now/",
+        "age_note":  "Kids welcome; no minimum age posted",
+        "phone":  "(708) 529-6447",
+        "website":  "https://combatchicago.com/",
+        "source_urls":  [
+                            "https://combatchicago.com/",
+                            "https://combatchicago.com/laser-tag/",
+                            "https://combatchicago.com/chicago-parties/",
+                            "https://combatchicago.com/book-now/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://combatchicago.com/"
+                     },
+        "energy":  "active",
+        "vibe":  "lively",
+        "moods":  [
+                      "active",
+                      "loud"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  348,
+        "photos":  [
+                       {
+                           "file":  "photos/pf-combat-chicago-oak-lawn-1.jpg",
+                           "credit":  "Combat Chicago website",
+                           "page_url":  "https://combatchicago.com/laser-tag/"
+                       }
+                   ]
+    },
+    {
+        "id":  "pf-elston-electric-salt-shed",
+        "name":  "Elston Electric (pinball and arcade bar at the Salt Shed)",
+        "kind":  "place",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "group-friendly",
+                     "birthday-party",
+                     "rainy-day"
+                 ],
+        "hook":  "100+ pinball and arcade games inside the old Salt Shed",
+        "description":  "A big arcade bar from the Logan Arcade team, inside the old Morton Salt complex: vintage and modern pinball, Skee-Ball, air hockey, racing games and VR, plus cocktails and Pizza Friendly Pizza. Games run on a reloadable tap card.",
+        "highlights":  [
+                           "100+ games including vintage and modern pinball",
+                           "Full bar with cocktails and mocktails",
+                           "Pizza, taquitos and hot dogs; vegan options",
+                           "Inside the Salt Shed complex"
+                       ],
+        "good_to_know":  "Party bookings: 2 hours, 8-40 guests, $400 minimum spend; late arrivals of 30+ minutes lose the booking. Full buyouts on request.",
+        "address":  "1357 N Elston Ave, Chicago, IL 60642 (inside The Salt Shed)",
+        "neighborhood":  "Goose Island / Noble Square",
+        "lat":  41.906736,
+        "lng":  -87.659207,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_note":  "Free to walk in; games paid with a reloadable game card",
+        "duration_minutes":  120,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+                                  [
+                                      "16:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "16:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "16:00",
+                                      "01:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "12:00",
+                                      "01:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "12:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Opens Monday and Tuesday on Salt Shed show days.",
+        "season":  null,
+        "booking":  "walk-in",
+        "booking_url":  "https://www.elstonelectric.com/private-events",
+        "age_note":  "All ages until 10pm, then 21+",
+        "phone":  "(708) 967-2168",
+        "website":  "https://www.elstonelectric.com/",
+        "source_urls":  [
+                            "https://www.elstonelectric.com/",
+                            "https://www.elstonelectric.com/location",
+                            "https://www.elstonelectric.com/faq",
+                            "https://www.elstonelectric.com/private-events"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.elstonelectric.com/location"
+                     },
+        "energy":  "easy",
+        "vibe":  "lively",
+        "moods":  [
+                      "loud",
+                      "boozy",
+                      "nerdy"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  349,
+        "photos":  [
+                       {
+                           "file":  "photos/pf-elston-electric-salt-shed-1.jpg",
+                           "credit":  "Elston Electric website",
+                           "page_url":  "https://www.elstonelectric.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "pf-dinner-detective-arlington-heights",
+        "name":  "The Dinner Detective murder-mystery dinner (Arlington Heights)",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "group-friendly",
+                     "birthday-party"
+                 ],
+        "hook":  "Solve a comedy murder over dinner; the killer is a guest",
+        "description":  "An interactive comedy murder-mystery dinner show in a hotel ballroom: actors blend in with the audience, a \u0027murder\u0027 happens over dinner, and tables question suspects and pick the culprit. The best sleuth of the night wins a prize. The script running now is \u0027Game Over\u0027.",
+        "highlights":  [
+                           "Four-course plated dinner, vegetarian entree available",
+                           "Actors hidden among the guests",
+                           "Prize for the top sleuth",
+                           "Free self-parking"
+                       ],
+        "good_to_know":  "Ticket sales close at 11am two days before each show. Staff gratuity included; drinks extra.",
+        "address":  "DoubleTree by Hilton Chicago - Arlington Heights, 75 W Algonquin Rd, Arlington Heights, IL 60005",
+        "neighborhood":  "Arlington Heights (northwest suburbs)",
+        "lat":  42.0440021,
+        "lng":  -87.985817,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "price_note":  "$77.95 per person plus tax and fees",
+        "duration_minutes":  180,
+        "min_minutes":  180,
+        "hours":  null,
+        "season":  null,
+        "booking":  "required",
+        "booking_url":  "https://www.thedinnerdetective.com/northern-chicago-suburbs/murder-mystery-tickets-showtimes/",
+        "age_note":  "Adults; teens only with an adult; no young children",
+        "phone":  "",
+        "website":  "https://www.thedinnerdetective.com/northern-chicago-suburbs/",
+        "source_urls":  [
+                            "https://www.thedinnerdetective.com/northern-chicago-suburbs/murder-mystery-tickets-showtimes/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.thedinnerdetective.com/northern-chicago-suburbs/murder-mystery-tickets-showtimes/"
+                     },
+        "date_hours":  {
+                           "2026-12-05":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2026-12-11":  [
+                                              [
+                                                  "19:00",
+                                                  "22:00"
+                                              ]
+                                          ],
+                           "2027-01-09":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2027-01-16":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2027-02-06":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2027-02-20":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ]
+                       },
+        "hours_note":  "Shows on set dates only; more dates are added over time.",
+        "energy":  "chill",
+        "vibe":  "lively",
+        "moods":  [
+                      "nerdy",
+                      "loud"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  350,
+        "photos":  [
+                       {
+                           "file":  "photos/pf-dinner-detective-arlington-heights-1.jpg",
+                           "credit":  "The Dinner Detective website",
+                           "page_url":  "https://www.thedinnerdetective.com/northern-chicago-suburbs/"
+                       }
+                   ]
+    },
+    {
+        "id":  "pf-murder-mystery-co-palm-court",
+        "name":  "Murder Mystery Company dinner show: Holiday Party (Palm Court, Arlington Heights)",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "group-friendly",
+                     "birthday-party",
+                     "seasonal"
+                 ],
+        "hook":  "Old Hollywood murder mystery over a three-course dinner",
+        "description":  "A live murder-mystery dinner at a classic suburban restaurant: in-character actors run the plot through a three-course meal while guests question suspects, gather clues and turn in an accusation at the end. The Palm Court theme is 1930s Old Hollywood, and this date is a holiday-party edition.",
+        "highlights":  [
+                           "Three-course dinner included",
+                           "Guests interrogate suspects and accuse the killer",
+                           "Theme: 1930s Old Hollywood",
+                           "Buy all tickets together to sit as one group"
+                       ],
+        "good_to_know":  "Arrive about 30 minutes before showtime. Public shows take groups of any size while seats last; private parties can be priced separately.",
+        "address":  "Palm Court Restaurant, 1912 N Arlington Heights Rd, Arlington Heights, IL 60004",
+        "neighborhood":  "Arlington Heights (northwest suburbs)",
+        "lat":  42.1102101,
+        "lng":  -87.980562,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "price_note":  "$79 per person plus fees; drinks and tip extra",
+        "duration_minutes":  150,
+        "min_minutes":  150,
+        "hours":  null,
+        "season":  null,
+        "booking":  "required",
+        "booking_url":  "https://murdermysterydinnerchicago.com/public-shows/",
+        "age_note":  null,
+        "phone":  "(888) 643-2583",
+        "website":  "https://murdermysterydinnerchicago.com/",
+        "source_urls":  [
+                            "https://murdermysterydinnerchicago.com/public-shows/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://murdermysterydinnerchicago.com/public-shows/"
+                     },
+        "date_hours":  {
+                           "2026-12-18":  [
+                                              [
+                                                  "19:30",
+                                                  "22:00"
+                                              ]
+                                          ]
+                       },
+        "hours_note":  "Public show on set dates only. Arrive 30 minutes early.",
+        "energy":  "chill",
+        "vibe":  "lively",
+        "moods":  [
+                      "nerdy",
+                      "festive",
+                      "loud"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  351,
+        "photos":  [
+                       {
+                           "file":  "photos/pf-murder-mystery-co-palm-court-1.jpg",
+                           "credit":  "The Murder Mystery Company website",
+                           "page_url":  "https://murdermysterydinnerchicago.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "pf-murder-mystery-co-buca-lombard",
+        "name":  "Murder Mystery Company dinner show (Buca di Beppo, Lombard)",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "group-friendly",
+                     "birthday-party"
+                 ],
+        "hook":  "Murder mystery over a three-course Italian dinner",
+        "description":  "The same live, solve-it-yourself murder-mystery dinner format, in a private room at Buca di Beppo near Yorktown Center. Actors stay in character through three courses while tables hunt for clues and name the killer. Upcoming scripts: \u0027Till Death Do Us Part\u0027 and \u0027A Dance With Death\u0027.",
+        "highlights":  [
+                           "Three-course dinner included",
+                           "Rotating scripts each month",
+                           "Guests question suspects and vote",
+                           "Good for big birthday tables"
+                       ],
+        "good_to_know":  "Friday shows: arrive 7pm, show 7:30pm. Public shows take groups of any size while seats last; private party pricing on request.",
+        "address":  "Buca di Beppo, 90 Yorktown Rd, Lombard, IL 60148",
+        "neighborhood":  "Lombard (west suburbs)",
+        "lat":  41.8361497,
+        "lng":  -88.010384,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "price_note":  "$79 per person plus fees; drinks and tip extra",
+        "duration_minutes":  150,
+        "min_minutes":  150,
+        "hours":  null,
+        "season":  null,
+        "booking":  "required",
+        "booking_url":  "https://murdermysterydinnerchicago.com/public-shows/",
+        "age_note":  null,
+        "phone":  "(888) 643-2583",
+        "website":  "https://murdermysterydinnerchicago.com/",
+        "source_urls":  [
+                            "https://murdermysterydinnerchicago.com/public-shows/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://murdermysterydinnerchicago.com/public-shows/"
+                     },
+        "date_hours":  {
+                           "2027-01-22":  [
+                                              [
+                                                  "19:30",
+                                                  "22:00"
+                                              ]
+                                          ],
+                           "2027-02-12":  [
+                                              [
+                                                  "19:30",
+                                                  "22:00"
+                                              ]
+                                          ],
+                           "2027-03-19":  [
+                                              [
+                                                  "19:30",
+                                                  "22:00"
+                                              ]
+                                          ]
+                       },
+        "hours_note":  "Public shows on set Fridays only. Arrive 7pm, show 7:30pm.",
+        "energy":  "chill",
+        "vibe":  "lively",
+        "moods":  [
+                      "nerdy",
+                      "loud"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  352,
+        "photos":  [
+                       {
+                           "file":  "photos/pf-murder-mystery-co-buca-lombard-1.jpg",
+                           "credit":  "The Murder Mystery Company website",
+                           "page_url":  "https://murdermysterydinnerchicago.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "pf-city-cruises-signature-dinner-lake-michigan",
+        "name":  "City Cruises Signature Dinner Cruise on Lake Michigan (Navy Pier)",
+        "kind":  "place",
+        "category":  "food-drink-experience",
+        "genre":  "eat-drink",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "group-friendly",
+                     "birthday-party",
+                     "views"
+                 ],
+        "hook":  "Dinner buffet, DJ and dancing on a lake cruise",
+        "description":  "An evening cruise from Navy Pier with a chef\u0027s buffet, a live DJ playing current hits, games and dancing, and skyline views from heated indoor decks. It sails year-round, and the company also runs brunch, holiday, New Year\u0027s Eve and private-charter cruises.",
+        "highlights":  [
+                           "Dinner buffet with entrees, salads and desserts",
+                           "Live DJ, games and dancing",
+                           "Climate-controlled indoor decks",
+                           "Guaranteed table for your party"
+                       ],
+        "good_to_know":  "Board 45 minutes before departure. Casual dress. Cash bar for alcohol. Private events get a free event coordinator.",
+        "address":  "Navy Pier, 600 E Grand Ave, Chicago, IL 60611",
+        "neighborhood":  "Streeterville",
+        "lat":  41.8911532,
+        "lng":  -87.6040931,
+        "indoor_outdoor":  "both",
+        "price_level":  "$$$$",
+        "price_note":  "From $180.27 per person, tax and fees included; drinks extra",
+        "duration_minutes":  150,
+        "min_minutes":  150,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "18:00",
+                                      "20:30"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "18:00",
+                                      "20:30"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "18:00",
+                                      "20:30"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "18:00",
+                                      "20:30"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "19:00",
+                                      "21:30"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "19:00",
+                                      "21:30"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "18:00",
+                                      "20:30"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Cruise times. Not every night sails; pick a date when booking. Board 45 minutes early.",
+        "season":  null,
+        "booking":  "required",
+        "booking_url":  "https://citycruises.com/tickets/chicago/chicago-signature-dinner-cruise-on-lake-michigan",
+        "age_note":  "All ages; under 2 free",
+        "phone":  "",
+        "website":  "https://citycruises.com/chicago",
+        "source_urls":  [
+                            "https://citycruises.com/chicago",
+                            "https://citycruises.com/tickets/chicago/chicago-signature-dinner-cruise-on-lake-michigan",
+                            "https://citycruises.com/search-results?refine=c_city%3DChicago\u0026refine=c_eventType%3Ddining"
+                        ],
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://citycruises.com/tickets/chicago/chicago-signature-dinner-cruise-on-lake-michigan"
+                     },
+        "energy":  "chill",
+        "vibe":  "lively",
+        "moods":  [
+                      "romantic",
+                      "loud",
+                      "fancy"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  353,
+        "photos":  [
+
+                   ]
+    },
+    {
+        "id":  "pf-koval-distillery-tours",
+        "name":  "KOVAL Distillery tours and tastings (Ravenswood)",
+        "kind":  "place",
+        "category":  "food-drink-experience",
+        "genre":  "eat-drink",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "group-friendly"
+                 ],
+        "hook":  "See the copper stills, then taste three craft spirits",
+        "description":  "A working grain-to-bottle distillery in Ravenswood that runs short weekend tours: you watch production from a viewing platform, hear how the whiskey is made, then taste three KOVAL spirits. There\u0027s a whiskey-focused tour with a limited-edition pour, occasional hands-on cocktail classes, and private events for birthdays and team outings.",
+        "highlights":  [
+                           "45-minute tour plus 3 tastings",
+                           "Whiskey tour includes a limited-edition pour",
+                           "Cocktail classes: make 3-4 drinks with a bartender (dates vary)",
+                           "Private events for birthdays and groups"
+                       ],
+        "good_to_know":  "Up to 15 guests per tour; tours often sell out on weekends. Tickets non-refundable.",
+        "address":  "4241 N Ravenswood Ave, Chicago, IL 60613",
+        "neighborhood":  "Ravenswood",
+        "lat":  41.959008,
+        "lng":  -87.6734541,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_note":  "$12 per person per tour",
+        "duration_minutes":  45,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "16:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "16:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "16:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "16:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "15:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "12:00",
+                                      "20:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Tasting room hours. Tours Saturday 1pm and 3pm, Sunday 2pm.",
+        "season":  null,
+        "booking":  "required",
+        "booking_url":  "https://www.koval-distillery.com/visit/book-tours",
+        "age_note":  "21+ for tastings",
+        "phone":  "(312) 878-7988",
+        "website":  "https://www.koval-distillery.com/",
+        "source_urls":  [
+                            "https://www.koval-distillery.com/",
+                            "https://www.koval-distillery.com/visit/book-tours",
+                            "https://www.koval-distillery.com/visit/classes-tours"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.koval-distillery.com/visit/book-tours"
+                     },
+        "energy":  "easy",
+        "vibe":  "mixed",
+        "moods":  [
+                      "boozy",
+                      "nerdy"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  354,
+        "photos":  [
+                       {
+                           "file":  "photos/pf-koval-distillery-tours-1.jpg",
+                           "credit":  "KOVAL Distillery website",
+                           "page_url":  "https://www.koval-distillery.com/visit/book-tours"
+                       }
+                   ]
+    },
+    {
+        "id":  "pf-vitos-vault-dinner-show",
+        "name":  "Vito\u0027s Vault (Roaring \u002720s speakeasy dinner show)",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "group-friendly",
+                     "birthday-party",
+                     "seasonal"
+                 ],
+        "hook":  "1920s speakeasy dinner show with a live musical revue",
+        "description":  "A small speakeasy-style dinner theater in Jefferson Park where Vito and his cast put on an audience-interactive musical comedy revue after a three-course dinner and dessert. From late November it switches to an Old Fashioned Christmas Spectacular, and New Year\u0027s Eve adds a costume contest, champagne toast and dancing. Tell them you\u0027re celebrating and Vito announces it from the stage.",
+        "highlights":  [
+                           "Three-course dinner and dessert",
+                           "Live musical comedy revue with audience bits",
+                           "Christmas show from Nov 28",
+                           "Free parking next door"
+                       ],
+        "good_to_know":  "Doors at 6pm, show 7:30pm (NYE doors 7pm). Holiday cocktails extra. Weekday matinees on request.",
+        "address":  "5901 W Lawrence Ave, Chicago, IL 60630",
+        "neighborhood":  "Jefferson Park / Portage Park",
+        "lat":  41.9675611,
+        "lng":  -87.7749828,
+        "indoor_outdoor":  "indoor",
+        "price_level":  null,
+        "price_note":  null,
+        "duration_minutes":  180,
+        "min_minutes":  180,
+        "hours":  null,
+        "season":  null,
+        "booking":  "required",
+        "booking_url":  "https://www.exploretock.com/vitosvault/",
+        "age_note":  "Family friendly, all ages",
+        "phone":  "(773) 493-4121",
+        "website":  "https://www.vitosvault.com/",
+        "source_urls":  [
+                            "https://www.vitosvault.com/",
+                            "https://www.vitosvault.com/upcoming-events"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.vitosvault.com/upcoming-events"
+                     },
+        "date_hours":  {
+                           "2026-11-14":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2026-11-20":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2026-11-21":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2026-11-28":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2026-12-04":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2026-12-05":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2026-12-11":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2026-12-12":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2026-12-18":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2026-12-19":  [
+                                              [
+                                                  "18:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  [
+                                              [
+                                                  "19:00",
+                                                  "00:00"
+                                              ]
+                                          ]
+                       },
+        "hours_note":  "Doors 6pm, show 7:30pm. New Year\u0027s Eve doors 7pm with a midnight toast and dancing.",
+        "energy":  "chill",
+        "vibe":  "lively",
+        "moods":  [
+                      "festive",
+                      "loud",
+                      "artsy"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  355,
+        "photos":  [
+                       {
+                           "file":  "photos/pf-vitos-vault-dinner-show-1.jpg",
+                           "credit":  "Vito\u0027s Vault website",
+                           "page_url":  "https://www.vitosvault.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "pf-angry-cactus-lounge-rage-room",
+        "name":  "Angry Cactus Lounge (rage rooms and axe throwing)",
+        "kind":  "place",
+        "category":  "active",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "group-friendly",
+                     "birthday-party",
+                     "rainy-day"
+                 ],
+        "hook":  "Smash TVs and dishes in a rage room, then throw axes",
+        "description":  "Chicago\u0027s in-city rage room: suit up in safety gear and smash printers, keyboards, old TVs, bottles and dishes with bats, pipes and crowbars in one of four themed rooms. There are also 11 axe-throwing lanes, a cocktail bar and lounge, and a combo package if you want both.",
+        "highlights":  [
+                           "4 rage rooms, 30-60 minute sessions",
+                           "11 axe lanes, up to 6 people per lane",
+                           "Safety gear and briefing included",
+                           "Bar with house cocktails and mocktails"
+                       ],
+        "good_to_know":  "Group booking for 6+. Last rage-room and axe reservations at 10pm (9pm Sunday). Free parking; near the Logan Square Blue Line.",
+        "address":  "2525 N Elston Ave, Chicago, IL 60647",
+        "neighborhood":  "Logan Square / Bucktown",
+        "lat":  41.9279097,
+        "lng":  -87.6807938,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "price_note":  "Rage room $75 per person per session; axe throwing $35 per person per hour; combo $115",
+        "duration_minutes":  60,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "16:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "16:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "16:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "16:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "16:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "13:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "13:00",
+                                      "21:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Last activity bookings 10pm (Sunday 9pm).",
+        "season":  null,
+        "booking":  "recommended",
+        "booking_url":  "https://www.angrycactuslounge.com/",
+        "age_note":  "18+ for activities (under 18 with a parent); 21+ to drink and after 10pm",
+        "phone":  "(773) 799-8235",
+        "website":  "https://www.angrycactuslounge.com/",
+        "source_urls":  [
+                            "https://www.angrycactuslounge.com/",
+                            "https://angry-axe-venue-dan3476.replit.app/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://angry-axe-venue-dan3476.replit.app/"
+                     },
+        "energy":  "active",
+        "vibe":  "lively",
+        "moods":  [
+                      "active",
+                      "loud",
+                      "boozy"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  356,
+        "photos":  [
+                       {
+                           "file":  "photos/pf-angry-cactus-lounge-rage-room-1.jpg",
+                           "credit":  "Angry Cactus Lounge website",
+                           "page_url":  "https://www.angrycactuslounge.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ig-the-hand-and-the-eye",
+        "name":  "The Hand \u0026 The Eye (magic mansion)",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "rainy-day",
+                     "unique",
+                     "magic"
+                 ],
+        "description":  "A huge magic venue inside a historic stone mansion off the Mag Mile, where close-up and stage magic happen in hidden rooms, bars and small theaters as you move through the house. It\u0027s a dressed-up dinner-and-magic night, with lighter one-hour shows and a Sunday magic brunch too.",
+        "highlights":  [
+                           "Magic \u0026 Dinner experience with a $75 food and drink credit",
+                           "One-hour seasonal magic shows in the Vault",
+                           "Sunday magic brunch, including a family show",
+                           "Opened April 2026 in the McCormick Mansion"
+                       ],
+        "address":  "100 E Ontario St, Chicago, IL 60611",
+        "neighborhood":  "Streeterville / Magnificent Mile",
+        "lat":  41.8935023,
+        "lng":  -87.6251968,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "price_note":  "One-hour magic shows $65 plus tax; Sunday brunch shows $82-$104; dinner experience includes a $75 food and drink credit per person",
+        "duration_minutes":  180,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+                                  [
+                                      "16:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "16:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "16:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "16:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "16:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "16:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Ticket times are your arrival times. Hours can change.",
+        "season":  null,
+        "booking":  "required",
+        "age_note":  "21+ for evening shows; family brunch show ages 5+, Sunday brunch show 13+",
+        "phone":  "(312) 888-9600",
+        "website":  "https://www.handandeye.com/",
+        "source_urls":  [
+                            "https://www.handandeye.com/",
+                            "https://www.handandeye.com/location-hours",
+                            "https://www.handandeye.com/book",
+                            "https://fox32chicago.com/news/inside-chicagos-50m-magic-mansion-the-hand-eye-opens-april-18"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.handandeye.com/location-hours"
+                     },
+        "hook":  "Magic in hidden rooms of a Mag Mile stone mansion",
+        "date_hours":  {
+                           "2026-11-27":  [
+                                              [
+                                                  "15:30",
+                                                  "23:00"
+                                              ]
+                                          ]
+                       },
+        "booking_url":  "https://www.handandeye.com/book",
+        "energy":  "chill",
+        "vibe":  "mixed",
+        "moods":  [
+                      "fancy",
+                      "romantic",
+                      "artsy"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  357,
+        "photos":  [
+                       {
+                           "file":  "photos/ig-the-hand-and-the-eye-1.jpg",
+                           "credit":  "The Hand \u0026 The Eye website",
+                           "page_url":  "https://www.handandeye.com/book"
+                       }
+                   ]
+    },
+    {
+        "id":  "ig-obama-presidential-center",
+        "name":  "Obama Presidential Center",
+        "kind":  "place",
+        "category":  "art-museum",
+        "genre":  "look-learn",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "solo",
+                     "rainy-day",
+                     "new-opening"
+                 ],
+        "description":  "The new presidential museum and campus in Jackson Park, with four floors of exhibits, a full-size Oval Office and the Sky Room views at the top. The grounds, public art, library branch and cafes are open to everyone without a museum ticket.",
+        "highlights":  [
+                           "Opened June 19, 2026",
+                           "Oval Office replica and Sky Room included",
+                           "Campus and library branch free",
+                           "Illinois residents free on Tuesdays (book online)",
+                           "Plan at least 2 hours"
+                       ],
+        "address":  "6001 S Stony Island Ave, Chicago, IL 60637",
+        "neighborhood":  "Woodlawn / Jackson Park",
+        "lat":  41.7862462,
+        "lng":  -87.5858783,
+        "indoor_outdoor":  "both",
+        "price_level":  "$$",
+        "price_note":  "Adults $30, kids 3-11 $23; Illinois residents $26 / $15; campus free",
+        "duration_minutes":  150,
+        "min_minutes":  120,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "13:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "10:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "10:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "10:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "17:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Museum hours shown. Campus grounds open daily 6am-9pm. Timed tickets sell out; new dates release the second Wednesday of each month.",
+        "last_entry_before_close_min":  105,
+        "closed_dates":  [
+                             "2027-04-11",
+                             "2027-04-12",
+                             "2027-04-13",
+                             "2027-04-14",
+                             "2027-04-15"
+                         ],
+        "season":  null,
+        "booking":  "required",
+        "age_note":  "All ages; kids 2 and under free",
+        "phone":  "(773) 900-0044",
+        "website":  "https://www.obama.org/visit/",
+        "opened_on":  "2026-06-19",
+        "source_urls":  [
+                            "https://www.obama.org/visit/",
+                            "https://www.obama.org/visit/museum-tickets/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.obama.org/visit/museum-tickets/"
+                     },
+        "hook":  "Walk four floors of exhibits, then up to the Sky Room",
+        "booking_url":  "https://www.obama.org/visit/museum-tickets/",
+        "energy":  "easy",
+        "vibe":  "mixed",
+        "moods":  [
+                      "nerdy",
+                      "artsy"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  358,
+        "photos":  [
+                       {
+                           "file":  "photos/ig-obama-presidential-center-1.jpg",
+                           "credit":  "Obama Foundation website",
+                           "page_url":  "https://www.obama.org/visit/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ig-wild-mile-floating-eco-park",
+        "name":  "Wild Mile (floating eco-park on the river)",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "solo",
+                     "free",
+                     "unique"
+                 ],
+        "description":  "A floating boardwalk and garden on the North Branch Canal by Goose Island, built to bring wildlife back to the river, with skyline views and paddlers gliding past. Walk it in 20 minutes or launch a kayak from its public dock.",
+        "highlights":  [
+                           "About 700 feet of floating gardens and boardwalk",
+                           "Open 24/7",
+                           "Free 30-minute walking tours run year-round",
+                           "Public kayak launch; Kayak Chicago rents nearby",
+                           "Enter behind REI at the end of Eastman St (ADA ramp)"
+                       ],
+        "address":  "905 W Eastman St, Chicago, IL 60642 (behind REI)",
+        "neighborhood":  "Goose Island",
+        "lat":  41.9067786,
+        "lng":  -87.6512620,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free to walk",
+        "duration_minutes":  30,
+        "min_minutes":  15,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "00:00",
+                                      "23:59"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "00:00",
+                                      "23:59"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "00:00",
+                                      "23:59"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "00:00",
+                                      "23:59"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "00:00",
+                                      "23:59"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "00:00",
+                                      "23:59"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "00:00",
+                                      "23:59"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Open around the clock. Best in daylight.",
+        "season":  null,
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "",
+        "website":  "https://wildmile.org/",
+        "source_urls":  [
+                            "https://wildmile.org/",
+                            "https://urbanrivers.org/wildmile"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://urbanrivers.org/wildmile"
+                     },
+        "hook":  "Stroll a floating garden boardwalk on the river",
+        "energy":  "easy",
+        "vibe":  "quiet",
+        "moods":  [
+                      "outdoorsy",
+                      "cheap",
+                      "quiet"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  359,
+        "photos":  [
+                       {
+                           "file":  "photos/ig-wild-mile-floating-eco-park-1.jpg",
+                           "credit":  "Urban Rivers (photo: Dave Burk / SOM)",
+                           "page_url":  "https://urbanrivers.org/wildmile"
+                       }
+                   ]
+    },
+    {
+        "id":  "ig-chicago-fireboat-tours",
+        "name":  "Chicago Fireboat Tours (1936 fireboat Fred A. Busse)",
+        "kind":  "place",
+        "category":  "unique-niche",
+        "genre":  "look-learn",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "unique",
+                     "boat"
+                 ],
+        "description":  "Cruise the lake and river on a real 1936 Chicago fireboat with a bar on board, hearing firefighting and architecture history on the way. Besides the daytime history tour there are sunset, fireworks, 21+ booze cruises and winter holiday sailings.",
+        "highlights":  [
+                           "Historic fireboat built in 1936",
+                           "Lake-and-river tour goes through the Chicago locks",
+                           "Bar on board",
+                           "Winter fireworks and Santa sailings in the holiday season",
+                           "Departs DuSable Harbor"
+                       ],
+        "address":  "DuSable Harbor, 111 N DuSable Lake Shore Dr, Chicago, IL 60601",
+        "neighborhood":  "Lakeshore East / DuSable Harbor",
+        "lat":  41.8838,
+        "lng":  -87.6113,
+        "indoor_outdoor":  "both",
+        "price_level":  null,
+        "price_note":  null,
+        "duration_minutes":  75,
+        "min_minutes":  75,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+
+                              ],
+                      "thu":  [
+
+                              ],
+                      "fri":  [
+
+                              ],
+                      "sat":  [
+
+                              ],
+                      "sun":  [
+
+                              ]
+                  },
+        "hours_note":  "Winter sailings only: Santa river cruises Sat-Sun 1, 3 and 5pm through Dec 20, plus fireworks cruises Saturdays at 7pm from Nov 28. Mag Mile Lights fireworks cruise Nov 21 boards 5:45pm at the Riverwalk dock. Spring dates not posted yet.",
+        "season":  null,
+        "booking":  "required",
+        "age_note":  "Family friendly except the 21+ booze cruise",
+        "phone":  "(312) 919-3367",
+        "website":  "https://fireboattours.com/",
+        "source_urls":  [
+                            "https://fireboattours.com/",
+                            "https://www.choosechicago.com/listing/chicago-fireboat-tours/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://fireboattours.com/tours/santa-claus-sleigh-ride-cruise/"
+                     },
+        "hook":  "Cruise the river on a real 1936 Chicago fireboat",
+        "date_hours":  {
+                           "2026-11-14":  [
+                                              [
+                                                  "13:00",
+                                                  "14:15"
+                                              ],
+                                              [
+                                                  "15:00",
+                                                  "16:15"
+                                              ],
+                                              [
+                                                  "17:00",
+                                                  "18:15"
+                                              ]
+                                          ],
+                           "2026-11-15":  [
+                                              [
+                                                  "13:00",
+                                                  "14:15"
+                                              ],
+                                              [
+                                                  "15:00",
+                                                  "16:15"
+                                              ],
+                                              [
+                                                  "17:00",
+                                                  "18:15"
+                                              ]
+                                          ],
+                           "2026-11-21":  [
+                                              [
+                                                  "13:00",
+                                                  "14:15"
+                                              ],
+                                              [
+                                                  "15:00",
+                                                  "16:15"
+                                              ],
+                                              [
+                                                  "17:00",
+                                                  "18:15"
+                                              ]
+                                          ],
+                           "2026-11-22":  [
+                                              [
+                                                  "13:00",
+                                                  "14:15"
+                                              ],
+                                              [
+                                                  "15:00",
+                                                  "16:15"
+                                              ],
+                                              [
+                                                  "17:00",
+                                                  "18:15"
+                                              ]
+                                          ],
+                           "2026-11-28":  [
+                                              [
+                                                  "13:00",
+                                                  "14:15"
+                                              ],
+                                              [
+                                                  "15:00",
+                                                  "16:15"
+                                              ],
+                                              [
+                                                  "17:00",
+                                                  "18:15"
+                                              ],
+                                              [
+                                                  "19:00",
+                                                  "20:15"
+                                              ]
+                                          ],
+                           "2026-11-29":  [
+                                              [
+                                                  "13:00",
+                                                  "14:15"
+                                              ],
+                                              [
+                                                  "15:00",
+                                                  "16:15"
+                                              ],
+                                              [
+                                                  "17:00",
+                                                  "18:15"
+                                              ]
+                                          ],
+                           "2026-12-05":  [
+                                              [
+                                                  "13:00",
+                                                  "14:15"
+                                              ],
+                                              [
+                                                  "15:00",
+                                                  "16:15"
+                                              ],
+                                              [
+                                                  "17:00",
+                                                  "18:15"
+                                              ],
+                                              [
+                                                  "19:00",
+                                                  "20:15"
+                                              ]
+                                          ],
+                           "2026-12-06":  [
+                                              [
+                                                  "13:00",
+                                                  "14:15"
+                                              ],
+                                              [
+                                                  "15:00",
+                                                  "16:15"
+                                              ],
+                                              [
+                                                  "17:00",
+                                                  "18:15"
+                                              ]
+                                          ],
+                           "2026-12-12":  [
+                                              [
+                                                  "13:00",
+                                                  "14:15"
+                                              ],
+                                              [
+                                                  "15:00",
+                                                  "16:15"
+                                              ],
+                                              [
+                                                  "17:00",
+                                                  "18:15"
+                                              ],
+                                              [
+                                                  "19:00",
+                                                  "20:15"
+                                              ]
+                                          ],
+                           "2026-12-13":  [
+                                              [
+                                                  "13:00",
+                                                  "14:15"
+                                              ],
+                                              [
+                                                  "15:00",
+                                                  "16:15"
+                                              ],
+                                              [
+                                                  "17:00",
+                                                  "18:15"
+                                              ]
+                                          ],
+                           "2026-12-19":  [
+                                              [
+                                                  "13:00",
+                                                  "14:15"
+                                              ],
+                                              [
+                                                  "15:00",
+                                                  "16:15"
+                                              ],
+                                              [
+                                                  "17:00",
+                                                  "18:15"
+                                              ],
+                                              [
+                                                  "19:00",
+                                                  "20:15"
+                                              ]
+                                          ],
+                           "2026-12-20":  [
+                                              [
+                                                  "13:00",
+                                                  "14:15"
+                                              ],
+                                              [
+                                                  "15:00",
+                                                  "16:15"
+                                              ],
+                                              [
+                                                  "17:00",
+                                                  "18:15"
+                                              ]
+                                          ]
+                       },
+        "hours_valid_to":  "2026-12-20",
+        "booking_url":  "https://fireboattours.com/cruise-calendar/",
+        "energy":  "chill",
+        "vibe":  "mixed",
+        "moods":  [
+                      "outdoorsy",
+                      "nerdy",
+                      "festive"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  360,
+        "photos":  [
+                       {
+                           "file":  "photos/ig-chicago-fireboat-tours-1.jpg",
+                           "credit":  "Chicago Fireboat Tours website",
+                           "page_url":  "https://fireboattours.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ig-museum-of-illusions-chicago",
+        "name":  "Museum of Illusions Chicago",
+        "kind":  "place",
+        "category":  "immersive-popup",
+        "genre":  "play",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "rainy-day",
+                     "photo-ops"
+                 ],
+        "description":  "A playful downtown museum of optical tricks, tilted rooms and mirror illusions made for silly photos with friends or a date. It reopened in late 2023 with 20+ new illusions in nearly double the space.",
+        "highlights":  [
+                           "Hands-on optical illusions and photo rooms",
+                           "In the Loop, steps from Washington/Wabash",
+                           "Enter on Wabash, exit on Washington",
+                           "Tickets bought online for a set time"
+                       ],
+        "address":  "25 E Washington St, Chicago, IL 60602 (enter on Wabash Ave)",
+        "neighborhood":  "Loop",
+        "lat":  41.8828324,
+        "lng":  -87.6266752,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "Timed tickets from about $34 a person; kids 4 and under free",
+        "duration_minutes":  75,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Timed entry every 20 minutes. Open Thanksgiving and Christmas Day.",
+        "season":  null,
+        "booking":  "recommended",
+        "age_note":  "All ages; kids 4 and under free",
+        "phone":  "(312) 265-0966",
+        "website":  "https://moichicago.com/",
+        "source_urls":  [
+                            "https://moichicago.com/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://book.chicago.museumofillusions.com/booknow/en-us/product/1754146"
+                     },
+        "hook":  "Pose in tilted rooms and mind-bending photo illusions",
+        "last_entry_before_close_min":  60,
+        "booking_url":  "https://book.chicago.museumofillusions.com/booknow/en-us/home",
+        "energy":  "easy",
+        "vibe":  "mixed",
+        "moods":  [
+                      "weird",
+                      "nerdy"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  361,
+        "photos":  [
+                       {
+                           "file":  "photos/ig-museum-of-illusions-chicago-1.jpg",
+                           "credit":  "Museum of Illusions Chicago website",
+                           "page_url":  "https://moichicago.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ig-snakes-and-lattes-chicago",
+        "name":  "Snakes \u0026 Lattes Chicago (board game bar)",
+        "kind":  "place",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "rainy-day",
+                     "board-games"
+                 ],
+        "description":  "A cozy board game bar and restaurant with walls of games you can borrow, plus cocktails, beer and food ordered from your table. Staff help pick a game for your group.",
+        "highlights":  [
+                           "Huge game library",
+                           "2-hour table limit",
+                           "Order by QR code, cards only",
+                           "Private Bloom Room for groups"
+                       ],
+        "address":  "1965 N Milwaukee Ave, Chicago, IL 60647",
+        "neighborhood":  "Bucktown / Logan Square",
+        "lat":  41.9172913,
+        "lng":  -87.6877717,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_note":  "$7 per person game fee ($4 kids 12 and under), plus food and drinks",
+        "duration_minutes":  120,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "17:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "17:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "17:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "17:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "17:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "21:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "",
+        "season":  null,
+        "booking":  "recommended",
+        "age_note":  "All ages; kids 12 and under pay a lower game fee",
+        "phone":  "(872) 310-3999",
+        "website":  "https://www.snakesandlattes.com/chicago",
+        "source_urls":  [
+                            "https://www.snakesandlattes.com/chicago"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.snakesandlattes.com/chicago"
+                     },
+        "hook":  "Borrow any game from huge walls of board games",
+        "booking_url":  "https://www.snakesandlattes.com/booking-all",
+        "energy":  "chill",
+        "vibe":  "mixed",
+        "moods":  [
+                      "nerdy",
+                      "cozy",
+                      "cheap"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  362,
+        "photos":  [
+                       {
+                           "file":  "photos/ig-snakes-and-lattes-chicago-1.jpg",
+                           "credit":  "Snakes \u0026 Lattes website",
+                           "page_url":  "https://www.snakesandlattes.com/chicago"
+                       }
+                   ]
+    },
+    {
+        "id":  "ig-pop-craft-studio",
+        "name":  "Pop Craft Studio (rug tufting, lipstick and candle workshops)",
+        "kind":  "place",
+        "category":  "classes-workshops",
+        "genre":  "make-something",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "rainy-day",
+                     "byob",
+                     "crafts"
+                 ],
+        "description":  "A Wicker Park craft studio where you tuft your own rug with a tufting gun, or mix a custom lipstick, mosaic, candle or fluid-art piece, and take it home. A popular BYOB date night.",
+        "highlights":  [
+                           "Rug tufting from small to mega sizes",
+                           "Hand-made lipstick in 1.5 hours",
+                           "BYOB for 21+",
+                           "Date Night Special: tufting for two"
+                       ],
+        "address":  "2119 W Division St, Chicago, IL 60622",
+        "neighborhood":  "Wicker Park",
+        "lat":  41.9031471,
+        "lng":  -87.6808543,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "price_note":  "Small rug $73 + $20 studio fee; lipstick $50 + $12; candles $38-50 + $12",
+        "duration_minutes":  180,
+        "min_minutes":  90,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "13:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "13:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "13:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "13:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "13:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "21:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "",
+        "season":  null,
+        "booking":  "required",
+        "age_note":  "Tufting 14+; BYOB 21+; candles all ages",
+        "phone":  "(312) 866-6686",
+        "website":  "https://popcraftstudio.com/",
+        "source_urls":  [
+                            "https://popcraftstudio.com/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://popcraftstudio.com/"
+                     },
+        "hook":  "Tuft your own rug or mix a custom lipstick, BYOB",
+        "booking_url":  "https://popcraftstudio.com/book-a-workshop/",
+        "energy":  "easy",
+        "vibe":  "mixed",
+        "moods":  [
+                      "artsy",
+                      "cozy",
+                      "romantic"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  364,
+        "photos":  [
+                       {
+                           "file":  "photos/ig-pop-craft-studio-1.jpg",
+                           "credit":  "Pop Craft Studio website",
+                           "page_url":  "https://popcraftstudio.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ig-offshore-rooftop-navy-pier",
+        "name":  "Offshore Rooftop (Navy Pier)",
+        "kind":  "place",
+        "category":  "food-drink-experience",
+        "genre":  "eat-drink",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "views",
+                     "rooftop"
+                 ],
+        "description":  "A giant rooftop bar and restaurant on top of Navy Pier\u0027s Festival Hall, billed by Guinness as the world\u0027s largest rooftop, with lake and skyline views on all sides. Good for sunset drinks or a fondue date.",
+        "highlights":  [
+                           "Guinness-listed world\u0027s largest rooftop",
+                           "Lake Michigan and skyline views",
+                           "Physical ID required (no mobile IDs)",
+                           "Last reservation one hour before close"
+                       ],
+        "address":  "Festival Hall, Entrance 2, Navy Pier, 1000 E Grand Ave, Chicago, IL 60611",
+        "neighborhood":  "Streeterville / Navy Pier",
+        "lat":  41.8918313,
+        "lng":  -87.6004329,
+        "indoor_outdoor":  "both",
+        "price_level":  "$$",
+        "price_note":  "",
+        "duration_minutes":  90,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "11:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "11:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "11:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "11:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "11:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "21:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Fall hours. Last reservation one hour before closing.",
+        "closed_dates":  [
+                             "2026-11-18"
+                         ],
+        "season":  null,
+        "booking":  "recommended",
+        "age_note":  "Bring a physical ID; mobile IDs not accepted",
+        "phone":  "(312) 535-6660",
+        "website":  "https://www.offshorerooftop.com/",
+        "source_urls":  [
+                            "https://www.offshorerooftop.com/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.offshorerooftop.com/"
+                     },
+        "hook":  "Drinks with lake views on the world\u0027s largest rooftop",
+        "last_entry_before_close_min":  60,
+        "energy":  "chill",
+        "vibe":  "lively",
+        "moods":  [
+                      "boozy",
+                      "romantic",
+                      "outdoorsy"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  365,
+        "photos":  [
+                       {
+                           "file":  "photos/ig-offshore-rooftop-navy-pier-1.jpg",
+                           "credit":  "Offshore Rooftop website",
+                           "page_url":  "https://www.offshorerooftop.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ig-the-library-at-gilt-bar",
+        "name":  "The Library at Gilt Bar (hidden basement bar)",
+        "kind":  "place",
+        "category":  "food-drink-experience",
+        "genre":  "eat-drink",
+        "tags":  [
+                     "date",
+                     "speakeasy",
+                     "hidden"
+                 ],
+        "description":  "A Prohibition-style speakeasy hidden in Gilt Bar\u0027s basement behind an unmarked side door, with velvet booths, fringed chandeliers and shelves of old books. You can order from the full Gilt Bar menu downstairs.",
+        "highlights":  [
+                           "Unmarked side door, then downstairs",
+                           "Velvet booths and vintage decor",
+                           "Limited reservations released each Wednesday",
+                           "Walk-ins welcome when there\u0027s room"
+                       ],
+        "address":  "230 W Kinzie St, Chicago, IL 60654 (basement of Gilt Bar)",
+        "neighborhood":  "River North",
+        "lat":  41.8892822,
+        "lng":  -87.6351136,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "",
+        "duration_minutes":  90,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "17:00",
+                                      "22:30"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "17:00",
+                                      "22:30"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "17:00",
+                                      "22:30"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "17:00",
+                                      "22:30"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "17:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "17:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "17:00",
+                                      "22:30"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "",
+        "season":  null,
+        "booking":  "recommended",
+        "age_note":  null,
+        "phone":  "",
+        "website":  "https://www.giltbarchicago.com/the-library",
+        "source_urls":  [
+                            "https://www.giltbarchicago.com/the-library",
+                            "https://www.giltbarchicago.com/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.giltbarchicago.com/the-library"
+                     },
+        "hook":  "Hidden basement bar with velvet booths and old books",
+        "energy":  "chill",
+        "vibe":  "mixed",
+        "moods":  [
+                      "boozy",
+                      "romantic",
+                      "cozy"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  366,
+        "photos":  [
+                       {
+                           "file":  "photos/ig-the-library-at-gilt-bar-1.jpg",
+                           "credit":  "Gilt Bar website",
+                           "page_url":  "https://www.giltbarchicago.com/the-library"
+                       }
+                   ]
+    },
+    {
+        "id":  "ig-laugh-factory-chicago",
+        "name":  "Laugh Factory Chicago",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "comedy"
+                 ],
+        "description":  "A Lakeview stand-up club with shows most nights, mixing touring headliners and Chicago comics, often several shows a night on weekends.",
+        "highlights":  [
+                           "Several shows on weekend nights",
+                           "Two-drink minimum per person",
+                           "Seating first come, first served",
+                           "Cards only in the showroom"
+                       ],
+        "address":  "3175 N Broadway, Chicago, IL 60657",
+        "neighborhood":  "Lakeview East",
+        "lat":  41.9397988,
+        "lng":  -87.6442178,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "Ticket price varies by show, plus a two-drink minimum per person (soft drinks count). Tuesday 9pm show is free.",
+        "duration_minutes":  105,
+        "min_minutes":  90,
+        "hours":  null,
+        "hours_note":  "Shows every night; times vary.",
+        "season":  null,
+        "booking":  "recommended",
+        "age_note":  "18+ with photo ID (21+ to drink)",
+        "phone":  "(773) 327-3175",
+        "website":  "https://www.laughfactory.com/clubs/chicago",
+        "source_urls":  [
+                            "https://www.laughfactory.com/clubs/chicago",
+                            "https://www.eventbrite.com/e/1993021581200"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.laughfactory.com/clubs/chicago/shows"
+                     },
+        "hook":  "Stand-up from touring headliners and local comics",
+        "date_hours":  {
+                           "2026-11-14":  [
+                                              [
+                                                  "19:00",
+                                                  "01:15"
+                                              ]
+                                          ],
+                           "2026-11-15":  [
+                                              [
+                                                  "19:00",
+                                                  "22:45"
+                                              ]
+                                          ],
+                           "2026-11-16":  [
+                                              [
+                                                  "20:00",
+                                                  "21:45"
+                                              ]
+                                          ],
+                           "2026-11-17":  [
+                                              [
+                                                  "19:30",
+                                                  "22:45"
+                                              ]
+                                          ],
+                           "2026-11-18":  [
+                                              [
+                                                  "20:00",
+                                                  "21:45"
+                                              ]
+                                          ],
+                           "2026-11-19":  [
+                                              [
+                                                  "20:00",
+                                                  "21:45"
+                                              ]
+                                          ],
+                           "2026-11-20":  [
+                                              [
+                                                  "19:00",
+                                                  "23:00"
+                                              ]
+                                          ],
+                           "2026-11-21":  [
+                                              [
+                                                  "19:00",
+                                                  "23:00"
+                                              ]
+                                          ],
+                           "2026-11-22":  [
+                                              [
+                                                  "19:00",
+                                                  "22:45"
+                                              ]
+                                          ],
+                           "2026-11-23":  [
+                                              [
+                                                  "20:00",
+                                                  "21:45"
+                                              ]
+                                          ]
+                       },
+        "energy":  "chill",
+        "vibe":  "lively",
+        "moods":  [
+                      "loud",
+                      "artsy"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  367,
+        "photos":  [
+
+                   ]
+    },
+    {
+        "id":  "ig-santas-rock-n-lights-geneva-2026",
+        "name":  "Santa\u0027s Rock n\u0027 Lights drive-thru (Geneva)",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "relax",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "holiday",
+                     "lights",
+                     "car"
+                 ],
+        "description":  "A drive-thru holiday light show synchronized to music that you tune in on your car radio, winding about two miles through Northwestern Medicine Field. Billed as Chicago\u0027s longest-running drive-thru light show.",
+        "highlights":  [
+                           "About 2 miles, 40-50 minutes at 3 mph",
+                           "Priced per carload",
+                           "Timed tickets online only; slots sell out",
+                           "Busiest 6-8pm Fridays and Saturdays"
+                       ],
+        "address":  "Northwestern Medicine Field, 34W002 Cherry Ln, Geneva, IL 60134",
+        "neighborhood":  "Geneva (west suburbs)",
+        "lat":  41.8803894,
+        "lng":  -88.2818967,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "$$",
+        "price_note":  "$49.99 per carload; season pass $69.99",
+        "duration_minutes":  50,
+        "min_minutes":  40,
+        "hours":  null,
+        "hours_note":  "Open most nights; times vary by date.",
+        "season":  {
+                       "open_from":  "2026-11-20",
+                       "open_to":  "2027-01-02",
+                       "note":  "Open most days in this range."
+                   },
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "age_note":  "All ages",
+        "phone":  "(224) 757-5425",
+        "website":  "https://santasrocknlights.com/geneva",
+        "source_urls":  [
+                            "http://santasrocknlights.com/geneva",
+                            "http://santasrocknlights.com/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://santasrocknlights.com/geneva"
+                     },
+        "hook":  "Drive 2 miles of lights synced to your car radio",
+        "energy":  "chill",
+        "vibe":  "quiet",
+        "moods":  [
+                      "festive",
+                      "romantic"
+                  ],
+        "taste_checked":  "2026-11-14",
+        "sid":  368,
+        "photos":  [
+                       {
+                           "file":  "photos/ig-santas-rock-n-lights-geneva-2026-1.jpg",
+                           "credit":  "Santa\u0027s Rock n\u0027 Lights website",
+                           "page_url":  "https://santasrocknlights.com/geneva"
+                       }
+                   ]
     }
 ]
