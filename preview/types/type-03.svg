@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="t"><title id="t">Front Row Fox</title>
+<circle cx="120" cy="120" r="118" fill="#A9A6FF"/>
+<ellipse cx="120" cy="212" rx="60" ry="9" fill="#211B2C" opacity=".14"/>
+<g stroke="#211B2C" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+  <!-- tail -->
+  <path d="M158 204 C204 200 214 156 196 132 C190 164 176 178 152 184 Z" fill="#F07B3F"/>
+  <path d="M196 132 C204 150 202 168 192 182 C186 170 188 150 196 132 Z" fill="#FFF6E9"/>
+  <!-- ears -->
+  <path d="M80 84 L80 40 L112 64 Z" fill="#F07B3F"/>
+  <path d="M160 84 L160 40 L128 64 Z" fill="#F07B3F"/>
+  <!-- body -->
+  <path d="M74 210 C72 162 90 144 120 144 C150 144 168 162 166 210 Z" fill="#F07B3F"/>
+  <path d="M100 210 C100 176 108 160 120 160 C132 160 140 176 140 210 Z" fill="#FFF6E9"/>
+  <!-- head -->
+  <path d="M72 96 C72 70 96 60 120 60 C144 60 168 70 168 96 C168 124 146 146 120 152 C94 146 72 124 72 96 Z" fill="#F07B3F"/>
+  <path d="M78 108 C92 116 108 122 120 142 C132 122 148 116 162 108 C158 132 142 146 120 152 C98 146 82 132 78 108 Z" fill="#FFF6E9"/>
+  <!-- ticket -->
+  <g transform="rotate(-8 120 182)">
+    <path d="M90 170 h60 v8 a5 5 0 0 0 0 10 v8 h-60 v-8 a5 5 0 0 0 0 -10 Z" fill="#FFD95A"/>
+    <path d="M108 172 v22" fill="none" stroke-width="3" stroke-dasharray="3 5"/>
+  </g>
+  <circle cx="90" cy="186" r="10" fill="#F07B3F"/>
+  <circle cx="150" cy="180" r="10" fill="#F07B3F"/>
+</g>
+<g fill="#211B2C"><path d="M90 70 L90 52 L102 62 Z"/><path d="M150 70 L150 52 L138 62 Z"/></g>
+<circle cx="120" cy="138" r="5.5" fill="#211B2C"/>
+<g fill="#211B2C"><circle cx="103" cy="100" r="8"/><circle cx="137" cy="100" r="8"/></g>
+<g fill="#fff"><circle cx="105.5" cy="97.5" r="2.6"/><circle cx="139.5" cy="97.5" r="2.6"/></g>
+<g fill="#FF7E9A" opacity=".5"><ellipse cx="90" cy="120" rx="8" ry="5"/><ellipse cx="150" cy="120" rx="8" ry="5"/></g>
+</svg>

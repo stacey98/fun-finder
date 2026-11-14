@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fun Types Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Geist:wght@400;500;600&family=Fredoka:wght@500;600&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Tokens: Night (Dark, default) */
+:root{
+  --paper:#0B0A10; --paper-2:#15131D; --paper-3:#1E1B28; --ink:#F7F5FC; --ink-2:#BDB8CC; --ink-3:#948EA6;
+  --line:rgb(247 245 252 / .12); --accent:#C6FF3D; --on-accent:#0B0A10;
+  --f-display:"Unbounded",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-body:"Geist",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display-wt:600; --r-card:28px; --av-ring:rgb(247 245 252 / .16);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --paper:#FCFAFF; --paper-2:#F3EFFA; --paper-3:#EAE4F4; --ink:#211B2C; --ink-2:#544C62; --ink-3:#675F75;
+    --line:rgb(33 27 44 / .12); --accent:#211B2C; --on-accent:#fff;
+    --f-display:"Fredoka",ui-rounded,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --f-body:"Figtree",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --r-card:32px; --av-ring:rgb(33 27 44 / .14); color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --paper:#FCFAFF; --paper-2:#F3EFFA; --paper-3:#EAE4F4; --ink:#211B2C; --ink-2:#544C62; --ink-3:#675F75;
+  --line:rgb(33 27 44 / .12); --accent:#211B2C; --on-accent:#fff;
+  --f-display:"Fredoka",ui-rounded,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-body:"Figtree",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --r-card:32px; --av-ring:rgb(33 27 44 / .14); color-scheme:light;
+}
+:root[data-theme="dark"]{ color-scheme:dark; }
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);-webkit-font-smoothing:antialiased;line-height:1.4}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{display:block}
+.wrap{max-width:1240px;margin:0 auto;padding:24px 16px 64px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.top h1{font-family:var(--f-display);font-weight:var(--display-wt);font-size:22px;letter-spacing:-.01em}
+.seg{display:inline-flex;background:var(--paper-2);border-radius:999px;padding:3px}
+.seg button{height:36px;padding:0 14px;border-radius:999px;font-size:14px;font-weight:500;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+h2.sec{font-family:var(--f-display);font-weight:var(--display-wt);font-size:17px;margin:36px 0 6px}
+p.note{color:var(--ink-3);font-size:13px;margin-bottom:14px;max-width:70ch}
+
+/* ===== phones ===== */
+.phones{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
+.phone{width:min(390px,100%);height:844px;border-radius:40px;overflow:hidden;background:var(--paper);position:relative;
+  box-shadow:0 0 0 1px var(--line),0 24px 60px rgb(0 0 0 / .25);display:flex;flex-direction:column}
+.phone .cap{position:absolute;top:-26px;left:4px;font-size:12px;color:var(--ink-3)}
+.pw{position:relative;width:min(390px,100%)}
+.pw .phone{width:100%}
+.pw > .cap{display:block;font-size:12px;color:var(--ink-3);margin-bottom:8px}
+.scroll{flex:1;overflow:auto}
+
+/* result screen */
+.r-hero{position:relative;height:300px;border-radius:0 0 32px 32px;background:var(--tc)}
+.r-bar{position:absolute;top:10px;left:8px;right:8px;display:flex;justify-content:space-between;align-items:center}
+.ic{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;color:#211B2C}
+.ic svg{width:22px;height:22px}
+.r-code{height:26px;padding:0 10px;border-radius:999px;background:#211B2C;color:#fff;font-family:var(--f-display);font-size:12px;letter-spacing:.08em;display:inline-flex;align-items:center;margin-left:12px}
+.r-char{position:absolute;right:18px;bottom:-30px;width:232px;height:232px;filter:drop-shadow(0 10px 18px rgb(0 0 0 / .18))}
+.r-body{padding:22px 20px 0}
+.r-pre{font-size:15px;color:var(--ink-2)}
+.r-name{font-family:var(--f-display);font-weight:var(--display-wt);font-size:32px;line-height:36px;letter-spacing:-.01em;margin:2px 0 4px}
+.r-tag{font-size:15px;color:var(--ink-2);margin-bottom:14px}
+.r-para{font-size:16px;line-height:24px;margin-bottom:16px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.chip{height:28px;padding:0 10px;border-radius:999px;background:var(--paper-2);font-size:13px;display:inline-flex;align-items:center;gap:5px;color:var(--ink)}
+.chip small{color:var(--ink-3);font-size:12px}
+.chip.mid{background:transparent;box-shadow:inset 0 0 0 1px var(--line);color:var(--ink-2)}
+.kinds{font-size:13px;color:var(--ink-2);margin-bottom:16px}
+.kinds b{display:block;font-weight:600;color:var(--ink-3);font-size:12px;margin-bottom:2px;text-transform:none}
+.sugg{background:var(--paper-2);border-radius:18px;padding:4px 14px;margin-bottom:12px}
+.sw-row{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:56px}
+.sw-row span{font-size:15px}
+.sw-row small{display:block;font-size:12px;color:var(--ink-3);line-height:16px;margin-top:1px}
+.switch{width:51px;height:31px;border-radius:999px;background:var(--paper-3);position:relative;flex:none}
+.switch::after{content:"";position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgb(0 0 0 / .3);transition:transform .16s}
+.switch[aria-pressed="true"]{background:var(--accent)}
+.switch[aria-pressed="true"]::after{transform:translateX(20px);background:var(--on-accent)}
+:root[data-theme="light"] .switch[aria-pressed="true"]::after{background:#fff}
+.r-foot{padding:12px 20px calc(16px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--paper) 30%);}
+.btn-primary{width:100%;height:52px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-weight:600;font-size:16px}
+.row3{display:flex;justify-content:space-between;margin-top:6px}
+.row3 button{height:44px;flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:14px;font-weight:500;color:var(--ink-2)}
+.row3 svg{width:18px;height:18px}
+
+/* taste page */
+.t-top{display:flex;justify-content:flex-end;padding:10px 8px 0}
+.t-top .ic{color:var(--ink)}
+.t-page{padding:0 20px 24px}
+.t-head{display:flex;gap:14px;align-items:center;margin-bottom:4px}
+.t-head .av{flex:none}
+.t-head h1{font-family:var(--f-display);font-weight:var(--display-wt);font-size:24px;line-height:28px}
+.t-head p{font-size:13px;color:var(--ink-3)}
+.t-sub{font-size:13px;color:var(--ink-3);margin:8px 0 14px}
+.t-sl{padding:10px 0;border-top:1px solid var(--line)}
+.t-sl .n{display:flex;justify-content:space-between;align-items:baseline}
+.t-sl .n b{font-size:15px;font-weight:600}
+.t-sl .n span{font-size:12px;color:var(--ink-3)}
+.t-sl .help{font-size:12px;line-height:16px;color:var(--ink-3);margin:1px 0 6px}
+.t-sl .track{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2)}
+.t-sl .bar{flex:1;height:6px;border-radius:3px;background:var(--paper-3);position:relative}
+.t-sl .bar i{position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:var(--ink);transform:translate(-50%,-50%);box-shadow:0 1px 4px rgb(0 0 0 / .3)}
+.t-h3{font-family:var(--f-display);font-weight:var(--display-wt);font-size:16px;margin:18px 0 0}
+.t-chips{padding:10px 0;border-top:1px solid var(--line)}
+.t-chips .lab{font-size:15px;font-weight:600}
+.t-chips .help{font-size:12px;color:var(--ink-3);margin:1px 0 8px}
+.t-sugg{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2);padding:6px 0 0}
+.t-sugg button{height:32px;padding:0 12px;border-radius:999px;background:var(--paper-2);font-size:13px;color:var(--ink)}
+.sw-row.b{border-top:1px solid var(--line)}
+
+/* home */
+.h-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px 4px}
+.logo{font-family:var(--f-display);font-weight:var(--display-wt);font-size:20px}
+.acct{width:40px;height:40px;border-radius:50%;display:grid;place-items:center}
+.h-title{font-family:var(--f-display);font-weight:var(--display-wt);font-size:26px;line-height:30px;padding:10px 16px 4px}
+.h-link{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 12px 0 4px;margin:6px 12px;border-radius:999px;background:var(--paper-2);font-size:14px;font-weight:500}
+.h-card{margin:12px 16px;height:180px;border-radius:24px;background:var(--paper-2)}
+.h-card.s{height:120px}
+
+/* avatar */
+.av{border-radius:50%;overflow:hidden;position:relative;box-shadow:0 0 0 1px var(--av-ring)}
+.av img{position:absolute;max-width:none}
+.av.letter{display:grid;place-items:center;background:var(--paper-3);color:var(--ink);font-weight:600}
+
+/* grid of 12 */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.card{background:var(--paper-2);border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
+.card .art{background:color-mix(in srgb,var(--tc) 22%,var(--paper-2));display:grid;place-items:center;padding:16px 0 10px}
+.card .art img{width:150px;height:150px}
+.card .tx{padding:12px 16px 16px}
+.card .k{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--ink-3)}
+.card .k code{font-family:var(--f-display);letter-spacing:.08em;color:var(--ink-2)}
+.card .sw{width:14px;height:14px;border-radius:4px;background:var(--tc);display:inline-block;vertical-align:-2px;margin-right:4px}
+.card h3{font-family:var(--f-display);font-weight:var(--display-wt);font-size:19px;margin:4px 0 0}
+.card .tg{font-size:13px;color:var(--ink-2);margin-bottom:8px}
+.card p{font-size:14px;line-height:20px;margin-bottom:8px}
+.card .ex{font-size:12px;color:var(--ink-3)}
+
+/* avatar sheet */
+.avs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.avpanel{border-radius:24px;padding:16px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.avpanel.dark{background:#0B0A10;--av-ring:rgb(247 245 252 / .16);color:#F7F5FC}
+.avpanel.light{background:#FCFAFF;--av-ring:rgb(33 27 44 / .14);color:#211B2C;box-shadow:0 0 0 1px rgb(33 27 44 / .1)}
+.avpanel .lab{width:100%;font-size:12px;opacity:.7}
+@media (max-width:700px){ .avs{grid-template-columns:1fr} .phone{height:auto;min-height:780px} .phone .scroll{overflow:visible} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>Fun types</h1>
+    <div class="seg" role="group" aria-label="Theme">
+      <button type="button" data-th="light" aria-pressed="false">Light</button>
+      <button type="button" data-th="dark" aria-pressed="false">Dark</button>
+      <button type="button" data-th="" aria-pressed="true">Auto</button>
+    </div>
+  </div>
+  <p class="note">Mock for design/2026-11-14-taste-result-spec.md. Example profile: lively, playful, chill, classic (Karaoke Koala). Names and paragraphs are final copy; the screens are static.</p>
+
+  <h2 class="sec">Result, Adjust, Home</h2>
+  <div class="phones" id="phones"></div>
+
+  <h2 class="sec">All 12 types</h2>
+  <div class="grid" id="grid"></div>
+
+  <h2 class="sec">Avatars (account button)</h2>
+  <p class="note">Face crops at 44, 40 and 36 px, on Dark and Light. Before a type exists: the first letter of the Google name (last two in each row).</p>
+  <div class="avs" id="avs"></div>
+</div>
+
+<script>
+var TYPES = [
+ {n:1, code:'LKC', name:'Gallery Owl', tag:'Slow, deep looks', c:'#93C5FF', crop:[120,100,124],
+  p:"You like to wander a room until it gives up its secrets. Gardens under glass, a tiny museum with one perfect case, a candlelit concert where nobody talks. Three things seen properly beat ten in a rush.",
+  ex:['Conservatories','Small museums','Candlelight concerts']},
+ {n:2, code:'LKG', name:'Board Game Bear', tag:'Cozy and competitive', c:'#E9D3B0', crop:[120,98,124],
+  p:"You like to play, but from a comfy chair. Board game cafés, a cat café with an arcade, a pottery wheel and a long chat. You win quietly and gloat a little.",
+  ex:['Board game cafés','Cat cafés','Pottery and candle classes']},
+ {n:3, code:'LBC', name:'Front Row Fox', tag:'Front-row laughs', c:'#A9A6FF', crop:[120,100,126],
+  p:"You like to be in the room where it happens. Improv in Old Town, a late jazz set, a festival lineup nobody has heard of yet. You sit down, but your mind never does.",
+  ex:['Improv and comedy','Jazz clubs','Theater festivals']},
+ {n:4, code:'LBG', name:'Karaoke Koala', tag:'All-in sing-alongs', c:'#FF9EDB', crop:[120,100,140],
+  p:"You like a night with your people and a mic. Private karaoke rooms, game-show experiences, drag bingo where the whole room yells. If there's a chorus, you're on it.",
+  ex:['Karaoke rooms','Game-show nights','Drag brunch and bingo']},
+ {n:5, code:'MKC', name:'Lakefront Heron', tag:'Eyes open outdoors', c:'#8EDDB0', crop:[120,94,120],
+  p:"You like to move and notice. A kayak on the river, a forest preserve trail, a morning bird walk. Fresh air, few people, one great sighting.",
+  ex:['River kayaking','Forest trails','Bird walks']},
+ {n:6, code:'MKG', name:'Boulder Goat', tag:'Up and over', c:'#C5E86C', crop:[120,100,128],
+  p:"You like a puzzle you solve with your whole body. Bouldering walls, an ice ribbon at dusk, a first try at curling. Fall, laugh, go again.",
+  ex:['Climbing gyms','Ice rinks','Learn-to-curl']},
+ {n:7, code:'MBC', name:'Block Party Raccoon', tag:'Follows the music', c:'#FF7B6B', crop:[120,102,124],
+  p:"You like to follow the noise down the street. Salsa socials, holiday markets, a 5K in a Santa suit. You learn a city by joining in.",
+  ex:['Dance socials','Holiday markets','Fun runs']},
+ {n:8, code:'MBG', name:'Turbo Squirrel', tag:'Faster, again', c:'#FFD95A', crop:[116,96,124],
+  p:"You like speed, scores and a little chaos. Go-karts, trampoline parks, laser tag with friends who trash-talk. Rest is for later.",
+  ex:['Go-karts','Trampoline parks','Laser tag and paintball']},
+ {n:9, code:'WLC', name:'Oddity Moth', tag:'Drawn to strange', c:'#C9A0FF', crop:[120,98,112],
+  p:"You like the places other people walk past. A shop of antlers and oddities, a wall of pinned beetles, a museum of old surgical tools. The weirder the story, the better the afternoon.",
+  ex:['Oddity shops','Bug exhibits','Odd little museums']},
+ {n:10, code:'WLG', name:'Pop-Up Axolotl', tag:'Small wonders', c:'#6FE3D2', crop:[120,102,144],
+  p:"You like stepping into another world for an hour. Balloon rooms, illusion museums, a murder-mystery dinner where you're a suspect. Silly is a compliment.",
+  ex:['Immersive pop-ups','Murder-mystery dinners','Float pods and sound baths']},
+ {n:11, code:'WMC', name:'Night Walk Possum', tag:'Off the map', c:'#FFA65C', crop:[120,102,124],
+  p:"You like what's under and behind the city. The underground Pedway, a cemetery full of famous names, a ghost tour after dark. Comfy shoes, curious mind.",
+  ex:['Pedway walks','Cemetery strolls','Ghost tours']},
+ {n:12, code:'WMG', name:'Wild Card Goose', tag:'Yes, then why', c:'#FF8FA8', crop:[120,84,112],
+  p:"You like the plan nobody else would pitch. Rage rooms, indoor skydiving, tactical laser tag in a warehouse. You're the friend with the story on Monday.",
+  ex:['Rage rooms and axes','Indoor skydiving','Tactical laser tag']}
+];
+function src(t){ return 'type-' + (t.n < 10 ? '0' : '') + t.n + '.svg'; }
+function av(t, s){ // face crop: [cx, cy, w] in the 240 box
+  var cx = t.crop[0], cy = t.crop[1], w = t.crop[2], k = s / w, size = 240 * k;
+  return '<span class="av" style="width:' + s + 'px;height:' + s + 'px;background:' + t.c + '"><img alt="" src="' + src(t) + '" style="width:' + size + 'px;height:' + size + 'px;left:' + (-(cx - w/2) * k) + 'px;top:' + (-(cy - w/2) * k) + 'px"></span>';
+}
+var I = {
+  share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>',
+  close:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  retake:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v5h5"/></svg>',
+  adjust:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>'
+};
+var K = TYPES[3];
+var result =
+ '<div class="pw"><span class="cap">Result (after card 24)</span><div class="phone" style="--tc:' + K.c + '"><div class="scroll">' +
+ '<div class="r-hero"><div class="r-bar"><span class="r-code">' + K.code + '</span><button class="ic" aria-label="Share">' + I.share + '</button></div>' +
+ '<img class="r-char" src="' + src(K) + '" alt=""></div>' +
+ '<div class="r-body"><p class="r-pre">You\'re a</p><h1 class="r-name">' + K.name + '</h1><p class="r-tag">' + K.tag + '</p>' +
+ '<p class="r-para">' + K.p + '</p>' +
+ '<div class="chips"><span class="chip"><small>Vibe</small>Lively</span><span class="chip"><small>Mode</small>Playful</span><span class="chip"><small>Energy</small>Chill</span><span class="chip mid"><small>Weird</small>In the middle</span></div>' +
+ '<p class="kinds"><b>Your kind of places</b>' + K.ex.join(' · ') + '</p>' +
+ '<div class="sugg"><div class="sw-row"><span>Skip bar-centered stuff<small>You passed on 4 bar cards</small></span><button class="switch" aria-pressed="true" aria-label="Skip bar-centered stuff"></button></div></div>' +
+ '</div></div><div class="r-foot"><button class="btn-primary">Done</button><div class="row3"><button>' + I.share + 'Share</button><button>' + I.retake + 'Retake</button><button>' + I.adjust + 'Adjust</button></div></div></div></div>';
+
+function slider(name, help, a, b, pos, state){
+  return '<div class="t-sl"><div class="n"><b>' + name + '</b><span>' + state + '</span></div><p class="help">' + help + '</p><div class="track"><span>' + a + '</span><span class="bar"><i style="left:' + pos + '%"></i></span><span>' + b + '</span></div></div>';
+}
+function sw(label, help, on){ return '<div class="sw-row b"><span>' + label + '<small>' + help + '</small></span><button class="switch" aria-pressed="' + on + '" aria-label="' + label + '"></button></div>'; }
+var taste =
+ '<div class="pw"><span class="cap">Adjust (Your taste)</span><div class="phone"><div class="t-top"><button class="ic" aria-label="Close">' + I.close + '</button></div><div class="scroll"><div class="t-page">' +
+ '<div class="t-head">' + av(K, 64) + '<div><h1>' + K.name + '</h1><p>' + K.code + ' · ' + K.tag + '</p></div></div>' +
+ '<p class="t-sub">From 24 swipes and 0 saves. Move a dial and your type follows.</p>' +
+ slider('Energy', 'How physical: lounging vs. climbing', 'Chill', 'Active', 36, 'Chill') +
+ slider('Vibe', 'How loud and busy the place is', 'Low-key', 'Lively', 70, 'Lively') +
+ slider('Mode', 'Learn something vs. play something', 'Curious', 'Playful', 68, 'Playful') +
+ slider('Weird', 'Classic vs. odd and unusual', 'Less', 'More', 50, 'In the middle') +
+ '<div class="t-chips"><p class="lab">More of</p><p class="help">These show up first</p><div class="chips"><span class="chip">Bugs ×</span><span class="chip">+ Add</span></div></div>' +
+ '<div class="t-chips"><p class="lab">Never</p><p class="help">Goes to the bottom, never hidden</p><div class="chips"><span class="chip">+ Add</span></div></div>' +
+ '<h3 class="t-h3">Hard no\'s</h3>' +
+ sw('Skip bar-centered stuff', 'Hides places where drinks are the point', true) +
+ sw('No 21+', 'Hides 21+ places', false) +
+ sw('No car', 'Suburbs and day trips go last', false) +
+ '</div></div></div></div>';
+
+var home =
+ '<div class="pw"><span class="cap">Home (type on the account button)</span><div class="phone"><div class="h-bar"><span class="logo">Off-Grid</span><button class="acct" aria-label="Your account">' + av(K, 40) + '</button></div>' +
+ '<p class="h-title">Today</p><a class="h-link">' + av(K, 24) + K.name + ' ›</a>' +
+ '<div class="h-card"></div><div class="h-card s"></div><div class="h-card s"></div></div></div>';
+document.getElementById('phones').innerHTML = result + taste + home;
+
+document.getElementById('grid').innerHTML = TYPES.map(function(t){
+  return '<article class="card" style="--tc:' + t.c + '"><div class="art"><img src="' + src(t) + '" alt="' + t.name + '"></div><div class="tx">' +
+    '<div class="k"><span><i class="sw"></i>' + t.c + '</span><code>' + t.code + '</code></div><h3>' + t.name + '</h3><p class="tg">' + t.tag + '</p><p>' + t.p + '</p><p class="ex">' + t.ex.join(' · ') + '</p></div></article>';
+}).join('');
+
+function avRow(s){ return TYPES.map(function(t){ return av(t, s); }).join('') + '<span class="av letter" style="width:' + s + 'px;height:' + s + 'px;font-size:' + Math.round(s * .42) + 'px">A</span><span class="av letter" style="width:' + s + 'px;height:' + s + 'px;font-size:' + Math.round(s * .42) + 'px">M</span>'; }
+document.getElementById('avs').innerHTML = ['dark', 'light'].map(function(m){
+  return '<div class="avpanel ' + m + '"><span class="lab">' + (m === 'dark' ? 'Dark (Night)' : 'Light (Sorbet)') + ' · 44 px</span>' + avRow(44) +
+    '<span class="lab">40 px</span>' + avRow(40) + '<span class="lab">36 px</span>' + avRow(36) + '</div>';
+}).join('');
+
+var params = new URLSearchParams(location.search);
+function setTheme(v){ if (v) document.documentElement.setAttribute('data-theme', v); else document.documentElement.removeAttribute('data-theme');
+  document.querySelectorAll('[data-th]').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-th') === (v || ''))); }); }
+document.querySelectorAll('[data-th]').forEach(function(b){ b.addEventListener('click', function(){ setTheme(b.getAttribute('data-th')); }); });
+if (params.get('theme')) setTheme(params.get('theme'));
+</script>
+</body>
+</html>

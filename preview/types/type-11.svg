@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="t"><title id="t">Night Walk Possum</title>
+<circle cx="120" cy="120" r="118" fill="#FFA65C"/>
+<ellipse cx="120" cy="212" rx="60" ry="9" fill="#211B2C" opacity=".14"/>
+<!-- flashlight beam -->
+<path d="M166 150 L216 112 L220 168 Z" fill="#FFF3B0" opacity=".9"/>
+<g stroke="#211B2C" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+  <!-- tail -->
+  <path d="M80 204 C50 206 40 180 54 168 C64 160 76 170 68 180" fill="none" stroke-width="12"/>
+  <path d="M80 204 C50 206 40 180 54 168 C64 160 76 170 68 180" fill="none" stroke="#FFB3C7" stroke-width="5"/>
+  <!-- ears -->
+  <circle cx="82" cy="70" r="16" fill="#3A3548"/>
+  <circle cx="158" cy="70" r="16" fill="#3A3548"/>
+  <!-- body -->
+  <path d="M74 210 C72 162 90 144 120 144 C150 144 168 162 166 210 Z" fill="#B5B0C2"/>
+  <ellipse cx="116" cy="188" rx="24" ry="20" fill="#E9E5EF"/>
+  <!-- head -->
+  <path d="M74 98 C74 70 96 58 120 58 C144 58 166 70 166 98 C166 122 140 136 120 152 C100 136 74 122 74 98 Z" fill="#F2EFF6"/>
+  <path d="M90 66 C104 74 112 84 120 96 C128 84 136 74 150 66" fill="none" stroke-width="3" stroke="#B5B0C2"/>
+  <!-- flashlight -->
+  <g transform="rotate(-36 158 162)">
+    <rect x="142" y="154" width="30" height="16" rx="4" fill="#3A3548"/>
+    <rect x="170" y="150" width="8" height="24" rx="2" fill="#FFD95A"/>
+  </g>
+  <circle cx="150" cy="172" r="10" fill="#B5B0C2"/>
+  <circle cx="86" cy="184" r="10" fill="#B5B0C2"/>
+</g>
+<g fill="#FFB3C7"><circle cx="82" cy="72" r="7"/><circle cx="158" cy="72" r="7"/></g>
+<circle cx="120" cy="146" r="6" fill="#FF8FA8" stroke="#211B2C" stroke-width="3"/>
+<g fill="#211B2C"><circle cx="103" cy="98" r="8"/><circle cx="137" cy="98" r="8"/></g>
+<g fill="#fff"><circle cx="105.5" cy="95.5" r="2.6"/><circle cx="139.5" cy="95.5" r="2.6"/></g>
+<g fill="#FF7E9A" opacity=".5"><ellipse cx="92" cy="116" rx="8" ry="5"/><ellipse cx="148" cy="116" rx="8" ry="5"/></g>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="t"><title id="t">Turbo Squirrel</title>
+<circle cx="120" cy="120" r="118" fill="#FFD95A"/>
+<ellipse cx="120" cy="212" rx="60" ry="9" fill="#211B2C" opacity=".14"/>
+<g stroke="#211B2C" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+  <!-- speed lines -->
+  <path d="M32 122 h24 M26 142 h28 M36 162 h20" fill="none"/>
+  <!-- tail -->
+  <path d="M150 204 C206 198 214 124 188 94 C174 78 150 84 156 106 C176 110 184 142 158 172 Z" fill="#C8693A"/>
+  <path d="M168 110 C180 126 180 148 170 164" fill="none" stroke="#E79A62" stroke-width="6"/>
+  <!-- ears -->
+  <path d="M84 76 L82 46 L104 62 Z" fill="#C8693A"/>
+  <path d="M148 76 L150 46 L128 62 Z" fill="#C8693A"/>
+  <!-- body -->
+  <path d="M72 210 C70 162 88 144 116 144 C144 144 160 162 158 210 Z" fill="#C8693A"/>
+  <ellipse cx="115" cy="186" rx="24" ry="22" fill="#F6DFC4"/>
+  <!-- head -->
+  <circle cx="116" cy="104" r="44" fill="#C8693A"/>
+  <ellipse cx="116" cy="124" rx="22" ry="16" fill="#F6DFC4"/>
+  <!-- goggles -->
+  <path d="M74 84 C90 72 142 72 158 84" fill="none" stroke-width="7"/>
+  <circle cx="102" cy="76" r="12" fill="#6FE3D2"/>
+  <circle cx="130" cy="76" r="12" fill="#6FE3D2"/>
+  <rect x="110" y="132" width="12" height="9" rx="2" fill="#fff" stroke-width="3"/>
+  <circle cx="84" cy="182" r="10" fill="#C8693A"/>
+  <circle cx="146" cy="182" r="10" fill="#C8693A"/>
+</g>
+<g fill="#fff" opacity=".8"><circle cx="98" cy="72" r="3.5"/><circle cx="126" cy="72" r="3.5"/></g>
+<ellipse cx="116" cy="118" rx="6" ry="4.5" fill="#211B2C"/>
+<g fill="#211B2C"><circle cx="100" cy="100" r="8"/><circle cx="132" cy="100" r="8"/></g>
+<g fill="#fff"><circle cx="102.5" cy="97.5" r="2.6"/><circle cx="134.5" cy="97.5" r="2.6"/></g>
+<g fill="#FF7E9A" opacity=".55"><ellipse cx="86" cy="118" rx="8" ry="5"/><ellipse cx="146" cy="118" rx="8" ry="5"/></g>
+</svg>

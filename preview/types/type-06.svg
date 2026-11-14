@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="t"><title id="t">Boulder Goat</title>
+<circle cx="120" cy="120" r="118" fill="#C5E86C"/>
+<ellipse cx="120" cy="212" rx="60" ry="9" fill="#211B2C" opacity=".14"/>
+<g stroke="#211B2C" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+  <!-- climbing holds -->
+  <path d="M40 92 c4 -12 20 -14 24 -4 c4 10 -6 16 -14 16 c-8 0 -12 -4 -10 -12 Z" fill="#FF5FD2"/>
+  <path d="M178 54 c8 -6 20 -2 20 8 c0 10 -12 14 -20 10 c-6 -4 -6 -12 0 -18 Z" fill="#FFD95A"/>
+  <path d="M186 140 c6 -10 22 -6 22 6 c0 12 -14 14 -20 10 c-4 -4 -6 -10 -2 -16 Z" fill="#6FE3D2"/>
+  <path d="M34 150 c2 -10 16 -12 20 -4 c4 8 -2 16 -10 16 c-8 0 -12 -6 -10 -12 Z" fill="#FF7B6B"/>
+  <!-- horns -->
+  <path d="M94 70 C80 52 88 32 108 38 C98 46 98 58 106 66 Z" fill="#9A93A8"/>
+  <path d="M146 70 C160 52 152 32 132 38 C142 46 142 58 134 66 Z" fill="#9A93A8"/>
+  <!-- ears -->
+  <ellipse cx="72" cy="98" rx="20" ry="9" fill="#F6EFE3" transform="rotate(18 72 98)"/>
+  <ellipse cx="168" cy="98" rx="20" ry="9" fill="#F6EFE3" transform="rotate(-18 168 98)"/>
+  <!-- body -->
+  <path d="M74 210 C72 162 90 144 120 144 C150 144 168 162 166 210 Z" fill="#F6EFE3"/>
+  <!-- chalk bag -->
+  <path d="M136 176 h22 v18 c0 8 -22 8 -22 0 Z" fill="#FF5FD2"/>
+  <!-- head -->
+  <path d="M84 86 C84 64 100 58 120 58 C140 58 156 64 156 86 L152 126 C150 142 136 148 120 148 C104 148 90 142 88 126 Z" fill="#F6EFE3"/>
+  <path d="M112 146 L120 168 L128 146" fill="#E3D7C3"/>
+</g>
+<path d="M140 174 q4 -8 8 -2 q4 -8 8 0" fill="#fff" stroke="#211B2C" stroke-width="3" stroke-linejoin="round"/>
+<g fill="#211B2C"><circle cx="113" cy="132" r="3"/><circle cx="127" cy="132" r="3"/></g>
+<g fill="#211B2C"><circle cx="104" cy="100" r="8"/><circle cx="136" cy="100" r="8"/></g>
+<g fill="#fff"><circle cx="106.5" cy="97.5" r="2.6"/><circle cx="138.5" cy="97.5" r="2.6"/></g>
+<g fill="#FF7E9A" opacity=".45"><ellipse cx="94" cy="118" rx="8" ry="5"/><ellipse cx="146" cy="118" rx="8" ry="5"/></g>
+</svg>

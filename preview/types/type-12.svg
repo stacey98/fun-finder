@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="t"><title id="t">Wild Card Goose</title>
+<circle cx="120" cy="120" r="118" fill="#FF8FA8"/>
+<ellipse cx="120" cy="212" rx="60" ry="9" fill="#211B2C" opacity=".14"/>
+<g stroke="#211B2C" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+  <!-- motion marks -->
+  <path d="M42 84 l14 6 M38 104 l16 2 M190 70 l-12 8" fill="none"/>
+  <!-- feet -->
+  <path d="M100 210 l-10 0 l10 -10 l10 10 Z M140 210 l-10 0 l10 -10 l10 10 Z" fill="#FFB347" stroke-width="4"/>
+  <!-- body -->
+  <ellipse cx="120" cy="170" rx="48" ry="36" fill="#D8CFC4"/>
+  <path d="M80 166 C92 152 112 150 124 160 C110 172 92 176 80 166 Z" fill="#A89A8C"/>
+  <ellipse cx="120" cy="186" rx="30" ry="16" fill="#F7F3EE"/>
+  <!-- neck + head -->
+  <path d="M106 146 C102 118 102 100 104 86 L136 86 C138 102 138 120 134 146 Z" fill="#2B2733"/>
+  <circle cx="120" cy="80" r="28" fill="#2B2733"/>
+  <path d="M96 84 C98 96 106 102 114 100 C108 96 104 90 104 82 Z" fill="#fff" stroke-width="3"/>
+  <path d="M144 84 C142 96 134 102 126 100 C132 96 136 90 136 82 Z" fill="#fff" stroke-width="3"/>
+  <path d="M108 86 L132 86 L120 104 Z" fill="#FFB347"/>
+  <!-- wild card -->
+  <g transform="rotate(16 168 142)">
+    <rect x="150" y="118" width="36" height="50" rx="5" fill="#FFF6E9"/>
+  </g>
+  <path d="M146 150 C156 142 162 140 166 144" fill="none"/>
+</g>
+<path d="M170 132 l3 7 l7 1 l-5 5 l1.5 7 l-6.5 -3.5 l-6.5 3.5 l1.5 -7 l-5 -5 l7 -1 Z" fill="#FF5FA8" transform="rotate(16 168 142)"/>
+<g fill="#fff"><circle cx="109" cy="72" r="7.5"/><circle cx="131" cy="72" r="7.5"/></g>
+<g fill="#211B2C"><circle cx="110" cy="73" r="4.5"/><circle cx="132" cy="73" r="4.5"/></g>
+<g fill="#fff"><circle cx="111.5" cy="71" r="1.6"/><circle cx="133.5" cy="71" r="1.6"/></g>
+</svg>

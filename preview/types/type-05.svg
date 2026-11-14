@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="t"><title id="t">Lakefront Heron</title>
+<circle cx="120" cy="120" r="118" fill="#8EDDB0"/>
+<ellipse cx="120" cy="212" rx="60" ry="9" fill="#211B2C" opacity=".14"/>
+<g stroke="#211B2C" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+  <!-- legs -->
+  <path d="M108 196 v14 l-8 0 M132 196 v14 l8 0" fill="none" stroke="#211B2C"/>
+  <!-- crest -->
+  <path d="M116 62 C108 44 94 40 82 44 C96 48 104 56 108 66" fill="#B7C6D6"/>
+  <!-- body -->
+  <ellipse cx="120" cy="166" rx="44" ry="36" fill="#EEF3F7"/>
+  <path d="M78 156 C70 172 76 192 96 198 C94 182 90 166 78 156 Z" fill="#B7C6D6"/>
+  <path d="M162 156 C170 172 164 192 144 198 C146 182 150 166 162 156 Z" fill="#B7C6D6"/>
+  <!-- neck + head -->
+  <path d="M106 140 C104 126 104 118 106 112 L134 112 C136 118 136 126 134 140 Z" fill="#EEF3F7"/>
+  <circle cx="120" cy="94" r="36" fill="#EEF3F7"/>
+  <path d="M110 108 L130 108 L120 146 Z" fill="#FFB347"/>
+  <!-- binoculars -->
+  <path d="M100 136 C104 150 108 158 110 164 M140 136 C136 150 132 158 130 164" fill="none" stroke-width="3"/>
+  <circle cx="109" cy="170" r="10" fill="#3A3548"/>
+  <circle cx="131" cy="170" r="10" fill="#3A3548"/>
+</g>
+<g fill="#93C5FF"><circle cx="109" cy="170" r="4"/><circle cx="131" cy="170" r="4"/></g>
+<g fill="#211B2C"><circle cx="105" cy="92" r="8"/><circle cx="135" cy="92" r="8"/></g>
+<g fill="#fff"><circle cx="107.5" cy="89.5" r="2.6"/><circle cx="137.5" cy="89.5" r="2.6"/></g>
+<g fill="#FF7E9A" opacity=".45"><ellipse cx="94" cy="108" rx="7" ry="4.5"/><ellipse cx="146" cy="108" rx="7" ry="4.5"/></g>
+</svg>

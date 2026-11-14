@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="t"><title id="t">Pop-Up Axolotl</title>
+<circle cx="120" cy="120" r="118" fill="#6FE3D2"/>
+<ellipse cx="120" cy="212" rx="60" ry="9" fill="#211B2C" opacity=".14"/>
+<g stroke="#211B2C" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+  <!-- balloon -->
+  <path d="M182 86 C176 120 160 140 156 168" fill="none" stroke-width="3"/>
+  <ellipse cx="182" cy="62" rx="20" ry="23" fill="#FFD95A"/>
+  <path d="M178 86 l4 -4 l4 4 Z" fill="#FFD95A" stroke-width="3"/>
+  <!-- gills -->
+  <ellipse cx="62" cy="80" rx="17" ry="7" fill="#FF5FA8" transform="rotate(-32 62 80)"/>
+  <ellipse cx="56" cy="102" rx="17" ry="7" fill="#FF5FA8"/>
+  <ellipse cx="62" cy="124" rx="17" ry="7" fill="#FF5FA8" transform="rotate(32 62 124)"/>
+  <ellipse cx="178" cy="80" rx="17" ry="7" fill="#FF5FA8" transform="rotate(32 178 80)"/>
+  <ellipse cx="184" cy="102" rx="17" ry="7" fill="#FF5FA8"/>
+  <ellipse cx="178" cy="124" rx="17" ry="7" fill="#FF5FA8" transform="rotate(-32 178 124)"/>
+  <!-- body -->
+  <path d="M76 210 C74 166 92 146 120 146 C148 146 166 166 164 210 Z" fill="#FFB6CF"/>
+  <ellipse cx="120" cy="188" rx="24" ry="20" fill="#FFD9E6"/>
+  <!-- head -->
+  <ellipse cx="120" cy="104" rx="54" ry="42" fill="#FFB6CF"/>
+  <path d="M98 120 q22 16 44 0" fill="none"/>
+  <circle cx="154" cy="172" r="10" fill="#FFB6CF"/>
+  <circle cx="86" cy="182" r="10" fill="#FFB6CF"/>
+</g>
+<g fill="#211B2C"><circle cx="98" cy="98" r="8"/><circle cx="142" cy="98" r="8"/></g>
+<g fill="#fff"><circle cx="100.5" cy="95.5" r="2.6"/><circle cx="144.5" cy="95.5" r="2.6"/></g>
+<g fill="#FF5FA8" opacity=".45"><ellipse cx="84" cy="116" rx="8" ry="5"/><ellipse cx="156" cy="116" rx="8" ry="5"/></g>
+<path d="M174 52 q4 -6 10 -6" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="t"><title id="t">Gallery Owl</title>
+<circle cx="120" cy="120" r="118" fill="#93C5FF"/>
+<ellipse cx="120" cy="212" rx="60" ry="9" fill="#211B2C" opacity=".14"/>
+<g stroke="#211B2C" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+  <!-- picture frame -->
+  <rect x="166" y="142" width="38" height="32" rx="4" fill="#FFF6E9" transform="rotate(8 185 158)"/>
+  <path d="M174 168 l9 -11 l7 8 l5 -5 l6 8" fill="none" stroke-width="3" transform="rotate(8 185 158)"/>
+  <!-- ear tufts -->
+  <path d="M80 72 L70 40 L102 58 Z" fill="#B88A5C"/>
+  <path d="M160 72 L170 40 L138 58 Z" fill="#B88A5C"/>
+  <!-- body -->
+  <path d="M120 50 C165 50 178 92 176 140 C174 186 156 208 120 208 C84 208 66 186 64 140 C62 92 75 50 120 50 Z" fill="#B88A5C"/>
+  <path d="M68 128 C50 150 54 180 78 192 C78 166 76 146 68 128 Z" fill="#94693F"/>
+  <path d="M172 128 C190 150 186 180 162 192 C162 166 164 146 172 128 Z" fill="#94693F"/>
+  <ellipse cx="120" cy="166" rx="36" ry="34" fill="#F6E7CF"/>
+  <path d="M108 156 l5 5 l5 -5 M122 156 l5 5 l5 -5 M114 172 l5 5 l5 -5" fill="none" stroke-width="3"/>
+  <!-- glasses -->
+  <circle cx="98" cy="102" r="20" fill="#FFF6E9"/>
+  <circle cx="142" cy="102" r="20" fill="#FFF6E9"/>
+  <path d="M118 100 L122 100" fill="none"/>
+  <path d="M112 118 L128 118 L120 132 Z" fill="#FFB347"/>
+  <ellipse cx="104" cy="210" rx="11" ry="5" fill="#FFB347"/>
+  <ellipse cx="136" cy="210" rx="11" ry="5" fill="#FFB347"/>
+</g>
+<g fill="#211B2C"><circle cx="98" cy="104" r="8"/><circle cx="142" cy="104" r="8"/></g>
+<g fill="#fff"><circle cx="100.5" cy="101.5" r="2.6"/><circle cx="144.5" cy="101.5" r="2.6"/></g>
+<g fill="#FF7E9A" opacity=".45"><ellipse cx="84" cy="128" rx="8" ry="5"/><ellipse cx="156" cy="128" rx="8" ry="5"/></g>
+</svg>

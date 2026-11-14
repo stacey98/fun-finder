@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="t"><title id="t">Board Game Bear</title>
+<circle cx="120" cy="120" r="118" fill="#E9D3B0"/>
+<ellipse cx="120" cy="212" rx="60" ry="9" fill="#211B2C" opacity=".14"/>
+<g stroke="#211B2C" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+  <circle cx="82" cy="66" r="17" fill="#8A5A3B"/>
+  <circle cx="158" cy="66" r="17" fill="#8A5A3B"/>
+  <path d="M72 210 C70 160 88 142 120 142 C152 142 170 160 168 210 Z" fill="#8A5A3B"/>
+  <circle cx="120" cy="104" r="46" fill="#8A5A3B"/>
+  <ellipse cx="120" cy="122" rx="21" ry="15" fill="#E8C9A3"/>
+  <path d="M114 128 q6 5 12 0" fill="none" stroke-width="4"/>
+  <!-- die -->
+  <g transform="rotate(-12 120 172)">
+    <rect x="98" y="150" width="44" height="44" rx="9" fill="#FFF6E9"/>
+  </g>
+  <circle cx="95" cy="176" r="11" fill="#8A5A3B"/>
+  <circle cx="145" cy="168" r="11" fill="#8A5A3B"/>
+</g>
+<g fill="#C99A74"><circle cx="82" cy="66" r="7"/><circle cx="158" cy="66" r="7"/></g>
+<ellipse cx="120" cy="115" rx="7" ry="5" fill="#211B2C"/>
+<g fill="#211B2C" transform="rotate(-12 120 172)"><circle cx="110" cy="162" r="4"/><circle cx="120" cy="172" r="4"/><circle cx="130" cy="182" r="4"/></g>
+<g fill="#211B2C"><circle cx="102" cy="98" r="8"/><circle cx="138" cy="98" r="8"/></g>
+<g fill="#fff"><circle cx="104.5" cy="95.5" r="2.6"/><circle cx="140.5" cy="95.5" r="2.6"/></g>
+<g fill="#FF7E9A" opacity=".45"><ellipse cx="88" cy="118" rx="8" ry="5"/><ellipse cx="152" cy="118" rx="8" ry="5"/></g>
+</svg>
