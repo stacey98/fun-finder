@@ -120,6 +120,9 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .mk.sel .mk-body{transform:scale(1.14) translateY(-2px);box-shadow:0 0 0 2px var(--paper),0 0 0 4.5px var(--ink),0 6px 14px var(--shadow)}
 .mk.unk,.mk.shut{--c:var(--closed)}
 .mk.hollow{opacity:.9}
+.mk.far{opacity:.5}
+.mk.far.sel{opacity:1}
+.sec-h.far-h{margin-top:18px}
 .mk.hollow .mk-body{background:var(--paper);color:var(--c);border:2px dashed var(--c);box-shadow:none}
 .mk.hollow .mk-body svg{opacity:.75}
 .tkb{position:absolute;top:-6px;right:-8px;width:18px;height:13px;filter:drop-shadow(0 1px 1.5px var(--shadow));pointer-events:none}
@@ -850,7 +853,7 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.5 (2026-11-13)';
+var VERSION = 'v5.6 (2026-11-13)';
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
@@ -2481,15 +2484,17 @@ function appDefaultFilters(){ return ext(defaultFilters(), {radius:APP_RADIUS});
 function defaultFilters(){ return {openNow:true, fits:true, radius:5, mode:DEFAULT_MODE, who:{}, io:'either', price:{}, walkin:false, kind:'all', social:false, hide21:false, showGone:false, notBeen:false, interests:{}, groups:{}, cats:{}, sort:'best'}; }
 function computeItem(it, T, ctx){
   var pcx = planCtx(T);   // v5.3: a picked time never says "now" (the wording is part of the cached row)
-  var sig = T + '|' + ctx.lat + ',' + ctx.lng + '|' + ctx.budget + '|' + ctx.mode + '|' + pcx.code;
+  var day = ctx.day && isKey(ctx.day) ? ctx.day : '';   // v5.6: "Any time" on a picked day
+  var sig = T + '|' + ctx.lat + ',' + ctx.lng + '|' + ctx.budget + '|' + ctx.mode + '|' + pcx.code + '|' + day;
   var cc = it.__cc || (it.__cc = {n:0, m:{}});
   if (cc.m[sig]) return cc.m[sig];
   if (cc.n > 8) { cc.m = {}; cc.n = 0; }
   var cw = isCitywide(it);   // v2.2 (challenger L-3): citywide events have no map point or distance
   var dist = (!cw && isNum(it.lat) && isNum(it.lng)) ? distMi(ctx.lat, ctx.lng, it.lat, it.lng) : null;
   var trav = dist !== null ? travel(dist, ctx.mode) : {min:30, how:'unknown'};
-  var st = statusAt(it, T);
-  var fit = (st.open || st.key === 'later' || st.key === 'closed') ? fitFor(it, st, trav, ctx.budget, T) : {kind: st.key === 'unknown' ? 'unknown' : 'closed'};
+  var st, fit;
+  if (day) { var bt = bestTimeOfDay(it, day, T, trav, ctx.budget); st = bt.st; fit = bt.fit; T = bt.T; }
+  else { st = statusAt(it, T); fit = fitAt0(it, st, trav, ctx.budget, T); }
   var d = describe(st, it);
   // v2.2: say why an open place isn't a fit (last entry, after dark)
   if (st.open && darkAt(it, st, T)) d = {text:'Dark now · best in daylight', tone:'closed', sub:'sunrise ' + fmtClock(nextSunrise(T))};
@@ -2498,8 +2503,58 @@ function computeItem(it, T, ctx){
   else if (fit.entryNotes && st.open) d = ext(d, {tone:'soon', sub: fit.entryBare ? 'it has a last-entry time we don\'t have: call first' : 'last entry about ' + fmtClock(fit.lastEntryAt) + ' (from its notes), you\'d arrive after it: call first'});
   if (pcx.on) d = ext(d, {text:tenseText(d.text, pcx), sub:d.sub ? tenseText(d.sub, pcx) : d.sub});
   var c = {item:it, dist:dist, trav:trav, st:st, fit:fit, d:d, citywide:cw};
+  if (day) { // v5.6: the row shows that day's hours ("Open 10 am – 4 pm Wed"), never "open now"
+    c.anyDay = day; c.anyT = T;
+    var g0 = groupOf(c, {fits:true}), dh = dayHoursText(it, day);
+    if (dh && (g0 === 'fits' || g0 === 'tight' || g0 === 'over')) { c.d = {text:dh, tone:'open', sub:''}; c.dayText = true; }
+    else if (g0 === 'fits' && it.kind === 'event') { c.d = {text:'On ' + DOW_SHORT[wdOfKey(day)] + (st.closesAt ? ' till ' + fmtClock(st.closesAt) : ''), tone:'open', sub:''}; c.dayText = true; }
+  }
   cc.m[sig] = c; cc.n++;
   return c;
+}
+function fitAt0(it, st, trav, budget, T){ return (st.open || st.key === 'later' || st.key === 'closed') ? fitFor(it, st, trav, budget, T) : {kind: st.key === 'unknown' ? 'unknown' : 'closed'}; }
+/* v5.6 (owner 2026-11-13: "if I'm going to Wednesday, I want to be able to do everything. That's how I missed Go Ape"): "Any time" on a
+   picked day. A thing passes when, at some time that day (Chicago time), it is open long enough: its min_minutes (or the whole visit),
+   within the time budget when one is set. Same hours, season, closed_dates, date_hours and holiday rules as everywhere else: we just try
+   the times it could start (arriving at opening, then each hour while open) and keep the best. */
+var ANY_DAY_START_MIN = 300;   // the day starts at 5 am (late-night hours from the night before belong to that night)
+function anyDayWindow(day, T0){ var s = fromChicago(day, ANY_DAY_START_MIN), e = fromChicago(addDays(day, 1), 0); return {s:Math.max(s, T0 || s), e:e}; }
+function anyCandidates(it, day, T0, trav){
+  var w = anyDayWindow(day, T0), out = [], seen = {}, i, t;
+  function add(x){ x = Math.round(x / 60000) * 60000; if (x < w.s) x = w.s; if (x >= w.e || seen[x]) return; seen[x] = 1; out.push(x); }
+  var iv = dayIntervals(it, day, null);
+  if (iv && iv.length) iv.forEach(function(r){ add(r.s - trav.min * 60000); for (t = r.s; t < Math.min(r.e, w.e); t += 3600000) add(t); });
+  if (it.kind === 'event') for (t = w.s; t < w.e; t += 3600000) add(t);   // dated events and sessions: also try every hour of the day
+  if (!out.length) add(w.s);
+  out.sort(function(a, b){ return a - b; });
+  return out;
+}
+function anyRank(c){ var g = groupOf(c, {fits:true}); return g === 'fits' ? (c.fit && c.fit.short ? 1 : 0) : g === 'tight' ? 2 : g === 'over' ? 3 : c.st.open ? 4 : 5; }
+function bestTimeOfDay(it, day, T0, trav, budget){ // -> {T, st, fit}: the earliest best start that day
+  var cand = anyCandidates(it, day, T0, trav), best = null;
+  for (var i = 0; i < cand.length; i++) {
+    var T = cand[i], st = statusAt(it, T), fit = fitAt0(it, st, trav, budget, T), r = anyRank({item:it, st:st, fit:fit});
+    if (!best || r < best.r) best = {T:T, st:st, fit:fit, r:r};
+    if (r === 0) break;
+  }
+  return best;
+}
+function dayHoursText(it, day){ // "Open 10 am – 4 pm Wed" (several ranges joined with ", "), or '' when the hours that day aren't known
+  var iv = dayIntervals(it, day, null); if (!iv || !iv.length) return '';
+  var rs = dayRanges(it, day) || [];
+  if (rs.length === 1 && rs[0][1] - rs[0][0] >= 1440) return 'Open 24 hours ' + DOW_SHORT[wdOfKey(day)];
+  return 'Open ' + rs.map(function(r){ return fmtTime(r[0]) + ' – ' + fmtTime(r[1]); }).join(', ') + ' ' + DOW_SHORT[wdOfKey(day)];
+}
+/* v5.6 "Worth the drive": things that fit but are far (past the reach of the travel mode, or past the radius) get a short section of
+   their own at the end of the list and faded pins, instead of vanishing. Reach: 45 min by car or Walk + CTA (REACH_MIN, the app's
+   "reachable" line), 25 min on foot; a CTA trip past our CTA estimate (switched to a drive) is always far. */
+var FAR_MIN_BY_MODE = {car:45, transit:45, walk:25}, FAR_SHOW = 5;
+function isFar(c, mode){
+  if (c.citywide || c.dist === null) return false;
+  if (c.beyond) return true;
+  var tr = c.trav || {}; if (tr.switched) return true;
+  var lim = FAR_MIN_BY_MODE[mode] || 45;
+  return isNum(tr.min) && tr.min > lim;
 }
 function passFilters(c, F){
   var it = c.item;
@@ -2553,9 +2608,14 @@ function groupOf(c, F){
 function runPipeline(items, T, ctx, F){
   var p = cparts(T);
   var out = {T:T, p:p, all:[], groups:{fits:[], tight:[], over:[], later:[], unknown:[], season:[], closed:[], upcoming:[]}, leaving:[], weekend:[], endingSoon:0};
+  out.beyond = [];   // v5.6: fit everything but the radius (for "Worth the drive")
   for (var i = 0; i < items.length; i++) {
     var c = computeItem(items[i], T, ctx);
-    if (!passFilters(c, F)) continue;
+    if (!passFilters(c, F)) {
+      if (F.radius && c.dist !== null && c.dist > F.radius && passFilters(c, ext(F, {radius:0}))) { c.group = groupOf(c, F); c.beyond = F.radius; out.beyond.push(c); }
+      continue;
+    }
+    c.beyond = false;
     c.group = groupOf(c, F);
     out.all.push(c);
     var ev = c.st.ev;
@@ -2660,6 +2720,12 @@ function buildView(res, F, sel, sub){ // sel: '' | 'play' | 'limited' | 'limited
     if (c.st.opensAt && !c.st.open && (c.st.key === 'later' || c.st.key === 'closed') && inGs(c) && (!s.lim || c.lim) && (!vm.firstOpen || c.st.opensAt < vm.firstOpen.st.opensAt || (c.st.opensAt === vm.firstOpen.st.opensAt && byTravel(c, vm.firstOpen) < 0))) vm.firstOpen = c;
   });
   GENRES.forEach(function(g){ vm.byGenre[g.id].sort(rankFits); });
+  // v5.6 "Worth the drive": far fits in the picked kinds (inside the radius but past the mode's reach, or past the radius), best first
+  vm.far = [];
+  var mode = (F && F.mode) || DEFAULT_MODE;
+  res.all.forEach(function(c){ c.far = isFar(c, mode); if (c.far && c.bucket === 'fits' && inGs(c) && !s.lim) vm.far.push(c); });
+  (res.beyond || []).forEach(function(c){ annotate(c, p); c.far = true; if (c.bucket === 'fits' && inGs(c) && !s.lim) vm.far.push(c); });
+  vm.far.sort(rankFits);
   vm.onNow.sort(function(a, b){ var ka = endSortKey(a), kb = endSortKey(b); return ka < kb ? -1 : ka > kb ? 1 : byTravel(a, b); });
   vm.soon.sort(function(a, b){ var ka = startKeyOf(a), kb = startKeyOf(b); return ka < kb ? -1 : ka > kb ? 1 : (a.st.opensAt || 0) - (b.st.opensAt || 0) || byTravel(a, b); });
   vm.soon.forEach(function(c){ c.when = comingGroup(startKeyOf(c), p); });
@@ -2685,6 +2751,7 @@ function buildView(res, F, sel, sub){ // sel: '' | 'play' | 'limited' | 'limited
       else { k.rest[restGroupOf(c)].push(c); k.restN++; }
     });
     k.fits.sort(rankFits);
+    k.far = vm.far.filter(inG); k.fits = k.fits.filter(function(c){ return !c.far; });   // v5.6: far ones move to "Worth the drive"
     k.tight.sort(function(a, b){ return ((a.fit.over || 0) - (b.fit.over || 0)) || byTravel(a, b); });
     k.rest.longer.sort(function(a, b){ return ((a.fit.over || 0) - (b.fit.over || 0)) || byTravel(a, b); });
     k.rest.later.sort(function(a, b){ return (a.st.opensAt || 9e15) - (b.st.opensAt || 9e15) || byTravel(a, b); });
@@ -2777,6 +2844,7 @@ function nowMs(){ return UI.nowOverride !== null ? UI.nowOverride : Date.now(); 
 function evalTime(){ var t = evalTime0(); UI.planAt = UI.planning ? t : null; return t; }
 function planWhen(sent){ // "Mon noon" (headline) / "Mon at noon" (sentence) when a time is picked; "now" / "right now" otherwise
   if (!UI.planning || !isNum(UI.planAt)) return sent ? 'right now' : 'now';
+  if (UI.anyDay) { var dn = UI.anyDay === cparts(nowMs()).key ? 'today' : DOW_SHORT[wdOfKey(UI.anyDay)]; return sent ? (dn === 'today' ? 'later today' : 'on ' + dn) : dn; }   // v5.6 "Any time": "Wed" / "on Wed"
   var q = cparts(UI.planAt); return DOW_SHORT[q.wd] + (sent ? ' at ' : ' ') + fmtTime(q.min);
 }
 function planCtx(T){
@@ -2800,7 +2868,15 @@ function restoredSel(list, legacy){ // v5.3: a new visit keeps the picked kinds 
 }
 function evalTime0(){
   var now = nowMs(), p = cparts(now);
-  UI.planning = false; UI.pickPast = false;
+  UI.planning = false; UI.pickPast = false; UI.anyDay = '';
+  if (S.when === 'pick') { // v5.6: a picked day with no time = "Any time" that day
+    var dA = parseDT(S.pickAt);
+    if (dA && dA.min === null) {
+      if (dA.key < p.key) { UI.pickPast = true; return now; }
+      UI.planning = true; UI.anyDay = dA.key;
+      return dA.key === p.key ? now : fromChicago(dA.key, ANY_DAY_START_MIN);
+    }
+  }
   if (S.when === 'tonight') { if (p.min < 19 * 60) { UI.planning = true; return fromChicago(p.key, 19 * 60); } return now; }
   if (S.when === 'weekend') {
     if (p.wd === 6 || p.wd === 0) { if (p.min < 13 * 60) { UI.planning = true; return fromChicago(p.key, 13 * 60); } return now; }
@@ -2817,7 +2893,7 @@ function evalTime0(){
   return now;
 }
 function nowLocalInput(){ var p = cparts(nowMs()); return p.key + 'T' + pad(p.hh) + ':' + pad(p.mm); }
-function ctxNow(){ return {lat:S.loc.lat, lng:S.loc.lng, budget:S.budgetOn ? S.budget : 'any', mode:S.f.mode}; }
+function ctxNow(){ var c = {lat:S.loc.lat, lng:S.loc.lng, budget:S.budgetOn ? S.budget : 'any', mode:S.f.mode}; if (UI.anyDay) c.day = UI.anyDay; return c; }   // v5.6: day = "Any time" that day
 function filterCount(F, when){ // v2: the radius has its own chip and is not counted as a "filter" (tester M2)
   var n = 0, k;
   for (k in F.who) if (F.who[k]) n++;
@@ -2856,7 +2932,7 @@ function beenRecently(id, todayKey, list){ var ck = checkinOf(id, list); return 
 function beenLabel(ck, todayKey){ return 'Been \u00b7 ' + fmtDate(ck.date, todayKey); }
 
 /* One line of facts: "Open till 10 pm · 12 min walk · $$" */
-function statusShort(c){ return tenseText(statusShort0(c), planCtx(c.st.ms)); }   // v5.3: "On then" for a picked time
+function statusShort(c){ if (c.dayText) return c.d.text; return tenseText(statusShort0(c), planCtx(c.st.ms)); }   // v5.3: "On then" for a picked time
 function statusShort0(c){
   var st = c.st, isEv = c.item.kind === 'event', t = String(c.d && c.d.text || ''), pl = planCtx(st.ms).on;
   if (/^Dark (now|then)/.test(t)) return 'Best in daylight';
@@ -2899,8 +2975,8 @@ function threePool(vm, todayKey, checkins){ // everything that could be one of t
   var near = all.filter(function(c){ return c.__tier === 0; }), mid = all.filter(function(c){ return c.__tier <= 1; });
   var pool = near.length >= 3 ? near : mid.length >= 3 ? mid : all;   // v5.1 (tester M2): within ~30 min first; further only when fewer than 3 closer ones fit
   function band(c){ var m = c.trav.min; return m <= 15 ? 0 : m <= 30 ? 1 : m <= REACH_MIN ? 2 : 3; }
-  pool.forEach(function(c){ c.__r = [c.__tier, -(tasteScore(c) || 0), trustRank(c), firstPhoto(c.item) ? 0 : 1, band(c), strHash(String(c.item.id) + '|' + todayKey)]; });
-  pool.sort(function(a, b){ for (var i = 0; i < 6; i++) if (a.__r[i] !== b.__r[i]) return a.__r[i] - b.__r[i]; return 0; });
+  pool.forEach(function(c){ c.__r = [c.__tier, -(tasteScore(c) || 0), trustRank(c), (c.anyDay && c.fit && c.fit.short) ? 1 : 0, firstPhoto(c.item) ? 0 : 1, band(c), strHash(String(c.item.id) + '|' + todayKey)]; });   // v5.6: "Any time" prefers a whole visit over a quick stop; never "opens soonest"
+  pool.sort(function(a, b){ for (var i = 0; i < 7; i++) if (a.__r[i] !== b.__r[i]) return a.__r[i] - b.__r[i]; return 0; });
   return pool;
 }
 var PICK_NEAR_MIN = 30;   // v5.1: the three prefer things about 30 min away or less in the chosen mode
@@ -3485,6 +3561,7 @@ function pinClass(c, o){
   if (o.sm) cl += ' sm';
   if (o.hollow) cl += ' hollow';
   else if (o.grey) cl += (c.st.key === 'unknown' || c.st.key === 'maybe') ? ' unk' : ' shut';
+  if (o.far) cl += ' far';   // v5.6 Worth the drive
   if (c.item.id === UI.sel) cl += ' sel';
   if (UI.pinAnim) cl += ' in';
   return cl;
@@ -3671,7 +3748,7 @@ function showView(v, opts){
 /* ================= rendering: header, tiles, list (v3 "calm default", layout spec §3-4) ================= */
 function glyphSvg(id, cls){ return '<svg class="' + (cls || 'i') + '"><use href="#' + id + '"/></svg>'; }
 var CHEV = '<svg class="i sm"><use href="#i-chev"/></svg>';
-function whenLabel(){ if (S.when === 'now') return 'Now'; if (S.when === 'tonight') return 'Tonight'; if (S.when === 'weekend') return 'This weekend'; var d = parseDT(S.pickAt); return d && d.min !== null ? DOW_SHORT[wdOfKey(d.key)] + ' ' + fmtTime(d.min) : 'Pick a day'; }
+function whenLabel(){ if (S.when === 'now') return 'Now'; if (S.when === 'tonight') return 'Tonight'; if (S.when === 'weekend') return 'This weekend'; var d = parseDT(S.pickAt); if (d && d.min === null) return (d.key === cparts(nowMs()).key ? 'Today' : DOW_SHORT[wdOfKey(d.key)]) + ' · Any time'; return d ? DOW_SHORT[wdOfKey(d.key)] + ' ' + fmtTime(d.min) : 'Pick a day'; }   // v5.6 "Wed · Any time"
 function budgetWords(){ return S.budget === 'night' ? 'the rest of the night' : fmtBudget(S.budget); }
 function doableWords(){ return S.budget === 'night' ? 'doable tonight' : 'doable in ' + fmtBudget(S.budget); }   // v4 plain words for the optional time budget
 function openWords(){ return 'open ' + planWhen(false); }   // v5.3: "open Mon noon" when a time is picked
@@ -3679,7 +3756,8 @@ function timeWord(){ return S.budget === 60 ? 'hour' : 'time'; }
 function fillHTML(txt){ return esc(txt).replace(/ /g, '&nbsp;') + '<svg class="i"><use href="#i-chev"/></svg>'; }
 function renderHeader(res){
   var p = res.p, k;
-  if (UI.planning) k = 'Planning for ' + fmtDayDate(p.key, cparts(nowMs()).key) + ' · ' + fmtTime(p.min);
+  if (UI.anyDay) k = 'Planning for ' + fmtDayDate(UI.anyDay, cparts(nowMs()).key) + ' · any time';   // v5.6
+  else if (UI.planning) k = 'Planning for ' + fmtDayDate(p.key, cparts(nowMs()).key) + ' · ' + fmtTime(p.min);
   else {
     k = DOW_LONG[p.wd] + ' · ' + fmtTime(p.min);
     var sun = sunTimes(p.key);
@@ -3799,7 +3877,7 @@ function rowHTML(c, opt){
   else if (opt.kright) right = '<span>' + esc(opt.kright) + '</span>';
   var kick = (opt.kicker || right) ? '<p class="rk"><span>' + esc(opt.kicker || '') + '</span>' + (right || '<span></span>') + '</p>' : '';
   var h = '<p class="status ' + d.tone + '"><span class="st-t"><i class="dot"></i>' + esc(d.text) + (d.sub ? ' · ' + esc(d.sub) : '') + '</span></p>';
-  if (c.bucket === 'fits' && !st.open && st.opensAt) h += '<p class="evb">' + (UI.planning ? 'Opens ' + esc(fmtClock(st.opensAt)) : 'Opens in ' + esc(fmtDur(Math.max(1, Math.round((st.opensAt - st.ms) / 60000))))) + '</p>';
+  if (c.bucket === 'fits' && !st.open && st.opensAt && !c.anyDay) h += '<p class="evb">' + (UI.planning ? 'Opens ' + esc(fmtClock(st.opensAt)) : 'Opens in ' + esc(fmtDur(Math.max(1, Math.round((st.opensAt - st.ms) / 60000))))) + '</p>';
   var meta = [], ck = checkinOf(it.id), tsh = travelShort(c), prs = priceShort(it);   // v4: one plain line: where · how far · price (· Been)
   if (opt.been && ck) h = '<p class="meta"><span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' + (ck.rating === 1 ? ' · liked it' : ck.rating === -1 ? ' · not for me' : '') + '</p>';
   if (it.neighborhood) meta.push(esc(shortHood(it.neighborhood)));
@@ -3866,7 +3944,7 @@ function homeListHTML(vm, more){
       btn = actBtn({attr:'data-plan="' + q.key + 'T' + pad(q.hh) + ':' + pad(q.mm) + '"', label:'Show ' + (q.key === p.key ? 'what’s open at ' + fmtTime(q.min) : (dayDiff(p.key, q.key) === 1 ? 'tomorrow at ' : DOW_SHORT[q.wd] + ' at ') + fmtTime(q.min))});
     }
     h += '<div class="empty"><h3>Almost everything is closed ' + (UI.planning ? esc(planWhen(true)) : 'at ' + esc(fmtTime(p.min))) + '.</h3><p>' + esc(body) + '</p><div class="btns">' + btn + '</div></div>';
-    return h + endnoteHTML('');
+    return h + farSectionHTML(vm.far) + endnoteHTML('');
   }
   h += '<h3 class="sec-h"><span>' + 'Best ' + esc(planWhen(true).replace(' at ', ' ')) + '</span><span>one per kind</span></h3><ul class="rows">';
   vm.picks.forEach(function(pk){ h += rowHTML(pk.c, {kicker:genreName(pk.g) + (subName(pk.c.item, pk.g) ? ' · ' + subName(pk.c.item, pk.g) : ''), seeall: pk.n > 1 ? {g:pk.g, n:pk.n} : null, kright: pk.n > 1 ? '' : 'the only one'}); });
@@ -3876,7 +3954,20 @@ function homeListHTML(vm, more){
     h += noneRowHTML(g, e.title, e.body, btns);
   });
   h += '</ul>';
+  var onScreen = {}; vm.picks.forEach(function(pk){ onScreen[pk.c.item.id] = 1; });
+  h += farSectionHTML(vm.far, onScreen);   // v5.6
   return h + endnoteHTML('The best pick of each kind that’s ' + openWords() + (S.budgetOn ? ' and ' + doableWords() : '') + ' from ' + (S.loc ? S.loc.label : 'your pin') + '. Tap a kind above to see all of them.');
+}
+function farShown(list, skip){ // v5.6: up to FAR_SHOW (all of them after "Show N more"), without the ones already on screen
+  skip = skip || {}; var l = (list || []).filter(function(c){ return !skip[c.item.id]; });
+  return {list:UI.farMore ? l : l.slice(0, FAR_SHOW), more:UI.farMore ? 0 : Math.max(0, l.length - FAR_SHOW), n:l.length};
+}
+function farSectionHTML(list, skip){
+  var f = farShown(list, skip); if (!f.list.length) return '';
+  var h = '<h3 class="sec-h far-h"><span>Worth the drive</span><span>' + f.n + '</span></h3><ul class="rows far">' +
+    f.list.map(function(c){ return rowHTML(c, {kicker:genreShort(c.genre) + (c.beyond ? ' · past ' + fmtRadius(c.beyond) : '')}); }).join('') + '</ul>';
+  if (f.more) h += '<button class="hm-btn" type="button" data-act="farmore">Show ' + f.more + ' more</button>';
+  return h;
 }
 function foldHTML(key, open, cls, icon, title, n, small){
   return '<button class="fold' + (cls ? ' ' + cls : '') + '" type="button" data-fold="' + key + '" aria-expanded="' + !!open + '"><span class="ic">' + glyphSvg(icon) + '</span><span><b>' + esc(title) + '<em>' + n + '</em></b><small>' + esc(small) + '</small></span><svg class="i chev"><use href="#i-chev"/></svg></button>';
@@ -3892,6 +3983,7 @@ function kindListHTML(vm, more){
   var k = vm.kind, g = vm.sel, F = S.f, h = '', p = vm.p;
   h += '<h3 class="sec-h"><span>Open ' + esc(planWhen(false)) + (S.budgetOn ? ', ' + esc(doableWords()) : '') + '</span><span>' + k.fits.length + '</span></h3>';
   h += k.fits.length ? '<ul class="rows">' + k.fits.map(function(c){ return rowHTML(c, {}); }).join('') + '</ul>' : kindEmptyHTML(vm, g, more);
+  h += farSectionHTML(k.far || []);   // v5.6
   if (k.tight.length) {
     h += foldHTML('tight', UI.foldTight, '', 'i-clock', 'Cutting it close', k.tight.length, S.budgetOn ? 'A little over ' + budgetWords() + ', or it closes soon' : 'Closes soon after you’d get there');
     if (UI.foldTight) h += '<ul class="rows">' + k.tight.map(function(c){ return rowHTML(c, {note:true}); }).join('') + '</ul>';
@@ -3917,7 +4009,7 @@ function limitedListHTML(vm){
     var offBtn = allN ? '<div class="btns">' + actBtn({attr:'data-rm="lim"', label:(vm.gs && vm.gs.length ? 'All ' + genreShort(vm.gs.join('+')) : 'Everything') + ' open (' + allN + ')'}) + '</div>' : '';
     if (opn.length) h += '<ul class="rows">' + opn.map(limRow).join('') + '</ul>';
     else if (shut.length) h += '<p class="crow" style="padding-top:8px">Nothing limited' + (vm.gs && vm.gs.length ? ' in ' + esc(genreShort(vm.gs.join('+'))) : '') + ' is open ' + esc(planWhen(true)) + '.</p>' + offBtn;
-    else h += '<div class="empty"><h4>Nothing limited' + (vm.gs && vm.gs.length ? ' in ' + esc(genreShort(vm.gs.join('+'))) : '') + ' is on ' + esc(planWhen(true)) + '.</h4><p>' + (vm.soon.length ? 'The next one starts ' + esc(fmtDayDate(startKeyOf(vm.soon[0]), p.key)) + '.' : 'Nothing new is listed yet.') + '</p>' + offBtn + '</div>';
+    else h += '<div class="empty"><h4>Nothing limited' + (vm.gs && vm.gs.length ? ' in ' + esc(genreShort(vm.gs.join('+'))) : '') + ' is on ' + esc(planWhen(true).replace(/^on /, '')) + '.</h4><p>' + (vm.soon.length ? 'The next one starts ' + esc(fmtDayDate(startKeyOf(vm.soon[0]), p.key)) + '.' : 'Nothing new is listed yet.') + '</p>' + offBtn + '</div>';
     if (shut.length) h += '<h3 class="sec-h"><span>Running, open later</span><span>' + shut.length + '</span></h3><ul class="rows">' + shut.map(limRow).join('') + '</ul>';
   }
   if (sub !== 'now') {
@@ -3950,7 +4042,8 @@ function renderList(res, vm, more){
   UI.quietTrust = fr.preview;
   if (fb) h += '<p class="band">' + esc(fb) + '</p>';
   if (UI.pickPast) h += '<p class="band info">That time has already passed, so this shows right now.</p>';
-  if (UI.planning) h += '<p class="band info">Planning ahead: everything below is for ' + esc(fmtDayDate(p.key, cparts(nowMs()).key)) + ' at ' + esc(fmtTime(p.min)) + '. <button class="linkbtn" type="button" data-act="whennow">Back to now</button></p>';
+  if (UI.anyDay) h += '<p class="band info">Planning ahead: everything open long enough at some point on ' + esc(fmtDayDate(UI.anyDay, cparts(nowMs()).key)) + '. <button class="linkbtn" type="button" data-act="whennow">Back to now</button></p>';   // v5.6
+  else if (UI.planning) h += '<p class="band info">Planning ahead: everything below is for ' + esc(fmtDayDate(p.key, cparts(nowMs()).key)) + ' at ' + esc(fmtTime(p.min)) + '. <button class="linkbtn" type="button" data-act="whennow">Back to now</button></p>';
   if (!vm.sel) h += homeListHTML(vm, more);
   else if (vm.lim) h += limitedListHTML(vm);
   else h += kindListHTML(vm, more);
@@ -4029,12 +4122,14 @@ function buildPins(vm, res){ // which pins, small pins and dots each state shows
   function dot(c, o){ if (!ok(c) || seen[c.item.id]) return; seen[c.item.id] = 1; dots.push({c:c, o:o || {}}); }
   if (!vm.sel && UI.view === 'map') { // v4: the full-screen map shows everything that is open; it frames the three picks (or what is close by)
     var three = {}; (UI.three || []).forEach(function(id){ three[id] = 1; });
-    vm.main.forEach(function(c){ pin(c, {tk:c.lim === 'now'}); if (three[c.item.id] && near(c, 10)) focus.push(c); });
+    vm.main.forEach(function(c){ if (c.far) return; pin(c, {tk:c.lim === 'now'}); if (three[c.item.id] && near(c, 10)) focus.push(c); });
     if (!focus.length) vm.main.forEach(function(c){ if (near(c, 2)) focus.push(c); });
+    (vm.far || []).forEach(function(c){ pin(c, {sm:true, far:true}); });   // v5.6: Worth the drive = faded pins
   } else if (!vm.sel) {
     vm.picks.forEach(function(pk){ pin(pk.c, {tk:pk.c.lim === 'now'}); if (near(pk.c, 10)) focus.push(pk.c); });
     vm.onNow.forEach(function(c){ if (near(c, 1.3)) pin(c, {sm:true, tk:true}); });
-    vm.main.forEach(function(c){ dot(c); });
+    var farShownIds = {}; farShown(vm.far).list.forEach(function(c){ farShownIds[c.item.id] = 1; pin(c, {sm:true, far:true}); });   // v5.6
+    vm.main.forEach(function(c){ dot(c, c.far ? {faint:true} : null); });
   } else if (vm.lim) {
     var showNow = !vm.sub || vm.sub === 'now';
     if (showNow) vm.onNow.forEach(function(c){ pin(c, {tk:true}); if (near(c, 8)) focus.push(c); });
@@ -4042,6 +4137,7 @@ function buildPins(vm, res){ // which pins, small pins and dots each state shows
   } else if (vm.kind) {
     var k = vm.kind;
     k.fits.forEach(function(c){ pin(c, {tk:c.lim === 'now'}); if (near(c, 10)) focus.push(c); });
+    (k.far || []).forEach(function(c){ pin(c, {sm:true, far:true, tk:c.lim === 'now'}); });   // v5.6: Worth the drive = faded pins
     k.tight.forEach(function(c){ dot(c, {faint:true}); });
     if (UI.foldRest) REST_ORDER.forEach(function(r){ k.rest[r].forEach(function(c){ pin(c, r === 'season' ? {sm:true, hollow:true} : {sm:true, grey:true, tk:c.lim === 'now'}); }); });
     if (!focus.length) k.tight.concat(k.rest.later).forEach(function(c){ if (near(c, 10)) focus.push(c); });
@@ -4098,6 +4194,7 @@ function updateThree(vm, more){ // keeps the same three on screen until she asks
 }
 function homeTitle(res){
   if (S.when === 'tonight') return 'Three for tonight';
+  if (UI.anyDay) return 'Three for ' + (UI.anyDay === cparts(nowMs()).key ? 'today' : DOW_SHORT[wdOfKey(UI.anyDay)]);   // v5.6 "Three for Wed"
   if (UI.planning) return 'Three for ' + fmtDayDate(res.p.key, cparts(nowMs()).key);
   return 'Three for right now';
 }
@@ -4115,7 +4212,7 @@ function renderHome(res, vm, picks){
   var root = $('homeRoot'); if (!root) return;
   var p = res.p, who = S.f.who, lab = locWords(S.loc ? S.loc.label : 'The Loop'), acc = locAccFor(S.loc), h = '';   // v5.5: "near your location ±120 ft"
   h += '<div class="hm-top"><div><h1 class="hm-title">' + esc(homeTitle(res)) + '</h1>' +
-    '<button class="hm-sub" type="button" data-act="loc" aria-label="Where: ' + esc(lab) + (acc ? ', within ' + esc(acc.replace('±', '')) : '') + '. Change"><span>' + (UI.planning ? esc(fmtTime(p.min)) + ' · ' : '') + 'near ' + esc(lab) + (acc ? ' <small class="acc">' + esc(acc).replace(/ /g, '&nbsp;') + '</small>' : '') + '</span>' + glyphSvg('i-chev') + '</button></div>' +
+    '<button class="hm-sub" type="button" data-act="loc" aria-label="Where: ' + esc(lab) + (acc ? ', within ' + esc(acc.replace('±', '')) : '') + '. Change"><span>' + (UI.anyDay ? esc(fmtDayDate(UI.anyDay, cparts(nowMs()).key)) + ' · any time · ' : UI.planning ? esc(fmtTime(p.min)) + ' · ' : '') + 'near ' + esc(lab) + (acc ? ' <small class="acc">' + esc(acc).replace(/ /g, '&nbsp;') + '</small>' : '') + '</span>' + glyphSvg('i-chev') + '</button></div>' +
     '<div class="hm-icons"><button class="icon-btn" type="button" data-act="search" aria-label="Search">' + glyphSvg('i-search') + '</button><button class="icon-btn" type="button" data-act="saved" aria-label="Saved and Been">' + glyphSvg('i-bookmark') + '</button></div></div>';
   h += '<div class="hm-ctl" role="group" aria-label="Who is coming">' + [['date', 'Date'], ['friends', 'Friends'], ['solo', 'Solo']].map(function(x){ return '<button class="qchip" type="button" data-who="' + x[0] + '" aria-pressed="' + !!who[x[0]] + '">' + x[1] + '</button>'; }).join('') + '</div>';
   var picked = S.when === 'pick' || S.when === 'weekend';
@@ -4184,7 +4281,7 @@ function findComputed(id){ var it = findItem(id); return it ? computeItem(it, ev
 function selectGenre(id, opts){ // v5: a tile tap adds or removes that kind (or Limited); opts.keep = show exactly this (links, "See all", hash)
   opts = opts || {};
   UI.gsel = opts.keep ? normSel(id) : toggleSel(curSel(), id);
-  UI.sub = ''; UI.foldTight = false; UI.foldRest = !!opts.rest || !S.f.openNow; UI.limMore = false; UI.sel = null;
+  UI.sub = ''; UI.foldTight = false; UI.foldRest = !!opts.rest || !S.f.openNow; UI.limMore = false; UI.farMore = false; UI.sel = null;
   if (UI.gsel.lim && !UI.gsel.gs.length && S.when === 'weekend') UI.sub = 'wknd';   // spec 4.3: "This weekend" in the sentence opens Limited time on This weekend
   Platform.store.set('cff.genres.v2', selList(UI.gsel));   // remembered as a list, e.g. ["limited","play"]
   refresh();
@@ -4881,7 +4978,8 @@ function showLaterSection(){ // v3: the "later" things live in "Show the rest" i
 function applyF(code){ // single filter change (pSmall panels, the "Make it 2 hrs" buttons, the test hook)
   var F = S.f, a = code.split(':'), k = a[0], v = a.slice(1).join(':');
   switch (k) {
-    case 'when': S.when = v; if (v === 'pick' && !S.pickAt) { var p = cparts(nowMs()); S.pickAt = addDays(p.key, 1) + 'T19:00'; } break;
+    case 'when': S.when = v; if (v === 'pick' && !S.pickAt) { var p = cparts(nowMs()); S.pickAt = addDays(p.key, 1); } break;   // v5.6: a picked day starts as "Any time"
+    case 'anytime': { var dk = parseDT(S.pickAt), pk = cparts(nowMs()); S.when = 'pick'; S.pickAt = dk ? dk.key : pk.key; } break;
     case 'budget': if (v === 'off') S.budgetOn = false; else { S.budget = v === 'night' ? 'night' : +v; S.budgetOn = true; } break;
     case 'notBeen': F.notBeen = !F.notBeen; break;
     case 'fits': F.fits = !F.fits; break;
@@ -4907,20 +5005,20 @@ function openSmall(title, fn){ smallRender = fn; $('pSmallTitle').textContent = 
 function smallRadius(){ $('pSmallBody').innerHTML = chipsGroup(RADII.map(function(r){ return ['radius:' + r, fmtRadius(r), S.f.radius === r]; })) + '<div style="margin-top:12px">' + chipsGroup([['mode:car', 'Drive', S.f.mode === 'car'], ['mode:transit', 'Walk + CTA', S.f.mode === 'transit'], ['mode:walk', 'Walk only', S.f.mode === 'walk']]) + '</div><p class="hint">Distances are straight-line (as the crow flies). Travel times are rough. With Walk + CTA, places more than ' + CTA_MAX_MI + ' mi away show a drive time (no CTA estimate).</p>'; }
 var DAY_PARTS = [[600, 'Morning'], [840, 'Afternoon'], [1140, 'Evening'], [1320, 'Late']];
 function smallWhen(){ // v4: Now / Tonight, or pick a day (next 8 days) and a part of the day, or an exact time
-  var p = cparts(nowMs()), d = parseDT(S.pickAt), on = S.when === 'pick' && d, selKey = on ? d.key : '', selMin = on && d.min !== null ? d.min : 1140, days = '';
+  var p = cparts(nowMs()), d = parseDT(S.pickAt), on = S.when === 'pick' && d, selKey = on ? d.key : '', selMin = on && d.min !== null ? d.min : -1, days = '';   // v5.6: -1 = Any time
   for (var i = 0; i < 8; i++) { var k = addDays(p.key, i); days += '<button class="chip" type="button" data-day="' + k + '" aria-pressed="' + (k === selKey) + '">' + (i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : DOW_SHORT[wdOfKey(k)] + ' ' + (+k.slice(8))) + '</button>'; }
   $('pSmallBody').innerHTML = '<div class="seg">' + [['now', 'Now'], ['tonight', 'Tonight']].map(function(x){ return '<button type="button" data-f="when:' + x[0] + '" aria-pressed="' + (S.when === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>' +
     '<span class="flabel">Or pick a day</span><div class="chips-w" style="display:flex;flex-wrap:wrap;gap:8px">' + days + '</div>' +
-    '<div class="seg" style="margin-top:12px">' + DAY_PARTS.map(function(x){ return '<button type="button" data-part="' + x[0] + '" aria-pressed="' + (on && selMin === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>' +
-    '<label class="flabel" for="pickAt">Or an exact time (Chicago)</label><input class="dtin" style="margin-top:0" id="pickAt" type="datetime-local" min="' + nowLocalInput() + '" value="' + esc(on ? S.pickAt : '') + '">' +
-    '<p class="hint">Tonight is 7 pm today. Morning is 10 am, afternoon 2 pm, evening 7 pm, late 10 pm.</p>' +
+    '<div class="seg" style="margin-top:12px">' + [[-1, 'Any time']].concat(DAY_PARTS).map(function(x){ return '<button type="button" data-part="' + x[0] + '" aria-pressed="' + (on && selMin === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>' +
+    '<label class="flabel" for="pickAt">Or an exact time (Chicago)</label><input class="dtin" style="margin-top:0" id="pickAt" type="datetime-local" min="' + nowLocalInput() + '" value="' + esc(on && d.min !== null ? S.pickAt : '') + '">' +
+    '<p class="hint">Any time = everything open long enough that day. Morning is 10 am, afternoon 2 pm, evening 7 pm, late 10 pm. Tonight is 7 pm today.</p>' +
     '<button class="btn-primary" type="button" data-close="pSmall" style="width:100%;margin-top:14px">Done</button>';
 }
 function pickDay(key, min){ // from the day chips and the parts of the day
   var d = parseDT(S.pickAt), p = cparts(nowMs());
   if (!isKey(key)) key = (S.when === 'pick' && d) ? d.key : p.key;
-  if (!isNum(min)) min = (S.when === 'pick' && d && d.min !== null) ? d.min : 1140;
-  S.when = 'pick'; S.pickAt = key + 'T' + pad(Math.floor(min / 60)) + ':' + pad(min % 60);
+  if (!isNum(min)) min = (S.when === 'pick' && d && d.min !== null) ? d.min : -1;   // v5.6: a new day starts as "Any time"
+  S.when = 'pick'; S.pickAt = min < 0 ? key : key + 'T' + pad(Math.floor(min / 60)) + ':' + pad(min % 60);
   refresh();
 }
 
@@ -5221,6 +5319,7 @@ function onListClick(e){
     if (a === 'retry') loadData();
     else if (a === 'about') { renderAbout(); openPanel('pAbout'); }
     else if (a === 'whennow') { S.when = 'now'; refresh(); }
+    else if (a === 'farmore') { UI.farMore = true; refresh(); }   // v5.6 Worth the drive: show all
     else if (a === 'tip') openTip();
     else if (a === 'filters') openFilters();
     return;
@@ -5235,8 +5334,8 @@ function fx(o){ return ext({id:'fx-' + (++uid), name:'Fixture', kind:'place', ca
 function fresh(o, extra){ var c = {}; for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k) && k.slice(0, 2) !== '__') c[k] = o[k]; return ext(c, extra); }   // a copy without cached state
 function northOf(mi){ return 41.88 + mi / (3958.8 * Math.PI / 180); }
 function runSelfTest(){
-  var keepPlanST = UI.planning, keepAtST = UI.planAt; UI.planning = false; UI.planAt = null;   // v5.3: the checks expect "now" wording even if the app is in planning mode
-  try { return runSelfTest0(); } finally { UI.planning = keepPlanST; UI.planAt = keepAtST; }
+  var keepPlanST = UI.planning, keepAtST = UI.planAt, keepAnyST = UI.anyDay; UI.planning = false; UI.planAt = null; UI.anyDay = '';   // v5.3: the checks expect "now" wording even if the app is in planning mode
+  try { return runSelfTest0(); } finally { UI.planning = keepPlanST; UI.planAt = keepAtST; UI.anyDay = keepAnyST; }
 }
 function runSelfTest0(){
   var R = [];
@@ -6373,11 +6472,86 @@ function runSelfTest0(){
     ok('clusters stay neutral (a number, no kind icon)', typeof recluster === 'function' && String(recluster).indexOf('class="cluster"') >= 0 && !/cluster[^\n]*kindSvg/.test(String(recluster)), 'cluster markup changed');
   });
 
+  block('v5.6 "Any time" on a picked day (Wed Nov 18; now is Fri Nov 13, 6 pm)', function(){
+    var keepN = UI.nowOverride, keepW = S.when, keepPk = S.pickAt, keepB = S.budgetOn, keepF = UI.farMore;
+    var WED = '2026-11-18', F = ext(defaultFilters(), {radius:25, mode:'car'}), base = {lat:41.88, lng:-87.63, budget:'any', mode:'car'}, ctx = ext(base, {day:WED});
+    var wkd = function(r){ var h = allDays(r); return h; };
+    var ape = fx({name:'Ape-like zipline', category:'games-arcade', min_minutes:120, duration_minutes:180, indoor_outdoor:'outdoor', hours:wkd(['10:00', '16:00']), lat:northOf(3)});
+    var shutWed = wkd(['10:00', '17:00']); shutWed.wed = [];
+    var noWed = fx({name:'Closed Wednesdays', category:'games-arcade', hours:shutWed, lat:northOf(1)});
+    var seas = fx({name:'Summer only', category:'games-arcade', hours:wkd(['10:00', '16:00']), season:{open_from:'2026-05-01', open_to:'2026-10-31'}, lat:northOf(1)});
+    var cdate = fx({name:'Closed that date', category:'games-arcade', hours:wkd(['10:00', '16:00']), closed_dates:[WED], lat:northOf(1)});
+    var blip = fx({name:'Too short a window', category:'games-arcade', min_minutes:60, duration_minutes:60, hours:wkd(['15:30', '16:00']), lat:northOf(1)});
+    var late = fx({name:'Evening arcade', category:'games-arcade', hours:wkd(['10:00', '22:00']), lat:northOf(1)});
+    var unk = fx({name:'No hours', category:'games-arcade', hours:null, lat:northOf(1)});
+    try {
+      UI.nowOverride = at('2026-11-13', '18:00'); S.budgetOn = false;
+      S.when = 'pick'; S.pickAt = WED; var T = evalTime();
+      eq('a picked day with no time is "Any time": planning on, day set, "Wed · Any time"', [UI.planning, UI.anyDay, whenLabel(), planWhen(false), planWhen(true)].join(' | '), 'true | ' + WED + ' | Wed · Any time | Wed | on Wed');
+      smallWhen(); var pw = $('pSmallBody').innerHTML;
+      ok('the When panel offers "Any time" next to the day, pressed for a picked day', /data-part="-1" aria-pressed="true">Any time</.test(pw) && pw.indexOf('>Morning<') > 0, pw.replace(/<[^>]+>/g, ' ').slice(0, 160));
+      eq('...and the header title is "Three for Wed"', homeTitle({p:cparts(T)}), 'Three for Wed');
+      var items = [ape, noWed, seas, cdate, blip, late, unk], res = runPipeline(items, T, ctx, F);
+      var row = function(it){ for (var i = 0; i < res.all.length; i++) if (res.all[i].item === it) return res.all[i]; return null; };
+      eq('Go Ape-like daytime hours (10-4, 2 hr visit) show for "Wed, any time"', row(ape).group, 'fits');
+      eq('...and its row shows that day\'s hours', row(ape).d.text, 'Open 10 am – 4 pm Wed');
+      eq('...the card line too (no "open now")', statusShort(row(ape)), 'Open 10 am – 4 pm Wed');
+      var eve = computeItem(ape, at(WED, '19:00'), base);
+      eq('the old way (Wed 7 pm) missed it: not a fit', eve.group === undefined ? groupOf(eve, F) : eve.group, 'closed');
+      ok('a place closed all Wednesday does not show', row(noWed).group !== 'fits', row(noWed).group + ' ' + row(noWed).d.text);
+      eq('a seasonal closure is respected', row(seas).st.key, 'season');
+      ok('a closed_dates day is respected', row(cdate).group !== 'fits', row(cdate).group);
+      ok('open only 30 min that day, 60 min visit: not a fit', row(blip).group !== 'fits', row(blip).group + ' ' + row(blip).d.text);
+      eq('no hours on file: "hours not listed" group, not a fit', row(unk).group, 'unknown');
+      var c60 = computeItem(fresh(ape), T, ext(ctx, {budget:60}));
+      ok('a 1 hr time budget is used: the 2 hr visit does not fit', groupOf(c60, F) !== 'fits', groupOf(c60, F));
+      var cE = computeItem(fresh(late), T, ext(ctx, {budget:90}));
+      eq('...a 10 am - 10 pm place with 1.5 hrs still fits', groupOf(cE, F), 'fits');
+      var v = buildView(res, F, '', ''), txt = function(h){ return String(h).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '); };
+      var screens = [resultLine(v), homeListHTML(v, {}), kindListHTML(buildView(res, F, 'play', ''), {}), homeTitle(res)].concat(res.all.map(function(c){ return c.d.text + ' ' + (c.d.sub || '') + ' ' + factsLine(c); })).map(txt).join(' || ');
+      ok('planning words only: no "now", "right now" or "today" on Wed screens', !/\bnow\b|\btoday\b/i.test(screens), (screens.match(/.{0,40}\b(now|today)\b.{0,20}/i) || [''])[0]);
+      var pool = threePool(v, '2026-11-13', []), ids = pool.map(function(c){ return c.item.name; });
+      ok('the three for Wed are things that fit that day, nearest first (not "opens soonest")', ids[0] === 'Evening arcade' && ids.indexOf('Ape-like zipline') > 0 && ids.indexOf('Closed Wednesdays') < 0, ids.join(', '));
+      S.pickAt = '2026-11-13'; T = evalTime();
+      var resT = runPipeline([fresh(ape), fresh(late)], T, ext(base, {day:'2026-11-13'}), F);
+      eq('today, any time, at 6 pm: a place that closed at 4 is out, one open till 10 is in', resT.all.map(function(c){ return c.item.name + '=' + c.group; }).join(', '), 'Ape-like zipline=closed, Evening arcade=fits');
+      eq('...and "Today · Any time"', whenLabel(), 'Today · Any time');
+      S.pickAt = '2026-11-10'; evalTime();
+      eq('a day in the past falls back to now (with the "already passed" note)', [UI.pickPast, UI.anyDay].join('|'), 'true|');
+    } finally { UI.nowOverride = keepN; S.when = keepW; S.pickAt = keepPk; S.budgetOn = keepB; UI.farMore = keepF; UI.planning = false; UI.planAt = null; UI.anyDay = ''; }
+  });
+  block('v5.6 "Worth the drive"', function(){
+    var keepF = UI.farMore, keepV = UI.view; UI.farMore = false;
+    try {
+      var T = at('2026-11-13', '12:00'), F = ext(defaultFilters(), {radius:25, mode:'car'}), ctx = {lat:41.88, lng:-87.63, budget:'any', mode:'car'}, open = allDays(['10:00', '22:00']);
+      var near1 = fx({name:'Near arcade', hours:open, lat:northOf(1)}), mid = fx({name:'Eight miles', hours:open, lat:northOf(8)});
+      var far20 = fx({name:'Twenty miles', hours:open, lat:northOf(20)}), far30 = fx({name:'Thirty miles', hours:open, lat:northOf(30)});
+      var farClosed = fx({name:'Far but shut', hours:allDays(['20:00', '22:00']), lat:northOf(22)});
+      var items = [near1, mid, far20, far30, farClosed], res = runPipeline(items, T, ctx, F), v = buildView(res, F, 'play', '');
+      var nm = function(l){ return l.map(function(c){ return c.item.name; }).join(', '); };
+      eq('Drive: 8 mi (31 min) stays in the list; 20 mi (47 min) and 30 mi (past the 25 mi radius) go to Worth the drive', nm(v.kind.fits) + ' | ' + nm(v.kind.far), 'Near arcade, Eight miles | Twenty miles, Thirty miles');
+      ok('a far place that does not fit the time is not in it', v.far.every(function(c){ return c.item !== farClosed; }), nm(v.far));
+      var h = kindListHTML(v, {});
+      ok('the section "Worth the drive" is at the end of the list', h.indexOf('Worth the drive') > h.indexOf('Eight miles') && h.indexOf('Worth the drive') > 0, h.replace(/<[^>]+>/g, ' ').slice(0, 200));
+      ok('...past-the-radius rows say so', /past 25 mi/.test(h), 'no "past 25 mi"');
+      var ctxT = ext(ctx, {mode:'transit'}), FT = ext(F, {mode:'transit'}), vT = buildView(runPipeline(items.map(function(i){ return fresh(i); }), T, ctxT, FT), FT, 'play', '');
+      eq('Walk + CTA: 8 mi (52 min by CTA) is also in Worth the drive', nm(vT.kind.fits) + ' | ' + nm(vT.kind.far), 'Near arcade | Twenty miles, Eight miles, Thirty miles');   // 20 mi has no CTA estimate, so its 47 min drive sorts before 52 min by CTA
+      var many = []; for (var i = 0; i < 7; i++) many.push(fx({name:'Far ' + i, hours:open, lat:northOf(19 + i * 0.8)}));
+      var vM = buildView(runPipeline(many, T, ctx, F), F, '', ''), hM = homeListHTML(vM, {});
+      var nRows = (hM.split('class="rows far"')[1] || '').split('</ul>')[0].split('<li class="row').length - 1;
+      ok('kept short: up to 5 rows, then "Show N more"', nRows === 5 && /Show \d+ more/.test(hM), nRows + ' rows; ' + (/Show \d+ more/.test(hM) ? 'has' : 'no') + ' "Show more"');
+      UI.view = 'browse'; buildPins(v, res);
+      var fp = (res.pins || []).filter(function(e){ return e.o && e.o.far; }).map(function(e){ return e.c.item.name; });
+      eq('on the map they are faded pins', fp.join(', '), 'Twenty miles, Thirty miles');
+      ok('...drawn with the "far" class', pinHTML(res.pins.filter(function(e){ return e.o.far; })[0], [0, 0]).indexOf('mk sm far') >= 0, 'class missing');
+    } finally { UI.farMore = keepF; UI.view = keepV; }
+  });
+
   block('v3 page parts', function(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.5 (2026-11-13)');
+    eq('version', VERSION, 'v5.6 (2026-11-13)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -6667,7 +6841,11 @@ function readHash(){
   if (/panel=filters/.test(hsh) && mapEl) { openFilters(); var dm = /draft=([a-z0-9:$-]+)/i.exec(hsh); if (dm) { applyDraft(UI.draft, dm[1]); renderFilters(); } }
   if (/panel=surprise/.test(hsh) && mapEl) { var trySurprise = function(){ if (DATA_LOADED) openSurprise(); else setTimeout(trySurprise, 200); }; trySurprise(); }
   var wm = /when=(now|tonight|weekend)/.exec(hsh); if (wm && mapEl) { S.when = wm[1]; refresh(); }
-  var pkm = /pick=(\d{4}-\d{2}-\d{2}T\d{1,2}:\d{2})/.exec(hsh); if (pkm && mapEl) { S.when = 'pick'; S.pickAt = pkm[1]; refresh(); }   // v5.3 testing hook: #pick=2026-11-16T12:00 (planning mode)
+  var pkm = /pick=(\d{4}-\d{2}-\d{2}(?:T\d{1,2}:\d{2})?)/.exec(hsh); if (pkm && mapEl) { S.when = 'pick'; S.pickAt = pkm[1]; refresh(); }   // v5.3 testing hook: #pick=2026-11-16T12:00 (planning mode); v5.6: #pick=2026-11-18 = Wed, any time
+  // v5.6 testing hooks: #mode=transit (not saved), #panel=when, #scroll=far (the list scrolled to "Worth the drive")
+  var mdm = /mode=(car|transit|walk)/.exec(hsh); if (mdm && mapEl) { S.f.mode = mdm[1]; refresh(); }
+  if (/panel=when/.test(hsh) && mapEl) openSmall('When?', smallWhen);
+  if (/scroll=far/.test(hsh) && mapEl) { var tryFar = function(n){ var fh = DATA_LOADED && listRoot.querySelector('.far-h'); if (fh) $('sheetScroll').scrollTop = Math.max(0, fh.offsetTop - 60); else if (n < 50) setTimeout(function(){ tryFar(n + 1); }, 200); }; tryFar(0); }
   var im = /item=([a-z0-9-]+)/i.exec(hsh); if (im) UI.pendingItem = im[1];
   if (UI.pendingItem && DATA_LOADED) openPending();
   if (/(^|[#&])tip($|&)/.test(hsh) && mapEl) openTip();
@@ -6802,6 +6980,7 @@ function init(){
 
 window.__cff = {
   version: VERSION, appName: APP_NAME,
+  bestTimeOfDay: bestTimeOfDay, dayHoursText: dayHoursText, isFar: isFar, farSectionHTML: farSectionHTML, FAR_MIN_BY_MODE: FAR_MIN_BY_MODE,   // v5.6
   KIND_ICON: KIND_ICON, KIND_SHAPE: KIND_SHAPE, kindIcon: kindIcon, kindColors: function(theme){ return kindColorsFor(theme); },   // v5.4
   statusAt: statusAt, describe: describe, eventBadge: eventBadge, fitFor: fitFor, fitNote: fitNote, trustOf: trustOf,
   seasonState: seasonState, eventEntries: eventEntries, closedSet: closedSet, dayRanges: dayRanges,
