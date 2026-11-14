@@ -783,6 +783,104 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
 .qchip.selchip .i{width:14px;height:14px;flex:none}
 
 /* ---------- self-test ---------- */
+/* v5.12 taste: the swipe deck, hard no's, reveal, profile, pick 2 of 6 (spec v2 §3-§10) */
+.taste{position:fixed;inset:0;z-index:118;background:var(--paper);color:var(--ink);display:flex;flex-direction:column;overscroll-behavior:none;overflow-y:auto;padding:var(--sat) 0 var(--sab);font-family:var(--f-body)}
+html.tk-open,html.tk-open body{overscroll-behavior:none}
+.taste[data-mode="deck"]{overflow:hidden}
+.tk-top{display:grid;grid-template-columns:44px 1fr 64px;align-items:center;gap:8px;height:44px;padding:0 8px;flex:none;width:100%;max-width:560px;margin:0 auto}
+.tk-ic,.tk-skip{width:44px;height:44px;border:0;background:none;color:var(--ink);display:grid;place-items:center;border-radius:999px;cursor:pointer;font:600 15px var(--f-body)}
+.tk-skip{width:64px;color:var(--ink-2)}
+.tk-ic:disabled{opacity:.3;cursor:default}
+.tk-ic .i,.tk-b .i,.tk-stamp .i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tk-prog{height:3px;border-radius:3px;background:var(--rule-strong);overflow:hidden}
+.tk-prog i{display:block;height:100%;background:var(--ink);transition:width .2s}
+.tk-ttl{margin:0;text-align:center;font:600 14px var(--f-body);color:var(--ink-2)}
+.tk-stage{position:relative;flex:1 1 auto;min-height:0;width:calc(100% - 32px);max-width:400px;margin:8px auto 0;max-height:580px}
+.tk-ghost,.tk-card{position:absolute;inset:0;border-radius:var(--r-card)}
+.tk-ghost{transform:translateY(8px) scale(.96);background:var(--paper-3);box-shadow:inset 0 0 0 1px var(--rule)}
+.tk-card{overflow:hidden;background:var(--paper-3);box-shadow:0 12px 32px rgb(0 0 0 / .18);touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;will-change:transform}
+.tk-card[data-dir="yes"]{box-shadow:0 12px 32px rgb(0 0 0 / .18),inset 0 0 0 3px #C6FF3D}
+.tk-card[data-dir="no"]{box-shadow:0 12px 32px rgb(0 0 0 / .18),inset 0 0 0 3px var(--ink-2)}
+.tk-card[data-dir="love"]{box-shadow:0 12px 32px rgb(0 0 0 / .18),inset 0 0 0 3px var(--g-limited)}
+.tk-card[data-dir="never"]{box-shadow:0 12px 32px rgb(0 0 0 / .18),inset 0 0 0 3px var(--ink)}
+.tk-ph{position:absolute;inset:0;background:color-mix(in srgb,var(--c) 40%,var(--paper-2))}
+.tk-ph img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.tk-scrim{position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(to bottom,rgb(0 0 0 / 0),rgb(0 0 0 / .72));pointer-events:none}
+.tk-text{position:absolute;left:20px;right:20px;bottom:20px;color:#fff;pointer-events:none}
+.tk-text h2{margin:0;font:700 24px/28px var(--f-display);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-wrap:balance}
+.tk-text p{margin:6px 0 0;font:500 15px/20px var(--f-body);color:rgb(255 255 255 / .86);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tk-kind{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:999px;background:color-mix(in srgb,var(--c) 90%,transparent);margin-right:8px;vertical-align:-6px}
+.tk-kind svg{width:18px;height:18px;fill:#fff}
+.tk-stamp{position:absolute;top:20px;width:56px;height:56px;border-radius:999px;display:grid;place-items:center;opacity:0;background:rgb(0 0 0 / .45);color:#fff;pointer-events:none}
+.tk-stamp .i{width:30px;height:30px;stroke-width:2.6}
+.tk-stamp.yes{left:20px;color:#C6FF3D}.tk-stamp.no{right:20px}.tk-stamp.love{left:50%;margin-left:-28px;color:#FF7A9A}.tk-stamp.never{left:50%;margin-left:-28px;top:auto;bottom:110px}
+.tk-card.nudge{animation:tkNudge .4s ease-in-out}
+@keyframes tkNudge{50%{transform:translateX(24px) rotate(1.2deg)}}
+.tk-foot{flex:none;padding:10px 16px 16px;text-align:center}
+.tk-hint{display:flex;justify-content:center;gap:14px;margin:0 0 8px;font:500 12px var(--f-body);color:var(--ink-2)}
+.tk-btns{display:flex;justify-content:center;align-items:center;gap:20px;height:72px}
+.tk-b{border:0;border-radius:999px;display:grid;place-items:center;cursor:pointer;flex:none}
+.tk-b.never,.tk-b.love{width:48px;height:48px}.tk-b.no,.tk-b.yes{width:60px;height:60px}
+.tk-b.never{background:var(--ink);color:var(--paper)}
+.tk-b.no{background:var(--paper-3);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--rule-strong)}
+.tk-b.love{background:var(--paper-3);color:var(--g-limited);box-shadow:inset 0 0 0 1.5px var(--rule)}
+.tk-b.yes{background:#C6FF3D;color:#0B0A10}
+.tk-b.no .i,.tk-b.yes .i{width:28px;height:28px;stroke-width:2.4}
+.tk-b:active{transform:scale(.94)}
+.tk-keys{display:none;margin:6px 0 0;font:500 12px var(--f-body);color:var(--ink-3)}
+.tk-guest{text-align:center;margin:8px 0 0;font:600 13px var(--f-body);color:var(--ink-2)}
+.tk-page{width:100%;max-width:560px;margin:0 auto;padding:12px 16px 24px}
+.tk-h1{margin:8px 0 6px;font:700 24px/1.15 var(--f-display);text-wrap:balance}
+.tk-h1:focus{outline:none}
+.tk-h3{margin:22px 0 8px;font:700 15px var(--f-body)}
+.tk-sub{margin:0 0 10px;font:500 13px/1.4 var(--f-body);color:var(--ink-3)}
+.tk-lab{font:600 12px var(--f-body);color:var(--ink-2);margin-right:4px}
+.tk-seg{margin:6px 0 10px}
+.tk-hard .sw-row,.tk-use{min-height:52px}
+.tk-foot2{display:flex;gap:10px;margin-top:18px}.tk-foot2 > *{flex:1}
+.tk-row2{display:flex;gap:10px;margin:8px 0}.tk-row2 > *{flex:1}
+.tk-in{min-height:44px;border-radius:12px;border:1px solid var(--rule-strong);background:var(--paper-3);color:var(--ink);padding:0 12px;font:500 15px var(--f-body);min-width:0}
+.btn-2.warn{color:var(--g-limited)}
+.tk-rev{list-style:none;margin:6px 0 10px;padding:0}
+.tk-rev li{display:flex;align-items:center;gap:4px;padding:6px 0;border-bottom:1px solid var(--rule)}
+.tk-rv{flex:1;min-width:0;display:flex;align-items:center;gap:12px;border:0;background:none;color:var(--ink);text-align:left;padding:0;cursor:pointer}
+.tk-th{position:relative;flex:none;width:64px;height:64px;border-radius:var(--r-thumb);overflow:hidden;background:color-mix(in srgb,var(--c) 35%,var(--paper-2))}
+.tk-th img{width:100%;height:100%;object-fit:cover}
+.tk-rt{min-width:0}.tk-rt b{display:block;font:600 15px/1.25 var(--f-body);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tk-rt small{display:block;font:500 13px/1.3 var(--f-body);color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tk-th-b{width:44px;height:44px;flex:none;border:0;background:none;color:var(--ink-3);border-radius:999px;display:grid;place-items:center;cursor:pointer}
+.tk-th-b .i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}
+.tk-th-b[aria-pressed="true"]{color:var(--ink);background:var(--paper-2)}
+.tk-words{margin:12px 0 6px;font:600 13px var(--f-body);color:var(--ink-2)}
+.tk-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:8px 0}
+.tk-chips .chip .i{width:14px;height:14px;margin-left:4px;fill:none;stroke:currentColor;stroke-width:2}
+.tk-sliders{margin:14px 0 6px}
+.tk-sl{display:grid;grid-template-columns:64px auto 1fr auto;align-items:center;gap:8px;min-height:56px;border-bottom:1px solid var(--rule)}
+.tk-sl-n{font:600 14px var(--f-body)}.tk-sl-e{font:500 12px var(--f-body);color:var(--ink-3);min-width:44px}.tk-sl-e:last-child{text-align:right}
+.tk-sl input{width:100%;min-width:0;accent-color:var(--ink);height:28px}
+.tk-sl.dashed input{opacity:.55}
+.tk-sl.dashed .tk-sl-n::after{content:"";display:inline-block;width:18px;border-top:2px dashed var(--ink-3);margin-left:6px;vertical-align:middle}
+.tk-pairs{display:flex;flex-direction:column;gap:10px;width:calc(100% - 32px);max-width:420px;margin:8px auto 0}
+.tk-pc{position:relative;height:min(34vh,240px);border:0;border-radius:var(--r-card);overflow:hidden;padding:0;cursor:pointer;background:var(--paper-3)}
+.tk-pc .tk-text b{display:block;font:700 18px/1.2 var(--f-display)}.tk-pc .tk-text > span{display:block;font:500 13px var(--f-body);color:rgb(255 255 255 / .86);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tk-pairs + .tk-row2{width:calc(100% - 32px);max-width:420px;margin:10px auto}
+.tk-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.tk-tile{position:relative;aspect-ratio:7/8;border:0;border-radius:18px;overflow:hidden;padding:0;cursor:pointer;background:var(--paper-3)}
+.tk-tile .tk-kind{position:absolute;left:8px;bottom:8px;margin:0}
+.tk-tile.on{box-shadow:0 0 0 3px #C6FF3D}
+.tk-tick{position:absolute;right:8px;top:8px;width:30px;height:30px;border-radius:999px;background:#C6FF3D;color:#0B0A10;display:grid;place-items:center}
+.tk-tick .i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.6}
+.tk-tab{width:100%;border-collapse:collapse;font:500 13px var(--f-body);margin:6px 0}.tk-tab th,.tk-tab td{text-align:left;padding:6px 4px;border-bottom:1px solid var(--rule)}
+.tk-nag{position:relative;display:flex;align-items:center;gap:12px;margin:12px 0 4px;padding:14px 48px 14px 16px;border-radius:var(--r-tile);background:var(--paper-2);box-shadow:inset 0 0 0 1px var(--rule)}
+.tk-nag > div{flex:1;min-width:0}.tk-nag-t{margin:0;font:700 15px/1.25 var(--f-body)}.tk-nag-s{margin:2px 0 0;font:500 13px var(--f-body);color:var(--ink-2)}
+.tk-nagx{position:absolute;right:2px;top:50%;margin-top:-22px;width:44px;height:44px;border:0;background:none;color:var(--ink-3);display:grid;place-items:center;cursor:pointer}
+.tk-nagx .i{width:18px;height:18px}
+.tk-link{margin:10px 0 0}.tk-link .linkbtn{display:inline-flex;align-items:center;gap:6px}.tk-link .i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+.c3-why{margin:4px 0 0;font:500 13px var(--f-body);color:rgb(255 255 255 / .8)}
+.tk-lean{position:absolute;right:12px;bottom:12px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:#fff;color:#0B0A10;font:700 11px/20px var(--f-body);text-align:center}
+.acct-btn .acct-ini{display:grid;place-items:center;width:26px;height:26px;border-radius:999px;background:var(--ink);color:var(--paper);font:700 13px var(--f-body)}
+@media (max-height:640px){.tk-top{height:40px}.tk-stage{margin-top:4px}.tk-foot{padding:6px 16px 10px}.tk-hint{display:none}.tk-btns{gap:14px;height:60px}.tk-b.never,.tk-b.love{width:40px;height:40px}.tk-b.no,.tk-b.yes{width:52px;height:52px}.tk-text h2{font-size:20px;line-height:24px;-webkit-line-clamp:1}}
+@media (min-width:900px){.tk-stage{max-width:400px;max-height:560px}.tk-keys{display:block}.tk-grid{grid-template-columns:repeat(3,1fr)}}
+@media (prefers-reduced-motion:reduce){.tk-card.nudge{animation:none}.tk-prog i{transition:none}}
 .selftest{position:fixed;top:0;right:0;bottom:0;left:0;z-index:300;background:var(--paper);color:var(--ink);overflow:auto;padding:calc(var(--sat) + 14px) 14px 40px;font:500 13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 .selftest h1{font:900 30px/1 var(--f-display);text-transform:uppercase;margin:0 0 6px}
 .selftest .sum{font:700 16px/1.3 var(--f-body);margin:0 0 4px}
@@ -1051,6 +1149,10 @@ body{background:var(--paper)}
     <symbol id="k-make" viewBox="0 0 24 24"><g transform="rotate(45 12 12)" fill="currentColor" stroke="none"><path d="M9.3 4.4V3.7a2.7 2.7 0 0 1 5.4 0v.7z"/><rect x="9.3" y="5.8" width="5.4" height="10.4"/><path d="M9.3 17.5h5.4L12 23z"/></g></symbol>
     <symbol id="k-relax" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M2 10.8h20v1.4c0 4.2-3.2 6.8-7.2 6.8H9.2C5.2 19 2 16.4 2 12.2z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6.6 19l-1 2.4M17.4 19l1 2.4M8 8.4c-1.2-1.3 1.2-2.2 0-3.4s1.2-2.2 0-3.4M12 8.4c-1.2-1.3 1.2-2.2 0-3.4s1.2-2.2 0-3.4M16 8.4c-1.2-1.3 1.2-2.2 0-3.4s1.2-2.2 0-3.4"/></symbol>
     <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0 0 17c1.3 0 1.9-.8 1.9-1.7 0-1.1-.9-1.5-.9-2.5 0-1 .8-1.7 1.9-1.7h2.2a3.4 3.4 0 0 0 3.4-3.4C20.5 7 16.7 3.5 12 3.5z"/><circle cx="7.6" cy="11.6" r="1.2" fill="currentColor"/><circle cx="10" cy="7.6" r="1.2" fill="currentColor"/><circle cx="14.6" cy="7.6" r="1.2" fill="currentColor"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20.2c1.2-3.6 4.1-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.3S3.8 15.4 3.8 9.4A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 8.2 2.1c0 6-8.2 10.9-8.2 10.9z"/></symbol>
+    <symbol id="i-ban" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2"/><path d="M6.2 6.2l11.6 11.6"/></symbol>
+    <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 6.5 4.5 11 9 15.5"/><path d="M4.8 11h9.7a5 5 0 0 1 0 10H12"/></symbol>
     <symbol id="star6" viewBox="0 0 24 24"><path d="M12 1 14.2 8.19 21.53 6.5 16.4 12 21.53 17.5 14.2 15.81 12 23 9.8 15.81 2.47 17.5 7.6 12 2.47 6.5 9.8 8.19z"/></symbol>
   </defs>
 </svg>
@@ -1140,6 +1242,7 @@ body{background:var(--paper)}
   <section id="pTheme" class="panel theme" hidden role="dialog" aria-labelledby="pThemeTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pThemeTitle" tabindex="-1">Theme</h2><button class="p-close" type="button" data-close="pTheme" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pThemeBody"></div></section>
   <section id="pTip" class="panel" hidden role="dialog" aria-labelledby="pTipTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pTipTitle" tabindex="-1">Send a tip</h2><button class="p-close" type="button" data-close="pTip" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pTipBody"></div><div class="p-foot"><button class="btn-primary" id="tipGo" type="button">Send tip</button></div></section>
   <section id="pSurprise" class="panel board" hidden role="dialog" aria-labelledby="pSurpriseTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title vh" id="pSurpriseTitle" tabindex="-1">Surprise me</h2><span></span><button class="p-close" type="button" data-close="pSurprise" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pSurpriseBody" aria-live="polite"></div></section>
+  <div id="taste" class="taste" hidden role="dialog" aria-modal="true" aria-label="Your taste"></div>
   <div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
 </div>
 <div id="selftest" class="selftest" hidden></div>
@@ -1152,7 +1255,7 @@ body{background:var(--paper)}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.11 (2026-11-14)';
+var VERSION = 'v5.12 (2026-11-14)';
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
@@ -2928,6 +3031,7 @@ function passFilters(c, F){
   }
   if (F.walkin && it.booking !== 'walk-in') return false;
   if (F.hide21 && is21(it)) return false;
+  if (tasteHides(it)) return false;   // v5.12: the taste "hard no's" (Budget, No 21+, Skip bar-centered stuff) are the ONLY taste settings that hide anything
   if (F.notBeen && checkinOf(it.id)) return false;   // v4: "Only places I haven't been"
   if (anyKey(F.who)) {
     var okw = (F.who.date && hasTag(it, 'date')) || (F.who.friends && hasTag(it, 'friends')) || (F.who.solo && hasTag(it, 'solo')) || (F.who.kids && kidsOk(it));
@@ -3097,9 +3201,19 @@ function comingGroup(key, p){ var dd = dayDiff(p.key, key); return dd <= 3 ? 'wk
 function comingLabel(g, p){ var late = p.wd >= 4 && p.wd <= 6; if (g === 'wknd') return late ? 'This weekend' : 'Next 3 days'; if (g === 'next') return late || p.wd === 0 ? 'Next week' : 'Next 10 days'; return 'Later'; }
 function trustRank(c){ var v = (c.item.verified || {}).status; return v === 'verified' || (v === 'closed' && closedKind(c.item) === 'season') ? 0 : v === 'conflicting' ? 2 : 1; }
 function rankFits(a, b){ // best-pick rule (spec §4.1): trust, whole visit before short, limited first, travel, distance
+  // v5.12 (taste spec v2 §6b): "never" tags and date-mode misery rank last (never hidden), No car puts suburbs last, then travel BANDS with taste inside each band.
+  // With an empty profile every taste key is 0 and band-then-minutes is the same order as minutes alone, so the order is exactly v5.11's (self-test T1).
+  var st = tasteNow();
+  return isNever(a.item, st) - isNever(b.item, st) || noCarLast(a, st) - noCarLast(b, st) || miseryOf(a, st) - miseryOf(b, st) ||
+    trustRank(a) - trustRank(b) || ((a.fit && a.fit.short) ? 1 : 0) - ((b.fit && b.fit.short) ? 1 : 0) ||
+    (a.lim === 'now' ? 0 : 1) - (b.lim === 'now' ? 0 : 1) || travBand(a) - travBand(b) || tasteScore(b, st) - tasteScore(a, st) ||
+    a.trav.min - b.trav.min || (a.dist === null ? 1e9 : a.dist) - (b.dist === null ? 1e9 : b.dist);
+}
+function rankFitsV511(a, b){ // the v5.11 rule, kept only so the self-test can prove an empty profile changes nothing (T1)
   return trustRank(a) - trustRank(b) || ((a.fit && a.fit.short) ? 1 : 0) - ((b.fit && b.fit.short) ? 1 : 0) ||
     (a.lim === 'now' ? 0 : 1) - (b.lim === 'now' ? 0 : 1) || a.trav.min - b.trav.min || (a.dist === null ? 1e9 : a.dist) - (b.dist === null ? 1e9 : b.dist);
 }
+function travBand(c){ var m = c.trav && isNum(c.trav.min) ? c.trav.min : 30; return m <= 10 ? 0 : m <= 20 ? 1 : m <= 35 ? 2 : 3; }
 function byTravel(a, b){ return a.trav.min - b.trav.min || (a.dist === null ? 1e9 : a.dist) - (b.dist === null ? 1e9 : b.dist); }
 function annotate(c, p){ c.genre = genreOf(c.item); c.sub = subOf(c.item, c.genre); c.bucket = bucketOf(c); c.lim = limitedPhase(c, p); c.soonOpen = isOpeningSoon(c, p); return c; }
 function buildView(res, F, sel, sub){ // sel: '' | 'play' | 'limited' | 'limited+play+look' | {gs, lim} (v5 multi-select)
@@ -3410,12 +3524,14 @@ function popOk(c){ return c.__popOk !== false; }   // set by threePool; anything
 /* The three picks. Rule: open at the chosen time (or opening within 15 min), reachable, three different kinds,
    at least one limited-time thing when one qualifies, nothing she checked in to in the last 30 days. "Three more" never repeats until the pool runs out. */
 var REACH_MIN = 45;                    // "reachable" = about 45 min door to door or less, when at least three such places are open
-function tasteScore(c){ return 0; }    // hook for the taste profile (step group D): a higher score moves a place up. Not built yet.
+function tasteScore(c, st){ st = st || tasteNow(); return tasteOn(st) ? Math.round(4 * fitOf(c.item, st) * overallConf(st)) : 0; }   // v5.12 (spec §6a): whole steps -4..+4, so small differences don't count; 0 with an empty profile
 function strHash(s){ var h = 5381; for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return h >>> 0; }
 function threePool(vm, todayKey, checkins){ // everything that could be one of the three, best first. The order changes each day (strHash) so it isn't always the same three.
   var s = vm.s || normSel(vm.sel), any = s.gs.length || s.lim;   // v5: the picked kinds (and Limited) narrow the three too
   var all = (vm.all || []).filter(function(c){ return c.bucket === 'fits' && !beenRecently(c.item.id, todayKey, checkins) && (!any || inSel(c, s)); });
   all.forEach(function(c){ c.__tier = reachTier(c); c.__pop = popularityOf(c.item); c.__popOk = c.__pop >= POP_FLOOR; });
+  var tst = tasteNow(), ton = tasteOn(tst);   // v5.12 (spec §6c): with taste off, everything below is exactly v5.11
+  if (ton) { var notLast = all.filter(function(c){ return !isNever(c.item, tst) && !miseryOf(c, tst); }); if (notLast.length >= 3) all = notLast; }   // "never" / misery: out of the three when 3+ others fit (still in lists, map, search)
   // v5.7: only popular things (popularity >= POP_FLOOR) when at least three of them fit; below-floor ones come in only when fewer than three popular ones do
   var popular = all.filter(function(c){ return c.__popOk; }), base = popular.length >= 3 ? popular : all;
   function kinds(l){ var m = {}; l.forEach(function(c){ m[c.genre] = 1; }); return Object.keys(m).length; }
@@ -3425,7 +3541,11 @@ function threePool(vm, todayKey, checkins){ // everything that could be one of t
   var pool = enough(near) ? near : enough(mid) ? mid : base;   // v5.1 (tester M2): within ~30 min first; further only when fewer than 3 closer ones fit
   function band(c){ var m = c.trav.min; return m <= 15 ? 0 : m <= 30 ? 1 : m <= REACH_MIN ? 2 : 3; }
   function popBand(c){ return !c.__popOk ? 2 : c.__pop >= POP_STAR ? 0 : 1; }   // v5.7: well-known places first, then popular, then the rest
-  pool.forEach(function(c){ c.__r = [c.__tier, popBand(c), -(tasteScore(c) || 0), trustRank(c), (c.anyDay && c.fit && c.fit.short) ? 1 : 0, firstPhoto(c.item) ? 0 : 1, band(c), strHash(String(c.item.id) + '|' + todayKey)]; });   // v5.6: "Any time" prefers a whole visit over a quick stop; never "opens soonest"
+  pool.forEach(function(c){
+    c.__ts = ton ? tasteScore(c, tst) : 0;
+    c.__r = ton ? [c.__tier, isNever(c.item, tst) + miseryOf(c, tst), c.__popOk ? 0 : 1, trustRank(c), -c.__ts, c.__pop >= POP_STAR ? 0 : 1, (c.anyDay && c.fit && c.fit.short) ? 1 : 0, firstPhoto(c.item) ? 0 : 1, band(c), strHash(String(c.item.id) + '|' + todayKey)]   // v5.12: trust before taste; the "star" split after taste
+      : [c.__tier, popBand(c), 0, trustRank(c), (c.anyDay && c.fit && c.fit.short) ? 1 : 0, firstPhoto(c.item) ? 0 : 1, band(c), strHash(String(c.item.id) + '|' + todayKey)];   // v5.6: "Any time" prefers a whole visit over a quick stop; never "opens soonest"
+  });
   pool.sort(function(a, b){ for (var i = 0; i < a.__r.length; i++) if (a.__r[i] !== b.__r[i]) return a.__r[i] - b.__r[i]; return 0; });
   if (pool.length < 3) pool = pool.concat(threeFill(vm, todayKey, checkins, s, any, pool));   // v5.10 (owner's iPhone, 1:38 am: one card only)
   return pool;
@@ -3486,6 +3606,372 @@ function pickThree(pool, seen){ // -> {picks:[up to 3], wrapped:true when the un
   var picks = choose(unseen, []), wrapped = false;
   if (picks.length < 3 && unseen.length < pool.length) { wrapped = true; picks = choose(pool, picks); }
   return {picks:picks, wrapped:wrapped};
+}
+
+/* ================= v5.12 taste (design/2026-11-13-taste-test-spec-v2.md): dials, votes, fit, hard no's, deck picker, sim, pick 2 of 6 (pure: the UI and the self-test use them) =================
+   Four dials per item (§2): e Energy (chill -1 / active +1), v Vibe (quiet / lively), p Mode (curious / playful), w Weird (classic / weird).
+   Every answer is stored in a log (with a snapshot of the item's vector); the votes and leans are worked out from the log when read,
+   so undo is "drop the last entry" and the profile can be rebuilt after items expire. Only the hard no's hide anything. */
+var TASTE_KEY = 'og.taste.v2', TASTE_GUEST_KEY = 'og.taste.guest.v1', TASTE_HINT_KEY = 'og.taste.hint.v1', TASTE_VV = 1;
+var DIALS = ['e', 'v', 'p', 'w'], DECK_DIALS = ['e', 'v', 'p'];
+var DIAL_WORDS = {e:['chill', 'active'], v:['quiet', 'lively'], p:['curious', 'playful'], w:['classic', 'weird']};
+var DIAL_ENDS = {e:['Chill', 'Active'], v:['Quiet', 'Lively'], p:['Curious', 'Playful'], w:['Less', 'More']};
+var DIAL_NAMES = {e:'Energy', v:'Vibe', p:'Mode', w:'Weird'};
+var TASTE_TAGS = ['bugs', 'cheese', 'sweets', 'sauna', 'pinball', 'karaoke', 'climbing', 'bowling', 'comedy', 'music'];   // her interests (§2a list, as the app's interest keys: chocolate -> sweets, live-music -> music)
+var INTEREST_SLOTS = [2, 6, 10], INTEREST_ORDER = ['bugs', 'cheese', 'bowling'], INTEREST_SPARE = ['sweets', 'sauna', 'karaoke', 'comedy'];   // cards 3, 7, 11 (§3c)
+var TW = {interest:0.5, pair:1, save:0.3, ck:0.6};   // vote weights (§4b); deck yes/no 1, love/never 1.5
+var TASTE_FADE = 0.97;   // every vote x 0.97 per week
+var TIEBREAK_ON = false; // §4a: cut by the T11c sim (+0 points for yes-heavy people on the real vectors, 2026-11-14); the code stays for a later retry
+var DECK_CFG = {main:{name:'main', min:15, max:20, interest:true}, retake:{name:'retake', min:10, max:10}, mini:{name:'mini', min:5, max:5}, guest:{name:'guest', min:12, max:12}};
+var BAR_TAGS = ['bar', 'cocktails', 'brewery', 'winery', 'wine', 'beer', 'whiskey'];
+var NOCAR_TAGS = ['suburbs', 'suburb', 'day-trip'];
+var TASTE = null, TASTE_GUEST = null, TASTE_REV = 0, TASTE_SUSPEND = 0, TASTE_OVERRIDE = null, TASTE_DEMO = false, TS_CACHE = {k:'', st:null}, TS_EMPTY = null, TS_ID = 0;
+function clamp1(x){ return Math.max(-1, Math.min(1, x)); }
+function sgn(x){ return x > 0 ? 1 : x < 0 ? -1 : 0; }
+function hideProp(o, k, v){ try { Object.defineProperty(o, k, {value:v, enumerable:false, configurable:true, writable:true}); } catch (e) {} return v; }
+function hasMood(it, k){ return Array.isArray(it.moods) && it.moods.indexOf(k) >= 0; }
+function emptyTaste(){ return {v:2, vv:TASTE_VV, log:[], tags:{}, hard:{budget:null, no21:false, noBar:false, noCar:false, quiet:false}, mine:{}, use:true, acc:{p26:[], saves:[]}, nag:{shown:0}, done:'', name:'', updated_at:''}; }
+function cleanTaste(o){ // anything from storage or the account -> a safe profile
+  var t = emptyTaste(); if (!o || typeof o !== 'object' || o.v !== 2) return t;
+  if (Array.isArray(o.log)) t.log = o.log.filter(function(x){ return x && typeof x === 'object' && (x.t === 'card' || x.t === 'pair' || x.t === 'save' || x.t === 'ck'); }).slice(-400);
+  if (o.tags && typeof o.tags === 'object') TASTE_TAGS.forEach(function(k){ var v = o.tags[k]; if (v === 'more' || v === 'never' || v === 'off') t.tags[k] = v; });
+  var h = o.hard || {}; t.hard = {budget:h.budget === 'free' || h.budget === '$$' ? h.budget : null, no21:h.no21 === true, noBar:h.noBar === true, noCar:h.noCar === true, quiet:h.quiet === true};
+  if (o.mine && typeof o.mine === 'object') DIALS.forEach(function(d){ if (isNum(o.mine[d])) t.mine[d] = clamp1(o.mine[d]); });
+  t.use = o.use !== false;
+  var a = o.acc || {}; t.acc = {p26:Array.isArray(a.p26) ? a.p26.slice(-50) : [], saves:Array.isArray(a.saves) ? a.saves.slice(-200) : []};
+  t.nag = {shown:o.nag && isNum(o.nag.shown) ? o.nag.shown : 0};
+  t.done = typeof o.done === 'string' ? o.done : ''; t.name = typeof o.name === 'string' ? o.name.slice(0, 12) : ''; t.updated_at = typeof o.updated_at === 'string' ? o.updated_at : '';
+  return t;
+}
+function tasteVector(it){ // §2b -> {e, v, p, w}; e and v may be null (unknown)
+  if (it.__tv) return it.__tv;
+  var o = it.taste || {}, m = Array.isArray(it.moods) ? it.moods : [], g = genreOf(it);
+  var has = function(k){ return m.indexOf(k) >= 0; };
+  var EN = {active:1, easy:0, chill:-1}, VB = {lively:1, mixed:0, quiet:-1};
+  var e = isNum(o.e) ? o.e : (it.energy && EN.hasOwnProperty(it.energy)) ? EN[it.energy]
+        : has('active') ? 1 : (has('relaxing') || has('cozy') || g === 'relax') ? -1
+        : (it.category === 'active' || it.category === 'racing-karting') ? 1 : null;
+  var v = isNum(o.v) ? o.v : (it.vibe && VB.hasOwnProperty(it.vibe)) ? VB[it.vibe]
+        : (has('loud') || has('festive')) ? 1 : has('quiet') ? -1 : null;
+  var p = isNum(o.p) ? o.p : ({play:1, make:0.5, look:-1, nature:-0.5}[g] || 0) - ((has('nerdy') || has('artsy')) ? 0.5 : 0) + (hasTag(it, 'competitive') ? 0.5 : 0);
+  var w = isNum(o.w) ? o.w : has('weird') ? 1 : it.category === 'unique-niche' ? 0.5 : 0;
+  return hideProp(it, '__tv', {e:e, v:v, p:clamp1(p), w:w});
+}
+function tasteTags(it){ if (it.__tt) return it.__tt; return hideProp(it, '__tt', interestsOf(it).filter(function(k){ return TASTE_TAGS.indexOf(k) >= 0; })); }
+function ansSign(a){ return a === 'yes' || a === 'love' ? 1 : -1; }
+function ansW(a){ return a === 'love' || a === 'never' ? 1.5 : 1; }
+function entryVotes(x){ // one log entry -> [{d, s, w, end, card}] (card: counts toward "asked from both ends" and the agreement share)
+  var out = [], v = x.x || {};
+  if (x.t === 'card') {
+    var a = ansSign(x.ans), w = ansW(x.ans) * (x.ff ? 0.5 : 1);
+    if (x.kind === 'dial' && x.dial && (x.end === 1 || x.end === -1)) out.push({d:x.dial, s:a * x.end, w:w, end:x.end, card:1});
+    else if (x.kind === 'interest') DECK_DIALS.forEach(function(d){ if (v[d] === 1 || v[d] === -1) out.push({d:d, s:a * v[d], w:TW.interest * (x.ff ? 0.5 : 1), end:v[d], card:1}); });
+    if (isNum(v.w) && v.w >= 0.5) out.push({d:'w', s:a, w:w * 0.5, end:1, card:0});   // Weird is never asked; it's learned from answers on weird items
+  } else if (x.t === 'pair' && (x.pick === 'a' || x.pick === 'b') && x.dial) {
+    var xp = x.pick === 'a' ? x.xa : x.xb, e = xp ? sgn(xp[x.dial]) : 0;
+    if (e) out.push({d:x.dial, s:e, w:TW.pair, end:0, card:1, pair:1});   // a pair shows both ends at once
+  } else if (x.t === 'save' || x.t === 'ck') {
+    var r = x.t === 'save' ? 1 : (x.r === 1 ? 1 : x.r === -1 ? -1 : 0), ww = x.t === 'save' ? TW.save : TW.ck;
+    if (r) DIALS.forEach(function(d){ if (isNum(v[d]) && Math.abs(v[d]) >= 0.5) out.push({d:d, s:r * sgn(v[d]), w:ww, end:sgn(v[d]), card:0}); });
+  }
+  return out;
+}
+function tasteStats(T, now){ // §4b: votes -> lean m, confidence, "consistent"; plus interests and hard no's
+  T = T || emptyTaste(); now = isNum(now) ? now : Date.now();
+  var st = {id:++TS_ID, n:0, nCards:0, nSaves:0, m:{}, conf:{}, consistent:{}, both:{}, cards:{}, plus:{}, minus:{}, sum:{}, mine:{}, more:{}, never:{}, moreN:{}, fast:false, date:false};
+  var acc = {}; DIALS.forEach(function(d){ acc[d] = {n:0, sum:0, plus:0, minus:0, s:[]}; });
+  var moreC = {}, neverC = {}, mine = T.mine || {}, tags = T.tags || {};
+  (T.log || []).forEach(function(x){
+    var at = x.at ? tsOf(x.at) : 0, fade = at && now > at ? Math.pow(TASTE_FADE, (now - at) / 604800000) : 1;
+    if (x.t === 'card') {
+      st.nCards++; if (x.ff) st.fast = true;
+      if (x.ans === 'never') (x.tags || []).forEach(function(k){ neverC[k] = 1; });
+      if (x.kind === 'interest' && x.sig) { if (x.ans === 'yes') moreC[x.sig] = (moreC[x.sig] || 0) + 1; else if (x.ans === 'love') moreC[x.sig] = (moreC[x.sig] || 0) + 2; else if (x.ans === 'never') neverC[x.sig] = 1; }
+    }
+    if (x.t === 'save') st.nSaves++;
+    entryVotes(x).forEach(function(vt){ var a = acc[vt.d]; a.n += vt.w * fade; a.sum += vt.s * vt.w * fade; if (vt.card) { if (vt.pair) { a.plus++; a.minus++; } else if (vt.end > 0) a.plus++; else a.minus++; a.s.push(vt.s); } });
+  });
+  DIALS.forEach(function(d){
+    var a = acc[d], sg = sgn(a.sum), agree = a.s.filter(function(s){ return s === sg; }).length;
+    st.m[d] = a.sum / (a.n + 2); st.conf[d] = a.n / (a.n + 3); st.n += a.n; st.sum[d] = a.sum;
+    st.plus[d] = a.plus; st.minus[d] = a.minus; st.cards[d] = a.s.length; st.both[d] = a.plus >= 2 && a.minus >= 2;
+    st.consistent[d] = st.both[d] && a.s.length >= 4 && sg !== 0 && agree / a.s.length >= 0.8;
+    if (isNum(mine[d])) { st.m[d] = clamp1(mine[d]); st.conf[d] = Math.max(st.conf[d], 0.75); st.consistent[d] = Math.abs(mine[d]) >= 0.2; st.mine[d] = true; }   // her own slider wins
+  });
+  var h = T.hard || {};
+  st.hard = {budget:h.budget || null, no21:!!h.no21, noBar:!!h.noBar, noCar:!!h.noCar, quiet:!!h.quiet};
+  if (st.hard.quiet) { st.m.v = -1; st.conf.v = Math.max(st.conf.v, 0.75); st.consistent.v = true; }   // "Quieter picks": Vibe locked quiet (reorders only)
+  TASTE_TAGS.forEach(function(k){
+    var o = tags[k];
+    if (o === 'more') { st.more[k] = 1; st.moreN[k] = 2; }
+    else if (o === 'never') st.never[k] = 1;
+    else if (o !== 'off') { if (neverC[k]) st.never[k] = 1; else if (moreC[k]) { st.more[k] = 1; st.moreN[k] = moreC[k]; } }
+  });
+  st.use = T.use !== false;
+  return st;
+}
+function emptyStats(){ return TS_EMPTY || (TS_EMPTY = tasteStats(emptyTaste())); }
+function blendStats(a, b){ // §7 date mode: equal-weight leans, union of interests, nevers and hard no's
+  var st = {id:++TS_ID, n:a.n + b.n, nCards:a.nCards, nSaves:a.nSaves, m:{}, conf:{}, consistent:{}, both:{}, cards:{}, plus:{}, minus:{}, sum:{}, mine:{}, more:{}, never:{}, moreN:{}, fast:a.fast, date:true, a:a, b:b, use:a.use};
+  DIALS.forEach(function(d){ st.m[d] = (a.m[d] + b.m[d]) / 2; st.conf[d] = Math.max(a.conf[d], b.conf[d]); st.consistent[d] = !!(a.consistent[d] && b.consistent[d] && sgn(a.m[d]) === sgn(b.m[d])); st.cards[d] = a.cards[d]; st.plus[d] = a.plus[d]; st.minus[d] = a.minus[d]; st.both[d] = a.both[d]; st.sum[d] = a.sum[d]; });
+  [a, b].forEach(function(x){ Object.keys(x.more).forEach(function(k){ st.more[k] = 1; st.moreN[k] = (st.moreN[k] || 0) + (x.moreN[k] || 1); }); Object.keys(x.never).forEach(function(k){ st.never[k] = 1; }); });
+  var ha = a.hard, hb = b.hard, bud = function(x){ return x === 'free' ? 0 : x === '$$' ? 1 : 2; };
+  st.hard = {budget:bud(ha.budget) <= bud(hb.budget) ? ha.budget : hb.budget, no21:ha.no21 || hb.no21, noBar:ha.noBar || hb.noBar, noCar:ha.noCar || hb.noCar, quiet:ha.quiet || hb.quiet};
+  return st;
+}
+function tasteCardCount(T){ return T && Array.isArray(T.log) ? T.log.filter(function(x){ return x.t === 'card'; }).length : 0; }
+function tasteDateOn(){ return !!(S && S.f && S.f.who && S.f.who.date && TASTE_GUEST && tasteCardCount(TASTE_GUEST) > 0); }
+function tasteNow(){ // the profile the ranking uses right now (blended in date mode; empty during the self-test)
+  if (TASTE_OVERRIDE) return TASTE_OVERRIDE;
+  if (TASTE_SUSPEND > 0 || !TASTE) return emptyStats();
+  var dOn = tasteDateOn(), k = TASTE_REV + '|' + (dOn ? 1 : 0);
+  if (TS_CACHE.k === k && TS_CACHE.st) return TS_CACHE.st;
+  var st = tasteStats(TASTE); if (dOn) st = blendStats(st, tasteStats(TASTE_GUEST));
+  TS_CACHE = {k:k, st:st};
+  return st;
+}
+function tasteOn(st){ st = st || tasteNow(); return st.use !== false && (st.n > 0 || anyKey(st.more) || anyKey(st.never) || anyKey(st.mine) || !!(st.hard && st.hard.quiet)); }
+function overallConf(st){ var s = 0; DIALS.forEach(function(d){ s += st.conf[d] || 0; }); return Math.min(0.9, s / DIALS.length); }
+function fitOf(it, st){ // §6a: -1..+1, 0 when the profile is empty
+  st = st || tasteNow(); var fc = st.fc || (st.fc = {}), key = String(it.id);
+  if (fc.hasOwnProperty(key)) return fc[key];
+  var x = tasteVector(it), num = 0, den = 0;
+  DIALS.forEach(function(d){ if (x[d] === null || !isNum(st.m[d])) return; var c = (st.conf[d] || 0) * (st.consistent[d] ? 1 : 0.4); num += st.m[d] * x[d] * c; den += c; });
+  var f = den ? num / den : 0;
+  if (tasteTags(it).some(function(t){ return st.more[t]; })) f += 0.3;
+  if (st.date && hasMood(it, 'romantic')) f += 0.15;   // §7: a small date-night boost
+  return (fc[key] = clamp1(f));
+}
+function isNever(it, st){ st = st || tasteNow(); return st.use !== false && anyKey(st.never) && tasteTags(it).some(function(t){ return st.never[t]; }) ? 1 : 0; }
+function noCarLast(c, st){ st = st || tasteNow(); return st.hard && st.hard.noCar && NOCAR_TAGS.some(function(t){ return hasTag(c.item, t); }) ? 1 : 0; }
+function miseryOf(c, st){ st = st || tasteNow(); if (!st.date || st.use === false) return 0; var it = c.item; return (fitOf(it, st.a) < -0.3 || fitOf(it, st.b) < -0.3 || isNever(it, st.a) || isNever(it, st.b)) ? 1 : 0; }
+function isBarCentered(it){ return hasMood(it, 'boozy') && (genreOf(it) === 'eat' || BAR_TAGS.some(function(t){ return hasTag(it, t); })); }
+function tasteHides(it, st){ // the only taste settings that hide anything (§4c)
+  st = st || tasteNow(); var h = st.hard || {}, pl = it.price_level;
+  if (h.budget === 'free' && pl && pl !== 'free' && pl !== '$') return true;
+  if (h.budget === '$$' && (pl === '$$$' || pl === '$$$$')) return true;
+  if (h.no21 && is21(it)) return true;
+  if (h.noBar && isBarCentered(it)) return true;
+  return false;
+}
+function hardHidingWords(st){ var h = (st || tasteNow()).hard || {}, w = []; if (h.budget === 'free') w.push('over $'); if (h.budget === '$$') w.push('$$$+'); if (h.no21) w.push('21+'); if (h.noBar) w.push('bars'); return w; }
+function traitWords(st, max){ // consistent dials only (strongest first), then "into bugs"
+  var w = [];
+  DIALS.filter(function(d){ return st.consistent[d] && Math.abs(st.m[d]) >= 0.15; }).sort(function(a, b){ return Math.abs(st.m[b]) - Math.abs(st.m[a]); })
+    .forEach(function(d){ w.push(DIAL_WORDS[d][st.m[d] > 0 ? 1 : 0]); });
+  TASTE_TAGS.forEach(function(k){ if ((st.moreN[k] || 0) >= 2) w.push('into ' + (INTEREST_SHORT[k] || interestLabel(k)).toLowerCase()); });
+  return w.slice(0, max || 3);
+}
+function tasteWhy(c, st){ // "Because you like lively" / "Because: bugs", only when this pick's taste score is 2+
+  st = st || tasteNow(); if (!tasteOn(st) || tasteScore(c, st) < 2) return '';
+  var tg = tasteTags(c.item).filter(function(t){ return st.more[t]; });
+  if (tg.length) return 'Because: ' + (INTEREST_SHORT[tg[0]] || interestLabel(tg[0])).toLowerCase();
+  var x = tasteVector(c.item), best = null, bv = 0;
+  DIALS.forEach(function(d){ if (x[d] === null) return; var v = st.m[d] * x[d] * (st.conf[d] || 0); if (v > bv && Math.abs(st.m[d]) >= 0.15) { bv = v; best = d; } });
+  return best ? 'Because you like ' + DIAL_WORDS[best][st.m[best] > 0 ? 1 : 0] : '';
+}
+function tasteLean(c, st){ // date mode: whose taste a pick leans to -> 'a' | 'b' | 'ab' | ''
+  if (!st || !st.date) return '';
+  var fa = fitOf(c.item, st.a), fb = fitOf(c.item, st.b);
+  if (fa >= 0.25 && fb >= 0.25) return 'ab';
+  return fa - fb >= 0.25 ? 'a' : fb - fa >= 0.25 ? 'b' : '';
+}
+
+/* ----- the deck picker (§3c) ----- */
+function seededRng(seed){ var a = (seed >>> 0) || 1; return function(){ a = (a + 0x6D2B79F5) | 0; var t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+function shuffled(a, rng){ a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(rng() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function popBand3(it){ var p = popularityOf(it); return p >= POP_STAR ? 0 : p >= POP_FLOOR ? 1 : 2; }
+function deckHook(it){ var h = typeof it.hook === 'string' ? it.hook.trim() : ''; return h.length && h.length <= 60 ? h : ''; }
+function deckOk(it, now){ // can it be a deck card at all: verified, open this season, a photo, a hook
+  if (!it || (it.verified || {}).status !== 'verified' || !firstPhoto(it) || !deckHook(it) || it.photo_ok === false) return false;
+  var st = statusAt(it, now); if (st.key === 'season' || st.key === 'gone' || st.key === 'ended') return false;
+  if (st.key === 'upcoming' && !(st.opensAt && st.opensAt - now <= 30 * 86400000)) return false;   // a February parade isn't a November card
+  return true;
+}
+function deckPool(items, now){ // -> {dial:{e:{'1':[items], '-1':[items]}, ...}, interest:{tag:[items, most popular first]}, n}
+  var P = {dial:{}, interest:{}, n:0};
+  DECK_DIALS.forEach(function(d){ P.dial[d] = {'1':[], '-1':[]}; });
+  items.forEach(function(it){
+    if (!deckOk(it, now)) return;
+    P.n++;
+    tasteTags(it).forEach(function(k){ (P.interest[k] = P.interest[k] || []).push(it); });
+    var x = tasteVector(it); if (x.e === null || x.v === null) return;   // a dial card needs all three dials known
+    DECK_DIALS.forEach(function(d){ if (x[d] === 1 || x[d] === -1) P.dial[d][String(x[d])].push(it); });
+  });
+  Object.keys(P.interest).forEach(function(k){ P.interest[k].sort(function(a, b){ return popularityOf(b) - popularityOf(a) || (a.id < b.id ? -1 : 1); }); });
+  return P;
+}
+function newDeck(pool, name, rng, exclude, dials){
+  var cfg = ext(DECK_CFG[name] || DECK_CFG.main, {});
+  if (dials && dials.length) cfg.dials = dials.slice();
+  return {pool:pool, cfg:cfg, rng:rng || Math.random, cards:[], log:[], exclude:exclude || {}, first:shuffled(DECK_DIALS, rng || Math.random)};
+}
+function deckStats(D){ return tasteStats({log:D.log}, D.log.length ? tsOf(D.log[D.log.length - 1].at) : Date.now()); }
+function deckUsed(D){ var u = ext(D.exclude, {}); D.cards.forEach(function(c){ u[c.it.id] = 1; }); return u; }
+function deckCandidates(D, d, end){ // eligible items for dial d at end `end`, scored for one-dial cleanliness (§3c)
+  var list = D.pool.dial[d][String(end)] || [], prev = D.cards.length ? D.cards[D.cards.length - 1] : null, pg = prev ? genreOf(prev.it) : '';
+  var used = deckUsed(D), others = DECK_DIALS.filter(function(k){ return k !== d; });
+  var refs = D.cards.filter(function(c){ return c.kind === 'dial' && c.dial === d && c.end === -end; }), bands = {};
+  refs.forEach(function(c){ bands[popBand3(c.it)] = 1; });
+  var out = [];
+  list.forEach(function(it){
+    if (used[it.id] || genreOf(it) === pg) return;
+    var x = tasteVector(it), ok05 = true, dsum = 0;
+    others.forEach(function(k){
+      if (refs.length) refs.forEach(function(c){ var dd = Math.abs(x[k] - c.x[k]); dsum += dd / refs.length; if (dd > 0.5 + 1e-9) ok05 = false; });
+      else { var dd = Math.abs(x[k]); dsum += dd; if (dd > 0.5 + 1e-9) ok05 = false; }
+    });
+    var bandOk = !refs.length || !!bands[popBand3(it)];
+    out.push({it:it, x:x, ok05:ok05, bandOk:bandOk, clean:ok05 && bandOk, score:-dsum + (bandOk ? 0.2 : 0)});
+  });
+  return out;
+}
+function deckPickFrom(cands, rng){ // the cleanest tier that has anything, best score with a little randomness (pure greedy repeats itself)
+  var tiers = [cands.filter(function(c){ return c.clean; }), cands.filter(function(c){ return c.ok05; }), cands], i, best = null;
+  for (i = 0; i < tiers.length; i++) if (tiers[i].length) break;
+  if (i >= tiers.length) return null;
+  tiers[i].forEach(function(c){ var s = c.score + (rng() - 0.5) * 0.3; if (!best || s > best.s) best = {c:c, s:s}; });
+  return best.c;
+}
+function deckInterest(D){ // cards 3, 7, 11: bugs, cheese, bowling (spares when a tag has nothing)
+  var k = D.cards.filter(function(c){ return c.kind === 'interest'; }).length, usedSig = {}, used = deckUsed(D), prev = D.cards.length ? genreOf(D.cards[D.cards.length - 1].it) : '';
+  D.cards.forEach(function(c){ if (c.kind === 'interest') usedSig[c.sig] = 1; });
+  var want = [INTEREST_ORDER[k]].concat(INTEREST_SPARE).filter(function(t){ return t && !usedSig[t]; });
+  for (var i = 0; i < want.length; i++) {
+    var list = (D.pool.interest[want[i]] || []).filter(function(it){ return !used[it.id]; });
+    var it = list.filter(function(x){ return genreOf(x) !== prev; })[0] || list[0];
+    if (it) return {it:it, kind:'interest', sig:want[i], x:tasteVector(it), clean:false};
+  }
+  return null;
+}
+function deckNext(D){ // the next card, or null when the deck is done (§3c stop rule)
+  var i = D.cards.length, cfg = D.cfg, rng = D.rng;
+  if (i >= cfg.max) return null;
+  if (cfg.interest && INTEREST_SLOTS.indexOf(i) >= 0) { var ic = deckInterest(D); if (ic) return ic; }
+  var dials = (cfg.dials && cfg.dials.length ? cfg.dials : DECK_DIALS).slice(), st = deckStats(D);
+  if (i >= cfg.min) {
+    dials = dials.filter(function(d){ return !(st.plus[d] >= 2 && st.minus[d] >= 2 && (st.consistent[d] || st.cards[d] >= 6)); });
+    if (!dials.length) return null;
+  }
+  var dc = function(d){ return D.cards.filter(function(c){ return c.kind === 'dial' && c.dial === d; }).length; };
+  var ec = function(d, e){ return D.cards.filter(function(c){ return c.kind === 'dial' && c.dial === d && c.end === e; }).length; };
+  var dis = function(d){ var n = st.cards[d] || 0; if (!n) return 0; return 1 - Math.min(1, Math.abs(st.sum[d]) / n); };   // answers that disagree most
+  var nDial = D.cards.filter(function(c){ return c.kind === 'dial'; }).length, order;
+  if (nDial < 3 && !cfg.dials) order = [D.first[nDial]].concat(DECK_DIALS.filter(function(d){ return d !== D.first[nDial]; }));   // the first 3 dial cards: one per dial
+  else order = shuffled(dials, rng).sort(function(a, b){ return dc(a) - dc(b) || dis(b) - dis(a); });
+  for (var j = 0; j < order.length; j++) {
+    var d = order[j], ends = ec(d, 1) < ec(d, -1) ? [1, -1] : ec(d, -1) < ec(d, 1) ? [-1, 1] : (rng() < 0.5 ? [1, -1] : [-1, 1]);
+    for (var k = 0; k < 2; k++) { var p = deckPickFrom(deckCandidates(D, d, ends[k]), rng); if (p) return {it:p.it, kind:'dial', dial:d, end:ends[k], x:p.x, clean:p.clean}; }
+  }
+  return null;
+}
+function deckFill(D){ // the card on screen now (picks the next one when needed), or null when done
+  if (D.cards.length > D.log.length) return D.cards[D.log.length];
+  if (D.done) return null;
+  var c = deckNext(D); if (!c) { D.done = true; return null; }
+  D.cards.push(c); return c;
+}
+function deckFF(D){ // §3b fast fingers: 6 answers in a row the same way, each under 600 ms -> those count half
+  D.log.forEach(function(x){ delete x.ff; });
+  for (var i = 5; i < D.log.length; i++) { var w = D.log.slice(i - 5, i + 1); if (w.every(function(x){ return x.ans === w[0].ans && x.ms < 600; })) w.forEach(function(x){ x.ff = true; }); }
+}
+function deckAnswer(D, ans, ms, at){
+  var c = D.cards[D.log.length]; if (!c || ['yes', 'no', 'love', 'never'].indexOf(ans) < 0) return null;
+  var e = {t:'card', id:c.it.id, kind:c.kind, ans:ans, x:{e:c.x.e, v:c.x.v, p:c.x.p, w:c.x.w}, tags:tasteTags(c.it).slice(), ms:Math.round(ms || 0), at:at || new Date().toISOString(), deck:D.cfg.name};
+  if (c.kind === 'dial') { e.dial = c.dial; e.end = c.end; } else e.sig = c.sig;
+  D.log.push(e); deckFF(D);
+  return e;
+}
+function deckUndo(D){ // the last card comes back; the cards after it are re-planned
+  if (!D.log.length) return null;
+  D.cards.length = D.log.length; var e = D.log.pop(); D.done = false; deckFF(D);
+  return e;
+}
+function tieNeeded(D){ var n = D.log.length; if (n < 6) return false; var y = D.log.filter(function(x){ return x.ans === 'yes' || x.ans === 'love'; }).length / n; return y >= 0.85 || y <= 0.15; }
+function tiePairs(D, st, rng){ // §4a: up to 3 "this or that" pairs for dials that aren't consistent yet
+  var out = [], used = deckUsed(D);
+  DECK_DIALS.filter(function(d){ return !st.consistent[d]; }).forEach(function(d){
+    if (out.length >= 3) return;
+    var A = D.pool.dial[d]['1'].filter(function(it){ return !used[it.id]; }), B = D.pool.dial[d]['-1'].filter(function(it){ return !used[it.id]; }), best = null;
+    A.forEach(function(a){ var xa = tasteVector(a); B.forEach(function(b){ var xb = tasteVector(b); if (!DECK_DIALS.every(function(k){ return k === d || Math.abs(xa[k] - xb[k]) <= 0.5; })) return; var s = (popBand3(a) === popBand3(b) ? 1 : 0) + rng() * 0.5; if (!best || s > best.s) best = {a:a, b:b, s:s}; }); });
+    if (best) { used[best.a.id] = used[best.b.id] = 1; out.push(rng() < 0.5 ? {dial:d, a:best.a, b:best.b} : {dial:d, a:best.b, b:best.a}); }
+  });
+  return out;
+}
+function vecOf(it){ var x = tasteVector(it); return {e:x.e, v:x.v, p:x.p, w:x.w}; }
+function pairEntry(pr, pick, ms, at){ return {t:'pair', dial:pr.dial, a:pr.a.id, b:pr.b.id, xa:vecOf(pr.a), xb:vecOf(pr.b), pick:pick, ms:Math.round(ms || 0), at:at || new Date().toISOString()}; }
+/* T11 sim on the real vectors: simulated swipers through the real picker */
+var SIM_AT = '2026-11-14T18:00:00.000Z';
+function simAnswer(card, P, rng){
+  if (P.random) { var r = rng(); return r < 0.25 ? 'yes' : r < 0.5 ? 'no' : r < 0.75 ? 'love' : 'never'; }
+  var like, l = card.kind === 'dial' ? P.L[card.dial] : 0;
+  if (l) { var match = card.end === l; like = P.yesHeavy ? rng() < (match ? 0.95 : 0.65) : (rng() < P.p ? match : !match); }
+  else like = rng() < (P.yesHeavy ? 0.8 : 0.5);
+  var strong = rng() < 0.15;
+  return like ? (strong ? 'love' : 'yes') : (strong ? 'never' : 'no');
+}
+function simRun(pool, P, rng, withPairs, name){
+  var D = newDeck(pool, name || 'main', rng, {}), c, guard = 0;
+  while ((c = deckFill(D)) && guard++ < 40) deckAnswer(D, simAnswer(c, P, rng), 2000, SIM_AT);
+  var log = D.log.slice(), np = 0;
+  if (withPairs && tieNeeded(D)) tiePairs(D, deckStats(D), rng).forEach(function(pr){
+    var l = P.L ? P.L[pr.dial] : 0, pick;
+    if (P.random || !l) pick = rng() < 0.5 ? 'a' : 'b';
+    else { var good = sgn(tasteVector(pr.a)[pr.dial]) === l ? 'a' : 'b'; pick = rng() < P.p ? good : (good === 'a' ? 'b' : 'a'); }
+    log.push(pairEntry(pr, pick, 2000, SIM_AT)); np++;
+  });
+  var st = tasteStats({log:log}, tsOf(SIM_AT));
+  return {D:D, st:st, pairs:np, words:DECK_DIALS.filter(function(d){ return st.consistent[d]; })};
+}
+/* ----- accuracy (§8): pick 2 of 6, and where her saves land ----- */
+function checkPairs(cands, st, exclude, rng){ // -> {pairs:[{hi, lo}], tiles:[{c, hi}]}: 3 high-fit and 3 low-fit items, matched in pairs on popularity band and travel band
+  exclude = exclude || {};
+  var L = cands.filter(function(c){ return !exclude[c.item.id] && firstPhoto(c.item); }).map(function(c){ return {c:c, f:fitOf(c.item, st), pb:popBand3(c.item), tb:travBand(c)}; });
+  L.sort(function(a, b){ return b.f - a.f || (a.c.item.id < b.c.item.id ? -1 : 1); });
+  var used = {}, pairs = [];
+  for (var i = 0; i < L.length && pairs.length < 3; i++) {
+    var h = L[i]; if (used[h.c.item.id]) continue;
+    for (var j = L.length - 1; j > i; j--) { var l = L[j]; if (used[l.c.item.id] || l.pb !== h.pb || l.tb !== h.tb || l.f >= h.f - 0.2) continue; used[h.c.item.id] = used[l.c.item.id] = 1; pairs.push({hi:h, lo:l}); break; }
+  }
+  var tiles = []; pairs.forEach(function(p){ tiles.push({c:p.hi.c, hi:true}); tiles.push({c:p.lo.c, hi:false}); });
+  return {pairs:pairs, tiles:shuffled(tiles, rng || Math.random)};
+}
+function saveRankPct(id, list, st){ // where a saved item sits in a taste-only ranking of what fits (0 = top), or null
+  var L = list.map(function(c){ return {id:c.item.id, f:fitOf(c.item, st)}; }).sort(function(a, b){ return b.f - a.f || (a.id < b.id ? -1 : 1); });
+  for (var i = 0; i < L.length; i++) if (L[i].id === id) return L.length > 1 ? i / L.length : 0;
+  return null;
+}
+function saveRankSummary(saves){ var all = (saves || []).filter(function(s){ return isNum(s.pct); }), clean = all.filter(function(s){ return s.list === 'map' || s.list === 'search'; }), top = function(l){ return l.filter(function(s){ return s.pct < 1 / 3; }).length; };
+  return {n:all.length, top:top(all), cn:clean.length, ctop:top(clean)}; }
+function p26Total(rounds){ var x = 0, y = 0; (rounds || []).forEach(function(r){ if (isNum(r.hits)) { x += r.hits; y += 2; } }); return {x:x, y:y}; }
+/* ----- account sync (pure part): the newer whole profile wins ----- */
+function tastePick(local, remote, remoteAt){
+  if (!remote || typeof remote !== 'object' || remote.v !== 2) return 'local';
+  var lt = tsOf(local && local.updated_at), rt = tsOf(remoteAt || remote.updated_at);
+  if (!lt && !rt) return tasteCardCount(remote) > tasteCardCount(local) ? 'remote' : 'local';
+  return rt > lt ? 'remote' : rt < lt ? 'local' : 'same';
+}
+function tasteForCloud(T){ var c = JSON.parse(JSON.stringify(T)); c.log = c.log.slice(-300); return c; }
+/* v5.12 (coordinator): a visible account button on Home. Website only (not claude.ai / a local file, where accounts are off). */
+function homeIconsHTML(state, name){
+  var acct = '';
+  if (state && state !== 'off') {
+    var inn = (state === 'in' || state === 'cached') && name;
+    acct = '<button class="icon-btn acct-btn' + (inn ? ' in' : '') + '" type="button" data-act="acct" aria-label="' + (inn ? 'Account: @' + esc(name) : 'Sign in') + '">' + (inn ? '<span class="acct-ini" aria-hidden="true">' + esc(String(name).charAt(0).toUpperCase()) + '</span>' : glyphSvg('i-user')) + '</button>';
+  }
+  return '<div class="hm-icons"><button class="icon-btn" type="button" data-act="theme" aria-label="Theme">' + glyphSvg('i-palette') + '</button><button class="icon-btn" type="button" data-act="search" aria-label="Search">' + glyphSvg('i-search') + '</button><button class="icon-btn" type="button" data-act="saved" aria-label="Saved and Been">' + glyphSvg('i-bookmark') + '</button>' + acct + '</div>';
+}
+function swipeDecision(dx, dy, vx, vy){ // §3b: past 96 px across or 110 px up/down, or a flick over 0.5 px/ms; diagonals count as the bigger direction
+  var hor = Math.abs(dx) >= Math.abs(dy);
+  if (hor) { if (Math.abs(dx) > 96 || (Math.abs(vx || 0) > 0.5 && sgn(vx) === sgn(dx))) return dx > 0 ? 'yes' : 'no'; }
+  else if (Math.abs(dy) > 110 || (Math.abs(vy || 0) > 0.5 && sgn(vy) === sgn(dy))) return dy < 0 ? 'love' : 'never';
+  return null;
+}
+var TK_KEYS = {ArrowRight:'yes', ArrowLeft:'no', ArrowUp:'love', ArrowDown:'never'};
+function tkFlyStyle(ans, reduced){ // the card's exit: a fly-off, or with reduced motion a plain fade (no transform)
+  if (reduced) return {transition:'opacity 120ms linear', transform:'', opacity:'0'};
+  var dx = ans === 'yes' ? 1 : ans === 'no' ? -1 : 0, dy = ans === 'love' ? -1 : ans === 'never' ? 1 : 0;
+  return {transition:'transform 220ms ease-in, opacity 220ms ease-in', transform:'translate(' + dx * 140 + 'vw,' + dy * 120 + 'vh) rotate(' + dx * 24 + 'deg)', opacity:'0'};
 }
 
 /* Search: names, kinds, interests/tags and neighborhoods, as you type. Every word must match; small typos are forgiven when nothing matches exactly. */
@@ -4881,6 +5367,8 @@ var CARD_LEAVE_MIN = 90;   // the three cards say "Leave by" only when it's with
 function cardLeaveHTML(c){ var l = leaveBy(c), ref = c.anyDay && c.anyT ? c.anyT : c.st.ms; return l && l.at - ref <= CARD_LEAVE_MIN * 60000 ? '<p class="c3-leave">' + esc(l.t) + '</p>' : ''; }
 function cardHTML(c){
   var it = c.item, g = c.genre || genreOf(it), ph = firstPhoto(it), sv = isSaved(it.id), ck = checkinOf(it.id), hook = hookOf(it), facts = factsLine(c);
+  var tst = tasteNow(), why = tasteWhy(c, tst), lean = tasteLean(c, tst), ini = function(w){ return w === 'a' ? tasteInitial(TASTE) : tasteInitial(TASTE_GUEST); };   // v5.12
+  var whoB = lean ? '<span class="tk-lean" aria-label="Leans to ' + esc(lean === 'ab' ? 'both of you' : ini(lean)) + '">' + esc(lean === 'ab' ? ini('a') + ini('b') : ini(lean)) + '</span>' : '';
   return '<li class="card3" data-id="' + esc(it.id) + '" tabindex="0" aria-label="' + esc(it.name + '. ' + facts) + '" style="--c:' + genreColor(g) + '">' +
     '<div class="cover">' + kindSvg(g) + '</div>' +
     (ph ? '<img src="' + esc(ph.file) + '" alt="" data-fb="1">' : '') +
@@ -4888,9 +5376,9 @@ function cardHTML(c){
     (ck ? '<span class="been-mark">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' : '') +
     '<div class="c3-btns"><button class="c3-btn" type="button" data-share="' + esc(it.id) + '" aria-label="Share ' + esc(it.name) + '">' + glyphSvg('i-share') + '</button>' +
     '<button class="c3-btn" type="button" data-save="' + esc(it.id) + '" aria-pressed="' + sv + '" aria-label="' + (sv ? 'Saved: ' : 'Save: ') + esc(it.name) + '">' + glyphSvg('i-bookmark') + '</button></div>' +
-    '<div class="c3-text"><h3>' + esc(it.name) + '</h3>' + (hook ? '<p class="c3-hook">' + esc(hook) + '</p>' : '') + '<p class="c3-facts"><i class="dot ' + esc(c.d.tone) + '"></i>' + esc(facts) + '</p>' + cardLeaveHTML(c) + '</div></li>';
+    '<div class="c3-text"><h3>' + esc(it.name) + '</h3>' + (hook ? '<p class="c3-hook">' + esc(hook) + '</p>' : '') + '<p class="c3-facts"><i class="dot ' + esc(c.d.tone) + '"></i>' + esc(facts) + '</p>' + cardLeaveHTML(c) + (why ? '<p class="c3-why">' + esc(why) + '</p>' : '') + '</div>' + whoB + '</li>';
 }
-function threeKey(){ return [selCode(curSel()), S.when, S.pickAt, S.loc ? r1(S.loc.lat * 1000) + ',' + r1(S.loc.lng * 1000) : '', S.budgetOn ? S.budget : 'any', JSON.stringify(S.f), DATA_LOADED ? 1 : 0].join('|'); }
+function threeKey(){ return [selCode(curSel()), S.when, S.pickAt, S.loc ? r1(S.loc.lat * 1000) + ',' + r1(S.loc.lng * 1000) : '', S.budgetOn ? S.budget : 'any', JSON.stringify(S.f), DATA_LOADED ? 1 : 0, 't' + TASTE_REV].join('|'); }   // v5.12: a taste change re-picks
 function updateThree(vm, more){ // keeps the same three on screen until she asks for more, or the place / time / filters change, or one of them closes
   var key = threeKey(), pool = threePool(vm, cparts(nowMs()).key, CHECKINS), byId = {};
   pool.forEach(function(c){ byId[c.item.id] = c; });
@@ -4948,7 +5436,7 @@ function renderHome(res, vm, picks){
   var p = res.p, who = S.f.who, lab = locName(S.loc), acc = locRoughHint(S.loc), h = '', ttl = homeTitle(res);   // v5.11: "near Lincoln Park"; only a rough reading says so
   h += '<div class="hm-top"><div><h1 class="hm-title">' + esc(ttl) + '</h1>' +
     '<button class="hm-sub" type="button" data-act="loc" aria-label="Where: near ' + esc(lab) + (acc ? '. ' + esc(acc) : '') + '. Change"><span>' + (UI.today ? homeWhenBit(ttl) : UI.anyDay ? esc(fmtDayDate(UI.anyDay, cparts(nowMs()).key)) + ' · any time · ' : UI.planning ? esc(fmtTime(p.min)) + ' · ' : '') + 'near ' + esc(lab) + (acc ? ' <small class="acc rough">' + esc(acc) + '</small>' : '') + '</span>' + glyphSvg('i-chev') + '</button></div>' +
-    '<div class="hm-icons"><button class="icon-btn" type="button" data-act="theme" aria-label="Theme">' + glyphSvg('i-palette') + '</button><button class="icon-btn" type="button" data-act="search" aria-label="Search">' + glyphSvg('i-search') + '</button><button class="icon-btn" type="button" data-act="saved" aria-label="Saved and Been">' + glyphSvg('i-bookmark') + '</button></div></div>';
+    homeIconsHTML(Acct.state, acctName()) + '</div>';   // v5.12: + the account button (website only)
   h += '<div class="hm-ctl" role="group" aria-label="Who is coming">' + [['date', 'Date'], ['friends', 'Friends'], ['solo', 'Solo']].map(function(x){ return '<button class="qchip" type="button" data-who="' + x[0] + '" aria-pressed="' + !!who[x[0]] + '">' + x[1] + '</button>'; }).join('') + '</div>';
   var picked = S.when === 'pick' || S.when === 'weekend';
   h += '<div class="hm-ctl" role="group" aria-label="When">' + '<button class="qchip" type="button" data-when="now" aria-pressed="' + (S.when === 'now') + '">Now</button><button class="qchip" type="button" data-when="today" aria-pressed="' + (S.when === 'today') + '">Today</button>' +
@@ -4962,6 +5450,7 @@ function renderHome(res, vm, picks){
     if (hol) h += '<p class="band">' + esc(hol) + ': holiday hours vary, so call first.</p>';
     if (UI.pickPast) h += '<p class="band info">That time has already passed, so this shows right now.</p>';
     if (picks.length) {
+      var hw = hardHidingWords(); if (hw.length) h += '<p class="band info tk-hiding">Hiding ' + esc(hw.join(', ')) + ' · <button class="linkbtn" type="button" data-act="tasteprof">Change</button></p>';   // v5.12: a hard no is hiding things
       h += '<ul class="cards3">' + picks.map(cardHTML).join('') + '</ul>';
       if (UI.threeN > picks.length) h += '<button class="hm-btn" type="button" data-act="more3">Three more</button>';
       var few = fewLine(picks.length, p, !!UI.anyDay); if (few) h += '<p class="hm-few">' + esc(few.t) + ' <button class="linkbtn" type="button" data-plan="' + few.plan + '">' + esc(few.btn) + ' ›</button></p>';   // v5.10
@@ -4975,6 +5464,7 @@ function renderHome(res, vm, picks){
       if (whoOn) btn += ' ' + actBtn({attr:'data-act="clearall"', label:'Clear my filters'});
       h += '<div class="empty"><h3>' + esc(e.title) + '</h3>' + (e.body ? '<p>' + esc(e.body) + '</p>' : '') + '<div class="btns">' + btn + '</div></div>';
     }
+    h += tasteNagHTML();   // v5.12: "Teach Off-Grid your taste · 1 min" (skippable, once), later "Swipe 5?"
     h += '<button class="hm-btn dark" type="button" data-act="browse">Browse everything' + glyphSvg('i-right') + '</button>';
     h += radarHTML(radarList(res.all.concat(res.beyond || []), cparts(nowMs())));   // v5.10 #26
     h += guidesHTML();   // v5.10 #86
@@ -5064,9 +5554,10 @@ function renderSurprise(){
 
 /* ================= saved list ================= */
 function isSaved(id){ return savedIds.indexOf(id) >= 0; }
-function toggleSave(id){
+function toggleSave(id, from){
   var i = savedIds.indexOf(id);
   if (i >= 0) savedIds.splice(i, 1); else savedIds.push(id);
+  if (i < 0) tasteOnSave(id, from || '');   // v5.12: a save teaches the profile a little (0.3) and is logged for the save-rank check
   if (!Platform.store.set('cff.saved.v1', savedIds)) toast('This browser isn\'t keeping your saves. They\'ll be lost when you close it.');
   SAVED_META = metaWith(SAVED_META, id, i < 0, new Date().toISOString()); Platform.store.set(SAVEDMETA_KEY, SAVED_META);   // v5.11: when, so "last edit wins" across devices
   Acct.dirtyS[id] = 1; acctPushSoon();
@@ -5079,7 +5570,7 @@ function toggleSave(id){
 function saveCheckins(){ if (!Platform.store.set(CHECKIN_KEY, CHECKINS)) toast('This browser isn\'t keeping your list. It\'ll be lost when you close it.'); }
 function afterCheckinChange(){ saveCheckins(); UI.homeHTML = null; refresh(); if (!$('pSaved').hidden) renderSaved(); acctPushSoon(); }   // v5.11: and to the account, if signed in
 function addCheckin(id, date){ var today = cparts(nowMs()).key; CHECKINS = withCheckin(CHECKINS, id, {date:isKey(date) ? date : today}, new Date().toISOString()); delete CK_GONE[id]; Platform.store.set(CKGONE_KEY, CK_GONE); Acct.dirtyC[id] = 1; afterCheckinChange(); }
-function editCheckin(id, patch){ if (!checkinOf(id)) return; CHECKINS = withCheckin(CHECKINS, id, patch, new Date().toISOString()); Acct.dirtyC[id] = 1; afterCheckinChange(); }
+function editCheckin(id, patch){ if (!checkinOf(id)) return; CHECKINS = withCheckin(CHECKINS, id, patch, new Date().toISOString()); Acct.dirtyC[id] = 1; if (patch && 'rating' in patch) tasteOnRate(id, patch.rating, 'ck'); afterCheckinChange(); }   // v5.12: thumbs teach the profile (0.6)
 function removeCheckin(id){ CHECKINS = withoutCheckin(CHECKINS, id); CK_GONE[id] = new Date().toISOString(); Platform.store.set(CKGONE_KEY, CK_GONE); Acct.dirtyC[id] = 1; afterCheckinChange(); }   // v5.11: remembered as removed, so another device can't bring it back
 function beenBoxHTML(ck, todayKey){
   return '<div class="been-box"><span class="bb-l">' + glyphSvg('i-check') + 'Been here</span><label class="vh" for="beenDate">The day you went</label><input id="beenDate" type="date" max="' + esc(todayKey) + '" value="' + esc(ck.date) + '">' +
@@ -5762,6 +6253,7 @@ function acctSync(why){
       Acct.invites = (r[3] || []).filter(function(i){ return !i.used_by && !i.cancelled && tsOf(i.expires_at) > now; }).map(function(i){ return {code:i.code, created_at:i.created_at, expires_at:i.expires_at}; });
     }
     Acct.offline = false; Acct.errMsg = ''; Acct.lastSync = nowIso; Acct.state = 'in';
+    tasteAfterSync();   // v5.12: the taste profile rides in settings.taste (supabase/taste.sql); a missing column is ignored
     acctSaveCache(); acctRedraw();
     if (!Acct.profile && !Acct.askedName) { Acct.askedName = true; acctAskName(); }
     else if (Acct.profile) { var pi = Platform.store.get(PENDINV_KEY, ''); if (pi && INVITE_RE.test(pi)) { Platform.store.set(PENDINV_KEY, ''); inviteOpen(pi); } }
@@ -6443,7 +6935,7 @@ function syncScrim(){
   if (need) { sc.hidden = false; void sc.offsetWidth; sc.classList.add('on'); }
   else { sc.classList.remove('on'); setTimeout(function(){ if (!sc.classList.contains('on')) sc.hidden = true; }, 220); }
 }
-function toast(msg){ var t = $('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.tm); toast.tm = setTimeout(function(){ t.hidden = true; }, 3200); }
+function toast(msg, ms){ var t = $('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.tm); toast.tm = setTimeout(function(){ t.hidden = true; }, ms || 3200); }
 
 /* ----- location picker ----- */
 function searchPool(){
@@ -6952,6 +7444,361 @@ function applyMapTokens(){
   Object.keys(tk).forEach(function(k){ app.style.setProperty(k, tk[k]); });
 }
 
+/* ================= v5.12 taste screens: the swipe deck, tiebreak pairs, hard no's, reveal, profile, pick 2 of 6 ================= */
+var TU = {mode:'', D:null, who:'me', shownAt:0, busy:false, drag:null, pairs:null, pi:0, check:null, addOpen:'', confirmReset:false, saved:{}, guestName:''};
+var TASTE_TEST = false;   // ?tastetest=1 (or #tastetest=1): pick 2 of 6 + the save-rank line
+function tasteLoad(){
+  TASTE = cleanTaste(Platform.store.get(TASTE_KEY, null));
+  var g = Platform.store.get(TASTE_GUEST_KEY, null); TASTE_GUEST = g ? cleanTaste(g) : null;
+  try { TASTE_TEST = /[?&]tastetest=1/.test(location.search || '') || /(?:^#|&)tastetest=1/.test(location.hash || ''); } catch (e) {}
+  TASTE_REV++;
+}
+function tasteSave(T, quiet){ // T = TASTE or TASTE_GUEST
+  T.updated_at = new Date().toISOString(); TASTE_REV++; UI.homeHTML = null;
+  if (!TASTE_DEMO) Platform.store.set(T === TASTE_GUEST ? TASTE_GUEST_KEY : TASTE_KEY, T);
+  if (T === TASTE && !quiet) tastePushSoon();
+}
+function tasteInitial(T){ var n = T && T.name ? T.name : T === TASTE ? (acctName() || 'Me') : 'Guest'; return String(n).charAt(0).toUpperCase(); }
+function tasteChanged(){ TASTE_REV++; UI.homeHTML = null; if (DATA_LOADED) refresh(); }
+function tasteOnSave(id, from){ // a save: a light vote (0.3) and, with a profile, where it sat in the taste-only ranking (§8b)
+  if (!TASTE || TASTE_SUSPEND) return;
+  var it = findItem(id); if (!it) return;
+  var at = new Date().toISOString();
+  if (from !== 'deck') TASTE.log.push({t:'save', id:id, x:vecOf(it), at:at});
+  var st = tasteNow();
+  if (tasteOn(st) && from !== 'deck' && UI.lastRes) {
+    var list = from || (UI.q ? 'search' : UI.view === 'map' ? 'map' : UI.view === 'home' ? 'for-you' : 'nearest'), pct = saveRankPct(id, UI.lastRes.all || [], st);
+    if (pct !== null) { TASTE.acc.saves.push({id:id, pct:Math.round(pct * 1000) / 1000, list:list, at:at}); TASTE.acc.saves = TASTE.acc.saves.slice(-200); }
+  }
+  tasteSave(TASTE);
+}
+function tasteOnRate(id, r, src){ // a thumbs up/down: 0.6 on the item's clear dials; a new rating replaces the old one
+  if (!TASTE) return; var it = findItem(id); if (!it) return;
+  TASTE.log = TASTE.log.filter(function(x){ return !(x.t === 'ck' && x.id === id); });
+  if (r === 1 || r === -1) TASTE.log.push({t:'ck', id:id, r:r, x:vecOf(it), src:src || 'ck', at:new Date().toISOString()});
+  tasteSave(TASTE);
+}
+function tasteNagDone(n){ if (!TASTE) return; TASTE.nag.shown = Math.max(TASTE.nag.shown, n); tasteSave(TASTE, true); refresh(); }
+function tasteNagHTML(){ // first open: a skippable invite, never forced; after the 3rd save a one-time "Swipe 5?"; with a profile, a small link to it
+  if (!TASTE || !DATA_LOADED) return '';
+  var cards = tasteCardCount(TASTE);
+  if (cards) { var w = traitWords(tasteNow(), 2); return '<p class="tk-link"><button class="linkbtn" type="button" data-act="taste">' + glyphSvg('i-heart') + 'Your taste' + (w.length ? ': ' + esc(w.join(' · ')) : '') + ' ›</button></p>'; }
+  var x = '<button class="tk-nagx" type="button" data-act="tastenagx" aria-label="Not now">' + glyphSvg('i-close') + '</button>';
+  if (TASTE.nag.shown === 0) return '<div class="tk-nag"><div><p class="tk-nag-t">Teach ' + esc(APP_NAME) + ' your taste</p><p class="tk-nag-s">Swipe a few photos · 1 min</p></div><button class="mini-btn" type="button" data-act="tastego">Start</button>' + x + '</div>';
+  if (TASTE.nag.shown === 1 && savedIds.length >= 3) return '<div class="tk-nag"><div><p class="tk-nag-t">Want it to learn faster?</p><p class="tk-nag-s">Swipe 5 · 15 s</p></div><button class="mini-btn" type="button" data-act="tastemini">Swipe 5</button>' + x + '</div>';
+  return '<p class="tk-link"><button class="linkbtn" type="button" data-act="taste">' + glyphSvg('i-heart') + 'Teach it your taste ›</button></p>';
+}
+function openAccount(){ // v5.12 (coordinator): the Home account button
+  if (Acct.state === 'off') { renderAbout(); openPanel('pAbout'); return; }
+  if (acctSignedIn() || Acct.demo) { openFriends(); return; }
+  openSmall('Your account', function(){ $('pSmallBody').innerHTML = '<p class="small">Sign in to sync your saves on every device and see what friends want to do.</p>' + acctCardHTML(Acct.state === 'loading' ? 'loading' : 'out'); });
+}
+/* sync with the account (settings.taste, own row only; see supabase/taste.sql) */
+function tastePushSoon(){
+  if (!Acct.client || !Acct.user || Acct.demo || Acct.noTaste || TASTE_DEMO) return false;
+  clearTimeout(TU.pushTm); TU.pushTm = setTimeout(tastePush, 1500); return true;
+}
+function tastePush(){
+  var cl = Acct.client, u = Acct.user; if (!cl || !u || Acct.noTaste) return;
+  cl.from('settings').upsert({user_id:u.id, taste:tasteForCloud(TASTE), taste_at:TASTE.updated_at || new Date().toISOString()}, {onConflict:'user_id'}).then(chk).then(function(){ Acct.tasteAt = TASTE.updated_at; }, function(e){ var m = String(e && (e.message || e.code) || ''); if (/taste|column|schema/i.test(m)) Acct.noTaste = true; });
+}
+function tasteAfterSync(){
+  if (!TASTE || TASTE_DEMO) return;
+  var s = Acct.settings || {};
+  if (Acct.settings && !('taste' in s)) { Acct.noTaste = true; return; }   // the column isn't there yet (taste.sql not run): stay on the phone
+  var pick = tastePick(TASTE, s.taste, s.taste_at);
+  if (pick === 'remote') { TASTE = cleanTaste(s.taste); TASTE.updated_at = s.taste_at || TASTE.updated_at; Platform.store.set(TASTE_KEY, TASTE); TASTE_REV++; UI.homeHTML = null; }
+  else if (pick === 'local' && TASTE.updated_at && (tasteCardCount(TASTE) || TASTE.log.length)) tastePushSoon();
+}
+/* the overlay */
+function tasteEl(){ return $('taste'); }
+function openTaste(mode){
+  if (!TASTE) tasteLoad();
+  TU.mode = mode; TU.addOpen = ''; TU.confirmReset = false;
+  var el = tasteEl(); el.hidden = false; el.setAttribute('data-mode', mode);
+  document.documentElement.classList.add('tk-open');
+  tasteRender();
+}
+function closeTaste(){ var el = tasteEl(); el.hidden = true; el.innerHTML = ''; TU.mode = ''; TU.D = null; document.documentElement.classList.remove('tk-open'); tasteChanged(); }
+function tasteTarget(){ return TU.who === 'guest' ? TASTE_GUEST : TASTE; }
+function tasteStartDeck(name, dials){
+  if (!DATA_LOADED) { toast('Still loading the list. Try again in a moment.'); return; }
+  if (!TASTE) tasteLoad();
+  TU.who = name === 'guest' ? 'guest' : 'me';
+  if (name === 'guest') { TASTE_GUEST = emptyTaste(); TASTE_GUEST.name = (TU.guestName || 'Guest').slice(0, 12); }
+  var T = tasteTarget(), ex = {};
+  T.log.forEach(function(x){ if (x.t === 'card') ex[x.id] = 1; });
+  var pk = cparts(nowMs()).key;
+  if (!TU.pool || TU.poolKey !== pk + '|' + DATA.length) { TU.pool = deckPool(DATA, nowMs()); TU.poolKey = pk + '|' + DATA.length; }
+  if (name === 'retake' && !dials) { var st = tasteStats(T); dials = DECK_DIALS.filter(function(d){ return !st.consistent[d]; }); if (!dials.length) dials = null; }
+  TU.D = newDeck(TU.pool, name, Math.random, ex, dials);
+  TU.D.base = T.log.slice(); TU.saved = {};
+  openTaste('deck');
+}
+function tasteRender(){
+  var el = tasteEl(); if (!el || el.hidden) return;
+  var h = TU.mode === 'deck' ? deckScreenHTML() : TU.mode === 'pairs' ? pairsScreenHTML() : TU.mode === 'hard' ? hardScreenHTML() : TU.mode === 'reveal' ? revealHTML() : TU.mode === 'check' ? checkHTML() : profileHTML();
+  if (h === null) return;   // the screen moved on (e.g. the deck finished)
+  el.setAttribute('data-mode', TU.mode);
+  el.innerHTML = h + '<p class="vh" aria-live="polite" id="tkLive"></p>';
+  wireImages(el);
+  if (TU.mode === 'deck') deckAfterRender();
+  var f = el.querySelector('[data-focus]'); if (f) try { f.focus({preventScroll:true}); } catch (e) {}
+}
+function tkShortName(it){ return String(it.name || '').replace(/\s*\([^)]*\)\s*$/, ''); }
+function tkPhoto(it){ var ph = firstPhoto(it); return ph ? '<img src="' + esc(ph.file) + '" alt="" data-fb="1" draggable="false">' : ''; }
+function deckCardHTML(c, cls){
+  var it = c.it, g = genreOf(it);
+  return '<div class="tk-card' + (cls ? ' ' + cls : '') + '" role="group" aria-label="' + esc(tkShortName(it) + '. ' + deckHook(it)) + '" style="--c:' + genreColor(g) + '">' +
+    '<div class="tk-ph">' + tkPhoto(it) + '</div><div class="tk-scrim"></div>' +
+    '<span class="tk-stamp yes">' + glyphSvg('i-check') + '</span><span class="tk-stamp no">' + glyphSvg('i-close') + '</span><span class="tk-stamp love">' + glyphSvg('i-heart') + '</span><span class="tk-stamp never">' + glyphSvg('i-ban') + '</span>' +
+    '<div class="tk-text"><h2><span class="tk-kind" aria-hidden="true">' + kindSvg(g) + '</span>' + esc(tkShortName(it)) + '</h2><p>' + esc(deckHook(it)) + '</p></div></div>';
+}
+function deckButtonsHTML(){
+  return '<div class="tk-btns">' +
+    '<button class="tk-b never" type="button" data-tk-ans="never" aria-label="Never" title="Never (↓)">' + glyphSvg('i-ban') + '</button>' +
+    '<button class="tk-b no" type="button" data-tk-ans="no" aria-label="No" title="No (←)">' + glyphSvg('i-close') + '</button>' +
+    '<button class="tk-b love" type="button" data-tk-ans="love" aria-label="Love it" title="Love it (↑)">' + glyphSvg('i-heart') + '</button>' +
+    '<button class="tk-b yes" type="button" data-tk-ans="yes" aria-label="Yes" title="Yes (→)">' + glyphSvg('i-check') + '</button></div>';
+}
+function deckScreenHTML(){
+  var D = TU.D; if (!D) return profileHTML();
+  var c = deckFill(D);
+  if (!c) { deckFinished(); return null; }
+  var n = D.log.length, prog = Math.min(0.95, n / D.cfg.min), first = n === 0 && !Platform.store.get(TASTE_HINT_KEY, false);
+  var h = '<div class="tk-top"><button class="tk-ic" type="button" data-tk="undo" aria-label="Undo"' + (n ? '' : ' disabled') + '>' + glyphSvg('i-undo') + '</button>' +
+    '<div class="tk-prog" role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.round(prog * 100) + '"><i style="width:' + Math.round(prog * 100) + '%"></i></div>' +
+    '<button class="tk-skip" type="button" data-tk="skip">Skip</button></div>';
+  h += '<div class="tk-stage"><div class="tk-ghost" aria-hidden="true"></div>' + deckCardHTML(c, first ? 'first' : '') + '</div>';
+  if (TU.who === 'guest' && n === 0) h += '<p class="tk-guest">' + esc(TASTE_GUEST.name || 'Guest') + '\'s turn · 12 photos</p>';
+  h += '<div class="tk-foot">' + (first ? '<p class="tk-hint" aria-hidden="true"><span>← no</span><span>→ yes</span><span>↑ love</span><span>↓ never</span></p>' : '') + deckButtonsHTML() + '<p class="tk-keys">← → ↑ ↓ · Z to undo</p></div>';
+  return h;
+}
+function deckAfterRender(){
+  TU.shownAt = Date.now(); TU.busy = false;
+  var el = tasteEl(), card = el.querySelector('.tk-card'); if (!card) return;
+  var c = TU.D.cards[TU.D.log.length], live = $('tkLive'); if (live && c) live.textContent = tkShortName(c.it);
+  bindCardDrag(card);
+  if (card.classList.contains('first') && !reduceMotion()) setTimeout(function(){ if (card.isConnected) card.classList.add('nudge'); }, 600);
+}
+function bindCardDrag(card){
+  function stamp(dir, o){ ['yes', 'no', 'love', 'never'].forEach(function(k){ var s = card.querySelector('.tk-stamp.' + k); if (s) s.style.opacity = k === dir ? String(Math.min(1, o)) : '0'; }); card.setAttribute('data-dir', o > 0.15 ? dir : ''); }
+  card.addEventListener('pointerdown', function(e){
+    if (TU.busy || (e.button && e.button !== 0)) return;
+    TU.drag = {x0:e.clientX, y0:e.clientY, pts:[[e.clientX, e.clientY, Date.now()]]};
+    try { card.setPointerCapture(e.pointerId); } catch (er) {}
+    card.classList.remove('nudge'); card.style.transition = 'none';
+  });
+  card.addEventListener('pointermove', function(e){
+    var d = TU.drag; if (!d) return;
+    var dx = e.clientX - d.x0, dy = e.clientY - d.y0; d.pts.push([e.clientX, e.clientY, Date.now()]); if (d.pts.length > 6) d.pts.shift();
+    var rot = reduceMotion() ? 0 : Math.max(-12, Math.min(12, dx / 20));
+    card.style.transform = 'translate(' + dx + 'px,' + dy + 'px) rotate(' + rot + 'deg)';
+    var hor = Math.abs(dx) >= Math.abs(dy), dir = hor ? (dx > 0 ? 'yes' : 'no') : (dy < 0 ? 'love' : 'never');
+    stamp(dir, hor ? Math.abs(dx) / 96 : Math.abs(dy) / 110);
+  });
+  function end(e){
+    var d = TU.drag; if (!d) return; TU.drag = null;
+    var dx = e.clientX - d.x0, dy = e.clientY - d.y0, a = d.pts[0], b = d.pts[d.pts.length - 1], dt = Math.max(1, b[2] - a[2]);
+    var ans = swipeDecision(dx, dy, (b[0] - a[0]) / dt, (b[1] - a[1]) / dt);
+    if (ans && (Math.abs(dx) > 12 || Math.abs(dy) > 12)) { tkAnswer(ans); return; }
+    card.style.transition = reduceMotion() ? 'none' : 'transform 200ms ease-out'; card.style.transform = ''; stamp('', 0);
+  }
+  card.addEventListener('pointerup', end); card.addEventListener('pointercancel', end);
+}
+function tkAnswer(ans){ // a swipe, a button or a key: the same exit, then the answer is kept
+  var D = TU.D; if (!D || TU.busy || TU.mode !== 'deck') return;
+  var c = D.cards[D.log.length]; if (!c) return;
+  TU.busy = true;
+  var el = tasteEl(), card = el.querySelector('.tk-card'), rm = reduceMotion(), ms = Date.now() - TU.shownAt;
+  try { Platform.store.set(TASTE_HINT_KEY, true); } catch (e) {}
+  if (card) {
+    card.classList.remove('nudge'); card.setAttribute('data-dir', ans);
+    var s = card.querySelector('.tk-stamp.' + ans); if (s) s.style.opacity = '1';
+    var fly = tkFlyStyle(ans, rm);
+    setTimeout(function(){ card.style.transition = fly.transition; if (fly.transform) card.style.transform = fly.transform; card.style.opacity = fly.opacity; }, rm ? 200 : 0);
+  }
+  setTimeout(function(){
+    var e = deckAnswer(D, ans, ms);
+    var T = tasteTarget(); T.log = D.base.concat(D.log);
+    if (ans === 'love' && TU.who !== 'guest' && !isSaved(c.it.id)) { TU.saved[c.it.id] = 1; toggleSave(c.it.id, 'deck'); toast('Saved', 1500); }
+    tasteSave(T);
+    tasteRender();
+  }, rm ? 320 : 220);
+}
+function tkUndo(){
+  var D = TU.D; if (!D || TU.busy) return;
+  var e = deckUndo(D); if (!e) return;
+  if (TU.saved[e.id] && isSaved(e.id)) { delete TU.saved[e.id]; toggleSave(e.id, 'deck'); }   // a "Love it" that saved it: unsaved again
+  var T = tasteTarget(); T.log = D.base.concat(D.log); tasteSave(T);
+  tasteRender();
+  var card = tasteEl().querySelector('.tk-card');
+  if (card && !reduceMotion()) { var dx = e.ans === 'yes' ? 1 : e.ans === 'no' ? -1 : 0, dy = e.ans === 'love' ? -1 : e.ans === 'never' ? 1 : 0; card.style.transition = 'none'; card.style.transform = 'translate(' + dx * 110 + 'vw,' + dy * 100 + 'vh)'; void card.offsetWidth; card.style.transition = 'transform 180ms ease-out'; card.style.transform = ''; }
+}
+function deckFinished(){
+  var D = TU.D, T = tasteTarget(), name = D.cfg.name;
+  T.done = cparts(nowMs()).key; if (T === TASTE) TASTE.nag.shown = Math.max(TASTE.nag.shown, 2);
+  tasteSave(T);
+  if (name === 'guest') { TU.who = 'me'; S.f.who = {date:true}; TU.mode = 'profile'; toast((TASTE_GUEST.name || 'Guest') + '\'s taste is in. Date picks now blend you both.'); tasteChanged(); tasteRender(); return; }
+  if (name === 'main' && TIEBREAK_ON && tieNeeded(D)) { var pr = tiePairs(D, deckStats(D), Math.random); if (pr.length) { TU.pairs = pr; TU.pi = 0; TU.mode = 'pairs'; tasteRender(); return; } }
+  if (name === 'mini') { closeTaste(); toast('Got it. Thanks!'); return; }
+  TU.mode = name === 'main' ? 'hard' : 'profile'; tasteChanged(); tasteRender();
+}
+function pairsScreenHTML(){
+  var pr = TU.pairs && TU.pairs[TU.pi]; if (!pr) { TU.mode = 'hard'; return hardScreenHTML(); }
+  function one(it, k){ return '<button class="tk-pc" type="button" data-tk-pick="' + k + '" style="--c:' + genreColor(genreOf(it)) + '"><span class="tk-ph">' + tkPhoto(it) + '</span><span class="tk-scrim"></span><span class="tk-text"><b><span class="tk-kind" aria-hidden="true">' + kindSvg(genreOf(it)) + '</span>' + esc(tkShortName(it)) + '</b><span>' + esc(deckHook(it)) + '</span></span></button>'; }
+  return '<div class="tk-top"><span></span><p class="tk-ttl">' + (TU.pi === 0 ? 'Which sounds better?' : '&nbsp;') + '</p><button class="tk-skip" type="button" data-tk="pairsdone">Skip</button></div>' +
+    '<div class="tk-pairs">' + one(pr.a, 'a') + one(pr.b, 'b') + '</div><div class="tk-row2"><button class="btn-2" type="button" data-tk-pick="both">Both</button><button class="btn-2" type="button" data-tk-pick="none">Neither</button></div>';
+}
+function seg(name, opts, cur){ return '<div class="seg tk-seg" role="group">' + opts.map(function(o){ return '<button type="button" data-tk-hard="' + name + ':' + o[0] + '" aria-pressed="' + (String(cur) === String(o[0])) + '">' + esc(o[1]) + '</button>'; }).join('') + '</div>'; }
+function hardRowsHTML(T){
+  var h = T.hard;
+  function sw(k, label, sub){ return '<div class="sw-row"><span>' + esc(label) + (sub ? '<small>' + esc(sub) + '</small>' : '') + '</span><button class="switch" type="button" data-tk-hard="' + k + '" aria-pressed="' + !!h[k] + '" aria-label="' + esc(label) + '"></button></div>'; }
+  return '<div class="tk-hard"><p class="tk-lab">Budget</p>' + seg('budget', [['free', 'Free-ish'], ['$$', 'Up to $$'], ['any', 'Any']], h.budget || 'any') +
+    sw('no21', 'No 21+') + sw('noBar', 'Skip bar-centered stuff') + sw('noCar', 'No car', 'Suburbs and day trips go last') + sw('quiet', 'Quieter picks', 'Moves quiet places up') + '</div>';
+}
+function hardScreenHTML(){
+  return '<div class="tk-page"><h1 class="tk-h1" tabindex="-1" data-focus>Any hard no\'s?</h1><p class="tk-sub">Only these hide things.</p>' + hardRowsHTML(TASTE) +
+    '<div class="tk-foot2"><button class="btn-primary" type="button" data-tk="harddone">Done</button></div></div>';
+}
+function tkStatusLine(c){ return c.d.text + (c.dist !== null ? ' · ' + travelShort(c) : ''); }
+function revealRows(){ // 4 best fits open now or later today + 1 wildcard
+  var res = UI.lastRes; if (!res) return [];
+  var st = tasteNow(), L = (res.all || []).filter(function(c){ return firstPhoto(c.item) && (c.bucket === 'fits' || c.st.open || c.st.key === 'later'); });
+  L.sort(function(a, b){ return isNever(a.item, st) - isNever(b.item, st) || fitOf(b.item, st) - fitOf(a.item, st) || rankFits(a, b); });
+  var out = [], g = {};
+  L.forEach(function(c){ if (out.length < 4 && (g[c.genre] || 0) < 2) { out.push(c); g[c.genre] = (g[c.genre] || 0) + 1; } });
+  var ids = {}; out.forEach(function(c){ ids[c.item.id] = 1; });
+  var wild = L.filter(function(c){ return !ids[c.item.id] && !isNever(c.item, st) && tasteVector(c.item).w >= 0.5; })[0] || L.filter(function(c){ return !ids[c.item.id]; })[Math.floor(L.length / 2)];
+  if (wild) { wild.__wild = true; out.push(wild); }
+  return out;
+}
+function neverChipsHTML(st){ var ks = Object.keys(st.never); if (!ks.length) return ''; return '<div class="tk-chips"><span class="tk-lab">Never</span>' + ks.map(function(k){ return '<button class="chip on" type="button" data-tk-tag="off:' + k + '" aria-label="Remove never ' + esc(interestLabel(k)) + '">' + esc(INTEREST_SHORT[k] || interestLabel(k)) + glyphSvg('i-close') + '</button>'; }).join('') + '</div>'; }
+function revealHTML(){
+  var st = tasteNow(), rows = revealRows(), w = traitWords(st, 3), ck = function(id){ var e = null; TASTE.log.forEach(function(x){ if (x.t === 'ck' && x.id === id) e = x; }); return e ? e.r : 0; };
+  var h = '<div class="tk-page"><h1 class="tk-h1" tabindex="-1" data-focus>Start here</h1><ul class="tk-rev">';
+  rows.forEach(function(c){ var r = ck(c.item.id); h += '<li><button class="tk-rv" type="button" data-tk-open="' + esc(c.item.id) + '"><span class="tk-th" style="--c:' + genreColor(c.genre) + '">' + tkPhoto(c.item) + '</span><span class="tk-rt"><b>' + esc(c.__wild ? 'Wildcard · ' : '') + esc(tkShortName(c.item)) + '</b><small>' + esc(tkStatusLine(c)) + '</small></span></button>' +
+    '<button class="tk-th-b" type="button" data-tk-rate="1:' + esc(c.item.id) + '" aria-pressed="' + (r === 1) + '" aria-label="Thumbs up">' + glyphSvg('i-up') + '</button><button class="tk-th-b" type="button" data-tk-rate="-1:' + esc(c.item.id) + '" aria-pressed="' + (r === -1) + '" aria-label="Thumbs down">' + glyphSvg('i-down') + '</button></li>'; });
+  h += '</ul>' + (rows.length ? '' : '<p class="tk-sub">Nothing open right now. Your picks will follow your taste.</p>');
+  h += '<p class="tk-words">' + esc(w.length ? w.map(function(x, i){ return i ? x : x.charAt(0).toUpperCase() + x.slice(1); }).join(' · ') : 'We\'ll sharpen this as you save things.') + '</p>';
+  if (st.fast) h += '<p class="tk-sub">Fast fingers. Tweak it if it\'s off.</p>';
+  h += neverChipsHTML(st);
+  h += '<div class="tk-foot2 two"><button class="btn-2" type="button" data-tk="profile">Tweak it</button><button class="btn-primary" type="button" data-tk="' + (TASTE_TEST ? 'check' : 'close') + '">Looks right</button></div></div>';
+  return h;
+}
+function profileHTML(){
+  var st = tasteStats(TASTE), w = traitWords(st, 3), nC = st.nCards, nS = st.nSaves;
+  var h = '<div class="tk-top"><span></span><span></span><button class="tk-ic" type="button" data-tk="close" aria-label="Close">' + glyphSvg('i-close') + '</button></div><div class="tk-page">';
+  h += '<h1 class="tk-h1" tabindex="-1" data-focus>' + esc(w.length ? w.map(function(x){ return x.charAt(0).toUpperCase() + x.slice(1); }).join(' · ') : 'Your taste') + '</h1>';
+  h += '<p class="tk-sub">' + (nC || nS ? 'From ' + nC + (nC === 1 ? ' swipe' : ' swipes') + ' and ' + nS + (nS === 1 ? ' save.' : ' saves.') : 'Swipe a few photos and the picks follow your taste.') + '</p>';
+  if (!nC) h += '<div class="tk-foot2"><button class="btn-primary" type="button" data-tk="startmain">Start · 1 min</button></div>';
+  h += '<div class="tk-sliders">' + DIALS.map(function(d){
+    var v = Math.round((st.m[d] || 0) * 100);
+    return '<label class="tk-sl' + (st.consistent[d] ? '' : ' dashed') + '"><span class="tk-sl-n">' + DIAL_NAMES[d] + '</span><span class="tk-sl-e">' + DIAL_ENDS[d][0] + '</span><input type="range" min="-100" max="100" step="5" value="' + v + '" data-tk-dial="' + d + '" aria-label="' + DIAL_NAMES[d] + ': ' + DIAL_ENDS[d][0] + ' to ' + DIAL_ENDS[d][1] + '"><span class="tk-sl-e">' + DIAL_ENDS[d][1] + '</span></label>';
+  }).join('') + '</div>';
+  function chips(kind, label){
+    var ks = TASTE_TAGS.filter(function(k){ return kind === 'more' ? (st.moreN[k] || 0) >= 2 : st.never[k]; });
+    var h2 = '<div class="tk-chips"><span class="tk-lab">' + label + '</span>' + ks.map(function(k){ return '<button class="chip on" type="button" data-tk-tag="off:' + k + '" aria-label="Remove ' + esc(interestLabel(k)) + '">' + esc(INTEREST_SHORT[k] || interestLabel(k)) + glyphSvg('i-close') + '</button>'; }).join('') +
+      '<button class="chip" type="button" data-tk="add:' + kind + '" aria-expanded="' + (TU.addOpen === kind) + '">+ Add</button></div>';
+    if (TU.addOpen === kind) h2 += '<div class="tk-chips add">' + TASTE_TAGS.filter(function(k){ return ks.indexOf(k) < 0; }).map(function(k){ return '<button class="chip" type="button" data-tk-tag="' + kind + ':' + k + '">' + esc(INTEREST_SHORT[k] || interestLabel(k)) + '</button>'; }).join('') + '</div>';
+    return h2;
+  }
+  h += chips('more', 'More of') + chips('never', 'Never');
+  h += '<h3 class="tk-h3">Hard no\'s</h3>' + hardRowsHTML(TASTE);
+  // date mode (§7)
+  var g = TASTE_GUEST && tasteCardCount(TASTE_GUEST) ? TASTE_GUEST : null;
+  h += '<h3 class="tk-h3">Date mode</h3>';
+  if (g) h += '<p class="tk-sub">' + esc(g.name || 'Guest') + ' did ' + tasteCardCount(g) + ' swipes. With <b>Date</b> on, picks blend you both. A place one of you would hate goes last, never hidden.</p><div class="tk-row2"><button class="btn-2" type="button" data-tk="guest">Redo ' + esc(g.name || 'guest') + '</button><button class="btn-2" type="button" data-tk="guestx">Remove</button></div>';
+  else h += '<p class="tk-sub">Pass the phone: 12 photos for your date, about 25 s.</p><div class="tk-row2"><label class="vh" for="tkGuest">Their name</label><input id="tkGuest" class="tk-in" type="text" maxlength="12" placeholder="Their name" autocomplete="off" value="' + esc(TU.guestName || '') + '"><button class="btn-2" type="button" data-tk="guest">Pass the phone</button></div>';
+  if (TASTE_TEST) {
+    var sr = saveRankSummary(TASTE.acc.saves), pt = p26Total(TASTE.acc.p26);
+    h += '<h3 class="tk-h3">Test mode</h3><p class="tk-sub">Saves from your top third: ' + sr.top + ' of ' + sr.n + ' · from map and search only: ' + sr.ctop + ' of ' + sr.cn + '</p><p class="tk-sub">Pick 2 of 6 so far: ' + pt.x + ' of ' + pt.y + ' (pass: 15 of 20)</p>' +
+      (TASTE.acc.p26.length ? '<table class="tk-tab"><tr><th>Friend</th><th>Round 1</th><th>Round 2</th></tr>' + p26Friends(TASTE.acc.p26).map(function(f, i){ return '<tr><td>' + (i + 1) + '</td><td>' + f[0] + ' of 2</td><td>' + (f.length > 1 ? f[1] + ' of 2' : '–') + '</td></tr>'; }).join('') + '</table>' : '') +
+      '<div class="tk-row2"><button class="btn-2" type="button" data-tk="check">Pick 2 of 6</button></div>';
+  }
+  h += '<div class="sw-row tk-use"><span>Use my taste to sort</span><button class="switch" type="button" data-tk="use" aria-pressed="' + (TASTE.use !== false) + '" aria-label="Use my taste to sort"></button></div>';
+  h += '<div class="tk-foot2 two">' + (nC ? '<button class="btn-2" type="button" data-tk="retake">Retake</button>' : '') + '<button class="btn-2' + (TU.confirmReset ? ' warn' : '') + '" type="button" data-tk="reset">' + (TU.confirmReset ? 'Tap again to start over' : 'Start over') + '</button></div></div>';
+  return h;
+}
+function p26Friends(rounds){ var out = [], cur = null; rounds.forEach(function(r){ if (r.round === 1 || !cur) { cur = [r.hits]; out.push(cur); } else cur.push(r.hits); }); return out; }
+function checkHTML(){ // §8a: "Tap the 2 you'd most do." 6 photos (no names), 3 high-fit + 3 low-fit matched in pairs
+  var C = TU.check;
+  if (!C || !C.set) {
+    var ex = {}; TASTE.log.forEach(function(x){ if (x.t === 'card') ex[x.id] = 1; }); if (C && C.used) Object.keys(C.used).forEach(function(k){ ex[k] = 1; });
+    var cands = ((UI.lastRes && UI.lastRes.all) || []).filter(function(c){ return c.st.open || c.st.key === 'later' || c.st.key === 'closed'; });
+    var round = C ? C.round : 1;
+    TU.check = C = {round:round, used:C ? C.used : {}, set:checkPairs(cands, tasteNow(), ex, Math.random), picks:[], hits:C ? C.hits : []};
+    C.set.tiles.forEach(function(t){ C.used[t.c.item.id] = 1; });
+  }
+  if (C.result) {
+    var tot = p26Total(TASTE.acc.p26), mine = C.hits.reduce(function(a, b){ return a + b; }, 0);
+    return '<div class="tk-page"><h1 class="tk-h1" tabindex="-1" data-focus>This friend: ' + mine + ' of 4</h1><p class="tk-sub">All friends so far: ' + tot.x + ' of ' + tot.y + '. The test passes at 15 of 20.</p><div class="tk-foot2 two"><button class="btn-2" type="button" data-tk="profile">Done</button><button class="btn-primary" type="button" data-tk="checknext">Next friend</button></div></div>';
+  }
+  if (C.set.tiles.length < 6) return '<div class="tk-page"><h1 class="tk-h1" tabindex="-1" data-focus>Not enough to compare</h1><p class="tk-sub">Too few places are open this week with a clear taste difference. Try later, or after more swipes.</p><div class="tk-foot2"><button class="btn-primary" type="button" data-tk="profile">Back</button></div></div>';
+  var h = '<div class="tk-top"><span></span><p class="tk-ttl">Round ' + C.round + ' of 2</p><button class="tk-ic" type="button" data-tk="profile" aria-label="Close">' + glyphSvg('i-close') + '</button></div><div class="tk-page"><h1 class="tk-h1" tabindex="-1" data-focus>Tap the 2 you\'d most do.</h1><div class="tk-grid">';
+  C.set.tiles.forEach(function(t, i){ var on = C.picks.indexOf(i) >= 0; h += '<button class="tk-tile' + (on ? ' on' : '') + '" type="button" data-tk-tile="' + i + '" aria-pressed="' + on + '" aria-label="Photo ' + (i + 1) + '" style="--c:' + genreColor(t.c.genre || genreOf(t.c.item)) + '"><span class="tk-ph">' + tkPhoto(t.c.item) + '</span><span class="tk-kind" aria-hidden="true">' + kindSvg(t.c.genre || genreOf(t.c.item)) + '</span>' + (on ? '<span class="tk-tick">' + glyphSvg('i-check') + '</span>' : '') + '</button>'; });
+  h += '</div><div class="tk-foot2"><button class="btn-primary" type="button" data-tk="checkdone"' + (C.picks.length === 2 ? '' : ' disabled') + '>Done</button></div></div>';
+  return h;
+}
+function tasteClick(e){
+  var t = e.target; if (!t.closest) return;
+  var b;
+  if ((b = t.closest('[data-tk-ans]'))) { tkAnswer(b.getAttribute('data-tk-ans')); return; }
+  if ((b = t.closest('[data-tk-pick]'))) { var pr = TU.pairs[TU.pi], pk = b.getAttribute('data-tk-pick'); TASTE.log.push(pairEntry(pr, pk, 0)); tasteSave(TASTE); TU.pi++; if (TU.pi >= TU.pairs.length) TU.mode = 'hard'; tasteRender(); return; }
+  if ((b = t.closest('[data-tk-hard]'))) {
+    var v = b.getAttribute('data-tk-hard'), hd = TASTE.hard;
+    if (/^budget:/.test(v)) { var x = v.slice(7); hd.budget = x === 'any' ? null : x; } else hd[v] = !hd[v];
+    tasteSave(TASTE); tasteChanged(); tasteRender(); return;
+  }
+  if ((b = t.closest('[data-tk-tag]'))) { var p = b.getAttribute('data-tk-tag').split(':'); TASTE.tags[p[1]] = p[0]; TU.addOpen = ''; tasteSave(TASTE); tasteChanged(); tasteRender(); return; }
+  if ((b = t.closest('[data-tk-rate]'))) { var q = b.getAttribute('data-tk-rate').split(':'), r = +q[0], id = q.slice(1).join(':'), cur = 0; TASTE.log.forEach(function(x){ if (x.t === 'ck' && x.id === id) cur = x.r; }); tasteOnRate(id, cur === r ? 0 : r, 'reveal'); tasteRender(); return; }
+  if ((b = t.closest('[data-tk-open]'))) { var oid = b.getAttribute('data-tk-open'); closeTaste(); openDetail(oid); return; }
+  if ((b = t.closest('[data-tk-tile]'))) { var C = TU.check, i = +b.getAttribute('data-tk-tile'), at = C.picks.indexOf(i); if (at >= 0) C.picks.splice(at, 1); else { C.picks.push(i); if (C.picks.length > 2) C.picks.shift(); } tasteRender(); return; }
+  if (!(b = t.closest('[data-tk]'))) return;
+  var a = b.getAttribute('data-tk');
+  if (a === 'undo') tkUndo();
+  else if (a === 'skip') { var T = tasteTarget(); if (T === TASTE) TASTE.nag.shown = Math.max(TASTE.nag.shown, 1); tasteSave(T); if (TU.who === 'guest') { TU.who = 'me'; TU.mode = 'profile'; tasteRender(); } else closeTaste(); }
+  else if (a === 'close') closeTaste();
+  else if (a === 'profile') { TU.mode = 'profile'; TU.check = null; tasteRender(); }
+  else if (a === 'pairsdone') { TU.mode = 'hard'; tasteRender(); }
+  else if (a === 'harddone') { tasteChanged(); TU.mode = 'reveal'; tasteRender(); }
+  else if (a === 'startmain') tasteStartDeck('main');
+  else if (a === 'retake') tasteStartDeck('retake');
+  else if (a === 'reset') { if (!TU.confirmReset) { TU.confirmReset = true; tasteRender(); return; } var keep = TASTE.acc; TASTE = emptyTaste(); TASTE.acc = keep; TASTE.nag.shown = 2; TU.confirmReset = false; tasteSave(TASTE); tasteChanged(); tasteRender(); }
+  else if (a === 'use') { TASTE.use = TASTE.use === false; tasteSave(TASTE); tasteChanged(); tasteRender(); }
+  else if (a.indexOf('add:') === 0) { TU.addOpen = TU.addOpen === a.slice(4) ? '' : a.slice(4); tasteRender(); }
+  else if (a === 'guest') { var gi = $('tkGuest'); TU.guestName = gi ? gi.value.trim() : (TASTE_GUEST && TASTE_GUEST.name) || ''; tasteStartDeck('guest'); }
+  else if (a === 'guestx') { TASTE_GUEST = null; try { Platform.store.set(TASTE_GUEST_KEY, null); } catch (er) {} tasteChanged(); tasteRender(); }
+  else if (a === 'check') { TU.check = null; TU.mode = 'check'; tasteRender(); }
+  else if (a === 'checkdone') { var C2 = TU.check, hits = C2.picks.filter(function(i){ return C2.set.tiles[i].hi; }).length; C2.hits.push(hits); TASTE.acc.p26.push({round:C2.round, hits:hits, at:new Date().toISOString()}); tasteSave(TASTE); if (C2.round >= 2) C2.result = true; else { C2.round = 2; C2.set = null; } tasteRender(); }
+  else if (a === 'checknext') { TU.check = null; tasteRender(); }
+}
+function tasteInput(e){ var d = e.target && e.target.getAttribute && e.target.getAttribute('data-tk-dial'); if (!d) return; TASTE.mine[d] = clamp1((+e.target.value || 0) / 100); tasteSave(TASTE); if (e.type === 'change') { tasteChanged(); var lab = e.target.closest('.tk-sl'); if (lab) lab.classList.remove('dashed'); } }
+function tasteKey(e){
+  var el = tasteEl(); if (!el || el.hidden) return;
+  if (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName) && e.key !== 'Escape') return;
+  if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); if (TU.mode === 'deck') tasteClick({target:{closest:function(s){ return s === '[data-tk]' ? {getAttribute:function(){ return 'skip'; }} : null; }}}); else closeTaste(); return; }
+  if (TU.mode !== 'deck') return;
+  if (TK_KEYS[e.key]) { e.preventDefault(); e.stopPropagation(); tkAnswer(TK_KEYS[e.key]); }
+  else if (e.key === 'z' || e.key === 'Z' || e.key === 'Backspace') { e.preventDefault(); e.stopPropagation(); tkUndo(); }
+}
+function bindTaste(){
+  var el = tasteEl(); if (!el) return;
+  el.addEventListener('click', tasteClick);
+  el.addEventListener('input', tasteInput); el.addEventListener('change', tasteInput);
+  window.addEventListener('keydown', tasteKey, true);
+}
+function tasteDemo(){ // #tastedemo=1 testing hook: a simulated "active, lively, curious + bugs" profile, in memory only (nothing saved)
+  TASTE_DEMO = true; if (!TASTE) tasteLoad();
+  var pool = deckPool(DATA, nowMs()), r = simRun(pool, {L:{e:1, v:1, p:-1}, p:0.95}, seededRng(7), false);
+  TASTE.log = r.D.log; TASTE.tags = {bugs:'more', bowling:'never'}; TASTE.hard.no21 = true; TASTE.updated_at = SIM_AT; TASTE_REV++; UI.homeHTML = null; refresh();
+}
+function tasteHook(hsh){ // #taste=deck|profile|check|reveal|hard (testing and screenshots)
+  var m = /(?:^#|&)taste=(deck|profile|check|reveal|hard|guest)/.exec(hsh); if (!m && !/(?:^#|&)tastedemo=1/.test(hsh)) return;
+  var go = function(){ if (!DATA_LOADED) { setTimeout(go, 200); return; } if (/tastedemo=1/.test(hsh)) tasteDemo(); if (!m) return; if (m[1] === 'deck') tasteStartDeck('main'); else if (m[1] === 'guest') { TU.guestName = 'Maya'; tasteStartDeck('guest'); } else openTaste(m[1]); };
+  setTimeout(go, 0);
+}
+
 /* ================= events wiring ================= */
 /* v5.7 (owner on her PC): a mouse wheel over the top of the list screen (search, tiles, sub-chips, result line) did nothing, and a
    sideways chip row could not be scrolled with a wheel at all. Now: over a chip row that still scrolls sideways, the wheel moves it
@@ -7157,6 +8004,11 @@ function onHomeClick(e){
     else if (a === 'tip') openTip();
     else if (a === 'about') { renderAbout(); openPanel('pAbout'); }
     else if (a === 'theme') openThemePicker();
+    else if (a === 'acct') openAccount();   // v5.12
+    else if (a === 'taste' || a === 'tasteprof') openTaste('profile');
+    else if (a === 'tastego') { tasteNagDone(1); tasteStartDeck('main'); }
+    else if (a === 'tastemini') { tasteNagDone(2); tasteStartDeck('mini'); }
+    else if (a === 'tastenagx') tasteNagDone(TASTE && TASTE.nag.shown >= 1 ? 2 : 1);
     else if (a === 'retry') loadData();
     else if (a === 'clearall') { S.f = ext(appDefaultFilters(), {radius:S.f.radius, mode:S.f.mode}); S.budgetOn = false; selectGenre('', {keep:true}); }
     else if (a === 'clearsel') selectGenre('', {keep:true});   // v5: the "Play + Limited" chip on the home screen
@@ -7223,7 +8075,8 @@ function fresh(o, extra){ var c = {}; for (var k in o) if (Object.prototype.hasO
 function northOf(mi){ return 41.88 + mi / (3958.8 * Math.PI / 180); }
 function runSelfTest(){
   var keepPlanST = UI.planning, keepAtST = UI.planAt, keepAnyST = UI.anyDay; UI.planning = false; UI.planAt = null; UI.anyDay = '';   // v5.3: the checks expect "now" wording even if the app is in planning mode
-  try { return runSelfTest0(); } finally { UI.planning = keepPlanST; UI.planAt = keepAtST; UI.anyDay = keepAnyST; }
+  TASTE_SUSPEND++; TASTE_REV++;   // v5.12: the checks run with an empty taste profile, whatever is saved on this phone
+  try { return runSelfTest0(); } finally { UI.planning = keepPlanST; UI.planAt = keepAtST; UI.anyDay = keepAnyST; TASTE_SUSPEND--; TASTE_REV++; }
 }
 function runSelfTest0(){
   var R = [];
@@ -8797,7 +9650,7 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.11 (2026-11-14)');
+    eq('version', VERSION, 'v5.12 (2026-11-14)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -8830,7 +9683,7 @@ function runSelfTest0(){
     eq('only two open: two picks, no crash', pickThree(pool([arcade, museum]), {}).picks.length, 2);
     eq('same kind three times is allowed when that is all there is', pickThree(pool([arcade, mk('Arcade B', 'games-arcade'), mk('Arcade C', 'games-arcade')]), {}).picks.length, 3);
     eq('"who" narrows the pool (Date)', threePool(buildView(runPipeline([mk('Date spot', 'games-arcade', {tags:['date']}), arcade], T, ctx, ext(F, {who:{date:true}})), F, '', ''), today, []).map(function(c){ return c.item.name; }).join(), 'Date spot');
-    eq('a hook for the taste profile exists (returns 0 for now)', typeof tasteScore + '|' + tasteScore(P[0]), 'function|0');
+    eq('the taste score is 0 with an empty profile',typeof tasteScore + '|' + tasteScore(P[0]), 'function|0');
     eq('no time budget ("any") at 1:30 am: a late bar still has room', fitFor(mk('Late bar', 'food-drink-experience', {hours:allDays(['17:00', '04:00'])}), statusAt(bar, at('2026-11-13', '01:30')), travel(0.3, 'transit'), 'any', at('2026-11-13', '01:30')).budget, 1440);
   });
 
@@ -9205,6 +10058,120 @@ function runSelfTest0(){
     eq('ids no longer in the list are skipped', clusterList(['Amy', 'gone'], false, function(id){ return pool[id]; }).n, 1);
     ok('a cluster button carries its index', clusterHTML({n:2, x:1, y:2, tk:0, ci:3}).indexOf('data-ci="3"') >= 0, clusterHTML({n:2, x:1, y:2, tk:0, ci:3}));
   });
+  /* ---------- v5.12 checks: the taste model, deck, ranking hook-up (fixtures), account button ---------- */
+  function strongSt(m, extra){ var st = tasteStats(emptyTaste()); st.id = ++TS_ID; st.fc = {}; DIALS.forEach(function(d){ st.m[d] = isNum(m[d]) ? m[d] : 0; st.conf[d] = 1; st.consistent[d] = true; }); st.n = 12; return ext(st, extra || {}); }
+  function withSt(st, fn){ var k = TASTE_OVERRIDE; TASTE_OVERRIDE = st; TASTE_REV++; try { return fn(); } finally { TASTE_OVERRIDE = k; TASTE_REV++; } }
+  block('v5.12 taste vectors (spec §2b)', function(){
+    var a = fx({id:'tv-a', energy:'active', vibe:'quiet', genre:'play', moods:['loud']}), b = fx({id:'tv-b', moods:['relaxing', 'loud'], category:'art-museum'}), c = fx({id:'tv-c', moods:['nerdy', 'weird'], category:'unique-niche', taste:{e:0.5}});
+    var va = tasteVector(a), vb = tasteVector(b), vc = tasteVector(c);
+    eq('fields win over moods: energy active, vibe quiet, play = +1', [va.e, va.v, va.p, va.w].join(), '1,-1,1,0');
+    eq('moods: relaxing = chill, loud = lively, Look = -1', [vb.e, vb.v, vb.p].join(), '-1,1,-1');
+    eq('override e 0.5; no vibe -> unknown (null); nerdy -0.5 on Look clamps to -1; weird = 1', [vc.e, vc.v, vc.p, vc.w].join(), '0.5,,-1,1');
+    eq('competitive adds +0.5 to Mode (Make 0.5 + 0.5)', tasteVector(fx({id:'tv-d', genre:'make-something', tags:['competitive']})).p, 1);
+  });
+  block('v5.12 votes and leans (spec §4b)', function(){
+    var card = function(d, end, ans){ return {t:'card', kind:'dial', dial:d, end:end, ans:ans, x:{e:0, v:end, p:0, w:0}, tags:[], ms:2000, at:SIM_AT}; };
+    var L1 = [card('v', 1, 'yes'), card('v', 1, 'yes'), card('v', -1, 'no'), card('v', -1, 'no')], s1 = tasteStats({log:L1}, tsOf(SIM_AT));
+    ok('yes to lively + no to quiet (2 each): "lively", consistent', s1.consistent.v && s1.m.v > 0 && traitWords(s1).indexOf('lively') === 0, JSON.stringify(s1.m) + ' ' + traitWords(s1));
+    var s2 = tasteStats({log:[card('v', 1, 'yes'), card('v', 1, 'yes'), card('v', -1, 'yes'), card('v', -1, 'yes')]}, tsOf(SIM_AT));
+    ok('yes to everything cancels: lean 0, no word ("both ends" rule)', s2.m.v === 0 && !s2.consistent.v && !traitWords(s2).length, s2.m.v);
+    var s3 = tasteStats({log:[card('v', 1, 'yes'), card('v', 1, 'yes'), card('v', 1, 'yes'), card('v', 1, 'yes')]}, tsOf(SIM_AT));
+    ok('asked from one end only: not consistent', !s3.consistent.v && s3.m.v > 0, String(s3.consistent.v));
+    near('lean = sum / (n + 2); conf = n / (n + 3)', s1.m.v * 10 + s1.conf.v, 4 / 6 * 10 + 4 / 7, 1e-9);
+    var old = card('v', 1, 'yes'); old.at = '2026-08-22T18:00:00.000Z';   // 12 weeks before
+    near('weekly fade: 0.97 per week', tasteStats({log:[old]}, tsOf(SIM_AT)).m.v * 3 - Math.pow(0.97, 12) * 3 / (Math.pow(0.97, 12) + 2), 0, 0.02);
+    var ic = {t:'card', kind:'interest', sig:'bugs', ans:'love', x:{e:0, v:1, p:-1, w:0}, tags:['bugs'], ms:2000, at:SIM_AT}, s4 = tasteStats({log:[ic]}, tsOf(SIM_AT));
+    ok('Love on the bugs card: "More of" bugs at once, dial votes at 0.5 only where |x| = 1', s4.more.bugs && s4.moreN.bugs === 2 && near1(s4.m.v, 0.5 / 2.5) && near1(s4.m.p, -0.5 / 2.5) && s4.m.e === 0, JSON.stringify(s4.m));
+    var nv = {t:'card', kind:'interest', sig:'bowling', ans:'no', x:{e:0, v:0, p:1, w:0}, tags:['bowling'], ms:2000, at:SIM_AT};
+    ok('a No on bowling is not "never bowling"', !tasteStats({log:[nv]}).never.bowling, 'never set');
+    ok('a Never on a karaoke dial card = never karaoke', tasteStats({log:[ext(card('v', 1, 'never'), {tags:['karaoke']})]}).never.karaoke === 1, 'not set');
+    ok('a chip removed (tags.off) beats the swipe', !tasteStats({log:[ext(card('v', 1, 'never'), {tags:['karaoke']})], tags:{karaoke:'off'}}).never.karaoke, 'still never');
+    var sl = tasteStats({log:[], mine:{e:-0.8}});
+    ok('a slider sets the lean directly and turns taste on', sl.m.e === -0.8 && sl.mine.e && tasteOn(sl), JSON.stringify(sl.m));
+    var sv = tasteStats({log:[{t:'save', id:'x', x:{e:1, v:0.2, p:-1, w:0}, at:SIM_AT}]}, tsOf(SIM_AT));
+    ok('a save votes 0.3 on dials where |x| >= 0.5 only', near1(sv.m.e, 0.3 / 2.3) && near1(sv.m.p, -0.3 / 2.3) && sv.m.v === 0, JSON.stringify(sv.m));
+    var ck = tasteStats({log:[{t:'ck', id:'x', r:-1, x:{e:1, v:0, p:0, w:0}, at:SIM_AT}]}, tsOf(SIM_AT));
+    near('a thumbs-down on a check-in votes 0.6 the other way', ck.m.e, -0.6 / 2.6, 1e-9);
+  });
+  function near1(a, b){ return Math.abs(a - b) < 1e-9; }
+  block('v5.12 an empty profile changes nothing (T1, fixtures)', function(){
+    var st = emptyStats();
+    ok('empty: taste off, score 0, fit 0, nothing "never", nothing hidden', !tasteOn(st) && tasteScore({item:fx({id:'e1', energy:'active'})}, st) === 0 && fitOf(fx({id:'e2', moods:['loud']}), st) === 0 && !isNever(fx({id:'e3', tags:['bowling']}), st) && !tasteHides(fx({id:'e4', tags:['21-plus'], price_level:'$$$$'}), st), 'not neutral');
+    var T = at('2026-11-14', '12:00'), items = [];
+    for (var i = 0; i < 24; i++) items.push(fx({id:'t1-' + i, name:'P' + i, lat:41.88 + (i % 7) * 0.012, lng:-87.63 - (i % 5) * 0.01, hours:allDays(['09:00', i % 4 ? '23:00' : '13:30']), verified:{status:i % 6 === 0 ? 'conflicting' : 'verified', checked_on:'2026-11-10'}, energy:i % 2 ? 'active' : 'chill', vibe:i % 3 ? 'lively' : 'quiet', tags:i % 5 ? [] : ['bowling']}));
+    var res = runPipeline(items, T, CTX, ext(defaultFilters(), {radius:25})), a = res.all.slice().sort(rankFits).map(function(c){ return c.item.id; }).join(), b = res.all.slice().sort(rankFitsV511).map(function(c){ return c.item.id; }).join();
+    eq('rankFits with an empty profile = the v5.11 order (24 fixtures)', a, b);
+    var s2 = strongSt({e:1, v:1}), a2 = withSt(s2, function(){ return res.all.slice().sort(rankFits).map(function(c){ return c.item.id; }).join(); });
+    ok('a strong profile does reorder them (inside travel bands)', a2 !== b, 'same order');
+  });
+  block('v5.12 only hard no\'s hide (T8, fixtures) + never ranks last (T6)', function(){
+    var T = at('2026-11-14', '12:00'), mk = function(i, o){ return fx(ext({id:'t8-' + i, name:'Q' + i, lat:41.88 + i * 0.004, hours:allDays(['09:00', '23:00'])}, o)); };
+    var items = [mk(0, {tags:['bowling']}), mk(1, {tags:['21-plus'], moods:['boozy'], genre:'eat-drink'}), mk(2, {price_level:'$$$$'}), mk(3, {tags:['suburbs'], energy:'active'}), mk(4, {vibe:'quiet'}), mk(5, {vibe:'lively', tags:['karaoke']}), mk(6, {})];
+    var F = ext(defaultFilters(), {radius:25}), n0 = runPipeline(items, T, CTX, F).all.length;
+    var soft = strongSt({e:1, v:1, p:1}, {never:{bowling:1, karaoke:1}, hard:{budget:null, no21:false, noBar:false, noCar:true, quiet:true}});
+    eq('No car + Quieter picks + a strong profile + nevers: nothing hidden', withSt(soft, function(){ return runPipeline(items, T, CTX, F).all.length; }), n0);
+    var hard = strongSt({}, {hard:{budget:'free', no21:true, noBar:true, noCar:false, quiet:false}});
+    eq('Budget Free-ish + No 21+ + Skip bars: hides the $$$$ one and the 21+ bar (2)', withSt(hard, function(){ return n0 - runPipeline(items, T, CTX, F).all.length; }), 2);
+    eq('hiding words for the Home chip', hardHidingWords(hard).join(', '), 'over $, 21+, bars');
+    var order = withSt(soft, function(){ return runPipeline(items, T, CTX, F).all.slice().sort(rankFits).map(function(c){ return c.item.id; }); });
+    ok('"never" items (bowling, karaoke) come last, still listed', order.slice(-2).sort().join() === 't8-0,t8-5', order.join());
+    ok('No car: the suburb one is last of the rest', order[order.length - 3] === 't8-3', order.join());
+  });
+  block('v5.12 date mode: misery ranks last, never hides (T7, fixtures)', function(){
+    var T = at('2026-11-14', '12:00'), items = [];
+    for (var i = 0; i < 8; i++) items.push(fx({id:'t7-' + i, name:'D' + i, lat:41.88 + i * 0.003, hours:allDays(['09:00', '23:00']), energy:i < 3 ? 'active' : i < 5 ? 'chill' : 'easy', vibe:'mixed'}));
+    var me = strongSt({e:1}), guest = strongSt({e:-1}), F = ext(defaultFilters(), {radius:25});   // the guest leans the other way
+    [me, guest].forEach(function(s){ s.conf = {e:1, v:0, p:0, w:0}; });   // only Energy is known, so the fit is clear (+1 / -1)
+    var bl = blendStats(me, guest);
+    eq('blend: equal weights (active + chill = 0)', bl.m.e, 0);
+    var n0 = runPipeline(items, T, CTX, F).all.length, r = withSt(bl, function(){ var rr = runPipeline(items, T, CTX, F); return {n:rr.all.length, ms:rr.all.slice().sort(rankFits).map(function(c){ return miseryOf(c, bl); })}; });
+    eq('the list count is unchanged in date mode', r.n, n0);
+    eq('everything one of them would hate sorts after the rest', r.ms.join(''), r.ms.slice().sort().join(''));
+    ok('somebody is miserable here (the check means something)', r.ms.indexOf(1) >= 0, r.ms.join());
+    var ua = blendStats(strongSt({}, {more:{bugs:1}, never:{bowling:1}, moreN:{bugs:2}}), strongSt({}, {more:{cheese:1}, never:{karaoke:1}, moreN:{cheese:2}}));
+    eq('interests and nevers are unions', Object.keys(ua.more).sort().join() + '|' + Object.keys(ua.never).sort().join(), 'bugs,cheese|bowling,karaoke');
+  });
+  block('v5.12 deck controls (T14)', function(){
+    eq('drag: 100 px right = yes, 100 px left = no', swipeDecision(100, 10, 0, 0) + ',' + swipeDecision(-100, 0, 0, 0), 'yes,no');
+    eq('drag: 120 px up = love, 120 px down = never; 100 px down is not enough', [swipeDecision(5, -120, 0, 0), swipeDecision(0, 120, 0, 0), swipeDecision(0, 100, 0, 0)].join(), 'love,never,');
+    eq('a sloppy diagonal counts as the bigger direction (right)', swipeDecision(98, 80, 0, 0), 'yes');
+    eq('a fast flick (0.6 px/ms) commits early; a slow short drag springs back', swipeDecision(40, 5, 0.6, 0) + ',' + swipeDecision(40, 5, 0.1, 0), 'yes,null');
+    eq('keys: → ← ↑ ↓', [TK_KEYS.ArrowRight, TK_KEYS.ArrowLeft, TK_KEYS.ArrowUp, TK_KEYS.ArrowDown].join(), 'yes,no,love,never');
+    var bh = deckButtonsHTML(), m = bh.match(/data-tk-ans="(\w+)" aria-label="([^"]+)"/g) || [];
+    eq('4 buttons, left to right: Never, No, Love it, Yes', m.map(function(x){ return x.replace(/data-tk-ans="(\w+)" aria-label="([^"]+)"/, '$1=$2'); }).join(), 'never=Never,no=No,love=Love it,yes=Yes');
+    var rmS = tkFlyStyle('yes', true), fl = tkFlyStyle('love', false);
+    ok('reduced motion: a fade only, no transform; otherwise a fly-off upward for love', rmS.transform === '' && rmS.transition.indexOf('transform') < 0 && /translate\(0vw,-120vh\)/.test(fl.transform), JSON.stringify(rmS) + ' ' + fl.transform);
+    // a tiny pool: answers, undo and re-planning
+    var mkI = function(id, e, v, g){ return fx({id:id, name:id, hook:'Do the thing', energy:e, vibe:v, genre:g, photos:[{file:'photos/x.jpg'}]}); };
+    var pool = deckPool([mkI('a1', 'active', 'mixed', 'eat-drink'), mkI('a2', 'active', 'mixed', 'shows-nights'), mkI('c1', 'chill', 'mixed', 'eat-drink'), mkI('c2', 'chill', 'mixed', 'shows-nights'),
+      mkI('l1', 'easy', 'lively', 'eat-drink'), mkI('q1', 'easy', 'quiet', 'shows-nights'), mkI('p1', 'easy', 'mixed', 'play'), mkI('k1', 'easy', 'mixed', 'look-learn')], at('2026-11-14', '12:00'));
+    eq('pool by dial end (E+ E- V+ V- P+ P-)', ['e', 'v', 'p'].map(function(d){ return pool.dial[d]['1'].length + '/' + pool.dial[d]['-1'].length; }).join(' '), '2/2 1/1 1/1');
+    var D = newDeck(pool, 'mini', seededRng(3), {}), c1 = deckFill(D), e1 = deckAnswer(D, 'yes', 900, SIM_AT), c2 = deckFill(D);
+    ok('an answer records the card\'s dial, end and the item\'s vector', e1.ans === 'yes' && e1.dial === c1.dial && e1.end === c1.end && e1.x.e === c1.x.e, JSON.stringify(e1));
+    var u = deckUndo(D);
+    ok('undo: the last card comes back, its answer removed, the next card is re-planned', u.id === c1.it.id && D.log.length === 0 && D.cards.length === 1 && deckFill(D) === c1, D.cards.length + '/' + D.log.length);
+    var fl6 = function(n, ms){ var L = []; for (var i = 0; i < n; i++) L.push({t:'card', kind:'dial', dial:'v', end:i % 2 ? 1 : -1, ans:'yes', x:{e:0, v:i % 2 ? 1 : -1, p:0, w:0}, tags:[], ms:ms, at:SIM_AT}); return {log:L}; };
+    var fd = fl6(7, 300); deckFF(fd);
+    ok('fast fingers: 6+ same answers under 600 ms count half', fd.log.every(function(x){ return x.ff; }) && tasteStats(fd).fast,JSON.stringify(fd.log.map(function(x){ return !!x.ff; })));
+    var fd2 = fl6(7, 300); fd2.log[3].ms = 2000; deckFF(fd2);
+    ok('no fast fingers when one answer in the run was slow', !fd2.log.some(function(x){ return x.ff; }), 'ff set');
+    var fd3 = fl6(6, 300); fd3.log[5].ans = 'no'; deckFF(fd3);
+    ok('fast fingers needs the same answer 6 times', !fd3.log.some(function(x){ return x.ff; }), 'ff set');
+  });
+  block('v5.12 sync, account button, accuracy helpers', function(){
+    eq('cleanTaste: garbage -> empty profile', JSON.stringify(cleanTaste({v:2, log:[{t:'x'}, 5, {t:'card', ans:'yes'}], hard:{budget:'$$$$', no21:'yes'}, tags:{bugs:'more', foo:'never'}, mine:{e:7}})), JSON.stringify(ext(emptyTaste(), {log:[{t:'card', ans:'yes'}], tags:{bugs:'more'}, mine:{e:1}})));
+    eq('the newer profile wins (local newer / remote newer / no remote)', [tastePick({updated_at:'2026-11-14T10:00:00Z'}, {v:2, log:[]}, '2026-11-13T10:00:00Z'), tastePick({updated_at:'2026-11-12T10:00:00Z'}, {v:2, log:[]}, '2026-11-13T10:00:00Z'), tastePick({updated_at:'x'}, null, null)].join(), 'local,remote,local');
+    ok('the cloud copy keeps at most 300 log entries', tasteForCloud(ext(emptyTaste(), {log:new Array(350).join('.').split('.').map(function(){ return {t:'save'}; })})).log.length === 300, 'more');
+    var out = homeIconsHTML('out', ''), off = homeIconsHTML('off', ''), inn = homeIconsHTML('in', 'maya');
+    ok('Home header: an account button on the website (signed out: person icon, "Sign in")', out.indexOf('data-act="acct"') >= 0 && out.indexOf('i-user') >= 0 && out.indexOf('aria-label="Sign in"') >= 0, out);
+    ok('Home header: no account button on claude.ai / a local file', off.indexOf('data-act="acct"') < 0 && off.indexOf('data-act="saved"') >= 0, off);
+    ok('signed in: the username\'s initial', />M<\/span>/.test(inn) && inn.indexOf('@maya') >= 0, inn);
+    var here = !!document.querySelector('#homeRoot [data-act="acct"]');
+    eq('this page: account button shown = accounts work here (' + (cloudHost() ? 'website' : 'not the website') + ')', here, Acct.state !== 'off');
+    var sr = saveRankSummary([{pct:0.1, list:'map'}, {pct:0.5, list:'for-you'}, {pct:0.2, list:'for-you'}, {pct:0.9, list:'search'}, {pct:null}]);
+    eq('save-rank: top third of all saves, and of map + search only', [sr.top, sr.n, sr.ctop, sr.cn].join(), '2,4,1,2');
+    eq('pick 2 of 6 running total', JSON.stringify(p26Total([{round:1, hits:2}, {round:2, hits:1}, {round:1, hits:0}])), '{"x":3,"y":6}');
+  });
   return R;
 }
 function waitFor(fn, ms){ return new Promise(function(res){ var t0 = Date.now(); (function poll(){ var v = false; try { v = fn(); } catch (e) {} if (v || Date.now() - t0 > ms) res(!!v); else setTimeout(poll, 100); })(); }); }
@@ -9278,8 +10245,112 @@ function runSelfTestAsync(){ // checks that need promises or the map files
     var parkAnimals = DATA.filter(function(it){ return genreOf(it) === 'nature' && subOf(it, 'nature') === 'animals' && /\b(park|beach|trail)\b/i.test(it.name) && !/zoo|elk|butterfl|aquarium/i.test(it.name); }).map(function(it){ return it.name; });
     eq('real data: no plain park, beach or trail under Animals & bugs', parkAnimals.join('; '), '');
     ok('real data: the Escape rooms view lists every "Escape room:" room (' + nE + ' rooms, ' + nPre + ' with the prefix)', nE >= nPre && vE.kind.escape.filter(function(c){ return /^Escape room:/.test(c.item.name); }).length === nPre, nE + ' of ' + nPre);
+    try { tasteRealChecks(R, res, ok, eq); } catch (e) { ok('real data: v5.12 taste checks crashed', false, e && e.message ? e.message + ' ' + (e.stack || '').split('\n')[1] : String(e)); }
     return R;
   });
+}
+function tasteRealChecks(R, resMon, ok, eq){ // v5.12 real-data taste checks (spec §9: T1-T13)
+  function info(n){ R.push({ok:true, info:'', name:n, note:true}); }
+  function mkSt(m, extra){ var st = tasteStats(emptyTaste()); st.id = ++TS_ID; st.fc = {}; DIALS.forEach(function(d){ st.m[d] = isNum(m[d]) ? m[d] : 0; st.conf[d] = 1; st.consistent[d] = true; }); st.n = 12; return ext(st, extra || {}); }
+  function withSt(st, fn){ var k = TASTE_OVERRIDE; TASTE_OVERRIDE = st; TASTE_REV++; try { return fn(); } finally { TASTE_OVERRIDE = k; TASTE_REV++; } }
+  var F = appDefaultFilters(), day = '2026-11-13';
+  var scenes = [[resMon, 'Mon noon, North Center'], [runPipeline(DATA, fromChicago('2026-11-13', 1080), {lat:41.8819, lng:-87.6278, budget:'any', mode:'transit'}, F), 'Fri 6 pm, the Loop'], [runPipeline(DATA, fromChicago('2026-11-14', 840), {lat:41.8819, lng:-87.6278, budget:'any', mode:'car'}, ext(F, {mode:'car'})), 'Sat 2 pm, the Loop, drive']];
+  function three(sc){ var vm = buildView(sc[0], F, '', ''), pool = threePool(vm, day, []); return {vm:vm, pool:pool, picks:pickThree(pool, {}).picks}; }
+  // T9 vectors
+  var cnt = {e:{p:0, m:0, n:0}, v:{p:0, m:0, n:0}, p:{p:0, m:0, n:0}};
+  DATA.forEach(function(it){ var x = tasteVector(it); DECK_DIALS.forEach(function(d){ if (x[d] === null) cnt[d].n++; else if (x[d] === 1) cnt[d].p++; else if (x[d] === -1) cnt[d].m++; }); });
+  ok('real data T9: every item gets a vector (' + DATA.length + ')', DATA.every(function(it){ var x = tasteVector(it); return isNum(x.p) && isNum(x.w); }), 'missing');
+  info('real data T9: ends (+1 / -1 / unknown): Energy ' + cnt.e.p + ' / ' + cnt.e.m + ' / ' + cnt.e.n + ' (' + Math.round(cnt.e.n / DATA.length * 100) + '% null), Vibe ' + cnt.v.p + ' / ' + cnt.v.m + ' / ' + cnt.v.n + ' (' + Math.round(cnt.v.n / DATA.length * 100) + '% null), Mode ' + cnt.p.p + ' / ' + cnt.p.m);
+  // T10 anchor bank (live, from the data: no photo approval list exists yet)
+  var pool = deckPool(DATA, fromChicago('2026-11-14', 720)), short = [];
+  DECK_DIALS.forEach(function(d){ ['1', '-1'].forEach(function(e){ var n = pool.dial[d][e].length, bands = {}; pool.dial[d][e].forEach(function(it){ bands[popBand3(it)] = 1; }); if (n < 6 || Object.keys(bands).length < 2) short.push(DIAL_NAMES[d] + (e === '1' ? '+' : '-') + ' ' + n); }); });
+  ok('real data T10: 6+ deck items at each end of each dial, over 2+ popularity bands (' + DECK_DIALS.map(function(d){ return DIAL_NAMES[d] + ' ' + pool.dial[d]['1'].length + '/' + pool.dial[d]['-1'].length; }).join(', ') + ' of ' + pool.n + ' deck-eligible)', !short.length, 'short: ' + short.join(', '));
+  var intr = INTEREST_ORDER.map(function(t){ var l = pool.interest[t] || []; return t + ': ' + (l[0] ? l[0].name : 'NONE'); });
+  ok('real data T10: an item for bugs, cheese and bowling (' + intr.join('; ') + ')', INTEREST_ORDER.every(function(t){ return (pool.interest[t] || []).length; }), intr.join('; '));
+  info('real data T10: spares ' + INTEREST_SPARE.map(function(t){ return t + ' ' + (pool.interest[t] || []).length; }).join(', ') + '. Photos are not "approved" by a person yet (no anchors.json).');
+  // T1 empty profile changes nothing (real scenes)
+  var empty = emptyStats(), t1 = true, t1w = '';
+  scenes.forEach(function(sc){
+    var vm = buildView(sc[0], F, '', '');
+    GENRES.forEach(function(g){ var l = vm.byGenre[g.id], a = l.slice().sort(rankFitsV511).map(function(c){ return c.item.id; }).join(); if (l.map(function(c){ return c.item.id; }).join() !== a) { t1 = false; t1w = sc[1] + ' ' + g.id; } });
+    var p = threePool(vm, day, []);
+    p.forEach(function(c){ var exp = [c.__tier, !c.__popOk ? 2 : c.__pop >= POP_STAR ? 0 : 1, 0, trustRank(c), (c.anyDay && c.fit && c.fit.short) ? 1 : 0, firstPhoto(c.item) ? 0 : 1].join(); if (!c.__fill && c.__r.slice(0, 6).join() !== exp) { t1 = false; t1w = sc[1] + ' three ' + c.item.id; } });
+  });
+  ok('real data T1: an empty profile gives exactly the v5.11 order (lists and the three, 3 scenes)', t1 && !tasteOn(empty), t1w);
+  // T2 / T3 strong profiles change the three, the right way
+  var pos = mkSt({e:1, v:1, p:1}), neg = mkSt({e:-1, v:-1, p:-1}), changed = {pos:0, neg:0}, better = true, bw = '', sets = {pos:[], neg:[]}, tierOk = true, trustOk = true, tw = '';
+  scenes.forEach(function(sc){
+    var e0 = three(sc), base = e0.picks.map(function(c){ return c.item.id; }), maxTier = Math.max.apply(null, e0.picks.map(function(c){ return c.__tier || 0; }).concat([0]));
+    [['pos', pos], ['neg', neg]].forEach(function(pp){
+      var r = withSt(pp[1], function(){ var x = three(sc); GENRES.forEach(function(g){ var l = x.vm.byGenre[g.id]; for (var i = 0; i < l.length; i++) for (var j = i + 1; j < l.length; j++) if (travBand(l[i]) === travBand(l[j]) && trustRank(l[i]) === 2 && trustRank(l[j]) === 0) { trustOk = false; tw = sc[1] + ' ' + l[i].item.name; } }); return x; });
+      var ids = r.picks.map(function(c){ return c.item.id; }); sets[pp[0]].push(ids.slice().sort().join());
+      if (ids.slice().sort().join() !== base.slice().sort().join()) changed[pp[0]]++;
+      var add = r.picks.filter(function(c){ return base.indexOf(c.item.id) < 0; }), gone = e0.picks.filter(function(c){ return ids.indexOf(c.item.id) < 0; });
+      var mean = function(l){ return l.reduce(function(s, c){ return s + fitOf(c.item, pp[1]); }, 0) / Math.max(1, l.length); };
+      if (add.length && !(mean(add) > mean(gone))) { better = false; bw = pp[0] + ' ' + sc[1] + ': new ' + mean(add).toFixed(2) + ' vs replaced ' + mean(gone).toFixed(2); }
+      if (r.picks.some(function(c){ return (c.__tier || 0) > maxTier; })) { tierOk = false; tw = tw || pp[0] + ' ' + sc[1] + ' tier'; }
+      info('real data, ' + sc[1] + ', ' + (pp[0] === 'pos' ? 'active+lively+playful' : 'chill+quiet+curious') + ': ' + r.picks.map(function(c){ return c.item.name + ' (' + fitOf(c.item, pp[1]).toFixed(2) + ')'; }).join('; ') + '  [empty: ' + e0.picks.map(function(c){ return c.item.name; }).join('; ') + ']');
+    });
+  });
+  ok('real data T2: a strong profile changes the three (' + changed.pos + ' of 3 scenes) and the new picks fit better than the ones they replaced', changed.pos >= 1 && better, bw || 'no scene changed');
+  ok('real data T3: the opposite profile changes them too (' + changed.neg + ' of 3) and gives different sets', changed.neg >= 1 && sets.pos.join('|') !== sets.neg.join('|'), sets.pos.join('|'));
+  ok('real data T4: taste never pulls a pick further (no tier above the empty profile\'s)', tierOk, tw);
+  ok('real data T5: trust beats taste (no conflicting item ahead of a verified one in the same travel band)', trustOk, tw);
+  // T6 never bowling
+  var nb = mkSt({}, {never:{bowling:1}}), isB = function(c){ return tasteTags(c.item).indexOf('bowling') >= 0; }, t6 = true, t6w = '';
+  scenes.forEach(function(sc){
+    var e0 = three(sc), r = withSt(nb, function(){ return three(sc); });
+    var others = r.vm.main.filter(function(c){ return !isB(c); }).length;
+    if (others >= 3 && r.picks.some(isB)) { t6 = false; t6w = sc[1] + ': bowling in the three'; }
+    if (r.vm.main.filter(isB).length !== e0.vm.main.filter(isB).length) { t6 = false; t6w = sc[1] + ': bowling left the map/list'; }
+    GENRES.forEach(function(g){ var l = r.vm.byGenre[g.id], seen = false; l.forEach(function(c){ if (isB(c)) seen = true; else if (seen) { t6 = false; t6w = sc[1] + ': bowling not last in ' + g.id; } }); });
+  });
+  var sb = withSt(nb, function(){ return searchItems(DATA, 'bowling').length; });
+  ok('real data T6: never bowling = not in the three, still on the map and in search (' + sb + ' results), last in its list', t6 && sb > 0 && sb === searchItems(DATA, 'bowling').length, t6w);
+  // T7 / T8 counts never change for soft settings
+  var g7 = mkSt({e:-1, v:-1, p:-1}), bl = blendStats(pos, g7), soft = mkSt({e:1, v:1, p:1}, {never:{bowling:1, karaoke:1, comedy:1}, hard:{budget:null, no21:false, noBar:false, noCar:true, quiet:true}});
+  var c0 = scenes.map(function(sc){ return sc[0].all.length; }).join(), cnt7 = withSt(bl, function(){ return scenes.map(function(sc, i){ return i === 0 ? runPipeline(DATA, fromChicago('2026-11-16', 720), {lat:41.9405, lng:-87.6680, budget:'any', mode:'transit'}, F).all.length : null; })[0]; });
+  var mis = withSt(bl, function(){ var vm = buildView(scenes[1][0], F, '', ''), okk = true, n = 0; GENRES.forEach(function(g){ var seen = false; vm.byGenre[g.id].forEach(function(c){ var m = miseryOf(c, bl); n += m; if (m) seen = true; else if (seen) okk = false; }); }); return {ok:okk, n:n}; });
+  ok('real data T7: date mode with an opposite guest: same list count, ' + mis.n + ' "misery" places sort after the rest', cnt7 === resMon.all.length && mis.ok && mis.n > 0, cnt7 + ' vs ' + resMon.all.length);
+  var c8 = withSt(soft, function(){ return [runPipeline(DATA, fromChicago('2026-11-16', 720), {lat:41.9405, lng:-87.6680, budget:'any', mode:'transit'}, F).all.length].join(); });
+  ok('real data T8: No car + Quieter + strong profile + 3 nevers: visible count unchanged (' + c8 + ')', c8 === String(resMon.all.length), c8 + ' vs ' + resMon.all.length);
+  var c8h = withSt(mkSt({}, {hard:{budget:'free', no21:true, noBar:true, noCar:false, quiet:false}}), function(){ return runPipeline(DATA, fromChicago('2026-11-16', 720), {lat:41.9405, lng:-87.6680, budget:'any', mode:'transit'}, F).all.length; });
+  info('real data: the hard no\'s (Free-ish, No 21+, Skip bars) hide ' + (resMon.all.length - c8h) + ' of ' + resMon.all.length + ' here; bar-centered items in the list: ' + DATA.filter(isBarCentered).length);
+  // T11 deck sim on the real vectors
+  var rng = seededRng(20261114), rnd = 0, rndW = [];
+  for (var i = 0; i < 20; i++) { var rr = simRun(pool, {random:true}, rng, false); rndW.push(rr.words.length); if (rr.words.length <= 1) rnd++; }
+  ok('real data T11a: 20 random swipers, at most 1 word in ' + rnd + ' of 20 (need 14)', rnd >= 14, rndW.join(','));
+  var named = 0, right = 0, strong = 0, strongNamed = 0, cards = 0, clean = 0, deckLen = [], neu = 0, neuNamed = 0;
+  for (var k0 = 0; k0 < 100; k0++) {   // people with no lean on one dial: how often that dial gets a (false) word anyway
+    var L0 = {}; DECK_DIALS.forEach(function(d){ L0[d] = rng() < 0.5 ? -1 : 1; }); var nd = DECK_DIALS[k0 % 3]; L0[nd] = 0;
+    var s0 = simRun(pool, {L:L0, p:0.85}, rng, false); neu++; if (s0.st.consistent[nd]) neuNamed++;
+  }
+  for (var k = 0; k < 200; k++) {
+    var L = {}; DECK_DIALS.forEach(function(d){ L[d] = rng() < 0.5 ? -1 : 1; });   // a known lean on every dial (spec §9 T11b)
+    var sr = simRun(pool, {L:L, p:0.85}, rng, false); deckLen.push(sr.D.log.length);
+    sr.D.cards.forEach(function(c){ if (c.kind === 'dial') { cards++; if (c.clean) clean++; } });
+    DECK_DIALS.forEach(function(d){ var w = sr.st.consistent[d]; if (w) { named++; if (sgn(sr.st.m[d]) === L[d]) right++; } if (L[d]) { strong++; if (w && sgn(sr.st.m[d]) === L[d]) strongNamed++; } });
+  }
+  var minL = Math.min.apply(null, deckLen), maxL = Math.max.apply(null, deckLen);
+  ok('real data T11b: 200 simulated people (85% in line): named words right ' + Math.round(right / Math.max(1, named) * 100) + '% (need 90), strong leans named ' + Math.round(strongNamed / Math.max(1, strong) * 100) + '% (need 50); decks ' + minL + '-' + maxL + ' cards', right / Math.max(1, named) >= 0.9 && strongNamed / Math.max(1, strong) >= 0.5 && minL >= 15 && maxL <= 20, right + '/' + named + ', ' + strongNamed + '/' + strong);
+  info('real data T11b (extra): a dial with NO lean still got a word in ' + neuNamed + ' of ' + neu + ' simulated people (' + Math.round(neuNamed / neu * 100) + '%)');
+  ok('real data T13: one-dial cards: ' + Math.round(clean / Math.max(1, cards) * 100) + '% of ' + cards + ' dial cards within 0.5 on the other dials and in the same popularity band as the opposite-end cards (need 80%)', clean / Math.max(1, cards) >= 0.8, clean + '/' + cards);
+  var yA = 0, yB = 0, yS = 0, rngA = seededRng(77), rngB = seededRng(77), npairs = 0;
+  for (var q = 0; q < 100; q++) {
+    var LL = {}; DECK_DIALS.forEach(function(d){ var u = rngA(); LL[d] = u < 0.5 ? -1 : 1; }); rngB();   // keep the two streams apart
+    var pA = simRun(pool, {L:LL, p:0.85, yesHeavy:true}, seededRng(1000 + q), false), pB = simRun(pool, {L:LL, p:0.85, yesHeavy:true}, seededRng(1000 + q), true);
+    npairs += pB.pairs;
+    DECK_DIALS.forEach(function(d){ yS++; if (pA.st.consistent[d] && sgn(pA.st.m[d]) === LL[d]) yA++; if (pB.st.consistent[d] && sgn(pB.st.m[d]) === LL[d]) yB++; });
+  }
+  var gain = Math.round((yB - yA) / yS * 100);
+  info('real data T11c: yes-heavy people (80% yes): correct words deck only ' + Math.round(yA / yS * 100) + '%, deck + tiebreak ' + Math.round(yB / yS * 100) + '% (' + (gain >= 0 ? '+' : '') + gain + ' points, ' + npairs + ' pairs shown in 100 runs). Rule: keep the tiebreak only at +10 or more.');
+  eq('real data T11c: the tiebreak switch follows the sim (' + (gain >= 10 ? 'keep' : 'cut') + ')', TIEBREAK_ON, gain >= 10);
+  // T12 pick 2 of 6 is fair
+  var cand = scenes[1][0].all.filter(function(c){ return c.st.open || c.st.key === 'later' || c.st.key === 'closed'; }), cp = checkPairs(cand, pos, {}, seededRng(5));
+  ok('real data T12: pick 2 of 6 has 3 pairs, each matched on popularity band and travel band, high fit above low', cp.pairs.length === 3 && cp.tiles.length === 6 && cp.pairs.every(function(p){ return p.hi.pb === p.lo.pb && p.hi.tb === p.lo.tb && p.hi.f > p.lo.f; }), cp.pairs.map(function(p){ return p.hi.c.item.name + ' ' + p.hi.f.toFixed(2) + ' vs ' + p.lo.c.item.name + ' ' + p.lo.f.toFixed(2); }).join('; '));
+  // why line
+  var why = withSt(pos, function(){ var x = three(scenes[1]); return x.picks.map(function(c){ return tasteWhy(c, pos); }).filter(Boolean); });
+  info('real data: "why" lines on the strong profile\'s three: ' + (why.join(' | ') || 'none (no pick scored 2+)'));
 }
 function showSelfTest(){
   var R = runSelfTest(), runId = (showSelfTest.n = (showSelfTest.n || 0) + 1);
@@ -9300,7 +10371,8 @@ function showSelfTest(){
     return {ok:okN, fail:bad};
   }
   var first = paint(R, true);
-  runSelfTestAsync().then(function(R2){ if (runId === showSelfTest.n) paint(R.concat(R2), false); }, function(e){ if (runId === showSelfTest.n) paint(R.concat([{ok:false, name:'async checks crashed', info: e && e.message ? e.message : String(e)}]), false); });
+  TASTE_SUSPEND++; var unsus = function(){ TASTE_SUSPEND = Math.max(0, TASTE_SUSPEND - 1); TASTE_REV++; };   // v5.12: the async checks too
+  runSelfTestAsync().then(function(R2){ unsus(); return R2; }, function(e){ unsus(); throw e; }).then(function(R2){ if (runId === showSelfTest.n) paint(R.concat(R2), false); }, function(e){ if (runId === showSelfTest.n) paint(R.concat([{ok:false, name:'async checks crashed', info: e && e.message ? e.message : String(e)}]), false); });
   return first;
 }
 function hideSelfTest(){ $('selftest').hidden = true; if (/selftest/.test(location.hash)) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { try { location.hash = ''; } catch (e2) {} } } }
@@ -9323,6 +10395,7 @@ function readHash(){
   if (/(?:^#|&)inapp=1/.test(hsh)) UI.wlUA = 'Mozilla/5.0 (iPhone) Instagram 300.0';
   if (/(?:^#|&)frview=1/.test(hsh)) wt.view = true;
   if (wt.saved || wt.fr || wt.key || wt.wl || wt.detail || wt.view) { wt.panel = /panel=saved/.test(hsh) && !wt.wl; UI.wlTest = wt; if (DATA_LOADED) setTimeout(wlTestHooks, 0); }
+  if (mapEl) tasteHook(hsh);   // v5.12: #taste=deck|profile|check|reveal|hard|guest, #tastedemo=1, #tastetest=1
   // v5.9 testing hooks (this visit only, nothing saved): #skin=night|sorbet #mode=auto|light|dark #mapstyle=standard|themed #panel=theme #view=map
   var skm = /(?:^#|&)skin=(night|sorbet)/.exec(hsh); if (skm) setSkin(skm[1], true);
   var thm = /(?:^#|&)mode=(auto|light|dark)/.exec(hsh); if (thm) setTheme(thm[1], true);
@@ -9493,6 +10566,7 @@ function init(){
   S.budgetOn = Platform.store.get('cff.budgetOn.v1', false) === true;   // v4: off unless she turned it on in More filters
   var wh = Platform.store.get('cff.who.v1', []); if (Array.isArray(wh)) wh.forEach(function(k){ if (k === 'date' || k === 'friends' || k === 'solo' || k === 'kids') S.f.who[k] = true; });   // who's coming is remembered
   CHECKINS = cleanCheckins(Platform.store.get(CHECKIN_KEY, []));
+  tasteLoad();   // v5.12 the taste profile (og.taste.v2) and a date-mode guest, if any
   acctBoot();   // v5.11: accounts (website only; nothing loads until it's needed)
   wlLoadFriends();   // v5.8 kept friends' lists
   UI.view = 'home'; $('app').setAttribute('data-view', 'home');
@@ -9500,7 +10574,7 @@ function init(){
   if (loc && isNum(loc.lat) && isNum(loc.lng) && Math.abs(loc.lat - 41.9) < 2 && Math.abs(loc.lng + 87.7) < 3) S.loc = {lat:loc.lat, lng:loc.lng, label:String(loc.label || 'Your pin'), src:loc.src === 'gps' || loc.src === 'address' ? loc.src : 'picked',
     acc:loc.src === 'gps' && isNum(loc.acc) ? loc.acc : null, t:0, explicit:false, fresh:false};   // v5.5: remembered from an earlier visit (priority 1: a fresh reading beats it)
   else { S.loc = ext(LOOP, {}); UI.firstOpen = true; }
-  bindMap(); bindSheet(); bindUI();
+  bindMap(); bindSheet(); bindUI(); bindTaste();
   measureMap();
   applySheet(isWide() ? 'wide' : 'half', false);
   if (UI.firstOpen) focusCity(); else focusOn(S.loc.lat, S.loc.lng, Math.min(S.f.radius, 3), false);
@@ -9594,6 +10668,12 @@ window.__cff = {
   offlineText: offlineText, acctCardHTML: acctCardHTML, cloudHost: cloudHost, SB_JS: SB_JS, acct: function(){ return {state:Acct.state, user:Acct.user ? Acct.user.id : null, username:acctName(), offline:Acct.offline, lastSync:Acct.lastSync, err:Acct.errMsg, friends:Acct.friends.length, live:LIVE.length, demo:Acct.demo}; },
   acctDemo: function(){ acctDemo(); }, openFriends: function(){ openFriends(); }, openPrivacy: function(){ openPrivacy(); },
   gpsPlaceName: gpsPlaceName, locName: locName, locRoughHint: locRoughHint, homeWhenBit: homeWhenBit, titleArea: titleArea,
+  // v5.12 taste
+  tasteVector: tasteVector, tasteStats: tasteStats, blendStats: blendStats, fitOf: fitOf, tasteOn: tasteOn, isNever: isNever, miseryOf: miseryOf, tasteHides: tasteHides, traitWords: traitWords, tasteWhy: tasteWhy,
+  deckPool: deckPool, newDeck: newDeck, deckFill: deckFill, deckAnswer: deckAnswer, deckUndo: deckUndo, tiePairs: tiePairs, simRun: simRun, seededRng: seededRng, checkPairs: checkPairs, saveRankPct: saveRankPct,
+  swipeDecision: swipeDecision, tastePick: tastePick, homeIconsHTML: homeIconsHTML, rankFitsV511: rankFitsV511, travBand: travBand,
+  taste: function(){ return TASTE; }, tasteNow: function(){ return tasteNow(); }, openTaste: function(m){ if (m === 'deck') tasteStartDeck('main'); else openTaste(m || 'profile'); }, tasteDemo: function(){ tasteDemo(); },
+  tasteAnswer: function(a){ tkAnswer(a); }, tasteUndo: function(){ tkUndo(); }, deck: function(){ return TU.D; },
   Platform: Platform
 };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
