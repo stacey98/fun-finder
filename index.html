@@ -8,9 +8,13 @@
 (function(){
   var d = document.documentElement;
   function g(k){ try { var v = window.localStorage.getItem(k); return v === null ? null : JSON.parse(v); } catch (e) { return null; } }
-  var skin = g('cff.skin') === 'sorbet' ? 'sorbet' : 'night', th = g('cff.theme'), mp = g('cff.map') === 'themed' ? 'themed' : 'standard';
+  // v5.10: one choice, cff.look light|dark|auto (Light = Sorbet light, Dark = Night, Auto = the phone's setting); old cff.skin/cff.theme saves migrate
+  var lk = g('cff.look'), s0 = g('cff.skin'), t0 = g('cff.theme'), mp = g('cff.map') === 'themed' ? 'themed' : 'standard';
+  if (lk !== 'light' && lk !== 'dark' && lk !== 'auto') lk = s0 === 'sorbet' ? (t0 === 'light' ? 'light' : t0 === 'dark' ? 'dark' : 'auto') : 'dark';
+  var pd = false; try { pd = !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); } catch (e) {}
+  var skin = (lk === 'light' || (lk === 'auto' && !pd)) ? 'sorbet' : 'night', th = skin === 'sorbet' ? 'light' : null;
   d.setAttribute('data-skin', skin); d.setAttribute('data-map', mp);
-  if (th === 'light' || th === 'dark') d.setAttribute('data-theme', th);
+  if (th) d.setAttribute('data-theme', th);
   var fonts = {night:'family=Unbounded:wght@500..700&family=Geist:wght@400..700', sorbet:'family=Fredoka:wght@500..700&family=Figtree:wght@400..800'};
   try { var lk = document.getElementById('cffFonts'); if (lk) lk.href = 'https://fonts.googleapis.com/css2?' + fonts[skin] + '&display=swap'; } catch (e) {}
   try {
@@ -846,6 +850,27 @@ body{background:var(--paper)}
 .tkb{top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:var(--g-limited);box-shadow:0 0 0 2px #FFFFFF;filter:none}
 .tkb path{display:none}
 .cluster .tkb{top:-4px;right:-4px}
+/* v5.10: cluster ticket with the limited count; award line; Leave by; radar; mini guides */
+.cluster .ctk{position:absolute;top:-9px;right:-15px;display:inline-flex;align-items:center;gap:1px;height:17px;padding:0 5px 0 3px;border-radius:9px;background:var(--g-limited);color:#FFFFFF;font:700 11px/17px var(--f-body);box-shadow:0 0 0 2px #FFFFFF;pointer-events:none}
+.cluster .ctk svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.2}
+.award{margin:3px 0 0;font:500 12px/1.3 var(--f-body);color:var(--ink-3,var(--ink-2))}
+.award::before{content:"\2605 ";color:var(--accent-text,var(--accent))}
+.dt-award{margin:6px 0 0}
+.leaveby{margin:6px 0 0;font:600 14px/1.35 var(--f-body);color:var(--ink)}
+.c3-leave{margin:2px 0 0;font:600 12.5px/1.3 var(--f-body);opacity:.92}
+.bookon{display:inline-flex;margin-top:6px}
+.hm-few{margin:10px 2px 0;font:500 13.5px/1.4 var(--f-body);color:var(--ink-2)}
+.hm-sec{margin:18px 0 0}
+.hm-sec h2{margin:0 2px 8px;font:600 15px/1.2 var(--f-card,var(--f-body));color:var(--ink)}
+.radar{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.radar li button{display:flex;width:100%;align-items:center;gap:10px;min-height:44px;padding:8px 12px;border:0;border-radius:var(--r-tile,12px);background:var(--paper-2);color:var(--ink);text-align:left;font:500 14px/1.3 var(--f-body);cursor:pointer}
+.radar li b{flex:none;min-width:84px;font-weight:700;color:var(--accent-text,var(--accent))}
+.radar li span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.guides{display:flex;flex-wrap:wrap;gap:8px}
+.guides button{min-height:40px;padding:8px 13px;border:0;border-radius:20px;background:var(--paper-2);color:var(--ink);font:600 13.5px/1.2 var(--f-body);cursor:pointer}
+.guide-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:6px 0 4px}
+.guide-h h3{flex:1;margin:0;font:600 17px/1.25 var(--f-card,var(--f-body))}
+.guide-h p{flex-basis:100%;margin:0;font:500 13px/1.35 var(--f-body);color:var(--ink-2)}
 .thumb::before,.cover::before{display:none}
 .thumb{border-radius:var(--r-thumb);background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 70%,var(--paper)))}
 .thumb.date{background:var(--paper-2)}
@@ -1083,7 +1108,7 @@ body{background:var(--paper)}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.9 (2026-11-13)';
+var VERSION = 'v5.10 (2026-11-14)';
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
@@ -2487,7 +2512,7 @@ function tagLabel(t){ var s = String(t).replace(/-/g, ' '); return s.charAt(0).t
 var GENRES = [
   {id:'play', name:'Play', glyph:'g-die', subs:[['games', 'Games & arcades'], ['minigolf', 'Mini golf'], ['racing', 'Racing'], ['escape', 'Escape rooms'], ['move', 'Get moving']]},
   {id:'look', name:'Look & Learn', glyph:'g-frame', subs:[['museums', 'Museums'], ['views', 'Views'], ['art', 'Art & immersive'], ['arch', 'Architecture'], ['odd', 'Odd & curious']]},
-  {id:'nature', name:'Nature & Animals', glyph:'g-leaf', subs:[['animals', 'Animals & bugs'], ['gardens', 'Gardens'], ['walks', 'Walks']]},
+  {id:'nature', name:'Nature & Animals', glyph:'g-leaf', subs:[['animals', 'Animals & bugs'], ['gardens', 'Gardens'], ['walks', 'Parks & walks']]},
   {id:'eat', name:'Eat & Drink', glyph:'g-cup', subs:[['treats', 'Treats'], ['bars', 'Bars'], ['dinner', 'Dinner with a twist'], ['markets', 'Markets'], ['cheese', 'Cheese']]},
   {id:'shows', name:'Shows & Nights', glyph:'g-mic', subs:[['comedy', 'Comedy'], ['music', 'Music'], ['theater', 'Theater'], ['movies', 'Movies']]},
   {id:'make', name:'Make Something', glyph:'g-pencil', subs:[['craft', 'Art & crafts'], ['cook', 'Cooking & cocktails'], ['music', 'Music & dance']]},
@@ -2588,6 +2613,19 @@ function kindColorsFor(theme, skin){ // {kind: '#hex', paper: '#hex', onCat: '#h
   return out;
 }
 function kindSvg(id, cls){ return '<svg' + (cls ? ' class="' + cls + '"' : '') + ' aria-hidden="true" focusable="false"><use href="#' + kindIcon(id) + '"/></svg>'; }
+/* v5.10 (owner: "Animals & bugs" only where seeing animals or bugs is the main thing: zoos, aquariums, butterfly houses, live-animal or
+   insect exhibits, farms and petting zoos, the Busse Woods elk herd, birding only when it is the stated purpose). Parks, beaches and
+   trails go under "Parks & walks" even when their tags mention wildlife. Explicit tags and names only, never mood or interest words. */
+var ANIMAL_MAIN_TAGS = ['zoo', 'aquarium', 'butterflies', 'butterfly', 'insects', 'insect-exhibit', 'farm-animals', 'petting-zoo', 'wildlife-viewing', 'elk', 'birding'];
+var ANIMAL_MAIN_NAME = /\bzoo\b|zoolights|aquarium|butterfl|insect|dragonfl|\belk\b|petting|\bfarm\b|bird sanctuary|birding|reptile|wolf park|raptor/i;
+var PARKLIKE_NAME = /\bpark\b|\bbeach\b|\btrail\b|\bwoods\b|\bpreserve\b|lakefront|\bharbor\b|\bisland\b/i;
+function isAnimalsMain(it){
+  var n = String(it.name || ''), strongName = ANIMAL_MAIN_NAME.test(n);
+  if (strongName && !/zoolights/i.test(n)) return true;   // "Lincoln Park Zoo", "Butterfly House", "Busse Woods elk herd" (ZooLights is a light show)
+  if (PARKLIKE_NAME.test(n)) return false;                  // a park, beach or trail is a walk even if its tags mention birds
+  for (var i = 0; i < ANIMAL_MAIN_TAGS.length; i++) if (hasTag(it, ANIMAL_MAIN_TAGS[i])) return true;
+  return false;
+}
 function subOf(it, g){ // sub-chip of an item inside its genre (adapted from the mockup's subOf())
   g = g || genreOf(it);
   var n = String(it.name || ''), id = String(it.id || ''), cat = it.category;
@@ -2606,7 +2644,7 @@ function subOf(it, g){ // sub-chip of an item inside its genre (adapted from the
       if (cat === 'unique-niche' || cat === 'seasonal') return 'odd';
       return 'museums';
     case 'nature':
-      if (tg(['animals', 'birds', 'bugs', 'insects']) || /\bzoo|aquarium|\bbird/i.test(n)) return 'animals';   // v5.9: Bugs merged into Animals (owner: chips must not overlap)
+      if (isAnimalsMain(it)) return 'animals';   // v5.10 (owner): only where seeing animals or bugs is THE activity
       if (/garden|conservatory|arboretum|lily|flower|lights|lightscape|illumination/i.test(n) || tg(['garden', 'plants'])) return 'gardens';
       return 'walks';
     case 'eat':
@@ -2762,8 +2800,24 @@ function computeItem(it, T, ctx){
     if (shw && !dh) { c.d = {text:shw, tone:'open', sub:''}; c.dayText = true; }   // v5.9 (Steppenwolf read 'On then · till 5:25 pm'): a dated show lists its start times
     else if (g0 === 'fits' && it.kind === 'event') { c.d = {text:'On ' + DOW_SHORT[wdOfKey(day)] + (st.closesAt ? ' till ' + fmtClock(st.closesAt) : ''), tone:'open', sub:''}; c.dayText = true; }
   }
+  var btm = bookTimeOf(it, st, day || cparts(T0in).key);
+  if (btm) { c.bookTime = btm; c.d = {text:btm.text, tone:'soon', sub:''}; }   // v5.10: "Showtimes vary · see times" / "Book a time"
   cc.m[sig] = c; cc.n++;
   return c;
+}
+/* v5.10 (hours-fill a: Second City, Alamo, Davis, Lincoln Lodge post showtimes only days ahead; studios and classes are by appointment):
+   no hours, no date_hours that day, no event dates -> shows and cinemas "Showtimes vary · see times", classes and studios (or anything
+   booked ahead with a booking link) "Book a time". Pure. -> {text, btn, type} or null. */
+var BOOKTIME_SHOW_TAGS = {movies:1, comedy:1, 'stand-up':1, theater:1, magic:1, 'dinner-show':1};
+var BOOKTIME_CLASS_TAGS = {'class':1, curling:1, workshop:1};
+function bookTimeOf(it, st, dayKey){
+  if (!it || !st || st.key !== 'unknown' || st.running || st.hoursExpired || st.seasonStale || st.checkDates || st.markedClosed) return null;
+  if (it.hours || it.kind === 'event' || (Array.isArray(it.event_dates) && it.event_dates.length)) return null;
+  if (it.date_hours && typeof it.date_hours === 'object' && dayKey && it.date_hours[dayKey]) return null;
+  var tags = Array.isArray(it.tags) ? it.tags : [], has = function(m){ return tags.some(function(t){ return m[t]; }); };
+  if (it.category === 'show-comedy-music' || has(BOOKTIME_SHOW_TAGS)) return {text:'Showtimes vary · see times', btn:'Tickets', type:'show'};
+  if (it.category === 'classes-workshops' || has(BOOKTIME_CLASS_TAGS) || (it.booking === 'required' && safeUrl(it.booking_url))) return {text:'Book a time', btn:'Book', type:'class'};
+  return null;
 }
 function dayShowTimes(it, day, T0){ // pure: 'Show at 3 pm, 7:30 pm' for a dated show or class on that day (only the ones still ahead), '' otherwise
   if (it.kind !== 'event' || !sessionBased(it)) return '';
@@ -2907,9 +2961,23 @@ function runPipeline(items, T, ctx, F){
 var TIGHT_OVER_MIN = 30;        // "Open, but tight": over the hour by at most 30 min (layout spec §7.2; a design choice, not from a source)
 var ENDING_SOON_DAYS = 7;       // the "Ending soon" strip shows only when something ends within 7 days (main session brief, 2026-11-12)
 var COMING_SEASON_DAYS = 21;    // a place whose season opens within 21 days counts as "coming up" in Limited time (spec §7.3)
-var REST_ORDER = ['longer', 'later', 'unknown', 'closed', 'dates', 'season'];
-function restLabel(k, p){ return {longer:'Needs more than your time', later:UI.planning ? 'Opens later' : 'Opens later today', unknown:'Hours not listed · call first', closed:UI.planning ? 'Closed ' + planWhen(false) : 'Closed now', dates:'Later dates', season:seasonShelfTitle(p) + ' · closed for the season'}[k]; }
-function restShort(k){ return {longer:'longer', later:'later today', unknown:'hours not listed', closed:'closed', dates:'later dates', season:'back in spring'}[k]; }
+// v5.10 (owner's iPhone, Mon · Any time, Play: rinks opening Nov 20-27 were under "Back in spring"): a season that starts within
+// OPENING_SOON_DAYS of the chosen day is "Opening soon" (with its date); only later reopenings say "Back in spring" / "Back <month>".
+// Both come after everything open on the chosen day.
+var OPENING_SOON_DAYS = 45;
+var REST_ORDER = ['unknown', 'longer', 'later', 'closed', 'opening', 'dates', 'season'];   // v5.10: hours-not-posted first, never below everything
+function seasonOpenKey(c){ var st = c.st || {}; return st.key === 'season' && st.season && isKey(st.season.reopen) ? st.season.reopen : null; }
+function isOpeningSoon(c, p){ var k = seasonOpenKey(c); if (!k) return false; var dd = dayDiff(p.key, k); return dd >= 0 && dd <= OPENING_SOON_DAYS; }
+function seasonGroupTitle(list, p){ // "Back in May" when every reopening is in one month; else the old shelf title
+  var ms = {}, n = 0, unknown = false;
+  (list || []).forEach(function(c){ var k = seasonOpenKey(c); if (k) { ms[k.slice(0, 7)] = 1; n++; } else unknown = true; });
+  var keys = Object.keys(ms);
+  if (n && !unknown && keys.length === 1) return 'Back in ' + MON_LONG_10[+keys[0].slice(5, 7) - 1];
+  return seasonShelfTitle(p);
+}
+var MON_LONG_10 = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+function restLabel(k, p, list){ return {longer:'Needs more than your time', later:UI.planning ? 'Opens later' : 'Opens later today', unknown:'Hours not listed · call first', closed:UI.planning ? 'Closed ' + planWhen(false) : 'Closed now', opening:'Opening soon', dates:'Later dates', season:seasonGroupTitle(list, p) + ' · closed for the season'}[k]; }
+function restShort(k){ return {longer:'longer', later:'later today', unknown:'hours not listed', closed:'closed', opening:'opening soon', dates:'later dates', season:'closed for the season'}[k]; }
 function bucketOf(c){ // 'fits' | 'tight' | 'rest' (spec §7.2), from the pipeline group
   var g = c.group, f = c.fit || {};
   if (g === 'fits') return 'fits';
@@ -2922,7 +2990,7 @@ function restGroupOf(c){
     case 'over': case 'tight': case 'fits': return 'longer';
     case 'later': return 'later';
     case 'unknown': return 'unknown';
-    case 'season': return 'season';
+    case 'season': return c.soonOpen ? 'opening' : 'season';
     case 'upcoming': return 'dates';
   }
   return 'closed';
@@ -2946,12 +3014,35 @@ function startKeyOf(c){ // the day a coming-up thing starts
   return firstDateOf(c.item);
 }
 function endSortKey(c){ var ev = c.st.ev; if (c.st.checkDates) return '9999-12-31'; return ev && ev.lastKey ? ev.lastKey : '9999-12-30'; }
+/* v5.10 (owner: the Artisan Market's "Until Dec 13" looked like every day until Dec 13): an event made of 2-6 separate days
+   (not one continuous run) is listed by its dates. Pure: -> {all:[keys], left:[keys from fromKey]} or null. */
+function fewDates(it, fromKey){
+  if (!it || it.kind !== 'event') return null;
+  var en = eventEntries(it), days = {}, i;
+  for (i = 0; i < en.length; i++) { var x = en[i]; if (x.type === 'session') days[x.sKey] = 1; else if (x.to && x.to === x.from) days[x.from] = 1; else return null; }   // a run of several days is a continuous run
+  var all = Object.keys(days).sort();
+  if (all.length < 2 || all.length > 6) return null;
+  var gap = false; for (i = 1; i < all.length; i++) if (dayDiff(all[i - 1], all[i]) > 1) gap = true;
+  if (!gap) return null;   // back-to-back days (Sat + Sun) read fine as "Until Sun"
+  return {all:all, left:all.filter(function(k){ return k >= fromKey; })};
+}
+function fewDatesBadge(fd, p){
+  var L = fd.left; if (!L.length) return null;
+  var lastHot = dayDiff(p.key, L[L.length - 1]) <= 6;
+  if (L.length === 1) return dayDiff(p.key, L[0]) <= 0 ? {t:'Last day', hot:true} : {t:'Last date ' + fmtMonthDay(L[0]), hot:lastHot};
+  var wd = wdOfKey(L[0]), same = L.every(function(k){ return wdOfKey(k) === wd; });
+  var nx = L[0] === p.key ? 'today' : 'next ' + fmtMonthDay(L[0]);
+  if (same) return {t:L.length + ' ' + DOW_LONG[wd] + 's · ' + nx, hot:false};
+  if (L.length === 2) return {t:(L[0] === p.key ? 'Today' : fmtMonthDay(L[0])) + ' & ' + fmtMonthDay(L[1]), hot:false};
+  return {t:L.length + ' dates · ' + nx, hot:false};
+}
 function untilBadge(c, p){ // ticket badge text (spec §3.8.1); "Tickets through ..." when the end date isn't announced
   var it = c.item, ev = c.st.ev;
   if (it.kind !== 'event' || !ev) return null;
   if (c.st.checkDates) return {t:'Check dates', hot:false, muted:true};
   if (!ev.lastKey) return {t:'No end date listed', hot:false, muted:true};
   if (ev.endUnconfirmed) return {t:'Tickets through ' + fmtMonthDay(ev.lastKey), hot:false, muted:true};
+  var fd = fewDates(it, p.key); if (fd) { var fb = fewDatesBadge(fd, p); if (fb) return fb; }
   var n = dayDiff(p.key, ev.lastKey), a = ev.lastKey.split('-');
   if (n <= 0) return {t:'Last day', hot:true};
   if (n === 1) return {t:'Ends tomorrow', hot:true};
@@ -2967,7 +3058,7 @@ function rankFits(a, b){ // best-pick rule (spec §4.1): trust, whole visit befo
     (a.lim === 'now' ? 0 : 1) - (b.lim === 'now' ? 0 : 1) || a.trav.min - b.trav.min || (a.dist === null ? 1e9 : a.dist) - (b.dist === null ? 1e9 : b.dist);
 }
 function byTravel(a, b){ return a.trav.min - b.trav.min || (a.dist === null ? 1e9 : a.dist) - (b.dist === null ? 1e9 : b.dist); }
-function annotate(c, p){ c.genre = genreOf(c.item); c.sub = subOf(c.item, c.genre); c.bucket = bucketOf(c); c.lim = limitedPhase(c, p); return c; }
+function annotate(c, p){ c.genre = genreOf(c.item); c.sub = subOf(c.item, c.genre); c.bucket = bucketOf(c); c.lim = limitedPhase(c, p); c.soonOpen = isOpeningSoon(c, p); return c; }
 function buildView(res, F, sel, sub){ // sel: '' | 'play' | 'limited' | 'limited+play+look' | {gs, lim} (v5 multi-select)
   var p = res.p, s = normSel(sel), vm = {p:p, sel:selCode(s), gs:s.gs, lim:s.lim, s:s, sub:sub || '', F:F, all:res.all, tiles:[], byGenre:{}, limByGenre:{}, main:[], onNow:[], soon:[], ending:null, picks:[], empty:[], kind:null, openNow:0, firstOpen:null};
   var inGs = function(c){ return !s.gs.length || s.gs.indexOf(c.genre) >= 0; };
@@ -2986,7 +3077,7 @@ function buildView(res, F, sel, sub){ // sel: '' | 'play' | 'limited' | 'limited
   var mode = (F && F.mode) || DEFAULT_MODE;
   res.all.forEach(function(c){ c.far = isFar(c, mode); if (c.far && c.bucket === 'fits' && inGs(c) && !s.lim) vm.far.push(c); });
   (res.beyond || []).forEach(function(c){ annotate(c, p); c.far = true; if (c.bucket === 'fits' && inGs(c) && !s.lim) vm.far.push(c); });
-  vm.far.sort(rankFits);
+  vm.far.sort(rankFits); vm.beyondAll = res.beyond || [];
   vm.onNow.sort(function(a, b){ var ka = endSortKey(a), kb = endSortKey(b); return ka < kb ? -1 : ka > kb ? 1 : byTravel(a, b); });
   vm.soon.sort(function(a, b){ var ka = startKeyOf(a), kb = startKeyOf(b); return ka < kb ? -1 : ka > kb ? 1 : (a.st.opensAt || 0) - (b.st.opensAt || 0) || byTravel(a, b); });
   vm.soon.forEach(function(c){ c.when = comingGroup(startKeyOf(c), p); });
@@ -3002,15 +3093,18 @@ function buildView(res, F, sel, sub){ // sel: '' | 'play' | 'limited' | 'limited
     var one = s.gs.length === 1, useSub = one && sub;   // sub-chips only when exactly one kind is picked
     var inG = function(c){ return s.gs.indexOf(c.genre) >= 0 && (!useSub || c.sub === sub); };
     if (!one) vm.sub = '';
-    var k = {fits:[], tight:[], rest:{}, restN:0, all:0, subs:[]};
+    var k = {fits:[], tight:[], rest:{}, restN:0, all:0, subs:[], book:[]};
     REST_ORDER.forEach(function(r){ k.rest[r] = []; });
     res.all.forEach(function(c){
       if (!inG(c)) return;
       k.all++;
       if (c.bucket === 'fits') k.fits.push(c);
       else if (c.bucket === 'tight') k.tight.push(c);
+      else if (c.bookTime) k.book.push(c);   // v5.10: showtimes / book-a-time venues stay in the main list, after known hours
       else { k.rest[restGroupOf(c)].push(c); k.restN++; }
     });
+    k.book.sort(byTravel);
+    if (one && s.gs[0] === 'play' && sub === 'escape') k.escape = escapeRoomsView(res);   // v5.10: every escape room, whatever the distance
     k.fits.sort(rankFits);
     k.far = vm.far.filter(inG); k.fits = k.fits.filter(function(c){ return !c.far; });   // v5.6: far ones move to "Worth the drive"
     k.tight.sort(function(a, b){ return ((a.fit.over || 0) - (b.fit.over || 0)) || byTravel(a, b); });
@@ -3018,13 +3112,26 @@ function buildView(res, F, sel, sub){ // sel: '' | 'play' | 'limited' | 'limited
     k.rest.later.sort(function(a, b){ return (a.st.opensAt || 9e15) - (b.st.opensAt || 9e15) || byTravel(a, b); });
     k.rest.unknown.sort(byTravel); k.rest.closed.sort(byTravel);
     k.rest.dates.sort(function(a, b){ return (a.st.opensAt || 9e15) - (b.st.opensAt || 9e15); });
+    k.rest.opening.sort(function(a, b){ var ra = seasonOpenKey(a), rb = seasonOpenKey(b); return ra < rb ? -1 : ra > rb ? 1 : byTravel(a, b); });
     k.rest.season.sort(function(a, b){ var ra = a.st.season && a.st.season.reopen || '9999', rb = b.st.season && b.st.season.reopen || '9999'; return ra < rb ? -1 : ra > rb ? 1 : byTravel(a, b); });
     vm.kind = k;
   }
   return vm;
 }
 function subCounts(vm, g){ // live fit count per sub-chip of genre g
-  var n = {}; (vm.byGenre[g] || []).forEach(function(c){ n[c.sub] = (n[c.sub] || 0) + 1; }); return n;
+  var n = {}; (vm.byGenre[g] || []).forEach(function(c){ n[c.sub] = (n[c.sub] || 0) + 1; });
+  if (g === 'play') n.escape = escapeRoomsView({all:vm.all || [], beyond:vm.beyondAll || []}).length;   // v5.10: the chip counts every room
+  return n;
+}
+/* v5.10 Escape rooms: names that start with "Escape room:" (the curated, award-checked list) plus anything filed as an escape room.
+   Everything she'd filter in, whatever the distance: open ones first, then "Book online", then the rest; nearest first in each. */
+function isEscapeRoom(it){ return /^escape room:/i.test(String(it.name || '')) || it.category === 'escape-room'; }
+function escapeRoomsView(res){
+  var seen = {}, out = [];
+  (res.all || []).concat(res.beyond || []).forEach(function(c){ if (!isEscapeRoom(c.item) || seen[c.item.id] || c.st.key === 'gone' || c.st.key === 'ended') return; seen[c.item.id] = 1; out.push(c); });
+  function rank(c){ return c.bucket === 'fits' || c.bucket === 'tight' ? 0 : (c.st.key === 'unknown' ? 1 : 2); }
+  out.sort(function(a, b){ return rank(a) - rank(b) || ((a.item.name.indexOf('Escape room:') === 0) ? 0 : 1) - ((b.item.name.indexOf('Escape room:') === 0) ? 0 : 1) || byTravel(a, b); });
+  return out;
 }
 function genreFitCounts(items, T, ctx, F){ // per-genre count of things that fit, without touching the cached rows (used for "Make it 2 hrs · 7 fit")
   var out = {}, p = cparts(T); GENRES.forEach(function(g){ out[g.id] = 0; }); out.limited = 0; out.all = 0;
@@ -3275,7 +3382,34 @@ function threePool(vm, todayKey, checkins){ // everything that could be one of t
   function popBand(c){ return !c.__popOk ? 2 : c.__pop >= POP_STAR ? 0 : 1; }   // v5.7: well-known places first, then popular, then the rest
   pool.forEach(function(c){ c.__r = [c.__tier, popBand(c), -(tasteScore(c) || 0), trustRank(c), (c.anyDay && c.fit && c.fit.short) ? 1 : 0, firstPhoto(c.item) ? 0 : 1, band(c), strHash(String(c.item.id) + '|' + todayKey)]; });   // v5.6: "Any time" prefers a whole visit over a quick stop; never "opens soonest"
   pool.sort(function(a, b){ for (var i = 0; i < a.__r.length; i++) if (a.__r[i] !== b.__r[i]) return a.__r[i] - b.__r[i]; return 0; });
+  if (pool.length < 3) pool = pool.concat(threeFill(vm, todayKey, checkins, s, any, pool));   // v5.10 (owner's iPhone, 1:38 am: one card only)
   return pool;
+}
+/* v5.10: when fewer than three things fit, fill with what is still open (cutting it close, or a bit longer than her time) or opens
+   within 30 min, inside a sensible reach (FILL_REACH_MIN by her mode, or the far "Worth the drive" fits), nearest first. Never something
+   that closes before she'd get there. These count as below the popularity floor so they only fill empty cards. */
+var FILL_OPEN_MIN = 30, FILL_REACH_MIN = 60;
+function threeFill(vm, todayKey, checkins, s, any, have){
+  var ids = {}; have.forEach(function(c){ ids[c.item.id] = 1; });
+  var cand = (vm.all || []).concat(vm.far || []).filter(function(c){
+    if (ids[c.item.id] || beenRecently(c.item.id, todayKey, checkins) || (any && !inSel(c, s))) return false;
+    var st = c.st || {}, g = c.group, ok = false;
+    if (st.open && (g === 'tight' || g === 'over' || g === 'fits')) ok = true;
+    else if (st.key === 'later' && st.opensAt && st.opensAt - st.ms <= FILL_OPEN_MIN * 60000) ok = true;
+    if (!ok) return false;
+    var m = c.trav && isNum(c.trav.min) ? c.trav.min : 999;
+    return c.citywide || m <= FILL_REACH_MIN || c.bucket === 'fits';
+  });
+  var seen = {};
+  cand = cand.filter(function(c){ if (seen[c.item.id]) return false; seen[c.item.id] = 1; return true; });
+  cand.forEach(function(c){ c.__tier = 3; c.__pop = popularityOf(c.item); c.__popOk = false; c.__fill = true; });
+  cand.sort(function(a, b){ return (a.st.open ? 0 : 1) - (b.st.open ? 0 : 1) || byTravel(a, b); });
+  return cand;
+}
+function fewLine(n, p, anyDay){ // "Only 1 open this late." + a button to the morning; '' when 3 or more
+  if (n >= 3) return null;
+  var late = p.min >= 1320 || p.min < 300, mk = p.min < 300 ? p.key : addDays(p.key, 1);
+  return {t:'Only ' + n + ' open ' + (anyDay ? 'that day' : late ? 'this late' : UI.planning ? 'then' : 'right now') + '.', plan:mk + 'T10:00', btn:'See what opens in the morning'};
 }
 var PICK_NEAR_MIN = 30;   // v5.1: the three prefer things about 30 min away or less in the chosen mode
 function reachTier(c){ // 0 = within ~30 min in her mode, 1 = within 45, 2 = further, or past the CTA estimate in Walk + CTA (a drive she may not have)
@@ -3983,6 +4117,9 @@ function pinHTML(e, u){
   return '<button class="' + pinClass(c, o) + '" type="button" style="--c:' + genreColor(g) + '" data-id="' + esc(it.id) + '" data-ux="' + r1(u[0]) + '" data-uy="' + r1(u[1]) + '" aria-label="' + esc(aria) + '">' + label +
     '<span class="mk-body">' + kindSvg(g) + (o.tk ? TICKET_SVG : '') + '</span></button>';
 }
+// v5.10 (owner: "what does the red dot mean?"): a cluster with limited-time things carries a small red ticket with their count, and says so
+function clusterLabel(n, tk){ return n + ' places' + (tk ? ', ' + tk + ' limited-time' : '') + '. Zoom in'; }
+function clusterHTML(o){ return '<button class="cluster" type="button" data-ux="' + r1(o.x) + '" data-uy="' + r1(o.y) + '" aria-label="' + esc(clusterLabel(o.n, o.tk)) + '">' + o.n + (o.tk ? '<span class="ctk" aria-hidden="true">' + glyphSvg('g-ticket') + o.tk + '</span>' : '') + '</button>'; }
 function recluster(){
   lastClusterS = MV.s;
   if (!pinsEl) return;
@@ -4004,11 +4141,11 @@ function recluster(){
     keys.forEach(function(k){
       var b = buckets[k];
       if (b.length === 1) singles.push({e:b[0], u:b[0].c.u});
-      else { var sx = 0, sy = 0, tk = false; b.forEach(function(e){ sx += e.c.u[0]; sy += e.c.u[1]; if (e.o && e.o.tk) tk = true; }); clusters.push({n:b.length, x:sx / b.length, y:sy / b.length, tk:tk}); }
+      else { var sx = 0, sy = 0, tk = 0; b.forEach(function(e){ sx += e.c.u[0]; sy += e.c.u[1]; if (e.o && e.o.tk) tk++; }); clusters.push({n:b.length, x:sx / b.length, y:sy / b.length, tk:tk}); }
     });
     singles.sort(function(a, b){ var sa = a.e.c.item.id === UI.sel ? 9 : (a.e.o && a.e.o.sm ? 0 : 1), sb = b.e.c.item.id === UI.sel ? 9 : (b.e.o && b.e.o.sm ? 0 : 1); return sa - sb; });
     singles.forEach(function(o){ html.push(pinHTML(o.e, o.u)); });
-    clusters.forEach(function(o){ html.push('<button class="cluster" type="button" data-ux="' + r1(o.x) + '" data-uy="' + r1(o.y) + '" aria-label="' + o.n + ' places here' + (o.tk ? ', some limited time' : '') + '. Zoom in">' + o.n + (o.tk ? TICKET_SVG : '') + '</button>'); });
+    clusters.forEach(function(o){ html.push(clusterHTML(o)); });
   }
   if (S.loc) { var y = proj(S.loc.lat, S.loc.lng); html.push('<div class="you" data-ux="' + r1(y[0]) + '" data-uy="' + r1(y[1]) + '"><span class="you-dot"></span></div>'); }
   if (UI.picking && UI.cand) { var q = proj(UI.cand.lat, UI.cand.lng); html.push('<div class="ov-pin" data-ux="' + r1(q[0]) + '" data-uy="' + r1(q[1]) + '"><span>' + esc(UI.cand.label) + '</span><i></i><b></b></div>'); }
@@ -4294,6 +4431,8 @@ function rowHTML(c, opt){
   if (prs) meta.push(esc(prs));
   if (ck && !opt.been) meta.push('<span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>');
   h += '<p class="meta">' + meta.join(' · ') + '</p>';
+  if (it.award_note) h += '<p class="award">' + esc(it.award_note) + '</p>';   // v5.10: "TERPECA 2026 finalist · Best of Morty 2025"
+  if (opt.book || c.bookTime) { var bl = bookingLink(it) || safeUrl(it.website); if (bl) h += '<div class="bookon" data-stop="1"><a class="mini-btn" href="' + esc(bl) + '" target="_blank" rel="noopener">' + esc(opt.book ? 'Book online' : c.bookTime.btn) + glyphSvg('i-ext') + '</a></div>'; }
   if (opt.note) { var fn = fitNote(c); if (fn && fn.warn) h += '<p class="fit warn">' + esc(fn.t) + '</p>'; }
   var tl = trustLineText(it, p); if (tl) h += '<p class="trustline"><i></i>' + esc(tl) + '</p>';
   if (opt.call && it.phone) h += phoneHTML(it.phone, Platform.telOk);
@@ -4392,8 +4531,10 @@ function kindEmptyHTML(vm, g, more){
 }
 function kindListHTML(vm, more){
   var k = vm.kind, g = vm.sel, F = S.f, h = '', p = vm.p;
+  if (k.escape) return escapeListHTML(k.escape, p);
   h += '<h3 class="sec-h"><span>Open ' + esc(planWhen(false)) + (S.budgetOn ? ', ' + esc(doableWords()) : '') + '</span><span>' + k.fits.length + '</span></h3>';
-  h += k.fits.length ? '<ul class="rows">' + k.fits.map(function(c){ return rowHTML(c, {}); }).join('') + '</ul>' : kindEmptyHTML(vm, g, more);
+  h += k.fits.length ? '<ul class="rows">' + k.fits.map(function(c){ return rowHTML(c, {}); }).join('') + '</ul>' : (k.book.length ? '' : kindEmptyHTML(vm, g, more));
+  if (k.book.length) h += '<h3 class="sec-h"><span>' + (k.book.every(function(c){ return c.bookTime.type === 'show'; }) ? 'Showtimes vary' : 'Book a time') + '</span><span>' + k.book.length + '</span></h3><ul class="rows">' + k.book.map(function(c){ return rowHTML(c, {}); }).join('') + '</ul>';   // v5.10
   h += farSectionHTML(k.far || []);   // v5.6
   if (k.tight.length) {
     h += foldHTML('tight', UI.foldTight, '', 'i-clock', 'Cutting it close', k.tight.length, S.budgetOn ? 'A little over ' + budgetWords() + ', or it closes soon' : 'Closes soon after you’d get there');
@@ -4404,11 +4545,21 @@ function kindListHTML(vm, more){
     var small = groups.map(restShort).join(' · ');
     h += foldHTML('rest', UI.foldRest, 'rest', 'i-moon', 'Show the rest', k.restN, small.charAt(0).toUpperCase() + small.slice(1));
     if (UI.foldRest) groups.forEach(function(r){
-      h += '<h3 class="sec-h"><span>' + esc(restLabel(r, p)) + '</span><span>' + k.rest[r].length + '</span></h3><ul class="rows">' +
-        k.rest[r].map(function(c){ return rowHTML(c, {hollow:r === 'season', note:r === 'longer', call:r === 'unknown', date:r === 'dates' ? startKeyOf(c) : null}); }).join('') + '</ul>';
+      h += '<h3 class="sec-h"><span>' + esc(restLabel(r, p, k.rest[r])) + '</span><span>' + k.rest[r].length + '</span></h3><ul class="rows">' +
+        k.rest[r].map(function(c){ return rowHTML(c, {hollow:r === 'season', note:r === 'longer', call:r === 'unknown', date:r === 'dates' || r === 'opening' ? startKeyOf(c) : null}); }).join('') + '</ul>';
     });
   }
   return h + endnoteHTML('');
+}
+function escapeListHTML(list, p){ // v5.10: every escape room with its drive time; unknown hours = "Book online"
+  if (!list.length) return '<div class="empty"><h4>No escape rooms match your filters.</h4></div>' + endnoteHTML('');
+  var open = list.filter(function(c){ return c.bucket === 'fits' || c.bucket === 'tight'; }), book = list.filter(function(c){ return open.indexOf(c) < 0 && c.st.key === 'unknown'; }), rest = list.filter(function(c){ return open.indexOf(c) < 0 && book.indexOf(c) < 0; });
+  function row(c, o){ return rowHTML(c, ext({kicker:c.beyond ? 'Past ' + fmtRadius(c.beyond) : (c.far ? 'Worth the drive' : '')}, o || {})); }
+  var h = '<h3 class="sec-h"><span>Escape rooms</span><span>' + list.length + ' · any distance</span></h3>';
+  if (open.length) h += '<ul class="rows">' + open.map(function(c){ return row(c); }).join('') + '</ul>';
+  if (book.length) h += '<h3 class="sec-h"><span>Book online</span><span>' + book.length + '</span></h3><ul class="rows">' + book.map(function(c){ return row(c, {book:true}); }).join('') + '</ul>';
+  if (rest.length) h += '<h3 class="sec-h"><span>Closed ' + esc(planWhen(false)) + '</span><span>' + rest.length + '</span></h3><ul class="rows">' + rest.map(function(c){ return row(c); }).join('') + '</ul>';
+  return h + endnoteHTML('All escape rooms, near and far. Drive times are rough.');
 }
 function limShutGroups(shut, anyDay){ // pure: running limited things that aren't open -> {later, closed, unknown}
   var out = {later:[], closed:[], unknown:[]};
@@ -4460,7 +4611,8 @@ function renderList(res, vm, more){
     return;
   }
   var p = res.p, h = '';
-  if (UI.q) { listRoot.innerHTML = searchListHTML(UI.q); wireImages(listRoot); return; }   // v4: search results replace the list while there is text in the box
+  if (UI.q) { listRoot.innerHTML = searchListHTML(UI.q); wireImages(listRoot); return; }
+  if (UI.guide && GUIDE_BY[UI.guide]) { listRoot.innerHTML = guideListHTML(UI.guide); wireImages(listRoot); return; }   // v5.10 mini guides   // v4: search results replace the list while there is text in the box
   if (GEO.failed) h += '<p class="band info">The map couldn\'t load, so here\'s the list. Everything else works.</p>';   // tester L4
   var hol = holidayName(p.key);
   if (hol) h += '<p class="band">' + esc(hol) + ': holiday hours vary, so call first. ' + (MAJOR_HOLIDAYS[holidayId(p.key)] ? 'Places with no ' + esc(hol) + ' hours on file aren\'t counted as fits.' : 'Places whose own notes mention holiday hours say "call first".') + '</p>';
@@ -4563,10 +4715,12 @@ function buildPins(vm, res){ // which pins, small pins and dots each state shows
     if (vm.sub !== 'now') (vm.sub === 'up' ? vm.soon : vm.wknd).forEach(function(c){ pin(c, {tk:c.item.kind === 'event', sm:true, hollow:true}); if ((!showNow || !focus.length) && near(c, 8)) focus.push(c); });
   } else if (vm.kind) {
     var k = vm.kind;
+    if (k.escape) k.escape.forEach(function(c){ pin(c, c.bucket === 'fits' ? {} : {sm:true, grey:true}); if (near(c, 10) && c.bucket === 'fits') focus.push(c); });   // v5.10
+    (k.book || []).forEach(function(c){ pin(c, {sm:true}); });
     k.fits.forEach(function(c){ pin(c, {tk:c.lim === 'now'}); if (near(c, 10)) focus.push(c); });
     (k.far || []).forEach(function(c){ pin(c, {sm:true, far:true, tk:c.lim === 'now'}); });   // v5.6: Worth the drive = faded pins
     k.tight.forEach(function(c){ dot(c, {faint:true}); });
-    if (UI.foldRest) REST_ORDER.forEach(function(r){ k.rest[r].forEach(function(c){ pin(c, r === 'season' ? {sm:true, hollow:true} : {sm:true, grey:true, tk:c.lim === 'now'}); }); });
+    if (UI.foldRest) REST_ORDER.forEach(function(r){ k.rest[r].forEach(function(c){ pin(c, r === 'season' || r === 'opening' ? {sm:true, hollow:true} : {sm:true, grey:true, tk:c.lim === 'now'}); }); });
     if (!focus.length) k.tight.concat(k.rest.later).forEach(function(c){ if (near(c, 10)) focus.push(c); });
   }
   res.pins = pins; res.dots = dots; res.focus = focus;
@@ -4593,6 +4747,75 @@ function searchListHTML(q){
   if (!rows.length) return '<div class="empty"><h4>No match for “' + esc(q) + '”.</h4><p>Try a kind of fun (karaoke, mini golf), an interest (cheese, bugs) or a neighborhood.</p><div class="btns">' + actBtn({attr:'data-act="tip"', label:'Know a place? Send a tip'}) + '</div></div>';
   return '<h3 class="sec-h"><span>Results</span><span></span></h3><ul class="rows">' + rows.join('') + '</ul>' + endnoteHTML('');
 }
+/* v5.10 #26 Opening-soon radar: limited events, pop-ups and seasons that start in the next 30 days (from today), one per name. Pure. */
+var RADAR_DAYS = 30, RADAR_MAX = 5;
+function radarStartKey(c, todayKey){
+  var st = c.st || {}, it = c.item;
+  if (st.key === 'gone' || st.key === 'ended') return null;
+  var k = null;
+  if (it.kind === 'event') { if (st.ev && st.ev.started) return null; k = startKeyOf(c); }
+  else k = seasonOpenKey(c) || (isKey(it.opened_on) && it.opened_on > todayKey ? it.opened_on : null);
+  if (!k) return null;
+  var dd = dayDiff(todayKey, k);
+  return dd >= 1 && dd <= RADAR_DAYS ? k : null;
+}
+function radarList(rows, p){
+  var seen = {}, out = [];
+  rows.forEach(function(c){ var k = radarStartKey(c, p.key); if (!k) return; var nm = norm(c.item.name).replace(/\s+\d{4}$/, ''); if (seen[nm]) return; seen[nm] = 1; out.push({c:c, key:k}); });
+  out.sort(function(a, b){ return a.key < b.key ? -1 : a.key > b.key ? 1 : byTravel(a.c, b.c); });
+  return out;
+}
+function radarHTML(list){
+  if (!list.length) return '';
+  var shown = list.slice(0, RADAR_MAX);
+  return '<section class="hm-sec radar-s"><h2>Opening soon</h2><ul class="radar">' + shown.map(function(x){
+    return '<li><button type="button" data-open="' + esc(x.c.item.id) + '"><b>Opens ' + esc(fmtMonthDay(x.key)) + '</b><span>' + esc(x.c.item.name) + '</span></button></li>';
+  }).join('') + '</ul></section>';
+}
+/* v5.10 #86 Mini guides: hand-made lists computed from the data. Each opens a filtered list and has a #guide=<id> link. */
+var GUIDES = [
+  {id:'first-date', name:'First date under $30', blurb:'Date spots that are free or $.'},
+  {id:'rainy-day', name:'Rainy day', blurb:'Indoors, so the weather doesn’t matter.'},
+  {id:'visitors', name:'Visiting friends', blurb:'The Chicago classics everyone knows.'},
+  {id:'late-night', name:'Late night', blurb:'Open till 11 pm or later.'},
+  {id:'free', name:'Free things', blurb:'No ticket needed.'}
+];
+var GUIDE_BY = {}; GUIDES.forEach(function(g){ GUIDE_BY[g.id] = g; });
+function guideMatch(id, it, dayKey){ // pure
+  var cheap = it.price_level === 'free' || it.price_level === '$';
+  switch (id) {
+    case 'first-date': return hasTag(it, 'date') && cheap;
+    case 'rainy-day': return it.indoor_outdoor === 'indoor' || (hasTag(it, 'rainy-day') && it.indoor_outdoor !== 'outdoor');
+    case 'visitors': return popularityOf(it) >= POP_STAR;
+    case 'late-night': var rs = dayKey ? dayRanges(it, dayKey) : null; return !!(rs && rs.some(function(r){ return r[1] >= 1380; })) || hasTag(it, 'late-night');
+    case 'free': return it.price_level === 'free';
+  }
+  return false;
+}
+function guidesHTML(){
+  return '<section class="hm-sec guides-s"><h2>Mini guides</h2><div class="guides">' + GUIDES.map(function(g){ return '<button type="button" data-guide="' + g.id + '">' + esc(g.name) + '</button>'; }).join('') + '</div></section>';
+}
+function guideRows(id, T, ctx){ // computed rows for a guide: open (fits) first, then the rest; nearest first. Not narrowed by her who/price filters.
+  var F = ext(appDefaultFilters(), {radius:S.f.radius, mode:S.f.mode}), res = runPipeline(DATA, T, ctx, F), p = res.p, day = UI.anyDay || p.key;
+  var rows = res.all.filter(function(c){ return c.st.key !== 'gone' && guideMatch(id, c.item, day); });
+  rows.forEach(function(c){ annotate(c, p); });
+  function rk(c){ return c.bucket === 'fits' ? 0 : c.bucket === 'tight' ? 1 : c.bookTime ? 2 : c.st.key === 'season' ? 4 : 3; }
+  rows.sort(function(a, b){ return rk(a) - rk(b) || byTravel(a, b); });
+  return rows;
+}
+function guideLink(id){ return Platform.linkFor('guide=' + id) || (SITE_URL + '#guide=' + id); }
+function guideListHTML(id){
+  var g = GUIDE_BY[id]; if (!g) return '';
+  var rows = guideRows(id, evalTime(), ctxNow()), nOpen = rows.filter(function(c){ return c.bucket === 'fits'; }).length;
+  var h = '<div class="guide-h"><h3>' + esc(g.name) + '</h3><button class="mini-btn" type="button" data-guide-share="' + g.id + '">' + glyphSvg('i-share') + 'Share</button><button class="mini-btn" type="button" data-guide-x="1" aria-label="Close the guide">' + glyphSvg('i-close') + '</button><p>' + esc(g.blurb) + ' ' + nOpen + ' open ' + esc(planWhen(false)) + '.</p></div>';
+  h += rows.length ? '<ul class="rows">' + rows.map(function(c){ return rowHTML(c, {kicker:genreShort(c.genre)}); }).join('') + '</ul>' : '<div class="empty"><h4>Nothing in this guide near you.</h4></div>';
+  return h + endnoteHTML('');
+}
+function openGuide(id){ if (!GUIDE_BY[id]) return; UI.guide = id; UI.q = ''; if ($('q')) $('q').value = ''; if (UI.view !== 'browse') showView('browse'); refresh(); if ($('sheetScroll')) $('sheetScroll').scrollTop = 0; }
+function closeGuide(){ UI.guide = ''; try { if (/guide=/.test(location.hash || '')) history.replaceState(null, '', location.pathname + location.search); } catch (e) {} refresh(); }
+function shareGuide(id){ var g = GUIDE_BY[id]; if (!g) return; Platform.share({title:g.name, text:g.name + ' · ' + APP_NAME, url:guideLink(id)}).then(function(r){ if (r === 'copied') toast('Link copied'); }, function(){ toast(guideLink(id)); }); }
+var CARD_LEAVE_MIN = 90;   // the three cards say "Leave by" only when it's within 90 min (otherwise it's noise)
+function cardLeaveHTML(c){ var l = leaveBy(c), ref = c.anyDay && c.anyT ? c.anyT : c.st.ms; return l && l.at - ref <= CARD_LEAVE_MIN * 60000 ? '<p class="c3-leave">' + esc(l.t) + '</p>' : ''; }
 function cardHTML(c){
   var it = c.item, g = c.genre || genreOf(it), ph = firstPhoto(it), sv = isSaved(it.id), ck = checkinOf(it.id), hook = hookOf(it), facts = factsLine(c);
   return '<li class="card3" data-id="' + esc(it.id) + '" tabindex="0" aria-label="' + esc(it.name + '. ' + facts) + '" style="--c:' + genreColor(g) + '">' +
@@ -4602,7 +4825,7 @@ function cardHTML(c){
     (ck ? '<span class="been-mark">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' : '') +
     '<div class="c3-btns"><button class="c3-btn" type="button" data-share="' + esc(it.id) + '" aria-label="Share ' + esc(it.name) + '">' + glyphSvg('i-share') + '</button>' +
     '<button class="c3-btn" type="button" data-save="' + esc(it.id) + '" aria-pressed="' + sv + '" aria-label="' + (sv ? 'Saved: ' : 'Save: ') + esc(it.name) + '">' + glyphSvg('i-bookmark') + '</button></div>' +
-    '<div class="c3-text"><h3>' + esc(it.name) + '</h3>' + (hook ? '<p class="c3-hook">' + esc(hook) + '</p>' : '') + '<p class="c3-facts"><i class="dot ' + esc(c.d.tone) + '"></i>' + esc(facts) + '</p></div></li>';
+    '<div class="c3-text"><h3>' + esc(it.name) + '</h3>' + (hook ? '<p class="c3-hook">' + esc(hook) + '</p>' : '') + '<p class="c3-facts"><i class="dot ' + esc(c.d.tone) + '"></i>' + esc(facts) + '</p>' + cardLeaveHTML(c) + '</div></li>';
 }
 function threeKey(){ return [selCode(curSel()), S.when, S.pickAt, S.loc ? r1(S.loc.lat * 1000) + ',' + r1(S.loc.lng * 1000) : '', S.budgetOn ? S.budget : 'any', JSON.stringify(S.f), DATA_LOADED ? 1 : 0].join('|'); }
 function updateThree(vm, more){ // keeps the same three on screen until she asks for more, or the place / time / filters change, or one of them closes
@@ -4655,6 +4878,7 @@ function renderHome(res, vm, picks){
     if (picks.length) {
       h += '<ul class="cards3">' + picks.map(cardHTML).join('') + '</ul>';
       if (UI.threeN > picks.length) h += '<button class="hm-btn" type="button" data-act="more3">Three more</button>';
+      var few = fewLine(picks.length, p, !!UI.anyDay); if (few) h += '<p class="hm-few">' + esc(few.t) + ' <button class="linkbtn" type="button" data-plan="' + few.plan + '">' + esc(few.btn) + ' ›</button></p>';   // v5.10
     } else {
       var e = homeEmpty(vm, hsel, lab), btn = '', fo = e.fo, whoOn = anyKey(who) || appliedFilters(S.f).length > 0 || S.budgetOn;
       if (fo) {
@@ -4666,6 +4890,8 @@ function renderHome(res, vm, picks){
       h += '<div class="empty"><h3>' + esc(e.title) + '</h3>' + (e.body ? '<p>' + esc(e.body) + '</p>' : '') + '<div class="btns">' + btn + '</div></div>';
     }
     h += '<button class="hm-btn dark" type="button" data-act="browse">Browse everything' + glyphSvg('i-right') + '</button>';
+    h += radarHTML(radarList(res.all.concat(res.beyond || []), cparts(nowMs())));   // v5.10 #26
+    h += guidesHTML();   // v5.10 #86
     h += '<p class="endnote">Travel times are rough; distances are as the crow flies. <button class="linkbtn" type="button" data-act="tip">Send a tip</button> · <button class="linkbtn" type="button" data-act="about">About</button></p>';
   }
   if (h === UI.homeHTML) return;   // nothing changed: leave the photos alone
@@ -4707,7 +4933,7 @@ function findComputed(id){ var it = findItem(id); return it ? computeItem(it, ev
 function selectGenre(id, opts){ // v5: a tile tap adds or removes that kind (or Limited); opts.keep = show exactly this (links, "See all", hash)
   opts = opts || {};
   UI.gsel = opts.keep ? normSel(id) : toggleSel(curSel(), id);
-  UI.sub = ''; UI.foldTight = false; UI.foldRest = !!opts.rest || !S.f.openNow; UI.limMore = false; UI.farMore = false; UI.sel = null;
+  UI.sub = ''; UI.guide = ''; UI.foldTight = false; UI.foldRest = !!opts.rest || !S.f.openNow; UI.limMore = false; UI.farMore = false; UI.sel = null;
   if (UI.gsel.lim && !UI.gsel.gs.length && S.when === 'weekend') UI.sub = 'wknd';   // spec 4.3: "This weekend" in the sentence opens Limited time on This weekend
   Platform.store.set('cff.genres.v2', selList(UI.gsel));   // remembered as a list, e.g. ["limited","play"]
   refresh();
@@ -5143,6 +5369,13 @@ function wlTestHooks(){ // testing hooks (made-up, never saved): #savedsid=3.17.
 var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 function appleMaps(it){ return 'https://maps.apple.com/?daddr=' + it.lat + ',' + it.lng + '&q=' + encodeURIComponent(it.name); }
 function googleMaps(it){ return 'https://www.google.com/maps/dir/?api=1&destination=' + it.lat + ',' + it.lng; }
+// v5.10: "11:00-17:00" (24-hour ranges in highlights and notes) reads "11 am – 5 pm". Ranges already in am/pm are left alone. Pure.
+function fmt24Ranges(s){
+  return String(s === null || s === undefined ? '' : s).replace(/\b([01]?\d|2[0-4]):([0-5]\d)\s*(?:-|–|—|to)\s*([01]?\d|2[0-4]):([0-5]\d)\b(?!\s*(?:am|pm|a\.m|p\.m))/gi, function(m, h1, m1, h2, m2){
+    var a = +h1 * 60 + +m1, b = +h2 * 60 + +m2; if (a > 1440 || b > 1440) return m;
+    return fmtTime(a) + ' – ' + (b === 1440 ? 'midnight' : fmtTime(b));
+  });
+}
 function hlIcon(t){
   t = String(t).toLowerCase();
   if (/book|ticket|reserv/.test(t)) return 'g-ticket';
@@ -5153,6 +5386,34 @@ function hlIcon(t){
   if (/entr(y|ance)|door|gate|floor|elevator/.test(t)) return 'i-door';
   if (/food|\bbar\b|drink|beer|wine|cocktail|menu|eat|cheese/.test(t)) return 'g-cup';
   return 'g-spark';
+}
+/* v5.10 (owner's iPhone, Artisan Market planned for Mon): on the detail screen, an event's "Next:" is from today; when the planned day
+   has nothing, a short second line says so. Pure. -> {text, tone, extra} or null when the planned day has the event. */
+function planEventLines(it, st, nowV){
+  if (!it || it.kind !== 'event' || !st || st.open || st.key === 'later' || st.key === 'closing' || st.key === 'unknown' || st.key === 'maybe') return null;
+  var q = cparts(st.ms), rs = statusAt(it, nowV), dr = describe(rs, it), rp = cparts(nowV);
+  if (q.key === rp.key) return null;   // planning later today: the row already speaks for today
+  var nk = st.key === 'upcoming' && st.opensAt ? cparts(st.opensAt).key : null, rk = rs.opensAt ? cparts(rs.opensAt).key : null;
+  var extra = 'Not on ' + DOW_SHORT[q.wd] + (nk ? (nk === rk ? '' : ' · next after that: ' + fmtMonthDay(nk)) : ' · no dates after that');
+  return {text:dr.text, tone:dr.tone, extra:extra};
+}
+/* v5.10 #33 "Leave by": from the travel estimate in her mode and the last entry, closing or show start at the planned time. Pure.
+   -> {t, at, why} or null when it isn't meaningful (unknown travel, 24 h, already too late, more than 6 h away). */
+var LEAVE_BY_MAX_MIN = 360;
+function leaveBy(c){
+  var st = c.st || {}, f = c.fit || {}, tr = c.trav || {}, it = c.item || {};
+  if (!isNum(tr.min) || tr.how === 'unknown' || st.always) return null;
+  var ref = c.anyDay && c.anyT ? c.anyT : st.ms, T = tr.min * 60000, at = null, why = '';
+  if (!st.open && st.key === 'later' && st.opensAt && it.kind === 'event' && !(st.ev && st.ev.inRun)) { at = st.opensAt - T; why = 'for the ' + fmtClock(st.opensAt) + ' start'; }
+  else if (st.open) {
+    var le = st.lastEntryAt || f.lastEntryAt;
+    if (le) { at = le - T; why = 'to make last entry'; }
+    else if (st.closesAt && !st.endUnknown) { var need = Math.max(30, isNum(f.min) ? f.min : 30); at = st.closesAt - T - need * 60000; why = 'for ' + fmtDur(need) + ' before it closes at ' + fmtClock(st.closesAt); }
+  }
+  if (at === null || !isNum(ref)) return null;
+  at = Math.floor(at / 300000) * 300000;   // round down to 5 min
+  if (at < ref || at - ref > LEAVE_BY_MAX_MIN * 60000) return null;
+  return {t:'Leave by ' + fmtClock(at) + ' ' + why, at:at, why:why};
 }
 function leaveSentence(c){ return tenseText(leaveSentence0(c), planCtx(c.st.ms)); }   // v5.3
 function leaveSentence0(c){
@@ -5287,18 +5548,22 @@ function renderDetail(c, keepScroll){
   }
   h += '</div><div class="dt-body"><span class="grabber"></span>';
   // name + hook
-  var lim = limitedPhase(c, p), ub = it.kind === 'event' && lim ? untilBadge(c, p) : null;
+  var lim = limitedPhase(c, p), ub = it.kind === 'event' && lim ? untilBadge(c, fewDates(it, todayKey) ? cparts(nowMs()) : p) : null;   // v5.10: a few-dates badge counts from today, like the Dates list
   h += '<p class="dt-kicker">' + esc(genreName(gid)) + (it.kind === 'event' ? ' · limited time' : '') + (it.neighborhood ? ' · ' + esc(shortHood(it.neighborhood)) : '') + (ub ? ' ' + badgeHTML(ub) : '') + '</p>';
   h += '<h1 class="dt-title' + (String(it.name).length > 40 ? ' long' : '') + '" id="dtTitle">' + esc(it.name) + '</h1>';
   var hook = hookOf(it);
   if (hook) h += '<p class="dt-hook">' + esc(hook) + '</p>';
   // status + price
-  var pr = priceShort(it), tsh = travelShort(c);
+  var pr = priceShort(it), tsh = travelShort(c), pel = (UI.planning || UI.anyDay) ? planEventLines(it, st, nowMs()) : null;
+  if (pel) d = {text:pel.text, tone:pel.tone, sub:''};   // v5.10: "Next:" is relative to today; the planned day gets its own short line
+  if (it.award_note) h += '<p class="award dt-award">' + esc(it.award_note) + '</p>';
   h += '<div class="dt-status"><p class="dt-line ' + esc(d.tone) + '"><span class="st"><i class="dot"></i>' + esc(d.text) + '</span>' + (pr ? '<span class="pr">' + esc(pr) + '</span>' : '') + '</p>';
   var sub = [];
   if (d.sub) sub.push(d.sub.charAt(0).toUpperCase() + d.sub.slice(1));
   if (tsh) sub.push(tsh + (S.loc ? ' from ' + S.loc.label : ''));
   if (sub.length) h += '<p class="subline">' + esc(sub.join(' · ')) + '</p>';
+  if (pel && pel.extra) h += '<p class="subline">' + esc(pel.extra) + '</p>';
+  var lby = leaveBy(c); if (lby) h += '<p class="leaveby">' + esc(lby.t) + '</p>';   // v5.10 #33
   var eb = eventBadge(st); if (eb) h += '<p class="warnline">' + esc(eb) + '</p>';
   if (st.conflicting) h += '<p class="warnline">Sources disagree on hours · call first</p>';
   if (holidayName(p.key) && st.key !== 'maybe' && !closedSet(it)[p.key]) h += '<p class="warnline">' + esc(holidayName(p.key)) + ': holiday hours vary, so call first.</p>';
@@ -5327,31 +5592,31 @@ function renderDetail(c, keepScroll){
   var hi = (Array.isArray(it.highlights) ? it.highlights : []).filter(Boolean).map(String);
   if (it.description || hi.length) {
     h += '<section class="dt-sec"><h2>What you do there</h2>' + (it.description ? '<p>' + esc(it.description) + '</p>' : '');
-    if (hi.length) h += '<ul class="hl" style="margin-top:14px">' + hi.map(function(x){ return '<li>' + glyphSvg(hlIcon(x)) + '<span>' + esc(x) + '</span></li>'; }).join('') + '</ul>';
+    if (hi.length) h += '<ul class="hl" style="margin-top:14px">' + hi.map(function(x){ return '<li>' + glyphSvg(hlIcon(x)) + '<span>' + esc(fmt24Ranges(x)) + '</span></li>'; }).join('') + '</ul>';
     h += '</section>';
   }
-  if (it.kind === 'event') h += '<section class="dt-sec"><h2>Dates</h2>' + eventDatesHTML(it, p, st.ms) + '</section>';
+  if (it.kind === 'event') h += '<section class="dt-sec"><h2>Dates</h2>' + eventDatesHTML(it, cparts(nowMs()), nowMs()) + '</section>';   // v5.10: every date from today (real now), never from the planned time
   // practical facts
   var io = it.indoor_outdoor === 'both' ? 'indoor and outdoor' : (it.indoor_outdoor || '');
-  var priceTxt = it.price_note ? it.price_note : (it.price_level === 'free' ? 'Free.' : it.price_level ? 'Price level ' + it.price_level + '. Exact prices not listed.' : 'Price not listed on their site.');
+  var priceTxt = it.price_note ? fmt24Ranges(it.price_note) : (it.price_level === 'free' ? 'Free.' : it.price_level ? 'Price level ' + it.price_level + '. Exact prices not listed.' : 'Price not listed on their site.');
   var facts = [];
   if (it.address) facts.push(['i-pin', it.address + (io ? ' · ' + io : '')]);
   facts.push(['g-ticket', priceTxt]);
   facts.push(['i-door', it.booking === 'required' ? 'Booking required. Pick a time online before you go.' : it.booking === 'recommended' ? 'Booking recommended.' : it.booking === 'walk-in' ? 'Walk-ins welcome.' : 'Booking: not stated.']);
-  if (it.age_note) facts.push(['i-age', 'Ages: ' + it.age_note]);
+  if (it.age_note) facts.push(['i-age', 'Ages: ' + fmt24Ranges(it.age_note)]);
   h += '<section class="dt-sec"><h2>Practical</h2><ul class="hl">' + facts.map(function(x){ return '<li>' + glyphSvg(x[0]) + '<span>' + esc(x[1]) + '</span></li>'; }).join('') + '</ul>';
   if (it.phone) h += phoneHTML(it.phone, Platform.telOk);
   else if (web) h += '<p class="small" style="margin-top:10px">No phone listed. Check <a href="' + esc(web) + '" target="_blank" rel="noopener">their website</a>.</p>';
   // hours
   h += '<h3>Hours</h3>';
   var sn = it.season;
-  if (sn && (isKey(sn.open_from) || isKey(sn.open_to))) h += '<p class="small" style="margin-bottom:8px">Season: ' + (isKey(sn.open_from) ? fmtDate(sn.open_from, '0000') : 'start not stated') + ' – ' + (isKey(sn.open_to) ? fmtDate(sn.open_to, '0000') : 'end not stated') + (sn.note ? '. ' + esc(sn.note) : '') + '</p>';
+  if (sn && (isKey(sn.open_from) || isKey(sn.open_to))) h += '<p class="small" style="margin-bottom:8px">Season: ' + (isKey(sn.open_from) ? fmtDate(sn.open_from, '0000') : 'start not stated') + ' – ' + (isKey(sn.open_to) ? fmtDate(sn.open_to, '0000') : 'end not stated') + (sn.note ? '. ' + esc(fmt24Ranges(sn.note)) : '') + '</p>';
   else if (sn && sn.note) h += '<p class="small" style="margin-bottom:8px">' + esc(sn.note) + '</p>';
   h += hoursTableHTML(it, p);
   var lel = lastEntryLine(it, p); if (lel) h += '<p class="small" style="margin-top:8px">' + esc(lel) + '</p>';   // v2.2 (C-1)
   var hvt = hoursValidTo(it); if (hvt) h += '<p class="small" style="margin-top:8px">These weekly hours are confirmed only through ' + esc(fmtDate(hvt.key, p.key)) + '.</p>';   // v2.2 (M-1)
   h += specialDatesHTML(it, p);
-  if (it.hours_note) h += '<p class="small" style="margin-top:8px">' + esc(it.hours_note) + '</p>';
+  if (it.hours_note) h += '<p class="small" style="margin-top:8px">' + esc(fmt24Ranges(it.hours_note)) + '</p>';
   // getting there
   h += '<h3>Getting there</h3>' + miniMapHTML(c) + '<div class="getting">';
   if (c.dist !== null) h += '<span><b>' + fmtMi(c.dist) + ' as the crow flies</b> from your pin' + (S.loc ? ' (' + esc(S.loc.label) + ')' : '') + '.</span><span>' + esc(travelText(c.trav).replace(/^about/, 'About').replace(/ \(too far for our CTA estimate: Metra or drive\)$/, '')) + '. ' + (c.trav.switched ? 'We don\'t estimate CTA past ' + CTA_MAX_MI + ' miles, so this is a drive time: check Metra, or drive. ' : '') + 'Rough estimate, not a route.</span>';
@@ -5378,6 +5643,7 @@ function renderDetail(c, keepScroll){
   var bar = '', primary, book = bookingLink(it);
   if ((st.key === 'season' || st.key === 'gone' || st.key === 'ended') && web) primary = '<a class="btn-primary off" href="' + esc(web) + '" target="_blank" rel="noopener">Check their website' + glyphSvg('i-ext') + '</a>';
   else if (book) primary = '<a class="btn-primary" href="' + esc(book) + '" target="_blank" rel="noopener">' + bookingWord(it) + glyphSvg('i-ext') + '</a>';
+  else if (c.bookTime && web) primary = '<a class="btn-primary" href="' + esc(web) + '" target="_blank" rel="noopener">' + esc(c.bookTime.btn) + glyphSvg('i-ext') + '</a>';   // v5.10: showtimes / book-a-time venues
   else if (tr.callFirst && it.phone && (st.key === 'unknown' || st.key === 'maybe' || (st.open && st.minsLeft !== null && st.minsLeft <= 120)))
     primary = Platform.telOk ? '<a class="btn-primary" href="tel:' + esc(telHref(it.phone)) + '">' + glyphSvg('i-phone') + 'Call first</a>'
                              : '<button class="btn-primary" type="button" data-copy="' + esc(it.phone) + '">' + glyphSvg('i-copy') + 'Copy number, call first</button>';
@@ -5921,19 +6187,31 @@ function setMapMode(v, keep){
   if (!keep) THEME_SAVED = Platform.store.set('cff.map', v);
   afterThemeChange(); return v;
 }
+/* v5.10 (owner-approved): ONE control, Light / Dark / Auto. Light = Sorbet light, Dark = Night, Auto = follows the phone (Sorbet light
+   by day setting, Night by dark setting). Sorbet dark is no longer offered. Stored as cff.look; old saves migrate: skin night -> Dark,
+   sorbet + light -> Light, sorbet + dark -> Dark, sorbet + auto -> Auto; nothing saved -> Dark (Night was the default). */
+function normLook(v){ return v === 'light' || v === 'auto' ? v : 'dark'; }
+function lookFromSaved(look, skin, theme){ // pure
+  if (look === 'light' || look === 'dark' || look === 'auto') return look;
+  if (skin === 'sorbet') return theme === 'light' ? 'light' : theme === 'dark' ? 'dark' : 'auto';
+  return 'dark';
+}
+function lookAttrs(look, prefersDark){ // pure -> {skin, theme}
+  look = normLook(look);
+  if (look === 'light' || (look === 'auto' && !prefersDark)) return {skin:'sorbet', theme:'light'};
+  return {skin:'night', theme:'auto'};
+}
+function phonePrefersDark(){ try { return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); } catch (e) { return false; } }
+var LOOK = lookFromSaved(Platform.store.get('cff.look', null), Platform.store.get('cff.skin', null), Platform.store.get('cff.theme', null));
+function currentLook(){ return LOOK; }
+function applyLook(){ var a = lookAttrs(LOOK, phonePrefersDark()); setTheme(a.theme, true); setSkin(a.skin, true); }
+function setLook(v, keep){ LOOK = normLook(v); if (!keep) THEME_SAVED = Platform.store.set('cff.look', LOOK); applyLook(); return LOOK; }
+try { var mqLook = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)'); if (mqLook) { var onMq = function(){ if (LOOK === 'auto') applyLook(); }; if (mqLook.addEventListener) mqLook.addEventListener('change', onMq); else if (mqLook.addListener) mqLook.addListener(onMq); } } catch (e) {}
 function themePickerHTML(){
-  var skin = currentSkin(), mode = currentMode(), mm = mapMode(), night = skin === 'night';
-  var dots = ['play', 'nature', 'shows', 'eat'].map(function(k){ return '<i style="--c:var(--g-' + k + ')"></i>'; }).join('');
-  function sw(id, name){
-    var on = skin === id;
-    return '<button type="button" data-setskin="' + id + '" aria-pressed="' + on + '" aria-label="' + name + ' theme"><span class="th-mini" data-skin="' + id + '"><span class="aa">Aa</span><span class="row2"><span class="dots">' + dots + '</span><span class="pill"></span></span></span>' +
-      '<span class="th-name">' + name + (on ? glyphSvg('i-check') : '') + '</span></button>';
-  }
-  var shown = night ? 'dark' : mode;
-  var h = '<div class="th-sw">' + sw('night', 'Night') + sw('sorbet', 'Sorbet') + '</div>';
-  h += '<p class="th-lab" id="thModeLab">Mode</p><div class="seg th-seg" role="group" aria-labelledby="thModeLab"' + (night ? ' aria-disabled="true"' : '') + '>' + [['auto', 'Auto'], ['light', 'Light'], ['dark', 'Dark']].map(function(x){
-    return '<button type="button" data-mode="' + x[0] + '" aria-pressed="' + (shown === x[0]) + '"' + (night ? ' aria-disabled="true"' : '') + '>' + x[1] + '</button>'; }).join('') + '</div>';
-  if (night) h += '<p class="th-note">Night is always dark.</p>';
+  var lk = currentLook(), mm = mapMode();
+  var h = '<p class="th-lab" id="thLookLab">Theme</p><div class="seg th-seg" role="group" aria-labelledby="thLookLab">' + [['light', 'Light'], ['dark', 'Dark'], ['auto', 'Auto']].map(function(x){
+    return '<button type="button" data-look="' + x[0] + '" aria-pressed="' + (lk === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>';
+  if (lk === 'auto') h += '<p class="th-note">Auto follows your phone’s light or dark setting.</p>';
   h += '<p class="th-lab" id="thMapLab">Map</p><div class="seg th-seg" role="group" aria-labelledby="thMapLab">' + [['standard', 'Standard'], ['themed', 'Themed']].map(function(x){
     return '<button type="button" data-mapstyle="' + x[0] + '" aria-pressed="' + (mm === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>';
   h += '<p class="th-foot">' + (Platform.store.ok && THEME_SAVED ? 'Saved on this phone.' : 'Only for this visit.') + '</p>';
@@ -5942,8 +6220,9 @@ function themePickerHTML(){
 function renderThemePicker(){ var b = $('pThemeBody'); if (b) b.innerHTML = themePickerHTML(); }
 function openThemePicker(){ renderThemePicker(); openPanel('pTheme'); }
 function themeClick(e){ // shared by the Theme panel and About; true when the click was a theme control
-  var t = e.target.closest('[data-setskin],[data-mode],[data-mapstyle]'); if (!t) return false;
-  if (t.hasAttribute('data-mode')) { if (t.getAttribute('aria-disabled') === 'true') return true; setTheme(t.getAttribute('data-mode')); }
+  var t = e.target.closest('[data-look],[data-setskin],[data-mode],[data-mapstyle]'); if (!t) return false;
+  if (t.hasAttribute('data-look')) setLook(t.getAttribute('data-look'));
+  else if (t.hasAttribute('data-mode')) { if (t.getAttribute('aria-disabled') === 'true') return true; setTheme(t.getAttribute('data-mode')); }
   else if (t.hasAttribute('data-mapstyle')) setMapMode(t.getAttribute('data-mapstyle'));
   else setSkin(t.getAttribute('data-setskin'));
   return true;
@@ -6143,6 +6422,8 @@ function onHomeClick(e){
   if (wh) { var v = wh.getAttribute('data-when'); if (v === 'pick') openSmall('When?', smallWhen); else { S.when = normWhen(v); refresh(); } return; }
   var pl = t.closest('[data-plan]');
   if (pl) { S.when = 'pick'; S.pickAt = pl.getAttribute('data-plan'); refresh(); return; }
+  var hop = t.closest('[data-open]'); if (hop) { openDetail(hop.getAttribute('data-open')); return; }   // v5.10 radar
+  var gd = t.closest('[data-guide]'); if (gd) { openGuide(gd.getAttribute('data-guide')); return; }   // v5.10 mini guides
   var act = t.closest('[data-act]');
   if (act) {
     var a = act.getAttribute('data-act');
@@ -6167,6 +6448,8 @@ function onListClick(e){
   if (t.closest('[data-share]')) return;
   var sv = t.closest('[data-save]'); if (sv) { e.stopPropagation(); toggleSave(sv.getAttribute('data-save')); return; }
   if (t.closest('[data-stop]')) return;
+  var gsh = t.closest('[data-guide-share]'); if (gsh) { shareGuide(gsh.getAttribute('data-guide-share')); return; }
+  if (t.closest('[data-guide-x]')) { closeGuide(); return; }
   var opn = t.closest('[data-open]'); if (opn) { openDetail(opn.getAttribute('data-open')); return; }   // v5.9: the Ending soon banner opens THAT item (it used to switch on Limited)
   var tile = t.closest('[data-tile]');
   if (tile) { if (!$('pSaved').hidden) closePanel('pSaved'); selectGenre(tile.getAttribute('data-tile'), {keep:true, rest:tile.hasAttribute('data-rest')}); return; }
@@ -6938,7 +7221,7 @@ function runSelfTest0(){
     eq('the tag "quiet" alone does not move a garden', genreOf(fx({category:'nature-outdoors', tags:['quiet']})), 'nature');
     eq('seasonal goes by name: market, parade, rink, light show, other', [genreOf(fx({category:'seasonal', name:'Holiday Market'})), genreOf(fx({category:'seasonal', name:'Thanksgiving Parade'})), genreOf(fx({category:'seasonal', name:'Ice Rink at the Park'})), genreOf(fx({category:'seasonal', name:'Lightscape'})), genreOf(fx({category:'seasonal', name:'Christmas exhibit'}))].join(), 'eat,shows,play,nature,look');
     eq('arcade and skyscraper land in different kinds (her example)', [genreOf(fx({category:'games-arcade'})), genreOf(fx({id:'pc-360-chicago', category:'food-drink-experience'}))].join(), 'play,look');
-    eq('sub-chips: mini golf, views, bugs (in Animals since v5.9), cheese, baths', [subOf(fx({category:'mini-golf'})), subOf(fx({category:'art-museum', tags:['skyline']})), subOf(fx({category:'unique-niche', genre:'nature-animals', tags:['bugs']})), subOf(fx({category:'unique-niche', genre:'eat-drink', tags:['cheese']})), subOf(fx({category:'unique-niche', tags:['sauna']}))].join(), 'minigolf,views,animals,cheese,baths');
+    eq('sub-chips: mini golf, views, bugs (in Animals since v5.9), cheese, baths', [subOf(fx({category:'mini-golf'})), subOf(fx({category:'art-museum', tags:['skyline']})), subOf(fx({category:'unique-niche', genre:'nature-animals', tags:['insects']})), subOf(fx({category:'unique-niche', genre:'eat-drink', tags:['cheese']})), subOf(fx({category:'unique-niche', tags:['sauna']}))].join(), 'minigolf,views,animals,cheese,baths');
     var five = [fx({category:'mini-golf'}), fx({category:'mini-golf'}), fx({category:'escape-room'}), fx({category:'escape-room'}), fx({category:'racing-karting'})];
     eq('sub-chip rule: a chip needs 2+ items (Racing has 1)', subsShown(five, 'play').map(function(s){ return s[0]; }).join(), 'minigolf,escape');
     eq('...and the row needs 2+ such chips', subsShown([fx({category:'mini-golf'}), fx({category:'mini-golf'}), fx({category:'escape-room'})], 'play').length, 0);
@@ -7122,7 +7405,7 @@ function runSelfTest0(){
     info('final sub-chips: ' + GENRES.map(function(g){ return genreShort(g.id) + ': ' + names[g.id]; }).join(' | '));
     eq('Make: "Clay & glass" and "Crafts" are one "Art & crafts" chip', names.make, 'Art & crafts / Cooking & cocktails / Music & dance');
     eq('a pottery class and a craft night land in the same chip', [subOf(fx({category:'classes-workshops', genre:'make', name:'Pottery wheel night', tags:['pottery']}), 'make'), subOf(fx({category:'classes-workshops', genre:'make', name:'Candle making'}), 'make')].join(), 'craft,craft');
-    eq('Nature: Bugs merged into "Animals & bugs"', names.nature, 'Animals & bugs / Gardens / Walks');
+    eq('Nature: Bugs merged into "Animals & bugs"', names.nature, 'Animals & bugs / Gardens / Parks & walks');   // v5.10 rename
     var dupNames = []; GENRES.forEach(function(g){ var seen = {}; g.subs.forEach(function(s){ if (seen[s[0]]) dupNames.push(g.id + ':' + s[0]); seen[s[0]] = 1; }); });
     eq('no chip id twice in a kind', dupNames.join(), '');
     eq('a chip needs 2+ items in this view (Crafts 1, Music 0 -> no row)', subChipsFor({craft:1, music:0, cook:0}, 'make', '').length, 0);
@@ -7241,21 +7524,18 @@ function runSelfTest0(){
       host.parentNode.removeChild(host);
       ok('the Home header has a palette button', /data-act="theme"/.test($('homeRoot').innerHTML), 'missing');
       ok('the map top bar has a palette button', !!$('mapTheme') && $('mapTheme').getAttribute('aria-label') === 'Theme', 'missing');
-      var pick = document.createElement('div'); pick.innerHTML = themePickerHTML();
-      eq('picker: 2 swatches, Night picked', Array.prototype.map.call(pick.querySelectorAll('[data-setskin]'), function(b){ return b.getAttribute('data-setskin') + '=' + b.getAttribute('aria-pressed'); }).join(), 'night=true,sorbet=false');
-      eq('picker: swatch names for screen readers', Array.prototype.map.call(pick.querySelectorAll('[data-setskin]'), function(b){ return b.getAttribute('aria-label'); }).join(), 'Night theme,Sorbet theme');
-      var segM = pick.querySelector('[aria-labelledby="thModeLab"]');
-      eq('picker under Night: Mode shows Dark, dimmed and disabled', segM.getAttribute('aria-disabled') + '|' + Array.prototype.map.call(segM.querySelectorAll('button'), function(b){ return b.textContent + '=' + b.getAttribute('aria-pressed'); }).join(), 'true|Auto=false,Light=false,Dark=true');
-      ok('picker under Night says "Night is always dark."', pick.textContent.indexOf('Night is always dark.') >= 0, pick.textContent.slice(0, 120));
+      var pick = document.createElement('div'); pick.innerHTML = themePickerHTML();   // v5.10: one Light / Dark / Auto control
+      eq('picker: one Theme control, Light / Dark / Auto', Array.prototype.map.call(pick.querySelectorAll('[data-look]'), function(b){ return b.textContent; }).join(), 'Light,Dark,Auto');
+      eq('picker: no skin swatches and no Mode row any more', pick.querySelectorAll('[data-setskin],[data-mode]').length, 0);
+      eq('picker: exactly one choice pressed', pick.querySelectorAll('[data-look][aria-pressed="true"]').length, 1);
       eq('picker: Map Standard / Themed, Standard picked', Array.prototype.map.call(pick.querySelectorAll('[data-mapstyle]'), function(b){ return b.textContent + '=' + b.getAttribute('aria-pressed'); }).join(), 'Standard=true,Themed=false');
       ok('picker footnote', /Saved on this phone\.|Only for this visit\./.test(pick.textContent), pick.textContent.slice(-40));
-      setSkin('sorbet', true); pick.innerHTML = themePickerHTML(); segM = pick.querySelector('[aria-labelledby="thModeLab"]');
-      eq('picker under Sorbet: Mode is live, no Night note', String(segM.getAttribute('aria-disabled')) + '|' + (pick.textContent.indexOf('Night is always dark.') >= 0), 'null|false');
-      var stA = Platform.store.get('cff.theme', 'auto');
-      var fakeE = {target:{closest:function(){ return {hasAttribute:function(a){ return a === 'data-mode'; }, getAttribute:function(a){ return a === 'aria-disabled' ? 'true' : 'light'; }}; }}};
-      setSkin('night', true); themeClick(fakeE);
-      eq('a tap on the dimmed Mode control under Night changes nothing', Platform.store.get('cff.theme', 'auto'), stA);
-      var mem = {}, fakeLS = {getItem:function(x){ return Object.prototype.hasOwnProperty.call(mem, x) ? mem[x] : null; }, setItem:function(x, v){ mem[x] = String(v); }, removeItem:function(x){ delete mem[x]; }};
+      eq('look -> skin: Light = Sorbet light, Dark = Night, Auto follows the phone', [lookAttrs('light', true), lookAttrs('dark', false), lookAttrs('auto', false), lookAttrs('auto', true)].map(function(a){ return a.skin + '/' + a.theme; }).join(), 'sorbet/light,night/auto,sorbet/light,night/auto');
+      eq('migration of old saves', [lookFromSaved(null, 'night', 'light'), lookFromSaved(null, 'sorbet', 'light'), lookFromSaved(null, 'sorbet', 'dark'), lookFromSaved(null, 'sorbet', 'auto'), lookFromSaved(null, null, null), lookFromSaved('auto', 'night', null), lookFromSaved(null, 'clear', null)].join(), 'dark,light,dark,auto,dark,auto,dark');
+      var keepLook = LOOK; setLook('light', true); var pdL = paper();
+      setLook('dark', true); var skD = currentSkin(); LOOK = keepLook;
+      eq('setLook: Light paints Sorbet light, Dark paints Night', pdL + '|' + skD, '#FCFAFF|night');
+      pick.innerHTML = themePickerHTML(); ok('Auto shows its one-line note only when picked', (LOOK === 'auto') === (pick.textContent.indexOf('Auto follows') >= 0), pick.textContent.slice(0, 80));      var mem = {}, fakeLS = {getItem:function(x){ return Object.prototype.hasOwnProperty.call(mem, x) ? mem[x] : null; }, setItem:function(x, v){ mem[x] = String(v); }, removeItem:function(x){ delete mem[x]; }};
       var st2 = Platform.makeStore(fakeLS); st2.set('cff.skin', 'sorbet'); st2.set('cff.map', 'themed');
       eq('the choice is stored as JSON the boot script reads', mem['cff.skin'] + '|' + mem['cff.map'], '"sorbet"|"themed"');
       var deadS = Platform.makeStore({getItem:function(){ throw new Error('x'); }, setItem:function(){ throw new Error('x'); }, removeItem:function(){}});
@@ -7517,7 +7797,7 @@ function runSelfTest0(){
     var ph2 = pinHTML({c:ext(fake, {genre:'look'}), o:{}}, [0, 0]);
     ok('a Sights pin uses the museum, no ticket when not limited', ph2.indexOf('#k-look') >= 0 && ph2.indexOf('tkb') < 0, ph2.slice(0, 200));
     ok('icons inside pins are hidden from screen readers', /<svg[^>]*aria-hidden="true"[^>]*><use href="#k-shows"/.test(ph), ph.slice(0, 200));
-    ok('clusters stay neutral (a number, no kind icon)', typeof recluster === 'function' && String(recluster).indexOf('class="cluster"') >= 0 && !/cluster[^\n]*kindSvg/.test(String(recluster)), 'cluster markup changed');
+    ok('clusters stay neutral (a number, no kind icon)', typeof recluster === 'function' && String(clusterHTML).indexOf('class="cluster"') >= 0 && !/kindSvg/.test(String(clusterHTML)), 'cluster markup changed');
   });
 
   block('v5.6 "Any time" on a picked day (Wed Nov 18; now is Fri Nov 13, 6 pm)', function(){
@@ -7795,7 +8075,7 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.9 (2026-11-13)');
+    eq('version', VERSION, 'v5.10 (2026-11-14)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -7982,6 +8262,139 @@ function runSelfTest0(){
     eq('no tile name cut off', clipped.join(), '');
     eq('Limited time first', el.querySelector('.tile') ? el.querySelector('.tile').getAttribute('data-tile') : '', 'limited');
   });
+
+  /* ---------- v5.10 checks (2026-11-14) ---------- */
+  var CTXD = {lat:41.88, lng:-87.63, budget:'any', mode:'car'}, FD = ext(appDefaultFilters(), {mode:'car'});
+  block('v5.10 opening soon vs back in spring (owner: rinks opening Nov 20-27 under "Back in spring")', function(){
+    var T = at('2026-11-16', '12:00'), open = allDays(['10:00', '22:00']);
+    var rink = fx({id:'t10-rink', name:'Rink', category:'active', season:{open_from:'2026-11-20', open_to:'2027-01-31'}, hours:open, lat:northOf(1)});
+    var rink2 = fx({id:'t10-rink2', name:'Rink 2', category:'active', season:{open_from:'2026-11-27', open_to:'2027-02-15'}, hours:open, lat:northOf(2)});
+    var golf = fx({id:'t10-golf', name:'Golf', category:'mini-golf', season:{open_from:'2027-05-01', open_to:'2027-10-30'}, hours:open, lat:northOf(1)});
+    var arc = fx({id:'t10-arc', name:'Arcade', category:'games-arcade', hours:open, lat:northOf(1)});
+    var vm = buildView(runPipeline([rink, rink2, golf, arc], T, CTXD, FD), FD, 'play', ''), k = vm.kind;
+    eq('rinks opening in 4 and 11 days: "Opening soon", soonest first', k.rest.opening.map(function(c){ return c.item.name; }).join(), 'Rink,Rink 2');
+    eq('golf back May 1, 2027: closed for the season', k.rest.season.map(function(c){ return c.item.name; }).join(), 'Golf');
+    eq('the open arcade is the main list', k.fits.map(function(c){ return c.item.name; }).join(), 'Arcade');
+    eq('labels: Opening soon / Back in May', restLabel('opening', vm.p, k.rest.opening) + ' | ' + restLabel('season', vm.p, k.rest.season), 'Opening soon | Back in May · closed for the season');
+    eq('no reopening date: the old shelf title', seasonGroupTitle([{st:{key:'season', season:{st:'off', reopen:null}}}], cparts(T)), 'Back in spring');
+    ok('both come after everything open (closed, hours not listed, later)', REST_ORDER.indexOf('opening') > REST_ORDER.indexOf('closed') && REST_ORDER.indexOf('season') === REST_ORDER.length - 1 && REST_ORDER.indexOf('unknown') === 0, REST_ORDER.join());
+    eq('45-day line: day 45 is soon, day 46 is not', [isOpeningSoon({st:{key:'season', season:{reopen:addDays('2026-11-16', 45)}}}, cparts(T)), isOpeningSoon({st:{key:'season', season:{reopen:addDays('2026-11-16', 46)}}}, cparts(T))].join(), 'true,false');
+    var keepF = UI.foldRest; UI.foldRest = true;
+    var hk = kindListHTML(vm, {}); UI.foldRest = keepF;
+    ok('the kind list: open rows first, then Opening soon, then Back in May', hk.indexOf('Arcade') >= 0 && hk.indexOf('Arcade') < hk.indexOf('Opening soon') && hk.indexOf('Opening soon') < hk.indexOf('Back in May'), hk.slice(0, 200));
+    ok('an opening-soon row shows its date (a date thumb)', /thumb date[^]*?<b>20<\/b>/.test(hk), 'no date thumb');
+  });
+  block('v5.10 few separate dates badge (Artisan Market "Until Dec 13")', function(){
+    var am = fx({id:'t10-am', name:'Market', kind:'event', category:'seasonal', event_dates:[{start:'2026-11-15T11:00', end:'2026-11-15T17:00'}, {start:'2026-12-13T11:00', end:'2026-12-13T17:00'}]});
+    function bd(key){ return fewDatesBadge(fewDates(am, key), cparts(at(key, '12:00'))); }
+    eq('Fri Nov 13: "2 Sundays · next Nov 15"', bd('2026-11-13').t, '2 Sundays · next Nov 15');
+    eq('Sun Nov 15: "2 Sundays · today"', bd('2026-11-15').t, '2 Sundays · today');
+    eq('Mon Nov 16: one left = "Last date Dec 13"', bd('2026-11-16').t, 'Last date Dec 13');
+    var mix = fx({id:'t10-mix', kind:'event', event_dates:[{start:'2026-11-15T11:00', end:'2026-11-15T17:00'}, {start:'2026-11-18T18:00', end:'2026-11-18T20:00'}]});
+    eq('two different weekdays: "Nov 15 & Nov 18"', fewDatesBadge(fewDates(mix, '2026-11-13'), cparts(at('2026-11-13', '12:00'))).t, 'Nov 15 & Nov 18');
+    eq('Sat + Sun back to back: not "few dates" (Until stays)', fewDates(fx({kind:'event', event_dates:[{start:'2026-11-28T11:00', end:'2026-11-28T17:00'}, {start:'2026-11-29T11:00', end:'2026-11-29T17:00'}]}), '2026-11-13'), null);
+    eq('a continuous run: not "few dates"', fewDates(fx({kind:'event', event_dates:[{start:'2026-11-01', end:'2026-12-19'}]}), '2026-11-13'), null);
+    eq('7 dates: not "few dates"', fewDates(fx({kind:'event', event_dates:[1, 3, 5, 8, 10, 12, 15].map(function(d){ var k = addDays('2026-11-15', d); return {start:k + 'T19:00', end:k + 'T21:00'}; })}), '2026-11-13'), null);
+    var c = computeItem(am, at('2026-11-15', '12:00'), CTXD); annotate(c, c.st.p);
+    eq('untilBadge on the market while it is on', untilBadge(c, c.st.p).t, '2 Sundays · today');
+  });
+  block('v5.10 detail dates and "Next" from today (Artisan Market planned for Mon)', function(){
+    var am = fx({id:'t10-am2', name:'Market', kind:'event', category:'seasonal', event_dates:[{start:'2026-11-15T11:00', end:'2026-11-15T17:00'}, {start:'2026-12-13T11:00', end:'2026-12-13T17:00'}]});
+    var now = at('2026-11-13', '23:30'), dl = eventDatesHTML(am, cparts(now), now);
+    ok('Dates list from today: Nov 15 and Dec 13', dl.indexOf('Nov 15') >= 0 && dl.indexOf('Dec 13') >= 0, dl);
+    var pe = planEventLines(am, statusAt(am, at('2026-11-16', '12:00')), now);
+    eq('planned Mon: the status is from today, plus "Not on Mon"', pe ? pe.text + ' | ' + pe.extra : 'null', 'This weekend · Sun 11 am | Not on Mon · next after that: Dec 13');   // seen from Fri Nov 13
+    eq('planned Sun Nov 15 at noon (market on): no extra line', planEventLines(am, statusAt(am, at('2026-11-15', '12:00')), now), null);
+    eq('planned after the last date: "no dates after that"', planEventLines(am, statusAt(am, at('2026-12-20', '12:00')), now).extra, 'Not on Sun · no dates after that');
+    eq('24-hour ranges read as am/pm', fmt24Ranges('11:00-17:00'), '11 am – 5 pm');
+    eq('...inside a sentence, two ranges', fmt24Ranges('Fri Nov 13, 18:00-22:00; Sat Nov 14, 13:00-17:00'), 'Fri Nov 13, 6 pm – 10 pm; Sat Nov 14, 1 pm – 5 pm');
+    eq('...24:00 is midnight; am/pm text is left alone', [fmt24Ranges('20:00-24:00'), fmt24Ranges('10 AM - 2 PM'), fmt24Ranges('8am-midnight'), fmt24Ranges('9:30 am - 5:00 pm')].join(' | '), '8 pm – midnight | 10 AM - 2 PM | 8am-midnight | 9:30 am - 5:00 pm');
+  });
+  block('v5.10 "Leave by" (#33)', function(){
+    var mus = fx({id:'t10-mus', category:'art-museum', hours:allDays(['10:00', '17:00']), last_entry_before_close_min:30, lat:northOf(3)});
+    var c = computeItem(mus, at('2026-11-12', '14:00'), CTXD), l = leaveBy(c), exp = Math.floor((at('2026-11-12', '16:30') - c.trav.min * 60000) / 300000) * 300000;
+    eq('museum, last entry 4:30, ' + c.trav.min + ' min drive: "Leave by ... to make last entry"', l ? l.at + '|' + l.why : 'null', exp + '|to make last entry');
+    ok('...text', l && /^Leave by \d{1,2}:\d{2} pm to make last entry$|^Leave by \d{1,2} pm to make last entry$/.test(l.t), l && l.t);
+    eq('too late already (4:25 pm): hidden', leaveBy(computeItem(mus, at('2026-11-12', '16:25'), CTXD)), null);
+    eq('open 24 hours: hidden', leaveBy(computeItem(fx({hours:allDays(['00:00', '24:00'])}), at('2026-11-12', '14:00'), CTXD)), null);
+    var bar = fx({id:'t10-bar', category:'food-drink-experience', hours:allDays(['17:00', '22:00']), lat:northOf(1)});
+    var lb = leaveBy(computeItem(bar, at('2026-11-12', '20:00'), CTXD));
+    ok('no last entry: time before closing', lb && / before it closes at 10 pm$/.test(lb.t), lb && lb.t);
+    var show = fx({id:'t10-show', kind:'event', category:'show-comedy-music', event_dates:[{start:'2026-11-12T19:30', end:'2026-11-12T21:00'}], lat:northOf(2)});
+    var ls = leaveBy(computeItem(show, at('2026-11-12', '17:30'), CTXD));
+    ok('a show at 7:30 pm: "for the 7:30 pm start"', ls && / for the 7:30 pm start$/.test(ls.t), ls ? ls.t : 'null');
+    eq('more than 6 h ahead: hidden', leaveBy(computeItem(mus, at('2026-11-12', '09:59'), CTXD)), null);
+    ok('the three cards show it only within 90 min', cardLeaveHTML(computeItem(mus, at('2026-11-12', '15:30'), CTXD)).indexOf('Leave by') >= 0 && cardLeaveHTML(computeItem(mus, at('2026-11-12', '11:00'), CTXD)) === '', 'card');
+  });
+  block('v5.10 escape rooms sub-chip: every room, any distance, "Book online", award line', function(){
+    var T = at('2026-11-12', '14:00'), open = allDays(['10:00', '23:00']);
+    var e1 = fx({id:'t10-e1', name:'Escape room: Near', category:'escape-room', hours:open, lat:northOf(1), award_note:'Best of Morty 2025'});
+    var e2 = fx({id:'t10-e2', name:'Escape room: No hours', category:'escape-room', hours:null, booking:'recommended', booking_url:'https://book.example/e2', lat:northOf(8)});
+    var e3 = fx({id:'t10-e3', name:'Escape room: Far', category:'escape-room', hours:open, lat:northOf(40)});
+    var g1 = fx({id:'t10-g1', name:'Golf', category:'mini-golf', hours:open, lat:northOf(1)}), g2 = fx({id:'t10-g2', name:'Golf 2', category:'mini-golf', hours:open, lat:northOf(1)});
+    var vm = buildView(runPipeline([e1, e2, e3, g1, g2], T, CTXD, FD), FD, 'play', 'escape');
+    eq('all 3 rooms, open first, the 40-mile one included', vm.kind.escape ? vm.kind.escape.map(function(c){ return c.item.name.replace('Escape room: ', ''); }).join() : 'none', 'Near,Far,No hours');
+    eq('the chip counts all 3', subCounts(vm, 'play').escape, 3);
+    var hx = kindListHTML(vm, {});
+    ok('unknown hours: "Book online" with the booking link', hx.indexOf('Book online') >= 0 && hx.indexOf('https://book.example/e2') >= 0, hx.slice(0, 300));
+    ok('award_note is a small line on the row', hx.indexOf('<p class="award">Best of Morty 2025</p>') >= 0, 'no award line');
+    ok('the far room says how far (past the radius)', hx.indexOf('Past 25 mi') >= 0, 'no far kicker');
+  });
+  block('v5.10 showtimes vary / book a time (hours-fill a)', function(){
+    var T = at('2026-11-12', '14:00');
+    var cin = fx({id:'t10-cin', name:'Cinema', category:'show-comedy-music', tags:['movies'], hours:null, website:'https://cin.example/', lat:northOf(1)});
+    var cls = fx({id:'t10-cls', name:'Studio', category:'classes-workshops', booking:'required', hours:null, website:'https://cls.example/', lat:northOf(1)});
+    var bowl = fx({id:'t10-bowl', name:'Bowl', category:'games-arcade', tags:['bowling'], hours:null, lat:northOf(1)});
+    var arc = fx({id:'t10-arc2', name:'Arcade', category:'games-arcade', hours:allDays(['10:00', '23:00']), lat:northOf(2)});
+    eq('cinema: "Showtimes vary · see times"', computeItem(cin, T, CTXD).d.text, 'Showtimes vary · see times');
+    eq('studio: "Book a time"', computeItem(cls, T, CTXD).d.text, 'Book a time');
+    eq('bowling keeps "Hours not confirmed · call first"', computeItem(bowl, T, CTXD).d.text, 'Hours not confirmed · call first');
+    eq('date_hours for that day: not "showtimes vary"', bookTimeOf(fresh(cin, {date_hours:{'2026-11-12':[['19:00', '21:00']]}}), {key:'unknown'}, '2026-11-12'), null);
+    var vs = buildView(runPipeline([cin, fx({id:'t10-cin2', name:'Club', category:'show-comedy-music', tags:['comedy'], hours:null, lat:northOf(2)})], T, CTXD, FD), FD, 'shows', '');
+    eq('shows: both in the main list (not the rest)', vs.kind.book.length + '|' + vs.kind.restN, '2|0');
+    var hs = kindListHTML(vs, {});
+    ok('...with a Tickets button', hs.indexOf('>Tickets') >= 0 && hs.indexOf('Showtimes vary') >= 0, hs.slice(0, 300));
+    var vp = buildView(runPipeline([arc, bowl, fx({id:'t10-gs', name:'Game show', category:'games-arcade', booking:'required', booking_url:'https://gs.example/', hours:null, lat:northOf(1)})], T, CTXD, FD), FD, 'play', '');
+    var hp = kindListHTML(vp, {});
+    ok('known hours rank first, then Book a time', hp.indexOf('Arcade') >= 0 && hp.indexOf('Arcade') < hp.indexOf('Game show'), hp.slice(0, 300));
+    eq('bowling goes to the first "rest" group (Hours not listed)', vp.kind.rest.unknown.map(function(c){ return c.item.name; }).join() + '|' + REST_ORDER[0], 'Bowl|unknown');
+  });
+  block('v5.10 three picks late at night (owner: one card at 1:38 am)', function(){
+    var T = at('2026-11-14', '01:38'), today = '2026-11-14', F = ext(FD, {});
+    function mk(id, cat, h, mi){ return fx({id:id, name:id, category:cat, hours:allDays(h), lat:northOf(mi || 1)}); }
+    var piano = mk('Piano bar', 'show-comedy-music', ['20:00', '04:00']), b2 = mk('Tavern', 'food-drink-experience', ['16:00', '02:15']), b3 = mk('Arcade bar', 'games-arcade', ['16:00', '02:30']);
+    var gone = mk('Closed bar', 'food-drink-experience', ['16:00', '01:45']), diner = mk('Diner', 'food-drink-experience', ['02:00', '23:00'], 2), morning = mk('Cafe', 'food-drink-experience', ['07:00', '15:00']);
+    var vm = buildView(runPipeline([piano, b2, b3, gone, diner, morning], T, CTXD, F), F, '', ''), P = threePool(vm, today, []);
+    var names = P.map(function(c){ return c.item.name; });
+    ok('the pool fills to 3+ with things still open or opening within 30 min (' + names.join(', ') + ')', P.length >= 3, names.join());
+    ok('never one that closes before she gets there, never a morning cafe', names.indexOf('Closed bar') < 0 && names.indexOf('Cafe') < 0, names.join());
+    eq('three cards', pickThree(P, {}).picks.length, 3);
+    eq('really only 1 open: one card, and the line', fewLine(1, cparts(T), false).t + ' | ' + fewLine(1, cparts(T), false).plan, 'Only 1 open this late. | 2026-11-14T10:00');
+    eq('3 or more: no line', fewLine(3, cparts(T), false), null);
+    eq('11 pm: the morning is tomorrow', fewLine(2, cparts(at('2026-11-13', '23:00')), false).plan, '2026-11-14T10:00');
+  });
+  block('v5.10 opening-soon radar, mini guides, cluster ticket', function(){
+    var T = at('2026-11-16', '12:00'), open = allDays(['10:00', '22:00']);
+    var rink = fx({id:'t10-rk', name:'Ice Rink', category:'active', season:{open_from:'2026-11-20', open_to:'2027-01-31'}, hours:open});
+    var rinkEv = fx({id:'t10-rke', name:'Ice Rink', kind:'event', category:'seasonal', event_dates:[{start:'2026-11-20', end:'2027-01-31'}]});
+    var pop = fx({id:'t10-pop', name:'Pop-up', kind:'event', category:'immersive-popup', event_dates:[{start:'2026-12-01', end:'2026-12-31'}]});
+    var late = fx({id:'t10-lt', name:'Too far off', kind:'event', category:'seasonal', event_dates:[{start:'2027-01-30', end:'2027-02-07'}]});
+    var res = runPipeline([rink, rinkEv, pop, late], T, CTXD, FD); res.all.forEach(function(c){ annotate(c, res.p); });
+    var rl = radarList(res.all, res.p);
+    eq('radar: within 30 days, one per name, by date', rl.map(function(x){ return x.c.item.name + '@' + x.key; }).join(), 'Ice Rink@2026-11-20,Pop-up@2026-12-01');
+    ok('"Opens Nov 20"', radarHTML(rl).indexOf('Opens Nov 20') >= 0, radarHTML(rl));
+    eq('radar empty: no section', radarHTML([]), '');
+    eq('5 guides with ids', GUIDES.map(function(g){ return g.id; }).join(), 'first-date,rainy-day,visitors,late-night,free');
+    eq('guide rules', [guideMatch('first-date', fx({tags:['date'], price_level:'$'}), ''), guideMatch('first-date', fx({tags:['date'], price_level:'$$$'}), ''), guideMatch('rainy-day', fx({indoor_outdoor:'indoor'}), ''), guideMatch('rainy-day', fx({indoor_outdoor:'outdoor'}), ''), guideMatch('free', fx({price_level:'free'}), ''), guideMatch('late-night', fx({hours:allDays(['18:00', '02:00'])}), '2026-11-13'), guideMatch('late-night', fx({hours:allDays(['10:00', '17:00'])}), '2026-11-13')].join(), 'true,false,true,false,true,true,false');
+    ok('a guide link ends with #guide=<id>', /#guide=free$/.test(guideLink('free')), guideLink('free'));
+    eq('Home has 5 guide buttons', (guidesHTML().match(/data-guide="/g) || []).length, 5);
+    eq('cluster label', clusterLabel(8, 2), '8 places, 2 limited-time. Zoom in');
+    var ch = clusterHTML({n:8, x:0, y:0, tk:2});
+    ok('cluster: a ticket badge with the count, not a dot', ch.indexOf('class="ctk"') >= 0 && ch.indexOf('#g-ticket') >= 0 && /2<\/span>/.test(ch) && ch.indexOf('class="tkb"') < 0, ch);
+    eq('no limited ones: no badge', clusterHTML({n:3, x:0, y:0, tk:0}).indexOf('ctk'), -1);
+    function nsub(o){ return subOf(fx(ext({category:'nature-outdoors', genre:'nature'}, o)), 'nature'); }
+    eq('Animals & bugs is strict: zoo, butterflies, elk herd yes; parks and beaches with bird tags go to Parks & walks', [nsub({name:'Lincoln Park Zoo'}), nsub({name:'The Butterfly House'}), nsub({name:'Busse Woods elk herd'}), nsub({name:'Jackson Park', tags:['birds', 'wildlife', 'animals']}), nsub({name:'Montrose Beach', tags:['birding']}), nsub({name:'Some sanctuary', tags:['petting-zoo']}), nsub({name:'River walk', tags:['animals', 'bugs']})].join(), 'animals,animals,animals,walks,walks,animals,walks');
+  });
   return R;
 }
 function waitFor(fn, ms){ return new Promise(function(res){ var t0 = Date.now(); (function poll(){ var v = false; try { v = fn(); } catch (e) {} if (v || Date.now() - t0 > ms) res(!!v); else setTimeout(poll, 100); })(); }); }
@@ -8041,6 +8454,20 @@ function runSelfTestAsync(){ // checks that need promises or the map files
     var pickIds = DATA.filter(function(it, i){ return i % 7 === 0; }).map(function(it){ return it.id; }), fitR = wlFit(pickIds, ID_SID), dec = wlDecode(wlEncode('Ab12', fitR.sids, 316));
     ok('real data: ' + pickIds.length + ' saved places go through a link and back (' + (dec.ok ? dec.mode + ', ' + wlEncode('Ab12', fitR.sids, 316).length + ' characters' : dec.why) + ')',
       dec.ok && dec.sids.map(function(s){ return SID_INDEX[s].id; }).sort().join() === pickIds.slice().sort().join(), dec.why || 'ids differ');
+    // v5.10 real-data checks (Mon Nov 16, the Loop)
+    var T16 = fromChicago('2026-11-16', 720), cL = {lat:41.8819, lng:-87.6278, budget:'any', mode:'car'}, F16 = ext(appDefaultFilters(), {mode:'car'});
+    ['pa-midway-plaisance-ice-rink', 'pa-rosemont-skating-in-the-park', 'pa-millennium-park-ice-rink'].forEach(function(id){
+      var it = findItem(id); if (!it) { R.push({ok:true, info:'', name:'real data: ' + id + ' not in this list (skipped)', note:true}); return; }
+      var c = computeItem(it, T16, cL); annotate(c, cparts(T16));
+      ok('real data: ' + it.name + ' on Mon Nov 16 is "Opening soon" (' + c.d.text + ')', c.soonOpen && restGroupOf(ext(c, {group:'season'})) === 'opening', c.st.key + ' / ' + c.d.text);
+    });
+    var amk = findItem('ev-chicago-artisan-market-fulton-market-holiday');
+    if (amk) { var fdb = fewDates(amk, cparts(nowMs()).key); ok('real data: Artisan Market badge reads by its dates (' + (fdb ? fewDatesBadge(fdb, cparts(nowMs())).t : 'none') + ')', !!fdb, 'no few-dates badge'); }
+    var resE = runPipeline(DATA, T16, cL, F16), vE = buildView(resE, F16, 'play', 'escape'), nE = vE.kind && vE.kind.escape ? vE.kind.escape.length : 0, nPre = DATA.filter(function(it){ return /^Escape room:/.test(it.name || ''); }).length;
+    R.push({ok:true, info:'', note:true, name:'real data: Animals & bugs members: ' + DATA.filter(function(it){ return genreOf(it) === 'nature' && subOf(it, 'nature') === 'animals'; }).map(function(it){ return it.name; }).join('; ')});
+    var parkAnimals = DATA.filter(function(it){ return genreOf(it) === 'nature' && subOf(it, 'nature') === 'animals' && /\b(park|beach|trail)\b/i.test(it.name) && !/zoo|elk|butterfl|aquarium/i.test(it.name); }).map(function(it){ return it.name; });
+    eq('real data: no plain park, beach or trail under Animals & bugs', parkAnimals.join('; '), '');
+    ok('real data: the Escape rooms view lists every "Escape room:" room (' + nE + ' rooms, ' + nPre + ' with the prefix)', nE >= nPre && vE.kind.escape.filter(function(c){ return /^Escape room:/.test(c.item.name); }).length === nPre, nE + ' of ' + nPre);
     return R;
   });
 }
@@ -8129,6 +8556,7 @@ function readHash(){
   var im = /item=([a-z0-9-]+)/i.exec(hsh); if (im) UI.pendingItem = im[1];
   if (UI.pendingItem && DATA_LOADED) openPending();
   if (/(^|[#&])tip($|&)/.test(hsh) && mapEl) openTip();
+  var gdm = /(?:^#|&)guide=([a-z-]+)/.exec(hsh); if (gdm && mapEl && GUIDE_BY[gdm[1]]) openGuide(gdm[1]);   // v5.10: shared mini-guide link
   if (/selftest/.test(hsh)) showSelfTest();
 }
 function openPending(){ // a link like "#pa-puttery-chicago": open that place once the list is loaded
