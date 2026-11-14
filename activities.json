@@ -262,6 +262,11 @@
                  ],
         "genre":  "look-learn",
         "min_minutes":  60,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  1,
         "photos":  [
                        {
@@ -427,6 +432,11 @@
         "energy":  "easy",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  2,
         "photos":  [
                        {
@@ -631,6 +641,11 @@
         "energy":  "easy",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  3,
         "photos":  [
                        {
@@ -809,6 +824,11 @@
         "energy":  "easy",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  4,
         "photos":  [
 
@@ -978,6 +998,11 @@
                                ],
                      "valid_to":  "2026-12-14"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  5,
         "photos":  [
                        {
@@ -1142,6 +1167,11 @@
                      "suburbs",
                      "dog-friendly"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  6,
         "photos":  [
                        {
@@ -1305,6 +1335,11 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  7,
         "photos":  [
                        {
@@ -1343,11 +1378,6 @@
         "price_note":  "From $29.95; free with membership; parking $17 North Gate, $20 South Gate (reservation required)",
         "duration_minutes":  null,
         "hours":  null,
-        "season":  {
-                       "open_from":  "2026-11-21",
-                       "open_to":  "2027-01-03",
-                       "note":  "Select dates only"
-                   },
         "event_dates":  [
                             {
                                 "start":  "2026-11-21T15:00",
@@ -1490,9 +1520,6 @@
                          "checked_on":  "2026-11-12",
                          "evidence_url":  "https://www.brookfieldzoo.org/holidaymagic"
                      },
-        "closed_dates":  [
-
-                         ],
         "genre":  "nature-animals",
         "hook":  "Holiday lights across the zoo grounds",
         "moods":  [
@@ -1531,7 +1558,6 @@
                                  "source":  "https://www.brookfieldzoo.org/holidaymagic"
                              }
                          ],
-        "hours_note":  "15:00-21:00 on event dates only. South Gate entry requires advance admission and parking reservations.",
         "description":  "Brookfield Zoo Chicago\u0027s long-running holiday lights festival, with the zoo grounds lit up in the late afternoon and evening.",
         "energy":  "easy",
         "vibe":  "mixed",
@@ -1540,6 +1566,32 @@
                         "evening"
                     ],
         "taste_checked":  "2026-11-13",
+        "season":  {
+                       "open_from":  "2026-11-21",
+                       "open_to":  "2027-01-03",
+                       "note":  "Select nights only: Nov 21-25, 27-29; Dec 3-6, 10-13, 17-23, 26-31; Jan 1-3."
+                   },
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-11-30",
+                             "2026-12-01",
+                             "2026-12-02",
+                             "2026-12-07",
+                             "2026-12-08",
+                             "2026-12-09",
+                             "2026-12-14",
+                             "2026-12-15",
+                             "2026-12-16",
+                             "2026-12-24",
+                             "2026-12-25"
+                         ],
+        "price_from":  29.95,
+        "hours_note":  "3-9 pm on event nights only (no event Nov 26, Nov 30-Dec 2, Dec 7-9, Dec 14-16, Dec 24-25). Last entry not posted. South Gate entry requires advance admission and parking reservations.",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  8,
         "photos":  [
                        {
@@ -1776,6 +1828,11 @@
         "energy":  "easy",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  true
+                    },
         "sid":  9,
         "photos":  [
                        {
@@ -1881,6 +1938,11 @@
                         "evening"
                     ],
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  12,
         "photos":  [
                        {
@@ -1991,6 +2053,11 @@
                         "evening"
                     ],
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  13,
         "photos":  [
                        {
@@ -2098,6 +2165,11 @@
                     ],
         "taste_checked":  "2026-11-13",
         "min_minutes":  75,
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  14,
         "photos":  [
                        {
@@ -2135,11 +2207,6 @@
         "price_level":  "$$",
         "duration_minutes":  null,
         "hours":  null,
-        "season":  {
-                       "open_from":  "2026-11-07",
-                       "open_to":  "2027-01-03",
-                       "note":  ""
-                   },
         "event_dates":  [
                             {
                                 "start":  "2026-11-12T09:30",
@@ -2359,10 +2426,6 @@
                          "checked_on":  "2026-11-12",
                          "evidence_url":  "https://www.griffinmsi.org/hours"
                      },
-        "closed_dates":  [
-                             "2026-11-26",
-                             "2026-12-25"
-                         ],
         "genre":  "look-learn",
         "hook":  "More than 50 trees decorated with family traditions",
         "moods":  [
@@ -2397,12 +2460,58 @@
                              }
                          ],
         "price_note":  "Included with general admission; Chicago residents get $9 off adults and $5 off kids 3-11; free general admission for Illinois residents on select dates",
-        "hours_note":  "Extended 9:30-17:30 on most days; Nov 19 and Nov 21 have regular hours 9:30-16:00; Dec 24 and Dec 31 9:30-16:00; Jan 1 11:00-17:30. Closed Thanksgiving and Christmas.",
         "description":  "The Griffin Museum of Science and Industry fills its halls with more than 50 trees and displays, each decorated by community volunteers to share their family and cultural holiday traditions, plus displays for Hanukkah, Kwanzaa and Diwali. There is also an indoor forest, light displays and a four-story Grand Tree.",
         "age_note":  "All ages; \u0027Naughty or Nice\u0027 evening Thu Dec 10 is for ages 21+ (all-ages edition Sat Dec 19)",
         "energy":  "easy",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "season":  {
+                       "open_from":  "2026-11-07",
+                       "open_to":  "2027-01-03",
+                       "note":  "Included in general admission."
+                   },
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-12-25"
+                         ],
+        "hours_note":  "9:30-5:30 most days Nov 20-Jan 3; 9:30-4 on Nov 19, Nov 21, Dec 24, Dec 31; 11-5:30 Jan 1. Closed Thanksgiving (Nov 26) and Christmas (Dec 25). Last entry not posted.",
+        "date_hours":  {
+                           "2026-11-19":  [
+                                              [
+                                                  "09:30",
+                                                  "16:00"
+                                              ]
+                                          ],
+                           "2026-11-21":  [
+                                              [
+                                                  "09:30",
+                                                  "16:00"
+                                              ]
+                                          ],
+                           "2026-12-24":  [
+                                              [
+                                                  "09:30",
+                                                  "16:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  [
+                                              [
+                                                  "09:30",
+                                                  "16:00"
+                                              ]
+                                          ],
+                           "2027-01-01":  [
+                                              [
+                                                  "11:00",
+                                                  "17:30"
+                                              ]
+                                          ]
+                       },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  true
+                    },
         "sid":  15,
         "photos":  [
                        {
@@ -2552,6 +2661,11 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  16,
         "photos":  [
                        {
@@ -2696,6 +2810,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  17,
         "photos":  [
                        {
@@ -2831,6 +2950,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  18,
         "photos":  [
                        {
@@ -2964,6 +3088,11 @@
                  ],
         "genre":  "look-learn",
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  19,
         "photos":  [
                        {
@@ -3120,6 +3249,11 @@
                      "rainy-day"
                  ],
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  20,
         "photos":  [
                        {
@@ -3267,6 +3401,11 @@
                      "museum",
                      "kids-ok"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  21,
         "photos":  [
                        {
@@ -3371,6 +3510,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  22,
         "photos":  [
                        {
@@ -3558,6 +3702,11 @@
                      "garden",
                      "warm-indoors"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  23,
         "photos":  [
                        {
@@ -3704,6 +3853,11 @@
                      "rainy-day"
                  ],
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  24,
         "photos":  [
                        {
@@ -3859,6 +4013,11 @@
                  ],
         "genre":  "look-learn",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  25,
         "photos":  [
                        {
@@ -3969,6 +4128,11 @@
                      "kind":  "rush",
                      "link":  "https://todaytix.com/chicago/shows/46527-theater-of-the-mind"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  26,
         "photos":  [
                        {
@@ -4071,6 +4235,11 @@
                      "link":  "https://www.goodmantheatre.org/tickets/special-discounts/",
                      "valid_to":  "2026-12-31"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  27,
         "photos":  [
                        {
@@ -4277,6 +4446,11 @@
                  ],
         "genre":  "shows-nights",
         "min_minutes":  120,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  28,
         "photos":  [
                        {
@@ -4382,6 +4556,11 @@
                      "rainy-day",
                      "market"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  29,
         "photos":  [
                        {
@@ -4477,6 +4656,11 @@
         "energy":  "easy",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  30,
         "photos":  [
                        {
@@ -4571,6 +4755,11 @@
         "energy":  "easy",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  31,
         "photos":  [
                        {
@@ -4673,6 +4862,11 @@
         "energy":  "easy",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  32,
         "photos":  [
                        {
@@ -4773,6 +4967,11 @@
         "energy":  "easy",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  33,
         "photos":  [
                        {
@@ -4876,12 +5075,17 @@
         "genre":  "eat-drink",
         "age_note":  "Beer festival; age rules not posted",
         "min_minutes":  150,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  34,
         "photos":  [
                        {
                            "file":  "photos/ev-fobab-2026-1.jpg",
                            "credit":  "FoBAB",
-                           "page_url":  "https://www.fobab.com/"
+                           "page_url":  "https://www.fobab.com/faq"
                        }
                    ]
     },
@@ -4975,6 +5179,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "eat-drink",
         "hook":  "Fixed-price menus at hundreds of restaurants citywide",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  35,
         "photos":  [
                        {
@@ -5112,6 +5321,11 @@
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  36,
         "photos":  [
                        {
@@ -5257,6 +5471,11 @@
         "energy":  "chill",
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  true
+                    },
         "sid":  37,
         "photos":  [
                        {
@@ -5354,6 +5573,11 @@
                      "outdoor"
                  ],
         "category":  "active",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  38,
         "photos":  [
                        {
@@ -5457,6 +5681,11 @@
                  ],
         "genre":  "shows-nights",
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  39,
         "photos":  [
                        {
@@ -5566,6 +5795,11 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "min_minutes":  60,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  true
+                    },
         "sid":  40,
         "photos":  [
                        {
@@ -5715,12 +5949,17 @@
                  ],
         "genre":  "play",
         "min_minutes":  60,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  41,
         "photos":  [
                        {
                            "file":  "photos/pa-the-cube-chicago-1.jpg",
-                           "credit":  "THE CUBE website (bookthecube.com), brand photo; venue not named",
-                           "page_url":  "https://bookthecube.com/the-game/"
+                           "credit":  "THE CUBE website (Chicago page)",
+                           "page_url":  "https://bookthecube.com/chicago/"
                        }
                    ]
     },
@@ -5851,6 +6090,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.round1usa.com/locations/028nrs"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  42,
         "photos":  [
                        {
@@ -5984,6 +6228,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.round1usa.com/locations/057gur"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  43,
         "photos":  [
                        {
@@ -6128,6 +6377,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "play",
         "min_minutes":  60,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  44,
         "photos":  [
                        {
@@ -6277,6 +6531,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "play",
         "min_minutes":  60,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  45,
         "photos":  [
                        {
@@ -6421,6 +6680,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "play",
         "min_minutes":  60,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  46,
         "photos":  [
                        {
@@ -6565,6 +6829,11 @@
                                   "Wed"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  47,
         "photos":  [
                        {
@@ -6714,6 +6983,11 @@
                  ],
         "genre":  "play",
         "min_minutes":  60,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  48,
         "photos":  [
                        {
@@ -6866,6 +7140,11 @@
                                   "Fri"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  49,
         "photos":  [
                        {
@@ -7006,6 +7285,11 @@
                  ],
         "genre":  "play",
         "min_minutes":  75,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  50,
         "photos":  [
                        {
@@ -7155,6 +7439,11 @@
                                   "Fri"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  51,
         "photos":  [
                        {
@@ -7284,6 +7573,11 @@
         "genre":  "play",
         "age_note":  "Age rules not posted",
         "min_minutes":  60,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  52,
         "photos":  [
                        {
@@ -7413,6 +7707,11 @@
         "genre":  "play",
         "age_note":  "Bar; age rules not posted",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  53,
         "photos":  [
                        {
@@ -7557,6 +7856,11 @@
                                   "Sat"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  54,
         "photos":  [
                        {
@@ -7709,6 +8013,11 @@
                                   "Thu"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  55,
         "photos":  [
                        {
@@ -7857,6 +8166,11 @@
                                   "daily"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  56,
         "photos":  [
                        {
@@ -7984,6 +8298,11 @@
                  ],
         "genre":  "play",
         "min_minutes":  45,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  57,
         "photos":  [
                        {
@@ -8111,6 +8430,11 @@
                  ],
         "genre":  "play",
         "min_minutes":  45,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  58,
         "photos":  [
                        {
@@ -8255,6 +8579,11 @@
                  ],
         "genre":  "play",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  59,
         "photos":  [
 
@@ -8383,6 +8712,11 @@
         "genre":  "play",
         "hook":  "Bird-themed outdoor mini golf in Douglass Park",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  60,
         "photos":  [
                        {
@@ -8407,7 +8741,6 @@
         "neighborhood":  "Lincoln Park / Lakeview",
         "lat":  41.9333252,
         "lng":  -87.6341217,
-        "indoor_outdoor":  "outdoor",
         "price_level":  "$",
         "price_note":  "Range: small bucket $12, large $18. Mini golf: adults $12, juniors/seniors $9.",
         "duration_minutes":  60,
@@ -8528,6 +8861,12 @@
                  ],
         "genre":  "play",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
+        "indoor_outdoor":  "both",
         "sid":  61,
         "photos":  [
                        {
@@ -8688,6 +9027,11 @@
                  ],
         "genre":  "play",
         "min_minutes":  60,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  62,
         "photos":  [
                        {
@@ -8848,6 +9192,11 @@
                  ],
         "genre":  "play",
         "min_minutes":  60,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  63,
         "photos":  [
                        {
@@ -9000,6 +9349,11 @@
                                   "Tue"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  64,
         "photos":  [
                        {
@@ -9157,6 +9511,11 @@
                                   "Tue"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  65,
         "photos":  [
                        {
@@ -9297,6 +9656,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "play",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  66,
         "photos":  [
                        {
@@ -9431,6 +9795,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "play",
         "min_minutes":  75,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  67,
         "photos":  [
                        {
@@ -9572,6 +9941,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "play",
         "min_minutes":  60,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  70,
         "photos":  [
                        {
@@ -9699,6 +10073,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://badaxethrowing.com/locations/axe-throwing-chicago-west-loop/"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  72,
         "photos":  [
                        {
@@ -9856,6 +10235,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://movementgyms.com/lincoln-park/"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  73,
         "photos":  [
                        {
@@ -10018,6 +10402,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://movementgyms.com/wrigleyville/"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  74,
         "photos":  [
                        {
@@ -10154,6 +10543,11 @@
                      },
         "genre":  "play",
         "min_minutes":  60,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  75,
         "photos":  [
                        {
@@ -10332,6 +10726,11 @@
                      "valid_from":  "2026-11-02",
                      "valid_to":  "2026-12-02"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  76,
         "photos":  [
                        {
@@ -10523,6 +10922,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "play",
         "min_minutes":  90,
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  77,
         "photos":  [
                        {
@@ -10618,6 +11022,11 @@
         "genre":  "play",
         "age_note":  "Age rules not posted; youth classes for kids and teens",
         "min_minutes":  75,
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  78,
         "photos":  [
                        {
@@ -10706,6 +11115,11 @@
         "genre":  "play",
         "age_note":  "Age rules not posted",
         "min_minutes":  75,
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  79,
         "photos":  [
                        {
@@ -11365,6 +11779,11 @@
                  ],
         "genre":  "play",
         "min_minutes":  75,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  80,
         "photos":  [
                        {
@@ -11470,6 +11889,11 @@
                      },
         "genre":  "play",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  81,
         "photos":  [
                        {
@@ -11746,6 +12170,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "play",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  82,
         "photos":  [
                        {
@@ -12067,6 +12496,11 @@
                      },
         "genre":  "play",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  83,
         "photos":  [
                        {
@@ -12215,6 +12649,11 @@
                      "link":  "https://www.iflyworld.com/chicago-rosemont/",
                      "valid_to":  "2027-01-03"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  84,
         "photos":  [
                        {
@@ -12350,6 +12789,11 @@
                      "kind":  "discount",
                      "link":  "https://www.skyzone.com/chicago-lincoln-park-il"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  85,
         "photos":  [
                        {
@@ -12488,6 +12932,11 @@
                  ],
         "genre":  "play",
         "min_minutes":  60,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  86,
         "photos":  [
 
@@ -12642,6 +13091,11 @@
                                ],
                      "valid_to":  "2026-12-08"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  87,
         "photos":  [
                        {
@@ -12787,6 +13241,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  88,
         "photos":  [
                        {
@@ -12890,6 +13349,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  89,
         "photos":  [
                        {
@@ -13046,6 +13510,11 @@
                      "valid_from":  "2026-11-18",
                      "valid_to":  "2027-03-31"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  90,
         "photos":  [
                        {
@@ -13211,6 +13680,11 @@
                      "valid_from":  "2026-11-19",
                      "valid_to":  "2027-02-18"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  91,
         "photos":  [
                        {
@@ -13352,6 +13826,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  92,
         "photos":  [
                        {
@@ -13500,6 +13979,11 @@
                                   "Tue"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  93,
         "photos":  [
                        {
@@ -13661,6 +14145,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
         "min_minutes":  45,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  94,
         "photos":  [
                        {
@@ -13817,6 +14306,11 @@
                                ],
                      "valid_to":  "2026-12-29"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  95,
         "photos":  [
                        {
@@ -13985,6 +14479,11 @@
                                ],
                      "valid_to":  "2026-11-19"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  96,
         "photos":  [
                        {
@@ -14117,6 +14616,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  97,
         "photos":  [
                        {
@@ -14300,6 +14804,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  98,
         "photos":  [
                        {
@@ -14462,6 +14971,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  99,
         "photos":  [
                        {
@@ -14931,6 +15445,11 @@
                                ],
                      "valid_to":  "2027-02-25"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  100,
         "photos":  [
                        {
@@ -15119,6 +15638,11 @@
                      "valid_from":  "2026-11-17",
                      "valid_to":  "2026-12-15"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  101,
         "photos":  [
                        {
@@ -15280,6 +15804,11 @@
                                ],
                      "valid_to":  "2027-01-15"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  102,
         "photos":  [
                        {
@@ -15584,6 +16113,11 @@
         "hook":  "Fulldome space films and cosmic light shows",
         "min_minutes":  30,
         "category":  "art-museum",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  103,
         "photos":  [
                        {
@@ -15724,6 +16258,11 @@
         "taste_checked":  "2026-11-13",
         "min_minutes":  30,
         "category":  "unique-niche",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  104,
         "photos":  [
                        {
@@ -15886,6 +16425,11 @@
         "taste_checked":  "2026-11-13",
         "min_minutes":  30,
         "category":  "unique-niche",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  105,
         "photos":  [
                        {
@@ -16069,6 +16613,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
         "min_minutes":  45,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  106,
         "photos":  [
                        {
@@ -16240,6 +16789,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  107,
         "photos":  [
                        {
@@ -16384,6 +16938,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
         "min_minutes":  75,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  108,
         "photos":  [
                        {
@@ -16723,6 +17282,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
         "min_minutes":  105,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  109,
         "photos":  [
                        {
@@ -16903,6 +17467,16 @@
                                ],
                      "valid_to":  "2027-03-18"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "picnic",
+                                             "bike"
+                                         ],
+                        "idea":  "Idea: bike in and picnic at the Stone Family Picnic Glade, which has covered and open-air tables"
+                    },
         "sid":  110,
         "photos":  [
                        {
@@ -17079,6 +17653,17 @@
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
         "min_minutes":  90,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "picnic",
+                                             "leaf walk",
+                                             "bird watching"
+                                         ],
+                        "idea":  "Idea: pack a picnic for the gravel picnic area at the Big Rock or Prairie Visitor Station"
+                    },
         "sid":  111,
         "photos":  [
                        {
@@ -17228,6 +17813,15 @@
                  ],
         "genre":  "nature-animals",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "bird watching"
+                                         ],
+                        "idea":  "Idea: bring binoculars and walk the loop trail past the Magic Hedge"
+                    },
         "sid":  112,
         "photos":  [
                        {
@@ -17361,6 +17955,11 @@
         "genre":  "eat-drink",
         "age_note":  "Many classes include alcohol; age rules not posted",
         "min_minutes":  45,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  113,
         "photos":  [
                        {
@@ -17499,6 +18098,11 @@
                  ],
         "genre":  "eat-drink",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  115,
         "photos":  [
                        {
@@ -17628,6 +18232,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "min_minutes":  60,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  116,
         "photos":  [
                        {
@@ -17754,6 +18363,11 @@
         "genre":  "eat-drink",
         "age_note":  "Bar; age rules not posted",
         "min_minutes":  60,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  118,
         "photos":  [
                        {
@@ -17878,6 +18492,11 @@
                      },
         "genre":  "make-something",
         "min_minutes":  150,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  119,
         "photos":  [
                        {
@@ -18018,6 +18637,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "make-something",
         "min_minutes":  180,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  120,
         "photos":  [
                        {
@@ -18150,6 +18774,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "make-something",
         "min_minutes":  90,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  121,
         "photos":  [
                        {
@@ -18526,6 +19155,11 @@
                                    "2026-11-25"
                                ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  122,
         "photos":  [
                        {
@@ -18663,6 +19297,11 @@
                  ],
         "genre":  "look-learn",
         "min_minutes":  45,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  123,
         "photos":  [
                        {
@@ -18806,6 +19445,11 @@
                  ],
         "genre":  "look-learn",
         "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  124,
         "photos":  [
                        {
@@ -18942,6 +19586,11 @@
                      "valid_from":  "2026-11-20",
                      "valid_to":  "2026-11-30"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  125,
         "photos":  [
                        {
@@ -19079,6 +19728,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "shows-nights",
         "min_minutes":  90,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  126,
         "photos":  [
                        {
@@ -19212,6 +19866,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "shows-nights",
         "min_minutes":  75,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  127,
         "photos":  [
                        {
@@ -19452,6 +20111,11 @@
                  ],
         "genre":  "shows-nights",
         "min_minutes":  90,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  128,
         "photos":  [
                        {
@@ -19586,6 +20250,11 @@
                  ],
         "genre":  "shows-nights",
         "min_minutes":  120,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  129,
         "photos":  [
                        {
@@ -19741,6 +20410,11 @@
         "genre":  "shows-nights",
         "age_note":  "Bar; age rules not posted",
         "min_minutes":  75,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  130,
         "photos":  [
                        {
@@ -19881,6 +20555,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "shows-nights",
         "min_minutes":  90,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  131,
         "photos":  [
                        {
@@ -20017,6 +20696,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "shows-nights",
         "min_minutes":  90,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  132,
         "photos":  [
                        {
@@ -20128,6 +20812,11 @@
                  ],
         "genre":  "shows-nights",
         "age_note":  "All ages for regular screenings; film ratings apply",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  133,
         "photos":  [
                        {
@@ -20266,6 +20955,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  134,
         "photos":  [
                        {
@@ -20407,6 +21101,11 @@
                      "21-plus"
                  ],
         "genre":  "shows-nights",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  135,
         "photos":  [
                        {
@@ -20550,6 +21249,11 @@
                      "special-occasion"
                  ],
         "genre":  "eat-drink",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  136,
         "photos":  [
 
@@ -20678,6 +21382,11 @@
         "energy":  "easy",
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  137,
         "photos":  [
                        {
@@ -20815,6 +21524,11 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "genre":  "play",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  139,
         "photos":  [
                        {
@@ -20955,6 +21669,11 @@
                      "winter"
                  ],
         "genre":  "eat-drink",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  140,
         "photos":  [
                        {
@@ -21085,6 +21804,11 @@
                  ],
         "genre":  "eat-drink",
         "age_note":  "Bar; age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  141,
         "photos":  [
                        {
@@ -21237,6 +21961,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://drafthouse.com/chicago/theater/wrigleyville"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  142,
         "photos":  [
                        {
@@ -21380,6 +22109,11 @@
                      "late-night"
                  ],
         "genre":  "play",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  143,
         "photos":  [
                        {
@@ -21527,6 +22261,11 @@
                      "group"
                  ],
         "genre":  "play",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  144,
         "photos":  [
                        {
@@ -21660,6 +22399,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "shows-nights",
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  145,
         "photos":  [
                        {
@@ -21796,6 +22540,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "play",
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  146,
         "photos":  [
                        {
@@ -21934,6 +22683,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "eat-drink",
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  147,
         "photos":  [
                        {
@@ -22065,6 +22819,11 @@
                  ],
         "genre":  "play",
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  148,
         "photos":  [
                        {
@@ -22213,6 +22972,11 @@
                      },
         "genre":  "play",
         "age_note":  "Curling: best for kids 12 and over (heavy stones), no more than one child per adult",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  149,
         "photos":  [
                        {
@@ -22349,6 +23113,11 @@
                      "tropical"
                  ],
         "genre":  "play",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  150,
         "photos":  [
                        {
@@ -22497,6 +23266,11 @@
                          "evidence_url":  "https://www.google.com/maps/search/Color+Cocktail+Factory+1142+W+18th+St+Chicago"
                      },
         "genre":  "make-something",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  151,
         "photos":  [
                        {
@@ -22642,6 +23416,11 @@
                  ],
         "genre":  "shows-nights",
         "age_note":  "Bar; age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  152,
         "photos":  [
                        {
@@ -22785,6 +23564,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  155,
         "photos":  [
 
@@ -22926,6 +23710,11 @@
         "genre":  "play",
         "age_note":  "BYOB alcohol is for 21+ only",
         "hook":  "450+ board games to borrow, and it\u0027s BYOB",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  158,
         "photos":  [
                        {
@@ -23069,6 +23858,11 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "genre":  "play",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  159,
         "photos":  [
 
@@ -23187,6 +23981,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://neofuturists.org/calendar/"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  162,
         "photos":  [
                        {
@@ -23320,6 +24119,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "eat-drink",
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  true,
+                        "rain_ok":  true
+                    },
         "sid":  163,
         "photos":  [
                        {
@@ -23459,6 +24263,11 @@
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
         "genre":  "play",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  164,
         "photos":  [
                        {
@@ -23619,6 +24428,11 @@
                                   "daily"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  165,
         "photos":  [
                        {
@@ -23749,6 +24563,11 @@
                      "late-night"
                  ],
         "genre":  "eat-drink",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  166,
         "photos":  [
                        {
@@ -23894,6 +24713,11 @@
                          "evidence_url":  "https://www.google.com/maps/search/Above+Average+Candle+Studio+3414+W+Foster+Ave+Chicago"
                      },
         "genre":  "make-something",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  167,
         "photos":  [
                        {
@@ -24039,6 +24863,11 @@
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
         "genre":  "play",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  169,
         "photos":  [
                        {
@@ -24177,6 +25006,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://windycitycurling.com/index.php/learn-to-curl/register-for-a-learn-to-curl"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  171,
         "photos":  [
                        {
@@ -24303,6 +25137,11 @@
                  ],
         "genre":  "eat-drink",
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  172,
         "photos":  [
                        {
@@ -24438,6 +25277,11 @@
                      "cocktails"
                  ],
         "genre":  "shows-nights",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  174,
         "photos":  [
                        {
@@ -24589,6 +25433,11 @@
                                   "Thu"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  175,
         "photos":  [
 
@@ -24803,6 +25652,11 @@
                      "logan-square"
                  ],
         "genre":  "shows-nights",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  176,
         "photos":  [
                        {
@@ -25006,6 +25860,11 @@
                      },
         "genre":  "make-something",
         "age_note":  "Adult classes; kids\u0027 and quinceanera party options",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  177,
         "photos":  [
                        {
@@ -25138,6 +25997,11 @@
                  ],
         "genre":  "eat-drink",
         "age_note":  "Bar; age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  178,
         "photos":  [
                        {
@@ -25268,6 +26132,11 @@
         "taste_checked":  "2026-11-13",
         "genre":  "eat-drink",
         "age_note":  "Bar; age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  179,
         "photos":  [
                        {
@@ -25596,6 +26465,11 @@
                  ],
         "genre":  "make-something",
         "energy":  "easy",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  180,
         "photos":  [
                        {
@@ -25734,6 +26608,11 @@
                      "indie"
                  ],
         "genre":  "shows-nights",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  181,
         "photos":  [
                        {
@@ -25870,6 +26749,11 @@
                  ],
         "genre":  "eat-drink",
         "age_note":  "Varies by show",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  182,
         "photos":  [
                        {
@@ -26056,6 +26940,11 @@
                      "kind":  "discount",
                      "link":  "https://chi.kingspa.com/"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  183,
         "photos":  [
                        {
@@ -26209,6 +27098,11 @@
                      "winter",
                      "rainy-day"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  184,
         "photos":  [
                        {
@@ -26366,6 +27260,11 @@
                      "winter",
                      "weird"
                  ],
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  true,
+                        "rain_ok":  true
+                    },
         "sid":  185,
         "photos":  [
                        {
@@ -26506,6 +27405,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "age_note":  "A waiver is required for every guest",
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  186,
         "photos":  [
                        {
@@ -26835,6 +27739,11 @@
                          "source":  "https://oakstsauna.as.me/schedule/6bd3f96a"
                      },
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  187,
         "photos":  [
 
@@ -26974,6 +27883,11 @@
                      "weird"
                  ],
         "age_note":  "Age rules not posted; call 312-285-2127",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  188,
         "photos":  [
                        {
@@ -27123,6 +28037,11 @@
                      "winter",
                      "cheap"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  189,
         "photos":  [
                        {
@@ -27274,6 +28193,11 @@
         "energy":  "chill",
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  190,
         "photos":  [
                        {
@@ -27418,6 +28342,11 @@
         "energy":  "chill",
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  191,
         "photos":  [
                        {
@@ -27570,6 +28499,11 @@
                      "winter",
                      "rainy-day"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  192,
         "photos":  [
                        {
@@ -27705,6 +28639,11 @@
                      "cheap"
                  ],
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  193,
         "photos":  [
                        {
@@ -27840,6 +28779,11 @@
                      "weird"
                  ],
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  194,
         "photos":  [
                        {
@@ -28295,6 +29239,11 @@
                      "winter",
                      "splurge"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  195,
         "photos":  [
                        {
@@ -28450,6 +29399,11 @@
                      "rainy-day",
                      "short"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  196,
         "photos":  [
                        {
@@ -29129,6 +30083,11 @@
                      "winter",
                      "short"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  197,
         "photos":  [
                        {
@@ -29273,6 +30232,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  198,
         "photos":  [
                        {
@@ -29420,6 +30384,11 @@
         "energy":  "chill",
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  199,
         "photos":  [
                        {
@@ -29563,6 +30532,11 @@
                      "outdoor"
                  ],
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  200,
         "photos":  [
                        {
@@ -29707,6 +30681,15 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "garden walk"
+                                         ],
+                        "idea":  "Idea: sit and relax on the quiet garden loop, away from the Bean crowds"
+                    },
         "sid":  201,
         "photos":  [
                        {
@@ -29849,6 +30832,16 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "walk",
+                                             "light show"
+                                         ],
+                        "idea":  "Idea: walk the Riverwalk and watch Art on theMART from the jetty (Thu-Sun 7:30pm, through Dec 27)"
+                    },
         "sid":  202,
         "photos":  [
                        {
@@ -29987,6 +30980,11 @@
                      "seasonal"
                  ],
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  203,
         "photos":  [
                        {
@@ -30129,6 +31127,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  204,
         "photos":  [
                        {
@@ -30298,6 +31301,11 @@
                                   "Wed"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  205,
         "photos":  [
                        {
@@ -30444,6 +31452,11 @@
                      "art"
                  ],
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  206,
         "photos":  [
                        {
@@ -30607,6 +31620,11 @@
                      "winter"
                  ],
         "category":  "unique-niche",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  207,
         "photos":  [
                        {
@@ -30747,6 +31765,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  208,
         "photos":  [
                        {
@@ -30892,6 +31915,16 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "walk",
+                                             "audio tour"
+                                         ],
+                        "idea":  "Idea: take the self-guided audio tour past the graves of Chicago\u0027s architects."
+                    },
         "sid":  209,
         "photos":  [
                        {
@@ -31038,6 +32071,15 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "nature walk"
+                                         ],
+                        "idea":  "Idea: walk the trails through woodland, wetland, prairie and savanna, then warm up in the discovery room."
+                    },
         "sid":  210,
         "photos":  [
                        {
@@ -31182,6 +32224,11 @@
                      "rainy-day"
                  ],
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  211,
         "photos":  [
                        {
@@ -31332,6 +32379,11 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "genre":  "eat-drink",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  212,
         "photos":  [
                        {
@@ -31467,6 +32519,11 @@
                      "dessert"
                  ],
         "genre":  "eat-drink",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  213,
         "photos":  [
                        {
@@ -31597,6 +32654,11 @@
                      "rainy-day"
                  ],
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  214,
         "photos":  [
 
@@ -31756,6 +32818,11 @@
                      "weird"
                  ],
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  215,
         "photos":  [
                        {
@@ -31907,6 +32974,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  216,
         "photos":  [
                        {
@@ -32042,12 +33114,17 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  217,
         "photos":  [
                        {
                            "file":  "photos/ps-ukrainian-national-museum-1.jpg",
                            "credit":  "Ukrainian National Museum website",
-                           "page_url":  "https://www.ukrainiannationalmuseum.org/"
+                           "page_url":  "https://ukrainiannationalmuseum.org/exhibits/"
                        }
                    ]
     },
@@ -32191,6 +33268,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  218,
         "photos":  [
                        {
@@ -32328,6 +33410,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  219,
         "photos":  [
                        {
@@ -32467,6 +33554,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  220,
         "photos":  [
                        {
@@ -32604,6 +33696,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  221,
         "photos":  [
                        {
@@ -32756,6 +33853,11 @@
                                   "Wed"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  222,
         "photos":  [
                        {
@@ -32899,6 +34001,15 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "garden stroll"
+                                         ],
+                        "idea":  "Idea: stroll the paths and ponds on Wooded Island as an add-on to the Museum of Science and Industry."
+                    },
         "sid":  223,
         "photos":  [
                        {
@@ -33045,6 +34156,16 @@
                      "winter"
                  ],
         "genre":  "nature-animals",
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "skyline view",
+                                             "winter waves"
+                                         ],
+                        "idea":  "Idea: sit on the stone ledges for the skyline across the water; in winter, watch the ice and waves."
+                    },
         "sid":  224,
         "photos":  [
                        {
@@ -33185,6 +34306,17 @@
                      "outdoor"
                  ],
         "genre":  "nature-animals",
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "bird watching",
+                                             "fishing",
+                                             "skyline view"
+                                         ],
+                        "idea":  "Idea: walk the prairie paths for skyline views and bird watching."
+                    },
         "sid":  225,
         "photos":  [
                        {
@@ -33322,6 +34454,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  226,
         "photos":  [
                        {
@@ -33470,6 +34607,11 @@
                      "south-side"
                  ],
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  227,
         "photos":  [
                        {
@@ -33604,6 +34746,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  228,
         "photos":  [
                        {
@@ -33744,6 +34891,15 @@
                      "south-side"
                  ],
         "genre":  "nature-animals",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "river walk"
+                                         ],
+                        "idea":  "Idea: after dim sum in Chinatown, walk the riverside paths to the pagoda-style pavilion."
+                    },
         "sid":  229,
         "photos":  [
                        {
@@ -33880,6 +35036,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  230,
         "photos":  [
                        {
@@ -34029,6 +35190,11 @@
                                   "2nd Tue"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  231,
         "photos":  [
                        {
@@ -34169,6 +35335,11 @@
                      "views"
                  ],
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  232,
         "photos":  [
                        {
@@ -34300,6 +35471,11 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "genre":  "eat-drink",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  233,
         "photos":  [
                        {
@@ -34441,6 +35617,11 @@
                      "cheap"
                  ],
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  234,
         "photos":  [
                        {
@@ -34581,6 +35762,17 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "bike",
+                                             "run",
+                                             "walk"
+                                         ],
+                        "idea":  "Idea: bike or stroll a stretch above the streets, then come down for coffee or dessert."
+                    },
         "sid":  235,
         "photos":  [
                        {
@@ -34716,6 +35908,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  236,
         "photos":  [
                        {
@@ -34851,6 +36048,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  237,
         "photos":  [
                        {
@@ -35063,6 +36265,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  238,
         "photos":  [
                        {
@@ -35201,6 +36408,11 @@
                      "free"
                  ],
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  239,
         "photos":  [
                        {
@@ -35347,6 +36559,15 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "garden stroll"
+                                         ],
+                        "idea":  "Idea: a 15-20 minute stroll around Alfred Caldwell\u0027s hidden pond."
+                    },
         "sid":  240,
         "photos":  [
                        {
@@ -35489,6 +36710,11 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  241,
         "photos":  [
                        {
@@ -35621,6 +36847,11 @@
                      "nature"
                  ],
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  242,
         "photos":  [
                        {
@@ -35758,6 +36989,11 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  243,
         "photos":  [
                        {
@@ -35899,6 +37135,17 @@
                      "south-side"
                  ],
         "genre":  "nature-animals",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "kite",
+                                             "fishing",
+                                             "skyline view"
+                                         ],
+                        "idea":  "Idea: fly a kite in the open meadow, then climb the hill for the city view."
+                    },
         "sid":  244,
         "photos":  [
                        {
@@ -36039,6 +37286,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  245,
         "photos":  [
                        {
@@ -36179,6 +37431,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  246,
         "photos":  [
                        {
@@ -36314,6 +37571,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  247,
         "photos":  [
                        {
@@ -36455,6 +37717,11 @@
                      "garden",
                      "cozy"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  249,
         "photos":  [
                        {
@@ -36562,6 +37829,11 @@
         "energy":  "active",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  306,
         "photos":  [
                        {
@@ -36640,6 +37912,11 @@
         "energy":  "easy",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  307,
         "photos":  [
                        {
@@ -36807,6 +38084,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.greatwolf.com/illinois/water-park"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  308,
         "photos":  [
                        {
@@ -36888,6 +38170,11 @@
                      "tubing",
                      "day-trip"
                  ],
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  309,
         "photos":  [
                        {
@@ -37011,6 +38298,11 @@
         "energy":  "chill",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  true
+                    },
         "sid":  310,
         "photos":  [
                        {
@@ -37194,6 +38486,11 @@
                          "evidence_url":  "https://www.irm.org/event/happy-holiday-railway/",
                          "source":  "https://www.irm.org/event/happy-holiday-railway/"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  311,
         "photos":  [
                        {
@@ -37314,6 +38611,17 @@
                          "evidence_url":  "https://dnr.illinois.gov/parks/park.starvedrock.html",
                          "source":  "https://dnr.illinois.gov/parks/park.starvedrock.html"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "hike",
+                                             "picnic",
+                                             "eagle watching"
+                                         ],
+                        "idea":  "Idea: hike the canyon trails; in winter, look for bald eagles along the river."
+                    },
         "sid":  312,
         "photos":  [
                        {
@@ -37440,6 +38748,17 @@
                          "evidence_url":  "https://dnr.illinois.gov/parks/park.matthiessen.html",
                          "source":  "https://dnr.illinois.gov/parks/park.matthiessen.html"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "hike",
+                                             "waterfalls",
+                                             "cross-country skiing"
+                                         ],
+                        "idea":  "Idea: walk the Dells canyon to the waterfalls, then pair it with Starved Rock."
+                    },
         "sid":  313,
         "photos":  [
                        {
@@ -37556,6 +38875,22 @@
         "energy":  "active",
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  true,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "hike",
+                                             "bird watching",
+                                             "picnic",
+                                             "sunset",
+                                             "stargazing",
+                                             "bike",
+                                             "swim",
+                                             "cross-country skiing"
+                                         ],
+                        "idea":  "Idea: hike the dunes, then stay on the beach for a Lake Michigan sunset (summer)."
+                    },
         "sid":  314,
         "photos":  [
                        {
@@ -37673,6 +39008,17 @@
                      "day-trip",
                      "fitness"
                  ],
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  true,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "hike",
+                                             "beach",
+                                             "cross-country skiing"
+                                         ],
+                        "idea":  "Idea: take on the 3 Dune Challenge on Trail 8 for big Lake Michigan views."
+                    },
         "sid":  315,
         "photos":  [
                        {
@@ -37892,6 +39238,11 @@
                              "2026-12-31",
                              "2027-01-01"
                          ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  316,
         "photos":  [
                        {
@@ -37969,6 +39320,16 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "garden stroll",
+                                             "river walk"
+                                         ],
+                        "idea":  "Idea: cross the arched bridges, then walk along the Fox River past Fabyan Villa."
+                    },
         "sid":  317,
         "photos":  [
                        {
@@ -38103,6 +39464,11 @@
         "energy":  "easy",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  318,
         "photos":  [
                        {
@@ -38220,6 +39586,11 @@
                      "kids-ok",
                      "suburbs"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  319,
         "photos":  [
                        {
@@ -38301,6 +39672,11 @@
         "energy":  "easy",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  320,
         "photos":  [
                        {
@@ -38388,6 +39764,11 @@
         "energy":  "chill",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  true,
+                        "rain_ok":  true
+                    },
         "sid":  321,
         "photos":  [
                        {
@@ -38490,6 +39871,11 @@
                      "night-out",
                      "day-trip"
                  ],
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  322,
         "photos":  [
                        {
@@ -38595,6 +39981,11 @@
         "energy":  "active",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  323,
         "photos":  [
                        {
@@ -38731,6 +40122,11 @@
         "hook":  "A lit Japanese garden at night, then woodfire pizza",
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  324,
         "photos":  [
                        {
@@ -38850,6 +40246,15 @@
                          "evidence_url":  "https://www.visitlakegeneva.com/things-to-do/shore-path/",
                          "source":  "https://www.visitlakegeneva.com/things-to-do/shore-path/"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "walk"
+                                         ],
+                        "idea":  "Idea: start downtown by the library, walk a mile or two past the estates, then get lunch in town."
+                    },
         "sid":  325,
         "photos":  [
                        {
@@ -39022,6 +40427,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.google.com/maps/search/60+to+Escape+Woodfield+Mall+Schaumburg"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  288,
         "photos":  [
                        {
@@ -39173,6 +40583,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.google.com/maps/search/60+to+Escape+Gurnee+Mills+6170+W+Grand+Ave+Gurnee"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  289,
         "photos":  [
                        {
@@ -39320,6 +40735,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.google.com/maps/search/Escape+Factor+7228+Madison+St+Forest+Park+IL"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  290,
         "photos":  [
                        {
@@ -39463,6 +40883,11 @@
         "vibe":  "mixed",
         "hook":  "Explore a giant hand-built cave escape room",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  291,
         "photos":  [
                        {
@@ -39611,6 +41036,11 @@
         "energy":  "easy",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  292,
         "photos":  [
                        {
@@ -39770,6 +41200,11 @@
                      "rainy-day",
                      "bar"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  293,
         "photos":  [
                        {
@@ -39850,6 +41285,11 @@
                      "dance",
                      "bar"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  294,
         "photos":  [
 
@@ -39933,6 +41373,11 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  295,
         "photos":  [
                        {
@@ -40140,6 +41585,11 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  296,
         "photos":  [
                        {
@@ -40228,6 +41678,11 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  true
+                    },
         "sid":  297,
         "photos":  [
                        {
@@ -40301,6 +41756,11 @@
                          "friends"
                      ],
         "genre":  "shows-nights",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  298,
         "photos":  [
 
@@ -40371,6 +41831,11 @@
                          "friends"
                      ],
         "genre":  "shows-nights",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  299,
         "photos":  [
 
@@ -40441,6 +41906,11 @@
         "good_for":  [
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  300,
         "photos":  [
                        {
@@ -40516,6 +41986,11 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  301,
         "photos":  [
                        {
@@ -40625,6 +42100,11 @@
                          "friends"
                      ],
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  302,
         "photos":  [
                        {
@@ -40727,6 +42207,11 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  303,
         "photos":  [
 
@@ -40913,6 +42398,11 @@
                      "link":  "https://www.steppenwolf.org/tickets-membership/ways-to-save",
                      "valid_to":  "2026-12-13"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  304,
         "photos":  [
                        {
@@ -41018,6 +42508,11 @@
         "good_for":  [
                          "solo"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  305,
         "photos":  [
                        {
@@ -41138,6 +42633,11 @@
                      "rainy-day",
                      "competitive"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  250,
         "photos":  [
                        {
@@ -41256,6 +42756,11 @@
                      "rainy-day",
                      "competitive"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  251,
         "photos":  [
                        {
@@ -41373,6 +42878,11 @@
                      "rainy-day",
                      "competitive"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  252,
         "photos":  [
                        {
@@ -41489,6 +42999,11 @@
         "energy":  "easy",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  253,
         "photos":  [
                        {
@@ -41607,6 +43122,11 @@
         "energy":  "easy",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  254,
         "photos":  [
                        {
@@ -41717,6 +43237,11 @@
         "energy":  "easy",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  255,
         "photos":  [
                        {
@@ -41847,6 +43372,11 @@
         "vibe":  "lively",
         "hook":  "Go-karts, laser tag and glow golf under one roof",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  256,
         "photos":  [
                        {
@@ -41958,6 +43488,11 @@
         "energy":  "easy",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  257,
         "photos":  [
                        {
@@ -42094,6 +43629,11 @@
                      "rainy-day",
                      "solo"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  258,
         "photos":  [
                        {
@@ -42236,6 +43776,11 @@
                  ],
         "name":  "First Ascent Block 37 (climbing gym)",
         "hook":  "Bouldering-only gym in the middle of the Loop, no ropes needed",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  259,
         "photos":  [
                        {
@@ -42356,6 +43901,11 @@
         "energy":  "active",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  260,
         "photos":  [
                        {
@@ -42482,6 +44032,11 @@
                                   "Mon"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  261,
         "photos":  [
                        {
@@ -42582,6 +44137,11 @@
                      "night-out",
                      "views"
                  ],
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  262,
         "photos":  [
                        {
@@ -42659,6 +44219,11 @@
                      "theater"
                  ],
         "age_note":  "Varies by show (family and adult shows)",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  263,
         "photos":  [
                        {
@@ -42737,6 +44302,11 @@
         "energy":  "easy",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  264,
         "photos":  [
                        {
@@ -42864,6 +44434,11 @@
                      "garden",
                      "photo"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  265,
         "photos":  [
                        {
@@ -42944,6 +44519,11 @@
         "energy":  "easy",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  266,
         "photos":  [
                        {
@@ -43021,6 +44601,11 @@
         "energy":  "easy",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  267,
         "photos":  [
                        {
@@ -43100,6 +44685,11 @@
                         "day"
                     ],
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  268,
         "photos":  [
                        {
@@ -43175,6 +44765,11 @@
         "energy":  "easy",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  269,
         "photos":  [
                        {
@@ -43263,6 +44858,11 @@
         "energy":  "easy",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  270,
         "photos":  [
                        {
@@ -43350,6 +44950,11 @@
                      "video-games",
                      "rainy-day"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  271,
         "photos":  [
                        {
@@ -43424,6 +45029,11 @@
                      "market"
                  ],
         "genre":  "eat-drink",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  272,
         "photos":  [
                        {
@@ -43497,6 +45107,11 @@
                      "rainy-day"
                  ],
         "age_note":  "Age rules not posted yet",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  273,
         "photos":  [
                        {
@@ -44491,6 +46106,11 @@
                          "evidence_url":  "https://tickets.drunkchristmas.com/pmt/calendar.php?Show=CarolCHI",
                          "source":  "https://tickets.drunkchristmas.com/pmt/calendar.php?Show=CarolCHI"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  274,
         "photos":  [
                        {
@@ -45063,6 +46683,11 @@
                          "evidence_url":  "https://my.goodmantheatre.org/18380/18887",
                          "source":  "https://my.goodmantheatre.org/18380/18887"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  275,
         "photos":  [
                        {
@@ -45192,6 +46817,11 @@
         "energy":  "easy",
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  276,
         "photos":  [
                        {
@@ -45329,6 +46959,11 @@
                      "class"
                  ],
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  277,
         "photos":  [
                        {
@@ -45444,6 +47079,11 @@
         "energy":  "easy",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  278,
         "photos":  [
                        {
@@ -45540,6 +47180,11 @@
                      "night-out",
                      "history"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  279,
         "photos":  [
                        {
@@ -45654,6 +47299,11 @@
         "energy":  "chill",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  280,
         "photos":  [
                        {
@@ -45742,6 +47392,11 @@
         "energy":  "chill",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  281,
         "photos":  [
                        {
@@ -45824,6 +47479,11 @@
                      "night-out",
                      "suburbs"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  282,
         "photos":  [
                        {
@@ -45915,6 +47575,11 @@
                      "walk",
                      "tasting"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  283,
         "photos":  [
                        {
@@ -46017,6 +47682,11 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  284,
         "photos":  [
                        {
@@ -46681,6 +48351,11 @@
                      "link":  "https://www.medievaltimes.com/chicago",
                      "valid_to":  "2027-01-03"
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  285,
         "photos":  [
                        {
@@ -46990,6 +48665,11 @@
                          "evidence_url":  "https://chicagoboatcompany.com/boats/6-hot-tub-boat-800lb-limit",
                          "source":  "https://chicagoboatcompany.com/boats/6-hot-tub-boat-800lb-limit"
                      },
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  286,
         "photos":  [
                        {
@@ -47105,6 +48785,11 @@
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
         "age_note":  "Age rules not posted",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  287,
         "photos":  [
                        {
@@ -47221,6 +48906,18 @@
                          "friends",
                          "solo"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "picnic",
+                                             "beach",
+                                             "zoo",
+                                             "walk"
+                                         ],
+                        "idea":  "Idea: picnic at one of the park\u0027s picnic groves, then wander to the lagoons and beaches."
+                    },
         "sid":  326,
         "photos":  [
                        {
@@ -47337,6 +49034,16 @@
                          "date",
                          "solo"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "bird watching",
+                                             "skyline view"
+                                         ],
+                        "idea":  "Idea: loop the pond path for the skyline over the water and look for migrating birds in spring or fall."
+                    },
         "sid":  327,
         "photos":  [
                        {
@@ -47456,6 +49163,17 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "ice skating",
+                                             "climbing",
+                                             "mini golf"
+                                         ],
+                        "idea":  "Idea: skate the ribbon in winter, then walk the BP Bridge to Millennium Park."
+                    },
         "sid":  328,
         "photos":  [
                        {
@@ -47573,6 +49291,17 @@
                          "friends",
                          "solo"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "walk",
+                                             "gardens",
+                                             "skate park"
+                                         ],
+                        "idea":  "Idea: walk from Buckingham Fountain through the gardens toward the Museum Campus."
+                    },
         "sid":  329,
         "photos":  [
                        {
@@ -47694,6 +49423,16 @@
                          "friends",
                          "solo"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "Christmas tree",
+                                             "ice skating"
+                                         ],
+                        "idea":  "Idea: see the city\u0027s Christmas tree, then skate the ice rink."
+                    },
         "sid":  330,
         "photos":  [
                        {
@@ -47811,6 +49550,17 @@
                          "solo"
                      ],
         "energy":  "easy",
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "bike",
+                                             "run",
+                                             "walk"
+                                         ],
+                        "idea":  "Idea: rent a bike nearby and ride a stretch with the lake and skyline in view."
+                    },
         "sid":  331,
         "photos":  [
                        {
@@ -47926,6 +49676,17 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "lagoon walk",
+                                             "fishing",
+                                             "beach"
+                                         ],
+                        "idea":  "Idea: walk the lagoon to the historic boathouse; in summer, add the inland beach."
+                    },
         "sid":  332,
         "photos":  [
                        {
@@ -48038,6 +49799,17 @@
         "good_for":  [
                          "date"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "fishing",
+                                             "gardens",
+                                             "walk"
+                                         ],
+                        "idea":  "Idea: walk the lagoon and floral gardens, then step into the conservatory."
+                    },
         "sid":  333,
         "photos":  [
                        {
@@ -48148,6 +49920,17 @@
         "good_for":  [
                          "date"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "walk",
+                                             "fishing",
+                                             "arboretum"
+                                         ],
+                        "idea":  "Idea: a long walk past the lagoon and arboretum to the Fountain of Time."
+                    },
         "sid":  334,
         "photos":  [
                        {
@@ -48263,6 +50046,19 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "picnic",
+                                             "cherry blossoms",
+                                             "bird watching",
+                                             "beach",
+                                             "fishing"
+                                         ],
+                        "idea":  "Idea: picnic in the park, then cross to Wooded Island; in spring, see the cherry trees by the Columbian Basin."
+                    },
         "sid":  335,
         "photos":  [
                        {
@@ -48378,6 +50174,16 @@
                          "friends"
                      ],
         "energy":  "active",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "bike",
+                                             "bird watching"
+                                         ],
+                        "idea":  "Idea: ride the pump track or BMX lines, then look for herons in the marsh."
+                    },
         "sid":  336,
         "photos":  [
                        {
@@ -48496,6 +50302,17 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "bird watching",
+                                             "beach walk",
+                                             "kayak"
+                                         ],
+                        "idea":  "Idea: walk the beach out toward the harbor point; in spring and fall, watch for migrating birds."
+                    },
         "sid":  337,
         "photos":  [
                        {
@@ -48613,6 +50430,17 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "beach walk",
+                                             "skyline view",
+                                             "sauna"
+                                         ],
+                        "idea":  "Idea: walk the sand for the skyline view; in winter, warm up at the wood-fired saunas here."
+                    },
         "sid":  338,
         "photos":  [
                        {
@@ -48721,6 +50549,18 @@
         "energy":  "easy",
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "walk",
+                                             "fishing",
+                                             "gardens",
+                                             "mini golf"
+                                         ],
+                        "idea":  "Idea: walk the lagoon and formal gardens, then play Douglass 18 mini golf in season."
+                    },
         "sid":  339,
         "photos":  [
                        {
@@ -48829,6 +50669,17 @@
         "energy":  "easy",
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "picnic",
+                                             "fishing",
+                                             "bike"
+                                         ],
+                        "idea":  "Idea: bring a picnic to the picnic groves, then walk Jens Jensen\u0027s prairie landscape."
+                    },
         "sid":  340,
         "photos":  [
                        {
@@ -48940,6 +50791,15 @@
         "good_for":  [
                          "date"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "walk"
+                                         ],
+                        "idea":  "Idea: a short stroll around the duck lagoon by the Tudor fieldhouse."
+                    },
         "sid":  341,
         "photos":  [
                        {
@@ -49050,6 +50910,16 @@
         "good_for":  [
                          "date"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "statue hunt",
+                                             "gardens"
+                                         ],
+                        "idea":  "Idea: find Dorothy and Toto, the Tin Man, the Scarecrow and the Lion, then the Emerald Garden."
+                    },
         "sid":  342,
         "photos":  [
                        {
@@ -49157,6 +51027,17 @@
                      "nature",
                      "quiet"
                  ],
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "picnic",
+                                             "beach walk",
+                                             "skyline view"
+                                         ],
+                        "idea":  "Idea: picnic by the beach with the skyline up the shore."
+                    },
         "sid":  343,
         "photos":  [
                        {
@@ -49279,6 +51160,19 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "elk viewing",
+                                             "bike",
+                                             "boating",
+                                             "ice fishing",
+                                             "cross-country skiing"
+                                         ],
+                        "idea":  "Idea: see the elk herd, then bike or walk the paved trail loop."
+                    },
         "sid":  344,
         "photos":  [
                        {
@@ -49400,6 +51294,17 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "bike",
+                                             "kayak",
+                                             "fishing"
+                                         ],
+                        "idea":  "Idea: bike the North Branch Trail through the lagoons; paddle the channels April to October."
+                    },
         "sid":  345,
         "photos":  [
                        {
@@ -49519,6 +51424,17 @@
         "good_for":  [
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "sledding",
+                                             "stair climb",
+                                             "hike"
+                                         ],
+                        "idea":  "Idea: after fresh snow, sled the bluff; otherwise climb the 125 stone stairs."
+                    },
         "sid":  346,
         "photos":  [
                        {
@@ -50662,6 +52578,11 @@
         "good_for":  [
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  347,
         "photos":  [
                        {
@@ -50773,6 +52694,11 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  348,
         "photos":  [
                        {
@@ -50881,6 +52807,11 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  349,
         "photos":  [
                        {
@@ -50987,6 +52918,11 @@
                      "murder-mystery",
                      "dinner-show"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  350,
         "photos":  [
                        {
@@ -51065,6 +53001,11 @@
                      "murder-mystery",
                      "dinner-show"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  351,
         "photos":  [
                        {
@@ -51153,6 +53094,11 @@
                      "murder-mystery",
                      "dinner-show"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  352,
         "photos":  [
                        {
@@ -51266,6 +53212,11 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  353,
         "photos":  [
                        {
@@ -51378,6 +53329,11 @@
                      "whiskey",
                      "tasting"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  354,
         "photos":  [
                        {
@@ -51516,6 +53472,11 @@
                      "seasonal",
                      "dinner-show"
                  ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  355,
         "photos":  [
                        {
@@ -51628,6 +53589,11 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  356,
         "photos":  [
                        {
@@ -51746,6 +53712,11 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  357,
         "photos":  [
                        {
@@ -51875,6 +53846,11 @@
                                   "Tue"
                               ]
                  },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  358,
         "photos":  [
                        {
@@ -51987,6 +53963,16 @@
                          "friends",
                          "solo"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  false,
+                        "things_to_do":  [
+                                             "walk",
+                                             "kayak"
+                                         ],
+                        "idea":  "Idea: walk the floating boardwalk, or launch a kayak from its public dock."
+                    },
         "sid":  359,
         "photos":  [
                        {
@@ -52264,6 +54250,11 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  360,
         "photos":  [
                        {
@@ -52373,6 +54364,11 @@
                          "friends"
                      ],
         "genre":  "look-learn",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  361,
         "photos":  [
                        {
@@ -52482,6 +54478,11 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  362,
         "photos":  [
                        {
@@ -52592,6 +54593,11 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  364,
         "photos":  [
                        {
@@ -52705,6 +54711,11 @@
                      "rooftop",
                      "bar"
                  ],
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  365,
         "photos":  [
                        {
@@ -52812,6 +54823,11 @@
         "good_for":  [
                          "date"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  366,
         "photos":  [
                        {
@@ -52938,6 +54954,11 @@
                          "date",
                          "friends"
                      ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  367,
         "photos":  [
 
@@ -52964,11 +54985,6 @@
         "duration_minutes":  50,
         "min_minutes":  40,
         "hours":  null,
-        "season":  {
-                       "open_from":  "2026-11-20",
-                       "open_to":  "2027-01-02",
-                       "note":  "Open most days in this range."
-                   },
         "end_date_confirmed":  true,
         "booking":  "required",
         "age_note":  "All ages",
@@ -53140,7 +55156,6 @@
                                 "end":  "2027-01-02T22:00"
                             }
                         ],
-        "hours_note":  "Book a 30-minute arrival slot; the 2-mile drive takes 40-50 minutes. Busiest 6-8 pm Fridays and Saturdays.",
         "price_note":  "$49.99 per carload of up to 6 ($9.99 more over 6); season pass $69.99",
         "booking_url":  "https://santasrocknlights.com/2026genevatickets",
         "verified":  {
@@ -53148,6 +55163,28 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://runsignup.com/TicketEvent/SantasRockNLightsGeneva2026/Register/2026-11-20"
                      },
+        "season":  {
+                       "open_from":  "2026-11-20",
+                       "open_to":  "2027-01-02",
+                       "note":  "Open on listed dates only; no slots Nov 23-26, Nov 30-Dec 1, Dec 7-8, Dec 14."
+                   },
+        "closed_dates":  [
+                             "2026-11-23",
+                             "2026-11-24",
+                             "2026-11-25",
+                             "2026-11-26",
+                             "2026-11-30",
+                             "2026-12-01",
+                             "2026-12-07",
+                             "2026-12-08",
+                             "2026-12-14"
+                         ],
+        "hours_note":  "Nightly times not posted (\"Hours vary by day\"); see time slots when booking. Book a 30-minute arrival slot; the 2-mile drive takes 40-50 minutes.",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  true
+                    },
         "sid":  368,
         "photos":  [
                        {
@@ -53264,6 +55301,11 @@
                       "cozy"
                   ],
         "hook":  "Open new Pokémon packs, build a deck, battle 3 rounds",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  369,
         "photos":  [
                        {
@@ -53339,6 +55381,11 @@
                       "loud"
                   ],
         "hook":  "Crack a new Pokémon set early and battle strangers",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  370,
         "photos":  [
 
@@ -53453,6 +55500,11 @@
                       "loud"
                   ],
         "hook":  "Build a Pokémon deck from fresh packs and play the new set",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  371,
         "photos":  [
 
@@ -53565,6 +55617,11 @@
                       "cozy"
                   ],
         "hook":  "Open a Build \u0026 Battle Box and play the new set early",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  372,
         "photos":  [
 
@@ -53677,6 +55734,11 @@
                       "loud"
                   ],
         "hook":  "Build a Pokémon deck from new packs, then battle at the mall",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  373,
         "photos":  [
                        {
@@ -53760,12 +55822,127 @@
                       "cozy"
                   ],
         "hook":  "Learn Pokémon cards free, then play with a loaner deck",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  374,
         "photos":  [
                        {
                            "file":  "photos/ev-pokemon-free-play-logan-arch-2026-11-28-1.jpg",
                            "credit":  "Logan Arch website",
                            "page_url":  "https://www.loganarchchicago.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-ravinia-winter-weekend",
+        "name":  "Ravinia Winter Weekend (Highland Park)",
+        "kind":  "event",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "live-music",
+                     "indoor",
+                     "holiday",
+                     "seasonal",
+                     "date",
+                     "friends",
+                     "family"
+                 ],
+        "hook":  "Five cozy holiday concerts indoors at Ravinia",
+        "description":  "Ravinia\u0027s winter mini-festival: five different holiday concerts in a row, held indoors in the park\u0027s recital hall, Bennett Gordon Hall. Pick a Chanukah night, Lessons and Carols, gospel, Christmas brass, or a Sunday-afternoon family sing-along.",
+        "highlights":  [
+                           "Wed Dec 2: Chanukah: Songs of Light with Noah Aronson \u0026 The Or Collective",
+                           "Thu Dec 3: Christmas with Cantus, Lessons and Carols for Our Time",
+                           "Fri Dec 4: Wonderful: A Soulful Celebration, holiday gospel with the Adrian Dunn Singers",
+                           "Sat Dec 5: A Merry Christmas with Brass, the Dallas Brass (one intermission)",
+                           "Sun Dec 6: Jingle Bell JAM!, family sing-along with the JAM Orchestra and a children\u0027s choir",
+                           "Pre-show sips and bites"
+                       ],
+        "good_to_know":  "Reserved seats. Everyone needs a ticket, whatever their age. On-site parking; rates vary by performance.",
+        "address":  "Bennett Gordon Hall, Ravinia, 418 Sheridan Rd, Highland Park, IL 60035",
+        "neighborhood":  "Highland Park (North Shore)",
+        "lat":  42.156993,
+        "lng":  -87.7754033,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  30,
+        "price_note":  "$30-$56 per seat, fees included, depending on the concert: Chanukah $38; Cantus $46-$56; Adrian Dunn Singers $32-$42; Dallas Brass $35-$45; Jingle Bell JAM $30.",
+        "duration_minutes":  90,
+        "min_minutes":  70,
+        "hours":  null,
+        "hours_note":  "Dec 2-5: gates 6pm, concert 7:30pm. Sun Dec 6: gates noon, concert 1:30pm (about 70 minutes).",
+        "event_dates":  [
+                            {
+                                "start":  "2026-12-02T19:30",
+                                "end":  null
+                            },
+                            {
+                                "start":  "2026-12-03T19:30",
+                                "end":  null
+                            },
+                            {
+                                "start":  "2026-12-04T19:30",
+                                "end":  null
+                            },
+                            {
+                                "start":  "2026-12-05T19:30",
+                                "end":  null
+                            },
+                            {
+                                "start":  "2026-12-06T13:30",
+                                "end":  "2026-12-06T14:40"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "season":  {
+                       "open_from":  "2026-12-02",
+                       "open_to":  "2026-12-06",
+                       "note":  ""
+                   },
+        "closed_dates":  [
+
+                         ],
+        "booking":  "required",
+        "booking_url":  "https://www.ravinia.org/WinterWeekend",
+        "age_note":  "All ages; everyone needs a ticket",
+        "phone":  "(847) 266-5100",
+        "website":  "https://www.ravinia.org/WinterWeekend",
+        "source_urls":  [
+                            "https://www.ravinia.org/",
+                            "https://www.ravinia.org/WinterWeekend",
+                            "https://www.ravinia.org/events/detail/chanukah-noah-aronson-26-12-02",
+                            "https://www.ravinia.org/events/detail/christmas-cantus-26-12-03",
+                            "https://www.ravinia.org/events/detail/wonderful-adrian-dunn-singers-26-12-04",
+                            "https://www.ravinia.org/events/detail/christmas-dallas-brass-26-12-05",
+                            "https://www.ravinia.org/events/detail/jingle-bell-jam-26-12-06",
+                            "https://www.ravinia.org/venues/detail/bgh"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.ravinia.org/WinterWeekend"
+                     },
+        "moods":  [
+                      "cozy",
+                      "festive",
+                      "romantic"
+                  ],
+        "energy":  "easy",
+        "vibe":  "calm",
+        "good_for":  [
+                         "date",
+                         "friends",
+                         "family"
+                     ],
+        "sid":  409,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-ravinia-winter-weekend-1.jpg",
+                           "credit":  "Ravinia website",
+                           "page_url":  "https://www.ravinia.org/"
                        }
                    ]
     },
@@ -53859,6 +56036,11 @@
                          "evidence_url":  "https://wearespin.com/location/chicago/"
                      },
         "taste_checked":  "2026-11-14",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  375,
         "photos":  [
                        {
@@ -53969,6 +56151,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.jazzshowcase.com/visit"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  376,
         "photos":  [
                        {
@@ -54073,6 +56260,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.buddyguy.com/faq"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  377,
         "photos":  [
                        {
@@ -54176,12 +56368,17 @@
                          "evidence_url":  "https://www.bluechicago.com/"
                      },
         "taste_checked":  "2026-11-14",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  378,
         "photos":  [
                        {
                            "file":  "photos/cm-blue-chicago-1.jpg",
-                           "credit":  "The City Lane (thecitylane.com), 2017",
-                           "page_url":  "https://thecitylane.com/blue-chicago-river-north/"
+                           "credit":  "Blue Chicago website",
+                           "page_url":  "https://www.bluechicago.com/FAQ.aspx"
                        }
                    ]
     },
@@ -54282,6 +56479,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.rosaslounge.com/pages/faq"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  379,
         "photos":  [
                        {
@@ -54452,6 +56654,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://constellation-chicago.com/"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  380,
         "photos":  [
                        {
@@ -54568,6 +56775,11 @@
                          "evidence_url":  "https://www.chicagoglasscollective.com/glass-blowing-info-page"
                      },
         "taste_checked":  "2026-11-14",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  382,
         "photos":  [
                        {
@@ -54673,6 +56885,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.lepianochicago.com/"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  383,
         "photos":  [
                        {
@@ -54776,6 +56993,11 @@
                          "evidence_url":  "https://thezebralounge.net/"
                      },
         "taste_checked":  "2026-11-14",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  385,
         "photos":  [
                        {
@@ -54880,6 +57102,11 @@
                              "2026-11-26"
                          ],
         "taste_checked":  "2026-11-14",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  386,
         "photos":  [
                        {
@@ -54980,6 +57207,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://ballroomdancechicago.com/group-dance-classes-chicago"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  387,
         "photos":  [
                        {
@@ -55099,6 +57331,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.jinglejunkie.com/"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  388,
         "photos":  [
                        {
@@ -55266,6 +57503,11 @@
                              "2026-11-18",
                              "2026-11-19"
                          ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  389,
         "photos":  [
                        {
@@ -55341,6 +57583,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.opentable.com/booking/experiences-availability?rid=6650\u0026restref=6650\u0026experienceId=854257"
                      },
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  390,
         "photos":  [
                        {
@@ -55577,6 +57824,11 @@
                          "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/warren-park-ice-rink"
                      },
         "hours_valid_to":  "2027-02-15",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  391,
         "photos":  [
                        {
@@ -55815,6 +58067,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/mt-greenwood-ice-rink"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  392,
         "photos":  [
                        {
@@ -56048,12 +58305,17 @@
                          "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/mckinley-ice-rink"
                      },
         "hours_valid_to":  "2027-01-17",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  393,
         "photos":  [
                        {
                            "file":  "photos/pa-mckinley-ice-rink-1.jpg",
-                           "credit":  "Chicago Park District",
-                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/mckinley-ice-rink"
+                           "credit":  "",
+                           "page_url":  ""
                        }
                    ]
     },
@@ -56282,6 +58544,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/wentworth-ice-rink"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "sid":  394,
         "photos":  [
                        {
@@ -56354,6 +58621,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://navypier.org/pier-events/new-years-eve-fireworks/"
                      },
+        "weather":  {
+                        "wind_sensitive":  true,
+                        "snow_friendly":  false,
+                        "rain_ok":  false
+                    },
         "sid":  395,
         "photos":  [
                        {
@@ -56427,13 +58699,18 @@
                   ],
         "energy":  "easy",
         "vibe":  "lively",
-        "hook":  "200 indie makers in a Bridgeport warehouse",
         "taste_checked":  "2026-11-14",
         "verified":  {
                          "status":  "verified",
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.renegadecraft.com/event/chicago-winter/"
                      },
+        "hook":  "170+ indie makers in a Bridgeport warehouse",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  396,
         "photos":  [
                        {
@@ -56512,6 +58789,11 @@
                          "evidence_url":  "https://www.tixtree.com/e/sauced-night-market-bfb1bc83bf96"
                      },
         "booking_url":  "https://www.tixtree.com/e/sauced-night-market-bfb1bc83bf96",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  397,
         "photos":  [
                        {
@@ -56586,6 +58868,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://feverup.com/m/679816"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  398,
         "photos":  [
                        {
@@ -56757,6 +59044,11 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.broadwayinchicago.com/?p=35183"
                      },
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "sid":  399,
         "photos":  [
                        {

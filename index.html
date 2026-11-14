@@ -1729,6 +1729,41 @@ svg.gi{width:20px;height:20px;flex:none}
 .ty-cmp span{flex:1;min-width:0}
 .ty-cmp b{display:block;font:650 15px/1.25 var(--f-body)}
 .ty-cmp small{display:block;margin-top:2px;font:500 13px/1.35 var(--f-body);color:var(--ink-2)}
+/* v5.19 Blend + friends' stars and reviews (plans/2026-11-14-blend-idea.md) */
+.bl-hero{margin:0 20px 6px;padding:18px 14px 16px;border-radius:20px;background:var(--paper-2);text-align:center}
+.bl-pair{display:flex;justify-content:center}
+.bl-pair > span{width:76px;height:76px;box-shadow:0 0 0 4px var(--paper-2)}
+.bl-pair > span + span{margin-left:-14px}
+.bl-ini{display:inline-grid;place-items:center;flex:none;border-radius:50%;background:var(--accent-soft);color:#211B2C;font:650 13px/1 var(--f-body)}
+.bl-ini.lg{width:64px;height:64px;font-size:20px}.bl-ini.xs{width:24px;height:24px;font-size:10px}
+.bl-pct{margin:12px 0 0;font:600 16px/1.2 var(--f-body);color:var(--ink-2)}
+.bl-pct b{display:block;font:800 44px/1.05 var(--f-card);color:var(--ink);letter-spacing:-.5px}
+.bl-sub{margin:8px 0 0;font:500 13.5px/1.4 var(--f-body);color:var(--ink-2)}
+.bl-note{margin:8px 0 0;font:500 13px/1.35 var(--f-body);color:var(--ink-3)}
+.bl-share{margin-top:12px}
+.bl-off{margin:10px 0 0}
+.bl-who{position:absolute;right:12px;bottom:12px;z-index:4;display:flex;padding:2px;border-radius:999px;background:rgb(255 255 255 / .92)}
+.bl-who > span{box-shadow:0 0 0 2px #fff}
+.bl-who > span + span{margin-left:-6px}
+.card3:has(.bl-who) .c3-text{padding-right:64px}
+.c3-fr{margin:4px 0 0;font:650 13px var(--f-body);color:#FFD27A}
+.meta .fr-avg{color:var(--soon);font-weight:650}
+.dt-frr{margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--paper-2)}
+.dt-frr-h{margin:0;font:500 14px/1.3 var(--f-body);color:var(--ink-2)}
+.dt-frr-h b{font:700 17px var(--f-body);color:var(--ink)}
+.dt-frr .stars{color:var(--soon);letter-spacing:1px}
+.frr-lab{margin:10px 0 4px;font:650 13px var(--f-body);color:var(--ink-3)}
+.dt-frr-h + .frr-lab{border-top:1px solid var(--rule);padding-top:10px}
+.frr-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.frr-list li{font:500 14.5px/1.4 var(--f-body);color:var(--ink)}
+.frr-list q{quotes:"\201C" "\201D"}
+.bb-r3{margin-top:8px}
+.bb-r3 input{width:100%;height:42px;border-radius:10px;border:1px solid var(--rule-strong);background:var(--paper);color:var(--ink);font:500 15px var(--f-body);padding:0 12px;box-sizing:border-box}
+.bb-note{margin:6px 0 0;font:500 12.5px/1.35 var(--f-body);color:var(--ink-3)}
+.as-stack span.as-ty{background:var(--type);overflow:hidden;padding:0}
+.as-stack span.as-ty svg{display:block;width:100%;height:100%}
+.fr-open{display:inline-flex;align-items:center;gap:10px}
+.fp-noty{color:var(--ink-3)}
 .wy-nei{display:block;margin:8px auto calc(10px + var(--sab,0px));min-height:44px;padding:0 24px;border:1px solid var(--rule-strong);border-radius:999px;background:var(--paper-3);color:var(--ink);font:600 15px/1 var(--f-body);cursor:pointer;flex:none}
 </style>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1909,7 +1944,7 @@ svg.gi{width:20px;height:20px;flex:none}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.18 (2026-11-14)';   // v5.18: guides as articles (Plans + Lists), been date month/none, friend profile, one source link, WYR "Neither"
+var VERSION = 'v5.19 (2026-11-14)';   // v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
 var VERSION_PREV = 'v5.17 (2026-11-14)';   // v5.17 part A2: 12 swipes + 23 would-you-rather, Result extras (A1: fun types, Result, Adjust, avatar)
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var FEEDBACK_EMAIL = 'localfinds.app@gmail.com';   // v5.16: "Send feedback" in the account sheet (a mailto draft; never sent by the app). Separate from CONTACT_EMAIL.
@@ -4145,6 +4180,7 @@ function cleanCheckins(a){
     seen[x.id] = 1; var o = {id:x.id, date:none ? '' : x.date, rating:ratingOk(x.rating), updated_at:String(x.updated_at || '')};
     if (x.prec === 'month') o.prec = 'month';   // v5.11: a visit known only to the month (imported); date = the 1st
     if (none) o.prec = 'none';
+    var rv = reviewOk(x.review); if (rv) o.review = rv;   // v5.19: the optional one-line review (140 max); no key when empty
     out.push(o);
   });
   return out;
@@ -4153,6 +4189,8 @@ function cleanCheckins(a){
    1-5 = that many stars. An old -1 (only from an earlier app version) reads as 1 star and is never written. */
 function ratingOk(v){ v = +v; return v === -1 || (v >= 1 && v <= 5 && Math.floor(v) === v) ? v : 0; }
 function starsOf(v){ v = ratingOk(v); return v === -1 ? 1 : v; }   // coordinator 2026-11-14: the live table had no thumbs ratings, so stars are stored as 1-5; an old -1 reads as 1 star
+var REVIEW_MAX = 140;
+function reviewOk(v){ return typeof v === 'string' ? v.replace(/[\u0000-\u001F\u007F]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, REVIEW_MAX).trim() : ''; }   // v5.19: one line, 140 characters (checkins.review in supabase/blend.sql)
 function dbRatingOf(stars){ stars = +stars; return stars >= 1 && stars <= 5 && Math.floor(stars) === stars ? stars : 0; }
 function starsText(v){ var s = starsOf(v); return s ? new Array(s + 1).join('★') + new Array(6 - s).join('☆') : ''; }
 function starTaste(v){ var s = starsOf(v); return {r:s >= 4 ? 1 : s && s <= 2 ? -1 : 0, m:s === 5 || s === 1 ? 1.5 : 1}; }   // 5 strong like, 4 like, 3 neutral, 2 dislike, 1 strong dislike (1.5 = the Love / Never weight)
@@ -6006,12 +6044,13 @@ function rowHTML(c, opt){
   var h = '<p class="status ' + d.tone + '"><span class="st-t"><i class="dot"></i>' + esc(d.text) + (d.sub ? ' · ' + esc(d.sub) : '') + '</span></p>';
   if (c.bucket === 'fits' && !st.open && st.opensAt && !c.anyDay) h += '<p class="evb">' + (UI.planning ? 'Opens ' + esc(fmtClock(st.opensAt)) : 'Opens in ' + esc(fmtDur(Math.max(1, Math.round((st.opensAt - st.ms) / 60000))))) + '</p>';
   var meta = [], ck = checkinOf(it.id), tsh = travelShort(c), prs = priceShort(it);   // v4: one plain line: where · how far · price (· Been)
-  if (opt.fbeen) h = '<p class="meta"><span class="been">' + esc(opt.fbeen) + '</span></p>';   // v5.11: a friend's visit, month only
+  if (opt.fbeen) h = '<p class="meta"><span class="been">' + esc(opt.fbeen) + '</span>' + (opt.fstars ? ' · <span class="stars" aria-label="' + opt.fstars + ' of 5 stars">' + starsText(opt.fstars) + '</span>' : '') + '</p>';   // v5.11: a friend's visit; v5.19: "Visited" + their stars
   if (opt.been && ck) h = '<p class="meta"><span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' + (starsOf(ck.rating) ? ' · <span class="stars" aria-label="' + starsOf(ck.rating) + ' of 5 stars">' + starsText(ck.rating) + '</span>' : '') + '</p>';   // v5.18 stars
   if (it.neighborhood) meta.push(esc(shortHood(it.neighborhood)));
   if (tsh) meta.push(esc(tsh));
   if (prs) meta.push(esc(prs));
   if (ck && !opt.been && !opt.fbeen) meta.push('<span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>');
+  if (!opt.fbeen) { var fat = friendAvgText(friendRatingFor(it)); if (fat) meta.push('<span class="fr-avg">' + esc(fat) + '</span>'); }   // v5.19 friends' average
   h += '<p class="meta">' + meta.join(' · ') + '</p>';
   if (it.award_note) h += '<p class="award">' + esc(it.award_note) + '</p>';   // v5.10: "TERPECA 2026 finalist · Best of Morty 2025"
   if (opt.book || c.bookTime) { var bl = bookingLink(it) || safeUrl(it.website); if (bl) h += '<div class="bookon" data-stop="1"><a class="mini-btn" href="' + esc(bl) + '" target="_blank" rel="noopener">' + esc(opt.book ? 'Book online' : c.bookTime.btn) + glyphSvg('i-ext') + '</a></div>'; }
@@ -6729,7 +6768,7 @@ function cardHTML(c){
     (ck ? '<span class="been-mark">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' : '') + dealBadgeHTML(c, 'c3-deal' + (ck ? ' low' : '')) +
     '<div class="c3-btns"><button class="c3-btn" type="button" data-share="' + esc(it.id) + '" aria-label="Share ' + esc(it.name) + '">' + glyphSvg('i-share') + '</button>' +
     '<button class="c3-btn" type="button" data-save="' + esc(it.id) + '" aria-pressed="' + sv + '" aria-label="' + (sv ? 'Saved: ' : 'Save: ') + esc(it.name) + '">' + glyphSvg('i-bookmark') + '</button></div>' +
-    '<div class="c3-text"><h3>' + esc(it.name) + '</h3>' + (hook ? '<p class="c3-hook">' + esc(hook) + '</p>' : '') + '<p class="c3-facts"><i class="dot ' + esc(c.d.tone) + '"></i>' + esc(facts) + '</p>' + cardLeaveHTML(c) + (why ? '<p class="c3-why">' + esc(why) + '</p>' : '') + '</div>' + whoB + '</li>';
+    '<div class="c3-text"><h3>' + esc(it.name) + '</h3>' + (hook ? '<p class="c3-hook">' + esc(hook) + '</p>' : '') + '<p class="c3-facts"><i class="dot ' + esc(c.d.tone) + '"></i>' + esc(facts) + '</p>' + cardLeaveHTML(c) + friendAvgLine(it, 'c3-fr') + (why ? '<p class="c3-why">' + esc(why) + '</p>' : '') + '</div>' + whoB + '</li>';
 }
 function threeKey(){ return [selCode(curSel()), S.when, S.pickAt, S.loc ? r1(S.loc.lat * 1000) + ',' + r1(S.loc.lng * 1000) : '', S.budgetOn ? S.budget : 'any', JSON.stringify(S.f), DATA_LOADED ? 1 : 0, 't' + TASTE_REV].join('|'); }   // v5.12: a taste change re-picks
 function updateThree(vm, more){ // keeps the same three on screen until she asks for more, or the place / time / filters change, or one of them closes
@@ -6937,7 +6976,13 @@ function beenBoxHTML(ck, todayKey){ // v5.18: thumbs (optional), then when: a da
   return '<div class="been-box"><div class="bb-r1"><span class="bb-l">' + glyphSvg('i-check') + 'Been here</span>' +
     '<span class="bb-stars" role="group" aria-label="How was it? (optional)">' + [1, 2, 3, 4, 5].map(function(n){ var s = starsOf(ck.rating); return '<button class="starbtn' + (n <= s ? ' on' : '') + '" type="button" data-been="s-' + n + '" aria-pressed="' + (n === s) + '" aria-label="' + n + (n === 1 ? ' star' : ' stars') + '">' + (n <= s ? '★' : '☆') + '</button>'; }).join('') + '</span>' +
     '<button class="linkbtn" type="button" data-been="remove">Remove</button></div>' +
+    beenReviewHTML(ck) +   // v5.19: the optional one-line review, under the stars
     '<div class="bb-r2"><span class="seg bb-seg" role="group" aria-label="When did you go?">' + [['day', 'Day'], ['month', 'Month'], ['none', 'Don’t remember']].map(function(x){ return '<button type="button" data-been="p-' + x[0] + '" aria-pressed="' + (pr === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</span>' + inp + '</div></div>';
+}
+function beenReviewHTML(ck){ // v5.19: <= 140 characters; friends see it without your name (friend_reviews in supabase/blend.sql)
+  var note = 'Friends who you share check-ins with can see your stars and review. Your review shows without your name.';
+  if (acctSignedIn() && Acct.noReview) note += ' For now your review stays on this phone.';
+  return '<div class="bb-r3"><label class="vh" for="beenReview">One line about it (optional)</label><input id="beenReview" type="text" maxlength="' + REVIEW_MAX + '" enterkeyhint="done" autocomplete="off" placeholder="One line about it (optional)" value="' + esc(ck.review || '') + '"><p class="bb-note">' + esc(note) + '</p></div>';
 }
 function beenPrecPatch(ck, prec, todayKey){ // pure: switching how exact the visit date is -> the patch for editCheckin
   var d = ck && isKey(ck.date) ? ck.date : todayKey;
@@ -7249,8 +7294,10 @@ function renderFriend(){
   }
   if (vw.gone) h += '<p class="endnote fr-gone">' + (vw.gone === 1 ? '1 is no longer on.' : vw.gone + ' are no longer on.') + '</p>';   // E2
   if (rec.live && rec.been && rec.been.length) { // friends see the month only ("Been · Oct"), never the day
-    var bT = evalTime(), bctx = ctxNow(), bToday = cparts(nowMs()).key, brs = rec.been.map(function(b){ var it = SID_INDEX[b.sid]; if (!it) return ''; var c = computeItem(it, bT, bctx); return rowHTML(c, {fexcept:rec.key, fbeen:friendBeenLabel(b.month, bToday)}); }).filter(Boolean);
-    if (brs.length) h += '<button class="fold" type="button" data-wl="beenfold" aria-expanded="' + !!UI.frBeenOpen + '"><span class="ic">' + glyphSvg('i-check') + '</span><span><b>' + esc(name) + ' has been<em>' + brs.length + '</em></b></span>' + glyphSvg('i-chev', 'i chev') + '</button><ul class="rows"' + (UI.frBeenOpen ? '' : ' hidden') + '>' + brs.join('') + '</ul>';
+    // v5.19 (owner): "Visited" + their stars, no month; rated places first. Never a review here (reviews are anonymous, place pages only)
+    var bT = evalTime(), bctx = ctxNow(), bo = UI.frBeenOpen !== false, bl = rec.been.slice().sort(function(a, b){ return (b.stars || 0) - (a.stars || 0); });
+    var brs = bl.map(function(b){ var it = SID_INDEX[b.sid]; if (!it) return ''; var c = computeItem(it, bT, bctx); return rowHTML(c, {fexcept:rec.key, fbeen:'Visited', fstars:b.stars || 0}); }).filter(Boolean);
+    if (brs.length) h += '<button class="fold" type="button" data-wl="beenfold" aria-expanded="' + bo + '"><span class="ic">' + glyphSvg('i-check') + '</span><span><b>Places ' + esc(name) + ' visited<em>' + brs.length + '</em></b></span>' + glyphSvg('i-chev', 'i chev') + '</button><ul class="rows"' + (bo ? '' : ' hidden') + '>' + brs.join('') + '</ul>';
   }
   if (rec.live) h += '<p class="endlinks"><button class="linkbtn" type="button" data-acct="remove" data-v="' + esc(rec.uid) + '">Remove friend</button><span aria-hidden="true">·</span><button class="linkbtn" type="button" data-acct="block" data-v="' + esc(rec.uid) + '">Block</button></p>';
   else if (kept) h += '<p class="endlinks"><button class="linkbtn" type="button" data-wl="rename">Rename</button><span aria-hidden="true">·</span><button class="linkbtn" type="button" data-wl="remove">Remove</button></p>';
@@ -7293,7 +7340,7 @@ function wlAction(a, el){
   if (a === 'keep') { wlKeepNow(); return; }
   if (a === 'paste') { openPaste(); return; }
   if (a === 'pasteopen') { wlPasteOpen(); return; }
-  if (a === 'beenfold') { UI.frBeenOpen = !UI.frBeenOpen; renderFriend(); return; }   // v5.11
+  if (a === 'beenfold') { UI.frBeenOpen = UI.frBeenOpen === false; renderFriend(); return; }   // v5.11; v5.19: open by default
   if (!v || !v.kept) return;
   var f = wlFind(v.key); if (!f) return;
   if (a === 'rename') { UI.wlRename = true; renderFriend(); var ri = $('fRename'); if (ri) try { ri.focus(); ri.select(); } catch (e) {} return; }
@@ -7389,7 +7436,18 @@ function mergeSaves(localIds, meta, remote, nowIso){
 }
 // Check-ins. local: [{id, date, rating, prec, updated_at}] + gone {id: iso}; remote: rows {item_id, visit_date, date_prec, rating, deleted, updated_at}.
 // -> {list, gone, push:[rows without user_id]}
-function ckRow(c, del){ return {item_id:c.id, visit_date:del || !isKey(c.date) ? null : c.date, date_prec:c.prec === 'month' ? 'month' : 'day', rating:c.rating || 0, deleted:!!del, updated_at:c.updated_at}; }
+function ckRow(c, del){ return {item_id:c.id, visit_date:del || !isKey(c.date) ? null : c.date, date_prec:c.prec === 'month' ? 'month' : 'day', rating:c.rating || 0, review:del ? null : reviewOk(c.review) || null, deleted:!!del, updated_at:c.updated_at}; }
+/* v5.19: checkins.review exists only after supabase/blend.sql runs. Until then the app reads and writes without it (the review stays on
+   this phone) and says so in the been box; Acct.noReview is set from the first "column ... review" error. */
+function ckCols(){ return 'item_id,sid,visit_date,date_prec,rating,deleted,updated_at' + (Acct.noReview ? '' : ',review'); }
+function ckStrip(rows){ return Acct.noReview ? rows.map(function(r){ var o = ext(r, {}); delete o.review; return o; }) : rows; }
+function ckColErr(e){ return /review/i.test(String(e && (e.message || e.details || e.hint || e.code) || '')); }
+function ckFetch(cl, uid){
+  return cl.from('checkins').select(ckCols()).eq('user_id', uid).then(chk).then(null, function(e){ if (!Acct.noReview && ckColErr(e)) { Acct.noReview = true; return cl.from('checkins').select(ckCols()).eq('user_id', uid).then(chk); } throw e; });
+}
+function ckUpsert(cl, rows){
+  return cl.from('checkins').upsert(ckStrip(rows), {onConflict:'user_id,item_id'}).then(chk).then(null, function(e){ if (!Acct.noReview && ckColErr(e)) { Acct.noReview = true; return cl.from('checkins').upsert(ckStrip(rows), {onConflict:'user_id,item_id'}).then(chk); } throw e; });
+}
 function mergeCheckins(local, gone, remote, nowIso){
   gone = gone || {}; var L = {}, R = {}, order = [], list = [], outGone = {}, push = [];
   cleanCheckins(local).forEach(function(c){ L[c.id] = {c:c, del:false, iso:c.updated_at}; order.push(c.id); });
@@ -7398,7 +7456,8 @@ function mergeCheckins(local, gone, remote, nowIso){
     if (!r || typeof r.item_id !== 'string' || !r.item_id) return;
     var nod = !r.deleted && (r.visit_date === null || r.visit_date === undefined || r.visit_date === '');   // v5.18: a visit with no date ("I don't remember")
     var del = !!r.deleted || (!nod && !isKey(String(r.visit_date || '').slice(0, 10)));
-    R[r.item_id] = {c:{id:r.item_id, date:del || nod ? '' : String(r.visit_date).slice(0, 10), rating:ratingOk(r.rating), prec:nod ? 'none' : r.date_prec === 'month' ? 'month' : 'day', updated_at:String(r.updated_at || '')}, del:del, iso:String(r.updated_at || '')};
+    R[r.item_id] = {c:{id:r.item_id, date:del || nod ? '' : String(r.visit_date).slice(0, 10), rating:ratingOk(r.rating), prec:nod ? 'none' : r.date_prec === 'month' ? 'month' : 'day', updated_at:String(r.updated_at || '')}, del:del, iso:String(r.updated_at || ''), hasRv:'review' in r};
+    var rrv = reviewOk(r.review); if (rrv) R[r.item_id].c.review = rrv;   // v5.19
   });
   Object.keys(R).forEach(function(id){ if (!L[id]) order.push(id); });
   order.forEach(function(id){
@@ -7409,8 +7468,9 @@ function mergeCheckins(local, gone, remote, nowIso){
       var lt = tsOf(l.iso), rt = tsOf(r.iso);
       if (lt > rt) { win = l; push.push(ckRow(l.c, l.del)); }
       else if (rt > lt) win = r;
-      else if (l.del === r.del && (l.del || (l.c.date === r.c.date && l.c.rating === r.c.rating && (l.c.prec || 'day') === (r.c.prec || 'day')))) win = r;
+      else if (l.del === r.del && (l.del || (l.c.date === r.c.date && l.c.rating === r.c.rating && (l.c.prec || 'day') === (r.c.prec || 'day') && (!r.hasRv || (l.c.review || '') === (r.c.review || ''))))) win = r;
       else { win = !l.del ? l : r; if (win === l) push.push(ckRow(l.c, false)); }   // a tie: keep the visit rather than the removal
+      if (win === r && !r.del && !r.hasRv && l.c.review) win = {c:ext(r.c, {review:l.c.review}), del:false, iso:r.iso};   // v5.19: the account has no review column yet: keep this phone's review
     }
     if (win.del) outGone[id] = win.iso || nowIso; else list.push(win.c);
   });
@@ -7429,10 +7489,19 @@ function mergeKept(local, lgone, remote){
   return {lists:out, gone:gone, changed:changed};
 }
 // Friends from the server (my_friends + saves + month-only check-ins) -> the live friend records the app draws.
+// v5.19: FRIEND_UNDATED is the ONE switch for friends' check-ins saved with "I don't remember when" (no month). Owner 2026-11-14:
+// undated visits count, and friend views say "Visited", not the month; friend_checkins() in supabase/blend.sql (as run) sends them.
+var FRIEND_UNDATED = true;
 function liveFrom(friends, saves, beens, idSid){
   var S = {}, B = {};
   (saves || []).forEach(function(r){ if (!r || !r.user_id) return; var s = isNum(+r.sid) && +r.sid >= 1 ? +r.sid : (idSid && idSid[r.item_id]) || 0; if (s) (S[r.user_id] = S[r.user_id] || []).push(s); });
-  (beens || []).forEach(function(r){ if (!r || !r.user_id) return; var m = monthOnly(r.month); if (!m) return; var s = isNum(+r.sid) && +r.sid >= 1 ? +r.sid : (idSid && idSid[r.item_id]) || 0; if (s) (B[r.user_id] = B[r.user_id] || []).push({sid:s, month:m}); });
+  (beens || []).forEach(function(r){
+    if (!r || !r.user_id) return; var m = monthOnly(r.month); if (!m && !FRIEND_UNDATED) return;
+    var s = isNum(+r.sid) && +r.sid >= 1 ? +r.sid : (idSid && idSid[r.item_id]) || 0; if (!s) return;
+    var b = {sid:s, month:m || ''}, st = starsOf(r.rating);   // v5.19: stars (1-5) when the server sends them. Never a review here: reviews are anonymous (friend_reviews)
+    if (r.rating !== null && r.rating !== undefined && st) b.stars = st;
+    (B[r.user_id] = B[r.user_id] || []).push(b);
+  });
   return (friends || []).filter(function(f){ return f && f.status === 'accepted' && f.user_id && f.username; }).map(function(f){
     return {key:'@' + f.username, live:true, uid:f.user_id, username:f.username, name:String(f.display_name || '').split(/\s+/)[0] || f.username, shares:f.share_saves !== false, shareBeen:f.share_checkins === true, funType:isNum(+f.fun_type) && +f.fun_type >= 1 && TYPES[+f.fun_type - 1] ? +f.fun_type : 0, sids:wlSids(S[f.user_id] || []), been:(B[f.user_id] || []).slice(0, 2000)};
   }).sort(function(a, b){ return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1; });
@@ -7670,14 +7739,14 @@ function acctSync(why){
   var job = cl.rpc('me').then(chk).then(function(me){
     Acct.profile = me && me.profile ? me.profile : null;
     Acct.settings = me && me.settings ? me.settings : Acct.settings;
-    return Promise.all([cl.from('saves').select('item_id,sid,saved,updated_at').eq('user_id', uid).then(chk), cl.from('checkins').select('item_id,sid,visit_date,date_prec,rating,deleted,updated_at').eq('user_id', uid).then(chk)]);
+    return Promise.all([cl.from('saves').select('item_id,sid,saved,updated_at').eq('user_id', uid).then(chk), ckFetch(cl, uid)]);   // v5.19: + review when the column is there
   }).then(function(r){
     var ms = mergeSaves(savedIds, SAVED_META, r[0], nowIso), mc = mergeCheckins(CHECKINS, CK_GONE, r[1], nowIso);
     savedIds = ms.ids; SAVED_META = ms.meta; Platform.store.set('cff.saved.v1', savedIds); Platform.store.set(SAVEDMETA_KEY, SAVED_META);
     CHECKINS = mc.list; CK_GONE = mc.gone; Platform.store.set(CHECKIN_KEY, CHECKINS); Platform.store.set(CKGONE_KEY, CK_GONE);
     var jobs = [];
     if (ms.push.length) jobs.push(cl.from('saves').upsert(ms.push.map(function(x){ return ext(x, {user_id:uid, sid:ID_SID[x.item_id] || null}); }), {onConflict:'user_id,item_id'}).then(chk));
-    if (mc.push.length) jobs.push(cl.from('checkins').upsert(mc.push.map(function(x){ return ext(x, {user_id:uid, sid:ID_SID[x.item_id] || null}); }), {onConflict:'user_id,item_id'}).then(chk));
+    if (mc.push.length) jobs.push(ckUpsert(cl, mc.push.map(function(x){ return ext(x, {user_id:uid, sid:ID_SID[x.item_id] || null}); })));
     if (Acct.profile) { // the kept stage-1 copies ride along in settings
       var mk = mergeKept(FRIENDS, KEPT_GONE, Acct.settings ? Acct.settings.kept_lists : []);
       FRIENDS = mk.lists; KEPT_GONE = mk.gone; Platform.store.set(FRIENDS_KEY, FRIENDS); Platform.store.set(KEPTGONE_KEY, KEPT_GONE);
@@ -7690,13 +7759,16 @@ function acctSync(why){
     return Promise.all([cl.rpc('my_friends').then(chk), cl.from('saves').select('user_id,item_id,sid').eq('saved', true).neq('user_id', uid).then(chk), cl.rpc('friend_checkins').then(chk), cl.from('invites').select('code,created_at,expires_at,used_by,cancelled').eq('owner', uid).then(chk)]);
   }).then(function(r){
     if (r) {
-      Acct.friends = (r[0] || []).map(function(f){ return {user_id:f.user_id, username:f.username, display_name:f.display_name || '', status:f.status, direction:f.direction || null, since:f.since || '', share_saves:f.share_saves, share_checkins:f.share_checkins}; });
+      Acct.friends = (r[0] || []).map(function(f){ return {user_id:f.user_id, username:f.username, display_name:f.display_name || '', status:f.status, direction:f.direction || null, since:f.since || '', share_saves:f.share_saves, share_checkins:f.share_checkins, fun_type:isNum(+f.fun_type) && +f.fun_type >= 1 && +f.fun_type <= 12 ? +f.fun_type : 0}; });
+      Acct.noFunType = (r[0] || []).length > 0 && !(r[0] || []).some(function(f){ return f && 'fun_type' in f; });   // v5.19: my_friends has no fun_type yet (blend.sql not run)
+      Acct.noFrStars = (r[2] || []).length > 0 && !(r[2] || []).some(function(x){ return x && 'rating' in x; });   // v5.19: friend_checkins has no rating yet
       LIVE = liveFrom(Acct.friends, r[1], r[2], ID_SID);
       var now = Date.now();
       Acct.invites = (r[3] || []).filter(function(i){ return !i.used_by && !i.cancelled && tsOf(i.expires_at) > now; }).map(function(i){ return {code:i.code, created_at:i.created_at, expires_at:i.expires_at}; });
     }
     Acct.offline = false; Acct.errMsg = ''; Acct.lastSync = nowIso; Acct.state = 'in';
     coupleSync();   // v5.13 couple mode (supabase/couple.sql); a missing table is ignored
+    friendRatingsSync(); funTypeSync();   // v5.19 (supabase/blend.sql): friends' average stars; my character number for friends. Missing = a visible note, never a stuck sync
     tasteAfterSync();   // v5.12: the taste profile rides in settings.taste (supabase/taste.sql); a missing column is ignored
     acctSaveCache(); acctRedraw();
     if (!Acct.profile && !Acct.askedName) { Acct.askedName = true; acctAskName(); }
@@ -7795,7 +7867,7 @@ function acctPush(){
   var sRows = sIds.filter(function(id){ return SAVED_META[id]; }).map(function(id){ return {user_id:uid, item_id:id, sid:ID_SID[id] || null, saved:SAVED_META[id].on, updated_at:SAVED_META[id].at}; });
   var cRows = cIds.map(function(id){ var c = checkinOf(id); if (c) return ext(ckRow(c, false), {user_id:uid, sid:ID_SID[id] || null}); if (CK_GONE[id]) return ext(ckRow({id:id, date:'', rating:0, prec:'day', updated_at:CK_GONE[id]}, true), {user_id:uid, sid:ID_SID[id] || null}); return null; }).filter(Boolean);
   if (sRows.length) jobs.push(cl.from('saves').upsert(sRows, {onConflict:'user_id,item_id'}).then(chk));
-  if (cRows.length) jobs.push(cl.from('checkins').upsert(cRows, {onConflict:'user_id,item_id'}).then(chk));
+  if (cRows.length) jobs.push(ckUpsert(cl, cRows));
   if (!jobs.length) return;
   Promise.all(jobs).then(function(){
     sIds.forEach(function(id){ delete Acct.dirtyS[id]; }); cIds.forEach(function(id){ delete Acct.dirtyC[id]; });
@@ -8019,20 +8091,20 @@ function renderFriends(){
     '<p class="fr-or">or</p><div class="frfind"><label class="vh" for="frFind">Username</label><div class="field uname"><span aria-hidden="true">@</span><input id="frFind" type="text" maxlength="21" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" placeholder="username"></div><button class="btn-primary" type="button" data-acct="find">Find</button></div><div id="frFindOut" aria-live="polite"></div>';
   var inc = acctIncoming(), out = Acct.friends.filter(function(f){ return f.status === 'pending' && f.direction === 'out'; }), acc = Acct.friends.filter(function(f){ return f.status === 'accepted'; }), blk = Acct.friends.filter(function(f){ return f.status === 'blocked'; });
   if (inc.length) h += sec('Requests') + '<ul class="frows">' + inc.map(function(f){ return '<li><span class="fr-u">' + esc(acctFriendName(f)) + ' <small>@' + esc(f.username) + '</small></span><span class="fr-b"><button class="mini-btn fill" type="button" data-acct="accept" data-v="' + esc(f.user_id) + '">Accept</button><button class="linkbtn" type="button" data-acct="notnow" data-v="' + esc(f.user_id) + '">Not now</button></span></li>'; }).join('') + '</ul>';
-  h += sec('Friends') + (acc.length ? '<ul class="frows">' + acc.map(function(f){ return '<li><button class="fr-u fr-open" type="button" data-acct="fprof" data-v="@' + esc(f.username) + '" aria-label="Open ' + esc(acctFriendName(f)) + '\'s profile">' + esc(acctFriendName(f)) + ' <small>@' + esc(f.username) + ' · profile ›</small></button><span class="fr-b"><button class="linkbtn" type="button" data-acct="remove" data-v="' + esc(f.user_id) + '">Remove</button><button class="linkbtn" type="button" data-acct="block" data-v="' + esc(f.user_id) + '">Block</button></span></li>'; }).join('') + '</ul>' : '<p class="p-note">No friends yet. Send an invite link, or find someone by username.</p>');
+  h += sec('Friends') + (acc.length ? '<ul class="frows">' + acc.map(function(f){ return '<li><button class="fr-u fr-open" type="button" data-acct="fprof" data-v="@' + esc(f.username) + '" aria-label="Open ' + esc(acctFriendName(f)) + '\'s profile">' + (f.fun_type && TYPES[f.fun_type - 1] ? typeAvatarHTML(f.fun_type, 'sm') : '') + '<span class="fr-nm">' + esc(acctFriendName(f)) + ' <small>@' + esc(f.username) + (f.fun_type && TYPES[f.fun_type - 1] ? ' · ' + esc(TYPES[f.fun_type - 1].name) : '') + ' · profile ›</small></span></button><span class="fr-b"><button class="linkbtn" type="button" data-acct="remove" data-v="' + esc(f.user_id) + '">Remove</button><button class="linkbtn" type="button" data-acct="block" data-v="' + esc(f.user_id) + '">Block</button></span></li>'; }).join('') + '</ul>' : '<p class="p-note">No friends yet. Send an invite link, or find someone by username.</p>');
   if (out.length) h += sec('Waiting') + '<ul class="frows">' + out.map(function(f){ return '<li><span class="fr-u">@' + esc(f.username) + ' <small>request sent</small></span><span class="fr-b"><button class="linkbtn" type="button" data-acct="remove" data-v="' + esc(f.user_id) + '">Cancel</button></span></li>'; }).join('') + '</ul>';
   if (FRIENDS.length) h += sec('Copies') + '<ul class="frows">' + FRIENDS.map(function(f){ return '<li><span class="fr-u">' + esc(f.name) + ' <small>' + esc(fmtMonthDay(wlDayKey(f.day))) + '</small></span><span class="fr-b"><button class="linkbtn" type="button" data-fchip="' + esc(f.key) + '">Open</button></span></li>'; }).join('') + '</ul>';
   if (Acct.invites.length) h += sec('Invites') + '<ul class="frows">' + Acct.invites.map(function(i){ return '<li><span class="fr-u">Link made ' + esc(fmtMonthDay(chicagoDayOf(i.created_at) || today)) + ' <small>expires ' + esc(fmtMonthDay(chicagoDayOf(i.expires_at) || today)) + '</small></span><span class="fr-b"><button class="linkbtn" type="button" data-acct="cancelinv" data-v="' + esc(i.code) + '">Cancel</button></span></li>'; }).join('') + '</ul>';
   if (blk.length) h += sec('Blocked') + '<ul class="frows">' + blk.map(function(f){ return '<li><span class="fr-u">@' + esc(f.username) + '</span><span class="fr-b"><button class="linkbtn" type="button" data-acct="unblock" data-v="' + esc(f.user_id) + '">Unblock</button></span></li>'; }).join('') + '</ul>';
-  h += sec('What friends see') + sw('share_saves', st.share_saves !== false, 'Saved places') + sw('share_checkins', !!st.share_checkins, 'Places I\'ve been', 'The month only, never the day') + sw('find_by_username', st.find_by_username !== false, 'Find me by username') +
+  h += sec('What friends see') + sw('share_saves', st.share_saves !== false, 'Saved places') + sw('share_checkins', !!st.share_checkins, 'Places I\'ve been', 'Places + stars, never the day') + sw('find_by_username', st.find_by_username !== false, 'Find me by username') +
     '<p class="p-note fr-note">Nothing is public. Only friends you accept see this. <button class="linkbtn" type="button" data-acct="privacy">Privacy</button></p>';
   b.innerHTML = h;
 }
 function renderPrivacy(){
   var h = '<p>Without an account, everything stays on this device: your saves, places you\'ve been, friends\' list copies and your spot. Nothing is sent anywhere.</p>';
-  h += '<h3>With an account</h3><ul><li><b>From Google:</b> your email address and name, used only to sign you in. We never see your Google password.</li><li><b>What you add:</b> your username, saved places, places you\'ve been (place, date, thumbs up or down), friends, requests, blocks, invite links and your three "What friends see" switches.</li><li><b>Polls (optional):</b> the 2-4 places and the votes. No names: a vote is a random code kept in the voter\'s browser.</li><li><b>Plan together (optional):</b> a short list of places picked from your taste, shared with one friend only when you both turn it on. Your swipes and taste stay private.</li><li><b>Never stored:</b> your location, and anything about your phone beyond the sign-in.</li></ul>';
+  h += '<h3>With an account</h3><ul><li><b>From Google:</b> your email address and name, used only to sign you in. We never see your Google password.</li><li><b>What you add:</b> your username, saved places, places you\'ve been (place, date, stars, an optional one-line review), your character, friends, requests, blocks, invite links and your three "What friends see" switches.</li><li><b>Polls (optional):</b> the 2-4 places and the votes. No names: a vote is a random code kept in the voter\'s browser.</li><li><b>Blend (optional):</b> a short list of places picked from your taste, shared with one friend only when you both turn it on. Your swipes and taste stay private.</li><li><b>Never stored:</b> your location, and anything about your phone beyond the sign-in.</li></ul>';
   h += '<h3>Where</h3><p>In a database run by Supabase, in the United States. Off-Grid has no ads and never sells or shares your data.</p>';
-  h += '<h3>Who sees it</h3><p>Only you. A friend you accept sees your saved places (if "Saved places" is on) and where you\'ve been, by month only (if "Places I\'ve been" is on; it starts off). Nothing is public, and nobody can browse people. Someone you block can\'t find you, invite you or see anything.</p>';
+  h += '<h3>Who sees it</h3><p>Only you. A friend you accept sees your character (one of 12), your saved places (if "Saved places" is on) and the places you\'ve visited with your stars, never the day (if "Places I\'ve been" is on; it starts off). Your one-line reviews show to those friends without your name. Nothing is public, and nobody can browse people. Someone you block can\'t find you, invite you or see anything.</p>';
   h += '<h3>Delete it</h3><p>' + (acctSignedIn() ? '<button class="linkbtn warn" type="button" data-acct="delete">Delete my account</button> removes your account and everything in it right away.' : 'Sign in, then Saved → Privacy → Delete my account removes your account and everything in it right away.') + ' Signing out keeps the copy on this device; clearing the browser\'s site data removes that.</p>';
   $('pPrivacyBody').innerHTML = h;
 }
@@ -8091,11 +8163,11 @@ function acctDemo(){
   var sids = Object.keys(SID_INDEX).map(Number).sort(function(a, b){ return a - b; });
   Acct.demo = true; Acct.state = 'in'; Acct.user = null; Acct.cachedUid = 'demo'; Acct.profile = {username:'avery.test'}; Acct.cachedName = 'avery.test';
   Acct.settings = {share_saves:true, share_checkins:false, find_by_username:true}; Acct.offline = true; Acct.lastSync = '2026-11-13T18:00:00.000Z';
-  Acct.friends = [{user_id:'d1', username:'maya', display_name:'Maya L', status:'accepted', share_saves:true}, {user_id:'d2', username:'jo.k', display_name:'Jo', status:'pending', direction:'in'},
+  Acct.friends = [{user_id:'d1', username:'maya', display_name:'Maya L', status:'accepted', share_saves:true, share_checkins:true, fun_type:4},{user_id:'d2', username:'jo.k', display_name:'Jo', status:'pending', direction:'in'},
     {user_id:'d3', username:'sam_r', display_name:'', status:'pending', direction:'out'}, {user_id:'d4', username:'max', display_name:'', status:'blocked'}];
   Acct.invites = [{code:'7K3M9QZP', created_at:'2026-11-12T18:00:00.000Z', expires_at:'2026-11-19T18:00:00.000Z'}];
   var ms = sids.slice(0, 12).filter(function(s, i){ return i % 2 === 0; });
-  LIVE = liveFrom(Acct.friends, ms.map(function(s){ return {user_id:'d1', sid:s}; }), [{user_id:'d1', sid:sids[3], month:'2026-10'}, {user_id:'d1', sid:sids[5], month:'2025-07'}], ID_SID);
+  LIVE = liveFrom(Acct.friends, ms.map(function(s){ return {user_id:'d1', sid:s}; }), [{user_id:'d1', sid:sids[3], month:'2026-10', rating:5}, {user_id:'d1', sid:sids[5], month:'2025-07', rating:4}, {user_id:'d1', sid:sids[8], month:null, rating:null}], ID_SID);   // v5.19: stars; one undated visit
   LIVE.forEach(function(f){ if (f.uid === 'd1') f.funType = 4; });   // v5.18 test mode: the made-up friend shares a character
   if (!savedIds.length) savedIds = [SID_INDEX[sids[0]].id, SID_INDEX[sids[2]].id, SID_INDEX[sids[7]].id];   // in memory only
   acctRedraw();
@@ -8322,14 +8394,14 @@ function coupleToggle(fid){
   if (CP.demo) { CP.on[fid] = !CP.on[fid]; coupleRedraw(); toast('Test mode: nothing was sent.'); return; }
   if (!f || f.status !== 'accepted') { toast('Only for friends you\'ve accepted.'); return; }
   var cl = Acct.client, u = Acct.user; if (!cl || !u) { toast('Sign in first.'); return; }
-  if (CP.missing) { toast('Plan together isn\'t switched on yet.'); return; }
+  if (CP.missing) { toast('Blend isn\'t switched on yet.'); return; }
   if (CP.on[fid]) {
-    cl.from('couple_share').delete().eq('owner', u.id).eq('friend', fid).then(chk).then(function(){ delete CP.on[fid]; delete CP.theirs[fid]; coupleRedraw(); toast('Plan together is off'); }, function(e){ if (!coupleErr(e)) acctFail(e); else coupleRedraw(); });
+    cl.from('couple_share').delete().eq('owner', u.id).eq('friend', fid).then(chk).then(function(){ delete CP.on[fid]; delete CP.theirs[fid]; coupleRedraw(); toast('Blend is off'); }, function(e){ if (!coupleErr(e)) acctFail(e); else coupleRedraw(); });
     return;
   }
   var mine = coupleMineNow();
   if (!mine || !mine.top.length) { toast('Swipe a few photos first, so it knows your taste.'); return; }
-  couplePut(fid, mine).then(function(){ CP.on[fid] = true; coupleSync(); toast(CP.theirs[fid] ? 'Picks for you both are ready' : 'On. Picks show when ' + nm + ' turns it on too.'); }, function(e){ if (coupleErr(e)) { toast('Plan together isn\'t switched on yet.'); coupleRedraw(); } else acctFail(e); });
+  couplePut(fid, mine).then(function(){ CP.on[fid] = true; coupleSync(); toast(CP.theirs[fid] ? 'Your Blend is ready' : 'On. Your Blend shows when ' + nm + ' turns it on too.'); }, function(e){ if (coupleErr(e)) { toast('Blend isn\'t switched on yet.'); coupleRedraw(); } else acctFail(e); });
 }
 function friendBeenMonths(been, todayKey){ // pure: a friend's shared check-ins -> [{m:'2026-10', n:2, label:'Oct'}], newest first
   var by = {}; (been || []).forEach(function(b){ var m = b && monthOnly(b.month); if (m) by[m] = (by[m] || 0) + 1; });
@@ -8339,33 +8411,197 @@ function coupleStatus(rec){ // pure-ish: 'off' | 'waiting' | 'on'
   var on = !!CP.on[rec.uid]; return !on ? 'off' : CP.theirs[rec.uid] ? 'on' : 'waiting';
 }
 function friendProfileHTML(rec, n){ // v5.18 (owner 2026-11-14: "I can't see any stats on my friend"): character + type, counts, months been
-  var t = rec.funType ? TYPES[rec.funType - 1] : null, today = cparts(nowMs()).key, ms = friendBeenMonths(rec.been, today), nb = (rec.been || []).length;
-  var h = '<div class="fp"><div class="fp-h">' + (t ? typeAvatarHTML(rec.funType, 'fp-av') : avHTML(rec, ' fp-av')) + '<div><p class="fp-nm">' + esc(rec.name) + '</p><p class="fp-sub">@' + esc(rec.username) + (t ? ' · ' + esc(t.name) + ' · ' + esc(t.tagline) : '') + '</p></div></div>';
-  h += '<div class="fp-stats"><span><b>' + (rec.shares ? n : '–') + '</b>saved</span><span><b>' + nb + '</b>been</span><span><b>' + esc(coupleStatus(rec) === 'on' ? 'On' : coupleStatus(rec) === 'waiting' ? 'Waiting' : 'Off') + '</b>plan together</span></div>';
-  if (ms.length) h += '<p class="fp-lab">Been out</p><ul class="fp-months">' + ms.slice(0, 12).map(function(x){ return '<li>' + esc(x.label) + ' <small>' + x.n + (x.n === 1 ? ' place' : ' places') + '</small></li>'; }).join('') + '</ul>';
-  else h += '<p class="fp-note">No shared months yet: ' + esc(rec.name) + ' keeps "Places I\'ve been" private, or hasn\'t added any.</p>';
+  // v5.19 (owner 2026-11-14: month/year doesn't matter): counts only, no "Been out" months; the character shows when my_friends sends fun_type
+  var t = rec.funType ? TYPES[rec.funType - 1] : null, nb = (rec.been || []).length, nr = (rec.been || []).filter(function(b){ return b && b.stars; }).length;
+  var h = '<div class="fp"><div class="fp-h">' + (t ? typeAvatarHTML(rec.funType, 'fp-av') : avHTML(rec, ' fp-av')) + '<div><p class="fp-nm">' + esc(rec.name) + '</p><p class="fp-sub">@' + esc(rec.username) + (t ? ' · ' + esc(t.name) + ' · ' + esc(t.tagline) : '') + '</p>' +
+    (t ? '' : '<p class="fp-sub fp-noty">' + (Acct.noFunType ? 'Characters show once the server update is live.' : 'No character yet') + '</p>') + '</div></div>';
+  h += '<div class="fp-stats"><span><b>' + (rec.shares ? n : '–') + '</b>saved</span><span><b>' + nb + '</b>visited</span><span><b>' + esc(coupleStatus(rec) === 'on' ? 'On' : coupleStatus(rec) === 'waiting' ? 'Waiting' : 'Off') + '</b>blend</span></div>';
+  if (!nb) h += '<p class="fp-note">' + esc(rec.name) + ' keeps "Places I\'ve been" private, or hasn\'t added any.</p>';
+  else if (!nr && (FRR.missing || Acct.noFrStars)) h += '<p class="fp-note">Friends\' stars show once the server update is live.</p>';
   return h + '</div>';
 }
-function coupleBlockHTML(rec){ // the friend panel: the switch, then (both on) the combined picks as photo cards
-  if (!rec || !rec.live || CP.missing || (!Acct.client && !CP.demo)) return '';
-  var on = !!CP.on[rec.uid], th = CP.theirs[rec.uid], cs0 = coupleStatus(rec), mine = !!funType(tasteMine());
-  var h = '<div class="cp-box"><div class="sw-row cp-sw"><span>Plan together<small>' + (cs0 === 'on' ? 'On for you both' : cs0 === 'waiting' ? 'Waiting for ' + esc(rec.name) : 'Off') + '</small></span><button class="switch" type="button" data-cp="tog" data-v="' + esc(rec.uid) + '" aria-pressed="' + on + '" aria-label="Plan together with ' + esc(rec.name) + '"></button></div>' +
-    '<ol class="cp-how"><li' + (mine ? ' class="done"' : '') + '>Each of you takes your own character test' + (mine ? ' (yours is done)' : '') + '.</li><li>Both of you turn this on. Only one switch on = nothing is shared.</li><li>You see picks you\'d both like. Your swipes stay private.</li></ol>' +
-    (mine ? '' : '<button class="mini-btn" type="button" data-acct="cp-test">Take my test</button>') + '</div>';
-  if (on && th) {
-    var cs = couplePicksFor(rec.uid, COUPLE_SHOW);
-    h += cs.length ? '<h3 class="sec-h"><span>You\'d both like</span><span>' + cs.length + '</span></h3><ul class="cards3 cp-cards">' + cs.map(cardHTML).join('') + '</ul>' : '<p class="p-note">No picks in common yet. Swipe a few more photos.</p>';
-  } else if (on) h += '<p class="p-note">Waiting for ' + esc(rec.name) + ' to turn it on.</p>';
+function coupleBlockHTML(rec){ // the friend panel: the Blend switch, then (both on) the Blend: match %, both characters, three tagged sections
+  if (!rec || !rec.live || (!Acct.client && !CP.demo)) return '';
+  if (CP.missing) return '<div class="cp-box"><p class="p-note bl-off">Blend isn\'t switched on yet on the server. Nothing is shared.</p></div>';   // v5.19: a visible state, never a blank or a spinner
+  var on = !!CP.on[rec.uid], th = CP.theirs[rec.uid], cs0 = coupleStatus(rec), mine = !!blendMyType();
+  var h = '<div class="cp-box"><div class="sw-row cp-sw"><span>Blend<small>' + (cs0 === 'on' ? 'On for you both' : cs0 === 'waiting' ? 'Waiting for ' + esc(rec.name) : 'Off') + '</small></span><button class="switch" type="button" data-cp="tog" data-v="' + esc(rec.uid) + '" aria-pressed="' + on + '" aria-label="Blend with ' + esc(rec.name) + '"></button></div>' +
+    (cs0 === 'on' ? '' : '<ol class="cp-how"><li' + (mine ? ' class="done"' : '') + '>Each of you takes your own character test' + (mine ? ' (yours is done)' : '') + '.</li><li>Both of you turn this on. Only one switch on = nothing is shared.</li><li>You see picks you\'d both like. Your swipes stay private.</li></ol>' +
+    (mine ? '' : '<button class="mini-btn" type="button" data-acct="cp-test">Take my test</button>')) + '</div>';
+  if (on && th) h += blendBlockHTML(rec);
+  else if (on) h += '<p class="p-note">Waiting for ' + esc(rec.name) + ' to turn it on.</p>';
   return h;
 }
-function coupleHomeHTML(res){ // Home: "You + Maya", up to 3 combined picks that pass today's filters
+function coupleHomeHTML(res){ // Home: "Your Blend · Maya 78%", up to 3 tagged picks that pass today's filters
   var fs = coupleActive(); if (!fs.length || !res || !res.all) return '';
   var f = fs[0], ok = {}; res.all.forEach(function(c){ if (c.group === 'fits' || c.group === 'tight' || c.group === 'later') ok[c.item.id] = c; });
-  var cs = couplePicksFor(f.uid, 40).filter(function(c){ return ok[c.item.id]; }).slice(0, 3).map(function(c){ return ok[c.item.id]; });
+  var b = blendFor(f); if (!b) return '';
+  var cs = blendLive(b.s.blend, 40).filter(function(x){ return ok[x.c.item.id]; }).slice(0, 3);
   if (!cs.length) return '';
-  return '<h3 class="sec-h cp-h"><span>You + ' + esc(f.name) + '</span><span>' + avsHTML([f], 's', '') + '</span></h3><ul class="cards3 cp-cards">' + cs.map(cardHTML).join('') + '</ul>';
+  return '<h3 class="sec-h cp-h"><span>Your Blend · ' + esc(f.name) + '</span><span>' + (b.m ? b.m.pct + '%' : '') + '</span></h3><ul class="cards3 cp-cards">' + cs.map(function(x){ return blendCardHTML(ok[x.c.item.id], x.tag, b, f); }).join('') + '</ul>';
 }
-function cpClick(el){ var a = el.getAttribute('data-cp'), v = el.getAttribute('data-v') || ''; if (a === 'tog') coupleToggle(v); }
+function cpClick(el){ var a = el.getAttribute('data-cp'), v = el.getAttribute('data-v') || ''; if (a === 'tog') coupleToggle(v); else if (a === 'share') blendShare(v); }
+
+/* ================= v5.19 Blend (plans/2026-11-14-blend-idea.md): like Spotify Blend, for two accepted friends who both turned it on =================
+   Inputs are only what is already shared: each phone's short ranked list + "never" list (couple_share), the friend's character
+   number (my_friends.fun_type) and their saves (when "Saved places" is on). Never the other person's swipes, dials or interests.
+   Match % = weighted mix of: characters (share of the 4 dials on the same side, 0.35), overlap of the two short lists (0.5; 40%
+   overlap counts as full, minus clashes with the other's "never"), shared saves (0.15, only with 3+ saves each). Missing parts are
+   left out and the rest re-weighted. The weights are a first guess (unverified with real pairs). */
+var BLEND_W = {type:0.35, likes:0.5, saves:0.15}, BLEND_FULL = 0.4, BLEND_SAVE_FULL = 0.3, BLEND_SHOW = 4;
+function blendMyType(){ if (CP.demo && CP.demoType) return CP.demoType; var t = funType(tasteMine()); return t ? t.id : 0; }
+function blendTypeSim(a, b){ // two character numbers -> 0..1 (share of the 4 dials on the same side; a weird type has no Vibe = half), null if one is missing
+  if (!TYPES[a - 1] || !TYPES[b - 1]) return null;
+  var x = typeDials(a), y = typeDials(b), s = (x.E === y.E ? 1 : 0) + (x.P === y.P ? 1 : 0) + (x.weird === y.weird ? 1 : 0) + (x.V === null || y.V === null ? 0.5 : x.V === y.V ? 1 : 0);
+  return s / 4;
+}
+function blendSetOf(list){ var o = {}; (list || []).forEach(function(s){ o[s] = 1; }); return o; }
+function blendOverlap(a, b){ if (!a.length || !b.length) return null; var B = blendSetOf(b), n = 0; a.forEach(function(s){ if (B[s]) n++; }); return n / Math.min(a.length, b.length); }
+function blendMatch(A, B){ // pure: A, B = {type, top:[sid], never:[sid], saves:[sid]} -> {pct 1..99, parts:{type, likes, saves}} | null
+  if (!A || !B) return null;
+  var parts = {type:blendTypeSim(A.type, B.type), likes:null, saves:null};
+  var at = cpSids(A.top, 400), bt = cpSids(B.top, 400), ov = blendOverlap(at, bt);
+  if (ov !== null) {
+    var an = blendSetOf(cpSids(A.never, 400)), bn = blendSetOf(cpSids(B.never, 400)), clash = 0;
+    at.forEach(function(s){ if (bn[s]) clash++; }); bt.forEach(function(s){ if (an[s]) clash++; });
+    parts.likes = clamp(Math.min(1, ov / BLEND_FULL) - 2 * clash / (at.length + bt.length), 0, 1);
+  }
+  var sa = cpSids(A.saves, 2000), sb = cpSids(B.saves, 2000);
+  if (sa.length >= 3 && sb.length >= 3) parts.saves = Math.min(1, blendOverlap(sa, sb) / BLEND_SAVE_FULL);
+  var w = 0, sum = 0; Object.keys(BLEND_W).forEach(function(k){ if (parts[k] !== null) { w += BLEND_W[k]; sum += BLEND_W[k] * parts[k]; } });
+  if (!w || parts.likes === null && parts.saves === null) return null;   // characters alone are not a Blend
+  return {pct:clamp(Math.round(100 * sum / w), 1, 99), parts:parts};
+}
+function blendDaySeed(key, salt){ var h = 2166136261, s = String(key) + '|' + String(salt || ''); for (var i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619); return h >>> 0; }
+function blendRotate(list, seed, win){ win = Math.min(win, list.length); return shuffled(list.slice(0, win), seededRng(seed)).concat(list.slice(win)); }   // refreshes daily: the first `win` reshuffle by the Chicago day
+function blendSections(mine, theirs, dayKey, salt){ // pure -> {both:[sid], you:[sid], them:[sid], blend:[{sid, tag:'both'|'you'|'them'}]}
+  var out = {both:[], you:[], them:[], blend:[]}; if (!mine || !theirs) return out;
+  var mt = cpSids(mine.top, 120), tt = cpSids(theirs.top, 120), M = blendSetOf(mt), T = blendSetOf(tt);
+  var no = blendSetOf(cpSids(mine.never, 400).concat(cpSids(theirs.never, 400))), seed = blendDaySeed(dayKey, salt);
+  out.both = blendRotate(couplePicks(mine, theirs).filter(function(s){ return M[s] && T[s]; }), seed, 8);
+  out.you = blendRotate(mt.filter(function(s){ return !T[s] && !no[s]; }), seed + 1, 12);   // my pick for them: I'd like it, they never said no
+  out.them = blendRotate(tt.filter(function(s){ return !M[s] && !no[s]; }), seed + 2, 12);
+  var pat = ['both', 'you', 'them', 'both'], ix = {both:0, you:0, them:0};
+  for (var g = 0; out.blend.length < 40 && (ix.both < out.both.length || ix.you < out.you.length || ix.them < out.them.length); g++) { var k = pat[g % 4]; if (ix[k] < out[k].length) out.blend.push({sid:out[k][ix[k]++], tag:k}); }
+  return out;
+}
+function blendLive(list, max, T, ctx){ // [{sid, tag}] -> [{c, tag}]: places still on, open or later today first (keeps the order inside)
+  T = T || evalTime(); ctx = ctx || ctxNow(); var out = [];
+  (list || []).forEach(function(x, i){ var it = SID_INDEX[x.sid]; if (!it) return; var c = computeItem(it, T, ctx); if (wlGoneItem(it, c.st) || c.st.key === 'ended') return; out.push({c:c, tag:x.tag, i:i, r:c.st.open || c.st.key === 'later' ? 0 : c.st.key === 'season' ? 2 : 1}); });
+  out.sort(function(a, b){ return a.r - b.r || a.i - b.i; });
+  return out.slice(0, max || BLEND_SHOW);
+}
+function blendFor(rec){ // -> {m, s, me, them} | null (no Blend until both short lists are in)
+  var mine = coupleMineNow(), th = rec && CP.theirs[rec.uid]; if (!mine || !th) return null;
+  var me = blendMyType(), mySaves = savedIds.map(function(id){ return ID_SID[id]; }).filter(Boolean);
+  var m = blendMatch({type:me, top:mine.top, never:mine.never, saves:mySaves}, {type:rec.funType || 0, top:th.top, never:th.never, saves:rec.shares ? rec.sids : []});
+  return {m:m, s:blendSections(mine, th, cparts(nowMs()).key, rec.uid), me:me, them:rec.funType || 0};
+}
+function blendAv(id, letter, cls){ return id && TYPES[id - 1] ? typeAvatarHTML(id, cls) : '<span class="bl-ini ' + (cls || '') + '" aria-hidden="true">' + esc(letter) + '</span>'; }
+function blendCardHTML(c, tag, b, rec){ // a photo card + small avatars: both of you / you / them
+  var nm = rec ? rec.name : 'them', lab = tag === 'both' ? 'You both' : tag === 'you' ? 'Your pick for ' + nm : nm + '\'s pick for you';
+  var av = (tag !== 'them' ? blendAv(b.me, 'Y', 'xs') : '') + (tag !== 'you' ? blendAv(b.them, (nm.charAt(0) || '?').toUpperCase(), 'xs') : '');
+  return cardHTML(c).replace(/<\/li>$/, '<span class="bl-who bl-' + tag + '" role="img" aria-label="' + esc(lab) + '">' + av + '</span></li>');
+}
+function blendBlockHTML(rec){
+  var b = blendFor(rec); if (!b) return '';
+  var tm = TYPES[b.me - 1], tt = TYPES[b.them - 1], T = evalTime(), ctx = ctxNow();
+  var h = '<div class="bl-hero"><div class="bl-pair">' + blendAv(b.me, 'You', 'lg') + blendAv(b.them, (rec.name.charAt(0) || '?').toUpperCase(), 'lg') + '</div>' +
+    '<p class="bl-pct">' + (b.m ? '<b>' + b.m.pct + '%</b> match' : 'Not enough to compare yet') + '</p>' +
+    '<p class="bl-sub">' + esc('You' + (tm ? ' · ' + tm.name : '')) + '<br>' + esc(rec.name + (tt ? ' · ' + tt.name : '')) + '</p>';
+  if (!tt) h += '<p class="bl-note">' + (Acct.noFunType ? 'Characters show once the server update is live.' : esc(rec.name) + ' hasn\'t taken the character test yet.') + '</p>';
+  if (b.m) h += '<button class="mini-btn bl-share" type="button" data-cp="share" data-v="' + esc(rec.uid) + '">' + glyphSvg('i-share') + 'Share our Blend</button>';
+  h += '</div>';
+  var any = 0;
+  [['both', 'You\'d both love'], ['you', 'Your pick for ' + rec.name], ['them', rec.name + '\'s pick for you']].forEach(function(x){
+    var cs = blendLive(b.s[x[0]].map(function(s){ return {sid:s, tag:x[0]}; }), BLEND_SHOW, T, ctx); if (!cs.length) return; any++;
+    h += '<h3 class="sec-h"><span>' + esc(x[1]) + '</span><span>' + cs.length + '</span></h3><ul class="cards3 cp-cards">' + cs.map(function(y){ return blendCardHTML(y.c, y.tag, b, rec); }).join('') + '</ul>';
+  });
+  return h + (any ? '' : '<p class="p-note">No picks yet. Swipe a few more photos.</p>');
+}
+function slugName(s){ return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'character'; }
+function typeShareFileName(id){ var t = TYPES[id - 1]; return 'off-grid-' + slugName(t ? t.name : '') + '.png'; }   // v5.19 small fix: the character's name, never the type code
+function blendShareFileName(a, b){ var ta = TYPES[a - 1], tb = TYPES[b - 1]; return 'off-grid-blend-' + slugName(ta ? ta.name : 'you') + '-' + slugName(tb ? tb.name : 'friend') + '.png'; }
+function blendShareText(pct){ return 'Our ' + APP_NAME + ' Blend: ' + pct + '%'; }
+function blendShareImage(b){ // -> Promise(Blob | null): 1080 x 1350; both characters, "78%", "Our Off-Grid Blend", the two character names (no person's name)
+  return new Promise(function(res){
+    try {
+      var c = document.createElement('canvas'); c.width = 1080; c.height = 1350; var g = c.getContext('2d'); if (!g) { res(null); return; }
+      var ta = TYPES[b.me - 1], tb = TYPES[b.them - 1];
+      g.fillStyle = '#FCFAFF'; g.fillRect(0, 0, 1080, 1350);
+      g.fillStyle = ta ? ta.color : '#E6E1F0'; g.fillRect(0, 0, 540, 700); g.fillStyle = tb ? tb.color : '#E6E1F0'; g.fillRect(540, 0, 540, 700);
+      function load(id){ return new Promise(function(r){ if (!TYPES[id - 1]) { r(null); return; } var im = new Image(); im.onload = function(){ r(im); }; im.onerror = function(){ r(null); }; im.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(typeSvg(id).replace('<svg ', '<svg width="440" height="440" ')); }); }
+      Promise.all([load(b.me), load(b.them)]).then(function(ims){
+        try {
+          if (ims[0]) g.drawImage(ims[0], 50, 130, 440, 440);
+          if (ims[1]) g.drawImage(ims[1], 590, 130, 440, 440);
+          g.fillStyle = '#211B2C'; g.textAlign = 'center';
+          g.font = '800 200px sans-serif'; g.fillText((b.m ? b.m.pct : 0) + '%', 540, 930);
+          g.font = '700 64px sans-serif'; g.fillText('Our ' + APP_NAME + ' Blend', 540, 1040);
+          g.font = '500 42px sans-serif'; g.fillStyle = '#544C62'; g.fillText((ta ? ta.name : 'You') + ' + ' + (tb ? tb.name : 'friend'), 540, 1120);
+          if (c.toBlob) c.toBlob(function(x){ res(x || null); }, 'image/png'); else res(null);
+        } catch (e) { res(null); }
+      });
+    } catch (e) { res(null); }
+  });
+}
+function blendShare(uid){
+  var rec = null; LIVE.forEach(function(f){ if (f.uid === uid) rec = f; });
+  var b = rec ? blendFor(rec) : null; if (!b || !b.m) { toast('No Blend to share yet.'); return; }
+  var text = blendShareText(b.m.pct), url = SITE_URL;   // no names, lists or ids in the link
+  blendShareImage(b).then(function(blob){
+    var f = null; try { if (blob && typeof File === 'function') f = new File([blob], blendShareFileName(b.me, b.them), {type:'image/png'}); } catch (e) {}
+    try { if (f && navigator.share && navigator.canShare && navigator.canShare({files:[f]})) return navigator.share({files:[f], title:text, text:text + ' ' + url}).catch(function(){}); } catch (e) {}
+    return Platform.share({title:text, text:text, url:url}).then(function(r){ if (r === 'copied') toast('Link copied'); }, function(){ toast('Couldn\'t share here'); });
+  });
+}
+
+/* ================= v5.19 friends' stars and reviews (supabase/blend.sql, as run 2026-11-14) =================
+   Stars: friend_checkins.rating (named: a friend's own page shows their places + stars) and friend_ratings() (count + average per place).
+   Reviews: ONLY from friend_reviews(), which is anonymous (no user id, name or date). The app never ties a review to a friend:
+   place pages show "What friends say" quotes with no names, and no named stars sit next to them. */
+var FRR = {by:{}, rv:{}, missing:false, rvMissing:false, loaded:false, live:null, cache:null};
+function frrErrMissing(e, fn){ var m = String(e && (e.message || e.code) || ''); return new RegExp(fn + '|function|schema cache|PGRST2\\d\\d|does not exist', 'i').test(m); }
+function friendRatingsParse(rows, idSid){ // pure: friend_ratings() rows -> {sid:{n, avg}}
+  var by = {}; (rows || []).forEach(function(r){ if (!r) return; var s = isNum(+r.sid) && +r.sid >= 1 ? +r.sid : (idSid && idSid[r.item_id]) || 0, n = +r.n, a = +r.avg_stars; if (s && n >= 1 && a >= 1 && a <= 5) by[s] = {n:Math.floor(n), avg:Math.round(a * 10) / 10}; }); return by;
+}
+function friendReviewsParse(rows, idSid){ // pure: friend_reviews() rows -> {sid:[{stars, review}]} (newest first as sent; at most 20 a place)
+  var by = {}; (rows || []).forEach(function(r){ if (!r) return; var s = isNum(+r.sid) && +r.sid >= 1 ? +r.sid : (idSid && idSid[r.item_id]) || 0, rv = reviewOk(r.review); if (!s || !rv) return; var l = by[s] = by[s] || []; if (l.length < 20) l.push({stars:r.rating === null || r.rating === undefined ? 0 : starsOf(r.rating), review:rv}); }); return by;
+}
+function friendRatingsSync(quiet){
+  var cl = Acct.client, u = Acct.user; if (!cl || !u || Acct.demo) return Promise.resolve(false);
+  var a = FRR.missing ? Promise.resolve(null) : cl.rpc('friend_ratings').then(chk).then(function(rows){ FRR.by = friendRatingsParse(rows, ID_SID); return true; }, function(e){ if (frrErrMissing(e, 'friend_ratings')) FRR.missing = true; return false; });
+  var b = FRR.rvMissing ? Promise.resolve(null) : cl.rpc('friend_reviews').then(chk).then(function(rows){ FRR.rv = friendReviewsParse(rows, ID_SID); return true; }, function(e){ if (frrErrMissing(e, 'friend_reviews')) FRR.rvMissing = true; return false; });
+  return Promise.all([a, b]).then(function(r){ FRR.loaded = true; FRR.cache = null; FRR.live = null; if (!quiet) { UI.homeHTML = null; if (DATA_LOADED) refresh(); } return r[0] === true || r[1] === true; });
+}
+function friendRatingsFrom(live){ // pure: live friends' shared stars -> {sid:{n, avg}} (used when friend_ratings() isn't there, and in test mode)
+  var out = {};
+  (live || []).forEach(function(f){ (f.been || []).forEach(function(b){ if (!b || !b.stars) return; var o = out[b.sid] = out[b.sid] || {n:0, sum:0}; o.n++; o.sum += b.stars; }); });
+  Object.keys(out).forEach(function(s){ out[s] = {n:out[s].n, avg:Math.round(out[s].sum / out[s].n * 10) / 10}; });
+  return out;
+}
+function friendRatingFor(it){ // -> {n, avg, reviews:[{stars, review}]} | null
+  var sid = it && ID_SID[it.id]; if (!sid) return null;
+  if (FRR.live !== LIVE || !FRR.cache) { FRR.live = LIVE; FRR.cache = friendRatingsFrom(LIVE); }
+  var sv = FRR.by[sid] || FRR.cache[sid] || null, rv = FRR.rv[sid] || [];
+  if (!sv && !rv.length) return null;
+  return {n:sv ? sv.n : 0, avg:sv ? sv.avg : 0, reviews:rv};
+}
+function friendAvgText(r){ if (!r || !r.n) return ''; return '★ ' + (Math.round(r.avg * 10) / 10).toFixed(1).replace(/\.0$/, '') + ' · ' + r.n + (r.n === 1 ? ' friend' : ' friends'); }   // "★ 4.3 · 3 friends"; never a name
+function friendAvgLine(it, cls){ var t = friendAvgText(friendRatingFor(it)); return t ? '<p class="' + cls + '">' + esc(t) + '</p>' : ''; }
+function friendSayHTML(it){ // the place page: the average, then "What friends say" (anonymous quotes)
+  var r = friendRatingFor(it); if (!r) return '';
+  var h = '<div class="dt-frr">' + (r.n ? '<p class="dt-frr-h"><span class="stars" aria-hidden="true">★</span> <b>' + esc(friendAvgText(r).slice(2).split(' · ')[0]) + '</b> from ' + r.n + (r.n === 1 ? ' friend' : ' friends') + '</p>' : '');
+  if (r.reviews.length) h += '<p class="frr-lab">What friends say</p><ul class="frr-list">' + r.reviews.slice(0, 6).map(function(x){ return '<li>' + (x.stars ? '<span class="stars" aria-label="' + x.stars + ' of 5 stars">' + starsText(x.stars) + '</span> ' : '') + '<q>' + esc(x.review) + '</q></li>'; }).join('') + '</ul>';
+  return h + '</div>';
+}
+function funTypeSync(){ // my character number -> settings.fun_type (own row), so accepted friends see which character I am
+  var cl = Acct.client, u = Acct.user, s = Acct.settings; if (!cl || !u || Acct.demo || !s) return false;
+  if (!('fun_type' in s)) { Acct.noMyType = true; return false; }
+  var t = funType(tasteMine()), id = t ? t.id : null;
+  if ((+s.fun_type || null) === id) return false;
+  cl.from('settings').upsert({user_id:u.id, fun_type:id, updated_at:new Date().toISOString()}, {onConflict:'user_id'}).then(chk).then(function(){ s.fun_type = id; }, function(){});
+  return true;
+}
 // Testing hook "#cpdemo=1" (with #acctdemo=1): both turned on with the made-up friend Maya, in memory only. Nothing is sent.
 function coupleDemo(n){
   if (!DATA_LOADED || !Acct.demo) { if ((n || 0) < 100) setTimeout(function(){ coupleDemo((n || 0) + 1); }, 200); return; }
@@ -8373,6 +8609,14 @@ function coupleDemo(n){
   CP.demo = true; CP.missing = false;
   CP.demoMine = {top:ph.filter(function(s, i){ return i % 3 !== 2; }).slice(0, 40), never:[]};
   CP.on = {d1:true}; CP.theirs = {d1:{top:ph.filter(function(s, i){ return i % 3 !== 1; }).slice(0, 40).reverse(), never:[], at:''}};
+  // v5.19 test mode: my character (Board Game Bear), a second made-up friend with stars, and two anonymous made-up reviews
+  CP.demoType = 2;
+  var s3 = ph[0];   // a place in both lists, so its card shows the friends' average
+  LIVE.forEach(function(f){ if (f.uid === 'd1' && !f.been.some(function(b){ return b.sid === s3; })) f.been = f.been.concat([{sid:s3, month:'', stars:5}]); });
+  if (!LIVE.some(function(f){ return f.uid === 'd5'; })) LIVE = LIVE.concat(liveFrom([{user_id:'d5', username:'jordan.test', display_name:'Jordan Test', status:'accepted', share_saves:true, share_checkins:true, fun_type:9}], [], [{user_id:'d5', sid:s3, month:null, rating:4}], ID_SID));
+  FRR.rv = {}; FRR.rv[s3] = [{stars:5, review:'Test review one: would go again.'}, {stars:4, review:'Test review two: book ahead.'}]; FRR.cache = null;
+  var maya = LIVE.filter(function(f){ return f.uid === 'd1'; })[0], bf = maya ? blendFor(maya) : null, top1 = bf ? blendLive(bf.s.both.map(function(s){ return {sid:s, tag:'both'}; }), 1)[0] : null;
+  if (top1) { var ts = ID_SID[top1.c.item.id]; LIVE.forEach(function(f){ if ((f.uid === 'd1' || f.uid === 'd5') && !f.been.some(function(b){ return b.sid === ts; })) f.been = f.been.concat([{sid:ts, month:'', stars:f.uid === 'd1' ? 5 : 4}]); }); }   // the first "You'd both love" card shows the friends' average
   coupleRedraw();
 }
 /* ================= detail ================= */
@@ -8572,6 +8816,7 @@ function renderDetail(c, keepScroll){
   h += '<div class="dt-acts top">' + (ck ? '' : '<button class="mini-btn been-go" type="button" data-been="add">' + glyphSvg('i-check') + 'I’ve been here</button>') +
     '<button class="mini-btn" type="button" data-cal="1">' + glyphSvg('i-cal') + 'Add to calendar</button></div>';
   if (ck) h += beenBoxHTML(ck, todayKey);
+  h += friendSayHTML(it);   // v5.19: friends' average + "What friends say" (anonymous)
   // status + price
   var pr = priceShort(it), tsh = travelShort(c), pel = (UI.planning || UI.anyDay) ? planEventLines(it, st, nowMs()) : null;
   if (pel) d = {text:pel.text, tone:pel.tone, sub:''};   // v5.10: "Next:" is relative to today; the planned day gets its own short line
@@ -9362,9 +9607,9 @@ function acctFriendsHTML(){
   var ini = function(f){ return (wlChars(acctFriendName(f).replace(/^@/, ''))[0] || '?').toUpperCase(); };
   var names = acc.slice(0, 3).map(function(f){ return acctFriendName(f); }), sub = '';
   var cpa = []; try { cpa = coupleActive(); } catch (e) {}
-  if (cpa.length) sub = 'Planning together with ' + cpa[0].name;
+  if (cpa.length) sub = 'Blend with ' + cpa[0].name;
   else if (names.length) sub = names.length === 1 ? names[0] : names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1] + (n > 3 ? ' + ' + (n - 3) + ' more' : '');
-  var h = '<div class="as-card"><button class="as-frt" type="button" data-acct="friends">' + (n ? '<span class="as-stack" aria-hidden="true">' + acc.slice(0, 3).map(function(f){ return '<span>' + esc(ini(f)) + '</span>'; }).join('') + '</span>' : '') +
+  var h = '<div class="as-card"><button class="as-frt" type="button" data-acct="friends">' + (n ? '<span class="as-stack" aria-hidden="true">' + acc.slice(0, 3).map(function(f){ var t = f.fun_type && TYPES[f.fun_type - 1]; return t ? '<span class="as-ty" style="--type:' + t.color + '">' + typeSvg(f.fun_type, true) + '</span>' : '<span>' + esc(ini(f)) + '</span>'; }).join('') + '</span>' : '') +
     '<span class="t"><b>' + (n ? n + (n === 1 ? ' friend' : ' friends') : 'No friends yet') + '</b>' + (inc.length ? '<span class="as-badge" aria-label="' + inc.length + (inc.length === 1 ? ' request' : ' requests') + '">' + inc.length + '</span>' : '') +
     (sub ? '<span class="as-frs">' + esc(sub) + '</span>' : '') + '</span>' + glyphSvg('i-right', 'i chev') + '</button>';
   inc.slice(0, 2).forEach(function(f){
@@ -9383,7 +9628,7 @@ function acctShareHTML(){ // "What friends see": the three existing settings, in
   var st = Acct.settings || {}, off = !!Acct.offline || (typeof navigator !== 'undefined' && navigator.onLine === false);
   function sw(k, on, label, help){ return '<div class="as-lab"><span>' + esc(label) + '<small class="as-help">' + esc(help) + '</small></span><button class="as-sw" type="button" data-acct="sw" data-v="' + k + '" aria-pressed="' + !!on + '" aria-label="' + esc(label) + '"' + (off ? ' disabled' : '') + '></button></div>'; }
   return '<section class="as-sec"><h3>What friends see' + (off ? '<small>Needs a connection</small>' : '') + '</h3><div class="as-card as-set">' +
-    sw('share_saves', st.share_saves !== false, 'My saves', 'The places you saved') + sw('share_checkins', !!st.share_checkins, 'Where I\'ve been', 'Place and month, never the day') + sw('find_by_username', st.find_by_username !== false, 'Find me by username', 'People can send you a request') + '</div></section>';
+    sw('share_saves', st.share_saves !== false, 'My saves', 'The places you saved') + sw('share_checkins', !!st.share_checkins, 'Where I\'ve been', 'Places + stars; reviews without your name') + sw('find_by_username', st.find_by_username !== false, 'Find me by username', 'People can send you a request') + '</div></section>';
 }
 function acctSheetHTML(state){ // state: in | cached | out | loading (| demo via Acct.demo). Pure apart from reading app state.
   var signed = state === 'in' || state === 'cached' || !!Acct.demo, nm = acctName(), ty = acctType(), h = '';
@@ -9399,7 +9644,7 @@ function acctSheetHTML(state){ // state: in | cached | out | loading (| demo via
     var busy = state === 'loading';
     h += '<div class="as-h out">' + av + '<div><h2 class="p-title as-nm" id="pAcctTitle" tabindex="-1">Sign in to keep it all</h2>' + (ty ? '<p class="as-ty">' + esc(ty.name) + '</p>' : '') + '</div></div>';
     h += '<div class="as-gbtn"><button class="btn-google" type="button" data-acct="signin"' + (busy ? ' disabled' : '') + '>' + googleG() + (busy ? 'Signing in' : 'Sign in with Google') + '</button></div>' +
-      '<ul class="as-why">' + ['Your saves on every device', 'See what friends want to do', 'Plan together with one person'].map(function(t){ return '<li>' + glyphSvg('i-check') + esc(t) + '</li>'; }).join('') + '</ul>' +
+      '<ul class="as-why">' + ['Your saves on every device', 'See what friends want to do', 'A Blend with a friend'].map(function(t){ return '<li>' + glyphSvg('i-check') + esc(t) + '</li>'; }).join('') + '</ul>' +
       '<p class="as-local">Without it, everything stays on this phone.</p>';
   }
   h += '<section class="as-sec"><h3>Your taste</h3>' + acctTasteHTML() + '</section>';
@@ -9536,7 +9781,7 @@ function tastePushSoon(){
 }
 function tastePush(){
   var cl = Acct.client, u = Acct.user; if (!cl || !u || Acct.noTaste) return;
-  cl.from('settings').upsert({user_id:u.id, taste:tasteForCloud(TASTE), taste_at:TASTE.updated_at || new Date().toISOString()}, {onConflict:'user_id'}).then(chk).then(function(){ Acct.tasteAt = TASTE.updated_at; }, function(e){ var m = String(e && (e.message || e.code) || ''); if (/taste|column|schema/i.test(m)) Acct.noTaste = true; });
+  cl.from('settings').upsert({user_id:u.id, taste:tasteForCloud(TASTE), taste_at:TASTE.updated_at || new Date().toISOString()}, {onConflict:'user_id'}).then(chk).then(function(){ Acct.tasteAt = TASTE.updated_at; funTypeSync(); }, function(e){ var m = String(e && (e.message || e.code) || ''); if (/taste|column|schema/i.test(m)) Acct.noTaste = true; });
 }
 function tasteAfterSync(){
   if (!TASTE || TASTE_DEMO) return;
@@ -9557,13 +9802,15 @@ function openTaste(mode){
 }
 function closeTaste(){ swStopHint(); clearTimeout(TU.busyTap); TU.busy = false; var el = tasteEl(); el.hidden = true; el.innerHTML = ''; TU.mode = ''; TU.D = null; document.documentElement.classList.remove('tk-open'); tasteChanged(); }
 function tasteTarget(){ return TU.who === 'guest' ? TASTE_GUEST : TASTE; }
+function deckNameFor(name){ return name === 'retake' ? 'main' : name; }   // v5.19: Retake = the same 35-answer deck (swipes + would-you-rather), fresh cards
 function tasteStartDeck(name, dials){
   if (!DATA_LOADED) { toast('Still loading the list. Try again in a moment.'); return; }
   if (!TASTE) tasteLoad();
+  var retake = name === 'retake'; name = deckNameFor(name);
   TU.who = name === 'guest' ? 'guest' : 'me';
   if (name === 'guest') { TASTE_GUEST = emptyTaste(); TASTE_GUEST.name = (TU.guestName || 'Guest').slice(0, 12); }
   var T = tasteTarget(), ex = {};
-  T.log.forEach(function(x){ if (x.t === 'card') ex[x.id] = 1; });
+  if (!retake) T.log.forEach(function(x){ if (x.t === 'card') ex[x.id] = 1; });   // v5.19: a retake may show cards again, so the full 35 always fill
   var pk = cparts(nowMs()).key;
   if (!TU.pool || TU.poolKey !== pk + '|' + DATA.length) { TU.pool = deckPool(DATA, nowMs()); TU.poolKey = pk + '|' + DATA.length; }
   if (name === 'retake' && !dials) { var st = tasteStats(T); dials = DECK_DIALS.filter(function(d){ return !st.consistent[d]; }); if (!dials.length) dials = null; }
@@ -9896,7 +10143,7 @@ function resultHTML(){ // the Result (spec §5): hero in the type color, the cha
   h += tasteFitHTML(t.code);   // v5.17a2 (owner): "Does this fit you?"
   if (st.suggestBar) h += '<div class="ty-sugg"><div class="sw-row"><span>Skip bar-centered stuff<small>You passed on ' + st.barNo + ' bar cards</small></span><button class="switch" type="button" data-tk-hard="noBar" aria-pressed="' + !!TASTE.hard.noBar + '" aria-label="Skip bar-centered stuff"></button></div></div>';
   h += '<p class="ty-not"><button class="linkbtn" type="button" data-tk="profile">Not you? Adjust your sliders ›</button></p><p class="ty-learn">Your picks get smarter as you save places.</p>';
-  h += '<button class="ty-cmp" type="button" data-tk="compare">' + glyphSvg('i-people') + '<span><b>Compare with a friend</b><small>They take their own test, you both turn on Plan together, and you get picks for you both.</small></span>' + glyphSvg('i-right', 'i chev') + '</button>';   // v5.18 (owner: "How do I take a test with him?")
+  h += '<button class="ty-cmp" type="button" data-tk="compare">' + glyphSvg('i-people') + '<span><b>Compare with a friend</b><small>They take their own test, you both turn on Blend, and you get your match and picks for you both.</small></span>' + glyphSvg('i-right', 'i chev') + '</button>';   // v5.18 (owner: "How do I take a test with him?")
   h += '</div><div class="ty-foot"><button class="btn-primary" type="button" data-tk="close">Done</button><div class="ty-acts">' +
     '<button type="button" data-tk="tshare">' + glyphSvg('i-share') + 'Share</button><button type="button" data-tk="retake">' + glyphSvg('i-undo') + 'Retake</button><button type="button" data-tk="profile">' + glyphSvg('i-sliders') + 'Adjust</button></div></div></div></div>';
   return h;
@@ -9970,7 +10217,7 @@ function typeShare(){ // the phone's share sheet with the picture when it takes 
   var ty = funType(tasteMine()); if (!ty) return;
   var url = typeShareUrl(ty.code), text = 'I\'m a ' + ty.name + ' (' + ty.tagline + ') on ' + APP_NAME + '. What are you?';
   typeShareImage(ty.id).then(function(blob){
-    var f = null; try { if (blob && typeof File === 'function') f = new File([blob], 'off-grid-' + ty.code.toLowerCase() + '.png', {type:'image/png'}); } catch (e) {}
+    var f = null; try { if (blob && typeof File === 'function') f = new File([blob], typeShareFileName(ty.id), {type:'image/png'}); } catch (e) {}   // v5.19: "off-grid-board-game-bear.png"
     try { if (f && navigator.share && navigator.canShare && navigator.canShare({files:[f]})) return navigator.share({files:[f], title:ty.name, text:text + ' ' + url}).catch(function(){}); } catch (e) {}
     return Platform.share({title:ty.name, text:text, url:url}).then(function(r){ if (r === 'copied') toast('Link copied'); }, function(){ toast('Couldn\'t share here'); });
   });
@@ -10256,6 +10503,10 @@ function bindUI(){
   $('dtScroll').addEventListener('change', function(e){
     if (e.target.id === 'beenDate' && UI.detailId && isKey(e.target.value)) editCheckin(UI.detailId, {date:e.target.value, prec:'day'});
     if (e.target.id === 'beenMonth' && UI.detailId && /^\d{4}-\d{2}$/.test(e.target.value)) editCheckin(UI.detailId, {date:e.target.value + '-01', prec:'month'});   // v5.18
+    if (e.target.id === 'beenReview' && UI.detailId) { var ck0 = checkinOf(UI.detailId), rv = reviewOk(e.target.value); if (ck0 && rv !== (ck0.review || '')) { editCheckin(UI.detailId, {review:rv}); toast(rv ? 'Review saved' : 'Review removed'); } }   // v5.19
+  });
+  $('dtScroll').addEventListener('keydown', function(e){
+    if (e.target && e.target.id === 'beenReview' && e.key === 'Enter') { e.preventDefault(); try { e.target.blur(); } catch (x) {} }   // v5.19: Enter saves (the change event)
   });
   // v5.18 guides: the article layer, the map pins, the phone "Back to the guide" pill, browser Back, Esc, the row arrows
   $('gaScroll').addEventListener('click', gaClick);
@@ -12076,7 +12327,7 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.18 (2026-11-14)');
+    eq('version', VERSION, 'v5.19 (2026-11-14)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -12901,7 +13152,7 @@ function runSelfTest0(){
       Acct.friends = [{user_id:'f1', username:'maya', display_name:'Maya L', status:'accepted'}, {user_id:'f2', username:'jo.k', display_name:'Jo', status:'pending', direction:'in'}];
       TASTE = ext(emptyTaste(), {log:[{t:'card', id:'x', ans:'yes'}]});
       var s = acctSheetHTML('in');
-      ok('signed in: @username, Edit, a sync line, Friends (1 friend + 1 request), What friends see (3 switches), Sign out, Delete account', /@avery\.test/.test(s) && /data-acct="name">Edit/.test(s) && /as-syncw/.test(s) && /1 friend</.test(s) && /aria-label="1 request"/.test(s) && /@jo\.k wants to be friends/.test(s) && /data-v="share_saves" aria-pressed="true"/.test(s) && /data-v="share_checkins" aria-pressed="false"/.test(s) && /data-v="find_by_username"/.test(s) && /Place and month, never the day/.test(s) && /data-acct="signout"/.test(s) && /data-acct="delete">Delete account/.test(s), s.slice(0, 300));
+      ok('signed in: @username, Edit, a sync line, Friends (1 friend + 1 request), What friends see (3 switches), Sign out, Delete account', /@avery\.test/.test(s) && /data-acct="name">Edit/.test(s) && /as-syncw/.test(s) && /1 friend</.test(s) && /aria-label="1 request"/.test(s) && /@jo\.k wants to be friends/.test(s) && /data-v="share_saves" aria-pressed="true"/.test(s) && /data-v="share_checkins" aria-pressed="false"/.test(s) && /data-v="find_by_username"/.test(s) && /Places \+ stars; reviews without your name/.test(s) && /data-acct="signout"/.test(s) && /data-acct="delete">Delete account/.test(s), s.slice(0, 300));
       ok('taste done: Retake and Adjust; no "Take the taste test"', /data-acct="taste-retake"/.test(s) && /data-acct="taste-open">Adjust/.test(s) && !/Take the taste test/.test(s), '');
       ok('the Friends row and "+ Add friend" open the Friends panel; Invite link uses its invite action', (s.match(/data-acct="friends"/g) || []).length >= 2 && /data-acct="invite"/.test(s), '');
       Acct.offline = true;
@@ -13095,6 +13346,77 @@ function runSelfTest0(){
       ok('every real guide id opens as an article', real.every(function(R){ return gaLinkKind(R.g.id) === 'article'; }), '');
     } else ok('real guide files not loaded yet (no data in this run)', true, '');
   });
+  block('v5.19 Blend: match %, sections, tags, share card, Retake (fake friends Avery Test / Jordan Test)', function(){
+    eq('characters: same = 1; Board Game Bear vs Oddity Moth = 0.375 (Energy same, weird has no Vibe = half); Turbo Squirrel vs Gallery Owl = 0.25', [blendTypeSim(2, 2), blendTypeSim(2, 9), blendTypeSim(8, 1), blendTypeSim(0, 2)].join(), '1,0.375,0.25,');
+    function rng(a, b){ var o = []; for (var i = a; i <= b; i++) o.push(i); return o; }
+    var avery = {type:2, top:rng(1, 20), never:[90], saves:[1, 2, 3, 4]}, jordan = {type:2, top:rng(11, 30), never:[], saves:[3, 4, 5, 6]};
+    var m1 = blendMatch(avery, jordan);
+    ok('Avery Test + Jordan Test, same character, half their lists shared, shared saves -> 99% (capped below 100)', m1 && m1.pct === 99 && m1.parts.type === 1 && m1.parts.likes === 1 && m1.parts.saves === 1, JSON.stringify(m1));
+    var a2 = {type:2, top:rng(1, 20), never:[], saves:[]}, j2 = {type:9, top:rng(15, 34), never:[1, 2], saves:[]};
+    var m2 = blendMatch(a2, j2);
+    eq('different characters, 6 of 20 shared, 2 clashes with a "never", no saves -> 54%', m2 && m2.pct + '|' + m2.parts.likes.toFixed(2) + '|' + (m2.parts.saves === null), '54|0.65|true');
+    eq('the match is the same both ways round', blendMatch(j2, a2).pct, m2.pct);
+    var m3 = blendMatch({type:8, top:rng(1, 10)}, {type:1, top:rng(50, 60)});
+    eq('nothing in common + opposite characters -> 10%', m3 && m3.pct, 10);
+    eq('characters alone (no lists, no saves) are not a Blend', blendMatch({type:2, top:[]}, {type:9, top:[]}), null);
+    var mine = {top:[1, 2, 3, 4, 5], never:[9]}, theirs = {top:[4, 5, 6, 7, 9], never:[3]};
+    var sx = blendSections(mine, theirs, '2026-11-14', 'u1'), srt = function(l){ return l.slice().sort(function(a, b){ return a - b; }).join('.'); };
+    eq('sections: both love 4,5 | my pick for them 1,2 (not 3: their "never") | their pick for me 6,7 (not 9: my "never")', srt(sx.both) + ' | ' + srt(sx.you) + ' | ' + srt(sx.them), '4.5 | 1.2 | 6.7');
+    ok('Your Blend mixes all six, each tagged with whose taste it comes from', sx.blend.length === 6 && sx.blend.every(function(x){ return (x.tag === 'both' && (x.sid === 4 || x.sid === 5)) || (x.tag === 'you' && (x.sid === 1 || x.sid === 2)) || (x.tag === 'them' && (x.sid === 6 || x.sid === 7)); }) && sx.blend[0].tag === 'both', JSON.stringify(sx.blend));
+    eq('the same day gives the same Blend (refreshes daily, not on every redraw)', JSON.stringify(blendSections(mine, theirs, '2026-11-14', 'u1')), JSON.stringify(sx));
+    var big = {top:rng(1, 30), never:[]}, big2 = {top:rng(1, 30), never:[]}, days = {};
+    ['2026-11-14', '2026-11-15', '2026-11-16', '2026-11-17'].forEach(function(d){ days[blendSections(big, big2, d, 'u1').both.slice(0, 8).join('.')] = 1; });
+    ok('a new day reshuffles the top picks', Object.keys(days).length > 1, Object.keys(days).join(' / '));
+    var bit = fx({id:'t19-card', name:'Blend place', hours:allDays(['10:00', '22:00'])}), bc = computeItem(bit, at('2026-11-14', '12:00'), CTX);
+    var ch = blendCardHTML(bc, 'both', {me:2, them:9}, {name:'Jordan'}), cy = blendCardHTML(bc, 'you', {me:2, them:9}, {name:'Jordan'}), ct = blendCardHTML(bc, 'them', {me:2, them:0}, {name:'Jordan'});
+    ok('card tags: both = two small characters; "Your pick for Jordan" = mine; "Jordan\'s pick for you" = theirs (a letter when no character)', /bl-who bl-both" role="img" aria-label="You both"/.test(ch) && (ch.match(/class="ty-av xs"/g) || []).length === 2 && /aria-label="Your pick for Jordan"/.test(cy) && (cy.match(/class="ty-av xs"/g) || []).length === 1 && /aria-label="Jordan&#39;s pick for you"|aria-label="Jordan's pick for you"/.test(ct) && /bl-ini xs[^>]*>J</.test(ct) && /<\/span><\/li>$/.test(ch), ct.slice(-220));
+    eq('share text', blendShareText(78), 'Our ' + APP_NAME + ' Blend: 78%');
+    eq('share file names use the character names, never the type code', typeShareFileName(2) + ' | ' + blendShareFileName(2, 9), 'off-grid-board-game-bear.png | off-grid-blend-board-game-bear-oddity-moth.png');
+    ok('the character share no longer builds its file name from the code', String(typeShare).indexOf('code.toLowerCase') < 0 && String(typeShare).indexOf('typeShareFileName') > 0, '');
+    ok('the Blend share link carries no names, lists or ids', String(blendShare).indexOf('url = SITE_URL') > 0 && String(blendShareImage).indexOf('rec.name') < 0, '');
+    ok('Retake = the same 35-answer main deck (swipes + would-you-rather)', deckNameFor('retake') === 'main' && deckNameFor('mini') === 'mini' && DECK_CFG.main.max === 35 && String(tasteStartDeck).indexOf('deckNameFor(name)') > 0 && deckRecipe({cfg:DECK_CFG[deckNameFor('retake')]}) !== null, '');
+    eq('W_M stays 0.30', W_M, 0.3);
+    var cpd = CP.demo, cpm = CP.missing; CP.demo = true; CP.missing = true;
+    var off = coupleBlockHTML({live:true, uid:'u9', name:'Jordan', key:'@jordan.test'}); CP.demo = cpd; CP.missing = cpm;
+    ok('server table missing: a visible "Blend isn\'t switched on yet" (never blank, never a spinner)', /Blend isn't switched on yet/.test(off) && off.indexOf('loading') < 0, off);
+  });
+  block('v5.19 reviews and friends\' stars (anonymous reviews, undated visits count)', function(){
+    var long = new Array(30).join('abcdef ');
+    eq('review: one line, trimmed, at most 140', [reviewOk('  Great\n date  spot '), reviewOk(long).length <= 140, reviewOk(5), reviewOk('')].join('|'), 'Great date spot|true||');
+    var L = withCheckin([], 'pa-r', {date:'2026-11-10'}, 't1'); L = withCheckin(L, 'pa-r', {review:'Fun night'}, 't2');
+    ok('a review is kept on the check-in and sent in the account row', L[0].review === 'Fun night' && ckRow(L[0], false).review === 'Fun night' && ckRow(L[0], true).review === null, JSON.stringify(L));
+    L = withCheckin(L, 'pa-r', {review:''}, 't3');
+    ok('clearing it removes the key (old records unchanged) and sends null', !('review' in L[0]) && ckRow(L[0], false).review === null, JSON.stringify(L));
+    var t1 = '2026-11-14T10:00:00.000Z', t2 = '2026-11-14T11:00:00.000Z';
+    var g1 = mergeCheckins([], {}, [{item_id:'p1', visit_date:'2026-11-01', date_prec:'day', rating:4, review:'From my laptop', deleted:false, updated_at:t1}], t2);
+    eq('a review from another device comes back', g1.list[0].review, 'From my laptop');
+    var g2 = mergeCheckins([{id:'p1', date:'2026-11-01', rating:4, review:'On this phone', updated_at:t1}], {}, [{item_id:'p1', visit_date:'2026-11-01', date_prec:'day', rating:5, deleted:false, updated_at:t2}], t2);
+    ok('account without the review column (newer row wins): this phone\'s review is kept', g2.list[0].rating === 5 && g2.list[0].review === 'On this phone', JSON.stringify(g2.list));
+    var g3 = mergeCheckins([{id:'p1', date:'2026-11-01', rating:4, review:'New text', updated_at:t1}], {}, [{item_id:'p1', visit_date:'2026-11-01', date_prec:'day', rating:4, review:'Old text', deleted:false, updated_at:t1}], t2);
+    ok('same time, different review: this phone wins and is pushed', g3.list[0].review === 'New text' && g3.push.length === 1, JSON.stringify(g3));
+    var bx = beenBoxHTML({id:'x', date:'2026-11-01', rating:4, review:'Fun'}, '2026-11-14');
+    ok('been box: a one-line review box (140) under the stars + the note', /id="beenReview" type="text" maxlength="140"/.test(bx) && /value="Fun"/.test(bx) && bx.indexOf('Friends who you share check-ins with can see your stars and review') > 0 && bx.indexOf('bb-stars') < bx.indexOf('beenReview') && bx.indexOf('beenReview') < bx.indexOf('bb-r2'), bx.slice(0, 300));
+    ok('one switch for undated visits, on (owner 2026-11-14)', FRIEND_UNDATED === true, '');
+    var lv = liveFrom([{status:'accepted', user_id:'u1', username:'jordan.test', display_name:'Jordan Test', share_saves:true, share_checkins:true, fun_type:9}], [], [{user_id:'u1', item_id:'a', sid:5, month:'2026-10', rating:4, review:null}, {user_id:'u1', item_id:'b', sid:6, month:null, rating:null, review:null}, {user_id:'u1', item_id:'c', sid:7, month:null, rating:-1, review:'should never show'}], {});
+    ok('friend_checkins rows (as run): stars kept, undated visits kept, NEVER a review on a named friend', lv.length === 1 && lv[0].funType === 9 && lv[0].been.length === 3 && lv[0].been[0].stars === 4 && !lv[0].been[1].stars && lv[0].been[2].stars === 1 && lv[0].been.every(function(b){ return !('review' in b); }), JSON.stringify(lv[0].been));
+    var fp = friendProfileHTML(ext(lv[0], {sids:[]}), 0);
+    ok('friend page: character, "3 visited", no month', fp.indexOf('Oddity Moth') > 0 && /<b>3<\/b>visited/.test(fp) && !/Oct|2026/.test(fp), fp.slice(0, 200));
+    var rit = fx({id:'t19-row', name:'Row place', hours:allDays(['10:00', '22:00'])}), rc = computeItem(rit, at('2026-11-14', '12:00'), CTX), rh = rowHTML(rc, {fbeen:'Visited', fstars:4});
+    ok('friend page rows: "Visited" + their stars, no month', rh.indexOf('Visited') > 0 && rh.indexOf('★★★★☆') > 0 && !/Been ·/.test(rh), rh.slice(0, 200));
+    eq('friend_ratings rows -> count + average (numeric may come as text)', JSON.stringify(friendRatingsParse([{item_id:'a', sid:5, n:3, avg_stars:'4.33'}, {item_id:'b', sid:null, n:2, avg_stars:3.5}, {item_id:'c', sid:8, n:0, avg_stars:4}, {item_id:'d', sid:9, n:1, avg_stars:7}], {b:6})), '{"5":{"n":3,"avg":4.3},"6":{"n":2,"avg":3.5}}');
+    eq('friend_reviews rows -> anonymous quotes (no name, no id)', JSON.stringify(friendReviewsParse([{item_id:'a', sid:5, rating:5, review:' Great date spot '}, {item_id:'a', sid:5, rating:null, review:'Book ahead'}, {item_id:'b', sid:6, rating:4, review:'  '}], {})), '{"5":[{"stars":5,"review":"Great date spot"},{"stars":0,"review":"Book ahead"}]}');
+    eq('average text: "★ 4.3 · 3 friends", "★ 4 · 1 friend", nothing when none', [friendAvgText({n:3, avg:4.3}), friendAvgText({n:1, avg:4}), friendAvgText({n:0, avg:0}), friendAvgText(null)].join(' | '), '★ 4.3 · 3 friends | ★ 4 · 1 friend |  | ');
+    eq('average from shared stars when friend_ratings() isn\'t there', JSON.stringify(friendRatingsFrom([{been:[{sid:5, stars:5}, {sid:6}]}, {been:[{sid:5, stars:4}]}])), '{"5":{"n":2,"avg":4.5}}');
+    var KF = {by:FRR.by, rv:FRR.rv, cache:FRR.cache, live:FRR.live}, KL = LIVE, KS = ID_SID['t19-card'];
+    try {
+      ID_SID['t19-card'] = 99991; FRR.by = {99991:{n:2, avg:4.5}}; FRR.rv = {99991:[{stars:5, review:'Great date spot'}]}; FRR.cache = null;
+      LIVE = [{key:'@jordan.test', uid:'u1', live:true, name:'Jordan', username:'jordan.test', been:[{sid:99991, month:'', stars:5}], sids:[]}];
+      var it2 = {id:'t19-card'}, say = friendSayHTML(it2), card = cardHTML(computeItem(fx({id:'t19-card', name:'Blend place', hours:allDays(['10:00', '22:00'])}), at('2026-11-14', '12:00'), CTX));
+      ok('place page: "4.5 from 2 friends" + "What friends say" quote with stars, and no friend\'s name anywhere', /<b>4\.5<\/b> from 2 friends/.test(say) && /What friends say/.test(say) && /★★★★★<\/span> <q>Great date spot<\/q>/.test(say) && say.indexOf('Jordan') < 0, say);
+      ok('place card: "★ 4.5 · 2 friends"', card.indexOf('<p class="c3-fr">★ 4.5 · 2 friends</p>') > 0, card.slice(-400));
+    } finally { FRR.by = KF.by; FRR.rv = KF.rv; FRR.cache = KF.cache; FRR.live = KF.live; LIVE = KL; if (KS === undefined) delete ID_SID['t19-card']; else ID_SID['t19-card'] = KS; }
+    ok('no friend\'s name is ever printed next to a review (detail code has no f.name / w.name)', String(friendSayHTML).indexOf('.name') < 0 && String(friendReviewsParse).indexOf('user_id') < 0, '');
+  });
   block('v5.18 feedback: been date (day / month / don\'t remember), one source link, friend profile, Plan together, Neither', function(){
     var tk = '2026-11-14';
     eq('been precision patches: month -> the 1st; none -> no date; back to day from this month -> today', JSON.stringify([beenPrecPatch({date:'2026-10-23'}, 'month', tk), beenPrecPatch({date:'2026-10-23'}, 'none', tk), beenPrecPatch({date:'2026-11-01', prec:'month'}, 'day', tk), beenPrecPatch({date:'', prec:'none'}, 'day', tk)]), '[{"date":"2026-10-01","prec":"month"},{"date":"","prec":"none"},{"date":"2026-11-14","prec":"day"},{"date":"2026-11-14","prec":"day"}]');
@@ -13118,7 +13440,7 @@ function runSelfTest0(){
     var lv = liveFrom([{status:'accepted', user_id:'u1', username:'avery', display_name:'Avery Test', share_saves:true, share_checkins:false, fun_type:3}], [{user_id:'u1', sid:5}], [], {});
     ok('liveFrom keeps the friend\'s character number (when the server sends fun_type) and the been switch', lv.length === 1 && lv[0].funType === 3 && lv[0].shareBeen === false && lv[0].sids.length === 1, JSON.stringify(lv[0]));
     var fp = friendProfileHTML(ext(lv[0], {been:[{sid:5, month:'2026-10'}]}), 1);
-    ok('friend profile: character + type name, saved / been / plan together counts, months been', /class="ty-av fp-av/.test(fp) && fp.indexOf(TYPES[2].name) > 0 && /<b>1<\/b>saved/.test(fp) && /<b>1<\/b>been/.test(fp) && /plan together/.test(fp) && /Oct <small>1 place/.test(fp), fp.slice(0, 200));
+    ok('friend profile: character + type name, saved / visited / blend counts; v5.19: no months (owner: month/year doesn\'t matter)', /class="ty-av fp-av/.test(fp) && fp.indexOf(TYPES[2].name) > 0 && /<b>1<\/b>saved/.test(fp) && /<b>1<\/b>visited/.test(fp) && /<\/b>blend/.test(fp) && !/Oct/.test(fp) && fp.indexOf('fp-months') < 0, fp.slice(0, 200));
     var codeRe = new RegExp('>\\s*(' + TYPES.map(function(t){ return t.code; }).join('|') + ')\\s*<|\\((' + TYPES.map(function(t){ return t.code; }).join('|') + ')\\)');
     ok('v5.18: no 3-letter type code in what she sees (Result badge, account card, taste header, friend profile, share text and image)', String(resultHTML).indexOf('ty-code') < 0 && String(acctTasteHTML).indexOf('as-code') < 0 && String(typeShareImage).indexOf("' · ' + t.code") < 0 && String(typeShare).indexOf("' + ty.code + ') on") < 0 && !codeRe.test(fp) && fp.indexOf(TYPES[2].tagline) > 0, '');
     var cpOn = CP.on, cpTh = CP.theirs; CP.on = {u1:true}; CP.theirs = {};
@@ -13332,8 +13654,41 @@ function runSelfTestAsync(){ // checks that need promises or the map files
         eq('real data v5.16b: test finished -> no taste card', tasteCardHTML(), '');
       } finally { TASTE = KT2; }
     } catch (e) { ok('real data v5.16b: Opening soon check crashed', false, e && e.message); }
-    return acctSyncFailChecks(R).then(function(){ return R; });
+    return acctSyncFailChecks(R).then(function(){ return blendServerChecks(R); }).then(function(){ return R; });
   });
+}
+function blendServerChecks(R){ // v5.19: the blend.sql functions as run (2026-11-14), through a MOCKED client with their exact row shapes. No real account, nothing sent.
+  function ok(name, cond, info){ R.push({ok:!!cond, name:name, info: cond ? '' : (info || '')}); }
+  var K = {cl:Acct.client, user:Acct.user, demo:Acct.demo, nr:Acct.noReview, frr:ext(FRR, {})};
+  function restore(){ Acct.client = K.cl; Acct.user = K.user; Acct.demo = K.demo; Acct.noReview = K.nr; Object.keys(K.frr).forEach(function(k){ FRR[k] = K.frr[k]; }); }
+  var calls = [];
+  var live = {rpc:function(fn){ calls.push(fn);
+    if (fn === 'friend_ratings') return Promise.resolve({data:[{item_id:'mock-a', sid:41, n:3, avg_stars:4.3}, {item_id:'mock-b', sid:42, n:1, avg_stars:'5.0'}], error:null});
+    if (fn === 'friend_reviews') return Promise.resolve({data:[{item_id:'mock-a', sid:41, rating:5, review:'Great date spot'}, {item_id:'mock-a', sid:41, rating:null, review:'Go early'}], error:null});
+    return Promise.resolve({data:null, error:{code:'PGRST202', message:'not mocked'}}); }};
+  var gone = {rpc:function(fn){ return Promise.resolve({data:null, error:{code:'PGRST202', message:'Could not find the function public.' + fn + ' without parameters in the schema cache'}}); }};
+  var sent = [];
+  var noCol = {from:function(){ return {
+    select:function(cols){ return {eq:function(){ return Promise.resolve(/review/.test(cols) ? {data:null, error:{code:'42703', message:'column checkins.review does not exist'}} : {data:[{item_id:'p1', visit_date:null, date_prec:'day', rating:4, deleted:false, updated_at:'2026-11-14T10:00:00.000Z'}], error:null}); }}; },
+    upsert:function(rows){ sent.push(rows); return Promise.resolve(rows.some(function(r){ return 'review' in r; }) ? {data:null, error:{code:'PGRST204', message:'Could not find the \'review\' column of \'checkins\' in the schema cache'}} : {data:null, error:null}); } }; }};
+  try { Acct.demo = false; Acct.user = {id:'t-blend'}; Acct.client = live; FRR.missing = false; FRR.rvMissing = false; FRR.by = {}; FRR.rv = {}; }
+  catch (e) { restore(); ok('v5.19 mocked server check crashed', false, e && e.message); return Promise.resolve(); }
+  return friendRatingsSync(true).then(function(v){
+    ok('v5.19 mocked friend_ratings + friend_reviews: averages and anonymous quotes load', v === true && calls.join() === 'friend_ratings,friend_reviews' && FRR.by[41].n === 3 && FRR.by[41].avg === 4.3 && FRR.by[42].avg === 5 && FRR.rv[41].length === 2 && FRR.rv[41][0].review === 'Great date spot' && FRR.rv[41][1].stars === 0, JSON.stringify([calls, FRR.by, FRR.rv]));
+    Acct.client = gone; FRR.missing = false; FRR.rvMissing = false;
+    return friendRatingsSync(true);
+  }).then(function(v){
+    ok('v5.19 functions missing on the server: the sync ends (false), marks them missing, no endless loading', v === false && FRR.missing === true && FRR.rvMissing === true, JSON.stringify({v:v, m:FRR.missing, r:FRR.rvMissing}));
+    Acct.client = noCol; Acct.noReview = false;
+    return ckFetch(noCol, 't-blend');
+  }).then(function(rows){
+    ok('v5.19 checkins without the review column: read retries without it and works', Acct.noReview === true && rows && rows.length === 1 && rows[0].item_id === 'p1', JSON.stringify(rows));
+    Acct.noReview = false; sent = [];
+    return ckUpsert(noCol, [{user_id:'t-blend', item_id:'p1', rating:4, review:'Fun', deleted:false}]);
+  }).then(function(){
+    ok('v5.19 ... and a write retries without the review (it stays on this phone)', Acct.noReview === true && sent.length === 2 && 'review' in sent[0][0] && !('review' in sent[1][0]), JSON.stringify(sent));
+    restore();
+  }, function(e){ restore(); ok('v5.19 mocked server check failed', false, e && (e.message || JSON.stringify(e))); });
 }
 function acctSyncFailChecks(R){ // v5.16b: a sync that hangs or fails must end on "Can't sync · Tap to retry" (never a stuck "Syncing")
   function ok(name, cond, info){ R.push({ok:!!cond, name:name, info: cond ? '' : (info || '')}); }
@@ -13542,6 +13897,9 @@ function showSelfTest(){
   return first;
 }
 function hideSelfTest(){ $('selftest').hidden = true; if (/selftest/.test(location.hash)) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { try { location.hash = ''; } catch (e2) {} } } }
+function shotScrollTo(el){ // v5.19 screenshot hooks: scroll only the panel that holds el (scrollIntoView also moved the page)
+  try { for (var p = el.parentNode; p && p.nodeType === 1; p = p.parentNode) { var oy = getComputedStyle(p).overflowY; if ((oy === 'auto' || oy === 'scroll') && p.scrollHeight > p.clientHeight) { p.scrollTop += el.getBoundingClientRect().top - p.getBoundingClientRect().top - 8; break; } } } catch (e) {}
+}
 function readHash(){
   var hsh = location.hash || '';
   if (/^#w_/.test(hsh)) { if (mapEl) wlOpen(hsh, 'hash'); return; }
@@ -13617,6 +13975,9 @@ function readHash(){
   if (/(^|[#&])tip($|&)/.test(hsh) && mapEl) openTip();
   var gdm = /(?:^#|&)guide=([a-z0-9-]+)/.exec(hsh); if (gdm && mapEl && GA.open !== gdm[1]) gaDeepLink(gdm[1]);   // v5.18: an article (digits allowed), else the old v5.10 list, else a toast
   if (/(?:^#|&)fprof=1/.test(hsh) && mapEl) { var tryFp = function(n){ if (DATA_LOADED && Acct.demo && LIVE.length) openFriendView(LIVE[0].key); else if (n < 60) setTimeout(function(){ tryFp(n + 1); }, 250); }; tryFp(0); }   // screenshot hook (with #acctdemo=1): the first made-up friend's profile
+  var frs = /(?:^#|&)frscroll=(blend|visited|both)/.exec(hsh); if (frs && mapEl) { var tryFs = function(n){ var el = $('pFriendBody') && $('pFriendBody').querySelector(frs[1] === 'blend' ? '.bl-hero' : frs[1] === 'both' ? '.cp-cards' : '.fold'); if (el && !$('pFriend').hidden) { shotScrollTo(el); } else if (n < 80) setTimeout(function(){ tryFs(n + 1); }, 250); }; tryFs(0); }   // v5.19 screenshot hook (with #acctdemo=1&cpdemo=1&fprof=1)
+  var dts = /(?:^#|&)dtscroll=(been|frr)/.exec(hsh); if (dts && mapEl) { var tryDs = function(n){ var el = $('dtScroll') && $('dtScroll').querySelector(dts[1] === 'been' ? '.been-box' : '.dt-frr'); if (el && UI.detailId) { shotScrollTo(el); } else if (n < 80) setTimeout(function(){ tryDs(n + 1); }, 250); }; tryDs(0); }   // v5.19 screenshot hook
+  if (/homescroll=blend/.test(hsh) && mapEl) { var tryHb = function(n){ var s = document.querySelector('#homeRoot .cp-h'); if (s) { shotScrollTo(s); } else if (n < 80) setTimeout(function(){ tryHb(n + 1); }, 250); }; tryHb(0); }   // v5.19 screenshot hook
   if (/homescroll=guides/.test(hsh) && mapEl) { var tryHs = function(n){ var s = document.querySelector('#homeRoot .ga-s'), hm = $('home'); if (s && hm) hm.scrollTop = Math.max(0, s.offsetTop - 120); else if (n < 60) setTimeout(function(){ tryHs(n + 1); }, 200); }; tryHs(0); }   // screenshot hook
   var gdx = /gascroll=(\d+)/.exec(hsh); if (gdx && mapEl) { var tryGs = function(n){ var sc = $('gaScroll'); if (GA.open && sc && sc.scrollHeight > 200) sc.scrollTop = +gdx[1] >= 9999 ? sc.scrollHeight : +gdx[1]; else if (n < 60) setTimeout(function(){ tryGs(n + 1); }, 200); }; tryGs(0); }   // screenshot hook: #guide=x&gascroll=900 (9999 = the end)
   if (/selftest/.test(hsh)) showSelfTest();
@@ -13775,6 +14136,8 @@ window.__cff = {
   version: VERSION, appName: APP_NAME,
   guides: function(){ return {loaded:GA.loaded, src:ext(GA.src, {}), ids:GA.all.map(function(g){ return g.id; }), open:GA.open}; }, gaResolve: gaResolve, gaResolveId: gaResolveId, gaPriceText: gaPriceText, gaHop: gaHop, gaMerge: gaMerge, gaWindow: gaWindow, gaLinkKind: gaLinkKind, openArticle: openArticle, closeArticle: closeArticle,   // v5.18
   beenPrecPatch: beenPrecPatch, oneSource: oneSource, friendBeenMonths: friendBeenMonths, coupleStatus: coupleStatus,   // v5.18
+  blendMatch: blendMatch, blendTypeSim: blendTypeSim, blendSections: blendSections, blendShareText: blendShareText, typeShareFileName: typeShareFileName, blendShareFileName: blendShareFileName, deckNameFor: deckNameFor,   // v5.19
+  reviewOk: reviewOk, friendRatingsParse: friendRatingsParse, friendReviewsParse: friendReviewsParse, friendRatingsFrom: friendRatingsFrom, friendAvgText: friendAvgText, FRIEND_UNDATED: FRIEND_UNDATED,   // v5.19
   popNext: popNext, popTestHash: popTestHash, acctBtnModel: acctBtnModel, popState: function(){ return {cur:POPS.cur, off:POPS.off, shown:ext(POPS.shown, {}), log:POPS.log.slice()}; },   // v5.14
   dealState: dealState, dealOnDay: dealOnDay, dealDayOk: dealDayOk, pollEncode: pollEncode, pollDecode: pollDecode, pollTally: pollTally, coupleMine: coupleMine, couplePicks: couplePicks, coupleSig: coupleSig, cpSids: cpSids, couplePicksFor: couplePicksFor,   // v5.13
   dev: {openFilters: function(){ openFilters(); }, showView: function(v){ showView(v); }, pollStart: function(){ pollStart(); }, openFriendView: function(k){ openFriendView(k); }, openLists: function(t){ openLists(t); }, save: function(ids){ savedIds = ids.slice(); refresh(); }},   // v5.13 screenshot harness (screens only, nothing sent)
