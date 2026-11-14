@@ -1760,14 +1760,7 @@
         "price_note":  "Free",
         "duration_minutes":  null,
         "hours":  null,
-        "hours_note":  "Ceremony starts 18:00; tree illumination about 18:30, then fireworks; end time not published. Tree then stays lit through 2027-01-10.",
         "season":  null,
-        "event_dates":  [
-                            {
-                                "start":  "2026-11-20T18:00",
-                                "end":  null
-                            }
-                        ],
         "booking":  "walk-in",
         "age_note":  "All ages",
         "phone":  "",
@@ -1778,11 +1771,6 @@
                             "https://news.wttw.com/2026/11/02/majestic-norway-spruce-went-sapling-pot-chicago-s-2026-christmas-tree",
                             "https://www.choosechicago.com/?p=76316"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://www.chicago.gov/city/en/depts/dca/supp_info/millennium_park_tree.html"
-                     },
         "closed_dates":  [
 
                          ],
@@ -1822,11 +1810,23 @@
                              }
                          ],
         "description":  "The city\u0027s 113th official Christmas tree lighting in Millennium Park: a ceremony on the main stage on Washington Street by the Chicago Cultural Center, the tree lighting up, then fireworks, with giant screens around the park. WTTW reports this year\u0027s tree is a nearly 50-foot Norway spruce.",
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-20T17:00",
+                                "end":  "2026-11-20T19:00"
+                            }
+                        ],
+        "hours_note":  "Gates open 3 pm on Monroe and Randolph. Pre-show from 5 pm, lighting ceremony at 6 pm with fireworks. Security bag checks, and entry can close early if the park is full. The tree stays lit through Jan 10.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicago.gov/city/en/depts/dca/supp_info/millennium_park_tree.html"
+                     },
         "photos":  [
                        {
                            "file":  "photos/ev-chicago-christmas-tree-lighting-2026-1.jpg",
-                           "credit":  "Choose Chicago",
-                           "page_url":  "https://www.choosechicago.com/?p=76316"
+                           "credit":  "City of Chicago DCASE",
+                           "page_url":  "https://www.chicago.gov/city/en/depts/dca/supp_info/millennium_park_tree.html"
                        }
                    ]
     },
@@ -40060,6 +40060,2175 @@
                            "credit":  "VISIT Lake Geneva website",
                            "page_url":  "https://www.visitlakegeneva.com/things-to-do/shore-path/"
                        }
+                   ]
+    },
+    {
+        "id":  "ps-lincoln-park",
+        "name":  "Lincoln Park (the lakefront park)",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "friends",
+                     "solo",
+                     "outdoor",
+                     "nature",
+                     "walk",
+                     "lake-view",
+                     "skyline"
+                 ],
+        "hook":  "Lakefront walk past ponds, beaches and statues",
+        "description":  "Chicago\u0027s biggest park, a 1,188-acre ribbon of green along the lake from Streeterville up to Edgewater. Wander between lagoons, beaches, the zoo, the conservatory and famous statues, with the skyline always in view.",
+        "highlights":  [
+                           "About 1,188 acres along the lakefront",
+                           "Runs from Ohio Street Beach north to Ardmore Ave",
+                           "Holds the zoo, conservatory, Nature Museum, North Pond and the Lily Pool",
+                           "North Avenue and Oak Street beaches, a rowing canal and Theatre on the Lake",
+                           "Statues of Lincoln and General Grant"
+                       ],
+        "address":  "500-5700 N. Lake Shore Drive, Chicago, IL 60614",
+        "neighborhood":  "Lincoln Park / lakefront",
+        "lat":  41.919618782554,
+        "lng":  -87.635815143585,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  90,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Park open 6 am to 11 pm every day.",
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "312-742-7726",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-abraham-park",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-abraham-park"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-abraham-park"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-lincoln-park-1.jpg",
+                           "credit":  "Chicago Park District website",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-abraham-park"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-north-pond-nature-sanctuary",
+        "name":  "North Pond Nature Sanctuary (Lincoln Park)",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "solo",
+                     "outdoor",
+                     "nature",
+                     "birds",
+                     "walk",
+                     "skyline",
+                     "quiet"
+                 ],
+        "hook":  "Loop the pond for a skyline-over-water view",
+        "description":  "A 13-acre restored pond, wetland and prairie tucked into Lincoln Park, with a path all the way around and one of the best skyline-over-water views in the city. A stop on the lakefront bird flyway, so it is good for spotting ducks and migrating birds.",
+        "highlights":  [
+                           "13 acres of pond, wetland and prairie",
+                           "Paved and crushed-gravel loop path",
+                           "Birds, especially in spring and fall migration",
+                           "Site of the 2000 Urban Conservation Treaty for Migratory Birds"
+                       ],
+        "address":  "2610 N. Cannon Dr., Chicago, IL 60614",
+        "neighborhood":  "Lincoln Park",
+        "lat":  41.928606736382,
+        "lng":  -87.637628806686,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  45,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:50",
+                                      "16:45"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:50",
+                                      "16:45"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:50",
+                                      "16:45"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:50",
+                                      "16:45"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:50",
+                                      "16:45"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:50",
+                                      "16:45"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:50",
+                                      "16:45"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Open dawn to dusk every day.",
+        "hours_valid_to":  "2027-01-05",
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-park-north-pond",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-park-north-pond"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-park-north-pond"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-north-pond-nature-sanctuary-1.jpg",
+                           "credit":  "Chicago Park District website",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-park-north-pond"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-maggie-daley-park",
+        "name":  "Maggie Daley Park",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "friends",
+                     "outdoor",
+                     "skyline",
+                     "climbing",
+                     "winter"
+                 ],
+        "hook":  "Skate the ribbon, then wander the park",
+        "description":  "A playful 20-acre park next to Millennium Park, with rolling paths, a giant climbing wall, mini golf and, in winter, a skating ribbon that loops through the trees. Walk over the BP Bridge from Millennium Park for a full downtown outing.",
+        "highlights":  [
+                           "20 acres, part of Grant Park",
+                           "Climbing wall, mini golf, playground and gardens",
+                           "Winter ice skating ribbon (separate listing)",
+                           "Linked to Millennium Park by the BP Pedestrian Bridge"
+                       ],
+        "address":  "337 E. Randolph St., Chicago, IL 60601",
+        "neighborhood":  "The Loop",
+        "lat":  41.883042719189,
+        "lng":  -87.618396878242,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  60,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "21:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Park open 6 am to 9 pm every day.",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  null,
+                       "note":  "Skating ribbon season Nov 13, 2026 to Mar 7, 2027 (tickets needed, separate listing). The ribbon is open on Thanksgiving and Christmas Day."
+                   },
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "312-742-3918",
+        "website":  "https://maggiedaleypark.com/",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/maggie-daley-park",
+                            "https://www.maggiedaleypark.com/about/rules-regulations",
+                            "https://www.chicagoparkdistrict.com/holiday-schedule"
+                        ],
+        "verified":  {
+                         "status":  "conflicting",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/maggie-daley-park"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-maggie-daley-park-1.jpg",
+                           "credit":  "Chicago Park District website",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/maggie-daley-park"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-grant-park",
+        "name":  "Grant Park and Buckingham Fountain",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "friends",
+                     "solo",
+                     "outdoor",
+                     "skyline",
+                     "walk",
+                     "lake-view"
+                 ],
+        "hook":  "Stroll Chicago\u0027s front yard to Buckingham Fountain",
+        "description":  "\"Chicago\u0027s Front Yard\": 313 acres of lawns, gardens and promenades between Michigan Avenue and the lake, centered on Buckingham Fountain. Great for a long downtown walk that strings together the fountain, the skyline and the Museum Campus.",
+        "highlights":  [
+                           "About 313 acres from Randolph St. to Roosevelt Rd.",
+                           "Buckingham Fountain, a skate park and gardens",
+                           "Contains Maggie Daley Park and borders the Art Institute and Museum Campus"
+                       ],
+        "address":  "331 E. Randolph St. (Columbus Drive), Chicago, IL 60601",
+        "neighborhood":  "The Loop",
+        "lat":  41.873838269165,
+        "lng":  -87.619189137449,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  60,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Park open 6 am to 11 pm every day.",
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "312-742-3918",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/grant-ulysses-park",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/grant-ulysses-park"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/grant-ulysses-park"
+                     },
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  null,
+                       "note":  "Buckingham Fountain is off for the season."
+                   },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-grant-park-1.jpg",
+                           "credit":  "Chicago Park District website",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/grant-ulysses-park"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-millennium-park",
+        "name":  "Millennium Park",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "friends",
+                     "solo",
+                     "outdoor",
+                     "skyline",
+                     "art",
+                     "winter"
+                 ],
+        "hook":  "See the Bean, the Crown Fountain and holiday lights",
+        "description":  "Downtown\u0027s showpiece park, packed with landmarks: Cloud Gate (the Bean), Crown Fountain, the Pritzker Pavilion, Lurie Garden and the BP Bridge. Events run all year, and in winter it adds the city\u0027s Christmas tree and an ice rink.",
+        "highlights":  [
+                           "Cloud Gate, Crown Fountain, Pritzker Pavilion, Lurie Garden",
+                           "Free admission",
+                           "Tree Lighting Ceremony Fri Nov 20, 2026 at 6 pm",
+                           "Welcome Center 9 am-5 pm off season"
+                       ],
+        "address":  "201 E. Randolph St., Chicago, IL 60601",
+        "neighborhood":  "The Loop",
+        "lat":  41.8825754,
+        "lng":  -87.6225361,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  60,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Open daily 6 am to 11 pm. Restrooms under the Pritzker Pavilion are closed for construction; use the Park Shop building.",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  null,
+                       "note":  "Winter: the city Christmas tree is lit Nov 20 to Jan 10, and the McCormick Tribune Ice Rink is open Nov 20 to Jan 31 (separate listing)."
+                   },
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "",
+        "website":  "https://www.chicago.gov/city/en/depts/dca/supp_info/millennium_park.html",
+        "source_urls":  [
+                            "https://www.chicago.gov/city/en/depts/dca/supp_info/millennium_park.html",
+                            "https://www.chicago.gov/city/en/depts/dca/supp_info/millennium_park_holiday.html"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicago.gov/city/en/depts/dca/supp_info/millennium_park.html"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-millennium-park-1.jpg",
+                           "credit":  "City of Chicago (DCASE) website",
+                           "page_url":  "https://www.chicago.gov/city/en/depts/dca/supp_info/millennium_park.html"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-lakefront-trail",
+        "name":  "Lakefront Trail",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "friends",
+                     "solo",
+                     "outdoor",
+                     "walk",
+                     "bike",
+                     "run",
+                     "lake-view",
+                     "skyline"
+                 ],
+        "hook":  "Winter lakefront walk or bike ride",
+        "description":  "An 18-mile path hugging Lake Michigan from Ardmore Ave. down to 71st St., with separate lanes for walkers and bikes. Hop on anywhere for a lake-and-skyline walk, run or bike ride, the most Chicago way to spend an hour outside.",
+        "highlights":  [
+                           "Runs from Ardmore Ave. (north) to 71st St. (south)",
+                           "Separate 18-mile bike trail and 18.5-mile pedestrian trail since 2018",
+                           "Many access points; bike rentals nearby",
+                           "Sections close briefly for repairs or bad weather"
+                       ],
+        "address":  "Along the lakefront from Ardmore Ave. to 71st St. (example access: North Avenue Beach, 1601 N. Lake Shore Dr.), Chicago, IL",
+        "neighborhood":  "Lakefront (citywide)",
+        "lat":  41.914008062282,
+        "lng":  -87.624638462439,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  60,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Open during park hours, 6 am to 11 pm. Some sections close for repairs this fall and winter, and stretches can close in storms.",
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "",
+        "website":  "https://www.chicagoparkdistrict.com/lakefront-trail",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/lakefront-trail",
+                            "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-abraham-park"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/lakefront-trail"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-lakefront-trail-1.jpg",
+                           "credit":  "Chicago Park District website",
+                           "page_url":  "https://www.chicagoparkdistrict.com/lakefront-trail"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-humboldt-park",
+        "name":  "Humboldt Park (lagoon and boathouse)",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "friends",
+                     "outdoor",
+                     "walk",
+                     "nature",
+                     "architecture"
+                 ],
+        "hook":  "Walk the lagoon to the historic boathouse",
+        "description":  "A 197-acre historic park on the Northwest Side with lagoons, a historic boathouse and an inland beach. Its landscapes are by Jens Jensen, so it is a lovely, less touristy place for a lagoon-side stroll.",
+        "highlights":  [
+                           "About 197 acres",
+                           "Historic lagoons and boathouse",
+                           "Inland beach in summer",
+                           "Landscape design by Jens Jensen",
+                           "Free audio tour offered by the Park District"
+                       ],
+        "address":  "1440 N. Humboldt Blvd., Chicago, IL 60622",
+        "neighborhood":  "Humboldt Park",
+        "lat":  41.907065,
+        "lng":  -87.7030079,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  60,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Park open 6 am to 11 pm every day.",
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "312-742-7549",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/humboldt-alexander-von-park",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/humboldt-alexander-von-park",
+                            "https://www.chicagoparkdistrict.com/featured-capital-projects"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/humboldt-alexander-von-park"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-humboldt-park-1.jpg",
+                           "credit":  "Chicago Park District website",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/humboldt-alexander-von-park"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-garfield-park",
+        "name":  "Garfield Park (the park)",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "outdoor",
+                     "walk",
+                     "architecture",
+                     "nature"
+                 ],
+        "hook":  "Lagoon walk past the Golden Dome",
+        "description":  "A 173-acre historic West Side park with a fishing lagoon, floral gardens and the gold-domed fieldhouse, a Jens Jensen landscape next door to the famous conservatory. Pair a walk here with the glasshouses for a full afternoon.",
+        "highlights":  [
+                           "173 acres",
+                           "Golden Dome fieldhouse",
+                           "Fishing lagoon and floral gardens",
+                           "Garfield Park Conservatory is in the park (separate listing)"
+                       ],
+        "address":  "100 N. Central Park Ave., Chicago, IL 60624",
+        "neighborhood":  "East Garfield Park",
+        "lat":  41.8826775,
+        "lng":  -87.7162576,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  45,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Park open 6 am to 11 pm every day.",
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "312-746-5092",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/garfield-james-park",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/garfield-james-park",
+                            "https://www.chicagoparkdistrict.com/featured-capital-projects"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/garfield-james-park"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-garfield-park-1.jpg",
+                           "credit":  "Chicago Park District website",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/garfield-james-park"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-washington-park",
+        "name":  "Washington Park and the Fountain of Time",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "outdoor",
+                     "walk",
+                     "art",
+                     "nature"
+                 ],
+        "hook":  "See Lorado Taft\u0027s Fountain of Time",
+        "description":  "A 346-acre South Side park with a lagoon, a nature area, an arboretum and Lorado Taft\u0027s huge Fountain of Time sculpture. Good for a long, quiet walk with a landmark artwork at the end.",
+        "highlights":  [
+                           "About 346 acres",
+                           "Fountain of Time sculpture by Lorado Taft",
+                           "Lagoon, nature area, arboretum and Harvest Garden"
+                       ],
+        "address":  "5531 S. King Dr., Chicago, IL 60615",
+        "neighborhood":  "Washington Park",
+        "lat":  41.7934569,
+        "lng":  -87.6155009,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  60,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Park open 6 am to 11 pm every day.",
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "773-256-1248",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/washington-george-park",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/washington-george-park"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/washington-george-park"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-washington-park-1.jpg",
+                           "credit":  "Chicago Park District website",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/washington-george-park"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-jackson-park",
+        "name":  "Jackson Park (Wooded Island, lagoons and lakefront)",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "friends",
+                     "outdoor",
+                     "walk",
+                     "nature",
+                     "birds",
+                     "lake-view"
+                 ],
+        "hook":  "Lagoon loop around Wooded Island",
+        "description":  "A 551-acre South Side lakefront park of lagoons, meadows, harbors and beach. Circle the lagoons, cross to Wooded Island and Bobolink Meadow for birds, and walk out to 63rd Street Beach.",
+        "highlights":  [
+                           "About 551 acres",
+                           "Wooded Island with the Japanese Garden (separate listing)",
+                           "Bobolink Meadow and cherry trees around the Columbian Basin",
+                           "Three harbors and 63rd St. Beach",
+                           "Golf course and driving range"
+                       ],
+        "address":  "6401 S. Stony Island Ave., Chicago, IL 60637",
+        "neighborhood":  "Woodlawn / Hyde Park",
+        "lat":  41.7787728,
+        "lng":  -87.5856256,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  75,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Park open 6 am to 11 pm every day.",
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "773-256-0903",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/jackson-park",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/jackson-park"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/jackson-park"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-jackson-park-1.jpg",
+                           "credit":  "Chicago Park District website (photo: Cassi Saari)",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/jackson-park"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-big-marsh-park",
+        "name":  "Big Marsh Park",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "friends",
+                     "outdoor",
+                     "nature",
+                     "birds",
+                     "bike",
+                     "bmx",
+                     "bugs"
+                 ],
+        "hook":  "Bike the pump track or bird the marsh",
+        "description":  "A 300-acre former industrial site on the Southeast Side turned into wetlands, trails and a bike park, with BMX jump lines, pump tracks and single-track. The rest is marsh for herons, red-winged blackbirds and bug-catching.",
+        "highlights":  [
+                           "About 300 acres in the Calumet area",
+                           "BMX jump lines, pump track and single-track courses",
+                           "Paved and gravel trails",
+                           "Great blue herons and marsh birds",
+                           "Ford Calumet Environmental Center on site"
+                       ],
+        "address":  "11559 S. Stony Island Ave., Chicago, IL 60617",
+        "neighborhood":  "South Deering",
+        "lat":  41.6853025,
+        "lng":  -87.5763783,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  75,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:50",
+                                      "16:45"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:50",
+                                      "16:45"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:50",
+                                      "16:45"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:50",
+                                      "16:45"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:50",
+                                      "16:45"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:50",
+                                      "16:45"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:50",
+                                      "16:45"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Open dawn to dusk every day. Environmental center Mon-Sat 10 am-4 pm; closed Thanksgiving, Christmas and New Year\u0027s Day.",
+        "hours_valid_to":  "2027-01-05",
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "312-590-5993",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/big-marsh-park",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/big-marsh-park"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/big-marsh-park"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-big-marsh-park-1.jpg",
+                           "credit":  "Chicago Park District website",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/big-marsh-park"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-montrose-beach",
+        "name":  "Montrose Beach and Harbor",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "friends",
+                     "outdoor",
+                     "lake-view",
+                     "skyline",
+                     "birds",
+                     "dogs"
+                 ],
+        "hook":  "Windy beach walk out to the harbor point",
+        "description":  "One of the city\u0027s biggest beaches, with dunes, a dog beach, the harbor and skyline views from the point, right next to the Magic Hedge bird sanctuary. In the off season it is a wild, empty stretch of sand that is great for a bracing walk.",
+        "highlights":  [
+                           "Dog-friendly beach at the north end",
+                           "Dunes with rare plants",
+                           "Next to Montrose Point Bird Sanctuary (separate listing)",
+                           "Swimming only Friday before Memorial Day to Labor Day, 11 am-7 pm",
+                           "Kayak and volleyball rentals in summer"
+                       ],
+        "address":  "4400 N. DuSable Lake Shore Dr., Chicago, IL 60613",
+        "neighborhood":  "Uptown",
+        "lat":  41.96676575886,
+        "lng":  -87.638626098633,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  60,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Beach open 6 am to 11 pm. Swimming only in beach season with lifeguards, 11 am to 7 pm.",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  null,
+                       "note":  "Swimming season runs from the Friday before Memorial Day through Labor Day. The beach stays open for walks year-round."
+                   },
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/montrose-beach",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/montrose-beach"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/montrose-beach"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-montrose-beach-1.jpg",
+                           "credit":  "Chicago Park District website",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/montrose-beach"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-north-avenue-beach",
+        "name":  "North Avenue Beach",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "friends",
+                     "outdoor",
+                     "lake-view",
+                     "skyline",
+                     "walk"
+                 ],
+        "hook":  "Skyline-from-the-sand walk",
+        "description":  "Chicago\u0027s classic city beach, with the ocean-liner-shaped beach house and one of the best skyline views from the sand. Off season it is a quiet place for a lakefront walk on the trail that runs along it.",
+        "highlights":  [
+                           "Ocean-liner-style beach house with upper decks",
+                           "Skyline views",
+                           "Lakefront Trail runs alongside",
+                           "Swimming only Friday before Memorial Day to Labor Day, 11 am-7 pm",
+                           "Wood-fired saunas here in winter (separate listing)"
+                       ],
+        "address":  "1601 N. DuSable Lake Shore Dr., Chicago, IL 60611",
+        "neighborhood":  "Lincoln Park / Gold Coast",
+        "lat":  41.914008062282,
+        "lng":  -87.624638462439,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  45,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Beach open 6 am to 11 pm. Swimming only in beach season with lifeguards, 11 am to 7 pm.",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  null,
+                       "note":  "Swimming season runs from the Friday before Memorial Day through Labor Day. The beach stays open for walks year-round."
+                   },
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/north-avenue-beach",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/north-avenue-beach"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/north-avenue-beach"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-north-avenue-beach-1.jpg",
+                           "credit":  "Choose Chicago",
+                           "page_url":  "https://www.choosechicago.com/listing/north-avenue-beach/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-douglass-park",
+        "name":  "Douglass Park",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "outdoor",
+                     "walk",
+                     "nature",
+                     "architecture"
+                 ],
+        "hook":  "Lagoon walk by the historic fieldhouse",
+        "description":  "A 162-acre historic park in North Lawndale with a lagoon ringed by tall grasses, stone archways and a grand fieldhouse, one of the West Side parks shaped by Jens Jensen. Home to Douglass 18, the art-filled mini golf course.",
+        "highlights":  [
+                           "162 acres",
+                           "Lagoon and historic fieldhouse",
+                           "Douglass 18 mini golf (separate listing, seasonal)",
+                           "Jens Jensen landscape"
+                       ],
+        "address":  "1401 S. Sacramento Dr., Chicago, IL 60623",
+        "neighborhood":  "North Lawndale",
+        "lat":  41.8632347,
+        "lng":  -87.7020481,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  45,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Park open 6 am to 11 pm every day.",
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "773-762-2842",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/douglass-anna-and-frederick-park",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/douglass-anna-and-frederick-park",
+                            "https://www.chicagoparkdistrict.com/featured-capital-projects"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/douglass-anna-and-frederick-park"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-douglass-park-1.jpg",
+                           "credit":  "Chicago Park District website",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/douglass-anna-and-frederick-park"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-columbus-park",
+        "name":  "Columbus Park (Jens Jensen landmark)",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "outdoor",
+                     "walk",
+                     "nature",
+                     "architecture",
+                     "quiet"
+                 ],
+        "hook":  "Walk Jens Jensen\u0027s prairie-river landscape",
+        "description":  "A 141-acre park in Austin that is considered Jens Jensen\u0027s masterpiece and is a National Historic Landmark as a whole. Its prairie-style nature area, fishing lagoon and stone council ring make for a calm, uncrowded walk.",
+        "highlights":  [
+                           "About 141 acres",
+                           "National Historic Landmark (whole park)",
+                           "Designed by landscape architect Jens Jensen",
+                           "Nature area and bike path"
+                       ],
+        "address":  "500 S. Central Ave., Chicago, IL 60644",
+        "neighborhood":  "Austin",
+        "lat":  41.8737893,
+        "lng":  -87.7649613,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  45,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Park open 6 am to 11 pm every day.",
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "773-287-7641",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/columbus-christopher-park",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/columbus-christopher-park"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/columbus-christopher-park"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-columbus-park-1.jpg",
+                           "credit":  "Chicago Park District website",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/columbus-christopher-park"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-indian-boundary-park",
+        "name":  "Indian Boundary Park",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "outdoor",
+                     "walk",
+                     "nature",
+                     "quiet"
+                 ],
+        "hook":  "Duck-pond stroll by the Tudor fieldhouse",
+        "description":  "A small 13-acre neighborhood gem in West Ridge, with a duck-filled lagoon, a restored nature area and a storybook Tudor-style fieldhouse. Good for a short, peaceful stroll on the far North Side.",
+        "highlights":  [
+                           "About 13 acres",
+                           "Lagoon with a fountain and ducks",
+                           "Restored nature area",
+                           "Tudor-style fieldhouse and cultural center"
+                       ],
+        "address":  "2500 W. Lunt Ave., Chicago, IL 60645",
+        "neighborhood":  "West Ridge",
+        "lat":  42.0098036,
+        "lng":  -87.6931948,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  30,
+        "min_minutes":  20,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Park open 6 am to 11 pm every day.",
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "773-764-0338",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/indian-boundary-park",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/indian-boundary-park"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/indian-boundary-park"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-indian-boundary-park-1.jpg",
+                           "credit":  "Chicago Park District website",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/indian-boundary-park"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-oz-park",
+        "name":  "Oz Park",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "outdoor",
+                     "walk",
+                     "quirky"
+                 ],
+        "hook":  "Find Dorothy, the Tin Man and the Lion",
+        "description":  "A Wizard of Oz-themed park in Lincoln Park, with bronze statues of Dorothy and Toto, the Tin Man, the Scarecrow and the Cowardly Lion, plus the Emerald Garden. A fun, quick stop on a neighborhood walk.",
+        "highlights":  [
+                           "About 14 acres",
+                           "Statues of Dorothy and Toto, Tin Man, Scarecrow and Cowardly Lion",
+                           "Emerald Garden flower garden",
+                           "Dorothy\u0027s Playlot for kids"
+                       ],
+        "address":  "2021 N. Burling St., Chicago, IL 60614",
+        "neighborhood":  "Lincoln Park",
+        "lat":  41.9187998,
+        "lng":  -87.6466891,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  30,
+        "min_minutes":  15,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Park open 6 am to 11 pm every day.",
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "312-742-7898",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/oz-park",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/oz-park"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/oz-park"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-oz-park-1.jpg",
+                           "credit":  "Chicago Park District website",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/oz-park"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-rainbow-beach-park",
+        "name":  "Rainbow Beach Park and Dunes",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "outdoor",
+                     "lake-view",
+                     "skyline",
+                     "nature",
+                     "quiet"
+                 ],
+        "hook":  "Quiet South Side beach with a skyline view",
+        "description":  "A 142-acre South Shore lakefront park with a long beach, distant skyline views and the Rainbow Beach Dunes, one of the city\u0027s most important natural areas. Much quieter than the North Side beaches.",
+        "highlights":  [
+                           "About 142 acres",
+                           "Rainbow Beach Dunes natural area",
+                           "Skyline views up the shore",
+                           "Beach and picnic shelters"
+                       ],
+        "address":  "3111 E. 77th St., Chicago, IL 60649",
+        "neighborhood":  "South Shore",
+        "lat":  41.757927,
+        "lng":  -87.5481995,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  45,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "06:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Park open 6 am to 11 pm every day.",
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "312-745-1479",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/rainbow-beach-park",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/rainbow-beach-park"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/rainbow-beach-park"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ps-rainbow-beach-park-1.jpg",
+                           "credit":  "Chicago Park District website",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/rainbow-beach"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-busse-woods",
+        "name":  "Busse Woods (Ned Brown Preserve) and the Elk Pasture",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "friends",
+                     "outdoor",
+                     "nature",
+                     "animals",
+                     "walk",
+                     "bike",
+                     "birds"
+                 ],
+        "hook":  "See the elk herd, then loop the lake",
+        "description":  "One of the biggest forest preserves near Chicago: 3,558 acres of old forest, a large lake and nearly 13 miles of paved trail. The highlight is a small elk herd that has lived in a fenced pasture here since 1925.",
+        "highlights":  [
+                           "3,558 acres near Elk Grove Village",
+                           "Elk herd in a 17-acre pasture since 1925",
+                           "12.9-mile paved trail loop",
+                           "457-acre reservoir; boat rentals April to October",
+                           "Ice fishing and cross-country skiing in winter",
+                           "Dogs on leash"
+                       ],
+        "address":  "Busse Lake Boating Center entrance: E. Higgins Rd. (Rte 72), east of I-290/Hwy 53, Elk Grove Village, IL 60007 (Elk Pasture: N. Arlington Heights Rd., north of E. Higgins Rd.)",
+        "neighborhood":  "Elk Grove Village (northwest suburbs)",
+        "lat":  42.0244193,
+        "lng":  -88.0151552,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  90,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Open sunrise to sunset every day.",
+        "hours_valid_to":  "2027-01-10",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  null,
+                       "note":  "Boat rentals April to October, weather permitting. Trails and the elk pasture are open year-round."
+                   },
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "224-415-6554",
+        "website":  "https://fpdcc.com/places/locations/busse-woods/",
+        "source_urls":  [
+                            "https://fpdcc.com/places/locations/busse-woods/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://fpdcc.com/places/locations/busse-woods/"
+                     },
+        "photos":  [
+
+                   ]
+    },
+    {
+        "id":  "ps-skokie-lagoons",
+        "name":  "Skokie Lagoons",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "date",
+                     "friends",
+                     "outdoor",
+                     "nature",
+                     "walk",
+                     "bike",
+                     "birds",
+                     "kayak"
+                 ],
+        "hook":  "Trail walk among the lagoons and islands",
+        "description":  "An 894-acre maze of lagoons, channels and wooded islands in the North Shore suburbs, built from an old marsh. Walk or bike the North Branch Trail through it, or paddle the channels in warm months.",
+        "highlights":  [
+                           "894 acres near Winnetka and Glencoe",
+                           "Lagoons, channels and islands",
+                           "On the North Branch Trail (paved and unpaved)",
+                           "Canoe and kayak rentals at Tower Road, April to October",
+                           "Fishing"
+                       ],
+        "address":  "Tower Road entrance: Tower Rd., west of Forestway Dr., Winnetka, IL 60093",
+        "neighborhood":  "Winnetka (North Shore suburbs)",
+        "lat":  42.1158055,
+        "lng":  -87.770568,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  75,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Open sunrise to sunset every day.",
+        "hours_valid_to":  "2027-01-10",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  null,
+                       "note":  "Canoe and kayak rentals April to October, weather permitting. Trails open year-round."
+                   },
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "847-414-5883",
+        "website":  "https://fpdcc.com/places/locations/skokie-lagoons/",
+        "source_urls":  [
+                            "https://fpdcc.com/places/locations/skokie-lagoons/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://fpdcc.com/places/locations/skokie-lagoons/"
+                     },
+        "photos":  [
+
+                   ]
+    },
+    {
+        "id":  "ps-swallow-cliff-woods",
+        "name":  "Swallow Cliff Woods (the stairs)",
+        "kind":  "place",
+        "category":  "nature-outdoors",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "free",
+                     "friends",
+                     "outdoor",
+                     "active",
+                     "nature",
+                     "walk",
+                     "winter"
+                 ],
+        "hook":  "Climb the 125 limestone stairs",
+        "description":  "A 100-foot wooded bluff in the Palos preserves, famous for its stone stair workout up an old toboggan run, with woodland trails beyond. In winter the bluff is a sledding hill.",
+        "highlights":  [
+                           "125 limestone stairs built in 1930 by the CCC",
+                           "Second set of 168 steps added in 2016 makes a full loop",
+                           "100-foot bluff, a former toboggan run",
+                           "Sag Valley unpaved trails through woods and marsh",
+                           "Sledding hill in winter",
+                           "No dogs on the stairs"
+                       ],
+        "address":  "Swallow Cliff Woods-North: Calumet Sag Rd. (Rte 83), west of La Grange Rd./96th Ave., Palos Park, IL 60464",
+        "neighborhood":  "Palos Park (southwest suburbs)",
+        "lat":  41.6814897,
+        "lng":  -87.861634,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  60,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "07:20",
+                                      "16:20"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Open sunrise to sunset every day. On Thursdays through Nov 30 the parking lot may open later than usual.",
+        "hours_valid_to":  "2027-01-10",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  null,
+                       "note":  "In winter the bluff is used as a sledding hill."
+                   },
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "",
+        "website":  "https://fpdcc.com/places/locations/swallow-cliff-woods/",
+        "source_urls":  [
+                            "https://fpdcc.com/places/locations/swallow-cliff-woods/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://fpdcc.com/places/locations/swallow-cliff-woods/"
+                     },
+        "photos":  [
+
                    ]
     }
 ]
