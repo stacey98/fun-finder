@@ -4268,14 +4268,6 @@
         "name":  "One of a Kind Holiday Show",
         "kind":  "event",
         "category":  "seasonal",
-        "tags":  [
-                     "friends",
-                     "date",
-                     "holiday",
-                     "shopping",
-                     "art",
-                     "rainy-day"
-                 ],
         "highlights":  [
                            "Dec 3-6, 2026",
                            "600+ artists, designers and makers",
@@ -4358,6 +4350,15 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "age_note":  "Age rules not posted",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "holiday",
+                     "shopping",
+                     "art",
+                     "rainy-day",
+                     "market"
+                 ],
         "sid":  29,
         "photos":  [
                        {
@@ -5246,7 +5247,6 @@
         "id":  "ev-santa-hustle-chicago-2026",
         "name":  "Santa Hustle Chicago 5K / 10K",
         "kind":  "event",
-        "category":  "social-events",
         "highlights":  [
                            "Sat Dec 5, 2026, Soldier Field",
                            "Kids Dash 8:00, 10K 8:15, 5K 8:30",
@@ -5330,6 +5330,7 @@
                      "holiday",
                      "outdoor"
                  ],
+        "category":  "active",
         "sid":  38,
         "photos":  [
                        {
@@ -14894,7 +14895,6 @@
         "id":  "pc-adler-planetarium",
         "name":  "Adler Planetarium",
         "kind":  "place",
-        "category":  "nature-outdoors",
         "tags":  [
                      "date",
                      "friends",
@@ -15025,6 +15025,7 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "min_minutes":  75,
+        "category":  "art-museum",
         "sid":  102,
         "photos":  [
                        {
@@ -15038,7 +15039,6 @@
         "id":  "pc-cernan-center",
         "name":  "Cernan Earth and Space Center (Triton College)",
         "kind":  "place",
-        "category":  "nature-outdoors",
         "tags":  [
                      "date",
                      "friends",
@@ -15329,6 +15329,7 @@
                      },
         "hook":  "Fulldome space films and cosmic light shows",
         "min_minutes":  30,
+        "category":  "art-museum",
         "sid":  103,
         "photos":  [
                        {
@@ -15342,7 +15343,6 @@
         "id":  "pc-360-chicago",
         "name":  "360 CHICAGO Observation Deck (TILT)",
         "kind":  "place",
-        "category":  "food-drink-experience",
         "tags":  [
                      "date",
                      "friends",
@@ -15469,6 +15469,7 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "min_minutes":  30,
+        "category":  "unique-niche",
         "sid":  104,
         "photos":  [
                        {
@@ -15482,7 +15483,6 @@
         "id":  "pc-skydeck-chicago",
         "name":  "Skydeck Chicago (Willis Tower)",
         "kind":  "place",
-        "category":  "food-drink-experience",
         "tags":  [
                      "date",
                      "friends",
@@ -15631,6 +15631,7 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "min_minutes":  30,
+        "category":  "unique-niche",
         "sid":  105,
         "photos":  [
                        {
@@ -30022,7 +30023,6 @@
         "id":  "ps-navy-pier",
         "name":  "Navy Pier (free indoor walk and lake views)",
         "kind":  "place",
-        "category":  "seasonal",
         "address":  "600 E. Grand Ave., Chicago, IL 60611",
         "neighborhood":  "Streeterville",
         "lat":  41.8917999,
@@ -30172,6 +30172,7 @@
                      "rainy-day",
                      "winter"
                  ],
+        "category":  "unique-niche",
         "sid":  207,
         "photos":  [
                        {
@@ -38342,14 +38343,6 @@
         "name":  "One of a Kind Spring Show 2027",
         "kind":  "event",
         "category":  "seasonal",
-        "genre":  "look-learn",
-        "tags":  [
-                     "date",
-                     "friends",
-                     "art",
-                     "shopping",
-                     "rainy-day"
-                 ],
         "moods":  [
                       "artsy"
                   ],
@@ -38401,6 +38394,15 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "age_note":  "Age rules not posted",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "art",
+                     "shopping",
+                     "rainy-day",
+                     "market"
+                 ],
+        "genre":  "eat-drink",
         "sid":  272,
         "photos":  [
                        {
@@ -42852,14 +42854,6 @@
         "kind":  "event",
         "category":  "seasonal",
         "genre":  "eat-drink",
-        "tags":  [
-                     "friends",
-                     "date",
-                     "holiday",
-                     "pop-up",
-                     "limited-time",
-                     "rainy-day"
-                 ],
         "description":  "A Wrigleyville bar goes full Christmas for six weeks, with several bars over multiple levels, 20+ photo spots, holiday cocktails, festive shakes and pizza. It is back for its ninth season and is an easy, very festive night out with friends.",
         "highlights":  [
                            "Nov 20, 2026 - Jan 3, 2027",
@@ -42995,6 +42989,15 @@
                          "date",
                          "friends"
                      ],
+        "tags":  [
+                     "friends",
+                     "date",
+                     "holiday",
+                     "pop-up",
+                     "limited-time",
+                     "rainy-day",
+                     "bar"
+                 ],
         "sid":  293,
         "photos":  [
                        {
@@ -43063,17 +43066,18 @@
         "energy":  "easy",
         "vibe":  "lively",
         "taste_checked":  "2026-11-13",
+        "good_for":  [
+                         "friends"
+                     ],
         "tags":  [
                      "friends",
                      "holiday",
                      "pop-up",
                      "limited-time",
                      "night-out",
-                     "dance"
+                     "dance",
+                     "bar"
                  ],
-        "good_for":  [
-                         "friends"
-                     ],
         "sid":  294,
         "photos":  [
 
@@ -43462,7 +43466,6 @@
         "name":  "Haus of Krampus at Christkindlmarket Chicago",
         "kind":  "event",
         "category":  "seasonal",
-        "genre":  "play",
         "hook":  "Meet Krampus (and try not to end up in his sack)",
         "description":  "For one day the Timber Haus at the Daley Plaza market becomes a moody alpine hideout full of Krampus characters, music and treats. Pose with Krampus at three photo stations and take home a printed keepsake photo, a drink and a warm Bavarian pretzel.",
         "highlights":  [
@@ -43521,6 +43524,7 @@
                          "date",
                          "friends"
                      ],
+        "genre":  "shows-nights",
         "sid":  298,
         "photos":  [
 
@@ -43531,7 +43535,6 @@
         "name":  "Krampus Fest at Christkindlmarket Aurora",
         "kind":  "event",
         "category":  "seasonal",
-        "genre":  "play",
         "hook":  "Krampus takes over the Aurora market for one day",
         "description":  "The Timber Tent at the Aurora Christkindlmarket turns into an alpine Krampus party with music, treats and several roaming Krampuses. Meet them at three photo stations and leave with a printed photo, a drink and a warm Bavarian pretzel.",
         "highlights":  [
@@ -43591,6 +43594,7 @@
                          "date",
                          "friends"
                      ],
+        "genre":  "shows-nights",
         "sid":  299,
         "photos":  [
 
@@ -43750,7 +43754,6 @@
         "name":  "Harry Potter Shop Chicago and Butterbeer Bar",
         "kind":  "place",
         "category":  "unique-niche",
-        "genre":  "eat-drink",
         "tags":  [
                      "friends",
                      "date",
@@ -43845,6 +43848,7 @@
                          "date",
                          "friends"
                      ],
+        "genre":  "look-learn",
         "sid":  302,
         "photos":  [
                        {
@@ -45464,7 +45468,6 @@
         "name":  "Christmas at Cantigny Light Show",
         "kind":  "event",
         "category":  "seasonal",
-        "genre":  "look-learn",
         "tags":  [
                      "date",
                      "friends",
@@ -45665,6 +45668,7 @@
         "energy":  "easy",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
+        "genre":  "nature-animals",
         "sid":  316,
         "photos":  [
                        {
@@ -45679,7 +45683,6 @@
         "name":  "Fabyan Japanese Garden",
         "kind":  "place",
         "category":  "nature-outdoors",
-        "genre":  "relax",
         "tags":  [
                      "date",
                      "quiet",
@@ -45742,6 +45745,7 @@
         "energy":  "easy",
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
+        "genre":  "nature-animals",
         "sid":  317,
         "photos":  [
                        {
@@ -46382,7 +46386,6 @@
         "name":  "Illuminated at Anderson Japanese Gardens",
         "kind":  "event",
         "category":  "seasonal",
-        "genre":  "relax",
         "tags":  [
                      "date",
                      "holiday",
@@ -46504,6 +46507,7 @@
         "vibe":  "quiet",
         "hook":  "A lit Japanese garden at night, then woodfire pizza",
         "taste_checked":  "2026-11-13",
+        "genre":  "nature-animals",
         "sid":  324,
         "photos":  [
                        {
@@ -49436,16 +49440,18 @@
                       "loud"
                   ],
         "taste_checked":  "2026-11-14",
-        "tags":  [
-                     "friends",
-                     "date",
-                     "group",
-                     "birthday-party"
-                 ],
         "good_for":  [
                          "date",
                          "friends"
                      ],
+        "tags":  [
+                     "friends",
+                     "date",
+                     "group",
+                     "birthday-party",
+                     "murder-mystery",
+                     "dinner-show"
+                 ],
         "sid":  350,
         "photos":  [
                        {
@@ -49511,17 +49517,19 @@
                       "loud"
                   ],
         "taste_checked":  "2026-11-14",
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
         "tags":  [
                      "friends",
                      "date",
                      "group",
                      "birthday-party",
-                     "seasonal"
+                     "seasonal",
+                     "murder-mystery",
+                     "dinner-show"
                  ],
-        "good_for":  [
-                         "date",
-                         "friends"
-                     ],
         "sid":  351,
         "photos":  [
                        {
@@ -49598,16 +49606,18 @@
                       "loud"
                   ],
         "taste_checked":  "2026-11-14",
-        "tags":  [
-                     "friends",
-                     "date",
-                     "group",
-                     "birthday-party"
-                 ],
         "good_for":  [
                          "date",
                          "friends"
                      ],
+        "tags":  [
+                     "friends",
+                     "date",
+                     "group",
+                     "birthday-party",
+                     "murder-mystery",
+                     "dinner-show"
+                 ],
         "sid":  352,
         "photos":  [
                        {
@@ -49818,15 +49828,17 @@
                       "nerdy"
                   ],
         "taste_checked":  "2026-11-14",
-        "tags":  [
-                     "friends",
-                     "date",
-                     "group"
-                 ],
         "good_for":  [
                          "date",
                          "friends"
                      ],
+        "tags":  [
+                     "friends",
+                     "date",
+                     "group",
+                     "whiskey",
+                     "tasting"
+                 ],
         "sid":  354,
         "photos":  [
                        {
@@ -49953,17 +49965,18 @@
                       "artsy"
                   ],
         "taste_checked":  "2026-11-14",
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
         "tags":  [
                      "friends",
                      "date",
                      "group",
                      "birthday-party",
-                     "seasonal"
+                     "seasonal",
+                     "dinner-show"
                  ],
-        "good_for":  [
-                         "date",
-                         "friends"
-                     ],
         "sid":  355,
         "photos":  [
                        {
@@ -50718,7 +50731,6 @@
         "name":  "Museum of Illusions Chicago",
         "kind":  "place",
         "category":  "immersive-popup",
-        "genre":  "play",
         "description":  "A playful downtown museum of optical tricks, tilted rooms and mirror illusions made for silly photos with friends or a date. It reopened in late 2023 with 20+ new illusions in nearly double the space.",
         "highlights":  [
                            "Hands-on optical illusions and photo rooms",
@@ -50813,6 +50825,7 @@
                          "date",
                          "friends"
                      ],
+        "genre":  "look-learn",
         "sid":  361,
         "photos":  [
                        {
@@ -51047,12 +51060,6 @@
         "kind":  "place",
         "category":  "food-drink-experience",
         "genre":  "eat-drink",
-        "tags":  [
-                     "date",
-                     "friends",
-                     "views",
-                     "rooftop"
-                 ],
         "description":  "A giant rooftop bar and restaurant on top of Navy Pier\u0027s Festival Hall, billed by Guinness as the world\u0027s largest rooftop, with lake and skyline views on all sides. Good for sunset drinks or a fondue date.",
         "highlights":  [
                            "Guinness-listed world\u0027s largest rooftop",
@@ -51144,6 +51151,13 @@
                          "date",
                          "friends"
                      ],
+        "tags":  [
+                     "date",
+                     "friends",
+                     "views",
+                     "rooftop",
+                     "bar"
+                 ],
         "sid":  365,
         "photos":  [
                        {
@@ -51387,7 +51401,6 @@
         "name":  "Santa\u0027s Rock n\u0027 Lights drive-thru (Geneva)",
         "kind":  "event",
         "category":  "seasonal",
-        "genre":  "relax",
         "description":  "A drive-thru holiday light show synchronized to music that you tune in on your car radio, winding about two miles through Northwestern Medicine Field. Billed as Chicago\u0027s longest-running drive-thru light show.",
         "highlights":  [
                            "About 2 miles, 40-50 minutes at 3 mph",
@@ -51444,6 +51457,7 @@
                          "date",
                          "friends"
                      ],
+        "genre":  "nature-animals",
         "sid":  368,
         "photos":  [
                        {
