@@ -2954,11 +2954,7 @@
         "age_note":  "Age rules not posted",
         "sid":  19,
         "photos":  [
-                       {
-                           "file":  "photos/ev-kusama-infinity-rooms-wrightwood-659-1.jpg",
-                           "credit":  "Wrightwood 659 (official site)",
-                           "page_url":  "https://wrightwood659.org/"
-                       }
+
                    ]
     },
     {
@@ -3956,7 +3952,7 @@
         "photos":  [
                        {
                            "file":  "photos/ev-theater-of-the-mind-david-byrne-1.jpg",
-                           "credit":  "Goodman Theatre website (goodmantheatre.org), show key art (illustration)",
+                           "credit":  "Goodman Theatre, photo by Todd Rosenberg",
                            "page_url":  "https://www.goodmantheatre.org/show/theater-of-the-mind/"
                        }
                    ]
@@ -4258,7 +4254,7 @@
         "photos":  [
                        {
                            "file":  "photos/ev-joffrey-nutcracker-2026-1.jpg",
-                           "credit":  "The Joffrey Ballet (official site)",
+                           "credit":  "The Joffrey Ballet",
                            "page_url":  "https://joffrey.org/performances-and-tickets/26-27-season/the-nutcracker-3/"
                        }
                    ]
@@ -11964,11 +11960,7 @@
         "min_minutes":  30,
         "sid":  83,
         "photos":  [
-                       {
-                           "file":  "photos/pa-rosemont-skating-in-the-park-1.jpg",
-                           "credit":  "Village of Rosemont / Parkway Bank Park",
-                           "page_url":  "https://rosemont.com/thepark/"
-                       }
+
                    ]
     },
     {
@@ -12239,7 +12231,7 @@
                        {
                            "file":  "photos/pa-sky-zone-lincoln-park-1.jpg",
                            "credit":  "Sky Zone website",
-                           "page_url":  "https://www.skyzone.com/chicago-lincoln-park-il"
+                           "page_url":  "https://www.skyzone.com/chicago-lincoln-park-il/attractions/"
                        }
                    ]
     },
@@ -19825,8 +19817,8 @@
         "photos":  [
                        {
                            "file":  "photos/pd-music-box-theatre-1.jpg",
-                           "credit":  "Music Box Theatre website (photo courtesy Nicer Collaborative)",
-                           "page_url":  "https://musicboxtheatre.com/about/ticket-box-office-information"
+                           "credit":  "Music Box Theatre website",
+                           "page_url":  "https://musicboxtheatre.com/about/auditoriums"
                        }
                    ]
     },
@@ -22284,7 +22276,7 @@
                        {
                            "file":  "photos/pd-redhead-piano-bar-1.jpg",
                            "credit":  "The Redhead Piano Bar website",
-                           "page_url":  "https://www.redheadpianobar.com/"
+                           "page_url":  "https://redheadpianobar.com/gallery/"
                        }
                    ]
     },
@@ -23899,7 +23891,7 @@
         "photos":  [
                        {
                            "file":  "photos/pd-bronzeville-winery-1.jpg",
-                           "credit":  "Bronzeville Winery website (bronzevillewinery.com)",
+                           "credit":  "Bronzeville Winery website",
                            "page_url":  "https://www.bronzevillewinery.com/"
                        }
                    ]
@@ -30462,8 +30454,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-graceland-cemetery-1.jpg",
-                           "credit":  "Graceland Cemetery website (photos credited there to Ignacio Alvarez, Linda Oyama Bryan and Greg Murphey Studios)",
-                           "page_url":  "https://www.gracelandcemetery.org/"
+                           "credit":  "Michael Lazarev, CC BY-SA 2.0, via Wikimedia Commons",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Graceland_Cemetery.jpg"
                        }
                    ]
     },
@@ -30902,7 +30894,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-margies-candies-1.jpg",
-                           "credit":  "Margie\u0027s Candies website (storefront photo)",
+                           "credit":  "Margie\u0027s Candies website",
                            "page_url":  "https://www.margiescandies.com/"
                        }
                    ]
@@ -32318,8 +32310,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-dusable-museum-1.jpg",
-                           "credit":  "Windycityaerialphotography / Wikimedia Commons, CC BY-SA 4.0",
-                           "page_url":  "https://commons.wikimedia.org/wiki/File:Dusable_Museum_Aerial_Photo.jpg"
+                           "credit":  "DuSable Black History Museum website",
+                           "page_url":  "https://www.dusablemuseum.org/exhibitions/"
                        }
                    ]
     },
@@ -32607,8 +32599,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-promontory-point-1.jpg",
-                           "credit":  "Chicago Park District website",
-                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/promontory-point"
+                           "credit":  "John Picken, CC BY 2.0, via Wikimedia Commons",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Chicago_skyline_from_Promontory_Point.jpg"
                        }
                    ]
     },
@@ -33032,8 +33024,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-south-shore-cultural-center-1.jpg",
-                           "credit":  "Chicago Park District website",
-                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/south-shore-cultural-center"
+                           "credit":  "Vortex895, CC BY-SA 3.0, via Wikimedia Commons",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:South_Shore_Cultural_Center_interior,_Chicago_IL_2012.jpg"
                        }
                    ]
     },
@@ -33995,8 +33987,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-quimbys-bookstore-1.jpg",
-                           "credit":  "Skvader / Wikimedia Commons, CC BY-SA 4.0",
-                           "page_url":  "https://commons.wikimedia.org/wiki/File:Quimby%27s_Bookstore_storefront.jpg"
+                           "credit":  "Skvader, CC BY-SA 4.0, via Wikimedia Commons",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Quimby%27s_Bookstore_inside.jpg"
                        }
                    ]
     },
@@ -34755,8 +34747,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-merz-apothecary-1.jpg",
-                           "credit":  "Merz Apothecary website (storefronts)",
-                           "page_url":  "https://www.merzapothecary.com/"
+                           "credit":  "Merz Apothecary website",
+                           "page_url":  "https://www.merzapothecary.com/merz_press/"
                        }
                    ]
     },
@@ -40176,7 +40168,7 @@
                        {
                            "file":  "photos/ud-lizzadro-museum-1.jpg",
                            "credit":  "Lizzadro Museum website",
-                           "page_url":  "https://lizzadromuseum.org/visit/"
+                           "page_url":  "https://lizzadromuseum.org/rental/"
                        }
                    ]
     },
