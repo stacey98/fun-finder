@@ -452,6 +452,13 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .spots li:last-child button{border-bottom:0}
 .spots b{font:600 15px var(--f-body)}
 .spots small{font:500 12px var(--f-body);color:var(--ink-3);white-space:nowrap}
+/* v5.5: "Type an address" (OpenStreetMap search) and the accuracy of a reading */
+.spots.addr button{flex-direction:column;align-items:flex-start;justify-content:center;gap:1px}
+.spots.addr small{white-space:normal}
+.addr-msg{margin:8px 2px 0;font-size:13.5px}
+.osm-attr{margin:6px 2px 0;font:500 11.5px var(--f-body);color:var(--ink-3)}
+.osm-attr a{color:inherit}
+.fill .acc,.hm-sub .acc{font:500 .9em var(--f-body);color:var(--ink-3);margin-left:2px;text-decoration:none;display:inline-block;white-space:nowrap}
 .picks{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .hint{display:flex;align-items:center;gap:6px;font:500 13.5px var(--f-body);color:var(--ink-2);margin:14px 0 0}
 .hint .i{width:17px;height:17px;color:var(--accent)}
@@ -813,6 +820,10 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
     <div class="p-body">
       <p class="p-note" id="locNote">This version can't read your phone's location. Pick a spot and we'll remember it on this phone.</p>
       <button class="btn-outline" id="gpsBtn" type="button" hidden><svg class="i"><use href="#i-target"/></svg>Use my location</button>
+      <div id="addrBox" hidden><div class="field"><svg class="i"><use href="#i-pin"/></svg><label class="vh" for="addrInput">Type an address</label><input id="addrInput" type="search" placeholder="Type an address" autocomplete="street-address" enterkeyhint="search"></div>
+        <p class="p-note addr-msg" id="addrMsg" hidden aria-live="polite"></p>
+        <ul class="spots addr" id="addrResults"></ul>
+        <p class="osm-attr" id="addrAttr" hidden>Address search <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap</a> contributors</p></div>
       <div class="field"><svg class="i"><use href="#i-search"/></svg><label class="vh" for="spotSearch">Search for a spot</label><input id="spotSearch" type="search" placeholder="Neighborhood, L stop or landmark" autocomplete="off" enterkeyhint="search"></div>
       <ul class="spots" id="spotResults"></ul>
       <div class="picks" id="quickPicks" role="group" aria-label="Quick picks"></div>
@@ -839,7 +850,7 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.4 (2026-11-13)';
+var VERSION = 'v5.5 (2026-11-13)';
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
@@ -885,16 +896,18 @@ var Platform = (function(){
       } catch (e) { cb('prompt'); }
     },
     // v5: options {timeout, maximumAge}; fail() always gets an object with a numeric code (1 denied, 2 unavailable, 3 timeout, 0 other)
+    // v5.5: o.high asks for the precise reading (a tap on "Use my location"); ok() also gets the reading's time, so an older cached
+    // reading can never overwrite a newer one (owner 2026-11-13: the laptop kept saying Lincoln Park).
     get: function(ok, fail, o){
       o = o || {};
       try {
-        navigator.geolocation.getCurrentPosition(function(p){ ok(p.coords.latitude, p.coords.longitude, p.coords.accuracy); }, function(e){ fail(e && typeof e.code === 'number' ? e : {code:0}); },
-          {enableHighAccuracy:false, timeout:o.timeout || 10000, maximumAge:(o.maximumAge === 0 || o.maximumAge) ? o.maximumAge : 300000});
+        navigator.geolocation.getCurrentPosition(function(p){ ok(p.coords.latitude, p.coords.longitude, p.coords.accuracy, p.timestamp || Date.now()); }, function(e){ fail(e && typeof e.code === 'number' ? e : {code:0}); },
+          {enableHighAccuracy:!!o.high, timeout:o.timeout || 10000, maximumAge:(o.maximumAge === 0 || o.maximumAge) ? o.maximumAge : 300000});
       } catch (e) { fail({code:0, message:String(e && e.message || e)}); }
     },
-    // v5: keep the blue dot updated while the page is visible (low power)
-    watch: function(ok){
-      try { return navigator.geolocation.watchPosition(function(p){ ok(p.coords.latitude, p.coords.longitude, p.coords.accuracy); }, function(){}, {enableHighAccuracy:false, maximumAge:60000, timeout:30000}); } catch (e) { return null; }
+    // v5: keep the blue dot updated while the page is visible. v5.5: precise when she tapped "Use my location", low power otherwise; readings at most 15 s old
+    watch: function(ok, high){
+      try { return navigator.geolocation.watchPosition(function(p){ ok(p.coords.latitude, p.coords.longitude, p.coords.accuracy, p.timestamp || Date.now()); }, function(){}, {enableHighAccuracy:!!high, maximumAge:15000, timeout:30000}); } catch (e) { return null; }
     },
     unwatch: function(id){ try { if (id !== null && id !== undefined) navigator.geolocation.clearWatch(id); } catch (e) {} },
     // v5: allowing location later (in the browser's site settings) works without a reload
@@ -1949,11 +1962,15 @@ function travel(mi, mode){
 function miToUnits(mi){ return mi * 1609.344 / UNIT_M; }
 // v5 location errors (pure, self-tested). Geolocation API codes: 1 PERMISSION_DENIED, 2 POSITION_UNAVAILABLE (e.g. Windows location
 // services off), 3 TIMEOUT. Only 1 means blocked. 2 and 3 get one retry with a longer wait, then "Couldn't find you".
-var GEO_FIRST_MS = 10000, GEO_RETRY_MS = 20000;
+// v5.5: a tap asks for the precise reading (high accuracy, no cached reading, 15 s). The one retry takes a fresh low-power reading
+// with a longer wait, so a laptop with no precise source still gets an answer (its accuracy is shown, with a hint when it is rough).
+var GEO_FIRST_MS = 15000, GEO_RETRY_MS = 20000;
+var GEO_TAP_OPTS = {timeout:GEO_FIRST_MS, maximumAge:0, high:true};
+var GEO_QUIET_OPTS = {timeout:GEO_RETRY_MS, maximumAge:60000, high:false};   // the check on load: low power, never prompts (only runs when allowed)
 function geoErrKind(e){ var c = e && e.code; return c === 1 ? 'blocked' : (c === 2 || c === 3) ? 'notfound' : 'error'; }
 function geoNextStep(e, tries){ // -> {kind, retry, opts}
   var k = geoErrKind(e);
-  if (k === 'notfound' && !tries) return {kind:k, retry:true, opts:{timeout:GEO_RETRY_MS, maximumAge:0}};
+  if (k === 'notfound' && !tries) return {kind:k, retry:true, opts:{timeout:GEO_RETRY_MS, maximumAge:0, high:false}};
   return {kind:k === 'error' ? 'notfound' : k, retry:false, opts:null};
 }
 function geoErrorText(kind, ua){ // one short line
@@ -1965,6 +1982,85 @@ function geoErrorText(kind, ua){ // one short line
     return 'Location is blocked. Click the icon left of the address and allow Location.';
   }
   return 'Couldn\'t find you. Try again.' + (win ? ' Also check Windows Settings > Privacy > Location.' : mac ? ' Also check System Settings > Privacy > Location Services.' : '');
+}
+/* ----- v5.5 how sure the reading is, and which location wins (pure, self-tested) -----
+   Owner 2026-11-13: on her laptop the app kept saying Lincoln Park while Google Maps in the same browser knew where she was.
+   A spot remembered from an earlier visit used to beat a fresh reading (the quiet check only replaced a GPS location).
+   Order now: a choice made in this session (address, spot, map pin or a tap on "Use my location") > a fresh reading > the remembered one > the Loop. */
+var ACC_ROUGH_M = 1000;   // worse than about 1 km: say it's rough and offer the address box
+function withCommas(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+function accText(m){ // metres -> "±40 ft" / "±1.2 mi" / "±12 mi"; '' when unknown
+  if (!isNum(m) || m < 0) return '';
+  var ft = m * 3.28084;
+  if (ft < 995) return '±' + Math.max(10, Math.round(ft / 10) * 10) + ' ft';
+  var mi = m / 1609.344;
+  return '±' + (mi < 9.95 ? (Math.round(mi * 10) / 10).toFixed(1) : withCommas(Math.round(mi))) + ' mi';
+}
+function accRough(m){ return isNum(m) && m > ACC_ROUGH_M; }
+function locAccFor(loc){ return loc && loc.src === 'gps' ? accText(loc.acc) : ''; }   // only a reading has an accuracy
+function locFixNote(m, addrOk){ // the line under the title after a reading
+  var a = accText(m);
+  if (!a) return 'Found you.';
+  return 'Your location ' + a + '.' + (accRough(m) ? ' Rough location. ' + (addrOk ? 'Type your address for a better one.' : 'Pick a spot for a better one.') : '');
+}
+function locPriority(loc){ // 3 chosen this session, 2 fresh reading, 1 remembered from an earlier visit, 0 the default (the Loop)
+  if (!loc) return 0;
+  if (loc.explicit) return 3;
+  if (loc.src === 'default') return 0;
+  if (loc.src === 'gps' && loc.fresh) return 2;
+  return 1;
+}
+var FIX_ROUGH_WINDOW_MS = 600000;   // for 10 min a much rougher low-power reading never replaces a sharp one
+function takeFix(cur, fix){ // should this reading replace the current location?
+  if (!fix || !isNum(fix.lat) || !isNum(fix.lng)) return false;
+  if (fix.explicit) return true;                          // a tap on "Use my location" always wins
+  if (locPriority(cur) < 2) return true;                  // the Loop, or a spot remembered from an earlier visit: a fresh reading wins
+  if (cur.src !== 'gps') return false;                    // an address or spot she chose in this session: a reading never takes over
+  if (!(isNum(fix.t) && isNum(cur.t) && fix.t > cur.t)) return false;   // an older (cached) reading never overwrites a newer one
+  if (isNum(cur.acc) && isNum(fix.acc) && fix.acc > Math.max(2 * cur.acc, cur.acc + 100) && fix.t - cur.t < FIX_ROUGH_WINDOW_MS) return false;
+  return true;
+}
+/* ----- v5.5 "Type an address": OpenStreetMap Nominatim (usage policy: at most 1 request a second, no searching on every key,
+   cache results, show the attribution). Only the typed text is sent. Hidden on claude.ai and in frames (outside fetches are blocked). ----- */
+var NOMI_URL = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&countrycodes=us&viewbox=-88.4,42.5,-87.4,41.4&q=';
+var NOMI_GAP_MS = 1000, NOMI_DEBOUNCE_MS = 600, NOMI_MIN_CHARS = 3;
+function addrQuery(q){ return String(q || '').replace(/\s+/g, ' ').trim(); }
+function nominatimUrl(q){ return NOMI_URL + encodeURIComponent(addrQuery(q)); }
+function addrWait(q, how, lastAt, now){ // ms to wait before sending; -1 = don't send (under 3 characters)
+  if (addrQuery(q).length < NOMI_MIN_CHARS) return -1;
+  var d = how === 'enter' ? 0 : NOMI_DEBOUNCE_MS;
+  var gap = isNum(lastAt) && lastAt > 0 ? lastAt + NOMI_GAP_MS - (now + d) : 0;   // never two requests within 1 s
+  return d + Math.max(0, gap);
+}
+// A made-up sample in Nominatim's jsonv2 shape (fields we read: lat, lon, name, display_name), for the self-test and #addrmock=1 only.
+var ADDR_SAMPLE = [
+  {lat:'41.9484', lon:'-87.6553', category:'leisure', type:'stadium', name:'Wrigley Field', display_name:'Wrigley Field, 1060, West Addison Street, Wrigleyville, Lake View, Chicago, Cook County, Illinois, 60613, United States'},
+  {lat:'41.9474', lon:'-87.6560', category:'place', type:'house', name:'', display_name:'1060, West Addison Street, Wrigleyville, Lake View, Chicago, Cook County, Illinois, 60613, United States'},
+  {lat:'41.9473', lon:'-87.6536', category:'railway', type:'station', name:'Addison', display_name:'Addison, North Sheffield Avenue, Wrigleyville, Lake View, Chicago, Cook County, Illinois, 60613, United States'},
+  {lat:'34.0141', lon:'-118.2713', category:'leisure', type:'pitch', name:'Wrigley Field', display_name:'Wrigley Field, Los Angeles, Los Angeles County, California, 90011, United States'},
+  {lat:'bad', lon:'-87.6', name:'Broken', display_name:'Broken'}
+];
+function addrBoxShown(onClaude, inFrame, force){ return !onClaude && (!inFrame || !!force); }
+function addrParse(list){ // Nominatim jsonv2 -> [{label, sub, lat, lng}], Chicago area only (within 80 mi of the Loop)
+  if (!Array.isArray(list)) return [];
+  var out = [], seen = {};
+  list.forEach(function(r){
+    if (!r) return;
+    var lat = parseFloat(r.lat), lng = parseFloat(r.lon);
+    if (!isFinite(lat) || !isFinite(lng) || distMi(lat, lng, LOOP.lat, LOOP.lng) > 80) return;
+    var parts = String(r.display_name || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+    var name = String(r.name || '').trim(), num = /^\d+[A-Za-z]?(-\d+[A-Za-z]?)?$/, label, rest;
+    if (name && parts[0] === name) { label = name; rest = parts.slice(1); }
+    else if (parts.length > 1 && num.test(parts[0])) { label = parts[0] + ' ' + parts[1]; rest = parts.slice(2); }
+    else { label = name || parts[0] || 'Address'; rest = parts.slice(1); }
+    rest = rest.filter(function(s){ return !/ County$|^(Illinois|Indiana|Wisconsin|United States)$|^\d{5}(-\d{4})?$/.test(s); });
+    if (rest.length > 1 && num.test(rest[0])) rest = [rest[0] + ' ' + rest[1]].concat(rest.slice(2));
+    if (label.length > 48) label = label.slice(0, 46).replace(/\s+\S*$/, '') + '…';
+    var sub = rest.slice(0, 2).join(', '), key = label + '|' + sub;
+    if (seen[key]) return; seen[key] = 1;
+    out.push({label:label, sub:sub, lat:lat, lng:lng});
+  });
+  return out;
 }
 
 /* ================= fits my time ================= */
@@ -2374,8 +2470,15 @@ function matchesInterests(it, sel){ // multi-select: an item matches when it has
 
 /* ================= filters + pipeline (pure: used by the UI and the self-test) ================= */
 var APP_RADIUS = 25;   // v3: no distance cap by default (layout spec 3.10: the reach follows the hour); "How far" is in More filters. The v2 default was 5 mi.
+var DEFAULT_MODE = 'car';   // v5.5 (owner 2026-11-13): Drive is the default travel mode (was 'transit', Walk + CTA)
+function migrateMode(stored, migrated){ // pure: the mode to use at start-up, and whether the one-time switch happened now
+  var ok = stored === 'car' || stored === 'transit' || stored === 'walk';
+  if (!ok) return {mode:DEFAULT_MODE, migrated:true};
+  if (!migrated && stored === 'transit') return {mode:DEFAULT_MODE, migrated:true};   // the old default from before v5.5: switch once
+  return {mode:stored, migrated:true};                                               // anything she picks after this is kept
+}
 function appDefaultFilters(){ return ext(defaultFilters(), {radius:APP_RADIUS}); }
-function defaultFilters(){ return {openNow:true, fits:true, radius:5, mode:'transit', who:{}, io:'either', price:{}, walkin:false, kind:'all', social:false, hide21:false, showGone:false, notBeen:false, interests:{}, groups:{}, cats:{}, sort:'best'}; }
+function defaultFilters(){ return {openNow:true, fits:true, radius:5, mode:DEFAULT_MODE, who:{}, io:'either', price:{}, walkin:false, kind:'all', social:false, hide21:false, showGone:false, notBeen:false, interests:{}, groups:{}, cats:{}, sort:'best'}; }
 function computeItem(it, T, ctx){
   var pcx = planCtx(T);   // v5.3: a picked time never says "now" (the wording is part of the cached row)
   var sig = T + '|' + ctx.lat + ',' + ctx.lng + '|' + ctx.budget + '|' + ctx.mode + '|' + pcx.code;
@@ -2638,7 +2741,7 @@ function appliedFilters(F){ // removable chips under the result line (Baymard pa
   for (k in F.who) if (F.who[k]) a.push({code:'who:' + k, label:WHO[k] || tagLabel(k)});
   for (k in F.price) if (F.price[k]) a.push({code:'price:' + k, label:k === 'free' ? 'Free' : k});
   if (F.io !== 'either') a.push({code:'io', label:F.io === 'indoor' ? 'Indoors' : 'Outdoors'});
-  if (F.mode === 'walk') a.push({code:'mode', label:'Walk only'}); else if (F.mode === 'car') a.push({code:'mode', label:'Driving'});
+  if (F.mode === 'walk') a.push({code:'mode', label:'Walk only'}); else if (F.mode === 'transit') a.push({code:'mode', label:'Walk + CTA'});   // v5.5: Drive is the default, so it has no chip
   if (F.radius !== APP_RADIUS) a.push({code:'radius', label:'Within ' + fmtRadius(F.radius)});
   if (F.walkin) a.push({code:'walkin', label:'Walk-in only'});
   if (F.hide21) a.push({code:'hide21', label:'No 21+'});
@@ -2652,7 +2755,7 @@ function removeFilter(F, code){ // returns a new filter object without that one 
   if (k === 'who' || k === 'price') delete G[k][v];
   else if (k === 'int') delete G.interests[v];
   else if (k === 'io') G.io = 'either';
-  else if (k === 'mode') G.mode = 'transit';
+  else if (k === 'mode') G.mode = DEFAULT_MODE;
   else if (k === 'radius') G.radius = APP_RADIUS;
   else if (k === 'openNow' || k === 'fits') G[k] = true;
   else if (k === 'walkin' || k === 'hide21' || k === 'notBeen') G[k] = false;
@@ -2723,7 +2826,7 @@ function filterCount(F, when){ // v2: the radius has its own chip and is not cou
   for (k in F.groups) if (F.groups[k]) n++;
   for (k in F.cats) if (F.cats[k]) n++;
   if (F.io !== 'either') n++; if (F.walkin) n++; if (F.kind !== 'all') n++; if (F.hide21) n++; if (F.social) n++; if (F.showGone) n++; if (F.notBeen) n++;
-  if (F.mode !== 'transit') n++; if (when && when !== 'now') n++;
+  if (F.mode !== DEFAULT_MODE) n++; if (when && when !== 'now') n++;
   return n;
 }
 function activeFilterCount(){ return filterCount(S.f, S.when); }
@@ -3588,9 +3691,9 @@ function renderHeader(res){
   $('fillTime').setAttribute('aria-label', 'Time I have: ' + fmtBudget(S.budget) + '. Change');
   $('fillWhen').innerHTML = fillHTML(whenLabel());
   $('fillWhen').setAttribute('aria-label', 'When: ' + whenLabel() + '. Change');
-  var lab = S.loc ? S.loc.label : 'The Loop';
-  $('fillLoc').innerHTML = fillHTML(lab);
-  $('fillLoc').setAttribute('aria-label', 'Where: ' + lab + '. Change');
+  var lab = S.loc ? S.loc.label : 'The Loop', acc = locAccFor(S.loc);   // v5.5: "Your location ±120 ft"
+  $('fillLoc').innerHTML = esc(lab).replace(/ /g, '&nbsp;') + (acc ? '<small class="acc">' + esc(acc).replace(/ /g, '&nbsp;') + '</small>' : '') + '<svg class="i"><use href="#i-chev"/></svg>';
+  $('fillLoc').setAttribute('aria-label', 'Where: ' + lab + (acc ? ', within ' + acc.replace('±', '') : '') + '. Change');
   $('budgetBit').hidden = !S.budgetOn;
 }
 function curSel(){ return UI.gsel || {gs:[], lim:false}; }
@@ -4010,9 +4113,9 @@ function homeEmpty(vm, hsel, lab){ // v5.1 (tester H1): the Home "nothing" box f
 function locWords(lab){ return lab === 'Your location' ? 'your location' : lab; }   // v5.1 (tester L7): "near your location"
 function renderHome(res, vm, picks){
   var root = $('homeRoot'); if (!root) return;
-  var p = res.p, who = S.f.who, lab = locWords(S.loc ? S.loc.label : 'The Loop'), h = '';
+  var p = res.p, who = S.f.who, lab = locWords(S.loc ? S.loc.label : 'The Loop'), acc = locAccFor(S.loc), h = '';   // v5.5: "near your location ±120 ft"
   h += '<div class="hm-top"><div><h1 class="hm-title">' + esc(homeTitle(res)) + '</h1>' +
-    '<button class="hm-sub" type="button" data-act="loc" aria-label="Where: ' + esc(lab) + '. Change"><span>' + (UI.planning ? esc(fmtTime(p.min)) + ' · ' : '') + 'near ' + esc(lab) + '</span>' + glyphSvg('i-chev') + '</button></div>' +
+    '<button class="hm-sub" type="button" data-act="loc" aria-label="Where: ' + esc(lab) + (acc ? ', within ' + esc(acc.replace('±', '')) : '') + '. Change"><span>' + (UI.planning ? esc(fmtTime(p.min)) + ' · ' : '') + 'near ' + esc(lab) + (acc ? ' <small class="acc">' + esc(acc).replace(/ /g, '&nbsp;') + '</small>' : '') + '</span>' + glyphSvg('i-chev') + '</button></div>' +
     '<div class="hm-icons"><button class="icon-btn" type="button" data-act="search" aria-label="Search">' + glyphSvg('i-search') + '</button><button class="icon-btn" type="button" data-act="saved" aria-label="Saved and Been">' + glyphSvg('i-bookmark') + '</button></div></div>';
   h += '<div class="hm-ctl" role="group" aria-label="Who is coming">' + [['date', 'Date'], ['friends', 'Friends'], ['solo', 'Solo']].map(function(x){ return '<button class="qchip" type="button" data-who="' + x[0] + '" aria-pressed="' + !!who[x[0]] + '">' + x[1] + '</button>'; }).join('') + '</div>';
   var picked = S.when === 'pick' || S.when === 'weekend';
@@ -4531,6 +4634,8 @@ function openLocation(first){
   $('app').classList.toggle('onb', !!first);
   $('app').classList.add('picking');   // v4: on phones the home and the list step aside so she can tap the map
   $('spotSearch').value = ''; $('spotResults').innerHTML = '';
+  addrReset();   // v5.5
+  if (!geoBusy && S.loc && S.loc.src === 'gps' && locAccFor(S.loc)) setLocNote(locFixNote(S.loc.acc, addrShown()), accRough(S.loc.acc));
   $('quickPicks').innerHTML = QUICK_PICKS.map(function(n){ return '<button class="chip" type="button" data-pick="' + esc(n) + '" aria-pressed="' + (UI.cand.label === n) + '">' + esc(n) + '</button>'; }).join('');
   $('locGo').textContent = 'Start at ' + UI.cand.label;
   if (!geoBusy) gpsBtnReset();
@@ -4548,12 +4653,14 @@ function locateMe(){
   var b = $('gpsBtn'), ua = navigator.userAgent || '', tries = 0;
   geoBusy = true; b.disabled = true; b.textContent = 'Finding you...'; setLocNote('Finding you...', false);
   function attempt(o){
-    Platform.geo.get(function(lat, lng){
+    Platform.geo.get(function(lat, lng, acc, t){
       geoBusy = false; UI.geoState = 'granted'; gpsBtnReset();
       if (distMi(lat, lng, LOOP.lat, LOOP.lng) > 80) { setLocNote('You look far from Chicago. Pick a spot instead.', true); return; }
-      setLocNote('Found you.', false);
-      UI.firstOpen = false; commitLocation({lat:lat, lng:lng, label:'Your location', src:'gps'});
-      startGeoWatch();
+      // v5.5: a tap is a choice made in this session, so it beats everything. A rough reading keeps the panel open with the address box.
+      var rough = accRough(acc);
+      UI.firstOpen = false; commitLocation({lat:lat, lng:lng, label:'Your location', src:'gps', acc:acc, t:t, fresh:true, explicit:true}, rough);
+      setLocNote(locFixNote(acc, addrShown()), rough);
+      stopGeoWatch(); startGeoWatch();   // restart it precise
     }, function(e){
       var plan = geoNextStep(e, tries);
       if (plan.retry) { tries++; b.textContent = 'Still looking...'; attempt(plan.opts); return; }
@@ -4563,38 +4670,58 @@ function locateMe(){
       setLocNote(geoErrorText(plan.kind, ua), true);
     }, o);
   }
-  attempt({timeout:GEO_FIRST_MS});
+  attempt(ext(GEO_TAP_OPTS, {}));
 }
 function startGeoWatch(){
   if (geoWatchId !== null || !S.loc || S.loc.src !== 'gps' || Platform.onClaude || !navigator.geolocation) return;
   if (document.visibilityState === 'hidden') return;
-  geoWatchId = Platform.geo.watch(function(lat, lng){
+  geoWatchId = Platform.geo.watch(function(lat, lng, acc, t){
     if (!S.loc || S.loc.src !== 'gps' || distMi(lat, lng, LOOP.lat, LOOP.lng) > 80) return;
-    var moved = distMi(lat, lng, S.loc.lat, S.loc.lng);
-    if (moved < 0.03) return;                             // under ~50 m: leave it
-    S.loc = {lat:lat, lng:lng, label:'Your location', src:'gps'};
-    Platform.store.set('cff.loc.v1', S.loc);
-    if (moved >= 0.25) refresh(); else { recluster(); if (GLM.on) glSyncOverlays(); }   // small moves only move the blue dot
-  });
+    var fix = {lat:lat, lng:lng, label:'Your location', src:'gps', acc:isNum(acc) ? Math.round(acc) : null, t:t, fresh:true, explicit:false};
+    if (!takeFix(S.loc, fix)) return;                     // v5.5: never an older or much rougher reading
+    var moved = distMi(lat, lng, S.loc.lat, S.loc.lng), accWas = accText(S.loc.acc);
+    fix.explicit = !!S.loc.explicit;                      // keeps "she chose GPS in this session"
+    if (moved < 0.03) {                                   // under ~50 m: leave the dot, only note the newer reading
+      S.loc.t = fix.t; S.loc.acc = fix.acc; S.loc.fresh = true; saveLoc();
+      if (accText(fix.acc) !== accWas) renderHeaderOnly();
+      return;
+    }
+    S.loc = fix; saveLoc();
+    if (moved >= 0.25) refresh(); else { recluster(); if (GLM.on) glSyncOverlays(); renderHeaderOnly(); }   // small moves only move the blue dot
+  }, !!S.loc.explicit);
 }
+function saveLoc(){ if (S.loc) Platform.store.set('cff.loc.v1', {lat:S.loc.lat, lng:S.loc.lng, label:S.loc.label, src:S.loc.src, acc:isNum(S.loc.acc) ? S.loc.acc : null}); }
+function renderHeaderOnly(){ try { if (UI.lastRes) renderHeader(UI.lastRes); } catch (e) {} }
 function stopGeoWatch(){ Platform.geo.unwatch(geoWatchId); geoWatchId = null; }
 function onGeoPermission(state){ // permissions "change" event and the first check
   UI.geoState = state;
   if (!geoBusy) gpsBtnReset();
   if (state === 'granted') {
     if (!$('pLoc').hidden && /blocked/i.test($('locNote').textContent)) setLocNote('Location is on. Tap "Use my location".', false);
-    Platform.geo.get(function(lat, lng){
+    // v5.5: the quiet check stays low power. A fresh reading now replaces a spot remembered from an earlier visit (owner: the laptop
+    // kept saying Lincoln Park), but never a choice made in this session or a newer reading (takeFix).
+    Platform.geo.get(function(lat, lng, acc, t){
       if (distMi(lat, lng, LOOP.lat, LOOP.lng) > 80) return;
-      if (UI.firstOpen || (S.loc && S.loc.src === 'gps')) { UI.firstOpen = false; commitLocation({lat:lat, lng:lng, label:'Your location', src:'gps'}); startGeoWatch(); }
-    }, function(){}, {timeout:GEO_RETRY_MS});
+      var fix = {lat:lat, lng:lng, label:'Your location', src:'gps', acc:acc, t:t, fresh:true, explicit:false};
+      if (geoBusy || !takeFix(S.loc, fix)) return;          // a tap is running, or something better is already set
+      if (!$('pLoc').hidden && !UI.firstOpen) return;        // she opened the picker herself: leave it to her
+      if (!$('pLoc').hidden && (addrQuery($('spotSearch').value) || addrQuery($('addrInput').value))) return;   // she is typing
+      UI.firstOpen = false; commitLocation(fix); startGeoWatch();
+    }, function(){}, ext(GEO_QUIET_OPTS, {}));
   } else if (state === 'denied') stopGeoWatch();
 }
-function commitLocation(loc){
-  S.loc = {lat:loc.lat, lng:loc.lng, label:String(loc.label || 'Dropped pin'), src:loc.src || 'picked'};
-  if (S.loc.src !== 'gps') stopGeoWatch();
-  Platform.store.set('cff.loc.v1', S.loc);
+function commitLocation(loc, keepOpen){
+  // v5.5: acc (metres) and t (time of the reading) for readings; explicit = chosen in this session; fresh = a reading from this session
+  var gps = loc.src === 'gps';
+  S.loc = {lat:loc.lat, lng:loc.lng, label:String(loc.label || 'Dropped pin'), src:loc.src || 'picked',
+    acc:gps && isNum(loc.acc) ? Math.round(loc.acc) : null, t:isNum(loc.t) ? loc.t : Date.now(), explicit:!!loc.explicit, fresh:gps && !!loc.fresh};
+  if (!gps) stopGeoWatch();
+  saveLoc();
   UI.sel = null; UI.viewKey = null;   // v3: refresh() re-fits the map to the new pins
-  closePanel('pLoc');
+  if (keepOpen && !$('pLoc').hidden) {   // v5.5: a rough reading keeps the picker open so she can type her address
+    UI.cand = ext(S.loc, {}); $('locGo').textContent = 'Start at ' + S.loc.label;
+    $('pLocClose').hidden = false; $('brand').hidden = true; $('app').classList.remove('onb');
+  } else closePanel('pLoc');
   refresh();
 }
 function renderSpotResults(q){
@@ -4604,6 +4731,64 @@ function renderSpotResults(q){
   pool.forEach(function(s){ var n = s.name.toLowerCase(); if (n.indexOf(q) === 0) starts.push(s); else if (n.indexOf(q) > 0 || s.type.toLowerCase().indexOf(q) >= 0) has.push(s); });
   var list = starts.concat(has).slice(0, 8);
   $('spotResults').innerHTML = list.length ? list.map(function(s){ return '<li><button type="button" data-spot="' + esc(s.name) + '"><b>' + esc(s.name) + '</b><small>' + esc(s.type) + '</small></button></li>'; }).join('') : '<li><button type="button" disabled><b>No match</b><small>Try a neighborhood or tap the map</small></button></li>';
+}
+/* ----- v5.5 "Type an address" (Nominatim). One request a second at most, on Enter or 600 ms after she stops typing, 3+ characters,
+   answers kept in memory for the visit. Only the typed text goes out (the browser adds its usual Referer, which the policy asks for). ----- */
+var Addr = {cache:{}, lastAt:0, timer:null, seq:0, sent:0};
+function addrShown(){ return addrBoxShown(Platform.onClaude, Platform.inFrame, UI.addrForce); }
+function addrMsg(t, warn){ var m = $('addrMsg'); if (!m) return; m.textContent = t || ''; m.hidden = !t; m.classList.toggle('warn', !!warn); }
+function addrRender(list){
+  var ul = $('addrResults'), at = $('addrAttr'); if (!ul) return;
+  UI.addrList = list || null;
+  if (!list) { ul.innerHTML = ''; if (at) at.hidden = true; return; }
+  ul.innerHTML = list.length ? list.map(function(r, i){ return '<li><button type="button" data-addr="' + i + '"><b>' + esc(r.label) + '</b>' + (r.sub ? '<small>' + esc(r.sub) + '</small>' : '') + '</button></li>'; }).join('') :
+    '<li><button type="button" disabled><b>No Chicago-area match</b><small>Add a street number or ZIP code</small></button></li>';
+  if (at) at.hidden = false;   // the attribution the usage policy requires, under the results
+}
+function addrReset(){
+  var box = $('addrBox'); if (!box) return;
+  box.hidden = !addrShown();
+  clearTimeout(Addr.timer); Addr.timer = null; Addr.seq++;
+  $('addrInput').value = ''; addrRender(null); addrMsg('');
+}
+function addrSearch(how){ // how: 'type' (debounced) or 'enter' (now)
+  var q = addrQuery($('addrInput').value), key = q.toLowerCase();
+  clearTimeout(Addr.timer); Addr.timer = null;
+  if (!addrShown()) return;
+  if (q.length < NOMI_MIN_CHARS) { Addr.seq++; addrRender(null); addrMsg(how === 'enter' && q ? 'Type a few more letters.' : ''); return; }
+  if (Addr.cache[key]) { addrMsg(''); addrRender(Addr.cache[key]); return; }   // cached: no request
+  var w = addrWait(q, how, Addr.lastAt, Date.now());
+  Addr.timer = setTimeout(function(){ addrSend(q); }, w);
+}
+function addrSend(q){
+  var key = q.toLowerCase(), inp = $('addrInput');
+  Addr.timer = null;
+  if (!inp || addrQuery(inp.value).toLowerCase() !== key) return;   // she kept typing; that search is already queued
+  if (Addr.cache[key]) { addrMsg(''); addrRender(Addr.cache[key]); return; }
+  var gap = Addr.lastAt + NOMI_GAP_MS - Date.now();
+  if (gap > 0) { Addr.timer = setTimeout(function(){ addrSend(q); }, gap); return; }   // the 1-a-second rule, checked again at send time
+  if (!window.fetch) { addrMsg('Address search doesn\'t work in this browser. Pick a spot below.', true); return; }
+  Addr.lastAt = Date.now(); Addr.sent++;
+  var my = ++Addr.seq, ctl = null, to = null;
+  try { ctl = new AbortController(); to = setTimeout(function(){ try { ctl.abort(); } catch (e) {} }, 8000); } catch (e) { ctl = null; }
+  addrMsg('Looking…');
+  var opts = {credentials:'omit'}; if (ctl) opts.signal = ctl.signal;
+  fetch(nominatimUrl(q), opts).then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(function(js){
+    clearTimeout(to);
+    var list = addrParse(js); Addr.cache[key] = list;
+    if (my !== Addr.seq || addrQuery($('addrInput').value).toLowerCase() !== key) return;
+    addrMsg(''); addrRender(list);
+  }).catch(function(){
+    clearTimeout(to);
+    if (my !== Addr.seq) return;
+    addrRender(null); addrMsg('Address search isn\'t working right now. Pick a spot below.', true);
+  });
+}
+function addrPick(r){
+  if (!r) return;
+  clearTimeout(Addr.timer); Addr.timer = null; Addr.seq++;
+  $('addrInput').value = ''; addrRender(null); addrMsg('');
+  UI.firstOpen = false; commitLocation({lat:r.lat, lng:r.lng, label:r.label, src:'address', explicit:true});
 }
 
 /* ----- time picker ----- */
@@ -4628,7 +4813,7 @@ function chipsGroup(items){ return '<div class="chips-w">' + items.map(function(
 function copyF(F){ return JSON.parse(JSON.stringify(F)); }
 function openFilters(){ UI.draft = copyF(S.f); UI.draftB = {on:!!S.budgetOn, val:S.budget}; UI.draftReady = DATA_LOADED; UI.showRing = true; updateRing(); renderFilters(); openPanel('pFilters'); }
 function draftCount(F){ var B = UI.draftB || {on:S.budgetOn, val:S.budget}; return DATA_LOADED ? countView(DATA, evalTime(), ext(ctxNow(), {mode:F.mode, budget:B.on ? B.val : 'any'}), F, curSel(), UI.sub) : 0; }
-var LIMIT_TRIES = [['price', {price:{}}], ['io', {io:'either'}], ['reach', {mode:'transit', radius:APP_RADIUS}], ['booking', {walkin:false, hide21:false}], ['interests', {interests:{}}]];   // v5.1: only sections the sheet shows
+var LIMIT_TRIES = [['price', {price:{}}], ['io', {io:'either'}], ['reach', {mode:DEFAULT_MODE, radius:APP_RADIUS}], ['booking', {walkin:false, hide21:false}], ['interests', {interests:{}}]];   // v5.1: only sections the sheet shows
 function mostLimitingDraft(F){ // the section whose removal brings back the most (layout spec 3.10 "MOST LIMITING")
   var best = null, bn = 0;
   LIMIT_TRIES.forEach(function(t){ var n = draftCount(ext(F, t[1])); if (n > bn) { bn = n; best = t[0]; } });
@@ -4660,7 +4845,7 @@ function renderFilters(){
   var h = '';
   // v5.1 (tester L1): Who (Date / Friends / Solo) is on Home, so it is not repeated here. "Time I have" stays: it is the only place to turn it on.
   h += '<div class="fsec">' + H('Price', 'price') + chips([['price:free', 'Free', F.price.free], ['price:$', '$', F.price.$], ['price:$$', '$$', F.price.$$], ['price:$$$', '$$$', F.price.$$$]]) + '</div>';
-  h += '<div class="fsec">' + H('How far', 'reach') + seg([['mode:transit', 'Walk + CTA', F.mode === 'transit'], ['mode:walk', 'Walk', F.mode === 'walk'], ['mode:car', 'Drive', F.mode === 'car']]) +
+  h += '<div class="fsec">' + H('How far', 'reach') + seg([['mode:car', 'Drive', F.mode === 'car'], ['mode:transit', 'Walk + CTA', F.mode === 'transit'], ['mode:walk', 'Walk', F.mode === 'walk']]) +
     '<div class="chips-w" style="margin-top:8px">' + RADII.map(function(r){ return '<button class="chip" type="button" data-d="radius:' + r + '" aria-pressed="' + (F.radius === r) + '" aria-label="Within ' + esc(fmtRadius(r)) + '">' + (r === APP_RADIUS ? 'Any' : esc(fmtRadius(r))) + '</button>'; }).join('') + '</div></div>';
   h += '<div class="fsec">' + H('Inside or out', 'io') + seg([['io:either', 'Either', F.io === 'either'], ['io:indoor', 'Inside', F.io === 'indoor'], ['io:outdoor', 'Outside', F.io === 'outdoor']]) + '</div>';
   h += '<div class="fsec">' + H('Booking', 'booking') + chips([['walkin', 'Walk-in only', F.walkin], ['hide21', 'No 21+', F.hide21]]) + '</div>';
@@ -4719,7 +4904,7 @@ function applyF(code){ // single filter change (pSmall panels, the "Make it 2 hr
 /* ----- small panels: when, radius ----- */
 var smallRender = null;
 function openSmall(title, fn){ smallRender = fn; $('pSmallTitle').textContent = title; fn(); openPanel('pSmall'); }
-function smallRadius(){ $('pSmallBody').innerHTML = chipsGroup(RADII.map(function(r){ return ['radius:' + r, fmtRadius(r), S.f.radius === r]; })) + '<div style="margin-top:12px">' + chipsGroup([['mode:transit', 'Walk + CTA', S.f.mode === 'transit'], ['mode:walk', 'Walk only', S.f.mode === 'walk'], ['mode:car', 'Car', S.f.mode === 'car']]) + '</div><p class="hint">Distances are straight-line (as the crow flies). Travel times are rough. With Walk + CTA, places more than ' + CTA_MAX_MI + ' mi away show a drive time (no CTA estimate).</p>'; }
+function smallRadius(){ $('pSmallBody').innerHTML = chipsGroup(RADII.map(function(r){ return ['radius:' + r, fmtRadius(r), S.f.radius === r]; })) + '<div style="margin-top:12px">' + chipsGroup([['mode:car', 'Drive', S.f.mode === 'car'], ['mode:transit', 'Walk + CTA', S.f.mode === 'transit'], ['mode:walk', 'Walk only', S.f.mode === 'walk']]) + '</div><p class="hint">Distances are straight-line (as the crow flies). Travel times are rough. With Walk + CTA, places more than ' + CTA_MAX_MI + ' mi away show a drive time (no CTA estimate).</p>'; }
 var DAY_PARTS = [[600, 'Morning'], [840, 'Afternoon'], [1140, 'Evening'], [1320, 'Late']];
 function smallWhen(){ // v4: Now / Tonight, or pick a day (next 8 days) and a part of the day, or an exact time
   var p = cparts(nowMs()), d = parseDT(S.pickAt), on = S.when === 'pick' && d, selKey = on ? d.key : '', selMin = on && d.min !== null ? d.min : 1140, days = '';
@@ -4919,11 +5104,21 @@ function bindUI(){
   // location panel
   $('spotSearch').addEventListener('input', function(){ renderSpotResults(this.value); });
   $('spotSearch').addEventListener('keydown', function(e){ if (e.key === 'Enter') { var b = $('spotResults').querySelector('button[data-spot]'); if (b) b.click(); } });
+  // v5.5 address box: search on Enter or after a pause; Enter on an answer already shown picks the first one
+  $('addrInput').addEventListener('input', function(){ addrSearch('type'); });
+  $('addrInput').addEventListener('keydown', function(e){
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
+    var q = addrQuery(this.value).toLowerCase(), c = Addr.cache[q];
+    if (c && c.length && UI.addrList === c) addrPick(c[0]); else addrSearch('enter');
+  });
   $('pLoc').addEventListener('click', function(e){
+    var ad = e.target.closest('[data-addr]');
+    if (ad) { addrPick((UI.addrList || [])[+ad.getAttribute('data-addr')]); return; }
     var sp = e.target.closest('[data-spot],[data-pick]');
     if (sp) { var s = spotByName(sp.getAttribute('data-spot') || sp.getAttribute('data-pick')); if (s) { setCandidate(s.lat, s.lng, s.name, 'picked'); $('spotResults').innerHTML = ''; $('spotSearch').value = ''; } }
   });
-  $('locGo').addEventListener('click', function(){ var c = UI.cand || LOOP; UI.firstOpen = false; commitLocation(c); });
+  $('locGo').addEventListener('click', function(){ var c = UI.cand || LOOP; UI.firstOpen = false; commitLocation(ext(c, {explicit:true})); });   // v5.5: a choice made now
   $('gpsBtn').addEventListener('click', function(){ locateMe(); });
   // time
   $('pTimeBody').addEventListener('click', function(e){
@@ -5958,6 +6153,70 @@ function runSelfTest0(){
     eq('the button is never hidden for good (denied / prompt / granted / no API / claude.ai)', [gpsBtnShown('denied', false), gpsBtnShown('prompt', false), gpsBtnShown('granted', false), gpsBtnShown('none', false), gpsBtnShown('granted', true)].join(), 'true,true,true,false,false');
   });
 
+  block('v5.5 location: precise tap, accuracy, which location wins', function(){
+    eq('a tap asks for the precise reading: high accuracy, no cached reading, 15 s', [GEO_TAP_OPTS.high, GEO_TAP_OPTS.maximumAge, GEO_TAP_OPTS.timeout].join(), 'true,0,15000');
+    eq('the quiet check on load stays low power', GEO_QUIET_OPTS.high, false);
+    var r1 = geoNextStep({code:3}, 0).opts;
+    eq('...the one retry takes a fresh low-power reading (a laptop with no precise source still gets an answer)', [r1.maximumAge, r1.high, r1.timeout].join(), '0,false,20000');
+    eq('accuracy text: 12 m / 150 m / 300 m / 1,000 m / 2.5 km / 40 km / 5,000 km', [accText(12), accText(150), accText(300), accText(1000), accText(2500), accText(40000), accText(5000000)].join(' | '),
+      '±40 ft | ±490 ft | ±980 ft | ±0.6 mi | ±1.6 mi | ±25 mi | ±3,107 mi');
+    eq('...tiny readings say at least ±10 ft; no accuracy says nothing', [accText(1), accText(null), accText(NaN), accText(-5)].join('|'), '±10 ft|||');
+    eq('rough means worse than 1,000 m', [accRough(999), accRough(1000), accRough(1001), accRough(null)].join(), 'false,false,true,false');
+    eq('note after a sharp reading', locFixNote(30, true), 'Your location ±100 ft.');
+    eq('note after a rough reading (website): offer the address box', locFixNote(4000, true), 'Your location ±2.5 mi. Rough location. Type your address for a better one.');
+    eq('...without the address box: offer a spot', locFixNote(4000, false), 'Your location ±2.5 mi. Rough location. Pick a spot for a better one.');
+    eq('...no accuracy given', locFixNote(null, true), 'Found you.');
+    eq('accuracy only shows for a reading (not a spot or an address)', [locAccFor({src:'gps', acc:30}), locAccFor({src:'picked', acc:30}), locAccFor({src:'address'}), locAccFor(null)].join('|'), '±100 ft|||');
+    var T0 = 1763000000000;
+    var loop = {src:'default', lat:41.88, lng:-87.63}, remembered = {src:'picked', label:'Lincoln Park', lat:41.92, lng:-87.64, explicit:false, fresh:false},
+      rememberedGps = {src:'gps', lat:41.92, lng:-87.64, acc:50, t:0, explicit:false, fresh:false},
+      chosenSpot = {src:'picked', label:'Wicker Park', lat:41.91, lng:-87.68, explicit:true}, chosenAddr = {src:'address', label:'1060 West Addison Street', lat:41.947, lng:-87.656, explicit:true},
+      tapped = {src:'gps', lat:41.89, lng:-87.62, acc:20, t:T0, explicit:true, fresh:true}, quietOld = {src:'gps', lat:41.89, lng:-87.62, acc:30, t:T0, fresh:true};
+    eq('priority: chosen now 3 > fresh reading 2 > remembered 1 > the Loop 0', [locPriority(chosenAddr), locPriority(tapped), locPriority(quietOld), locPriority(remembered), locPriority(rememberedGps), locPriority(loop), locPriority(null)].join(), '3,3,2,1,1,0,0');
+    eq('...picking the Loop on purpose counts as a choice', locPriority({src:'default', explicit:true}), 3);
+    var quiet = function(o){ return ext({src:'gps', lat:41.893, lng:-87.621, acc:60, t:T0 + 60000, fresh:true, explicit:false}, o || {}); };
+    eq('a fresh reading beats a spot remembered from an earlier visit (the Lincoln Park bug)', takeFix(remembered, quiet()), true);
+    eq('...and an old remembered GPS spot, and the Loop', [takeFix(rememberedGps, quiet()), takeFix(loop, quiet()), takeFix(null, quiet())].join(), 'true,true,true');
+    eq('a quiet reading never replaces an address or spot chosen in this session', [takeFix(chosenAddr, quiet()), takeFix(chosenSpot, quiet())].join(), 'false,false');
+    eq('a tap always wins, even over a chosen address', takeFix(chosenAddr, quiet({explicit:true})), true);
+    eq('an older (cached) quiet reading never overwrites a newer tap', [takeFix(tapped, quiet({t:T0 - 240000})), takeFix(tapped, quiet({t:T0}))].join(), 'false,false');
+    eq('a newer reading of similar accuracy moves the dot', takeFix(tapped, quiet({acc:25})), true);
+    eq('a much rougher low-power reading does not replace a sharp tap for 10 min', [takeFix(tapped, quiet({acc:2000})), takeFix(tapped, quiet({acc:2000, t:T0 + 700000}))].join(), 'false,true');
+    eq('a reading with no coordinates is ignored', takeFix(loop, {src:'gps', t:T0}), false);
+  });
+
+  block('v5.5 Drive is the default travel mode', function(){
+    eq('defaults: Drive', [defaultFilters().mode, appDefaultFilters().mode, DEFAULT_MODE].join(), 'car,car,car');
+    eq('one-time switch: old default "transit" -> Drive; nothing stored -> Drive', [migrateMode('transit', false).mode, migrateMode(null, false).mode, migrateMode('junk', false).mode].join(), 'car,car,car');
+    eq('...after the switch, a mode she picks is kept (Walk + CTA, Walk, Drive)', [migrateMode('transit', true).mode, migrateMode('walk', true).mode, migrateMode('car', true).mode, migrateMode('walk', false).mode].join(), 'transit,walk,car,walk');
+    eq('Drive is not counted as a filter and has no chip; Walk + CTA and Walk do', [filterCount(defaultFilters(), 'now'), filterCount(ext(defaultFilters(), {mode:'transit'}), 'now'), appliedFilters(appDefaultFilters()).length, appliedFilters(ext(appDefaultFilters(), {mode:'transit'})).map(function(a){ return a.label; }).join(), appliedFilters(ext(appDefaultFilters(), {mode:'walk'})).map(function(a){ return a.label; }).join()].join('|'), '0|1|0|Walk + CTA|Walk only');
+    eq('removing the mode chip goes back to Drive', removeFilter(ext(defaultFilters(), {mode:'walk'}), 'mode').mode, 'car');
+    var it = fx({name:'Drive test', lat:northOf(3), hours:allDays(['00:00', '24:00'])}), c = computeItem(it, at('2026-11-12', '12:00'), {lat:41.88, lng:-87.63, budget:'any', mode:defaultFilters().mode});
+    eq('with the default filters, travel lines and the three\'s reach use drive times (3 mi: 8 + 12 = 20 min drive)', c.trav.how + ' ' + c.trav.min + ' | tier ' + reachTier(c), 'drive 20 | tier 0');
+    eq('the app starts in Drive unless she picked another mode', ['car', 'transit', 'walk'].indexOf(S.f.mode) >= 0 && (Platform.store.get('cff.modeDrive.v55', false) === true || !Platform.store.ok), true);
+  });
+
+  block('v5.5 "Type an address" (Nominatim rules)', function(){
+    eq('only the typed text goes out, after the fixed search address', nominatimUrl('  1060 W  Addison & Clark  '), 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&countrycodes=us&viewbox=-88.4,42.5,-87.4,41.4&q=1060%20W%20Addison%20%26%20Clark');
+    eq('under 3 characters: no request', [addrWait('', 'type', 0, 5000), addrWait('ab', 'enter', 0, 5000), addrWait('  a b ', 'type', 0, 5000)].join(), '-1,-1,600');
+    var now = 100000;
+    eq('typing waits 600 ms after the last key; Enter goes now', [addrWait('wri', 'type', 0, now), addrWait('wri', 'enter', 0, now)].join(), '600,0');
+    eq('never two requests within 1 s: Enter 300 ms after a request waits 700 ms', addrWait('wrigley', 'enter', now - 300, now), 700);
+    eq('...typing 200 ms after a request: the 600 ms pause already covers 800 ms, so 800 total', addrWait('wrigley', 'type', now - 200, now), 800);
+    eq('...a request 5 s ago adds nothing', [addrWait('wrigley', 'enter', now - 5000, now), addrWait('wrigley', 'type', now - 5000, now)].join(), '0,600');
+    var P = addrParse(ADDR_SAMPLE);
+    eq('results: short label + area; far away (Los Angeles) and broken rows dropped', P.map(function(r){ return r.label + ' / ' + r.sub; }).join(' | '),
+      'Wrigley Field / 1060 West Addison Street, Wrigleyville | 1060 West Addison Street / Wrigleyville, Lake View | Addison / North Sheffield Avenue, Wrigleyville');
+    near('...coordinates are numbers', P[0].lat + P[0].lng, 41.9484 - 87.6553, 1e-6);
+    eq('...not a list (an error page) gives no results, no crash', [addrParse(null).length, addrParse({error:'x'}).length, addrParse([null]).length].join(), '0,0,0');
+    eq('box shown on the website; hidden on claude.ai and in frames; the test hook never opens it on claude.ai', [addrBoxShown(false, false), addrBoxShown(true, false), addrBoxShown(false, true), addrBoxShown(true, true, true), addrBoxShown(false, true, true)].join(), 'true,false,false,false,true');
+    var box = $('addrBox');
+    ok('this page: the box follows the rule (hidden here when claude.ai or a frame)', !!box && (Platform.onClaude || (Platform.inFrame && !UI.addrForce) ? box.hidden || $('pLoc').hidden : true), 'onClaude=' + Platform.onClaude + ' inFrame=' + Platform.inFrame + ' hidden=' + (box && box.hidden));
+    ok('...on claude.ai the box is never shown', !Platform.onClaude || addrShown() === false, 'shown on claude.ai');
+    ok('the OpenStreetMap credit sits under the results and links to the copyright page', !!$('addrAttr') && /OpenStreetMap/.test($('addrAttr').textContent) && !!$('addrAttr').querySelector('a[href="https://www.openstreetmap.org/copyright"]') && $('addrResults').compareDocumentPosition($('addrAttr')) === 4, 'missing or above');
+    eq('the requests counter starts at 0 unless a search ran (only #addrq runs one)', /addrq=/.test(location.hash) || Addr.sent === 0, true);
+  });
+
   block('v5 street map choice and camera math', function(){
     function eng(o){ return chooseMapEngine(o).engine; }
     eq('claude.ai -> drawn map; frame -> drawn map; no WebGL -> drawn map; website -> street map', [eng({onClaude:true, webgl:true}), eng({inFrame:true, webgl:true}), eng({webgl:false}), eng({webgl:true})].join(), 'svg,svg,svg,gl');
@@ -6118,7 +6377,7 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.4 (2026-11-13)');
+    eq('version', VERSION, 'v5.5 (2026-11-13)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -6377,7 +6636,21 @@ function readHash(){
   var m = /now=(\d{4}-\d{2}-\d{2}T\d{1,2}:\d{2})/.exec(hsh);
   if (m) setNow(m[1]);
   var lm = /loc=(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/.exec(hsh); // testing hook: #loc=41.892,-87.634
-  if (lm && mapEl) { var la = +lm[1], ln = +lm[2]; UI.firstOpen = false; commitLocation({lat:la, lng:ln, label:labelForPoint(la, ln, proj(la, ln)).replace(/^Near /, ''), src:'picked'}); }
+  if (lm && mapEl) { var la = +lm[1], ln = +lm[2]; UI.firstOpen = false; commitLocation({lat:la, lng:ln, label:labelForPoint(la, ln, proj(la, ln)).replace(/^Near /, ''), src:'picked', explicit:true}); }
+  // v5.5 testing hooks: #addr=show (the address box inside a test frame; never on claude.ai), #gpsacc=<metres> (as if a tap on
+  // "Use my location" gave that reading at the #loc point), #panel=loc, #addrq=<text> (types it and presses Enter),
+  // #addrmock=1 (answers from the built-in sample ADDR_SAMPLE instead of the network)
+  if (/addr=show/.test(hsh)) { UI.addrForce = true; if ($('addrBox') && !$('pLoc').hidden) $('addrBox').hidden = !addrShown(); }
+  var gam = /gpsacc=(\d+)/.exec(hsh); if (gam && mapEl && S.loc) { UI.firstOpen = false; commitLocation({lat:S.loc.lat, lng:S.loc.lng, label:'Your location', src:'gps', acc:+gam[1], t:Date.now(), fresh:true, explicit:true}); }
+  var aqm = /addrq=([^&]*)/.exec(hsh);
+  if (mapEl && (aqm || /panel=loc/.test(hsh))) {
+    openLocation(false);
+    if (aqm) {
+      var aq = ''; try { aq = decodeURIComponent(aqm[1].replace(/\+/g, ' ')); } catch (e) { aq = aqm[1]; }
+      if (/addrmock=1/.test(hsh)) Addr.cache[addrQuery(aq).toLowerCase()] = addrParse(ADDR_SAMPLE);
+      $('addrInput').value = aq; addrSearch('enter');
+    }
+  }
   var bm = /budget=(\d+|night)/.exec(hsh); if (bm) { S.budget = bm[1] === 'night' ? 'night' : +bm[1]; S.budgetOn = true; if (mapEl) refresh(); }
   // v4: plain "#<id>" opens that place (the only kind of hash that passes through claude.ai); "#browse", "#map", "#been", "#saved", "#search" open those screens.
   var plain = hsh.replace(/^#/, '').toLowerCase(), hid = hashItemId(hsh);
@@ -6493,7 +6766,9 @@ function init(){
   var th = Platform.store.get('cff.theme', 'auto'); if (th === 'light' || th === 'dark') document.documentElement.setAttribute('data-theme', th);
   var sv = Platform.store.get('cff.saved.v1', []); savedIds = Array.isArray(sv) ? sv.filter(function(x){ return typeof x === 'string'; }) : [];
   var r = Platform.store.get('cff.radius.v3', APP_RADIUS); if ([0.5, 1, 2, 5, 10, 25].indexOf(r) >= 0) S.f.radius = r;
-  var md = Platform.store.get('cff.mode.v1', 'transit'); if (md === 'car' || md === 'transit' || md === 'walk') S.f.mode = md;
+  // v5.5: Drive is the default. A remembered 'transit' from before v5.5 (the old default) switches to Drive once; after that her pick is kept.
+  var mm = migrateMode(Platform.store.get('cff.mode.v1', null), Platform.store.get('cff.modeDrive.v55', false) === true);
+  S.f.mode = mm.mode; Platform.store.set('cff.modeDrive.v55', true); Platform.store.set('cff.mode.v1', S.f.mode);
   var gl2 = Platform.store.get('cff.genres.v2', null);   // v5: the picked kinds, as a list (e.g. ["limited","play"]); v3/v4 kept one tile as a string
   UI.gsel = restoredSel(gl2, Array.isArray(gl2) ? '' : Platform.store.get('cff.genre.v1', ''));   // v5.3: the kinds come back, Limited doesn't (owner 2026-11-13: it stayed on and every kind read 0)
   UI.foldRest = false;
@@ -6503,7 +6778,8 @@ function init(){
   CHECKINS = cleanCheckins(Platform.store.get(CHECKIN_KEY, []));
   UI.view = 'home'; $('app').setAttribute('data-view', 'home');
   var loc = Platform.store.get('cff.loc.v1', null);
-  if (loc && isNum(loc.lat) && isNum(loc.lng) && Math.abs(loc.lat - 41.9) < 2 && Math.abs(loc.lng + 87.7) < 3) S.loc = {lat:loc.lat, lng:loc.lng, label:String(loc.label || 'Your pin'), src:loc.src === 'gps' ? 'gps' : 'picked'};
+  if (loc && isNum(loc.lat) && isNum(loc.lng) && Math.abs(loc.lat - 41.9) < 2 && Math.abs(loc.lng + 87.7) < 3) S.loc = {lat:loc.lat, lng:loc.lng, label:String(loc.label || 'Your pin'), src:loc.src === 'gps' || loc.src === 'address' ? loc.src : 'picked',
+    acc:loc.src === 'gps' && isNum(loc.acc) ? loc.acc : null, t:0, explicit:false, fresh:false};   // v5.5: remembered from an earlier visit (priority 1: a fresh reading beats it)
   else { S.loc = ext(LOOP, {}); UI.firstOpen = true; }
   bindMap(); bindSheet(); bindUI();
   measureMap();
@@ -6535,7 +6811,12 @@ window.__cff = {
   runSelfTest: runSelfTest, showSelfTest: showSelfTest,
   setNow: setNow, state: function(){ return S; }, ui: function(){ return UI; }, data: function(){ return DATA; }, lastResult: function(){ return UI.lastRes; },
   refresh: function(){ refresh(); }, openDetail: function(id){ openDetail(id); }, closeDetail: function(){ closeDetail(); },
-  setLocation: function(lat, lng, label){ UI.firstOpen = false; commitLocation({lat:lat, lng:lng, label:label || 'Test pin', src:'picked'}); },
+  setLocation: function(lat, lng, label){ UI.firstOpen = false; commitLocation({lat:lat, lng:lng, label:label || 'Test pin', src:'picked', explicit:true}); },
+  // v5.5
+  accText: accText, accRough: accRough, locFixNote: locFixNote, locPriority: locPriority, takeFix: takeFix, locAccFor: locAccFor,
+  addrQuery: addrQuery, addrWait: addrWait, nominatimUrl: nominatimUrl, addrBoxShown: addrBoxShown, addrParse: addrParse, ADDR_SAMPLE: ADDR_SAMPLE,
+  addrState: function(){ return {shown:addrShown(), sent:Addr.sent, lastAt:Addr.lastAt, cached:Object.keys(Addr.cache)}; },
+  GEO_TAP_OPTS: GEO_TAP_OPTS, GEO_QUIET_OPTS: GEO_QUIET_OPTS,
   setFilter: function(code){ applyF(code); }, setBudget: function(b){ if (b === 'off' || b === null) S.budgetOn = false; else { S.budget = b; S.budgetOn = true; } refresh(); },
   map: function(){ return {cx:MV.cx, cy:MV.cy, s:MV.s, geoReady:GEO.ready, geoFailed:GEO.failed, areas:GEO.areas.length, lines:GEO.lines.length}; },
   // v2
