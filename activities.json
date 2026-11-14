@@ -8733,7 +8733,6 @@
     },
     {
         "id":  "pa-the-escape-game-river-north",
-        "name":  "The Escape Game Chicago - River North",
         "kind":  "place",
         "category":  "escape-room",
         "tags":  [
@@ -8850,6 +8849,8 @@
         "price_note":  "",
         "hours_note":  "Mon-Sun 8am-midnight (booked time slots). Phone line Mon-Fri 9-5.",
         "description":  "A national escape-room company known for polished, movie-set-style rooms: your team is locked in a themed room and has 60 minutes to solve linked puzzles and get out. A good pick for first-timers or mixed groups.",
+        "name":  "Escape room: The Escape Game – River North",
+        "award_note":  "Morty\u0027s top-rated in Chicago · TERPECA 2025 nominee",
         "photos":  [
                        {
                            "file":  "photos/pa-the-escape-game-river-north-1.jpg",
@@ -8859,225 +8860,7 @@
                    ]
     },
     {
-        "id":  "pa-the-escape-game-fulton-market",
-        "name":  "The Escape Game Chicago - Fulton Market",
-        "kind":  "place",
-        "category":  "escape-room",
-        "tags":  [
-                     "date",
-                     "friends",
-                     "rainy-day",
-                     "puzzles"
-                 ],
-        "highlights":  [
-                           "60-minute themed escape rooms",
-                           "Family-friendly",
-                           "West Loop location near Fulton Market restaurants"
-                       ],
-        "address":  "173 N Morgan St, Chicago, IL 60607",
-        "neighborhood":  "West Loop / Fulton Market",
-        "lat":  41.885175,
-        "lng":  -87.6517889,
-        "indoor_outdoor":  "indoor",
-        "price_level":  "$$",
-        "duration_minutes":  75,
-        "hours":  null,
-        "season":  null,
-        "booking":  "required",
-        "age_note":  "Family-friendly",
-        "phone":  "872-364-4477",
-        "website":  "https://theescapegame.com/chicago/",
-        "source_urls":  [
-                            "https://theescapegame.com/chicago/"
-                        ],
-        "verified":  {
-                         "status":  "unverified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://theescapegame.com/chicago/"
-                     },
-        "closed_dates":  [
-
-                         ],
-        "hook":  "A themed room, your team and 60 minutes to escape",
-        "moods":  [
-                      "nerdy",
-                      "active"
-                  ],
-        "good_for":  [
-                         "date",
-                         "friends",
-                         "family"
-                     ],
-        "good_to_know":  [
-                             {
-                                 "q":  "How old do you have to be?",
-                                 "a":  "Family-friendly.",
-                                 "source":  "https://theescapegame.com/chicago/"
-                             },
-                             {
-                                 "q":  "Do I need to book?",
-                                 "a":  "Yes, book ahead.",
-                                 "source":  "https://theescapegame.com/chicago/"
-                             },
-                             {
-                                 "q":  "How long does it take?",
-                                 "a":  "About 1.5 hours.",
-                                 "source":  "https://theescapegame.com/chicago/"
-                             },
-                             {
-                                 "q":  "Is it indoors?",
-                                 "a":  "Yes, it is indoors.",
-                                 "source":  "https://theescapegame.com/chicago/"
-                             }
-                         ],
-        "price_note":  "",
-        "hours_note":  "Hours not posted for this location.",
-        "description":  "The Escape Game\u0027s second Chicago location, on Morgan Street in the West Loop: a themed room, a team, and 60 minutes to solve the puzzles and escape. The rooms are aimed at all skill levels.",
-        "photos":  [
-                       {
-                           "file":  "photos/pa-the-escape-game-fulton-market-1.jpg",
-                           "credit":  "The Escape Game website (theescapegame.com), Fulton Market location image",
-                           "page_url":  "https://theescapegame.com/chicago/"
-                       }
-                   ]
-    },
-    {
-        "id":  "pa-fox-in-a-box-chicago",
-        "name":  "Fox in a Box Chicago",
-        "kind":  "place",
-        "category":  "escape-room",
-        "tags":  [
-                     "date",
-                     "friends",
-                     "rainy-day",
-                     "puzzles"
-                 ],
-        "highlights":  [
-                           "Rooms incl. bank heist, prison, bunker, Zodiac (18+)",
-                           "2-7 players per room; 60 min play, ~90 min total",
-                           "From $39.95 per person",
-                           "Open daily 10am-11pm",
-                           "Inside Dearborn Station, South Loop",
-                           "Every room is private - your group only"
-                       ],
-        "address":  "47 W Polk St, Suite L5, Chicago, IL 60605 (Dearborn Station, downstairs)",
-        "neighborhood":  "South Loop / Printer\u0027s Row",
-        "lat":  41.8716001,
-        "lng":  -87.6291711,
-        "indoor_outdoor":  "indoor",
-        "price_level":  "$$",
-        "price_note":  "From $39.95 per person.",
-        "duration_minutes":  90,
-        "hours":  {
-                      "mon":  [
-                                  [
-                                      "10:00",
-                                      "23:00"
-                                  ]
-                              ],
-                      "tue":  [
-                                  [
-                                      "10:00",
-                                      "23:00"
-                                  ]
-                              ],
-                      "wed":  [
-                                  [
-                                      "10:00",
-                                      "23:00"
-                                  ]
-                              ],
-                      "thu":  [
-                                  [
-                                      "10:00",
-                                      "23:00"
-                                  ]
-                              ],
-                      "fri":  [
-                                  [
-                                      "10:00",
-                                      "23:00"
-                                  ]
-                              ],
-                      "sat":  [
-                                  [
-                                      "10:00",
-                                      "23:00"
-                                  ]
-                              ],
-                      "sun":  [
-                                  [
-                                      "10:00",
-                                      "23:00"
-                                  ]
-                              ]
-                  },
-        "hours_note":  "60 min play; plan 80-90 min total. Every room is private (your group only). Rescheduling up to 72 hours ahead; no cancellations or refunds. No holiday closures posted.",
-        "season":  null,
-        "booking":  "required",
-        "phone":  "312-291-1127",
-        "website":  "https://www.foxinaboxchicago.com/",
-        "source_urls":  [
-                            "https://www.foxinaboxchicago.com/"
-                        ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://www.foxinaboxchicago.com/"
-                     },
-        "closed_dates":  [
-
-                         ],
-        "hook":  "Private escape rooms downstairs in Dearborn Station",
-        "moods":  [
-                      "nerdy",
-                      "active"
-                  ],
-        "good_for":  [
-                         "date",
-                         "friends",
-                         "family"
-                     ],
-        "good_to_know":  [
-                             {
-                                 "q":  "How old do you have to be?",
-                                 "a":  "10+ recommended; under 14 need an adult in the room, 14-17 an adult on site. The Zodiac room is 18+.",
-                                 "source":  "https://www.foxinaboxchicago.com/"
-                             },
-                             {
-                                 "q":  "Do I need to book?",
-                                 "a":  "Yes, book ahead.",
-                                 "source":  "https://www.foxinaboxchicago.com/"
-                             },
-                             {
-                                 "q":  "What does it cost?",
-                                 "a":  "From $39.95 per person.",
-                                 "source":  "https://www.foxinaboxchicago.com/"
-                             },
-                             {
-                                 "q":  "How long does it take?",
-                                 "a":  "About 1.5 hours.",
-                                 "source":  "https://www.foxinaboxchicago.com/"
-                             },
-                             {
-                                 "q":  "Is it indoors?",
-                                 "a":  "Yes, it is indoors.",
-                                 "source":  "https://www.foxinaboxchicago.com/"
-                             }
-                         ],
-        "description":  "Escape rooms downstairs in historic Dearborn Station in the South Loop, with themes like a bank heist, a prison break, a bunker and an adults-only Zodiac room. Bigger groups can play several rooms at the same time.",
-        "age_note":  "10+ recommended; under 14 need an adult in the room; 14-17 need an adult on site; Zodiac room 18+; the Prison and Bunker have kid-friendly versions",
-        "photos":  [
-                       {
-                           "file":  "photos/pa-fox-in-a-box-chicago-1.jpg",
-                           "credit":  "Fox in a Box Chicago website",
-                           "page_url":  "https://www.foxinaboxchicago.com/"
-                       }
-                   ]
-    },
-    {
         "id":  "pa-paniq-logan-square",
-        "name":  "PanIQ Escape Room - Logan Square",
         "kind":  "place",
         "category":  "escape-room",
         "tags":  [
@@ -9201,144 +8984,13 @@
         "price_note":  "$55.95 (2 players), $44.95 (3-4), $38.95 (5+), likely per person; Onyx Tower (2 max) $81.95. All games private.",
         "hours_note":  "Some pages list different general hours (daily 10:00-23:30).",
         "description":  "Escape rooms where every booking is private, so you never play with strangers: Medieval Madness, Wizard Trials and The Red Wire, plus The Onyx Tower, a 45-minute room for just two people that suits a date.",
+        "name":  "Escape room: PanIQ – Logan Square",
+        "award_note":  "Best of Morty 2022",
         "photos":  [
                        {
                            "file":  "photos/pa-paniq-logan-square-1.jpg",
                            "credit":  "PanIQ Escape Room website",
                            "page_url":  "https://paniqescaperoom.com/chicago"
-                       }
-                   ]
-    },
-    {
-        "id":  "pa-paniq-fulton-market",
-        "name":  "PanIQ Escape Room - Fulton Market",
-        "kind":  "place",
-        "category":  "escape-room",
-        "tags":  [
-                     "friends",
-                     "rainy-day",
-                     "puzzles",
-                     "spooky",
-                     "private-rooms"
-                 ],
-        "highlights":  [
-                           "Private bookings only",
-                           "Rooms: Insane Asylum (12+), Voodoo Spirits, The Mob, Prison (4-8 players)",
-                           "60 minutes, up to 8 players",
-                           "About $39-56 per person depending on group size"
-                       ],
-        "address":  "1200 W Lake St, Chicago, IL 60607",
-        "neighborhood":  "West Loop / Fulton Market",
-        "lat":  41.8857559,
-        "lng":  -87.6570895,
-        "indoor_outdoor":  "indoor",
-        "price_level":  "$$",
-        "duration_minutes":  60,
-        "hours":  {
-                      "mon":  [
-                                  [
-                                      "10:00",
-                                      "23:30"
-                                  ]
-                              ],
-                      "tue":  [
-                                  [
-                                      "10:00",
-                                      "23:30"
-                                  ]
-                              ],
-                      "wed":  [
-                                  [
-                                      "10:00",
-                                      "23:30"
-                                  ]
-                              ],
-                      "thu":  [
-                                  [
-                                      "10:00",
-                                      "23:30"
-                                  ]
-                              ],
-                      "fri":  [
-                                  [
-                                      "10:00",
-                                      "23:30"
-                                  ]
-                              ],
-                      "sat":  [
-                                  [
-                                      "10:00",
-                                      "23:30"
-                                  ]
-                              ],
-                      "sun":  [
-                                  [
-                                      "10:00",
-                                      "23:30"
-                                  ]
-                              ]
-                  },
-        "season":  null,
-        "booking":  "required",
-        "age_note":  "10+ (Insane Asylum 12+)",
-        "phone":  "312-837-3125",
-        "website":  "https://paniqescaperoom.com/chicago",
-        "source_urls":  [
-                            "https://paniqescaperoom.com/chicago"
-                        ],
-        "verified":  {
-                         "status":  "unverified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://paniqescaperoom.com/chicago"
-                     },
-        "closed_dates":  [
-
-                         ],
-        "hook":  "Darker-themed private escape rooms for up to 8",
-        "moods":  [
-                      "nerdy",
-                      "weird",
-                      "active"
-                  ],
-        "good_for":  [
-                         "friends",
-                         "family"
-                     ],
-        "good_to_know":  [
-                             {
-                                 "q":  "How old do you have to be?",
-                                 "a":  "10+ (Insane Asylum is 12+).",
-                                 "source":  "https://paniqescaperoom.com/chicago"
-                             },
-                             {
-                                 "q":  "Do I need to book?",
-                                 "a":  "Yes, book ahead.",
-                                 "source":  "https://paniqescaperoom.com/chicago"
-                             },
-                             {
-                                 "q":  "What does it cost?",
-                                 "a":  "$38.95 to $55.95 depending on group size.",
-                                 "source":  "https://paniqescaperoom.com/chicago"
-                             },
-                             {
-                                 "q":  "How long does it take?",
-                                 "a":  "About 1 hour.",
-                                 "source":  "https://paniqescaperoom.com/chicago"
-                             },
-                             {
-                                 "q":  "Is it indoors?",
-                                 "a":  "Yes, it is indoors.",
-                                 "source":  "https://paniqescaperoom.com/chicago"
-                             }
-                         ],
-        "hours_note":  "No hours posted for this location; general hours are daily 10:00-23:30 and may not apply here. Call to confirm: 312-837-3125.",
-        "description":  "PanIQ\u0027s West Loop escape rooms, all privately booked, with themes that lean darker: Insane Asylum, Voodoo Spirits, The Mob and Prison. A good pick for a group that likes spooky themes.",
-        "price_note":  "Same pricing as Logan Square ($38.95-$55.95 depending on group size). Up to 8 players per game; Prison needs at least 4.",
-        "photos":  [
-                       {
-                           "file":  "photos/pa-paniq-fulton-market-1.jpg",
-                           "credit":  "PanIQ Escape Room website (paniqescaperoom.com)",
-                           "page_url":  "https://paniqescaperoom.com/chicago/en"
                        }
                    ]
     },
@@ -36707,6 +36359,616 @@
                            "file":  "photos/ud-aroma-workshop-1.jpg",
                            "credit":  "Aroma Workshop website",
                            "page_url":  "https://www.aromaworkshop.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "pa-60-to-escape-schaumburg",
+        "kind":  "place",
+        "category":  "escape-room",
+        "genre":  "play",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "rainy-day",
+                     "puzzles",
+                     "award-winning"
+                 ],
+        "hook":  "Award-winning escape rooms inside Woodfield Mall, including a retro video-store room",
+        "description":  "Escape rooms inside Woodfield Mall, run by one of the most-awarded escape room companies around Chicago. The standout is Lockbuster Video, a 90s video rental store run by a robot manager, and Cheesie\u0027s Pizza Party is just as loved by enthusiasts.",
+        "highlights":  [
+                           "Lockbuster Video and Cheesie\u0027s Pizza Party: TERPECA finalists 2025 and 2026",
+                           "Best of Morty winner 2023, 2024 and 2025",
+                           "Rooms include Lockbuster Video, Cheesie\u0027s Pizza Party, Jurassic Outpost, Magic Heist, Arctic Expedition, Mystery Manor",
+                           "60-minute games, all private (your group only), unlimited clues",
+                           "Best with up to 8 players; about 6 works best",
+                           "Putt Portal mystery mini golf at the same spot"
+                       ],
+        "awards":  [
+                       {
+                           "award":  "TERPECA finalist",
+                           "year":  2026,
+                           "room":  "Lockbuster Video",
+                           "url":  "https://morty.app/attraction/51426/lockbuster-video"
+                       },
+                       {
+                           "award":  "TERPECA finalist",
+                           "year":  2026,
+                           "room":  "Cheesie\u0027s Pizza Party",
+                           "url":  "https://morty.app/attraction/38069/cheesies-pizza-party"
+                       },
+                       {
+                           "award":  "TERPECA finalist",
+                           "year":  2025,
+                           "room":  "Lockbuster Video",
+                           "url":  "https://morty.app/attraction/51426/lockbuster-video"
+                       },
+                       {
+                           "award":  "TERPECA finalist",
+                           "year":  2025,
+                           "room":  "Cheesie\u0027s Pizza Party",
+                           "url":  "https://morty.app/attraction/38069/cheesies-pizza-party"
+                       },
+                       {
+                           "award":  "Best of Morty",
+                           "year":  2025,
+                           "room":  "Lockbuster Video",
+                           "url":  "https://morty.app/blog/best-of-morty-2025"
+                       },
+                       {
+                           "award":  "Best of Morty",
+                           "year":  2024,
+                           "room":  "Lockbuster Video; Cheesie\u0027s Pizza Party",
+                           "url":  "https://morty.app/blog/best-of-morty-2024"
+                       },
+                       {
+                           "award":  "Best of Morty",
+                           "year":  2023,
+                           "room":  "Cheesie\u0027s Pizza Party; Magic Heist; Mystery Manor",
+                           "url":  "https://morty.app/blog/best-of-morty-2023"
+                       }
+                   ],
+        "address":  "5 Woodfield Mall, Suite D215, Schaumburg, IL 60173",
+        "neighborhood":  "Schaumburg (Woodfield Mall)",
+        "lat":  42.0465894,
+        "lng":  -88.0370689,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  42,
+        "price_note":  "About $42 per player; at least $90 per game. The price depends on the day, the game and the group size.",
+        "duration_minutes":  60,
+        "min_minutes":  60,
+        "hours":  null,
+        "hours_note":  "Game times change by day; open slots show when you book. Closed Thanksgiving.",
+        "last_entry_before_close_min":  null,
+        "hours_valid_to":  null,
+        "season":  null,
+        "closed_dates":  [
+                             "2026-11-26"
+                         ],
+        "booking":  "required",
+        "booking_url":  "https://www.62escape.com/schaumburg#bookexperience",
+        "age_note":  "Everyone needs a ticket. Groups with kids under 13 need a paying adult (18+).",
+        "phone":  "844-623-7227",
+        "website":  "https://www.62escape.com/schaumburg",
+        "good_for":  [
+                         "date",
+                         "friends",
+                         "family"
+                     ],
+        "moods":  [
+                      "nerdy"
+                  ],
+        "source_urls":  [
+                            "https://www.62escape.com/",
+                            "https://www.62escape.com/schaumburg",
+                            "https://www.62escape.com/faq",
+                            "https://morty.app/location/60-to-escape/schaumburg",
+                            "https://morty.app/attraction/51426/lockbuster-video",
+                            "https://morty.app/attraction/38069/cheesies-pizza-party",
+                            "https://morty.app/attraction/38070/magic-heist",
+                            "https://morty.app/attraction/38068/mystery-manor",
+                            "https://roomescapeartist.com/2025/01/22/60-escape-schaumburg-lockbuster-video-review/",
+                            "https://roomescapeartist.com/2023/02/03/chicago-illinois-escape-room-recommendations"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.62escape.com/schaumburg#bookexperience"
+                     },
+        "name":  "Escape room: 60 to Escape – Schaumburg (Woodfield Mall)",
+        "award_note":  "TERPECA 2026 finalist · Best of Morty 2025",
+        "photos":  [
+                       {
+                           "file":  "photos/pa-60-to-escape-schaumburg-1.jpg",
+                           "credit":  "Room Escape Artist",
+                           "page_url":  "https://roomescapeartist.com/2025/01/22/60-escape-schaumburg-lockbuster-video-review/"
+                       }
+                   ]
+    },
+    {
+        "id":  "pa-60-to-escape-gurnee",
+        "kind":  "place",
+        "category":  "escape-room",
+        "genre":  "play",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "rainy-day",
+                     "puzzles",
+                     "award-winning"
+                 ],
+        "hook":  "Award-winning escape rooms at Gurnee Mills, from a jungle temple to a haunted manor",
+        "description":  "The original 60 to Escape, inside Gurnee Mills, with themed rooms like an ancient jungle temple full of traps, a cursed mansion with ghostly effects and a 1980s arcade mystery. Hidden Temple and Mystery Manor keep winning Morty\u0027s yearly awards.",
+        "highlights":  [
+                           "Hidden Temple: Best of Morty 2023 and 2025",
+                           "Mystery Manor: Best of Morty 2023 and 2024, a good first room",
+                           "Rooms include Hidden Temple, Mystery Manor, Blast from the Past, Containment, Museum, Duke\u0027s Farm, Starship: Final Frontier",
+                           "60-minute games for 2-8 players (some rooms 2-6), all private, unlimited clues",
+                           "Hidden Temple, Mystery Manor and Containment are dimly lit"
+                       ],
+        "awards":  [
+                       {
+                           "award":  "Best of Morty",
+                           "year":  2025,
+                           "room":  "Hidden Temple",
+                           "url":  "https://morty.app/blog/best-of-morty-2025"
+                       },
+                       {
+                           "award":  "Best of Morty",
+                           "year":  2024,
+                           "room":  "Mystery Manor",
+                           "url":  "https://morty.app/blog/best-of-morty-2024"
+                       },
+                       {
+                           "award":  "Best of Morty",
+                           "year":  2023,
+                           "room":  "Hidden Temple; Mystery Manor; Blast From The Past",
+                           "url":  "https://morty.app/blog/best-of-morty-2023"
+                       },
+                       {
+                           "award":  "TERPECA nominee",
+                           "year":  2025,
+                           "room":  "Mystery Manor",
+                           "url":  "https://morty.app/game/4029/mystery-manor"
+                       }
+                   ],
+        "address":  "Gurnee Mills (Entrance J, Store 149), 6170 W Grand Ave, Gurnee, IL 60031",
+        "neighborhood":  "Gurnee (Gurnee Mills)",
+        "lat":  42.3892848,
+        "lng":  -87.9579099,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  40,
+        "price_note":  "About $40 per player; at least $90 per game. The price depends on the day, the game and the group size.",
+        "duration_minutes":  60,
+        "min_minutes":  60,
+        "hours":  null,
+        "hours_note":  "Game times change by day; open slots show when you book. Closed Thanksgiving.",
+        "last_entry_before_close_min":  null,
+        "hours_valid_to":  null,
+        "season":  null,
+        "closed_dates":  [
+                             "2026-11-26"
+                         ],
+        "booking":  "required",
+        "booking_url":  "https://www.62escape.com/illinois#bookexperience",
+        "age_note":  "Everyone needs a ticket. Groups with kids under 13 need a paying adult (18+).",
+        "phone":  "844-623-7227",
+        "website":  "https://www.62escape.com/illinois",
+        "good_for":  [
+                         "date",
+                         "friends",
+                         "family"
+                     ],
+        "moods":  [
+                      "nerdy"
+                  ],
+        "source_urls":  [
+                            "https://www.62escape.com/",
+                            "https://www.62escape.com/illinois",
+                            "https://www.62escape.com/illinoisgames",
+                            "https://www.62escape.com/faq",
+                            "https://morty.app/location/60-to-escape/gurnee",
+                            "https://morty.app/attraction/4030/hidden-temple",
+                            "https://morty.app/game/4029/mystery-manor",
+                            "https://roomescapeartist.com/2023/02/03/chicago-illinois-escape-room-recommendations"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.62escape.com/illinois#bookexperience"
+                     },
+        "name":  "Escape room: 60 to Escape – Gurnee (Gurnee Mills)",
+        "award_note":  "Best of Morty 2025",
+        "photos":  [
+                       {
+                           "file":  "photos/pa-60-to-escape-gurnee-1.jpg",
+                           "credit":  "60 to Escape website",
+                           "page_url":  "https://www.62escape.com/illinoisgames"
+                       }
+                   ]
+    },
+    {
+        "id":  "pa-escape-factor-forest-park",
+        "kind":  "place",
+        "category":  "escape-room",
+        "genre":  "play",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "rainy-day",
+                     "puzzles",
+                     "award-winning"
+                 ],
+        "hook":  "Voted #3 escape room in the US in 2025, a short walk from the Blue Line",
+        "description":  "A small, puzzle-focused escape room company on Madison Street in Forest Park with four rooms, including a 1970s TV game show studio and a teenage punk\u0027s treehouse. Enthusiasts rate the puzzles among the best around Chicago.",
+        "highlights":  [
+                           "USA Today 10Best Readers\u0027 Choice 2025: #3 escape room in the US",
+                           "Bonus Fun Time Game Show Challenge and Treehouse Raid: Best of Morty 2023",
+                           "Four rooms: Bonus Fun Time Game Show Challenge (3-9 players), The Treehouse Raid at Fort Knocks (2-6), Ghost in the Graveyard (2-8), The Timekeeper\u0027s Trapped! (4-12)",
+                           "60-minute games, each team gets its own room",
+                           "About a half-mile walk from the Blue Line"
+                       ],
+        "awards":  [
+                       {
+                           "award":  "USA Today 10Best Readers\u0027 Choice, Best Escape Room, #3",
+                           "year":  2025,
+                           "room":  "venue",
+                           "url":  "https://www.yahoo.com/lifestyle/articles/rhode-island-one-best-escape-170347554.html"
+                       },
+                       {
+                           "award":  "Best of Morty",
+                           "year":  2023,
+                           "room":  "Bonus Fun Time Game Show Challenge; The Tree House Raid at Fort Knocks",
+                           "url":  "https://morty.app/blog/best-of-morty-2023"
+                       },
+                       {
+                           "award":  "TERPECA nominee",
+                           "year":  2023,
+                           "room":  "Bonus Fun Time Game Show Challenge",
+                           "url":  "https://morty.app/game/4215/bonus-fun-time-game-show-challenge"
+                       }
+                   ],
+        "address":  "7228 Madison St, Forest Park, IL 60130",
+        "neighborhood":  "Forest Park",
+        "lat":  41.879542,
+        "lng":  -87.806199,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  39.99,
+        "price_note":  "$39.99-$59.99 per player, cheaper per player in bigger groups, plus a $0.99 booking fee per player.",
+        "duration_minutes":  60,
+        "min_minutes":  60,
+        "hours":  null,
+        "hours_note":  "Open daily; game times change by day and show when you book. Closed Thanksgiving and Christmas Day.",
+        "last_entry_before_close_min":  null,
+        "hours_valid_to":  null,
+        "season":  null,
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-12-25"
+                         ],
+        "booking":  "recommended",
+        "booking_url":  "https://escapefactorchicago.com/reserve-your-escape-room-oak-brook-elmhurst-chicago/",
+        "age_note":  "Ages 6+. Kids 6-12 need one paying adult for every 3 kids. Under 6 free, but must be carried or in a stroller.",
+        "phone":  "708-943-7227",
+        "website":  "https://escapefactorchicago.com/",
+        "good_for":  [
+                         "date",
+                         "friends",
+                         "family"
+                     ],
+        "moods":  [
+                      "nerdy"
+                  ],
+        "source_urls":  [
+                            "https://escapefactorchicago.com/",
+                            "https://escapefactorchicago.com/reserve-your-escape-room-oak-brook-elmhurst-chicago/",
+                            "https://morty.app/location/escape-factor/forest-park",
+                            "https://morty.app/game/4215/bonus-fun-time-game-show-challenge",
+                            "https://morty.app/blog/best-of-morty-2023",
+                            "https://www.forestparkreview.com/?p=73054",
+                            "https://www.yahoo.com/lifestyle/articles/rhode-island-one-best-escape-170347554.html",
+                            "https://roomescapeartist.com/2022/07/14/escape-factor-treehouse-raid-fort-knocks-review/",
+                            "https://roomescapeartist.com/2023/02/03/chicago-illinois-escape-room-recommendations"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://escapefactorchicago.com/reserve-your-escape-room-oak-brook-elmhurst-chicago/"
+                     },
+        "name":  "Escape room: Escape Factor – Forest Park",
+        "award_note":  "USA Today 10Best 2025: #3 escape room in the US",
+        "photos":  [
+                       {
+                           "file":  "photos/pa-escape-factor-forest-park-1.jpg",
+                           "credit":  "Room Escape Artist",
+                           "page_url":  "https://roomescapeartist.com/2022/07/14/escape-factor-treehouse-raid-fort-knocks-review/"
+                       }
+                   ]
+    },
+    {
+        "id":  "pa-twisted-limits-mchenry",
+        "kind":  "place",
+        "category":  "escape-room",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "rainy-day",
+                     "puzzles",
+                     "award-winning",
+                     "day-trip"
+                 ],
+        "hook":  "Explore a giant built cave in The Passage, a TERPECA 2026 finalist",
+        "description":  "A small escape room company in McHenry whose big room, The Passage, sends your team through a huge, hand-built sandstone cave to find out what happened to a missing research team. It\u0027s a 90-minute game that enthusiasts call a hidden gem for its set.",
+        "highlights":  [
+                           "The Passage: TERPECA finalist 2026, Best of Morty 2024 and 2025",
+                           "The Passage runs 90 minutes and is best for 4-8 players with some escape room experience",
+                           "Also Behind the Curtain (60 min, good first room) and Executive Disorder (90 min, hardest)",
+                           "Every booking is private",
+                           "Party room available; outside food and drink allowed"
+                       ],
+        "awards":  [
+                       {
+                           "award":  "TERPECA finalist",
+                           "year":  2026,
+                           "room":  "The Passage",
+                           "url":  "https://morty.app/attraction/4825/the-passage"
+                       },
+                       {
+                           "award":  "Best of Morty",
+                           "year":  2025,
+                           "room":  "The Passage",
+                           "url":  "https://morty.app/blog/best-of-morty-2025"
+                       },
+                       {
+                           "award":  "Best of Morty",
+                           "year":  2024,
+                           "room":  "The Passage",
+                           "url":  "https://morty.app/blog/best-of-morty-2024"
+                       },
+                       {
+                           "award":  "TERPECA nominee",
+                           "year":  2025,
+                           "room":  "The Passage",
+                           "url":  "https://morty.app/attraction/4825/the-passage"
+                       }
+                   ],
+        "address":  "3735 W Elm St, McHenry, IL 60050",
+        "neighborhood":  "McHenry",
+        "lat":  42.3452037,
+        "lng":  -88.2705192,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  30,
+        "price_note":  "$40 per player for The Passage; $30 per player for the other rooms. A deposit of one player\u0027s ticket holds the booking.",
+        "duration_minutes":  90,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "12:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "12:00",
+                                      "17:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "By reservation only. If no one has booked, the building may be unstaffed, so call ahead.",
+        "last_entry_before_close_min":  null,
+        "hours_valid_to":  null,
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "required",
+        "booking_url":  "https://twistedlimits.resova.us/?location=1",
+        "age_note":  "14+ can play on their own; ages 10-13 need a parent or guardian; under 10 not recommended.",
+        "phone":  "815-331-8857",
+        "website":  "https://www.twistedlimits.com/escape",
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "moods":  [
+                      "nerdy",
+                      "active"
+                  ],
+        "source_urls":  [
+                            "https://www.twistedlimits.com/",
+                            "https://www.twistedlimits.com/escape",
+                            "https://twistedlimits.resova.us/?location=1",
+                            "https://morty.app/attraction/4825/the-passage",
+                            "https://morty.app/blog/best-of-morty-2025",
+                            "https://morty.app/blog/best-of-morty-2024",
+                            "https://roomescapeartist.com/2022/07/21/twisted-limits-escape-rooms-passage-review/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.twistedlimits.com/escape"
+                     },
+        "name":  "Escape room: Twisted Limits – McHenry",
+        "award_note":  "TERPECA 2026 finalist · Best of Morty 2025",
+        "photos":  [
+                       {
+                           "file":  "photos/pa-twisted-limits-mchenry-1.jpg",
+                           "credit":  "Room Escape Artist",
+                           "page_url":  "https://roomescapeartist.com/2022/07/21/twisted-limits-escape-rooms-passage-review/"
+                       }
+                   ]
+    },
+    {
+        "id":  "pa-mind-trap-montgomery",
+        "kind":  "place",
+        "category":  "escape-room",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "rainy-day",
+                     "puzzles",
+                     "award-winning",
+                     "day-trip"
+                 ],
+        "hook":  "A huge, film-set-like mob heist room in the far west suburbs",
+        "description":  "A big private escape room venue near Aurora with many themed rooms. Its best-known game, Mafia Heist, drops you into a weathered 1980s mob world spread across several spaces, with effects and voice acting that enthusiasts single out.",
+        "highlights":  [
+                           "Mafia Heist: Best of Morty 2025, TERPECA finalist 2024",
+                           "Mafia Heist runs 75 minutes for 4-10 players",
+                           "Other rooms include Jurassic Escape, Vampires, Locked-Up Supermax and Pharaoh\u0027s Chamber",
+                           "All rooms are private",
+                           "Mafia Heist has motion simulators, fog, mild strobe lights and loud sound effects"
+                       ],
+        "awards":  [
+                       {
+                           "award":  "Best of Morty",
+                           "year":  2025,
+                           "room":  "Mafia Heist",
+                           "url":  "https://morty.app/blog/best-of-morty-2025"
+                       },
+                       {
+                           "award":  "TERPECA finalist",
+                           "year":  2024,
+                           "room":  "Mafia Heist",
+                           "url":  "https://morty.app/game/7808/mafia-heist"
+                       },
+                       {
+                           "award":  "TERPECA nominee",
+                           "year":  2026,
+                           "room":  "Mafia Heist",
+                           "url":  "https://morty.app/game/7808/mafia-heist"
+                       },
+                       {
+                           "award":  "TERPECA nominee",
+                           "year":  2025,
+                           "room":  "Mafia Heist",
+                           "url":  "https://morty.app/game/7808/mafia-heist"
+                       }
+                   ],
+        "address":  "299 Montgomery Rd, Suite A, Montgomery, IL 60538",
+        "neighborhood":  "Montgomery (near Aurora)",
+        "lat":  41.727758,
+        "lng":  -88.320113,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_from":  31.99,
+        "price_note":  "$31.99 per player for 60-minute rooms; $36.99 for 75-minute rooms like Mafia Heist. No extra fees.",
+        "duration_minutes":  75,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "13:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "13:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "13:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "13:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "13:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "12:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "12:00",
+                                      "21:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Weekday daytime games for groups of 6 or more: call to book.",
+        "last_entry_before_close_min":  null,
+        "hours_valid_to":  null,
+        "season":  null,
+        "closed_dates":  [
+
+                         ],
+        "booking":  "recommended",
+        "booking_url":  "https://mindtrapescaperooms.com/booknow/",
+        "age_note":  "Under 13 must come with an adult; under 18 need a waiver signed by a parent. Mafia Heist is recommended for 17+.",
+        "phone":  "630-216-9609",
+        "website":  "https://www.mindtrapescaperooms.com/",
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "moods":  [
+                      "nerdy",
+                      "active"
+                  ],
+        "source_urls":  [
+                            "https://www.mindtrapescaperooms.com/",
+                            "https://www.mindtrapescaperooms.com/location-hours",
+                            "https://mindtrapescaperooms.com/booknow/",
+                            "https://morty.app/game/7808/mafia-heist",
+                            "https://morty.app/blog/best-of-morty-2025",
+                            "https://www.enjoyillinois.com/explore/listing/mind-trap-escape-rooms/",
+                            "https://roomescapeartist.com/2025/02/10/mind-trap-mafia-heist-review/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.mindtrapescaperooms.com/location-hours"
+                     },
+        "name":  "Escape room: Mind Trap – Montgomery",
+        "award_note":  "Best of Morty 2025 · TERPECA 2024 finalist",
+        "photos":  [
+                       {
+                           "file":  "photos/pa-mind-trap-montgomery-1.jpg",
+                           "credit":  "Mind Trap Escape Rooms website",
+                           "page_url":  "https://www.mindtrapescaperooms.com/rooms/mafia"
                        }
                    ]
     }
