@@ -519,6 +519,47 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .fchip .n{min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:var(--accent);color:var(--on-accent);font:700 12px/22px var(--f-body);text-align:center;font-variant-numeric:tabular-nums}
 .fchip .n.zero{background:var(--paper-2);color:var(--ink-3)}
 .fpaste{margin:4px 16px 0}
+/* v5.11 accounts + friends stage 2 */
+.acct{margin:18px 16px 8px;padding:14px;border-radius:14px;border:1px solid var(--rule);background:var(--paper)}
+.p-body.about .acct{margin:8px 0}
+.acct-t{margin:0;font:700 16px/1.25 var(--f-body);color:var(--ink)}
+.acct-s{margin:4px 0 12px;font:500 13.5px/1.4 var(--f-body);color:var(--ink-2)}
+.acct-s.off{color:var(--soon);font-weight:600}
+.acct-l{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:10px 0 0;color:var(--ink-3)}
+.btn-google{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:48px;border-radius:12px;border:1px solid var(--rule-strong);background:#fff;color:#1f1f1f;font:600 15px var(--f-body);cursor:pointer}
+.btn-google[disabled]{opacity:.6}
+.btn-google .gg{width:20px;height:20px;flex:none}
+.linkbtn.warn{color:var(--closed)}
+.btn-primary.danger{background:var(--closed);color:#fff}
+.reqcard{display:grid;grid-template-columns:28px minmax(0,1fr);gap:4px 10px;align-items:center;margin:10px 16px 0;padding:12px;border-radius:12px;border:1px solid var(--rule);background:var(--paper)}
+.reqcard .av{width:28px;height:28px}
+.reqcard .rq-t{font:600 15px/1.3 var(--f-body)}
+.reqcard .rq-b{grid-column:2;display:flex;align-items:center;gap:14px}
+.mini-btn.fill{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.fchip.copy .av{background:var(--paper);color:var(--ink);box-shadow:none;border:1.5px dashed var(--ink-3)}
+.fchip.add{padding:6px}
+.av.plus{background:var(--paper-2);color:var(--ink);font-size:16px;box-shadow:none}
+.fsec-h{margin:20px 0 6px;font:700 12px/1.2 var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.frows{list-style:none;margin:0;padding:0}
+.frows li{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:52px;border-bottom:1px solid var(--rule)}
+.frows .fr-u{min-width:0;overflow:hidden;text-overflow:ellipsis;font:600 15px/1.3 var(--f-body)}
+.frows .fr-u small{font-weight:500;color:var(--ink-3)}
+.frows .fr-b{display:flex;align-items:center;gap:14px;flex:none}
+.frows .fr-st{flex:none;font:500 13.5px var(--f-body);color:var(--ink-3)}
+.frrow{display:grid;grid-template-columns:22px minmax(0,1fr) 18px;align-items:center;gap:12px;width:100%;min-height:56px;padding:0 4px;border:0;border-bottom:1px solid var(--rule);background:none;color:var(--ink);font:600 15px var(--f-body);text-align:left;cursor:pointer}
+.frrow .i{width:20px;height:20px}
+.fr-or{margin:8px 0;text-align:center;font:500 13px var(--f-body);color:var(--ink-3)}
+.frfind{display:grid;grid-template-columns:minmax(0,1fr) 88px;gap:8px}
+.field.uname{display:flex;align-items:center;gap:2px;padding-left:12px}
+.field.uname span{color:var(--ink-3);font:600 16px var(--f-body)}
+.field.uname input{padding-left:2px}
+.confirm2{display:flex;gap:10px;margin-top:14px}
+.confirm2 > *{flex:1}
+.fr-note{margin-top:12px}
+.fr-off{margin:6px 16px 0}
+.hm-sub .acc.rough,.fill .acc.rough{color:var(--soon)}
+#savedBtn.reqdot{position:relative}
+#savedBtn.reqdot::after{content:"";position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--accent)}
 .fr-meta{padding:0 20px;margin:0}
 .fr-hint{padding:10px 20px 0;margin:0}
 .fr-none{font:800 22px/1.1 var(--f-display);margin:0;padding:16px 20px 4px;color:var(--ink)}
@@ -1092,6 +1133,9 @@ body{background:var(--paper)}
   <section id="pSmall" class="panel" hidden role="dialog" aria-labelledby="pSmallTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pSmallTitle" tabindex="-1"></h2><button class="p-close" type="button" data-close="pSmall" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pSmallBody"></div></section>
   <section id="pSaved" class="panel tall" hidden role="dialog" aria-labelledby="pSavedTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pSavedTitle" tabindex="-1">Saved</h2><div class="p-hbtns"><button class="mini-btn" id="wlShare" type="button" aria-label="Share my saved list" hidden><svg class="i"><use href="#i-share"/></svg>Share</button><button class="p-close" type="button" data-close="pSaved" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div></div><div class="p-body" id="pSavedBody" style="padding-left:0;padding-right:0"></div></section>
   <section id="pFriend" class="panel tall" hidden role="dialog" aria-labelledby="pFriendTitle"><span class="grabber"></span><div class="p-head"><div class="fr-t" id="pFriendT"><h2 class="p-title" id="pFriendTitle" tabindex="-1">A friend's list</h2></div><button class="p-close" type="button" data-close="pFriend" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pFriendBody" style="padding-left:0;padding-right:0"></div><div class="p-foot fr-foot" id="pFriendFoot" hidden><label class="vh" for="fName">Their name</label><input id="fName" type="text" maxlength="24" autocomplete="off" enterkeyhint="done" placeholder="Their name"><button class="btn-primary" id="fKeep" type="button">Keep</button></div></section>
+  <section id="pCluster" class="panel" hidden role="dialog" aria-labelledby="pClusterTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pClusterTitle" tabindex="-1">Places here</h2><button class="p-close" type="button" data-close="pCluster" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pClusterBody" style="padding-left:0;padding-right:0;max-height:min(62vh,560px);overflow-y:auto"></div></section>
+  <section id="pFriends" class="panel tall" hidden role="dialog" aria-labelledby="pFriendsTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pFriendsTitle" tabindex="-1">Friends</h2><button class="p-close" type="button" data-close="pFriends" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pFriendsBody"></div></section>
+  <section id="pPrivacy" class="panel tall" hidden role="dialog" aria-labelledby="pPrivacyTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pPrivacyTitle" tabindex="-1">Privacy</h2><button class="p-close" type="button" data-close="pPrivacy" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body about" id="pPrivacyBody"></div></section>
   <section id="pAbout" class="panel tall" hidden role="dialog" aria-labelledby="pAboutTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pAboutTitle" tabindex="-1">About</h2><button class="p-close" type="button" data-close="pAbout" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body about" id="pAboutBody"></div></section>
   <section id="pTheme" class="panel theme" hidden role="dialog" aria-labelledby="pThemeTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pThemeTitle" tabindex="-1">Theme</h2><button class="p-close" type="button" data-close="pTheme" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pThemeBody"></div></section>
   <section id="pTip" class="panel" hidden role="dialog" aria-labelledby="pTipTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pTipTitle" tabindex="-1">Send a tip</h2><button class="p-close" type="button" data-close="pTip" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pTipBody"></div><div class="p-foot"><button class="btn-primary" id="tipGo" type="button">Send tip</button></div></section>
@@ -1108,7 +1152,7 @@ body{background:var(--paper)}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.10 (2026-11-14)';
+var VERSION = 'v5.11 (2026-11-14)';
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
@@ -2272,9 +2316,8 @@ function accText(m){ // metres -> "±40 ft" / "±1.2 mi" / "±12 mi"; '' when un
 function accRough(m){ return isNum(m) && m > ACC_ROUGH_M; }
 function locAccFor(loc){ return loc && loc.src === 'gps' ? accText(loc.acc) : ''; }   // only a reading has an accuracy
 function locFixNote(m, addrOk){ // the line under the title after a reading
-  var a = accText(m);
-  if (!a) return 'Found you.';
-  return 'Your location ' + a + '.' + (accRough(m) ? ' Rough location. ' + (addrOk ? 'Type your address for a better one.' : 'Pick a spot for a better one.') : '');
+  if (!accRough(m)) return 'Found you.';   // v5.11: no "±N ft"; only a rough reading says so
+  return 'Rough location. ' + (addrOk ? 'Type your address.' : 'Pick a spot for a better one.');
 }
 function locPriority(loc){ // 3 chosen this session, 2 fresh reading, 1 remembered from an earlier visit, 0 the default (the Loop)
   if (!loc) return 0;
@@ -3286,7 +3329,9 @@ function cleanCheckins(a){
   var seen = {}, out = [];
   (Array.isArray(a) ? a : []).forEach(function(x){
     if (!x || typeof x.id !== 'string' || !x.id || !isKey(x.date) || seen[x.id]) return;
-    seen[x.id] = 1; out.push({id:x.id, date:x.date, rating: x.rating === 1 || x.rating === -1 ? x.rating : 0, updated_at:String(x.updated_at || '')});
+    seen[x.id] = 1; var o = {id:x.id, date:x.date, rating: x.rating === 1 || x.rating === -1 ? x.rating : 0, updated_at:String(x.updated_at || '')};
+    if (x.prec === 'month') o.prec = 'month';   // v5.11: a visit known only to the month (imported); date = the 1st
+    out.push(o);
   });
   return out;
 }
@@ -3299,7 +3344,7 @@ function withCheckin(list, id, patch, nowIso){ // a new list with this place add
 }
 function withoutCheckin(list, id){ return list.filter(function(x){ return x.id !== id; }); }
 function beenRecently(id, todayKey, list){ var ck = checkinOf(id, list); return !!ck && dayDiff(ck.date, todayKey) <= RECENT_DAYS; }   // within the last 30 days (a future date counts too)
-function beenLabel(ck, todayKey){ return 'Been \u00b7 ' + fmtDate(ck.date, todayKey); }
+function beenLabel(ck, todayKey){ return 'Been \u00b7 ' + (ck.prec === 'month' ? monthText(ck.date.slice(0, 7), todayKey) : fmtDate(ck.date, todayKey)); }
 
 /* One line of facts: "Open till 10 pm · 12 min walk · $$" */
 function statusShort(c){ if (c.dayText) return c.d.text; return tenseText(statusShort0(c), planCtx(c.st.ms)); }   // v5.3: "On then" for a picked time
@@ -3505,7 +3550,7 @@ function searchItems(items, q){ // [{it, score, fuzzy}] best first
 
 /* Hash links: "#<id>" opens that place. Only plain "#name" hashes pass through claude.ai, so the id is the whole hash. */
 var HASH_WORDS = {selftest:1, tip:1, home:1, browse:1, map:1, been:1, saved:1, search:1};
-function hashItemId(hash){ var s = String(hash || '').replace(/^#/, ''); try { s = decodeURIComponent(s); } catch (e) {} if (/^w_/i.test(s)) return '';   // v5.8: "#w_..." is a friend's list link, never a place
+function hashItemId(hash){ var s = String(hash || '').replace(/^#/, ''); try { s = decodeURIComponent(s); } catch (e) {} if (/^[wf]_/i.test(s)) return '';   // v5.8 (v5.11: "#f_..." is a friend invite): "#w_..." is a friend's list link, never a place
   return (/^[A-Za-z0-9][A-Za-z0-9_.-]{1,80}$/.test(s) && !HASH_WORDS[s.toLowerCase()]) ? s : ''; }
 
 /* Share text and calendar entry */
@@ -4118,8 +4163,8 @@ function pinHTML(e, u){
     '<span class="mk-body">' + kindSvg(g) + (o.tk ? TICKET_SVG : '') + '</span></button>';
 }
 // v5.10 (owner: "what does the red dot mean?"): a cluster with limited-time things carries a small red ticket with their count, and says so
-function clusterLabel(n, tk){ return n + ' places' + (tk ? ', ' + tk + ' limited-time' : '') + '. Zoom in'; }
-function clusterHTML(o){ return '<button class="cluster" type="button" data-ux="' + r1(o.x) + '" data-uy="' + r1(o.y) + '" aria-label="' + esc(clusterLabel(o.n, o.tk)) + '">' + o.n + (o.tk ? '<span class="ctk" aria-hidden="true">' + glyphSvg('g-ticket') + o.tk + '</span>' : '') + '</button>'; }
+function clusterLabel(n, tk){ return n + ' places' + (tk ? ', ' + tk + ' limited-time' : '') + '. Show the list'; }   // v5.11: a tap lists them (was: zoom in)
+function clusterHTML(o){ return '<button class="cluster" type="button"' + (isNum(o.ci) ? ' data-ci="' + o.ci + '"' : '') + ' data-ux="' + r1(o.x) + '" data-uy="' + r1(o.y) + '" aria-label="' + esc(clusterLabel(o.n, o.tk)) + '">' + o.n + (o.tk ? '<span class="ctk" aria-hidden="true">' + glyphSvg('g-ticket') + o.tk + '</span>' : '') + '</button>'; }
 function recluster(){
   lastClusterS = MV.s;
   if (!pinsEl) return;
@@ -4141,11 +4186,12 @@ function recluster(){
     keys.forEach(function(k){
       var b = buckets[k];
       if (b.length === 1) singles.push({e:b[0], u:b[0].c.u});
-      else { var sx = 0, sy = 0, tk = 0; b.forEach(function(e){ sx += e.c.u[0]; sy += e.c.u[1]; if (e.o && e.o.tk) tk++; }); clusters.push({n:b.length, x:sx / b.length, y:sy / b.length, tk:tk}); }
+      else { var sx = 0, sy = 0, tk = 0; b.forEach(function(e){ sx += e.c.u[0]; sy += e.c.u[1]; if (e.o && e.o.tk) tk++; }); clusters.push({n:b.length, x:sx / b.length, y:sy / b.length, tk:tk, ci:clusters.length, ids:b.map(function(e){ return e.c.item.id; })}); }
     });
     singles.sort(function(a, b){ var sa = a.e.c.item.id === UI.sel ? 9 : (a.e.o && a.e.o.sm ? 0 : 1), sb = b.e.c.item.id === UI.sel ? 9 : (b.e.o && b.e.o.sm ? 0 : 1); return sa - sb; });
     singles.forEach(function(o){ html.push(pinHTML(o.e, o.u)); });
     clusters.forEach(function(o){ html.push(clusterHTML(o)); });
+    UI.clusters = clusters;   // v5.11: what each cluster holds, for the list sheet
   }
   if (S.loc) { var y = proj(S.loc.lat, S.loc.lng); html.push('<div class="you" data-ux="' + r1(y[0]) + '" data-uy="' + r1(y[1]) + '"><span class="you-dot"></span></div>'); }
   if (UI.picking && UI.cand) { var q = proj(UI.cand.lat, UI.cand.lng); html.push('<div class="ov-pin" data-ux="' + r1(q[0]) + '" data-uy="' + r1(q[1]) + '"><span>' + esc(UI.cand.label) + '</span><i></i><b></b></div>'); }
@@ -4161,7 +4207,9 @@ function updateRing(){ // the radius ring shows only while the time or filter sh
   ringEl.setAttribute('cx', r1(u[0])); ringEl.setAttribute('cy', r1(u[1])); ringEl.setAttribute('r', r1(miToUnits(S.f.radius)));
 }
 function onPinActivate(el){
-  if (el.classList.contains('cluster')) { // zoom in around the cluster, keeping it where it is on screen
+  var cci = el.getAttribute('data-ci'), ccl = cci !== null && UI.clusters ? UI.clusters[+cci] : null;
+  if (ccl && !UI.picking) { openClusterList(ccl.ids); return; }   // v5.11 (owner: like Google Maps): a tap lists the places right away, no zooming
+  if (el.classList.contains('cluster')) { // picking a spot: zoom in around the cluster, keeping it where it is on screen
     markMapMoved();
     var x = +el.getAttribute('data-ux'), y = +el.getAttribute('data-uy'), sp = toScreen(x, y), ns = Math.min(S_MAX, MV.s * 2.2);
     animateView(x - (sp[0] - MV.W / 2) / ns, y - (sp[1] - MV.H / 2) / ns, ns); return;
@@ -4172,6 +4220,19 @@ function onPinActivate(el){
   if (UI.sel === id || isWide()) { UI.sel = id; recluster(); openDetail(id); return; }
   UI.sel = id; recluster();
   renderMapCard();   // v4: the first tap shows the place's card at the bottom of the map; tapping the card (or the pin again) opens it
+}
+/* v5.11 cluster list sheet: up to 8 rows (open first), then "Show N more". Pure part: clusterList(). */
+var CLUSTER_MAX = 8;
+function clusterList(ids, all, lookup){ // -> {rows:[c], more:n, n}
+  var cs = (ids || []).map(lookup).filter(Boolean); cs.sort(wlOrder);
+  return {rows:all ? cs : cs.slice(0, CLUSTER_MAX), more:all ? 0 : Math.max(0, cs.length - CLUSTER_MAX), n:cs.length};
+}
+function openClusterList(ids){ UI.clusterIds = ids; UI.clusterAll = false; renderClusterList(); openPanel('pCluster'); }
+function renderClusterList(){
+  var r = clusterList(UI.clusterIds, UI.clusterAll, findComputed), t = $('pClusterTitle');
+  t.textContent = r.n + (r.n === 1 ? ' place' : ' places') + ' here';
+  $('pClusterBody').innerHTML = '<ul class="rows">' + r.rows.map(function(c){ return rowHTML(c, {}); }).join('') + '</ul>' + (r.more ? '<p class="endlinks"><button class="linkbtn" type="button" data-clmore="1">Show ' + r.more + ' more</button></p>' : '');
+  wireImages($('pClusterBody'));
 }
 function renderMapCard(){
   var el = $('mapCard'); if (!el) return;
@@ -4313,9 +4374,10 @@ function renderHeader(res){
   $('fillTime').setAttribute('aria-label', 'Time I have: ' + fmtBudget(S.budget) + '. Change');
   $('fillWhen').innerHTML = fillHTML(whenLabel());
   $('fillWhen').setAttribute('aria-label', 'When: ' + whenLabel() + '. Change');
-  var lab = S.loc ? S.loc.label : 'The Loop', acc = locAccFor(S.loc);   // v5.5: "Your location ±120 ft"
-  $('fillLoc').innerHTML = esc(lab).replace(/ /g, '&nbsp;') + (acc ? '<small class="acc">' + esc(acc).replace(/ /g, '&nbsp;') + '</small>' : '') + '<svg class="i"><use href="#i-chev"/></svg>';
-  $('fillLoc').setAttribute('aria-label', 'Where: ' + lab + (acc ? ', within ' + acc.replace('±', '') : '') + '. Change');
+  var lab = locName(S.loc), acc = locRoughHint(S.loc);   // v5.11: "Lincoln Park" for a reading (was "Your location ±120 ft"); "near you" outside every known area
+  if (lab === 'you') lab = 'Near you';
+  $('fillLoc').innerHTML = esc(lab).replace(/ /g, '&nbsp;') + (acc ? '<small class="acc rough">Rough</small>' : '') + '<svg class="i"><use href="#i-chev"/></svg>';
+  $('fillLoc').setAttribute('aria-label', 'Where: ' + lab + (acc ? '. ' + acc : '') + '. Change');
   $('budgetBit').hidden = !S.budgetOn;
 }
 function curSel(){ return UI.gsel || {gs:[], lim:false}; }
@@ -4425,11 +4487,12 @@ function rowHTML(c, opt){
   var h = '<p class="status ' + d.tone + '"><span class="st-t"><i class="dot"></i>' + esc(d.text) + (d.sub ? ' · ' + esc(d.sub) : '') + '</span></p>';
   if (c.bucket === 'fits' && !st.open && st.opensAt && !c.anyDay) h += '<p class="evb">' + (UI.planning ? 'Opens ' + esc(fmtClock(st.opensAt)) : 'Opens in ' + esc(fmtDur(Math.max(1, Math.round((st.opensAt - st.ms) / 60000))))) + '</p>';
   var meta = [], ck = checkinOf(it.id), tsh = travelShort(c), prs = priceShort(it);   // v4: one plain line: where · how far · price (· Been)
+  if (opt.fbeen) h = '<p class="meta"><span class="been">' + esc(opt.fbeen) + '</span></p>';   // v5.11: a friend's visit, month only
   if (opt.been && ck) h = '<p class="meta"><span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' + (ck.rating === 1 ? ' · liked it' : ck.rating === -1 ? ' · not for me' : '') + '</p>';
   if (it.neighborhood) meta.push(esc(shortHood(it.neighborhood)));
   if (tsh) meta.push(esc(tsh));
   if (prs) meta.push(esc(prs));
-  if (ck && !opt.been) meta.push('<span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>');
+  if (ck && !opt.been && !opt.fbeen) meta.push('<span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>');
   h += '<p class="meta">' + meta.join(' · ') + '</p>';
   if (it.award_note) h += '<p class="award">' + esc(it.award_note) + '</p>';   // v5.10: "TERPECA 2026 finalist · Best of Morty 2025"
   if (opt.book || c.bookTime) { var bl = bookingLink(it) || safeUrl(it.website); if (bl) h += '<div class="bookon" data-stop="1"><a class="mini-btn" href="' + esc(bl) + '" target="_blank" rel="noopener">' + esc(opt.book ? 'Book online' : c.bookTime.btn) + glyphSvg('i-ext') + '</a></div>'; }
@@ -4487,7 +4550,7 @@ function homeListHTML(vm, more){
   }
   if (!vm.main.length && vm.openNow <= ALL_CLOSED_MAX_OPEN) {
     var fo = vm.firstOpen, btn = '';
-    var body = (S.budgetOn ? 'Nothing open is ' + doableWords() : 'Nothing is open') + ' near ' + (S.loc ? S.loc.label : 'you') + '.';
+    var body = (S.budgetOn ? 'Nothing open is ' + doableWords() : 'Nothing is open') + ' near ' + (S.loc ? locWordsNow() : 'you') + '.';
     if (fo) {
       body += ' First to open: ' + fo.item.name + ' at ' + fmtWhen(fo.st.opensAt, p, false) + (fo.dist !== null ? ', ' + travelText(fo.trav).replace(/^about /, '') : '') + '.';
       var q = cparts(fo.st.opensAt);
@@ -4506,7 +4569,7 @@ function homeListHTML(vm, more){
   h += '</ul>';
   var onScreen = {}; vm.picks.forEach(function(pk){ onScreen[pk.c.item.id] = 1; });
   h += farSectionHTML(vm.far, onScreen);   // v5.6
-  return h + endnoteHTML('The best pick of each kind that’s ' + openWords() + (S.budgetOn ? ' and ' + doableWords() : '') + ' from ' + (S.loc ? S.loc.label : 'your pin') + '. Tap a kind above to see all of them.');
+  return h + endnoteHTML('The best pick of each kind that’s ' + openWords() + (S.budgetOn ? ' and ' + doableWords() : '') + ' from ' + (S.loc ? locWordsNow() : 'your pin') + '. Tap a kind above to see all of them.');
 }
 function farShown(list, skip){ // v5.6: up to FAR_SHOW (all of them after "Show N more"), without the ones already on screen
   skip = skip || {}; var l = (list || []).filter(function(c){ return !skip[c.item.id]; });
@@ -4857,11 +4920,34 @@ function homeEmpty(vm, hsel, lab){ // v5.1 (tester H1): the Home "nothing" box f
   return {title:title, body:body.trim(), fo:fo, nOpen:nOpen};
 }
 function locWords(lab){ return lab === 'Your location' ? 'your location' : lab; }   // v5.1 (tester L7): "near your location"
+/* v5.11 (owner's iPhone: "today · near your location ±20 ft" read oddly): a GPS reading is named by its neighborhood (the City's community
+   areas), else the nearest spot we know within 3 mi (suburbs and towns in SPOTS), else "you". Only the words change: distances and
+   travel times still use the exact point. No "±N ft"; a rough reading (over ~1,000 m) says so instead. */
+function gpsPlaceName(lat, lng, areaFn, spots){ // pure: -> 'Lincoln Park' | 'Evanston' | ''
+  if (!isNum(lat) || !isNum(lng)) return '';
+  var a = null; try { a = areaFn ? areaFn(lat, lng) : null; } catch (e) { a = null; }
+  if (a && a.name) return titleArea(a.name);
+  var best = null, bd = 3;
+  (spots || []).forEach(function(s){ if (!s || !isNum(s.lat) || !isNum(s.lng)) return; var d = distMi(lat, lng, s.lat, s.lng); if (d < bd) { bd = d; best = s; } });
+  return best ? String(best.name) : '';
+}
+function titleArea(n){ n = String(n || ''); return n === n.toUpperCase() ? n.toLowerCase().replace(/(^|[\s\-'])([a-z])/g, function(m, p, c){ return p + c.toUpperCase(); }).replace(/\bO'h/g, "O'H") : n; }   // "LINCOLN PARK" -> "Lincoln Park"
+function areaAtLatLng(lat, lng){ if (!GEO.ready) return null; var u = proj(lat, lng); return areaAt(u[0], u[1]); }
+function locName(loc){ // the words for where she is: "Lincoln Park" for a reading, the picked spot's own label otherwise
+  if (!loc) return 'The Loop';
+  if (loc.src !== 'gps') return loc.label || 'The Loop';
+  var k = loc.lat.toFixed(4) + ',' + loc.lng.toFixed(4) + (GEO.ready ? 'g' : '');
+  if (locName.k !== k) { locName.k = k; locName.v = gpsPlaceName(loc.lat, loc.lng, areaAtLatLng, SPOTS); }
+  return locName.v || 'you';
+}
+function locWordsNow(){ var n = locName(S.loc); return n === 'you' ? 'your location' : n; }   // v5.11: words for sentences ("from Lincoln Park")
+function locRoughHint(loc){ return loc && loc.src === 'gps' && accRough(loc.acc) ? 'Rough location. Type your address.' : ''; }
+function homeWhenBit(title){ return UI.today ? (/\btoday\b/i.test(String(title || '')) ? '' : 'today · ') : ''; }   // v5.11: no "today ·" under "Three for today"
 function renderHome(res, vm, picks){
   var root = $('homeRoot'); if (!root) return;
-  var p = res.p, who = S.f.who, lab = locWords(S.loc ? S.loc.label : 'The Loop'), acc = locAccFor(S.loc), h = '';   // v5.5: "near your location ±120 ft"
-  h += '<div class="hm-top"><div><h1 class="hm-title">' + esc(homeTitle(res)) + '</h1>' +
-    '<button class="hm-sub" type="button" data-act="loc" aria-label="Where: ' + esc(lab) + (acc ? ', within ' + esc(acc.replace('±', '')) : '') + '. Change"><span>' + (UI.today ? 'today · ' : UI.anyDay ? esc(fmtDayDate(UI.anyDay, cparts(nowMs()).key)) + ' · any time · ' : UI.planning ? esc(fmtTime(p.min)) + ' · ' : '') + 'near ' + esc(lab) + (acc ? ' <small class="acc">' + esc(acc).replace(/ /g, '&nbsp;') + '</small>' : '') + '</span>' + glyphSvg('i-chev') + '</button></div>' +
+  var p = res.p, who = S.f.who, lab = locName(S.loc), acc = locRoughHint(S.loc), h = '', ttl = homeTitle(res);   // v5.11: "near Lincoln Park"; only a rough reading says so
+  h += '<div class="hm-top"><div><h1 class="hm-title">' + esc(ttl) + '</h1>' +
+    '<button class="hm-sub" type="button" data-act="loc" aria-label="Where: near ' + esc(lab) + (acc ? '. ' + esc(acc) : '') + '. Change"><span>' + (UI.today ? homeWhenBit(ttl) : UI.anyDay ? esc(fmtDayDate(UI.anyDay, cparts(nowMs()).key)) + ' · any time · ' : UI.planning ? esc(fmtTime(p.min)) + ' · ' : '') + 'near ' + esc(lab) + (acc ? ' <small class="acc rough">' + esc(acc) + '</small>' : '') + '</span>' + glyphSvg('i-chev') + '</button></div>' +
     '<div class="hm-icons"><button class="icon-btn" type="button" data-act="theme" aria-label="Theme">' + glyphSvg('i-palette') + '</button><button class="icon-btn" type="button" data-act="search" aria-label="Search">' + glyphSvg('i-search') + '</button><button class="icon-btn" type="button" data-act="saved" aria-label="Saved and Been">' + glyphSvg('i-bookmark') + '</button></div></div>';
   h += '<div class="hm-ctl" role="group" aria-label="Who is coming">' + [['date', 'Date'], ['friends', 'Friends'], ['solo', 'Solo']].map(function(x){ return '<button class="qchip" type="button" data-who="' + x[0] + '" aria-pressed="' + !!who[x[0]] + '">' + x[1] + '</button>'; }).join('') + '</div>';
   var picked = S.when === 'pick' || S.when === 'weekend';
@@ -4982,6 +5068,8 @@ function toggleSave(id){
   var i = savedIds.indexOf(id);
   if (i >= 0) savedIds.splice(i, 1); else savedIds.push(id);
   if (!Platform.store.set('cff.saved.v1', savedIds)) toast('This browser isn\'t keeping your saves. They\'ll be lost when you close it.');
+  SAVED_META = metaWith(SAVED_META, id, i < 0, new Date().toISOString()); Platform.store.set(SAVEDMETA_KEY, SAVED_META);   // v5.11: when, so "last edit wins" across devices
+  Acct.dirtyS[id] = 1; acctPushSoon();
   UI.homeHTML = null;
   refresh();
   if (!$('pSaved').hidden) renderSaved();
@@ -4989,10 +5077,10 @@ function toggleSave(id){
 }
 /* ----- v4 check-ins: "I've been here" (the date, an optional thumbs up or down, never a photo) ----- */
 function saveCheckins(){ if (!Platform.store.set(CHECKIN_KEY, CHECKINS)) toast('This browser isn\'t keeping your list. It\'ll be lost when you close it.'); }
-function afterCheckinChange(){ saveCheckins(); UI.homeHTML = null; refresh(); if (!$('pSaved').hidden) renderSaved(); }
-function addCheckin(id, date){ var today = cparts(nowMs()).key; CHECKINS = withCheckin(CHECKINS, id, {date:isKey(date) ? date : today}, new Date().toISOString()); afterCheckinChange(); }
-function editCheckin(id, patch){ if (!checkinOf(id)) return; CHECKINS = withCheckin(CHECKINS, id, patch, new Date().toISOString()); afterCheckinChange(); }
-function removeCheckin(id){ CHECKINS = withoutCheckin(CHECKINS, id); afterCheckinChange(); }
+function afterCheckinChange(){ saveCheckins(); UI.homeHTML = null; refresh(); if (!$('pSaved').hidden) renderSaved(); acctPushSoon(); }   // v5.11: and to the account, if signed in
+function addCheckin(id, date){ var today = cparts(nowMs()).key; CHECKINS = withCheckin(CHECKINS, id, {date:isKey(date) ? date : today}, new Date().toISOString()); delete CK_GONE[id]; Platform.store.set(CKGONE_KEY, CK_GONE); Acct.dirtyC[id] = 1; afterCheckinChange(); }
+function editCheckin(id, patch){ if (!checkinOf(id)) return; CHECKINS = withCheckin(CHECKINS, id, patch, new Date().toISOString()); Acct.dirtyC[id] = 1; afterCheckinChange(); }
+function removeCheckin(id){ CHECKINS = withoutCheckin(CHECKINS, id); CK_GONE[id] = new Date().toISOString(); Platform.store.set(CKGONE_KEY, CK_GONE); Acct.dirtyC[id] = 1; afterCheckinChange(); }   // v5.11: remembered as removed, so another device can't bring it back
 function beenBoxHTML(ck, todayKey){
   return '<div class="been-box"><span class="bb-l">' + glyphSvg('i-check') + 'Been here</span><label class="vh" for="beenDate">The day you went</label><input id="beenDate" type="date" max="' + esc(todayKey) + '" value="' + esc(ck.date) + '">' +
     '<button class="thumbbtn" type="button" data-been="up" aria-pressed="' + (ck.rating === 1) + '" aria-label="Liked it">' + glyphSvg('i-up') + '</button>' +
@@ -5019,15 +5107,16 @@ function renderSaved(){
   if (!Platform.store.ok) h += '<p class="band">This browser isn\'t keeping your lists. They\'ll be lost when you close it.</p>';
   var items = savedIds.map(findItem).filter(Boolean);
   $('wlShare').hidden = tab !== 'saved' || !items.length;   // v5.8: Share only on the Saved tab, and only with something saved (check-ins are never shared)
-  if (tab === 'been') { body.innerHTML = h + beenListHTML(); wireImages(body); return; }
+  var acH = acctCardHTML(Acct.state);   // v5.11: sign in / synced / offline
+  if (tab === 'been') { body.innerHTML = h + beenListHTML() + acH; wireImages(body); return; }
   h += friendStripHTML();
-  if (!items.length) { body.innerHTML = h + '<div class="empty" style="padding:8px 20px"><svg class="i" style="width:40px;height:40px;color:var(--ink-3)"><use href="#i-bookmark"/></svg><h3 style="margin-top:10px">Nothing saved yet.</h3><p>Tap the bookmark on anything you\'d do on a free night.</p></div>'; return; }
+  if (!items.length) { body.innerHTML = h + '<div class="empty" style="padding:8px 20px"><svg class="i" style="width:40px;height:40px;color:var(--ink-3)"><use href="#i-bookmark"/></svg><h3 style="margin-top:10px">Nothing saved yet.</h3><p>Tap the bookmark on anything you\'d do on a free night.</p></div>' + acH; return; }
   var T = evalTime(), ctx = ctxNow(), groups = {open:[], later:[], season:[], other:[]};
   items.forEach(function(it){ var c = computeItem(it, T, ctx); var k = c.st.key; (c.st.open ? groups.open : k === 'later' ? groups.later : k === 'season' ? groups.season : groups.other).push(c); });
   [['open', 'Open ' + planWhen(false)], ['later', UI.planning && !UI.today ? 'Later that day' : 'Later today'], ['season', seasonShelfTitle(cparts(T))], ['other', 'Other']].forEach(function(g){
     if (groups[g[0]].length) h += '<h3 class="sec-h"><span>' + g[1] + '</span><span>' + groups[g[0]].length + '</span></h3><ul class="rows">' + groups[g[0]].map(function(c){ return rowHTML(c, {}); }).join('') + '</ul>';
   });
-  body.innerHTML = h;
+  body.innerHTML = h + acH;
   wireImages(body);
 }
 
@@ -5153,10 +5242,10 @@ function wlView(sids, index, T, ctx, savedFn){ // -> {both:[c], only:[c], gone:n
 function wlBothCount(rec, index, T, savedFn){ var n = 0; rec.sids.forEach(function(sid){ var it = index[sid]; if (it && savedFn(it.id) && !wlGoneItem(it, statusAt(it, T))) n++; }); return n; }
 function wlInApp(ua){ return /Instagram|FBAN|FBAV/.test(String(ua || '')); }
 /* ----- state on this phone ----- */
-function wlRebuild(){ WL_WANTS = {}; FRIENDS.forEach(function(f){ f.sids.forEach(function(s){ (WL_WANTS[s] = WL_WANTS[s] || []).push(f); }); }); WL_INIT = wlInitials(FRIENDS); }
+function wlRebuild(){ WL_WANTS = {}; var live = LIVE.filter(function(f){ return f.shares; }); live.concat(FRIENDS).forEach(function(f){ f.sids.forEach(function(s){ (WL_WANTS[s] = WL_WANTS[s] || []).push(f); }); }); WL_INIT = wlInitials(LIVE.concat(FRIENDS)); }   // v5.11: real friends (LIVE) first, then kept copies
 function wlLoadFriends(){ FRIENDS = wlCleanFriends(Platform.store.get(FRIENDS_KEY, [])); wlRebuild(); }
 function wlSaveFriends(){ wlRebuild(); UI.homeHTML = null; if (UI.wlMemOnly) return true; return Platform.store.set(FRIENDS_KEY, FRIENDS); }   // false = storage full or blocked (E11): kept for this visit only
-function wlFind(key){ var i = wlIndex(FRIENDS, key); return i >= 0 ? FRIENDS[i] : null; }
+function wlFind(key){ var i = wlIndex(FRIENDS, key); if (i >= 0) return FRIENDS[i]; i = wlIndex(LIVE, key); return i >= 0 ? LIVE[i] : null; }
 function wlFriendsFor(id, except){ var s = ID_SID[id], l = s ? WL_WANTS[s] : null; return l ? l.filter(function(f){ return f.key !== except; }) : []; }
 function avHTML(f, extra){ var t = WL_INIT[f.key] || (wlChars(f.name)[0] || '?').toUpperCase(); return '<span class="av' + (wlChars(t).length > 1 ? ' two' : '') + (extra || '') + '">' + esc(t) + '</span>'; }
 function avsHTML(fs, size, label){
@@ -5203,6 +5292,7 @@ function shareMyList(){
 /* ----- Saved: the friends strip ----- */
 function friendStripHTML(){
   var h = '';
+  if (acctName() && acctSignedIn()) return acctStripHTML() + (wlStandalone() ? '<p class="fpaste"><button class="linkbtn" type="button" data-wl="paste">Paste a friend\'s link</button></p>' : '');   // v5.11 stage 2
   if (FRIENDS.length) {
     var T = evalTime();
     h += '<h3 class="sec-h"><span>Friends\' lists</span><span>Both want</span></h3><div class="fstrip">' + FRIENDS.map(function(f){
@@ -5264,7 +5354,7 @@ function renderFriend(){
   var kept = !!v.kept, rec = kept ? wlFind(v.key) : v;
   if (!rec) { closePanel('pFriend'); return; }
   var name = kept ? rec.name : '';
-  if (kept && UI.wlRename) head.innerHTML = '<div class="fr-ren"><label class="vh" for="fRename">Their name</label><input id="fRename" type="text" maxlength="24" autocomplete="off" enterkeyhint="done" value="' + esc(name) + '"><button class="linkbtn" type="button" data-wl="done">Done</button></div>';
+  if (kept && UI.wlRename && !rec.live) head.innerHTML = '<div class="fr-ren"><label class="vh" for="fRename">Their name</label><input id="fRename" type="text" maxlength="24" autocomplete="off" enterkeyhint="done" value="' + esc(name) + '"><button class="linkbtn" type="button" data-wl="done">Done</button></div>';
   else head.innerHTML = '<h2 class="p-title" id="pFriendTitle" tabindex="-1">' + esc(kept ? name : 'A friend\'s list') + '</h2>';
   var h = '';
   if (!DATA_LOADED) { // I5 / I6
@@ -5275,8 +5365,13 @@ function renderFriend(){
   var T = evalTime(), vw = wlView(rec.sids, SID_INDEX, T, ctxNow(), isSaved), n = vw.n;
   function sec(label, k){ return '<h3 class="sec-h"><span>' + esc(label) + '</span><span>' + k + '</span></h3>'; }
   function rows(list){ return '<ul class="rows">' + list.map(function(c){ return rowHTML(c, {fexcept:rec.key}); }).join('') + '</ul>'; }
-  if (n) h += '<p class="meta fr-meta">' + n + (n === 1 ? ' place' : ' places') + ' · ' + esc(fmtMonthDay(wlDayKey(rec.day))) + '</p>';
-  if (!n) h += '<div class="empty" style="padding:8px 20px"><h3>These places aren\'t in the guide anymore.</h3><p>Ask for a new link.</p></div>';   // I4 / E3
+  if (rec.live) { // v5.11 stage 2 (spec 6.5): a real friend's list, live
+    h += '<p class="meta fr-meta">@' + esc(rec.username) + (rec.shares ? ' · ' + n + (n === 1 ? ' place' : ' places') : '') + (Acct.offline ? ' · ' + esc(offlineText(Acct.lastSync)) : '') + '</p>';
+    if (!rec.shares) h += '<div class="empty" style="padding:8px 20px"><h3>' + esc(name) + ' isn\'t sharing a list right now.</h3></div>';
+    else if (!n) h += '<div class="empty" style="padding:8px 20px"><h3>Nothing saved yet.</h3></div>';
+  }
+  else if (n) h += '<p class="meta fr-meta">' + n + (n === 1 ? ' place' : ' places') + ' · ' + esc(fmtMonthDay(wlDayKey(rec.day))) + '</p>';
+  if (!n && !rec.live) h += '<div class="empty" style="padding:8px 20px"><h3>These places aren\'t in the guide anymore.</h3><p>Ask for a new link.</p></div>';   // I4 / E3
   else {
     if (!kept && wlInApp(UI.wlUA || navigator.userAgent)) h += '<p class="band">To keep it, open this in ' + (/Android/i.test(UI.wlUA || navigator.userAgent) ? 'Chrome' : 'Safari') + '.</p>';   // E8
     if (!Platform.store.ok && !kept) h += '<p class="band">This browser isn\'t keeping your lists. They\'ll be lost when you close it.</p>';   // E10 / E11
@@ -5291,7 +5386,12 @@ function renderFriend(){
     }
   }
   if (vw.gone) h += '<p class="endnote fr-gone">' + (vw.gone === 1 ? '1 is no longer on.' : vw.gone + ' are no longer on.') + '</p>';   // E2
-  if (kept) h += '<p class="endlinks"><button class="linkbtn" type="button" data-wl="rename">Rename</button><span aria-hidden="true">·</span><button class="linkbtn" type="button" data-wl="remove">Remove</button></p>';
+  if (rec.live && rec.been && rec.been.length) { // friends see the month only ("Been · Oct"), never the day
+    var bT = evalTime(), bctx = ctxNow(), bToday = cparts(nowMs()).key, brs = rec.been.map(function(b){ var it = SID_INDEX[b.sid]; if (!it) return ''; var c = computeItem(it, bT, bctx); return rowHTML(c, {fexcept:rec.key, fbeen:friendBeenLabel(b.month, bToday)}); }).filter(Boolean);
+    if (brs.length) h += '<button class="fold" type="button" data-wl="beenfold" aria-expanded="' + !!UI.frBeenOpen + '"><span class="ic">' + glyphSvg('i-check') + '</span><span><b>' + esc(name) + ' has been<em>' + brs.length + '</em></b></span>' + glyphSvg('i-chev', 'i chev') + '</button><ul class="rows"' + (UI.frBeenOpen ? '' : ' hidden') + '>' + brs.join('') + '</ul>';
+  }
+  if (rec.live) h += '<p class="endlinks"><button class="linkbtn" type="button" data-acct="remove" data-v="' + esc(rec.uid) + '">Remove friend</button><span aria-hidden="true">·</span><button class="linkbtn" type="button" data-acct="block" data-v="' + esc(rec.uid) + '">Block</button></p>';
+  else if (kept) h += '<p class="endlinks"><button class="linkbtn" type="button" data-wl="rename">Rename</button><span aria-hidden="true">·</span><button class="linkbtn" type="button" data-wl="remove">Remove</button></p>';
   body.innerHTML = h;
   foot.hidden = kept || !n;
   wireImages(body);
@@ -5318,7 +5418,7 @@ function wlKeepNow(){
   var v = UI.friendView; if (!v || v.kept) return;
   var r = wlKeep(FRIENDS, v, $('fName') ? $('fName').value : '', new Date().toISOString());
   if (!r.ok) { toast('You have ' + WL_MAX_LISTS + ' lists. Remove one first.'); return; }
-  FRIENDS = r.friends;
+  FRIENDS = r.friends; delete KEPT_GONE[v.key]; acctKeptChanged();
   var stored = wlSaveFriends();
   UI.friendView = {kept:true, key:v.key, animated:true};
   wlClearHash();
@@ -5331,12 +5431,13 @@ function wlAction(a, el){
   if (a === 'keep') { wlKeepNow(); return; }
   if (a === 'paste') { openPaste(); return; }
   if (a === 'pasteopen') { wlPasteOpen(); return; }
+  if (a === 'beenfold') { UI.frBeenOpen = !UI.frBeenOpen; renderFriend(); return; }   // v5.11
   if (!v || !v.kept) return;
   var f = wlFind(v.key); if (!f) return;
   if (a === 'rename') { UI.wlRename = true; renderFriend(); var ri = $('fRename'); if (ri) try { ri.focus(); ri.select(); } catch (e) {} return; }
   if (a === 'done') {
     var nv = $('fRename') ? $('fRename').value.replace(/\s+/g, ' ').trim().slice(0, 24) : '';
-    if (nv && nv !== f.name) { var i = wlIndex(FRIENDS, f.key), list = FRIENDS.slice(); list[i] = ext(f, {name:nv, updated_at:new Date().toISOString()}); FRIENDS = list; if (!wlSaveFriends()) wlStoreToast(); refresh(); if (!$('pSaved').hidden) renderSaved(); }
+    if (nv && nv !== f.name) { var i = wlIndex(FRIENDS, f.key), list = FRIENDS.slice(); list[i] = ext(f, {name:nv, updated_at:new Date().toISOString()}); FRIENDS = list; if (!wlSaveFriends()) wlStoreToast(); acctKeptChanged(); refresh(); if (!$('pSaved').hidden) renderSaved(); }
     UI.wlRename = false; renderFriend(); return;
   }
   if (a === 'remove') {
@@ -5347,6 +5448,7 @@ function wlAction(a, el){
     }
     clearTimeout(wlAction.tm);
     FRIENDS = FRIENDS.filter(function(x){ return x.key !== f.key; });
+    KEPT_GONE[f.key] = new Date().toISOString(); acctKeptChanged();   // v5.11: so a synced device doesn't bring it back
     if (!wlSaveFriends()) wlStoreToast();
     closePanel('pFriend'); refresh(); if (!$('pSaved').hidden) renderSaved();
     toast('Removed ' + f.name + '\'s list');
@@ -5363,6 +5465,616 @@ function wlTestHooks(){ // testing hooks (made-up, never saved): #savedsid=3.17.
   if (t.wl) wlOpen('#w_' + t.wl, 'test');
   if (t.view && FRIENDS.length) openFriendView(FRIENDS[0].key);
   if (t.detail && SID_INDEX[t.detail]) openDetail(SID_INDEX[t.detail].id);
+}
+
+/* ================= v5.11 accounts (Supabase): Google sign-in, sync, friends stage 2, the private been import =================
+   The phone copy stays the main copy: everything works signed out, and nothing goes to any server until she signs in.
+   supabase-js is loaded only on the website (never inside claude.ai or a local file), and only when it's needed: a tap on
+   "Sign in with Google", a sign-in coming back, an earlier sign-in on this phone, or an invite link.
+   Server rules live in supabase/schema.sql (row-level security on every table). The public values below are meant to be public;
+   what protects the data is the row-level security, not the key. */
+var SB_URL = 'https://dhpfjmlukcznwypdpfuu.supabase.co', SB_KEY = 'sb_publishable_l0OHDqK7x_YFXCbhjzFDlQ_ZqXYnuoN';
+var SB_JS = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js';   // pinned exact version (published 2026-10-15)
+var SAVEDMETA_KEY = 'cff.savedmeta.v1', CKGONE_KEY = 'cff.checkins.gone.v1', KEPTGONE_KEY = 'cff.friends.gone.v1', ACCT_KEY = 'cff.acct.v1', PENDINV_KEY = 'cff.pendinginvite.v1';
+var SAVED_META = {}, CK_GONE = {}, KEPT_GONE = {}, LIVE = [];
+var Acct = {client:null, loading:null, user:null, profile:null, settings:null, state:'off', offline:false, lastSync:'', errMsg:'', friends:[], invites:[], syncing:null, again:false, pushTm:null, dirtyS:{}, dirtyC:{}, demo:false, askedName:false, cachedName:''};
+var USERNAME_RE = /^[a-z0-9._]{3,20}$/, INVITE_RE = /^[0-9A-HJKMNP-TV-Z]{8}$/;
+/* ----- pure: times, names, codes ----- */
+function tsOf(s){ var t = Date.parse(String(s || '')); return isNum(t) ? t : 0; }
+function normUsername(s){ return String(s || '').trim().replace(/^@+/, '').toLowerCase(); }
+function usernameOk(s){ return USERNAME_RE.test(normUsername(s)); }
+function suggestUsername(email, name){ // a first guess for the picker, from the Google email or name (she can change it)
+  var b = String(email || '').split('@')[0] || String(name || '');
+  b = b.toLowerCase().replace(/[^a-z0-9._]+/g, '').replace(/^[._]+|[._]+$/g, '').slice(0, 20);
+  return b.length >= 3 ? b : '';
+}
+function inviteCode(raw){ var m = /(?:^|#)f_([0-9A-Za-z]{8})(?:$|[&?\s])/.exec(String(raw || '')); if (!m) return null; var c = m[1].toUpperCase(); return INVITE_RE.test(c) ? c : null; }
+function chicagoDayOf(iso){ var t = tsOf(iso); return t ? cparts(t).key : ''; }
+function offlineText(lastIso){ var k = chicagoDayOf(lastIso); return 'Offline' + (k ? ' · last synced ' + fmtMonthDay(k) : ''); }
+/* ----- pure: month only (what friends see of a check-in) ----- */
+function monthOnly(dateKey){ return isKey(dateKey) ? dateKey.slice(0, 7) : (/^\d{4}-\d{2}$/.test(String(dateKey || '')) ? String(dateKey) : ''); }
+function monthText(ym, todayKey){ var m = /^(\d{4})-(\d{2})/.exec(String(ym || '')); if (!m || +m[2] < 1 || +m[2] > 12) return ''; var s = MON_SHORT[+m[2] - 1]; if (!todayKey || String(todayKey).slice(0, 4) !== m[1]) s += ' ' + m[1]; return s; }
+function friendBeenLabel(ym, todayKey){ var t = monthText(monthOnly(ym), todayKey); return t ? 'Been · ' + t : ''; }
+/* ----- pure: merging this phone with the account (last edit wins per item) ----- */
+function metaWith(meta, id, on, iso){ var o = ext(meta || {}, {}); o[id] = {on:!!on, at:String(iso || '')}; return o; }
+function cleanMeta(m){ var o = {}; if (m && typeof m === 'object' && !Array.isArray(m)) Object.keys(m).forEach(function(k){ var v = m[k]; if (k && v && typeof v === 'object') o[k] = {on:v.on !== false, at:String(v.at || '')}; }); return o; }
+function cleanGone(m){ var o = {}; if (m && typeof m === 'object' && !Array.isArray(m)) Object.keys(m).forEach(function(k){ if (k && tsOf(m[k])) o[k] = String(m[k]); }); return o; }
+// Saves. local: savedIds in order + meta {id:{on, at}}; remote: rows {item_id, saved, updated_at}.
+// -> {ids, meta, push:[{item_id, saved, updated_at}]}. A later time wins; on a tie with different answers, "saved" wins (never lose a save).
+function mergeSaves(localIds, meta, remote, nowIso){
+  meta = meta || {}; var L = {}, R = {}, order = [], push = [], outMeta = {}, ids = [], extra = [];
+  (localIds || []).forEach(function(id){ if (typeof id !== 'string' || !id || L[id]) return; var m = meta[id]; L[id] = {on:true, iso:m && m.on !== false ? String(m.at || '') : ''}; order.push(id); });
+  Object.keys(meta).forEach(function(id){ var m = meta[id]; if (!L[id] && m && m.on === false && tsOf(m.at)) { L[id] = {on:false, iso:String(m.at)}; order.push(id); } });
+  (remote || []).forEach(function(r){ if (r && typeof r.item_id === 'string' && r.item_id) R[r.item_id] = {on:r.saved !== false, iso:String(r.updated_at || '')}; });
+  Object.keys(R).forEach(function(id){ if (!L[id]) order.push(id); });
+  order.forEach(function(id){
+    var l = L[id], r = R[id], win;
+    if (l && !r) { win = {on:l.on, iso:l.iso || nowIso}; push.push({item_id:id, saved:win.on, updated_at:win.iso}); }
+    else if (r && !l) win = r;
+    else {
+      var lt = tsOf(l.iso), rt = tsOf(r.iso);
+      if (lt > rt) { win = l; push.push({item_id:id, saved:l.on, updated_at:l.iso}); }
+      else if (rt > lt) win = r;
+      else if (l.on === r.on) win = r;
+      else { win = {on:true, iso:l.iso || r.iso || nowIso}; push.push({item_id:id, saved:true, updated_at:win.iso}); }
+    }
+    outMeta[id] = {on:win.on, at:win.iso};
+    if (win.on) { if (L[id] && L[id].on) ids.push(id); else extra.push({id:id, t:tsOf(win.iso)}); }
+  });
+  extra.sort(function(a, b){ return a.t - b.t; }).forEach(function(x){ ids.push(x.id); });   // saved elsewhere: added at the end, oldest first
+  return {ids:ids, meta:outMeta, push:push};
+}
+// Check-ins. local: [{id, date, rating, prec, updated_at}] + gone {id: iso}; remote: rows {item_id, visit_date, date_prec, rating, deleted, updated_at}.
+// -> {list, gone, push:[rows without user_id]}
+function ckRow(c, del){ return {item_id:c.id, visit_date:del ? null : c.date, date_prec:c.prec === 'month' ? 'month' : 'day', rating:c.rating || 0, deleted:!!del, updated_at:c.updated_at}; }
+function mergeCheckins(local, gone, remote, nowIso){
+  gone = gone || {}; var L = {}, R = {}, order = [], list = [], outGone = {}, push = [];
+  cleanCheckins(local).forEach(function(c){ L[c.id] = {c:c, del:false, iso:c.updated_at}; order.push(c.id); });
+  Object.keys(gone).forEach(function(id){ if (!L[id] && tsOf(gone[id])) { L[id] = {c:{id:id, date:'', rating:0, prec:'day', updated_at:gone[id]}, del:true, iso:gone[id]}; order.push(id); } });
+  (remote || []).forEach(function(r){
+    if (!r || typeof r.item_id !== 'string' || !r.item_id) return;
+    var del = !!r.deleted || !isKey(String(r.visit_date || '').slice(0, 10));
+    R[r.item_id] = {c:{id:r.item_id, date:del ? '' : String(r.visit_date).slice(0, 10), rating:r.rating === 1 || r.rating === -1 ? r.rating : 0, prec:r.date_prec === 'month' ? 'month' : 'day', updated_at:String(r.updated_at || '')}, del:del, iso:String(r.updated_at || '')};
+  });
+  Object.keys(R).forEach(function(id){ if (!L[id]) order.push(id); });
+  order.forEach(function(id){
+    var l = L[id], r = R[id], win;
+    if (l && !r) { win = l; if (!l.iso) { l.iso = nowIso; l.c = ext(l.c, {updated_at:nowIso}); } push.push(ckRow(l.c, l.del)); }
+    else if (r && !l) win = r;
+    else {
+      var lt = tsOf(l.iso), rt = tsOf(r.iso);
+      if (lt > rt) { win = l; push.push(ckRow(l.c, l.del)); }
+      else if (rt > lt) win = r;
+      else if (l.del === r.del && (l.del || (l.c.date === r.c.date && l.c.rating === r.c.rating && (l.c.prec || 'day') === (r.c.prec || 'day')))) win = r;
+      else { win = !l.del ? l : r; if (win === l) push.push(ckRow(l.c, false)); }   // a tie: keep the visit rather than the removal
+    }
+    if (win.del) outGone[id] = win.iso || nowIso; else list.push(win.c);
+  });
+  return {list:cleanCheckins(list), gone:outGone, push:push};
+}
+// Kept stage-1 list copies (synced in settings.kept_lists as {lists, gone}). -> {lists, gone, changed}
+function mergeKept(local, lgone, remote){
+  var rl = Array.isArray(remote) ? remote : (remote && Array.isArray(remote.lists) ? remote.lists : []);
+  var rg = remote && !Array.isArray(remote) && remote.gone && typeof remote.gone === 'object' ? remote.gone : {};
+  var gone = {}, by = {}, order = [];
+  [cleanGone(lgone), cleanGone(rg)].forEach(function(g){ Object.keys(g).forEach(function(k){ if (!gone[k] || tsOf(g[k]) > tsOf(gone[k])) gone[k] = g[k]; }); });
+  function put(f){ var t = tsOf(f.updated_at || f.kept_at); if (!by[f.key]) order.push(f.key); if (!by[f.key] || t > by[f.key].t) by[f.key] = {f:f, t:t}; }
+  wlCleanFriends(local).forEach(put); wlCleanFriends(rl).forEach(put);
+  var lists = order.filter(function(k){ return !(gone[k] && tsOf(gone[k]) >= by[k].t); }).map(function(k){ return by[k].f; });
+  var out = wlCleanFriends(lists), changed = JSON.stringify(out) !== JSON.stringify(wlCleanFriends(rl)) || JSON.stringify(gone) !== JSON.stringify(cleanGone(rg));
+  return {lists:out, gone:gone, changed:changed};
+}
+// Friends from the server (my_friends + saves + month-only check-ins) -> the live friend records the app draws.
+function liveFrom(friends, saves, beens, idSid){
+  var S = {}, B = {};
+  (saves || []).forEach(function(r){ if (!r || !r.user_id) return; var s = isNum(+r.sid) && +r.sid >= 1 ? +r.sid : (idSid && idSid[r.item_id]) || 0; if (s) (S[r.user_id] = S[r.user_id] || []).push(s); });
+  (beens || []).forEach(function(r){ if (!r || !r.user_id) return; var m = monthOnly(r.month); if (!m) return; var s = isNum(+r.sid) && +r.sid >= 1 ? +r.sid : (idSid && idSid[r.item_id]) || 0; if (s) (B[r.user_id] = B[r.user_id] || []).push({sid:s, month:m}); });
+  return (friends || []).filter(function(f){ return f && f.status === 'accepted' && f.user_id && f.username; }).map(function(f){
+    return {key:'@' + f.username, live:true, uid:f.user_id, username:f.username, name:String(f.display_name || '').split(/\s+/)[0] || f.username, shares:f.share_saves !== false, sids:wlSids(S[f.user_id] || []), been:(B[f.user_id] || []).slice(0, 2000)};
+  }).sort(function(a, b){ return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1; });
+}
+/* ----- pure: the private one-time import link "#been=1_<count>_<sid>-<YYMM[DD]>.<sid>-<YYMM[DD]>..." -----
+   Never made by the app's screens (no button builds it); beenEncode exists for the self-test and documents the format. */
+var BEEN_MAX = 2000;
+function beenEncode(list){
+  var parts = [];
+  (list || []).forEach(function(x){ var s = +x.sid, m = /^20(\d\d)-(\d\d)(?:-(\d\d))?$/.exec(String(x && x.date || '')); if (!isNum(s) || s < 1 || Math.floor(s) !== s || !m) return; parts.push(s + '-' + m[1] + m[2] + (m[3] || '')); });
+  return parts.length ? '#been=1_' + parts.length + '_' + parts.join('.') : '';
+}
+function beenDecode(raw, todayKey){ // -> {ok:true, entries:[{sid, date:'YYYY-MM-DD', prec:'day'|'month'}]} | {ok:false, why:'none'|'cut'|'version'}
+  var m = /(?:^|#|&)been=([^&#\s]*)/.exec(String(raw || '')); if (!m) return {ok:false, why:'none'};
+  var a = m[1].split('_'), cut = {ok:false, why:'cut'};
+  if (a.length !== 3) return a.length && a[0] !== '1' && /^\d+$/.test(a[0]) ? {ok:false, why:'version'} : cut;
+  if (a[0] !== '1') return {ok:false, why:'version'};
+  if (!/^\d{1,4}$/.test(a[1])) return cut;
+  var n = +a[1], es = a[2].split('.'); if (n < 1 || n > BEEN_MAX || es.length !== n) return cut;
+  var out = [], seen = {}, limit = isKey(todayKey) ? addDays(todayKey, 1) : '9999-12-31';
+  for (var i = 0; i < es.length; i++) {
+    var e = /^(\d{1,6})-(\d\d)(\d\d)(\d\d)?$/.exec(es[i]); if (!e) return cut;
+    var sid = +e[1], y = 2000 + +e[2], mo = +e[3]; if (sid < 1 || sid > WL_MAX_SID || mo < 1 || mo > 12) return cut;
+    var key, prec;
+    if (e[4]) { var d = +e[4]; key = ymd(y, mo, d); if (d < 1 || addDays(ymd(y, mo, 1), d - 1) !== key) return cut; prec = 'day'; }
+    else { key = ymd(y, mo, 1); prec = 'month'; }
+    if (key > limit) return cut;   // a visit in the future: a broken link
+    if (seen[sid]) continue; seen[sid] = 1;
+    out.push({sid:sid, date:key, prec:prec});
+  }
+  return {ok:true, entries:out};
+}
+// Add imported visits to a check-in list. A place she already marked keeps her own date. -> {list, added:[ids], had:[ids], unknown:n}
+function beenApply(list, entries, index, nowIso){
+  var out = cleanCheckins(list), added = [], had = [], unknown = 0;
+  (entries || []).forEach(function(e){
+    var it = index[e.sid]; if (!it) { unknown++; return; }
+    if (checkinOf(it.id, out)) { had.push(it.id); return; }
+    out = withCheckin(out, it.id, {date:e.date, prec:e.prec === 'month' ? 'month' : 'day'}, nowIso); added.push(it.id);
+  });
+  return {list:out, added:added, had:had, unknown:unknown};
+}
+/* ----- where accounts can run ----- */
+function cloudHost(){ try { return !Platform.onClaude && !Platform.inFrame && /^https:$/.test(location.protocol) && !!window.fetch && !!Platform.store.ok; } catch (e) { return false; } }
+function acctRedirect(){ try { var here = location.origin + location.pathname; return here.indexOf(SITE_URL.replace(/\/$/, '')) === 0 ? SITE_URL : here; } catch (e) { return SITE_URL; } }
+function chk(r){ if (r && r.error) throw r.error; return r ? r.data : null; }
+function acctErrKind(e){ var s = String(e && (e.message || e.code || e) || ''); return /fetch|network|timeout|load failed|503|502|504|540|paused/i.test(s) ? 'offline' : 'error'; }
+/* ----- state on this phone ----- */
+function acctSaveCache(){
+  if (Acct.demo) return;
+  if (!Acct.user && !Acct.cachedName) { try { window.localStorage.removeItem(ACCT_KEY); } catch (e) {} return; }
+  Platform.store.set(ACCT_KEY, {uid:Acct.user ? Acct.user.id : Acct.cachedUid || '', username:Acct.profile ? Acct.profile.username : Acct.cachedName, last_sync:Acct.lastSync,
+    settings:Acct.settings ? {share_saves:Acct.settings.share_saves !== false, share_checkins:!!Acct.settings.share_checkins, find_by_username:Acct.settings.find_by_username !== false} : null,
+    friends:Acct.friends, live:LIVE, invites:Acct.invites});
+}
+function acctFromCache(c){
+  if (!c || typeof c !== 'object' || !c.uid) return;
+  Acct.cachedUid = String(c.uid); Acct.cachedName = typeof c.username === 'string' ? c.username : ''; Acct.lastSync = String(c.last_sync || '');
+  if (c.settings) Acct.settings = c.settings;
+  Acct.friends = Array.isArray(c.friends) ? c.friends : []; Acct.invites = Array.isArray(c.invites) ? c.invites : [];
+  LIVE = Array.isArray(c.live) ? c.live.filter(function(f){ return f && f.live && typeof f.key === 'string'; }).map(function(f){ return ext(f, {sids:wlSids(f.sids), been:Array.isArray(f.been) ? f.been : []}); }) : [];
+}
+function acctSignedIn(){ return !!(Acct.user || (Acct.cachedUid && Acct.state !== 'out')); }
+function acctName(){ return Acct.profile ? Acct.profile.username : Acct.cachedName; }
+function acctIncoming(){ return (Acct.friends || []).filter(function(f){ return f.status === 'pending' && f.direction === 'in'; }); }
+function acctRedraw(){
+  wlRebuild(); UI.homeHTML = null;
+  try { $('savedBtn').classList.toggle('reqdot', acctIncoming().length > 0); } catch (e) {}
+  if (DATA_LOADED || mapEl) refresh();
+  if (!$('pSaved').hidden) renderSaved();
+  if (!$('pFriends').hidden) renderFriends();
+  if (!$('pFriend').hidden) renderFriend();
+  if (!$('pAbout').hidden) renderAbout();
+}
+function acctBoot(){
+  SAVED_META = cleanMeta(Platform.store.get(SAVEDMETA_KEY, {})); CK_GONE = cleanGone(Platform.store.get(CKGONE_KEY, {})); KEPT_GONE = cleanGone(Platform.store.get(KEPTGONE_KEY, {}));
+  if (!cloudHost()) { Acct.state = 'off'; return; }
+  acctFromCache(Platform.store.get(ACCT_KEY, null));
+  Acct.state = Acct.cachedUid ? 'cached' : 'out';
+  var q = '', h = ''; try { q = location.search || ''; h = location.hash || ''; } catch (e) {}
+  if (/[?&#]error(_description)?=/.test(q + h)) { toast('Sign-in didn\'t finish. Try again.'); acctCleanUrl(true); }
+  var back = /[?&]code=/.test(q);
+  if (back) Acct.state = 'loading';
+  if (back || Acct.cachedUid || /^#f_/.test(h) || Platform.store.get(PENDINV_KEY, '')) setTimeout(function(){ acctLoad(); }, back ? 0 : 900);
+  wlRebuild();
+}
+function acctCleanUrl(hashToo){
+  try {
+    var s = location.search || '';
+    if (/[?&](code|error|error_description|state)=/.test(s) || hashToo) history.replaceState(null, '', location.pathname + (hashToo && /error/.test(location.hash) ? '' : location.hash));
+  } catch (e) {}
+}
+function acctLoad(){ // -> Promise(client | null). Website only; loads the pinned supabase-js once.
+  if (Acct.client) return Promise.resolve(Acct.client);
+  if (Acct.loading) return Acct.loading;
+  if (!cloudHost()) return Promise.resolve(null);
+  Acct.loading = new Promise(function(res){
+    function make(){
+      try {
+        var sb = window.supabase; if (!sb || typeof sb.createClient !== 'function') { res(null); return; }
+        var cl = sb.createClient(SB_URL, SB_KEY, {auth:{flowType:'pkce', detectSessionInUrl:true, persistSession:true, autoRefreshToken:true, storageKey:'cff.sb.auth'}});
+        Acct.client = cl;
+        cl.auth.onAuthStateChange(function(ev, session){ setTimeout(function(){ acctOnSession(session, ev); }, 0); });   // never call the client inside this callback
+        res(cl);
+      } catch (e) { Acct.errMsg = String(e && e.message || e); res(null); }
+    }
+    if (window.supabase && window.supabase.createClient) { make(); return; }
+    var sc = document.createElement('script'), tm = setTimeout(function(){ res(null); }, 15000);
+    sc.src = SB_JS; sc.async = true; sc.crossOrigin = 'anonymous';
+    sc.onload = function(){ clearTimeout(tm); make(); };
+    sc.onerror = function(){ clearTimeout(tm); res(null); };
+    document.head.appendChild(sc);
+  }).then(function(cl){
+    if (!cl) { Acct.loading = null; Acct.offline = true; if (Acct.state === 'loading') Acct.state = Acct.cachedUid ? 'cached' : 'out'; acctRedraw(); }
+    return cl;
+  });
+  return Acct.loading;
+}
+function acctOnSession(session, ev){
+  var u = session && session.user ? session.user : null;
+  if (!u) {
+    if (ev === 'SIGNED_OUT' || ev === 'INITIAL_SESSION') { Acct.user = null; Acct.profile = null; Acct.state = 'out'; if (ev === 'SIGNED_OUT' || !Acct.offline) acctForget(); acctRedraw(); }
+    return;
+  }
+  var changed = !Acct.user || Acct.user.id !== u.id;
+  Acct.user = u; Acct.state = 'in';
+  acctCleanUrl(false);
+  if (Acct.cachedUid && Acct.cachedUid !== u.id) { LIVE = []; Acct.friends = []; Acct.invites = []; Acct.settings = null; Acct.cachedName = ''; }   // a different person signed in on this phone
+  Acct.cachedUid = u.id;
+  if (changed || ev === 'SIGNED_IN') acctSync('session');
+}
+function acctForget(){ LIVE = []; Acct.friends = []; Acct.invites = []; Acct.profile = null; Acct.settings = null; Acct.cachedUid = ''; Acct.cachedName = ''; Acct.lastSync = ''; try { window.localStorage.removeItem(ACCT_KEY); } catch (e) {} wlRebuild(); }
+function acctSignIn(){
+  if (!cloudHost()) { toast('Sign-in works on the website.'); return; }
+  Acct.state = 'loading'; acctRedraw();
+  acctLoad().then(function(cl){
+    if (!cl) { toast('Couldn\'t reach the account service. Try again later.'); return; }
+    return cl.auth.signInWithOAuth({provider:'google', options:{redirectTo:acctRedirect()}}).then(function(r){ if (r && r.error) throw r.error; });
+  })['catch'](function(){ Acct.state = 'out'; acctRedraw(); toast('Couldn\'t start sign-in. Try again.'); });
+}
+function acctSignOut(){
+  var cl = Acct.client;
+  var done = function(){ Acct.user = null; Acct.state = 'out'; acctForget(); acctRedraw(); toast('Signed out. Your lists stay on this phone.'); };
+  if (!cl) { done(); return; }
+  Promise.resolve(cl.auth.signOut({scope:'local'})).then(done, done);
+}
+function acctRpc(fn, args){
+  if (Acct.demo) return Promise.reject({message:'demo'});
+  if (!Acct.client || !Acct.user) return Promise.reject({message:'signin'});
+  return Acct.client.rpc(fn, args || {}).then(chk);
+}
+function acctFail(e, quiet){
+  if (e && e.message === 'demo') { toast('Test mode: nothing was sent.'); return; }
+  if (acctErrKind(e) === 'offline') Acct.offline = true; else Acct.errMsg = String(e && (e.message || e.code) || e);
+  if (!quiet) toast(Acct.offline ? offlineText(Acct.lastSync) : 'That didn\'t work. Try again.');
+  acctRedraw();
+}
+/* ----- sync ----- */
+function acctSync(why){
+  var cl = Acct.client, u = Acct.user;
+  if (!cl || !u || Acct.demo) return Promise.resolve(false);
+  if (Acct.syncing) { Acct.again = true; return Acct.syncing; }
+  var uid = u.id, nowIso = new Date().toISOString();
+  if (!DATA_LOADED) { UI.syncAfterData = true; return Promise.resolve(false); }   // the sids need the list
+  Acct.syncing = cl.rpc('me').then(chk).then(function(me){
+    Acct.profile = me && me.profile ? me.profile : null;
+    Acct.settings = me && me.settings ? me.settings : Acct.settings;
+    return Promise.all([cl.from('saves').select('item_id,sid,saved,updated_at').eq('user_id', uid).then(chk), cl.from('checkins').select('item_id,sid,visit_date,date_prec,rating,deleted,updated_at').eq('user_id', uid).then(chk)]);
+  }).then(function(r){
+    var ms = mergeSaves(savedIds, SAVED_META, r[0], nowIso), mc = mergeCheckins(CHECKINS, CK_GONE, r[1], nowIso);
+    savedIds = ms.ids; SAVED_META = ms.meta; Platform.store.set('cff.saved.v1', savedIds); Platform.store.set(SAVEDMETA_KEY, SAVED_META);
+    CHECKINS = mc.list; CK_GONE = mc.gone; Platform.store.set(CHECKIN_KEY, CHECKINS); Platform.store.set(CKGONE_KEY, CK_GONE);
+    var jobs = [];
+    if (ms.push.length) jobs.push(cl.from('saves').upsert(ms.push.map(function(x){ return ext(x, {user_id:uid, sid:ID_SID[x.item_id] || null}); }), {onConflict:'user_id,item_id'}).then(chk));
+    if (mc.push.length) jobs.push(cl.from('checkins').upsert(mc.push.map(function(x){ return ext(x, {user_id:uid, sid:ID_SID[x.item_id] || null}); }), {onConflict:'user_id,item_id'}).then(chk));
+    if (Acct.profile) { // the kept stage-1 copies ride along in settings
+      var mk = mergeKept(FRIENDS, KEPT_GONE, Acct.settings ? Acct.settings.kept_lists : []);
+      FRIENDS = mk.lists; KEPT_GONE = mk.gone; Platform.store.set(FRIENDS_KEY, FRIENDS); Platform.store.set(KEPTGONE_KEY, KEPT_GONE);
+      if (mk.changed || !Acct.settings) jobs.push(cl.from('settings').upsert({user_id:uid, kept_lists:{lists:mk.lists, gone:mk.gone}, updated_at:nowIso}, {onConflict:'user_id'}).then(chk));
+    }
+    Acct.dirtyS = {}; Acct.dirtyC = {};
+    return Promise.all(jobs);
+  }).then(function(){
+    if (!Acct.profile) return null;
+    return Promise.all([cl.rpc('my_friends').then(chk), cl.from('saves').select('user_id,item_id,sid').eq('saved', true).neq('user_id', uid).then(chk), cl.rpc('friend_checkins').then(chk), cl.from('invites').select('code,created_at,expires_at,used_by,cancelled').eq('owner', uid).then(chk)]);
+  }).then(function(r){
+    if (r) {
+      Acct.friends = (r[0] || []).map(function(f){ return {user_id:f.user_id, username:f.username, display_name:f.display_name || '', status:f.status, direction:f.direction || null, since:f.since || '', share_saves:f.share_saves, share_checkins:f.share_checkins}; });
+      LIVE = liveFrom(Acct.friends, r[1], r[2], ID_SID);
+      var now = Date.now();
+      Acct.invites = (r[3] || []).filter(function(i){ return !i.used_by && !i.cancelled && tsOf(i.expires_at) > now; }).map(function(i){ return {code:i.code, created_at:i.created_at, expires_at:i.expires_at}; });
+    }
+    Acct.offline = false; Acct.errMsg = ''; Acct.lastSync = nowIso; Acct.state = 'in';
+    acctSaveCache(); acctRedraw();
+    if (!Acct.profile && !Acct.askedName) { Acct.askedName = true; acctAskName(); }
+    else if (Acct.profile) { var pi = Platform.store.get(PENDINV_KEY, ''); if (pi && INVITE_RE.test(pi)) { Platform.store.set(PENDINV_KEY, ''); inviteOpen(pi); } }
+    return true;
+  })['catch'](function(e){ acctFail(e, true); return false; }).then(function(v){
+    Acct.syncing = null;
+    if (Acct.again) { Acct.again = false; setTimeout(function(){ acctSync('again'); }, 50); }
+    return v;
+  });
+  return Acct.syncing;
+}
+function acctPushSoon(){ // a save or a check-in changed on this phone: send just those rows a moment later
+  if (!Acct.client || !Acct.user || Acct.demo) return false;
+  clearTimeout(Acct.pushTm); Acct.pushTm = setTimeout(acctPush, 1200);
+  return true;
+}
+function acctPush(){
+  var cl = Acct.client, u = Acct.user; if (!cl || !u) return;
+  var uid = u.id, sIds = Object.keys(Acct.dirtyS), cIds = Object.keys(Acct.dirtyC), jobs = [];
+  var sRows = sIds.filter(function(id){ return SAVED_META[id]; }).map(function(id){ return {user_id:uid, item_id:id, sid:ID_SID[id] || null, saved:SAVED_META[id].on, updated_at:SAVED_META[id].at}; });
+  var cRows = cIds.map(function(id){ var c = checkinOf(id); if (c) return ext(ckRow(c, false), {user_id:uid, sid:ID_SID[id] || null}); if (CK_GONE[id]) return ext(ckRow({id:id, date:'', rating:0, prec:'day', updated_at:CK_GONE[id]}, true), {user_id:uid, sid:ID_SID[id] || null}); return null; }).filter(Boolean);
+  if (sRows.length) jobs.push(cl.from('saves').upsert(sRows, {onConflict:'user_id,item_id'}).then(chk));
+  if (cRows.length) jobs.push(cl.from('checkins').upsert(cRows, {onConflict:'user_id,item_id'}).then(chk));
+  if (!jobs.length) return;
+  Promise.all(jobs).then(function(){
+    sIds.forEach(function(id){ delete Acct.dirtyS[id]; }); cIds.forEach(function(id){ delete Acct.dirtyC[id]; });
+    var was = Acct.offline; Acct.offline = false; Acct.lastSync = new Date().toISOString(); acctSaveCache(); if (was) acctRedraw();
+  }, function(e){ acctFail(e, true); });
+}
+function acctKeptChanged(){ // a kept copy was added, renamed or removed: the next sync carries it (no extra request now)
+  Platform.store.set(KEPTGONE_KEY, KEPT_GONE);
+  if (Acct.client && Acct.user && Acct.profile) { clearTimeout(acctKeptChanged.tm); acctKeptChanged.tm = setTimeout(function(){ acctSync('kept'); }, 1500); }
+}
+/* ----- username ----- */
+function acctAskName(){
+  var u = Acct.user || {}, md = u.user_metadata || {}, guess = acctName() || suggestUsername(u.email, md.full_name || md.name);
+  openSmall('Pick a username', function(){
+    $('pSmallBody').innerHTML = '<p class="p-note">Friends find you by it. 3-20 letters, numbers, dots or underscores.</p>' +
+      '<label class="vh" for="unameIn">Username</label><div class="field uname"><span aria-hidden="true">@</span><input id="unameIn" type="text" maxlength="20" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" value="' + esc(guess) + '"></div>' +
+      '<p class="p-note warn" id="unameErr" style="margin-top:10px" hidden></p><button class="btn-primary" type="button" data-acct="name-save" style="width:100%;margin-top:14px">Save</button>';
+  });
+}
+function acctNameSave(){
+  var inp = $('unameIn'), v = normUsername(inp ? inp.value : ''), er = $('unameErr');
+  function bad(t){ if (er) { er.textContent = t; er.hidden = false; } }
+  if (!usernameOk(v)) { bad('Use 3-20 letters, numbers, dots or underscores.'); return; }
+  var md = (Acct.user && Acct.user.user_metadata) || {};
+  acctRpc('claim_username', {p_username:v, p_display:String(md.full_name || md.name || '').slice(0, 40)}).then(function(r){
+    if (r === 'ok') { closePanel('pSmall'); toast('You\'re @' + v); Acct.cachedName = v; acctSync('name'); }
+    else if (r === 'taken') bad('That one\'s taken.');
+    else bad('Use 3-20 letters, numbers, dots or underscores.');
+  }, function(e){ acctFail(e); });
+}
+/* ----- friends: find, request, answer, remove, block ----- */
+function acctFind(){
+  var inp = $('frFind'), q = normUsername(inp ? inp.value : ''), out = $('frFindOut');
+  if (!out) return;
+  if (!usernameOk(q)) { out.innerHTML = '<p class="p-note warn">Usernames are 3-20 letters, numbers, dots or underscores.</p>'; return; }
+  out.innerHTML = '<p class="p-note">Looking...</p>';
+  acctRpc('find_username', {p_query:q}).then(function(rows){
+    rows = rows || [];
+    if (!rows.length) { out.innerHTML = '<p class="p-note warn">No one with that username.</p>'; return; }
+    out.innerHTML = (rows[0].exact ? '' : '<p class="p-note">Did you mean</p>') + '<ul class="frows">' + rows.map(function(r){
+      var b = r.relation === 'friends' ? '<span class="fr-st">Friends</span>' : r.relation === 'sent' ? '<span class="fr-st">Request sent</span>' :
+        '<button class="mini-btn" type="button" data-acct="req" data-v="' + esc(r.username) + '">' + (r.relation === 'incoming' ? 'Accept' : 'Add') + '</button>';
+      return '<li><span class="fr-u">@' + esc(r.username) + '</span>' + b + '</li>';
+    }).join('') + '</ul>';
+  }, function(e){ if (e && /limit/.test(String(e.message))) out.innerHTML = '<p class="p-note warn">That\'s a lot of searches today. Try tomorrow.</p>'; else { out.innerHTML = ''; acctFail(e); } });
+}
+var REQ_TEXT = {sent:'Request sent to @{u}', accepted:'You and @{u} are friends', already_friends:'You\'re already friends.', already_sent:'Request already sent.', not_found:'No one with that username.', self:'That\'s you.', limit:'That\'s a lot of requests today. Try tomorrow.'};
+function acctRequest(u){
+  acctRpc('request_friend', {p_username:u}).then(function(r){ toast(String(REQ_TEXT[r] || 'That didn\'t work. Try again.').replace('{u}', u)); acctSync('request'); }, function(e){ acctFail(e); });
+}
+function acctAnswer(uid, yes){
+  var f = acctFriendBy(uid);
+  acctRpc('respond_friend', {p_other:uid, p_accept:!!yes}).then(function(){ if (yes && f) toast('You and ' + (f.display_name ? f.display_name.split(/\s+/)[0] : '@' + f.username) + ' are friends'); acctSync('answer'); }, function(e){ acctFail(e); });
+}
+function acctFriendBy(uid){ for (var i = 0; i < Acct.friends.length; i++) if (Acct.friends[i].user_id === uid) return Acct.friends[i]; return null; }
+function acctFriendName(f){ return f ? (f.display_name ? f.display_name.split(/\s+/)[0] : '@' + f.username) : ''; }
+function acctRemove(uid, el){
+  if (el && !el.classList.contains('arm')) {
+    var was = el.textContent; el.classList.add('arm'); el.textContent = 'Tap again to remove';
+    clearTimeout(acctRemove.tm); acctRemove.tm = setTimeout(function(){ if (el.isConnected !== false) { el.classList.remove('arm'); el.textContent = was; } }, 4000);
+    return;
+  }
+  var f = acctFriendBy(uid);
+  acctRpc('remove_friend', {p_other:uid}).then(function(){ if (f && f.status === 'accepted') toast('Removed ' + acctFriendName(f)); if (!$('pFriend').hidden) closePanel('pFriend'); acctSync('remove'); }, function(e){ acctFail(e); });
+}
+function acctBlockAsk(uid){
+  var f = acctFriendBy(uid); if (!f) return;
+  openSmall('Block @' + f.username + '?', function(){
+    $('pSmallBody').innerHTML = '<p class="p-note">They can\'t find you, invite you or see your lists. They aren\'t told.</p><div class="confirm2"><button class="btn-primary" type="button" data-acct="block2" data-v="' + esc(uid) + '">Block</button><button class="mini-btn" type="button" data-close="pSmall">Cancel</button></div>';
+  });
+}
+function acctBlock(uid){
+  acctRpc('block_user', {p_other:uid}).then(function(){ closePanel('pSmall'); if (!$('pFriend').hidden) closePanel('pFriend'); toast('Blocked'); acctSync('block'); }, function(e){ acctFail(e); });
+}
+function acctUnblock(uid){ acctRpc('unblock_user', {p_other:uid}).then(function(){ toast('Unblocked'); acctSync('unblock'); }, function(e){ acctFail(e); }); }
+function acctSetting(k){
+  if (!Acct.client || !Acct.user) { if (Acct.demo) toast('Test mode: nothing was sent.'); return; }
+  var cur = Acct.settings || {}, dflt = {share_saves:true, share_checkins:false, find_by_username:true}, on = cur[k] === undefined ? dflt[k] : !!cur[k], patch = {user_id:Acct.user.id, updated_at:new Date().toISOString()};
+  patch[k] = !on; Acct.settings = ext(cur, patch);
+  renderFriends();
+  Acct.client.from('settings').upsert(patch, {onConflict:'user_id'}).then(chk).then(function(){ acctSaveCache(); }, function(e){ Acct.settings[k] = on; renderFriends(); acctFail(e); });
+}
+/* ----- invites "#f_<code>" ----- */
+function acctInvite(){
+  acctRpc('create_invite').then(function(rows){
+    var r = rows && rows[0]; if (!r || !INVITE_RE.test(String(r.code))) throw {message:'no code'};
+    var link = wlBase() + '#f_' + r.code;
+    Acct.invites = Acct.invites.concat([{code:r.code, created_at:new Date().toISOString(), expires_at:r.expires_at}]); acctSaveCache();
+    if (!$('pFriends').hidden) renderFriends();
+    return Platform.share({title:APP_NAME, text:'Be my friend on ' + APP_NAME + ' so we can see what we both want to do.', url:link}).then(function(x){ if (x === 'copied') toast('Link copied'); }, function(){
+      openSmall('Invite link', function(){ $('pSmallBody').innerHTML = '<p class="p-note">Press and hold the link to copy it. It works once, for 7 days.</p><pre class="calbox">' + esc(link) + '</pre>'; });
+    });
+  })['catch'](function(e){ if (e && /limit/.test(String(e.message))) toast('That\'s a lot of invites today. Try tomorrow.'); else acctFail(e); });
+}
+function acctCancelInvite(code){ acctRpc('cancel_invite', {p_code:code}).then(function(){ Acct.invites = Acct.invites.filter(function(i){ return i.code !== code; }); acctSaveCache(); renderFriends(); }, function(e){ acctFail(e); }); }
+var INV_TEXT = {expired:'This invite expired. Ask for a new one.', used:'This invite was already used.', own:'That\'s your own invite.', friends:'You\'re already friends.', not_found:'This invite isn\'t working. Ask for a new one.'};
+function inviteClearHash(){ if (/^#f_/.test(location.hash || '')) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} } }
+function inviteOpen(code){
+  inviteClearHash();
+  if (!cloudHost()) { openSmall('Friend invite', function(){ $('pSmallBody').innerHTML = '<p class="p-note">Open this invite on the website to accept it:</p><pre class="calbox">' + esc(SITE_URL + '#f_' + code) + '</pre>'; }); return; }
+  UI.invite = code;
+  function card(title, body, btns){ openSmall(title, function(){ $('pSmallBody').innerHTML = '<p class="p-note">' + esc(body) + '</p>' + (btns ? '<div class="confirm2">' + btns + '</div>' : ''); }); }
+  acctLoad().then(function(cl){
+    if (!cl) { card('Friend invite', offlineText(Acct.lastSync) + '. Open the link again later.'); return; }
+    return cl.auth.getSession().then(function(r){
+      var s = r && r.data ? r.data.session : null;
+      if (!s) { Platform.store.set(PENDINV_KEY, code); card('Friend invite', 'A friend invited you to be friends on ' + APP_NAME + '.', '<button class="btn-primary" type="button" data-acct="signin">Sign in to accept</button><button class="mini-btn" type="button" data-acct="inv-no">No thanks</button>'); return; }
+      if (!Acct.user) Acct.user = s.user;
+      return acctRpc('invite_info', {p_code:code}).then(function(rows){
+        var r0 = rows && rows[0];
+        if (!r0) { card('Friend invite', INV_TEXT.not_found); return; }
+        if (r0.status !== 'ok') { card('Friend invite', INV_TEXT[r0.status] || INV_TEXT.not_found); return; }
+        var nm = r0.display_name ? r0.display_name.split(/\s+/)[0] : '@' + r0.username;
+        UI.inviteName = nm;
+        card(nm + ' invited you to be friends', '@' + r0.username, '<button class="btn-primary" type="button" data-acct="inv-yes">Accept</button><button class="mini-btn" type="button" data-acct="inv-no">No thanks</button>');
+      });
+    });
+  })['catch'](function(e){ acctFail(e); });
+}
+function inviteAccept(){
+  var code = UI.invite; if (!code) return;
+  acctRpc('accept_invite', {p_code:code}).then(function(r){
+    if (r === 'username') { Platform.store.set(PENDINV_KEY, code); acctAskName(); return; }
+    closePanel('pSmall'); UI.invite = null;
+    toast(r === 'ok' ? 'You and ' + (UI.inviteName || 'your friend') + ' are friends' : (INV_TEXT[r] || INV_TEXT.not_found));
+    acctSync('invite');
+  }, function(e){ acctFail(e); });
+}
+/* ----- delete my account ----- */
+function acctDeleteAsk(){
+  openSmall('Delete your account?', function(){
+    $('pSmallBody').innerHTML = '<p class="p-note">This deletes your username, friends, invites and everything synced to your account, right now. It can\'t be undone. What\'s on this phone stays here.</p>' +
+      '<div class="confirm2"><button class="btn-primary danger" type="button" data-acct="delete2">Delete my account</button><button class="mini-btn" type="button" data-close="pSmall">Cancel</button></div>';
+  });
+}
+function acctDelete(){
+  acctRpc('delete_my_account').then(function(r){
+    closePanel('pSmall');
+    var cl = Acct.client;
+    var fin = function(){ Acct.user = null; Acct.state = 'out'; acctForget(); acctRedraw(); toast(r === 'deleted' || r === 'rows_deleted' ? 'Your account is deleted.' : 'That didn\'t work. Try again.'); };
+    Promise.resolve(cl ? cl.auth.signOut({scope:'local'}) : null).then(fin, fin);
+  }, function(e){ acctFail(e); });
+}
+/* ----- the been import (#been=...): a confirm screen first ----- */
+function beenOpen(raw){
+  try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}   // the link is used once and never left in the address bar
+  var r = beenDecode(raw, cparts(nowMs()).key);
+  if (!r.ok) { toast(r.why === 'version' ? 'Reload ' + APP_NAME + ' to open this link.' : 'This link got cut off. Ask for a new one.'); return; }
+  UI.beenImport = r.entries;
+  if (!DATA_LOADED) { UI.beenWait = true; return; }   // shown when the list has loaded
+  beenConfirm();
+}
+function beenConfirm(){
+  var es = UI.beenImport; if (!es) return; UI.beenWait = false;
+  var today = cparts(nowMs()).key, rows = '', n = 0, had = 0, unk = 0;
+  es.forEach(function(e){
+    var it = SID_INDEX[e.sid]; if (!it) { unk++; return; }
+    var ck = checkinOf(it.id); if (ck) { had++; return; }
+    n++; rows += '<li><span class="fr-u">' + esc(it.name) + '</span><span class="fr-st">' + esc(e.prec === 'month' ? monthText(e.date.slice(0, 7), today) : fmtDate(e.date, today)) + '</span></li>';
+  });
+  var where = Acct.user ? 'your account (@' + esc(acctName() || '...') + ')' : 'this phone';
+  openSmall('Add to Been?', function(){
+    $('pSmallBody').innerHTML = (n ? '<p class="p-note">' + n + (n === 1 ? ' place' : ' places') + ' to add to ' + where + '.' + (had ? ' ' + had + ' already there keep your dates.' : '') + '</p><ul class="frows">' + rows + '</ul>' :
+        '<p class="p-note">Nothing new to add.' + (had ? ' ' + had + ' already in Been.' : '') + '</p>') +
+      (unk ? '<p class="p-note">' + unk + (unk === 1 ? ' isn\'t' : ' aren\'t') + ' in the guide anymore.</p>' : '') +
+      '<div class="confirm2">' + (n ? '<button class="btn-primary" type="button" data-acct="been-add">Add ' + n + '</button>' : '') + '<button class="mini-btn" type="button" data-acct="been-cancel">' + (n ? 'Cancel' : 'Close') + '</button></div>';
+  });
+}
+function beenAddNow(){
+  var es = UI.beenImport; UI.beenImport = null; if (!es) return;
+  var nowIso = new Date().toISOString(), r = beenApply(CHECKINS, es, SID_INDEX, nowIso);
+  CHECKINS = r.list; r.added.forEach(function(id){ delete CK_GONE[id]; Acct.dirtyC[id] = 1; });
+  Platform.store.set(CKGONE_KEY, CK_GONE);
+  afterCheckinChange(true);
+  closePanel('pSmall');
+  toast('Added ' + r.added.length + ' to Been' + (Acct.user ? ' and your account' : ' on this phone'));
+  openLists('been');
+}
+/* ----- what the screens draw ----- */
+function acctCardHTML(state, o){ // the account block on Saved and in About. state: off | out | loading | cached | in
+  o = o || {};
+  if (state === 'off') return o.about ? '<p>Sign-in and friends work on the website (' + esc(SITE_URL.replace(/^https:\/\//, '').replace(/\/$/, '')) + '). Here, everything stays on this device.</p>' : '';
+  if (state === 'out' || (state === 'loading' && !acctName())) {
+    return '<div class="acct"><p class="acct-t">Your lists on every device</p><p class="acct-s">Sign in to sync your saves and check-ins and add friends. Without it, everything stays on this phone.</p>' +
+      '<button class="btn-google" type="button" data-acct="signin"' + (state === 'loading' ? ' disabled' : '') + '>' + googleG() + (state === 'loading' ? 'Signing in...' : 'Sign in with Google') + '</button>' +
+      '<p class="acct-l"><button class="linkbtn" type="button" data-acct="privacy">Privacy</button></p></div>';
+  }
+  var nm = acctName(), line = Acct.offline ? offlineText(Acct.lastSync) : (Acct.lastSync ? 'Synced ' + fmtMonthDay(chicagoDayOf(Acct.lastSync)) : 'Syncing...');
+  var h = '<div class="acct"><p class="acct-t">' + (nm ? '@' + esc(nm) : 'Signed in') + '</p><p class="acct-s' + (Acct.offline ? ' off' : '') + '">' + esc(line) + (Acct.offline ? ' <button class="linkbtn" type="button" data-acct="retry">Try again</button>' : '') + '</p>';
+  if (!nm && state === 'in') h += '<button class="mini-btn" type="button" data-acct="name">Pick a username</button>';
+  h += '<p class="acct-l">' + (nm ? '<button class="linkbtn" type="button" data-acct="friends">Friends</button><span aria-hidden="true">·</span>' : '') + '<button class="linkbtn" type="button" data-acct="privacy">Privacy</button><span aria-hidden="true">·</span><button class="linkbtn" type="button" data-acct="signout">Sign out</button></p>';
+  if (o.about) h += '<p class="acct-l"><button class="linkbtn warn" type="button" data-acct="delete">Delete my account</button></p>';
+  return h + '</div>';
+}
+function googleG(){ return '<svg class="gg" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.6 5.4 2.6 13.2l7.8 6.1C12.3 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.8c4.3-4 6.9-9.9 6.9-17.2z"/><path fill="#FBBC05" d="M10.4 28.7c-.5-1.4-.8-3-.8-4.7s.3-3.2.8-4.7l-7.8-6.1C.9 16.6 0 20.2 0 24s.9 7.4 2.6 10.8l7.8-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.8c-2.1 1.4-4.8 2.3-8.5 2.3-6.3 0-11.7-4.1-13.6-9.8l-7.8 6.1C6.6 42.6 14.6 48 24 48z"/></svg>'; }
+function acctStripHTML(){ // Saved, signed in (spec 6.1): request cards, then one strip with live friends and kept copies, and (+)
+  var h = '', T = evalTime();
+  acctIncoming().forEach(function(f){
+    h += '<div class="reqcard"><span class="av">' + esc((wlChars(acctFriendName(f).replace(/^@/, ''))[0] || '?').toUpperCase()) + '</span><span class="rq-t">' + esc(acctFriendName(f)) + ' wants to be friends</span>' +
+      '<span class="rq-b"><button class="mini-btn fill" type="button" data-acct="accept" data-v="' + esc(f.user_id) + '">Accept</button><button class="linkbtn" type="button" data-acct="notnow" data-v="' + esc(f.user_id) + '">Not now</button></span></div>';
+  });
+  var all = LIVE.concat(FRIENDS);
+  h += '<h3 class="sec-h"><span>Friends</span><button class="linkbtn" type="button" data-acct="friends">Manage</button></h3><div class="fstrip">' + all.map(function(f){
+    var n = DATA_LOADED ? wlBothCount(f, SID_INDEX, T, isSaved) : 0;
+    return '<button class="fchip' + (f.live ? '' : ' copy') + '" type="button" data-fchip="' + esc(f.key) + '" aria-label="' + esc(f.name) + (f.live ? '' : ' (a copy)') + ': you both want ' + n + '">' + avHTML(f) + '<span class="nm">' + esc(f.name) + '</span><span class="n' + (n ? '' : ' zero') + '">' + n + '</span></button>';
+  }).join('') + '<button class="fchip add" type="button" data-acct="friends" aria-label="Add a friend"><span class="av plus">+</span></button></div>';
+  if (Acct.offline && LIVE.length) h += '<p class="p-note fr-off">' + esc(offlineText(Acct.lastSync)) + '</p>';
+  return h;
+}
+function openFriends(){ if (!acctSignedIn() && !Acct.demo) { acctSignIn(); return; } renderFriends(); openPanel('pFriends'); if (!Acct.demo) acctSync('friends'); }
+function renderFriends(){
+  var b = $('pFriendsBody'); if (!b) return;
+  var st = Acct.settings || {}, h = '', today = cparts(nowMs()).key;
+  function sw(k, on, label, sub){ return '<div class="sw-row"><span>' + label + (sub ? '<small>' + sub + '</small>' : '') + '</span><button class="switch" type="button" data-acct="sw" data-v="' + k + '" aria-pressed="' + !!on + '" aria-label="' + esc(label) + '"></button></div>'; }
+  function sec(t){ return '<h3 class="fsec-h">' + esc(t) + '</h3>'; }
+  if (Acct.offline) h += '<p class="band">' + esc(offlineText(Acct.lastSync)) + '. Changes here need a connection. <button class="linkbtn" type="button" data-acct="retry">Try again</button></p>';
+  if (!acctName()) { b.innerHTML = h + '<p class="p-note">Pick a username first, so friends can find you.</p><button class="btn-primary" type="button" data-acct="name" style="width:100%">Pick a username</button>'; return; }
+  h += sec('Add a friend') + '<button class="frrow" type="button" data-acct="invite">' + glyphSvg('i-share') + '<span>Send an invite link</span>' + glyphSvg('i-right', 'i chev') + '</button>' +
+    '<p class="fr-or">or</p><div class="frfind"><label class="vh" for="frFind">Username</label><div class="field uname"><span aria-hidden="true">@</span><input id="frFind" type="text" maxlength="21" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" placeholder="username"></div><button class="btn-primary" type="button" data-acct="find">Find</button></div><div id="frFindOut" aria-live="polite"></div>';
+  var inc = acctIncoming(), out = Acct.friends.filter(function(f){ return f.status === 'pending' && f.direction === 'out'; }), acc = Acct.friends.filter(function(f){ return f.status === 'accepted'; }), blk = Acct.friends.filter(function(f){ return f.status === 'blocked'; });
+  if (inc.length) h += sec('Requests') + '<ul class="frows">' + inc.map(function(f){ return '<li><span class="fr-u">' + esc(acctFriendName(f)) + ' <small>@' + esc(f.username) + '</small></span><span class="fr-b"><button class="mini-btn fill" type="button" data-acct="accept" data-v="' + esc(f.user_id) + '">Accept</button><button class="linkbtn" type="button" data-acct="notnow" data-v="' + esc(f.user_id) + '">Not now</button></span></li>'; }).join('') + '</ul>';
+  h += sec('Friends') + (acc.length ? '<ul class="frows">' + acc.map(function(f){ return '<li><span class="fr-u">' + esc(acctFriendName(f)) + ' <small>@' + esc(f.username) + '</small></span><span class="fr-b"><button class="linkbtn" type="button" data-acct="remove" data-v="' + esc(f.user_id) + '">Remove</button><button class="linkbtn" type="button" data-acct="block" data-v="' + esc(f.user_id) + '">Block</button></span></li>'; }).join('') + '</ul>' : '<p class="p-note">No friends yet. Send an invite link, or find someone by username.</p>');
+  if (out.length) h += sec('Waiting') + '<ul class="frows">' + out.map(function(f){ return '<li><span class="fr-u">@' + esc(f.username) + ' <small>request sent</small></span><span class="fr-b"><button class="linkbtn" type="button" data-acct="remove" data-v="' + esc(f.user_id) + '">Cancel</button></span></li>'; }).join('') + '</ul>';
+  if (FRIENDS.length) h += sec('Copies') + '<ul class="frows">' + FRIENDS.map(function(f){ return '<li><span class="fr-u">' + esc(f.name) + ' <small>' + esc(fmtMonthDay(wlDayKey(f.day))) + '</small></span><span class="fr-b"><button class="linkbtn" type="button" data-fchip="' + esc(f.key) + '">Open</button></span></li>'; }).join('') + '</ul>';
+  if (Acct.invites.length) h += sec('Invites') + '<ul class="frows">' + Acct.invites.map(function(i){ return '<li><span class="fr-u">Link made ' + esc(fmtMonthDay(chicagoDayOf(i.created_at) || today)) + ' <small>expires ' + esc(fmtMonthDay(chicagoDayOf(i.expires_at) || today)) + '</small></span><span class="fr-b"><button class="linkbtn" type="button" data-acct="cancelinv" data-v="' + esc(i.code) + '">Cancel</button></span></li>'; }).join('') + '</ul>';
+  if (blk.length) h += sec('Blocked') + '<ul class="frows">' + blk.map(function(f){ return '<li><span class="fr-u">@' + esc(f.username) + '</span><span class="fr-b"><button class="linkbtn" type="button" data-acct="unblock" data-v="' + esc(f.user_id) + '">Unblock</button></span></li>'; }).join('') + '</ul>';
+  h += sec('What friends see') + sw('share_saves', st.share_saves !== false, 'Saved places') + sw('share_checkins', !!st.share_checkins, 'Places I\'ve been', 'The month only, never the day') + sw('find_by_username', st.find_by_username !== false, 'Find me by username') +
+    '<p class="p-note fr-note">Nothing is public. Only friends you accept see this. <button class="linkbtn" type="button" data-acct="privacy">Privacy</button></p>';
+  b.innerHTML = h;
+}
+function renderPrivacy(){
+  var h = '<p>Without an account, everything stays on this device: your saves, places you\'ve been, friends\' list copies and your spot. Nothing is sent anywhere.</p>';
+  h += '<h3>With an account</h3><ul><li><b>From Google:</b> your email address and name, used only to sign you in. We never see your Google password.</li><li><b>What you add:</b> your username, saved places, places you\'ve been (place, date, thumbs up or down), friends, requests, blocks, invite links and your three "What friends see" switches.</li><li><b>Never stored:</b> your location, and anything about your phone beyond the sign-in.</li></ul>';
+  h += '<h3>Where</h3><p>In a database run by Supabase, in the United States. Off-Grid has no ads and never sells or shares your data.</p>';
+  h += '<h3>Who sees it</h3><p>Only you. A friend you accept sees your saved places (if "Saved places" is on) and where you\'ve been, by month only (if "Places I\'ve been" is on; it starts off). Nothing is public, and nobody can browse people. Someone you block can\'t find you, invite you or see anything.</p>';
+  h += '<h3>Delete it</h3><p>' + (acctSignedIn() ? '<button class="linkbtn warn" type="button" data-acct="delete">Delete my account</button> removes your account and everything in it right away.' : 'Sign in, then Saved → Privacy → Delete my account removes your account and everything in it right away.') + ' Signing out keeps the copy on this device; clearing the browser\'s site data removes that.</p>';
+  $('pPrivacyBody').innerHTML = h;
+}
+function openPrivacy(){ renderPrivacy(); openPanel('pPrivacy'); }
+function shareAsk(){ // Saved -> Share, signed in (spec 6.1): ask every time
+  openSmall('Share', function(){
+    $('pSmallBody').innerHTML = '<button class="frrow" type="button" data-acct="share-invite">' + glyphSvg('i-share') + '<span>Invite as a friend</span>' + glyphSvg('i-right', 'i chev') + '</button><button class="frrow" type="button" data-acct="share-list">' + glyphSvg('i-bookmark') + '<span>Just send my list</span>' + glyphSvg('i-right', 'i chev') + '</button>';
+  });
+}
+function acctClick(el){
+  var a = el.getAttribute('data-acct'), v = el.getAttribute('data-v') || '';
+  if (Acct.demo && /^(signin|signout|delete2|name-save|find|req|accept|notnow|remove|block2|unblock|invite|cancelinv|share-invite|inv-yes|retry|sw)$/.test(a)) { if (a !== 'remove' || el.classList.contains('arm')) { toast('Test mode: nothing was sent.'); return; } }
+  switch (a) {
+    case 'signin': closePanel('pSmall'); acctSignIn(); break;
+    case 'signout': acctSignOut(); break;
+    case 'delete': acctDeleteAsk(); break;
+    case 'delete2': acctDelete(); break;
+    case 'name': acctAskName(); break;
+    case 'name-save': acctNameSave(); break;
+    case 'friends': closePanel('pSmall'); openFriends(); break;
+    case 'privacy': openPrivacy(); break;
+    case 'retry': Acct.offline = false; acctRedraw(); acctLoad().then(function(cl){ if (cl && Acct.user) acctSync('retry'); else if (cl) cl.auth.getSession(); }); break;
+    case 'find': acctFind(); break;
+    case 'req': acctRequest(v); break;
+    case 'accept': acctAnswer(v, true); break;
+    case 'notnow': acctAnswer(v, false); break;
+    case 'remove': acctRemove(v, el); break;
+    case 'block': acctBlockAsk(v); break;
+    case 'block2': acctBlock(v); break;
+    case 'unblock': acctUnblock(v); break;
+    case 'sw': acctSetting(v); break;
+    case 'invite': acctInvite(); break;
+    case 'cancelinv': acctCancelInvite(v); break;
+    case 'share-invite': closePanel('pSmall'); acctInvite(); break;
+    case 'share-list': closePanel('pSmall'); shareMyList(); break;
+    case 'inv-yes': inviteAccept(); break;
+    case 'inv-no': UI.invite = null; Platform.store.set(PENDINV_KEY, ''); closePanel('pSmall'); break;
+    case 'been-add': beenAddNow(); break;
+    case 'been-cancel': UI.beenImport = null; closePanel('pSmall'); break;
+  }
+}
+// Testing hook "#acctdemo=1": how the signed-in screens look, with made-up friends, in memory only. Nothing is sent.
+function acctDemo(){
+  if (!DATA_LOADED) { UI.acctDemoWait = true; return; }
+  UI.acctDemoWait = false;
+  var sids = Object.keys(SID_INDEX).map(Number).sort(function(a, b){ return a - b; });
+  Acct.demo = true; Acct.state = 'in'; Acct.user = null; Acct.cachedUid = 'demo'; Acct.profile = {username:'stacey'}; Acct.cachedName = 'stacey';
+  Acct.settings = {share_saves:true, share_checkins:false, find_by_username:true}; Acct.offline = true; Acct.lastSync = '2026-11-13T18:00:00.000Z';
+  Acct.friends = [{user_id:'d1', username:'maya', display_name:'Maya L', status:'accepted', share_saves:true}, {user_id:'d2', username:'jo.k', display_name:'Jo', status:'pending', direction:'in'},
+    {user_id:'d3', username:'sam_r', display_name:'', status:'pending', direction:'out'}, {user_id:'d4', username:'max', display_name:'', status:'blocked'}];
+  Acct.invites = [{code:'7K3M9QZP', created_at:'2026-11-12T18:00:00.000Z', expires_at:'2026-11-19T18:00:00.000Z'}];
+  var ms = sids.slice(0, 12).filter(function(s, i){ return i % 2 === 0; });
+  LIVE = liveFrom(Acct.friends, ms.map(function(s){ return {user_id:'d1', sid:s}; }), [{user_id:'d1', sid:sids[3], month:'2026-10'}, {user_id:'d1', sid:sids[5], month:'2025-07'}], ID_SID);
+  if (!savedIds.length) savedIds = [SID_INDEX[sids[0]].id, SID_INDEX[sids[2]].id, SID_INDEX[sids[7]].id];   // in memory only
+  acctRedraw();
 }
 
 /* ================= detail ================= */
@@ -5560,7 +6272,7 @@ function renderDetail(c, keepScroll){
   h += '<div class="dt-status"><p class="dt-line ' + esc(d.tone) + '"><span class="st"><i class="dot"></i>' + esc(d.text) + '</span>' + (pr ? '<span class="pr">' + esc(pr) + '</span>' : '') + '</p>';
   var sub = [];
   if (d.sub) sub.push(d.sub.charAt(0).toUpperCase() + d.sub.slice(1));
-  if (tsh) sub.push(tsh + (S.loc ? ' from ' + S.loc.label : ''));
+  if (tsh) sub.push(tsh + (S.loc ? ' from ' + locWordsNow() : ''));
   if (sub.length) h += '<p class="subline">' + esc(sub.join(' · ')) + '</p>';
   if (pel && pel.extra) h += '<p class="subline">' + esc(pel.extra) + '</p>';
   var lby = leaveBy(c); if (lby) h += '<p class="leaveby">' + esc(lby.t) + '</p>';   // v5.10 #33
@@ -5619,7 +6331,7 @@ function renderDetail(c, keepScroll){
   if (it.hours_note) h += '<p class="small" style="margin-top:8px">' + esc(fmt24Ranges(it.hours_note)) + '</p>';
   // getting there
   h += '<h3>Getting there</h3>' + miniMapHTML(c) + '<div class="getting">';
-  if (c.dist !== null) h += '<span><b>' + fmtMi(c.dist) + ' as the crow flies</b> from your pin' + (S.loc ? ' (' + esc(S.loc.label) + ')' : '') + '.</span><span>' + esc(travelText(c.trav).replace(/^about/, 'About').replace(/ \(too far for our CTA estimate: Metra or drive\)$/, '')) + '. ' + (c.trav.switched ? 'We don\'t estimate CTA past ' + CTA_MAX_MI + ' miles, so this is a drive time: check Metra, or drive. ' : '') + 'Rough estimate, not a route.</span>';
+  if (c.dist !== null) h += '<span><b>' + fmtMi(c.dist) + ' as the crow flies</b> from your pin' + (S.loc ? ' (' + esc(locWordsNow()) + ')' : '') + '.</span><span>' + esc(travelText(c.trav).replace(/^about/, 'About').replace(/ \(too far for our CTA estimate: Metra or drive\)$/, '')) + '. ' + (c.trav.switched ? 'We don\'t estimate CTA past ' + CTA_MAX_MI + ' miles, so this is a drive time: check Metra, or drive. ' : '') + 'Rough estimate, not a route.</span>';
   h += '</div><div class="linkrow"><a class="mini-btn" href="' + esc(appleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + 'Apple Maps</a><a class="mini-btn" href="' + esc(googleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + 'Google Maps</a>' + (web ? '<a class="mini-btn" href="' + esc(web) + '" target="_blank" rel="noopener">' + glyphSvg('i-globe') + 'Website</a>' : '') + '</div></section>';
   // good to know (only when the data has it)
   h += goodToKnowHTML(it);
@@ -5928,7 +6640,7 @@ function renderTime(){
   var b = S.budget, body = $('pTimeBody');
   body.innerHTML = '<div class="bignum"><button class="roundbtn" type="button" data-tb="-" aria-label="Less time">&minus;</button><b aria-live="polite">' + esc(fmtBudget(b)) + '</b><button class="roundbtn" type="button" data-tb="+" aria-label="More time">+</button></div>' +
     '<div class="picks" style="justify-content:center">' + BUDGETS.map(function(x){ return '<button class="chip" type="button" data-budget="' + x + '" aria-pressed="' + (x === b) + '">' + (x === 'night' ? 'Rest of the night' : esc(fmtBudget(x))) + '</button>'; }).join('') + '</div>' +
-    '<p class="hint" style="justify-content:center">Leaving from <b>&nbsp;' + esc(S.loc.label) + '&nbsp;</b> \u00b7 door to door, one way</p>';
+    '<p class="hint" style="justify-content:center">Leaving from <b>&nbsp;' + esc(locWordsNow()) + '&nbsp;</b> \u00b7 door to door, one way</p>';
   var r = runPipeline(DATA, evalTime(), ext(ctxNow(), {budget:b}), ext(S.f, {fits:true}));
   $('pTimeGo').textContent = DATA_LOADED ? 'Show ' + r.groups.fits.length + (r.groups.fits.length === 1 ? ' thing' : ' things') : 'Done';
 }
@@ -6079,7 +6791,8 @@ function renderAbout(){
   h += assumedHTML();
   h += '<h3>The three picks</h3><p>The first screen shows three things that are open at the time you chose (or open within 15 minutes), about ' + PICK_NEAR_MIN + ' minutes away or less by the way you chose to get around (further only when fewer than three closer ones are open), of three different kinds, with one limited-time thing when one qualifies. Places you marked "I\'ve been here" in the last ' + RECENT_DAYS + ' days are left out. "Three more" doesn\'t repeat until it has shown everything.</p>';
   h += '<h3>"I\'ve only got..."</h3><p>Off unless you turn it on in More filters. With it on, a place is shown when the trip plus the shortest worthwhile time there is within your time, and it stays open long enough after you arrive (at least 30 minutes). The shortest time comes from our listing when we have it; otherwise it is our rule of thumb: arcades, bars and food stops 30 min, mini golf 40, museums and active places 45, pop-ups 40. Escape rooms, shows, classes, sports and anything you book ahead need their full length.</p>';
-  h += '<h3>Been here</h3><p>"I\'ve been here" keeps the place and the date on this phone only. You can change the date or remove it. It never asks for a photo.</p>';
+  h += '<h3>Been here</h3><p>"I\'ve been here" keeps the place and the date on this phone' + (cloudHost() ? ', and in your account if you sign in' : '') + '. You can change the date or remove it. It never asks for a photo.</p>';
+  h += '<h3>Account</h3>' + acctCardHTML(Acct.state, {about:true}) + (Acct.state === 'off' ? '' : '<p class="small"><button class="linkbtn" type="button" data-acct="privacy">What we store and how to delete it</button></p>');   // v5.11
   h += '<h3>Tips</h3><p>Saw something fun on Instagram or anywhere? <button class="linkbtn" type="button" data-act="tip">Send a tip</button>. Each tip is read as a lead and checked at the organizer\'s own site before it goes in the app.</p>';
   h += '<h3>Where you are</h3><p>This version can\'t read your phone\'s location inside claude.ai, so you pick a spot or tap the map. Neighborhood, landmark and L-stop points are approximate (typed from general knowledge, needs check). Community areas come from City data. Distances are straight-line (as the crow flies); travel times use rough rules: walking 20 min per mile and CTA about 10 min plus 4 min per mile, both on 1.3 times the straight-line distance. Driving: 8 min to park, plus 4 min per straight-line mile for the first 3 miles, 2.2 min per mile up to 10 miles and 1.15 min per mile after that, with no rush-hour traffic. With "Walk + CTA" picked, places more than ' + CTA_MAX_MI + ' miles away show the drive time and say so (check Metra).</p>';
   h += '<h3>Map data</h3><p>Community areas and CTA \'L\' lines: City of Chicago Data Portal (datasets igwz-8jzy and xbyr-jnvx), simplified. The river line and the land outside the city are hand-drawn approximations.</p>';
@@ -6297,12 +7010,21 @@ function bindUI(){
     else if (ck && a === 'up') editCheckin(id, {rating:ck.rating === 1 ? 0 : 1});
     else if (ck && a === 'down') editCheckin(id, {rating:ck.rating === -1 ? 0 : -1});
   });
-  $('dtScroll').addEventListener('change', function(e){ if (e.target.id === 'beenDate' && UI.detailId && isKey(e.target.value)) editCheckin(UI.detailId, {date:e.target.value}); });
+  $('dtScroll').addEventListener('change', function(e){ if (e.target.id === 'beenDate' && UI.detailId && isKey(e.target.value)) editCheckin(UI.detailId, {date:e.target.value, prec:'day'}); });
   $('pSavedBody').addEventListener('click', function(e){ var t = e.target.closest('[data-tab]'); if (t) { UI.listTab = t.getAttribute('data-tab'); renderSaved(); }
     var fc = e.target.closest('[data-fchip]'); if (fc) { openFriendView(fc.getAttribute('data-fchip')); return; }   // v5.8 friends strip
     var wp = e.target.closest('[data-wl]'); if (wp) wlAction(wp.getAttribute('data-wl'), wp); });
   // v5.8 friends' lists: Share, the friend panel (Keep, rows, Rename, Remove), the paste box
-  $('wlShare').addEventListener('click', shareMyList);
+  $('wlShare').addEventListener('click', function(){ if (acctName() && acctSignedIn()) shareAsk(); else shareMyList(); });   // v5.11: signed in, Share asks: invite or just the list
+  document.addEventListener('click', function(e){ var ac = e.target.closest ? e.target.closest('[data-acct]') : null; if (ac && !ac.disabled) { e.preventDefault(); acctClick(ac); } });   // v5.11 accounts, friends, privacy, been import
+  document.addEventListener('keydown', function(e){ if (e.key !== 'Enter' || !e.target) return; if (e.target.id === 'unameIn') { e.preventDefault(); acctNameSave(); } else if (e.target.id === 'frFind') { e.preventDefault(); acctFind(); } });
+  $('pClusterBody').addEventListener('click', function(e){   // v5.11 cluster sheet: a row opens the place; Show N more
+    if (e.target.closest('[data-clmore]')) { UI.clusterAll = true; renderClusterList(); return; }
+    var sv = e.target.closest('[data-save]'); if (sv) { e.stopPropagation(); toggleSave(sv.getAttribute('data-save')); renderClusterList(); return; }
+    var row = e.target.closest('li[data-id]'); if (row) { var id = row.getAttribute('data-id'); closePanel('pCluster'); UI.sel = id; recluster(); openDetail(id); }
+  });
+  (function(){ var p = $('pCluster'), y0 = null; p.addEventListener('touchstart', function(e){ var b = $('pClusterBody'); y0 = (e.touches.length === 1 && (!b.contains(e.target) || b.scrollTop <= 0)) ? e.touches[0].clientY : null; }, {passive:true}); p.addEventListener('touchend', function(e){ if (y0 !== null && e.changedTouches[0].clientY - y0 > 70) closePanel('pCluster'); y0 = null; }, {passive:true}); })();   // swipe down closes
+  $('pFriendsBody').addEventListener('click', function(e){ var fc = e.target.closest('[data-fchip]'); if (fc) openFriendView(fc.getAttribute('data-fchip')); });
   $('fKeep').addEventListener('click', wlKeepNow);
   $('pFriend').addEventListener('keydown', function(e){
     if (e.key === 'Enter' && e.target.id === 'fName') { e.preventDefault(); wlKeepNow(); }
@@ -7589,9 +8311,9 @@ function runSelfTest0(){
       '±40 ft | ±490 ft | ±980 ft | ±0.6 mi | ±1.6 mi | ±25 mi | ±3,107 mi');
     eq('...tiny readings say at least ±10 ft; no accuracy says nothing', [accText(1), accText(null), accText(NaN), accText(-5)].join('|'), '±10 ft|||');
     eq('rough means worse than 1,000 m', [accRough(999), accRough(1000), accRough(1001), accRough(null)].join(), 'false,false,true,false');
-    eq('note after a sharp reading', locFixNote(30, true), 'Your location ±100 ft.');
-    eq('note after a rough reading (website): offer the address box', locFixNote(4000, true), 'Your location ±2.5 mi. Rough location. Type your address for a better one.');
-    eq('...without the address box: offer a spot', locFixNote(4000, false), 'Your location ±2.5 mi. Rough location. Pick a spot for a better one.');
+    eq('note after a sharp reading (v5.11: no ±N ft)', locFixNote(30, true), 'Found you.');
+    eq('note after a rough reading (website): offer the address box', locFixNote(4000, true), 'Rough location. Type your address.');
+    eq('...without the address box: offer a spot', locFixNote(4000, false), 'Rough location. Pick a spot for a better one.');
     eq('...no accuracy given', locFixNote(null, true), 'Found you.');
     eq('accuracy only shows for a reading (not a spot or an address)', [locAccFor({src:'gps', acc:30}), locAccFor({src:'picked', acc:30}), locAccFor({src:'address'}), locAccFor(null)].join('|'), '±100 ft|||');
     var T0 = 1763000000000;
@@ -8075,7 +8797,7 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.10 (2026-11-14)');
+    eq('version', VERSION, 'v5.11 (2026-11-14)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -8388,12 +9110,100 @@ function runSelfTest0(){
     eq('guide rules', [guideMatch('first-date', fx({tags:['date'], price_level:'$'}), ''), guideMatch('first-date', fx({tags:['date'], price_level:'$$$'}), ''), guideMatch('rainy-day', fx({indoor_outdoor:'indoor'}), ''), guideMatch('rainy-day', fx({indoor_outdoor:'outdoor'}), ''), guideMatch('free', fx({price_level:'free'}), ''), guideMatch('late-night', fx({hours:allDays(['18:00', '02:00'])}), '2026-11-13'), guideMatch('late-night', fx({hours:allDays(['10:00', '17:00'])}), '2026-11-13')].join(), 'true,false,true,false,true,true,false');
     ok('a guide link ends with #guide=<id>', /#guide=free$/.test(guideLink('free')), guideLink('free'));
     eq('Home has 5 guide buttons', (guidesHTML().match(/data-guide="/g) || []).length, 5);
-    eq('cluster label', clusterLabel(8, 2), '8 places, 2 limited-time. Zoom in');
+    eq('cluster label', clusterLabel(8, 2), '8 places, 2 limited-time. Show the list');
     var ch = clusterHTML({n:8, x:0, y:0, tk:2});
     ok('cluster: a ticket badge with the count, not a dot', ch.indexOf('class="ctk"') >= 0 && ch.indexOf('#g-ticket') >= 0 && /2<\/span>/.test(ch) && ch.indexOf('class="tkb"') < 0, ch);
     eq('no limited ones: no badge', clusterHTML({n:3, x:0, y:0, tk:0}).indexOf('ctk'), -1);
     function nsub(o){ return subOf(fx(ext({category:'nature-outdoors', genre:'nature'}, o)), 'nature'); }
     eq('Animals & bugs is strict: zoo, butterflies, elk herd yes; parks and beaches with bird tags go to Parks & walks', [nsub({name:'Lincoln Park Zoo'}), nsub({name:'The Butterfly House'}), nsub({name:'Busse Woods elk herd'}), nsub({name:'Jackson Park', tags:['birds', 'wildlife', 'animals']}), nsub({name:'Montrose Beach', tags:['birding']}), nsub({name:'Some sanctuary', tags:['petting-zoo']}), nsub({name:'River walk', tags:['animals', 'bugs']})].join(), 'animals,animals,animals,walks,walks,animals,walks');
+  });
+  /* ---------- v5.11 checks: accounts (pure parts), month only, the been link, signed-out mode, place names, cluster list ---------- */
+  block('v5.11 saves merge (last edit wins per place)', function(){
+    var t1 = '2026-11-10T10:00:00.000Z', t2 = '2026-11-12T10:00:00.000Z', now = '2026-11-14T10:00:00.000Z';
+    var a = mergeSaves(['p1'], {}, [], now);
+    eq('saved only on this phone (from before accounts): kept and sent with "now"', a.ids.join() + '|' + a.push.map(function(x){ return x.item_id + ':' + x.saved + '@' + x.updated_at; }).join(), 'p1|p1:true@' + now);
+    var b = mergeSaves(['p1'], {p1:{on:true, at:t1}}, [{item_id:'p1', saved:false, updated_at:t2}], now);
+    eq('removed on the laptop later than saved here: removed', b.ids.join() + '|' + b.push.length, '|0');
+    var c = mergeSaves([], {p1:{on:false, at:t2}}, [{item_id:'p1', saved:true, updated_at:t1}], now);
+    eq('removed here later than saved elsewhere: stays removed, removal sent', c.ids.join() + '|' + c.push.map(function(x){ return x.item_id + ':' + x.saved; }).join(), '|p1:false');
+    var d = mergeSaves(['p2', 'p1'], {p1:{on:true, at:t1}, p2:{on:true, at:t1}}, [{item_id:'p3', saved:true, updated_at:t2}, {item_id:'p1', saved:true, updated_at:t1}], now);
+    eq('saved on another device: added at the end; this phone\'s order kept', d.ids.join(), 'p2,p1,p3');
+    var e = mergeSaves([], {p1:{on:false, at:t1}}, [{item_id:'p1', saved:true, updated_at:t1}], now);
+    eq('a tie with different answers: saved wins (never lose a save)', e.ids.join() + '|' + e.push.length, 'p1|1');
+    eq('Postgres time format (+00:00) compares by time, not text', mergeSaves(['p1'], {p1:{on:true, at:'2026-11-12T10:00:00.000Z'}}, [{item_id:'p1', saved:false, updated_at:'2026-11-12T09:00:00+00:00'}], now).ids.join(), 'p1');
+    eq('meta records a save and a removal with the time', JSON.stringify(metaWith(metaWith({}, 'a', true, t1), 'b', false, t2)), '{"a":{"on":true,"at":"' + t1 + '"},"b":{"on":false,"at":"' + t2 + '"}}');
+  });
+  block('v5.11 check-ins merge + kept copies', function(){
+    var t1 = '2026-11-10T10:00:00.000Z', t2 = '2026-11-12T10:00:00.000Z', now = '2026-11-14T10:00:00.000Z';
+    var a = mergeCheckins([{id:'p1', date:'2026-10-03', rating:0, updated_at:t1}], {}, [{item_id:'p1', visit_date:'2026-10-05', date_prec:'day', rating:1, deleted:false, updated_at:t2}], now);
+    eq('the newer edit (other device) wins: date and thumbs', a.list.map(function(x){ return x.date + '/' + x.rating; }).join() + '|' + a.push.length, '2026-10-05/1|0');
+    var b = mergeCheckins([], {p1:t2}, [{item_id:'p1', visit_date:'2026-10-05', date_prec:'day', rating:0, deleted:false, updated_at:t1}], now);
+    eq('removed here later: stays removed and the removal is sent', b.list.length + '|' + b.push.map(function(x){ return x.item_id + ':' + x.deleted; }).join() + '|' + !!b.gone.p1, '0|p1:true|true');
+    var c = mergeCheckins([{id:'p1', date:'2026-10-03', rating:0, updated_at:t2}], {}, [{item_id:'p1', visit_date:null, deleted:true, updated_at:t1}], now);
+    eq('edited here after a removal elsewhere: kept and sent', c.list.length + '|' + c.push.map(function(x){ return x.visit_date + ':' + x.deleted; }).join(), '1|2026-10-03:false');
+    var d = mergeCheckins([], {}, [{item_id:'p2', visit_date:'2026-10-01', date_prec:'month', rating:0, deleted:false, updated_at:t1}], now);
+    eq('a month-only visit comes back as month only', d.list.map(function(x){ return x.date + '/' + x.prec; }).join(), '2026-10-01/month');
+    var k = mergeKept([{key:'Qm7x', name:'Maya', day:316, sids:[3], kept_at:t1, updated_at:t1}], {Ab12:t2}, {lists:[{key:'Ab12', name:'Jo', day:300, sids:[4], kept_at:t1, updated_at:t1}, {key:'Qm7x', name:'Maya B', day:317, sids:[3, 5], updated_at:t2}], gone:{}});
+    eq('kept copies: a removed copy stays removed, the newer copy wins', k.lists.map(function(f){ return f.key + ':' + f.name + ':' + f.sids.join('.'); }).join() + '|' + k.changed, 'Qm7x:Maya B:3.5|true');
+  });
+  block('v5.11 friends see the month only', function(){
+    eq('month only from a date', monthOnly('2026-10-23'), '2026-10');
+    eq('"Been · Oct" this year', friendBeenLabel('2026-10', '2026-11-14'), 'Been · Oct');
+    eq('another year adds the year, still no day', friendBeenLabel('2025-07', '2026-11-14'), 'Been · Jul 2025');
+    eq('a full date given by mistake still shows the month only', friendBeenLabel('2026-10-23', '2026-11-14'), 'Been · Oct');
+    eq('her own: exact date; an imported month-only visit: the month', beenLabel({date:'2026-10-23'}, '2026-11-14') + ' | ' + beenLabel({date:'2026-10-01', prec:'month'}, '2026-11-14'), 'Been · Oct 23 | Been · Oct');
+    var L = liveFrom([{user_id:'u1', username:'maya', display_name:'Maya L', status:'accepted', share_saves:true}, {user_id:'u2', username:'jo', status:'pending', direction:'in'}], [{user_id:'u1', item_id:'x', sid:7}], [{user_id:'u1', item_id:'y', sid:9, month:'2026-10'}], {});
+    eq('live friends: only accepted, first name, sids and month-only visits', L.map(function(f){ return f.key + ':' + f.name + ':' + f.sids.join('.') + ':' + f.been.map(function(b){ return b.sid + '@' + b.month; }).join(); }).join(), '@maya:Maya:7:9@2026-10');
+    var it = fx({id:'t11-row', name:'Row place', hours:allDays(['10:00', '22:00'])}), rc = computeItem(it, at('2026-11-14', '12:00'), CTX), rh = rowHTML(rc, {fbeen:friendBeenLabel('2026-10', '2026-11-14')});
+    ok('a friend\'s visit row says "Been · Oct" and no day', rh.indexOf('Been · Oct') >= 0 && !/Oct \d/.test(rh), rh.slice(0, 200));
+  });
+  block('v5.11 the private been link', function(){
+    var link = beenEncode([{sid:12, date:'2026-11-06'}, {sid:40, date:'2025-10'}]);
+    eq('encodes to #been=1_<count>_<sid>-<YYMMDD|YYMM>', link, '#been=1_2_12-261106.40-2510');
+    var d = beenDecode(link, '2026-11-14');
+    eq('decodes back (day and month-only)', d.ok ? d.entries.map(function(e){ return e.sid + '@' + e.date + '/' + e.prec; }).join() : d.why, '12@2026-11-06/day,40@2025-10-01/month');
+    eq('rejects: cut count, bad month, Feb 30, future visit, sid 0, cut entry', ['#been=1_3_12-261106.40-2510', '#been=1_1_12-2613', '#been=1_1_12-260230', '#been=1_1_12-261201', '#been=1_1_0-2610', '#been=1_1_12-261'].map(function(x){ return beenDecode(x, '2026-11-14').why; }).join(), 'cut,cut,cut,cut,cut,cut');
+    eq('a newer format says reload', beenDecode('#been=2_1_12-2610', '2026-11-14').why, 'version');
+    eq('not a place link', hashItemId('#been=1_1_12-2610'), '');
+    var idx = {12:{id:'pa-a'}, 40:{id:'pa-b'}}, ap = beenApply([{id:'pa-a', date:'2026-11-07', rating:1, updated_at:''}], d.entries.concat([{sid:99, date:'2026-01-01', prec:'day'}]), idx, '2026-11-14T00:00:00.000Z');
+    eq('import keeps her own date, adds new ones, counts unknown', [ap.added.join(), ap.had.join(), ap.unknown, checkinOf('pa-a', ap.list).date, checkinOf('pa-b', ap.list).prec].join('|'), 'pa-b|pa-a|1|2026-11-07|month');
+    ok('no screen builds the link (the encoder is only called here)', String(beenConfirm).indexOf('beenEncode') < 0 && String(renderSaved).indexOf('beenEncode') < 0 && String(renderAbout).indexOf('beenEncode') < 0, 'found');
+  });
+  block('v5.11 signed-out mode and invites', function(){
+    var here = cloudHost();
+    info('This page ' + (here ? 'can' : 'can\'t') + ' use accounts (website over https only). State: ' + Acct.state + '.');
+    if (!here) eq('not the website: nothing loaded, state "off", no Supabase script', [Acct.state, !!Acct.client, !!document.querySelector('script[src*="supabase-js"]')].join(), 'off,false,false');
+    ok('supabase-js pinned to an exact version on jsDelivr', /^https:\/\/cdn\.jsdelivr\.net\/npm\/@supabase\/supabase-js@\d+\.\d+\.\d+\//.test(SB_JS), SB_JS);
+    var out = acctCardHTML('out'), off = acctCardHTML('off'), offA = acctCardHTML('off', {about:true});
+    ok('signed out (website): "Sign in with Google" and a Privacy link', out.indexOf('Sign in with Google') >= 0 && out.indexOf('data-acct="privacy"') >= 0, out.slice(0, 200));
+    ok('claude.ai / local file: no sign-in button; About says it works on the website', off === '' && offA.indexOf('website') >= 0 && offA.indexOf('signin') < 0, offA);
+    eq('pushing with nobody signed in does nothing', acctPushSoon(), false);
+    eq('offline line', offlineText('2026-11-13T18:00:00.000Z'), 'Offline · last synced Nov 13');
+    eq('invite codes: Crockford letters only, any case', [inviteCode('#f_7K3M9QZP'), inviteCode('#f_7k3m9qzp'), inviteCode('#f_7K3M9QZI'), inviteCode('#f_7K3M9QZ'), inviteCode('#w_1Qm7x')].join('|'), '7K3M9QZP|7K3M9QZP|||');
+    eq('an invite is not a place link', hashItemId('#f_7K3M9QZP'), '');
+    eq('usernames', [normUsername(' @Maya.B '), usernameOk('ab'), usernameOk('a-b'), usernameOk('maya_b.2'), suggestUsername('Jane.Doe+x@example.com', '')].join('|'), 'maya.b|false|false|true|jane.doex');
+  });
+  block('v5.11 place name instead of "your location ±20 ft"', function(){
+    var areaFn = function(lat){ return lat > 41.91 && lat < 41.94 ? {name:'LINCOLN PARK'} : null; }, spots = [{name:'Evanston', lat:42.045, lng:-87.688}, {name:'The Loop', lat:41.8819, lng:-87.6278}];
+    eq('inside a community area: its name', gpsPlaceName(41.92, -87.65, areaFn, spots), 'Lincoln Park');
+    eq('a suburb: the nearest town within 3 mi', gpsPlaceName(42.05, -87.69, areaFn, spots), 'Evanston');
+    eq('nowhere we know: empty (shown as "near you")', gpsPlaceName(42.5, -88.4, areaFn, spots), '');
+    eq('area names in capitals read normally', [titleArea('NEAR NORTH SIDE'), titleArea("O'HARE"), titleArea('Hyde Park')].join('|'), "Near North Side|O'Hare|Hyde Park");
+    eq('a picked spot keeps its own label', locName({src:'picked', label:'River North', lat:41.89, lng:-87.63}), 'River North');
+    eq('rough hint only over ~1,000 m, never "±"', [locRoughHint({src:'gps', acc:20}), locRoughHint({src:'gps', acc:2500}), locRoughHint({src:'picked', acc:5000})].join('|'), '|Rough location. Type your address.|');
+    var kU = UI.today; UI.today = true;
+    eq('Home: no "today ·" under "Three for today"', homeWhenBit('Three for today') + '|' + homeWhenBit('Three for right now'), '|today · ');
+    UI.today = kU;
+  });
+  block('v5.11 cluster tap lists the places', function(){
+    var T = at('2026-11-14', '12:00'), mk = function(id, h){ return computeItem(fx({id:id, name:id, hours:h ? allDays(h) : null}), T, CTX); };
+    var pool = {}; ['Zed', 'Amy', 'Bee', 'Cat', 'Dot', 'Eve', 'Fay', 'Gus', 'Hal', 'Ivy'].forEach(function(n, i){ pool[n] = mk(n, i % 3 === 0 ? ['18:00', '22:00'] : ['10:00', '22:00']); });
+    var ids = Object.keys(pool), r = clusterList(ids, false, function(id){ return pool[id]; });
+    eq('10 places: 8 rows, "Show 2 more"', r.rows.length + '|' + r.more + '|' + r.n, '8|2|10');
+    ok('open ones first, then by name', r.rows[0].st.open && r.rows.slice(0, 6).every(function(c){ return c.st.open; }) && r.rows[0].item.name === 'Amy', r.rows.map(function(c){ return c.item.name + (c.st.open ? '+' : '-'); }).join());
+    eq('Show more: all 10', clusterList(ids, true, function(id){ return pool[id]; }).rows.length, 10);
+    eq('ids no longer in the list are skipped', clusterList(['Amy', 'gone'], false, function(id){ return pool[id]; }).n, 1);
+    ok('a cluster button carries its index', clusterHTML({n:2, x:1, y:2, tk:0, ci:3}).indexOf('data-ci="3"') >= 0, clusterHTML({n:2, x:1, y:2, tk:0, ci:3}));
   });
   return R;
 }
@@ -8496,7 +9306,12 @@ function showSelfTest(){
 function hideSelfTest(){ $('selftest').hidden = true; if (/selftest/.test(location.hash)) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { try { location.hash = ''; } catch (e2) {} } } }
 function readHash(){
   var hsh = location.hash || '';
-  if (/^#w_/.test(hsh)) { if (mapEl) wlOpen(hsh, 'hash'); return; }   // v5.8: a friend's list link, before any place link or test hook (spec 1.2, E17)
+  if (/^#w_/.test(hsh)) { if (mapEl) wlOpen(hsh, 'hash'); return; }
+  if (/^#been=/.test(hsh)) { if (mapEl) beenOpen(hsh); return; }   // v5.11: her private one-time import link (confirm screen first)
+  var ivc = inviteCode(hsh); if (ivc) { if (mapEl) inviteOpen(ivc); return; }   // v5.11: a friend invite
+  if (/(?:^#|&)acctdemo=1/.test(hsh) && mapEl) acctDemo();   // v5.11 testing hook: the signed-in screens with made-up friends (in memory, nothing sent)
+  if (/(?:^#|&)panel=friends/.test(hsh) && mapEl) setTimeout(function(){ var go = function(){ if (DATA_LOADED && Acct.demo) openFriends(); else setTimeout(go, 200); }; go(); }, 0);
+  if (/(?:^#|&)panel=privacy/.test(hsh) && mapEl) openPrivacy();   // v5.8: a friend's list link, before any place link or test hook (spec 1.2, E17)
   // v5.8 testing hooks for friends' lists (in memory only): #savedsid=3.17.18 #fr=Maya:3.17.18,Jo:40 #wlkey=Qm7x #wl=<link body> #standalone=1 #inapp=1 #panel=saved #wldetail=<sid>
   var wt = {}, wq;
   if ((wq = /(?:^#|&)savedsid=([\d.]+)/.exec(hsh))) wt.saved = wq[1].split('.').map(Number);
@@ -8625,12 +9440,14 @@ function loadData(){
     if (!$('pFriend').hidden) renderFriend();
     if (UI.pendingItem) openPending();
     if (UI.wlTest) wlTestHooks();
+    acctAfterData();   // v5.11
   })['catch'](function(e){
     DATA_ERR = 'The file activities.json could not be read (' + (e && e.message ? e.message : 'unknown error') + ').';
     DATA_LOADED = false; renderList(null); refresh();
     if (!$('pFriend').hidden) renderFriend();   // I6: the incoming list stays in sessionStorage, so a reload opens it again
   });
 }
+function acctAfterData(){ wlRebuild(); if (UI.beenWait) beenConfirm(); if (UI.acctDemoWait) acctDemo(); if (UI.syncAfterData) { UI.syncAfterData = false; acctSync('data'); } else if (Acct.user) acctRedraw(); }
 function buildSidIndex(items){ SID_INDEX = {}; ID_SID = {}; items.forEach(function(it){ var s = +it.sid; if (isNum(s) && s >= 1 && Math.floor(s) === s && !SID_INDEX[s]) { SID_INDEX[s] = it; ID_SID[it.id] = s; } }); }
 function loadGeo(){
   Promise.all([Platform.fetchJSON(GEO_AREAS_URL), Platform.fetchJSON(GEO_LINES_URL)['catch'](function(){ return null; })]).then(function(r){
@@ -8676,6 +9493,7 @@ function init(){
   S.budgetOn = Platform.store.get('cff.budgetOn.v1', false) === true;   // v4: off unless she turned it on in More filters
   var wh = Platform.store.get('cff.who.v1', []); if (Array.isArray(wh)) wh.forEach(function(k){ if (k === 'date' || k === 'friends' || k === 'solo' || k === 'kids') S.f.who[k] = true; });   // who's coming is remembered
   CHECKINS = cleanCheckins(Platform.store.get(CHECKIN_KEY, []));
+  acctBoot();   // v5.11: accounts (website only; nothing loads until it's needed)
   wlLoadFriends();   // v5.8 kept friends' lists
   UI.view = 'home'; $('app').setAttribute('data-view', 'home');
   var loc = Platform.store.get('cff.loc.v1', null);
@@ -8770,6 +9588,12 @@ window.__cff = {
   glLayerTypes: glLayerTypes, glMap: function(){ return GLM.map; }, glVariant: function(){ return GLM.variant || ''; },
   setSkin: function(v, keep){ return setSkin(v, keep); }, setTheme: function(v, keep){ return setTheme(v, keep); }, setMapMode: function(v, keep){ return setMapMode(v, keep); },
   currentSkin: currentSkin, themeIsDark: themeIsDark, normSkin: normSkin, themePickerHTML: themePickerHTML, openThemePicker: function(){ openThemePicker(); },
+  // v5.11 accounts, sync, friends stage 2, been import, place names
+  mergeSaves: mergeSaves, mergeCheckins: mergeCheckins, mergeKept: mergeKept, liveFrom: liveFrom, metaWith: metaWith, monthOnly: monthOnly, monthText: monthText, friendBeenLabel: friendBeenLabel,
+  beenEncode: beenEncode, beenDecode: beenDecode, beenApply: beenApply, inviteCode: inviteCode, normUsername: normUsername, usernameOk: usernameOk, suggestUsername: suggestUsername,
+  offlineText: offlineText, acctCardHTML: acctCardHTML, cloudHost: cloudHost, SB_JS: SB_JS, acct: function(){ return {state:Acct.state, user:Acct.user ? Acct.user.id : null, username:acctName(), offline:Acct.offline, lastSync:Acct.lastSync, err:Acct.errMsg, friends:Acct.friends.length, live:LIVE.length, demo:Acct.demo}; },
+  acctDemo: function(){ acctDemo(); }, openFriends: function(){ openFriends(); }, openPrivacy: function(){ openPrivacy(); },
+  gpsPlaceName: gpsPlaceName, locName: locName, locRoughHint: locRoughHint, homeWhenBit: homeWhenBit, titleArea: titleArea,
   Platform: Platform
 };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
