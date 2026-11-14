@@ -17431,8 +17431,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-chopping-block-1.jpg",
-                           "credit":  "The Chopping Block website (thechoppingblock.com)",
-                           "page_url":  "https://www.thechoppingblock.com/"
+                           "credit":  "The Chopping Block website",
+                           "page_url":  "https://www.thechoppingblock.com/cooking-classes"
                        }
                    ]
     },
@@ -18337,8 +18337,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-flw-home-studio-1.jpg",
-                           "credit":  "Frank Lloyd Wright Home and Studio website (flwright.org)",
-                           "page_url":  "https://flwright.org/"
+                           "credit":  "Frank Lloyd Wright Trust website",
+                           "page_url":  "https://flwright.org/visit/homeandstudio"
                        }
                    ]
     },
@@ -19253,8 +19253,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-green-mill-1.jpg",
-                           "credit":  "Kenneth C. Zirkel / Wikimedia Commons, CC BY-SA 4.0",
-                           "page_url":  "https://commons.wikimedia.org/wiki/File:Green_Mill_Cocktail_Lounge_exterior.jpg"
+                           "credit":  "Green Mill website",
+                           "page_url":  "https://www.greenmilljazz.com/"
                        }
                    ]
     },
@@ -19391,7 +19391,7 @@
         "photos":  [
                        {
                            "file":  "photos/pc-andys-jazz-club-1.jpg",
-                           "credit":  "Andy\u0027s Jazz Club and Restaurant website (andysjazzclub.com)",
+                           "credit":  "Andy\u0027s Jazz Club website",
                            "page_url":  "https://andysjazzclub.com/"
                        }
                    ]
@@ -20587,7 +20587,7 @@
         "photos":  [
                        {
                            "file":  "photos/pd-the-violet-hour-1.jpg",
-                           "credit":  "The Violet Hour website (facade)",
+                           "credit":  "The Violet Hour website",
                            "page_url":  "https://www.theviolethour.com/"
                        }
                    ]
@@ -21237,7 +21237,7 @@
         "photos":  [
                        {
                            "file":  "photos/pd-sandbox-vr-lincoln-common-1.jpg",
-                           "credit":  "Sandbox VR website (brand photo, not Chicago-specific)",
+                           "credit":  "Sandbox VR website",
                            "page_url":  "https://sandboxvr.com/chicago/lincoln-common/"
                        }
                    ]
@@ -21652,7 +21652,7 @@
                        {
                            "file":  "photos/pd-kaiser-tiger-curling-1.jpg",
                            "credit":  "Kaiser Tiger website",
-                           "page_url":  "https://kaisertiger.com/"
+                           "page_url":  "https://kaisertiger.com/curling"
                        }
                    ]
     },
@@ -22889,7 +22889,7 @@
                        {
                            "file":  "photos/pd-whirlyball-chicago-1.jpg",
                            "credit":  "WhirlyBall website",
-                           "page_url":  "https://whirlyball.com/chicago"
+                           "page_url":  "https://whirlyball.com/"
                        }
                    ]
     },
@@ -24634,7 +24634,7 @@
         "photos":  [
                        {
                            "file":  "photos/pd-punch-house-thalia-hall-1.jpg",
-                           "credit":  "Punch House website",
+                           "credit":  "Punch House website (photo Kristen Mendiola Media)",
                            "page_url":  "https://www.punchhousechicago.com/"
                        }
                    ]
@@ -24963,7 +24963,7 @@
                        {
                            "file":  "photos/pd-old-town-school-workshops-1.jpg",
                            "credit":  "Old Town School of Folk Music website",
-                           "page_url":  "https://www.oldtownschool.org/classes/workshops/"
+                           "page_url":  "https://www.oldtownschool.org/"
                        }
                    ]
     },
@@ -29204,8 +29204,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-chicago-riverwalk-1.jpg",
-                           "credit":  "Art on theMART website (river and Riverwalk at night)",
-                           "page_url":  "https://artonthemart.com/"
+                           "credit":  "City of Chicago (photo Kate Joyce Studios)",
+                           "page_url":  "https://www.chicago.gov/city/en/sites/chicagoriverwalk/home.html"
                        }
                    ]
     },
@@ -29642,7 +29642,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-driehaus-museum-1.jpg",
-                           "credit":  "Driehaus Museum website",
+                           "credit":  "Richard H. Driehaus Museum website",
                            "page_url":  "https://driehausmuseum.org/visit/plan-your-visit"
                        }
                    ]
@@ -31375,7 +31375,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-ukrainian-national-museum-1.jpg",
-                           "credit":  "Ukrainian National Museum website (building entrance)",
+                           "credit":  "Ukrainian National Museum website",
                            "page_url":  "https://www.ukrainiannationalmuseum.org/"
                        }
                    ]
@@ -32640,8 +32640,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-pullman-visitor-center-1.jpg",
-                           "credit":  "National Park Service (nps.gov)",
-                           "page_url":  "https://www.nps.gov/pull/planyourvisit/hours.htm"
+                           "credit":  "National Park Service",
+                           "page_url":  "https://www.nps.gov/pull/index.htm"
                        }
                    ]
     },
