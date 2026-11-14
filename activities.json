@@ -36971,5 +36971,1244 @@
                            "page_url":  "https://www.mindtrapescaperooms.com/rooms/mafia"
                        }
                    ]
+    },
+    {
+        "id":  "ev-santa-baby-bar-2026",
+        "name":  "Santa Baby Christmas Bar (Wrigleyville)",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "eat-drink",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "holiday",
+                     "pop-up",
+                     "limited-time",
+                     "rainy-day"
+                 ],
+        "hook":  "A multi-level bar turned into an over-the-top Christmas party",
+        "description":  "A Wrigleyville bar goes full Christmas for six weeks, with several bars over multiple levels, 20+ photo spots, holiday cocktails, festive shakes and pizza. It is back for its ninth season and is an easy, very festive night out with friends.",
+        "highlights":  [
+                           "Nov 20, 2026 - Jan 3, 2027",
+                           "Multiple bars and levels, 20+ photo ops",
+                           "Tables for up to 6 for 90 minutes; cabanas for 7-15",
+                           "Family friendly by day, 21+ after 8 PM",
+                           "Cashless"
+                       ],
+        "address":  "3505 N Clark St, Chicago, IL 60657",
+        "neighborhood":  "Wrigleyville",
+        "lat":  41.9458717,
+        "lng":  -87.6553165,
+        "indoor_outdoor":  "both",
+        "price_level":  "$$",
+        "price_note":  "No cover listed; you pay for food and drinks. Standing-room tickets with 1-2 drinks are sold separately.",
+        "duration_minutes":  90,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "11:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "11:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "11:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "11:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "11:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "09:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "09:00",
+                                      "22:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Opens 9 AM Dec 21-23. Christmas Eve and Christmas Day noon-8 PM. Opens 11 AM on New Year\u0027s Eve.",
+        "season":  {
+                       "open_from":  "2026-11-20",
+                       "open_to":  "2027-01-03",
+                       "note":  "Holiday pop-up, closed Thanksgiving."
+                   },
+        "closed_dates":  [
+                             "2026-11-26"
+                         ],
+        "date_hours":  {
+                           "2026-12-21":  [
+                                              [
+                                                  "09:00",
+                                                  "23:00"
+                                              ]
+                                          ],
+                           "2026-12-22":  [
+                                              [
+                                                  "09:00",
+                                                  "23:00"
+                                              ]
+                                          ],
+                           "2026-12-23":  [
+                                              [
+                                                  "09:00",
+                                                  "23:00"
+                                              ]
+                                          ],
+                           "2026-12-24":  [
+                                              [
+                                                  "12:00",
+                                                  "20:00"
+                                              ]
+                                          ],
+                           "2026-12-25":  [
+                                              [
+                                                  "12:00",
+                                                  "20:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  "unknown"
+                       },
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-20",
+                                "end":  "2027-01-03"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "recommended",
+        "age_note":  "All ages until 8 PM, then 21+ (Dec 12 is 21+ all day for a bar crawl; tables open after 7:30 PM)",
+        "phone":  "833-967-2682",
+        "website":  "https://www.santababybar.com/",
+        "source_urls":  [
+                            "https://www.santababybar.com/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.santababybar.com/"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-santa-baby-bar-2026-1.jpg",
+                           "credit":  "Santa Baby website",
+                           "page_url":  "https://www.santababybar.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-frostys-christmas-bar-2026",
+        "name":  "Frosty\u0027s Christmas Bar (River North)",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "eat-drink",
+        "tags":  [
+                     "friends",
+                     "holiday",
+                     "pop-up",
+                     "limited-time",
+                     "nightlife",
+                     "dancing"
+                 ],
+        "hook":  "Chicago\u0027s original Christmas pop-up bar, now in River North",
+        "description":  "Chicago\u0027s original Christmas pop-up bar returns for its 10th season at a new, bigger home in River North, with three bars over two floors, over-the-top decor, photo ops, a dance floor and Christmas cocktails. It is a loud, festive night out with friends that only lasts about six weeks.",
+        "highlights":  [
+                           "Opens Nov 21, 2026 for about 6 weeks",
+                           "3 bars on 2 floors",
+                           "Dance floor and holiday cocktails",
+                           "New address: 15 W Illinois St"
+                       ],
+        "address":  "15 W Illinois St, Chicago, IL 60654",
+        "neighborhood":  "River North",
+        "lat":  41.8907455,
+        "lng":  -87.6286261,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "A ticket is needed to get in; walk-ups only if space allows. Prices not posted yet.",
+        "duration_minutes":  120,
+        "min_minutes":  60,
+        "hours":  null,
+        "hours_note":  "Open until 2 AM on Fridays and Saturdays. Other hours not posted yet.",
+        "season":  {
+                       "open_from":  "2026-11-21",
+                       "open_to":  "2027-01-02",
+                       "note":  "Open about six weeks from Nov 21."
+                   },
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-21",
+                                "end":  "2027-01-02"
+                            }
+                        ],
+        "end_date_confirmed":  false,
+        "booking":  "required",
+        "age_note":  "All ages before 8 PM, 21+ after 8 PM",
+        "phone":  "312-850-8188",
+        "website":  "https://www.welovefrostys.com/",
+        "source_urls":  [
+                            "https://www.welovefrostys.com/",
+                            "https://www.welovefrostys.com/faqs",
+                            "https://tickets.frostyschristmasbar.com/f/frostys-chicago/frostys-chicago"
+                        ],
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.welovefrostys.com/faqs"
+                     },
+        "photos":  [
+
+                   ]
+    },
+    {
+        "id":  "ev-harrys-lakefront-lodge-navy-pier",
+        "name":  "Harry Caray\u0027s Lakefront Lodge (curling and heated igloos at Navy Pier)",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "winter",
+                     "curling",
+                     "igloo",
+                     "lake-views",
+                     "holiday"
+                 ],
+        "hook":  "Curl on a private rink, then warm up in a heated igloo by the lake",
+        "description":  "Each winter the atrium of Harry Caray\u0027s Tavern at Navy Pier turns into a cozy lodge with a fireplace and leather seating, and the patio gets a private curling rink, heated igloos and firepits looking out over Lake Michigan. Curl with your group, then warm up with s\u0027mores or hot chocolate for a cozy winter afternoon or evening.",
+        "highlights":  [
+                           "Private curling rink + heated igloo for up to 8",
+                           "Lodge room for groups under 20",
+                           "East Side Outpost patio for up to 10",
+                           "Book up to 10 days ahead",
+                           "Lake Michigan views"
+                       ],
+        "address":  "Harry Caray\u0027s Tavern, Navy Pier, 700 E Grand Ave, Chicago, IL 60611",
+        "neighborhood":  "Streeterville",
+        "lat":  41.8917999,
+        "lng":  -87.6041447,
+        "indoor_outdoor":  "both",
+        "price_level":  "$$$",
+        "price_note":  "Curling rink + heated igloo $150 per 90 minutes for up to 8, with a $50 food and drink credit. East Side Outpost $100 per 90 minutes for up to 10. Lodge $275 for 2.5 hours with a $50 food and drink credit.",
+        "duration_minutes":  90,
+        "min_minutes":  90,
+        "hours":  null,
+        "hours_note":  "Book a time slot online, up to 10 days ahead. Harry Caray\u0027s Tavern is open 11 AM-8 PM Sunday-Thursday and 11 AM-10 PM Friday-Saturday.",
+        "season":  {
+                       "open_from":  "2026-11-16",
+                       "open_to":  "2026-12-31",
+                       "note":  "Winter season; Navy Pier lists it through Dec 31."
+                   },
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-12-24",
+                             "2026-12-25"
+                         ],
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-16",
+                                "end":  "2026-12-31"
+                            }
+                        ],
+        "end_date_confirmed":  false,
+        "booking":  "required",
+        "age_note":  "",
+        "phone":  "312-828-0966",
+        "website":  "https://www.harrycarays.com/lakefront-lodge.html",
+        "source_urls":  [
+                            "https://navypier.org/pier-events/harrys-lakefront-lodge/",
+                            "https://www.harrycarays.com/lakefront-lodge.html",
+                            "https://www.harrycarays.com/harry-carays-tavern-navy-pier.html"
+                        ],
+        "verified":  {
+                         "status":  "conflicting",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.harrycarays.com/lakefront-lodge.html"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-harrys-lakefront-lodge-navy-pier-1.jpg",
+                           "credit":  "Navy Pier website",
+                           "page_url":  "https://navypier.org/pier-events/harrys-lakefront-lodge/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-music-box-christmas-sing-along-2026",
+        "name":  "Music Box Christmas Sing-A-Long \u0026 Double Feature",
+        "kind":  "event",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "holiday",
+                     "movies",
+                     "classic",
+                     "rainy-day"
+                 ],
+        "hook":  "Sing carols with Santa and the organist, then watch a holiday classic",
+        "description":  "A Chicago tradition since 1983 at the historic Music Box Theatre: Santa and the theater organist lead the audience in Christmas carols with lyrics on the big screen, then It\u0027s a Wonderful Life or White Christmas plays. Each screening starts with a 25-minute preshow with a cartoon and caroling; see both films for the double feature.",
+        "highlights":  [
+                           "Dec 5-24, 2026",
+                           "Carols with Santa and live organ",
+                           "25-minute preshow before each film",
+                           "It\u0027s a Wonderful Life (130 min) or White Christmas (120 min)",
+                           "Double feature saves up to 30%"
+                       ],
+        "address":  "Music Box Theatre, 3733 N Southport Ave, Chicago, IL 60613",
+        "neighborhood":  "Lakeview (Southport Corridor)",
+        "lat":  41.9497027,
+        "lng":  -87.6636224,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_note":  "$20 single feature, $28 double feature; members $17 / $24; kids under 13 $13 / $18",
+        "duration_minutes":  155,
+        "min_minutes":  145,
+        "hours":  null,
+        "hours_note":  "Showtimes are listed in the dates below.",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-12-05T11:30",
+                                "end":  "2026-12-05T13:55"
+                            },
+                            {
+                                "start":  "2026-12-05T14:45",
+                                "end":  "2026-12-05T17:20"
+                            },
+                            {
+                                "start":  "2026-12-05T18:15",
+                                "end":  "2026-12-05T20:40"
+                            },
+                            {
+                                "start":  "2026-12-06T11:30",
+                                "end":  "2026-12-06T14:05"
+                            },
+                            {
+                                "start":  "2026-12-06T15:00",
+                                "end":  "2026-12-06T17:25"
+                            },
+                            {
+                                "start":  "2026-12-06T18:15",
+                                "end":  "2026-12-06T20:50"
+                            },
+                            {
+                                "start":  "2026-12-11T18:15",
+                                "end":  "2026-12-11T20:40"
+                            },
+                            {
+                                "start":  "2026-12-11T21:30",
+                                "end":  "2026-12-12T00:05"
+                            },
+                            {
+                                "start":  "2026-12-12T11:30",
+                                "end":  "2026-12-12T13:55"
+                            },
+                            {
+                                "start":  "2026-12-12T14:45",
+                                "end":  "2026-12-12T17:20"
+                            },
+                            {
+                                "start":  "2026-12-12T18:15",
+                                "end":  "2026-12-12T20:40"
+                            },
+                            {
+                                "start":  "2026-12-12T21:30",
+                                "end":  "2026-12-13T00:05"
+                            },
+                            {
+                                "start":  "2026-12-13T11:30",
+                                "end":  "2026-12-13T14:05"
+                            },
+                            {
+                                "start":  "2026-12-13T15:00",
+                                "end":  "2026-12-13T17:25"
+                            },
+                            {
+                                "start":  "2026-12-13T18:15",
+                                "end":  "2026-12-13T20:50"
+                            },
+                            {
+                                "start":  "2026-12-17T16:30",
+                                "end":  "2026-12-17T19:05"
+                            },
+                            {
+                                "start":  "2026-12-17T20:00",
+                                "end":  "2026-12-17T22:25"
+                            },
+                            {
+                                "start":  "2026-12-18T18:00",
+                                "end":  "2026-12-18T20:35"
+                            },
+                            {
+                                "start":  "2026-12-18T21:30",
+                                "end":  "2026-12-18T23:55"
+                            },
+                            {
+                                "start":  "2026-12-19T11:30",
+                                "end":  "2026-12-19T14:05"
+                            },
+                            {
+                                "start":  "2026-12-19T15:00",
+                                "end":  "2026-12-19T17:25"
+                            },
+                            {
+                                "start":  "2026-12-19T18:15",
+                                "end":  "2026-12-19T20:50"
+                            },
+                            {
+                                "start":  "2026-12-19T21:45",
+                                "end":  "2026-12-20T00:10"
+                            },
+                            {
+                                "start":  "2026-12-20T11:30",
+                                "end":  "2026-12-20T13:55"
+                            },
+                            {
+                                "start":  "2026-12-20T14:45",
+                                "end":  "2026-12-20T17:20"
+                            },
+                            {
+                                "start":  "2026-12-20T18:15",
+                                "end":  "2026-12-20T20:40"
+                            },
+                            {
+                                "start":  "2026-12-22T13:30",
+                                "end":  "2026-12-22T16:05"
+                            },
+                            {
+                                "start":  "2026-12-22T17:00",
+                                "end":  "2026-12-22T19:25"
+                            },
+                            {
+                                "start":  "2026-12-22T20:15",
+                                "end":  "2026-12-22T22:50"
+                            },
+                            {
+                                "start":  "2026-12-23T13:30",
+                                "end":  "2026-12-23T15:55"
+                            },
+                            {
+                                "start":  "2026-12-23T16:45",
+                                "end":  "2026-12-23T19:20"
+                            },
+                            {
+                                "start":  "2026-12-23T20:15",
+                                "end":  "2026-12-23T22:40"
+                            },
+                            {
+                                "start":  "2026-12-24T11:30",
+                                "end":  "2026-12-24T13:55"
+                            },
+                            {
+                                "start":  "2026-12-24T14:30",
+                                "end":  "2026-12-24T17:05"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "age_note":  "All ages (kids\u0027 prices for under 13)",
+        "phone":  "773-871-6607",
+        "website":  "https://musicboxtheatre.com/series-and-festivals/the-43rd-annual-music-box-christmas-sing-a-long-double-feature",
+        "source_urls":  [
+                            "https://musicboxtheatre.com/series-and-festivals/the-43rd-annual-music-box-christmas-sing-a-long-double-feature"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://musicboxtheatre.com/series-and-festivals/the-43rd-annual-music-box-christmas-sing-a-long-double-feature"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-music-box-christmas-sing-along-2026-1.jpg",
+                           "credit":  "Music Box Theatre (courtesy Nicer Collaborative)",
+                           "page_url":  "https://musicboxtheatre.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-metra-holiday-trains-2026",
+        "name":  "Metra Holiday Trains",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "look-learn",
+        "tags":  [
+                     "holiday",
+                     "trains",
+                     "friends",
+                     "date",
+                     "limited-time",
+                     "sells-out"
+                 ],
+        "hook":  "Ride a decorated holiday train with characters aboard",
+        "description":  "Metra runs specially decorated trains with holiday characters on six lines on four December days. On the Metra Electric runs, the train drops riders at Millennium Station for a winter wonderland with Santa, games and treats.",
+        "highlights":  [
+                           "Dec 5: BNSF, Milwaukee District North, Rock Island",
+                           "Dec 12: Metra Electric, UP Northwest",
+                           "Dec 13: Metra Electric",
+                           "Dec 19: Metra Electric, UP North",
+                           "Metra Electric trips end at a winter wonderland with Santa",
+                           "Tickets on sale Nov 16 at noon; limit 5"
+                       ],
+        "address":  "Millennium Station, 151 E Randolph St, Chicago, IL 60601 (Metra Electric runs; other lines run from their own stations)",
+        "neighborhood":  "Loop",
+        "lat":  41.884409,
+        "lng":  -87.6236902,
+        "indoor_outdoor":  "both",
+        "price_level":  "$",
+        "price_note":  "$10 per ticket, bought in advance; all sales final",
+        "duration_minutes":  240,
+        "hours":  null,
+        "hours_note":  "On Dec 12 the Metra Electric holiday train leaves University Park at 11 AM, reaches Millennium Station at 11:58 AM and heads back at 2:15 PM. Other lines and days run on their own timetables.",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-12-05",
+                                "end":  "2026-12-05"
+                            },
+                            {
+                                "start":  "2026-12-12",
+                                "end":  "2026-12-12"
+                            },
+                            {
+                                "start":  "2026-12-13",
+                                "end":  "2026-12-13"
+                            },
+                            {
+                                "start":  "2026-12-19",
+                                "end":  "2026-12-19"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "age_note":  "",
+        "phone":  "312-696-3872",
+        "website":  "https://metra.com/HolidayTrains",
+        "source_urls":  [
+                            "https://metra.com/HolidayTrains",
+                            "https://metra.com/document/20261212holidaymedpdf"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://metra.com/HolidayTrains"
+                     },
+        "min_minutes":  120,
+        "photos":  [
+
+                   ]
+    },
+    {
+        "id":  "ev-haus-of-krampus-christkindlmarket-2026",
+        "name":  "Haus of Krampus at Christkindlmarket Chicago",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "play",
+        "tags":  [
+                     "holiday",
+                     "friends",
+                     "date",
+                     "folklore",
+                     "photo-op",
+                     "limited-time"
+                 ],
+        "hook":  "Meet Krampus (and try not to end up in his sack)",
+        "description":  "For one day the Timber Haus at the Daley Plaza market becomes a moody alpine hideout full of Krampus characters, music and treats. Pose with Krampus at three photo stations and take home a printed keepsake photo, a drink and a warm Bavarian pretzel.",
+        "highlights":  [
+                           "Sunday, Dec 13, 2026",
+                           "75-minute time slots, 11 AM - 8 PM",
+                           "Includes a drink, a Bavarian pretzel and a printed photo",
+                           "Several Krampuses roam the room"
+                       ],
+        "address":  "Christkindlmarket, Daley Plaza, 50 W Washington St, Chicago, IL 60602",
+        "neighborhood":  "Loop",
+        "lat":  41.88393,
+        "lng":  -87.6302,
+        "indoor_outdoor":  "both",
+        "price_level":  "$$",
+        "price_note":  "Ticket includes a drink, a Bavarian pretzel and a printed photo; price shown when booking",
+        "duration_minutes":  75,
+        "min_minutes":  75,
+        "hours":  null,
+        "hours_note":  "Time slots from 11 AM to 8 PM; book a slot ahead.",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-12-13T11:00",
+                                "end":  "2026-12-13T20:00"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "age_note":  "",
+        "phone":  "(312) 494-2175",
+        "website":  "https://www.christkindlmarket.com/haus-of-krampus/",
+        "source_urls":  [
+                            "https://www.christkindlmarket.com/haus-of-krampus/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.christkindlmarket.com/haus-of-krampus/"
+                     },
+        "photos":  [
+
+                   ]
+    },
+    {
+        "id":  "ev-krampus-fest-aurora-2026",
+        "name":  "Krampus Fest at Christkindlmarket Aurora",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "play",
+        "tags":  [
+                     "holiday",
+                     "friends",
+                     "date",
+                     "folklore",
+                     "photo-op",
+                     "limited-time",
+                     "suburbs"
+                 ],
+        "hook":  "Krampus takes over the Aurora market for one day",
+        "description":  "The Timber Tent at the Aurora Christkindlmarket turns into an alpine Krampus party with music, treats and several roaming Krampuses. Meet them at three photo stations and leave with a printed photo, a drink and a warm Bavarian pretzel.",
+        "highlights":  [
+                           "Saturday, Dec 19, 2026",
+                           "75-minute time slots, 11 AM - 8 PM",
+                           "Includes a drink, a Bavarian pretzel and a printed photo",
+                           "At RiverEdge Park, Aurora"
+                       ],
+        "address":  "Christkindlmarket Aurora, RiverEdge Park, 360 N Broadway, Aurora, IL 60505",
+        "neighborhood":  "Aurora (suburb)",
+        "lat":  41.7657858,
+        "lng":  -88.3092729,
+        "indoor_outdoor":  "both",
+        "price_level":  "$$",
+        "price_note":  "Ticket includes a drink, a Bavarian pretzel and a printed photo; price shown when booking",
+        "duration_minutes":  75,
+        "min_minutes":  75,
+        "hours":  null,
+        "hours_note":  "Time slots from 11 AM to 8 PM; book a slot ahead.",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-12-19T11:00",
+                                "end":  "2026-12-19T20:00"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "age_note":  "",
+        "phone":  "(312) 494-2175",
+        "website":  "https://www.christkindlmarket.com/krampus-fest/",
+        "source_urls":  [
+                            "https://www.christkindlmarket.com/krampus-fest/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.christkindlmarket.com/krampus-fest/"
+                     },
+        "photos":  [
+
+                   ]
+    },
+    {
+        "id":  "ev-weishfest-2026",
+        "name":  "WeishFest at Navy Pier",
+        "kind":  "event",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "friends",
+                     "music",
+                     "open-bar",
+                     "charity",
+                     "limited-time"
+                 ],
+        "hook":  "An indoor music fest with an open bar, for a good cause",
+        "description":  "A multi-genre indoor concert in Navy Pier\u0027s Aon Grand Ballroom with Russell Dickerson, Quinn XCII and Five For Fighting on the main stage plus a second stage on the Lakeview Terrace. Every ticket includes an open bar, and net proceeds support families facing adolescent and young adult cancer.",
+        "highlights":  [
+                           "Saturday, Nov 14, 2026, doors 4 PM",
+                           "Russell Dickerson, Quinn XCII, Five For Fighting",
+                           "Lakeview Terrace stage: Funk N Rocks, Chuck Adams",
+                           "Open bar with every ticket",
+                           "Coat check; parking at the east end"
+                       ],
+        "address":  "Aon Grand Ballroom, Navy Pier, 600 E Grand Ave, Chicago, IL 60611",
+        "neighborhood":  "Streeterville",
+        "lat":  41.8917999,
+        "lng":  -87.6041447,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$$",
+        "price_note":  "Gold from $175 (open bar); Platinum from $265 (premium bar, meal and appetizers); Platinum Plus from $350. All sales final.",
+        "duration_minutes":  390,
+        "min_minutes":  120,
+        "hours":  null,
+        "hours_note":  "Doors 4 PM (3:30 PM for VIP). Five For Fighting 5:30 PM, Quinn XCII 7:15 PM, Russell Dickerson 9 PM. Ends about 10:30 PM.",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-14T16:00",
+                                "end":  "2026-11-14T22:30"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "age_note":  "All ages; under 21 get a stamp and no alcohol",
+        "phone":  "",
+        "website":  "https://www.weishfest.com/",
+        "source_urls":  [
+                            "https://www.weishfest.com/",
+                            "https://www.weishfest.com/info/faq",
+                            "https://www.weishfest.com/lineup"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.weishfest.com/lineup"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-weishfest-2026-1.jpg",
+                           "credit":  "WeishFest website",
+                           "page_url":  "https://www.weishfest.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-jury-experience-deadly-boat-ride",
+        "name":  "The Jury Experience: The Deadly Boat Ride (MCA)",
+        "kind":  "event",
+        "category":  "immersive-popup",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "immersive",
+                     "theater",
+                     "mystery",
+                     "rainy-day"
+                 ],
+        "hook":  "You\u0027re the jury: hear the case and vote on the verdict",
+        "description":  "An immersive courtroom show where the audience is the jury: you hear testimony about a late-night speedboat crash involving a politician\u0027s son, spot the contradictions and vote at key moments. The final verdict, guilty or not guilty, is decided by the room.",
+        "highlights":  [
+                           "Nov 15, 2026 - Feb 20, 2027",
+                           "About 60 minutes",
+                           "Audience votes steer the trial",
+                           "Arrive 30 minutes early; no late entry",
+                           "Edlis Neeson Theater at the MCA"
+                       ],
+        "address":  "Edlis Neeson Theater, Museum of Contemporary Art Chicago, 220 E Chicago Ave, Chicago, IL 60611",
+        "neighborhood":  "Streeterville",
+        "lat":  41.8972,
+        "lng":  -87.6212,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "Seats from $48.50 to $67.50 plus a booking fee, often discounted. No refunds; date changes up to 48 hours ahead.",
+        "duration_minutes":  60,
+        "min_minutes":  60,
+        "hours":  null,
+        "hours_note":  "Shows at 4:30 PM and 7 PM on show dates; pick a time when booking. Doors close when the show starts.",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-15",
+                                "end":  "2027-02-20"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "age_note":  "12+; under 16 with an adult",
+        "phone":  "",
+        "website":  "https://feverup.com/m/418301",
+        "source_urls":  [
+                            "https://feverup.com/m/418301",
+                            "https://feverup.com/en/chicago/the-jury-experience"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://feverup.com/m/418301"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-jury-experience-deadly-boat-ride-1.jpg",
+                           "credit":  "The Jury Experience (Fever)",
+                           "page_url":  "https://feverup.com/m/418301"
+                       }
+                   ]
+    },
+    {
+        "id":  "pd-harry-potter-shop-chicago",
+        "name":  "Harry Potter Shop Chicago and Butterbeer Bar",
+        "kind":  "place",
+        "category":  "unique-niche",
+        "genre":  "eat-drink",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "free",
+                     "rainy-day",
+                     "themed",
+                     "holiday"
+                 ],
+        "hook":  "A wizarding-world flagship with the biggest Butterbeer bar in the U.S.",
+        "description":  "The Magnificent Mile flagship of the Harry Potter Shop, with themed rooms, Chicago-only souvenirs and, at its center, a speakeasy-style Butterbeer Bar billed as the largest in the U.S. Fun for a quick themed stop with a Butterbeer.",
+        "highlights":  [
+                           "Largest Butterbeer Bar in the U.S.",
+                           "Chicago-exclusive merch and Butterscotch Popcorn",
+                           "Free to walk in",
+                           "Under the Omni Hotel on Michigan Ave"
+                       ],
+        "address":  "676 N Michigan Ave, Chicago, IL 60611",
+        "neighborhood":  "Magnificent Mile",
+        "lat":  41.8947233,
+        "lng":  -87.6249305,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_note":  "Free to enter; you pay for Butterbeer, snacks and merch. A virtual queue may be used when it\u0027s busy.",
+        "duration_minutes":  45,
+        "min_minutes":  20,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "10:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "21:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "19:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "",
+        "season":  null,
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "",
+        "website":  "https://harrypottershop.com/pages/chicago",
+        "source_urls":  [
+                            "https://harrypottershop.com/pages/chicago"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://harrypottershop.com/pages/chicago"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/pd-harry-potter-shop-chicago-1.jpg",
+                           "credit":  "Harry Potter Shop website",
+                           "page_url":  "https://harrypottershop.com/pages/chicago"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-logan-square-winter-farmers-market-2026",
+        "name":  "Logan Square Farmers Market: Winter Indoor Market",
+        "kind":  "event",
+        "category":  "food-drink-experience",
+        "genre":  "eat-drink",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "market",
+                     "local",
+                     "weekend-morning",
+                     "rainy-day"
+                 ],
+        "hook":  "The big Logan Square market moves indoors for winter Saturdays",
+        "description":  "Logan Square\u0027s popular farmers market spends the winter indoors at the Avondale Collective, with local farms and food makers. A cozy weekend stroll for coffee, snacks and local finds.",
+        "highlights":  [
+                           "Saturdays Nov 28, 2026 - Mar 27, 2027",
+                           "10 AM - 2 PM",
+                           "Open on holidays",
+                           "Indoors at Avondale Collective"
+                       ],
+        "address":  "Avondale Collective, 2800 N Milwaukee Ave, Chicago, IL 60618",
+        "neighborhood":  "Avondale",
+        "lat":  41.9321144,
+        "lng":  -87.7127287,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "free",
+        "price_note":  "Free to browse",
+        "duration_minutes":  60,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+
+                              ],
+                      "thu":  [
+
+                              ],
+                      "fri":  [
+
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "14:00"
+                                  ]
+                              ],
+                      "sun":  [
+
+                              ]
+                  },
+        "hours_note":  "",
+        "season":  {
+                       "open_from":  "2026-11-28",
+                       "open_to":  "2027-03-27",
+                       "note":  "Winter indoor season, Saturdays only."
+                   },
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-28",
+                                "end":  "2027-03-27"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "",
+        "website":  "https://www.logansquarefarmersmarket.org/",
+        "source_urls":  [
+                            "https://www.logansquarefarmersmarket.org/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.logansquarefarmersmarket.org/"
+                     },
+        "photos":  [
+
+                   ]
+    },
+    {
+        "id":  "ev-adirondack-chair-circle-steppenwolf",
+        "name":  "Adirondack Chair Circle (Steppenwolf Theatre)",
+        "kind":  "event",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "theater",
+                     "comedy",
+                     "rainy-day",
+                     "limited-time"
+                 ],
+        "hook":  "A sharp comedy about suburban moms trying to ban books",
+        "description":  "A new comedy by Stephanie Alison Walker, directed by Pam MacKinnon: suburban moms with pickleball paddles and hard kombucha set out to ban books from their kids\u0027 school library, and their tight circle starts to crack. Staged in the round in Steppenwolf\u0027s Ensemble Theater and extended by popular demand.",
+        "highlights":  [
+                           "Through Dec 13, 2026 (extended)",
+                           "About 2 hr 25 min with one intermission",
+                           "In-the-round staging",
+                           "Haze, simulated gunfire, strong language"
+                       ],
+        "address":  "Steppenwolf Theatre, 1650 N Halsted St, Chicago, IL 60614",
+        "neighborhood":  "Lincoln Park",
+        "lat":  41.9126098,
+        "lng":  -87.6486802,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "",
+        "duration_minutes":  145,
+        "min_minutes":  145,
+        "hours":  null,
+        "hours_note":  "Evenings at 7:30 PM, weekend matinees at 3 PM, some Wednesday matinees at 2 PM.",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-14T15:00",
+                                "end":  "2026-11-14T17:25"
+                            },
+                            {
+                                "start":  "2026-11-14T19:30",
+                                "end":  "2026-11-14T21:55"
+                            },
+                            {
+                                "start":  "2026-11-15T15:00",
+                                "end":  "2026-11-15T17:25"
+                            },
+                            {
+                                "start":  "2026-11-17T19:30",
+                                "end":  "2026-11-17T21:55"
+                            },
+                            {
+                                "start":  "2026-11-19T19:30",
+                                "end":  "2026-11-19T21:55"
+                            },
+                            {
+                                "start":  "2026-11-20T19:30",
+                                "end":  "2026-11-20T21:55"
+                            },
+                            {
+                                "start":  "2026-11-21T15:00",
+                                "end":  "2026-11-21T17:25"
+                            },
+                            {
+                                "start":  "2026-11-21T19:30",
+                                "end":  "2026-11-21T21:55"
+                            },
+                            {
+                                "start":  "2026-11-22T15:00",
+                                "end":  "2026-11-22T17:25"
+                            },
+                            {
+                                "start":  "2026-11-24T19:30",
+                                "end":  "2026-11-24T21:55"
+                            },
+                            {
+                                "start":  "2026-11-25T14:00",
+                                "end":  "2026-11-25T16:25"
+                            },
+                            {
+                                "start":  "2026-11-27T19:30",
+                                "end":  "2026-11-27T21:55"
+                            },
+                            {
+                                "start":  "2026-11-28T15:00",
+                                "end":  "2026-11-28T17:25"
+                            },
+                            {
+                                "start":  "2026-11-28T19:30",
+                                "end":  "2026-11-28T21:55"
+                            },
+                            {
+                                "start":  "2026-11-29T15:00",
+                                "end":  "2026-11-29T17:25"
+                            },
+                            {
+                                "start":  "2026-12-02T14:00",
+                                "end":  "2026-12-02T16:25"
+                            },
+                            {
+                                "start":  "2026-12-02T19:30",
+                                "end":  "2026-12-02T21:55"
+                            },
+                            {
+                                "start":  "2026-12-03T19:30",
+                                "end":  "2026-12-03T21:55"
+                            },
+                            {
+                                "start":  "2026-12-04T19:30",
+                                "end":  "2026-12-04T21:55"
+                            },
+                            {
+                                "start":  "2026-12-05T15:00",
+                                "end":  "2026-12-05T17:25"
+                            },
+                            {
+                                "start":  "2026-12-05T19:30",
+                                "end":  "2026-12-05T21:55"
+                            },
+                            {
+                                "start":  "2026-12-06T15:00",
+                                "end":  "2026-12-06T17:25"
+                            },
+                            {
+                                "start":  "2026-12-08T19:30",
+                                "end":  "2026-12-08T21:55"
+                            },
+                            {
+                                "start":  "2026-12-09T19:30",
+                                "end":  "2026-12-09T21:55"
+                            },
+                            {
+                                "start":  "2026-12-10T19:30",
+                                "end":  "2026-12-10T21:55"
+                            },
+                            {
+                                "start":  "2026-12-11T19:30",
+                                "end":  "2026-12-11T21:55"
+                            },
+                            {
+                                "start":  "2026-12-12T15:00",
+                                "end":  "2026-12-12T17:25"
+                            },
+                            {
+                                "start":  "2026-12-12T19:30",
+                                "end":  "2026-12-12T21:55"
+                            },
+                            {
+                                "start":  "2026-12-13T15:00",
+                                "end":  "2026-12-13T17:25"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "age_note":  "Adult language and themes",
+        "phone":  "312-335-1650",
+        "website":  "https://www.steppenwolf.org/whats-on/2026-2027/adirondack-chair-circle",
+        "source_urls":  [
+                            "https://www.steppenwolf.org/whats-on/2026-2027/adirondack-chair-circle",
+                            "https://cart.steppenwolf.org/overview/21636"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://cart.steppenwolf.org/overview/21636"
+                     },
+        "photos":  [
+                       {
+                           "file":  "photos/ev-adirondack-chair-circle-steppenwolf-1.jpg",
+                           "credit":  "Steppenwolf Theatre",
+                           "page_url":  "https://www.steppenwolf.org/whats-on/2026-2027/adirondack-chair-circle"
+                       }
+                   ]
+    },
+    {
+        "id":  "ps-chicago-pedway",
+        "name":  "Chicago Pedway (underground walkways downtown)",
+        "kind":  "place",
+        "category":  "unique-niche",
+        "genre":  "look-learn",
+        "tags":  [
+                     "free",
+                     "rainy-day",
+                     "winter",
+                     "solo",
+                     "hidden-gem",
+                     "architecture",
+                     "tour"
+                 ],
+        "hook":  "Cross the Loop underground without stepping outside",
+        "description":  "A network of tunnels, bridges and concourses linking dozens of downtown buildings, CTA stations and Millennium Station. A quirky way to explore the Loop on a cold day, with hidden art and food courts along the way, or join a guided Pedway walking tour.",
+        "highlights":  [
+                           "Free to walk",
+                           "Links buildings, CTA stations and Millennium Station",
+                           "Guided 2-hour Pedway tours by Inside Chicago Walking Tours",
+                           "Weekday daytime is when most segments are open"
+                       ],
+        "address":  "Downtown Loop (entrances in many buildings, e.g. Millennium Station, 151 E Randolph St), Chicago, IL",
+        "neighborhood":  "Loop",
+        "lat":  41.88422222,
+        "lng":  -87.62463889,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "free",
+        "price_note":  "",
+        "duration_minutes":  45,
+        "min_minutes":  15,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "07:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "07:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "07:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "07:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "07:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "sat":  [
+
+                              ],
+                      "sun":  [
+
+                              ]
+                  },
+        "hours_note":  "Most segments open at least 7 AM-5 PM on weekdays; some stay open evenings and weekends, as posted in each building.",
+        "season":  null,
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "",
+        "website":  "https://www.chicago.gov/content/dam/city/depts/cdot/pedestrian/Pedway/Pedway%20System%20Map_May%202025.pdf",
+        "source_urls":  [
+                            "https://www.chicago.gov/content/dam/city/depts/cdot/pedestrian/Pedway/Pedway%20System%20Map_May%202025.pdf",
+                            "https://www.insidechicagowalkingtours.com/interior-architecture-tours-public-tour-routes"
+                        ],
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://www.insidechicagowalkingtours.com/interior-architecture-tours-public-tour-routes"
+                     },
+        "closed":  false,
+        "photos":  [
+                       {
+                           "file":  "photos/ps-chicago-pedway-1.jpg",
+                           "credit":  "Inside Chicago Walking Tours",
+                           "page_url":  "https://www.insidechicagowalkingtours.com/interior-architecture-tours-public-tour-routes"
+                       }
+                   ]
     }
 ]
