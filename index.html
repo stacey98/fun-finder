@@ -10986,7 +10986,7 @@ function runSelfTestAsync(){ // checks that need promises or the map files
     ['eat', 'shows', 'look'].forEach(function(g){ R.push({ok:true, info:'', note:true, name:'real data: ' + genreName(g) + ' sub-chips: ' + subsShown(DATA, g).map(function(s){ var n = DATA.filter(function(it){ return genreOf(it) === g && subOf(it, g) === s[0]; }).length; return s[1] + ' ' + n; }).join(' · ')}); });
     var nDeal = DATA.filter(function(it){ return dealOf(it); }).length, nLive = DATA.filter(function(it){ return dealState(it, cparts(nowMs()).key); }).length;
     R.push({ok:true, info:'', note:true, name:'real data: ' + nDeal + ' places carry a deal, ' + nLive + ' on sale today or within ' + DEAL_AHEAD_DAYS + ' days'});
-    ok('real data: no Shedd or Art Institute deal (dates not verified)', !dealOf(findItem('pc-shedd-aquarium') || {}) && !dealOf(findItem('pc-art-institute-of-chicago') || {}), 'deal present');
+    ok('real data: Shedd and Art Institute free-day deals are present (dates verified 2026-11-14)', !!dealOf(findItem('pc-shedd-aquarium') || {}) && !!dealOf(findItem('pc-art-institute-of-chicago') || {}), 'deal missing');
     if (nDeal) { var ds = runPipeline(DATA, T16, cL, ext(F16, {sale:true})).all; ok('real data: On sale on Mon Nov 16 lists only places with a live deal (' + ds.length + ')', ds.length > 0 && ds.every(function(c){ return c.deal; }), ds.length + ''); }
     var keepPL = {cur:PL.cur, res:PL.res, err:PL.err, mine:PL.mine}, pb = $('pPollBody'), keepH = pb.innerHTML, sids3 = DATA.slice(0, 3).map(function(it){ return ID_SID[it.id]; });
     try {
