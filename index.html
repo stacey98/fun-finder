@@ -1299,6 +1299,149 @@ body{background:var(--paper)}
   .sw-scrim-b{height:210px}.sw-meta{bottom:24px}.sw-rail{bottom:20px}.sw-top{top:0}.sw-scrim-t{height:116px}.sw-deck.intro .sw-scrim-t{height:250px}.sw-intro{top:68px}.sw-toast{top:76px}
 }
 @media (prefers-reduced-motion:reduce){ .sw-card,.sw-word,.sw-toast,.sw-intro{transition:none!important;animation:none!important} }
+
+/* ================= v5.16b account sheet (design/2026-11-14-account-sheet-spec.md + design/account-sheet-mock.html) ================= */
+.panel.acct-sheet{height:max(52vh,340px);height:max(52dvh,340px);max-height:calc(100% - var(--sat) - 8px);background-image:var(--hero);background-repeat:no-repeat;background-size:100% 260px;box-shadow:var(--elev-2);transition:transform .3s var(--ease-snap),height .28s cubic-bezier(.2,.8,.2,1)}
+.panel.acct-sheet.full{height:calc(100% - var(--sat) - 8px)}
+.as-grab{position:relative;flex:none;height:28px;width:100%;border:0;background:none;padding:0;cursor:grab;touch-action:none}
+.as-grab span{position:absolute;left:50%;top:8px;width:40px;height:5px;margin-left:-20px;border-radius:3px;background:var(--rule-strong)}
+.as-x{position:absolute;right:6px;top:4px;width:44px;height:44px;display:grid;place-items:center;border:0;background:none;color:var(--ink-2);z-index:3;cursor:pointer}
+.as-x::before{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--paper-2);z-index:-1}
+.as-x .i{width:18px;height:18px}
+.as-body{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:0 16px calc(28px + var(--sab))}
+.as-h{display:grid;grid-template-columns:64px minmax(0,1fr) auto;column-gap:14px;row-gap:0;align-items:center;padding:22px 0 0;min-height:84px}
+.as-h>.as-av{grid-row:1 / span 2}
+.as-h.out{grid-template-columns:64px minmax(0,1fr);padding-right:40px}
+.as-h.out>.as-av{grid-row:auto}
+.as-h.out .as-nm{white-space:normal}
+@media (max-width:359px){ .as-h.out{grid-template-columns:56px minmax(0,1fr)} }
+.as-h>.as-syncw{grid-column:2 / -1;align-self:start}
+.as-sync{white-space:nowrap}
+.as-av{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;overflow:hidden;background:var(--paper-2);color:var(--ink);box-shadow:0 0 0 1px var(--rule-strong);font:var(--display-wt) 26px/1 var(--f-display)}
+.as-av svg{display:block;width:100%;height:100%}
+.as-av .i{width:30px;height:30px;color:var(--ink-3);fill:none;stroke:currentColor;stroke-width:2}
+.as-av.ty{background:var(--type,var(--paper-2))}
+.as-nm{margin:0;font:var(--display-wt) 22px/1.15 var(--f-display);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;outline:none}
+[data-skin="night"] .as-nm{font-size:19px}
+.as-ty{margin:3px 0 0;font:500 14px/1.3 var(--f-body);color:var(--ink-2)}
+.as-pill{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:36px;padding:0 14px;border:0;border-radius:999px;background:var(--paper-2);color:var(--ink);font:600 14px var(--f-body);cursor:pointer;text-decoration:none;white-space:nowrap}
+.as-pill.solid{background:var(--accent);color:var(--on-accent)}
+.as-pill .i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2}
+[data-skin="night"] .as-card .as-pill:not(.solid){background:var(--paper-3);box-shadow:inset 0 0 0 1px var(--rule-strong)}
+.as-syncw{min-height:26px;margin-top:2px}
+.as-sync{display:inline-flex;align-items:center;gap:7px;min-height:26px;font:500 13px/1.2 var(--f-body);color:var(--ink-3);border:0;background:none;padding:0;border-radius:999px;transition:opacity .15s}
+.as-sync .dot{width:8px;height:8px;border-radius:50%;background:var(--open);flex:none}
+.as-sync.run .dot{background:none;border:2px solid var(--ink-3);border-top-color:transparent;width:12px;height:12px;box-sizing:border-box;animation:as-spin .8s linear infinite}
+.as-sync.bad{color:var(--soon);background:var(--soon-bg);padding:0 10px 0 8px;margin:2px 0 0 -2px;min-height:28px;cursor:pointer}
+.as-sync.bad .dot{background:var(--soon)}
+.as-sync.bad u{text-decoration-color:currentColor;text-underline-offset:2px;font-weight:650}
+@keyframes as-spin{to{transform:rotate(1turn)}}
+.as-sec{padding-top:20px}
+.as-sec>h3{margin:0 0 10px;font:600 12.5px/1.2 var(--f-body);color:var(--ink-3);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.as-sec>h3 small{font:inherit}
+.as-card{background:var(--paper-3);border-radius:var(--r-tile);box-shadow:var(--elev-1),0 0 0 1px var(--rule);padding:14px;color:var(--ink)}
+[data-skin="night"] .as-card{background:var(--paper-2)}
+.as-tt{display:flex;align-items:center;gap:10px;width:100%;border:0;background:none;padding:0;text-align:left;color:inherit;cursor:pointer;min-height:28px}
+.as-code{height:24px;padding:0 9px;border-radius:999px;background:var(--type,var(--accent-soft));color:#211B2C;font:600 11.5px/24px var(--f-display);letter-spacing:.08em;flex:none}
+.as-tag{font:500 14px/1.3 var(--f-body);color:var(--ink-2)}
+.as-chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;padding:0;list-style:none}
+.as-chips li{height:28px;padding:0 11px;border-radius:999px;background:var(--paper-2);font:600 13px/28px var(--f-body);color:var(--ink)}
+[data-skin="night"] .as-chips li{background:var(--paper-3)}
+.as-chips li.mid{background:none;box-shadow:inset 0 0 0 1px var(--rule-strong);color:var(--ink-2);font-weight:500}
+.as-tt + .as-chips{margin-top:12px}
+.as-acts{display:flex;gap:8px;margin-top:14px}
+.as-acts .as-pill{flex:1;height:40px;min-width:0}
+.as-row{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:14px;align-items:center;min-height:64px;width:100%;border:0;background:none;padding:0;text-align:left;color:var(--ink);font:inherit;cursor:pointer;text-decoration:none}
+.as-ico{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent-text)}
+.as-ico .i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2}
+.as-row b{display:block;font:600 16px/1.25 var(--f-body)}
+.as-row small{display:block;font:500 13.5px/1.3 var(--f-body);color:var(--ink-2);margin-top:2px}
+.as-row .chev,.as-frt .chev{width:20px;height:20px;color:var(--ink-3);fill:none;stroke:currentColor;stroke-width:2}
+.as-frt{display:flex;align-items:center;gap:12px;width:100%;min-height:44px;border:0;background:none;padding:0;text-align:left;color:var(--ink);cursor:pointer}
+.as-stack{display:flex;flex:none}
+.as-stack span{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:600 13px/1 var(--f-body);color:#211B2C;background:var(--accent-soft);box-shadow:0 0 0 2px var(--paper-3);margin-left:-8px}
+.as-stack span:nth-child(2){background:color-mix(in srgb,var(--open) 35%,var(--paper-3))}
+.as-stack span:nth-child(3){background:color-mix(in srgb,var(--soon) 30%,var(--paper-3))}
+[data-skin="night"] .as-stack span{box-shadow:0 0 0 2px var(--paper-2);color:var(--ink)}
+.as-stack span:first-child{margin-left:0}
+.as-frt .t{flex:1;min-width:0}
+.as-frt b{font:600 16px/1.25 var(--f-body)}
+.as-badge{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:var(--accent-text);color:var(--paper);font:700 12px/1 var(--f-body);margin-left:6px;vertical-align:2px}
+.as-frs{display:block;font:500 13.5px/1.3 var(--f-body);color:var(--ink-2);margin:2px 0 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.as-req{display:flex;align-items:center;gap:8px;margin:12px 0 0;padding:8px 8px 8px 12px;border-radius:16px;background:var(--accent-soft);flex-wrap:wrap}
+.as-req .t{flex:1 1 140px;font:600 14px/1.3 var(--f-body);min-width:0;color:var(--ink)}
+.as-req .as-pill{height:36px;padding:0 12px}
+.as-req .linkbtn{min-height:44px;padding:0 4px}
+.as-lock{margin:0;font:500 13.5px/1.4 var(--f-body);color:var(--ink-2)}
+.as-tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.as-tile{display:block;text-align:left;min-height:76px;border:0;cursor:pointer;font:inherit}
+.as-tile .n{display:block;font:var(--display-wt) 22px/1 var(--f-display);color:var(--ink)}
+.as-tile .l{display:block;font:500 13.5px/1.3 var(--f-body);color:var(--ink-2);margin-top:6px}
+.as-set{padding:0}
+.as-set>div{padding:12px 14px;border-top:1px solid var(--rule)}
+.as-set>div:first-child{border-top:0}
+.as-lab{display:flex;justify-content:space-between;align-items:center;gap:12px;font:600 15px/1.25 var(--f-body);color:var(--ink);min-height:36px}
+.as-lab>span{min-width:0}
+.as-help{display:block;font:500 12.5px/1.3 var(--f-body);color:var(--ink-3);margin-top:2px}
+.as-seg{display:inline-flex;background:var(--paper-2);border-radius:999px;padding:3px;flex:none}
+[data-skin="night"] .as-seg{background:var(--paper-3)}
+.as-seg button{height:30px;padding:0 11px;border:0;border-radius:999px;background:none;font:600 13px var(--f-body);color:var(--ink-2);cursor:pointer;min-width:44px}
+.as-seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.as-val{font:600 13.5px var(--f-body);color:var(--ink-2);flex:none}
+.as-sw{position:relative;width:51px;height:31px;border-radius:999px;border:0;padding:0;background:var(--rule-strong);flex:none;cursor:pointer;transition:background .18s}
+.as-sw::after{content:"";position:absolute;left:2px;top:2px;width:27px;height:27px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .18s}
+.as-sw[aria-pressed="true"]{background:var(--open)}
+.as-sw[aria-pressed="true"]::after{transform:translateX(20px)}
+.as-sw:disabled{opacity:.45;cursor:not-allowed}
+.as-links{margin-top:20px}
+.as-links .as-row{min-height:52px;grid-template-columns:24px minmax(0,1fr) auto;border-top:1px solid var(--rule);border-radius:0}
+.as-links .as-row .i.l{width:20px;height:20px;color:var(--ink-2);fill:none;stroke:currentColor;stroke-width:2}
+.as-links .as-row b{font-size:15px}
+.as-out{display:block;width:100%;height:48px;margin-top:16px;border:0;border-radius:999px;background:none;box-shadow:inset 0 0 0 1px var(--rule-strong);font:650 15px var(--f-body);color:var(--ink);cursor:pointer}
+.as-del{display:block;margin:14px auto 0;min-height:44px;padding:0 8px;border:0;background:none;font:500 13px var(--f-body);color:var(--ink-3);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px;cursor:pointer}
+.as-foot{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:10px;font:500 12px/1 var(--f-body);color:var(--ink-3)}
+.as-why{list-style:none;margin:14px 0 0;padding:0}
+.as-why li{display:flex;gap:10px;align-items:center;font:500 15px/1.3 var(--f-body);min-height:30px;color:var(--ink)}
+.as-why .i{width:18px;height:18px;color:var(--open);flex:none;fill:none;stroke:currentColor;stroke-width:2.4}
+.as-local{font:500 12.5px/1.4 var(--f-body);color:var(--ink-3);margin:6px 0 0}
+.as-gbtn{margin-top:16px}
+@media (max-width:359px){
+  .as-body{padding:0 14px calc(28px + var(--sab))}
+  .as-h{grid-template-columns:56px minmax(0,1fr) auto;gap:12px}
+  .as-av{width:56px;height:56px;font-size:23px}
+  .as-nm{font-size:19px}
+  .as-seg button{padding:0 8px}
+}
+@media (min-width:900px){
+  .panel.acct-sheet,.panel.acct-sheet.full{left:auto;right:16px;top:72px;bottom:16px;width:400px;height:auto;max-height:none;border-radius:28px;transform:translateX(calc(100% + 40px))}
+  .panel.acct-sheet.on{transform:none}
+  .as-grab{display:none}
+  .as-body{padding:0 20px 28px}
+  .as-h{padding:16px 40px 0 0}   /* the close X sits top-right (no grabber row on a laptop) */
+}
+@media (prefers-reduced-motion:reduce){ .as-sync.run .dot{animation:none} .panel.acct-sheet{transition:none} }
+/* v5.16b Home: the taste card (never done only) and Opening soon (3 rows, photo first, quiet date) */
+.tcard{display:grid;grid-template-columns:48px 1fr;gap:14px;margin:16px 0 0;padding:16px;background:var(--paper-3);border-radius:var(--r-tile);box-shadow:var(--elev-1),0 0 0 1px var(--rule);transition:opacity .18s,max-height .18s;overflow:hidden;max-height:240px}
+.tcard.gone{opacity:0;max-height:0;padding-top:0;padding-bottom:0;margin-top:0}
+.tcard svg{width:48px;height:48px;display:block}
+.tcard h3{margin:0;font:var(--card-wt) 16px/1.25 var(--f-card);color:var(--ink)}
+.tcard p{margin:4px 0 0;font:500 14px/1.4 var(--f-body);color:var(--ink-2)}
+.tcard .acts{display:flex;align-items:center;gap:16px;margin-top:10px}
+.tcard .go{height:40px;padding:0 18px;border:0;border-radius:999px;background:var(--accent);color:var(--on-accent);font:650 14.5px var(--f-body);cursor:pointer}
+.tcard .no{min-height:44px;border:0;background:none;padding:0;font:600 13.5px var(--f-body);color:var(--ink-2);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:3px;cursor:pointer}
+.hm-sec.radar-s{margin-top:28px}
+.radar-s .rs-h{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 4px}
+.radar-s .rs-h h2{margin:0;font:var(--card-wt) 20px/1.15 var(--f-card);color:var(--ink)}
+[data-skin="night"] .radar-s .rs-h h2{font-size:19px}
+.radar-s .rs-all{display:inline-flex;align-items:center;gap:2px;min-height:44px;border:0;background:none;padding:0;font:600 14px var(--f-body);color:var(--ink-2);cursor:pointer}
+.radar-s .rs-all .i{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+.radar2{list-style:none;margin:0;padding:0}
+.radar2 li + li{border-top:1px solid var(--rule)}
+.radar2 button{display:flex;align-items:center;gap:14px;width:100%;padding:10px 0;border:0;background:none;text-align:left;color:var(--ink);cursor:pointer}
+.radar2 .thumb{width:64px;height:64px;border-radius:var(--r-thumb);flex:none}
+.radar2 .tx{flex:1;min-width:0}
+.radar2 .dl{display:block;font:600 13px/1.2 var(--f-body);color:var(--ink-3)}
+.radar2 .nm{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin-top:3px;font:var(--card-wt) 16px/1.25 var(--f-card);color:var(--ink)}
 </style>
 <meta name="claude:viewport-fit-sides" content="cover">
 
@@ -1450,6 +1593,7 @@ body{background:var(--paper)}
   <section id="pTime" class="panel" hidden role="dialog" aria-labelledby="pTimeTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pTimeTitle" tabindex="-1">How much time do you have?</h2><button class="p-close" type="button" data-close="pTime" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pTimeBody"></div><div class="p-foot"><button class="btn-primary" id="pTimeGo" type="button">Show</button></div></section>
   <section id="pFilters" class="panel" hidden role="dialog" aria-labelledby="pFiltersTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pFiltersTitle" tabindex="-1">More filters</h2><button class="p-close" type="button" data-close="pFilters" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pFiltersBody"></div><div class="p-foot two"><button class="btn-2" id="pFiltersReset" type="button">Reset</button><button class="btn-primary" id="pFiltersGo" type="button">Show</button></div></section>
   <section id="pSmall" class="panel" hidden role="dialog" aria-labelledby="pSmallTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pSmallTitle" tabindex="-1"></h2><button class="p-close" type="button" data-close="pSmall" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pSmallBody"></div></section>
+  <section id="pAcct" class="panel acct-sheet" hidden role="dialog" aria-labelledby="pAcctTitle"><button class="as-grab" type="button" data-acct="acct-grab" aria-label="Show more"><span></span></button><button class="as-x" type="button" data-close="pAcct" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button><div class="as-body" id="pAcctBody"></div></section>
   <section id="pSaved" class="panel tall" hidden role="dialog" aria-labelledby="pSavedTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pSavedTitle" tabindex="-1">Saved</h2><div class="p-hbtns"><button class="mini-btn" id="wlShare" type="button" aria-label="Share my saved list" hidden><svg class="i"><use href="#i-share"/></svg>Share</button><button class="p-close" type="button" data-close="pSaved" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div></div><div class="p-body" id="pSavedBody" style="padding-left:0;padding-right:0"></div></section>
   <section id="pFriend" class="panel tall" hidden role="dialog" aria-labelledby="pFriendTitle"><span class="grabber"></span><div class="p-head"><div class="fr-t" id="pFriendT"><h2 class="p-title" id="pFriendTitle" tabindex="-1">A friend's list</h2></div><button class="p-close" type="button" data-close="pFriend" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pFriendBody" style="padding-left:0;padding-right:0"></div><div class="p-foot fr-foot" id="pFriendFoot" hidden><label class="vh" for="fName">Their name</label><input id="fName" type="text" maxlength="24" autocomplete="off" enterkeyhint="done" placeholder="Their name"><button class="btn-primary" id="fKeep" type="button">Keep</button></div></section>
   <section id="pCluster" class="panel" hidden role="dialog" aria-labelledby="pClusterTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pClusterTitle" tabindex="-1">Places here</h2><button class="p-close" type="button" data-close="pCluster" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pClusterBody" style="padding-left:0;padding-right:0;max-height:min(62vh,560px);overflow-y:auto"></div></section>
@@ -1475,8 +1619,9 @@ body{background:var(--paper)}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.15 (2026-11-14)';
+var VERSION = 'v5.16 (2026-11-14)';
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
+var FEEDBACK_EMAIL = 'localfinds.app@gmail.com';   // v5.16: "Send feedback" in the account sheet (a mailto draft; never sent by the app). Separate from CONTACT_EMAIL.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
 var TZ = 'America/Chicago';
@@ -3877,7 +4022,7 @@ function pickThree(pool, seen){ // -> {picks:[up to 3], wrapped:true when the un
 var TASTE_KEY = 'og.taste.v2', TASTE_GUEST_KEY = 'og.taste.guest.v1', TASTE_HINT_KEY = 'og.taste.hint.v1', TASTE_VV = 1;
 var DIALS = ['e', 'v', 'p', 'w'], DECK_DIALS = ['e', 'v', 'p'];
 var DIAL_WORDS = {e:['chill', 'active'], v:['quiet', 'lively'], p:['curious', 'playful'], w:['classic', 'weird']};
-var DIAL_ENDS = {e:['Chill', 'Active'], v:['Quiet', 'Lively'], p:['Curious', 'Playful'], w:['Less', 'More']};
+var DIAL_ENDS = {e:['Chill', 'Active'], v:['Low-key', 'Lively'],   /* v5.16: slider text only ("Quiet" -> "Low-key"); type data is part A */ p:['Curious', 'Playful'], w:['Less', 'More']};
 var DIAL_NAMES = {e:'Energy', v:'Vibe', p:'Mode', w:'Weird'};
 var TASTE_TAGS = ['bugs', 'cheese', 'sweets', 'sauna', 'pinball', 'karaoke', 'climbing', 'bowling', 'comedy', 'music'];   // her interests (§2a list, as the app's interest keys: chocolate -> sweets, live-music -> music)
 var INTEREST_SLOTS = [2, 6, 10], INTEREST_ORDER = ['bugs', 'cheese', 'bowling'], INTEREST_SPARE = ['sweets', 'sauna', 'karaoke', 'comedy'];   // cards 3, 7, 11 (§3c)
@@ -5462,6 +5607,7 @@ function renderList(res, vm, more){
   }
   var p = res.p, h = '';
   if (UI.q) { listRoot.innerHTML = searchListHTML(UI.q); wireImages(listRoot); return; }
+  if (UI.guide === 'soon') { listRoot.innerHTML = soonListHTML(); wireImages(listRoot); return; }   // v5.16b "Opening soon · All N"
   if (UI.guide && GUIDE_BY[UI.guide]) { listRoot.innerHTML = guideListHTML(UI.guide); wireImages(listRoot); return; }   // v5.10 mini guides   // v4: search results replace the list while there is text in the box
   if (GEO.failed) h += '<p class="band info">The map couldn\'t load, so here\'s the list. Everything else works.</p>';   // tester L4
   var hol = holidayName(p.key);
@@ -5598,7 +5744,7 @@ function searchListHTML(q){
   return '<h3 class="sec-h"><span>Results</span><span></span></h3><ul class="rows">' + rows.join('') + '</ul>' + endnoteHTML('');
 }
 /* v5.10 #26 Opening-soon radar: limited events, pop-ups and seasons that start in the next 30 days (from today), one per name. Pure. */
-var RADAR_DAYS = 30, RADAR_MAX = 5;
+var RADAR_DAYS = 30, RADAR_MAX = 3;   // v5.16b: 3 rows (was 5)
 function radarStartKey(c, todayKey){
   var st = c.st || {}, it = c.item;
   if (st.key === 'gone' || st.key === 'ended') return null;
@@ -5615,12 +5761,65 @@ function radarList(rows, p){
   out.sort(function(a, b){ return a.key < b.key ? -1 : a.key > b.key ? 1 : byTravel(a.c, b.c); });
   return out;
 }
+/* v5.16b (home-guides spec §3): 3 rows, photo first, a quiet date label, full names up to 2 lines, "All N ›" for the rest */
+function shortName(it){ // the name without a trailing "(...)" or a trailing year; the detail screen keeps the full name
+  if (it && typeof it.short_name === 'string' && it.short_name.trim()) return it.short_name.trim();
+  var s = String(it && it.name || '').trim(), t = s.replace(/\s*\([^()]*\)\s*$/, '').replace(/\s+(19|20)\d\d$/, '').trim();
+  return t || s;
+}
+function radarStem(it){ // first two words; a long, distinctive first word alone ("Christkindlmarket ...": Daley Plaza and Wrigleyville count as one)
+  var w = norm(shortName(it)).split(' ');
+  return w[0] && w[0].length >= 8 ? w[0] : w.slice(0, 2).join(' ');
+}
+function radarPick(list){ // photo only; most popular first, then sooner, then nearer; one per name stem, at most 2 per genre; 3; shown by date
+  var cand = list.filter(function(x){ return firstPhoto(x.c.item); });
+  cand.sort(function(a, b){ return popularityOf(b.c.item) - popularityOf(a.c.item) || (a.key < b.key ? -1 : a.key > b.key ? 1 : 0) || byTravel(a.c, b.c); });
+  var out = [], stems = {}, gen = {};
+  for (var i = 0; i < cand.length && out.length < RADAR_MAX; i++) {
+    var x = cand[i], st = radarStem(x.c.item), g = x.c.genre || genreOf(x.c.item);
+    if (stems[st] || (gen[g] || 0) >= 2) continue;
+    stems[st] = 1; gen[g] = (gen[g] || 0) + 1; out.push(x);
+  }
+  out.sort(function(a, b){ return a.key < b.key ? -1 : a.key > b.key ? 1 : byTravel(a.c, b.c); });
+  return out;
+}
+function radarLabel(x, todayKey){ // "Tomorrow" · "Friday" · "Fri, Nov 27"; a single-day event with a start time adds " · 7 pm"
+  var k = x.key, dd = dayDiff(todayKey, k), wd = wdOfKey(k);
+  var t = dd <= 1 ? 'Tomorrow' : dd <= 6 ? DOW_LONG[wd] : DOW_SHORT[wd] + ', ' + fmtMonthDay(k);
+  var c = x.c, st = c.st || {}, ev = st.ev;
+  if (c.item.kind === 'event' && ev && ev.lastKey === k && isNum(st.opensAt)) { var q = cparts(st.opensAt); if (q.key === k && q.min > 0) t += ' · ' + fmtTime(q.min); }
+  return t;
+}
 function radarHTML(list){
   if (!list.length) return '';
-  var shown = list.slice(0, RADAR_MAX);
-  return '<section class="hm-sec radar-s"><h2>Opening soon</h2><ul class="radar">' + shown.map(function(x){
-    return '<li><button type="button" data-open="' + esc(x.c.item.id) + '"><b>Opens ' + esc(fmtMonthDay(x.key)) + '</b><span>' + esc(x.c.item.name) + '</span></button></li>';
+  var shown = radarPick(list); if (!shown.length) return '';
+  var today = cparts(nowMs()).key;
+  return '<section class="hm-sec radar-s"><div class="rs-h"><h2>Opening soon</h2>' + (list.length > RADAR_MAX ? '<button class="rs-all" type="button" data-act="soonall">All ' + list.length + glyphSvg('i-right') + '</button>' : '') + '</div><ul class="radar2">' + shown.map(function(x){
+    return '<li><button type="button" data-open="' + esc(x.c.item.id) + '" style="--c:' + genreColor(x.c.genre || genreOf(x.c.item)) + '">' + thumbHTML(x.c) + '<span class="tx"><span class="dl">' + esc(radarLabel(x, today)) + '</span><span class="nm">' + esc(shortName(x.c.item)) + '</span></span></button></li>';
   }).join('') + '</ul></section>';
+}
+function soonListHTML(){ // "All N ›": every Opening-soon item, by date, the usual rows with the date as the kicker
+  var T = evalTime(), F = ext(appDefaultFilters(), {radius:S.f.radius, mode:S.f.mode}), res = runPipeline(DATA, T, ctxNow(), F), today = cparts(nowMs());
+  var list = radarList(res.all.concat(res.beyond || []), today);
+  list.forEach(function(x){ annotate(x.c, res.p); });
+  var h = '<div class="guide-h"><h3>Opening soon</h3><button class="mini-btn" type="button" data-guide-x="1" aria-label="Close Opening soon">' + glyphSvg('i-close') + '</button><p>' + list.length + ' coming up in the next ' + RADAR_DAYS + ' days.</p></div>';
+  h += list.length ? '<ul class="rows">' + list.map(function(x){ return rowHTML(x.c, {kicker:radarLabel(x, today.key)}); }).join('') + '</ul>' : '<div class="empty"><h4>Nothing opening in the next ' + RADAR_DAYS + ' days.</h4></div>';
+  return h + endnoteHTML('');
+}
+function openSoonAll(){ UI.guide = 'soon'; UI.q = ''; if ($('q')) $('q').value = ''; if (UI.view !== 'browse') showView('browse'); refresh(); if ($('sheetScroll')) $('sheetScroll').scrollTop = 0; }
+/* v5.16b (home-guides spec §2.3): the taste card, only while the test was never done; "No thanks" hides it for good */
+var TASTECARD_KEY = 'og.tastecard.v1';
+function tasteCardWanted(){ return !!(TASTE && DATA_LOADED && tasteCardCount(TASTE) === 0 && !TASTE.done && !Platform.store.get(TASTECARD_KEY, false)); }
+function tasteCardHTML(){
+  if (!tasteCardWanted()) return '';
+  var ico = '<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="9" width="22" height="30" rx="5" transform="rotate(-12 18 24)" fill="var(--accent-soft)" stroke="var(--ink-3)" stroke-width="1.5"/><rect x="18" y="8" width="22" height="30" rx="5" transform="rotate(9 29 23)" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.8"/><path d="M29 29c-4-2.7-6-4.8-6-7.2a3 3 0 0 1 6-1 3 3 0 0 1 6 1c0 2.4-2 4.5-6 7.2z" fill="var(--accent-text)"/></svg>';
+  return '<div class="tcard" id="tasteCard">' + ico + '<div><h3>What are you into?</h3><p>Swipe for a minute. Get better picks.</p><div class="acts"><button class="go" type="button" data-act="tastecard-go">Start</button><button class="no" type="button" data-act="tastecard-no">No thanks</button></div></div></div>';
+}
+function tasteCardNo(){
+  Platform.store.set(TASTECARD_KEY, 1);
+  var el = $('tasteCard'); if (el) el.classList.add('gone');
+  setTimeout(function(){ UI.homeHTML = null; refresh(); }, 200);
+  toast('You can find it in your account.', 2500);
 }
 /* v5.10 #86 Mini guides: hand-made lists computed from the data. Each opens a filtered list and has a #guide=<id> link. */
 var GUIDES = [
@@ -5766,11 +5965,13 @@ function renderHome(res, vm, picks){
       if (whoOn) btn += ' ' + actBtn({attr:'data-act="clearall"', label:'Clear my filters'});
       h += '<div class="empty"><h3>' + esc(e.title) + '</h3>' + (e.body ? '<p>' + esc(e.body) + '</p>' : '') + '<div class="btns">' + btn + '</div></div>';
     }
-    h += tasteNagHTML();   // v5.12: "Teach Off-Grid your taste · 1 min" (skippable, once), later "Swipe 5?"
+    // v5.16b (home-guides spec §1-§3): "Your taste ›" left Home (it lives in the account sheet); a taste card shows only if the test was
+    // never done; Guides come before Opening soon, which shows 3 photo-first rows; a shorter endnote (the crow-flies line is in About).
     h += '<button class="hm-btn dark" type="button" data-act="browse">Browse everything' + glyphSvg('i-right') + '</button>';
-    h += radarHTML(radarList(res.all.concat(res.beyond || []), cparts(nowMs())));   // v5.10 #26
+    h += tasteCardHTML();
     h += guidesHTML();   // v5.10 #86
-    h += '<p class="endnote">Travel times are rough; distances are as the crow flies. <button class="linkbtn" type="button" data-act="tip">Send a tip</button> · <button class="linkbtn" type="button" data-act="about">About</button></p>';
+    h += radarHTML(radarList(res.all.concat(res.beyond || []), cparts(nowMs())));   // v5.10 #26
+    h += '<p class="endnote">Travel times are rough. <button class="linkbtn" type="button" data-act="tip">Send a tip</button> · <button class="linkbtn" type="button" data-act="about">About</button></p>';
   }
   if (h === UI.homeHTML) return;   // nothing changed: leave the photos alone
   UI.homeHTML = h;
@@ -6273,7 +6474,8 @@ var SB_URL = 'https://dhpfjmlukcznwypdpfuu.supabase.co', SB_KEY = 'sb_publishabl
 var SB_JS = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js';   // pinned exact version (published 2026-10-15)
 var SAVEDMETA_KEY = 'cff.savedmeta.v1', CKGONE_KEY = 'cff.checkins.gone.v1', KEPTGONE_KEY = 'cff.friends.gone.v1', ACCT_KEY = 'cff.acct.v1', PENDINV_KEY = 'cff.pendinginvite.v1';
 var SAVED_META = {}, CK_GONE = {}, KEPT_GONE = {}, LIVE = [];
-var Acct = {client:null, loading:null, user:null, profile:null, settings:null, state:'off', offline:false, lastSync:'', errMsg:'', friends:[], invites:[], syncing:null, again:false, pushTm:null, dirtyS:{}, dirtyC:{}, demo:false, askedName:false, cachedName:''};
+var Acct = {client:null, loading:null, user:null, profile:null, settings:null, state:'off', offline:false, lastSync:'', errMsg:'', friends:[], invites:[], syncing:null, again:false, pushTm:null, dirtyS:{}, dirtyC:{}, demo:false, askedName:false, cachedName:'',
+  syncStart:0, syncTimeoutMs:10000, failN:0, backTm:null, wakeAt:0, wakeLog:[]};   // v5.16b: sync states, the 10 s timeout and retries (account-sheet spec §3)
 var USERNAME_RE = /^[a-z0-9._]{3,20}$/, INVITE_RE = /^[0-9A-HJKMNP-TV-Z]{8}$/;
 /* ----- pure: times, names, codes ----- */
 function tsOf(s){ var t = Date.parse(String(s || '')); return isNum(t) ? t : 0; }
@@ -6439,6 +6641,7 @@ function acctRedraw(){
   if (!$('pFriends').hidden) renderFriends();
   if (!$('pFriend').hidden) renderFriend();
   if (!$('pAbout').hidden) renderAbout();
+  if ($('pAcct') && !$('pAcct').hidden) renderAcctSheet();   // v5.16b
 }
 function acctBoot(){
   SAVED_META = cleanMeta(Platform.store.get(SAVEDMETA_KEY, {})); CK_GONE = cleanGone(Platform.store.get(CKGONE_KEY, {})); KEPT_GONE = cleanGone(Platform.store.get(KEPTGONE_KEY, {}));
@@ -6563,7 +6766,7 @@ function gisWatch(){ // our sign-in buttons appear in many places (account sheet
 function gisCallback(resp){
   var token = resp && resp.credential, raw = GIS.raw;
   if (!token) { toast('Sign-in didn\'t finish. Try again.'); return; }
-  Acct.state = 'loading'; acctRedraw(); closePanel('pSmall'); closePanel('pWelcome');
+  Acct.state = 'loading'; acctRedraw(); closePanel('pSmall'); closePanel('pWelcome'); closePanel('pAcct');
   acctLoad().then(function(cl){
     if (!cl) throw {message:'offline'};
     return cl.auth.signInWithIdToken({provider:'google', token:token, nonce:raw}).then(function(r){ if (r && r.error) throw r.error; });
@@ -6594,7 +6797,11 @@ function acctSync(why){
   if (Acct.syncing) { Acct.again = true; return Acct.syncing; }
   var uid = u.id, nowIso = new Date().toISOString();
   if (!DATA_LOADED) { UI.syncAfterData = true; return Promise.resolve(false); }   // the sids need the list
-  Acct.syncing = cl.rpc('me').then(chk).then(function(me){
+  // v5.16b (LESSONS: "never an endless Syncing"): the whole sync races a 10 s timer; a timeout counts as a failure, the line says
+  // "Can't sync · Tap to retry", and a retry is scheduled (5 s, 30 s, 2 min). Acct.syncing is always cleared at the end.
+  var toTimer = null, timeout = new Promise(function(res, rej){ toTimer = setTimeout(function(){ rej({message:'timeout'}); }, Acct.syncTimeoutMs || 10000); });
+  Acct.syncStart = Date.now();
+  var job = cl.rpc('me').then(chk).then(function(me){
     Acct.profile = me && me.profile ? me.profile : null;
     Acct.settings = me && me.settings ? me.settings : Acct.settings;
     return Promise.all([cl.from('saves').select('item_id,sid,saved,updated_at').eq('user_id', uid).then(chk), cl.from('checkins').select('item_id,sid,visit_date,date_prec,rating,deleted,updated_at').eq('user_id', uid).then(chk)]);
@@ -6629,12 +6836,87 @@ function acctSync(why){
     if (!Acct.profile && !Acct.askedName) { Acct.askedName = true; acctAskName(); }
     else if (Acct.profile) { var pi = Platform.store.get(PENDINV_KEY, ''); if (pi && INVITE_RE.test(pi)) { Platform.store.set(PENDINV_KEY, ''); inviteOpen(pi); } }
     return true;
-  })['catch'](function(e){ acctFail(e, true); return false; }).then(function(v){
+  });
+  job['catch'](function(){});   // a late failure after the timeout is already reported
+  Acct.syncing = Promise.race([job, timeout])['catch'](function(e){ acctFail(e, true); return false; }).then(function(v){
+    clearTimeout(toTimer);
     Acct.syncing = null;
+    acctBackoff(v === true);
     if (Acct.again) { Acct.again = false; setTimeout(function(){ acctSync('again'); }, 50); }
+    acctSheetRedraw();
     return v;
   });
+  acctSheetRedraw();   // the line moves to "Syncing" now, and back out at the end
   return Acct.syncing;
+}
+/* ----- v5.16b sync line + retries (design/2026-11-14-account-sheet-spec.md §3) ----- */
+var SYNC_BACKOFF = [5000, 30000, 120000];
+function syncState(now){ // -> 'running' | 'fail' | 'ok' | 'never'. "running" only while a sync really runs (and under its timeout)
+  now = now || Date.now();
+  var lim = Acct.syncTimeoutMs || 10000;
+  if (Acct.syncing && now - (Acct.syncStart || 0) < lim) return 'running';
+  if (Acct.errMsg || Acct.offline || Acct.syncing) return 'fail';   // a sync still "running" past its timeout counts as failed
+  if (Acct.lastSync) return 'ok';
+  return 'never';
+}
+function syncAgoText(iso, now){
+  var t = tsOf(iso); if (!t) return '';
+  var s = Math.max(0, Math.round(((now || Date.now()) - t) / 1000));
+  if (s < 60) return 'just now';
+  if (s < 3600) return Math.floor(s / 60) + ' min ago';
+  var a = cparts(t), b = cparts(now || Date.now());
+  return a.key === b.key ? fmtTime(a.min) : fmtMonthDay(a.key);
+}
+function syncLineModel(now, online){ // pure-ish -> {st, text, tap} ; tap = the underlined action ('' = none)
+  var st = syncState(now), off = online === false || (online === undefined && typeof navigator !== 'undefined' && navigator.onLine === false);
+  if (st === 'running') return {st:st, text:'Syncing', tap:''};
+  if (st === 'fail') return {st:st, text:off ? 'Offline' : 'Can\'t sync', tap:'Tap to retry'};
+  if (st === 'ok') return {st:st, text:'Synced ' + syncAgoText(Acct.lastSync, now), tap:''};
+  return {st:st, text:'Not synced yet', tap:'Tap to sync'};
+}
+function syncLineHTML(now, online){
+  var m = syncLineModel(now, online), inner = '<span class="dot" aria-hidden="true"></span>' + esc(m.text) + (m.tap ? ' · <u>' + esc(m.tap) + '</u>' : '');
+  var body = m.tap ? '<button class="as-sync bad" type="button" data-acct="retry">' + inner + '</button>' : '<span class="as-sync' + (m.st === 'running' ? ' run' : '') + '">' + inner + '</span>';
+  return '<div class="as-syncw" role="status" aria-live="polite" data-sync="' + m.st + '">' + body + '</div>';
+}
+function acctSheetRedraw(){ // just the sync line in an open account sheet (cheap; no Home re-render)
+  try { var w = document.querySelector('#pAcctBody .as-syncw'); if (w && !$('pAcct').hidden) w.outerHTML = syncLineHTML(); } catch (e) {}
+}
+function acctBackoff(ok){ // after a sync: success resets; a failure schedules the next try (5 s, 30 s, 2 min, then wait for focus / online)
+  clearTimeout(Acct.backTm); Acct.backTm = null;
+  if (ok) { Acct.failN = 0; return 0; }
+  if (Acct.demo || !Acct.client || !Acct.user) return 0;
+  var n = Acct.failN || 0; if (n >= SYNC_BACKOFF.length) return 0;
+  Acct.failN = n + 1;
+  Acct.backTm = setTimeout(function(){ Acct.backTm = null; acctRetry('backoff'); }, SYNC_BACKOFF[n]);
+  return SYNC_BACKOFF[n];
+}
+function acctRetry(why){ // Tap to retry, the backoff timer, and the wake-ups below. -> true when a try started
+  if (Acct.demo || Acct.syncing) return false;
+  if (!(Acct.user || Acct.cachedUid)) return false;
+  Acct.offline = false; Acct.errMsg = '';
+  if (Acct.client && Acct.user) { acctSync(why || 'retry'); return true; }
+  if (!cloudHost()) return false;
+  acctSheetRedraw();
+  acctLoad().then(function(cl){ if (cl && Acct.user) acctSync(why || 'retry'); else if (cl) cl.auth.getSession(); else acctSheetRedraw(); });
+  return true;
+}
+function wakeWanted(o){ // pure. o: {why, cloud, signed, syncing, st, lastMs, now, wakeAt} -> bool
+  if (!o.cloud || !o.signed || o.syncing) return false;
+  if (o.now - (o.wakeAt || 0) < 3000) return false;   // focus + visibilitychange often fire together
+  if (o.why === 'online') return true;
+  if (o.st === 'fail' || o.st === 'never') return true;
+  return !o.lastMs || o.now - o.lastMs > 120000;   // back on the page after 2+ minutes: refresh quietly
+}
+function acctWake(why, o){ // window focus, the page becoming visible, the phone coming back online. o (tests only): {cloud, retry}
+  o = o || {};
+  Acct.wakeLog.push(why); if (Acct.wakeLog.length > 20) Acct.wakeLog.shift();
+  if (Acct.demo) return false;
+  var now = Date.now(), go = wakeWanted({why:why, cloud:o.cloud === undefined ? cloudHost() : o.cloud, signed:!!(Acct.user || Acct.cachedUid), syncing:!!Acct.syncing, st:syncState(now), lastMs:tsOf(Acct.lastSync), now:now, wakeAt:Acct.wakeAt});
+  if (!go) { acctSheetRedraw(); return false; }
+  Acct.wakeAt = now;
+  if (why === 'online') Acct.failN = 0;
+  return (o.retry || acctRetry)(why);
 }
 function acctPushSoon(){ // a save or a check-in changed on this phone: send just those rows a moment later
   if (!Acct.client || !Acct.user || Acct.demo) return false;
@@ -6728,7 +7010,7 @@ function acctSetting(k){
   if (!Acct.client || !Acct.user) { if (Acct.demo) toast('Test mode: nothing was sent.'); return; }
   var cur = Acct.settings || {}, dflt = {share_saves:true, share_checkins:false, find_by_username:true}, on = cur[k] === undefined ? dflt[k] : !!cur[k], patch = {user_id:Acct.user.id, updated_at:new Date().toISOString()};
   patch[k] = !on; Acct.settings = ext(cur, patch);
-  renderFriends();
+  renderFriends(); if (!$('pAcct').hidden) renderAcctSheet();   // v5.16b: the account sheet has the same switches
   Acct.client.from('settings').upsert(patch, {onConflict:'user_id'}).then(chk).then(function(){ acctSaveCache(); }, function(e){ Acct.settings[k] = on; renderFriends(); acctFail(e); });
 }
 /* ----- invites "#f_<code>" ----- */
@@ -6836,8 +7118,9 @@ function acctCardHTML(state, o){ // the account block on Saved and in About. sta
       '<button class="btn-google" type="button" data-acct="signin"' + (state === 'loading' ? ' disabled' : '') + '>' + googleG() + (state === 'loading' ? 'Signing in...' : 'Sign in with Google') + '</button>' +
       '<p class="acct-l"><button class="linkbtn" type="button" data-acct="privacy">Privacy</button></p></div>';
   }
-  var nm = acctName(), line = Acct.offline ? offlineText(Acct.lastSync) : (Acct.lastSync ? 'Synced ' + fmtMonthDay(chicagoDayOf(Acct.lastSync)) : 'Syncing...');
-  var h = '<div class="acct"><p class="acct-t">' + (nm ? '@' + esc(nm) : 'Signed in') + '</p><p class="acct-s' + (Acct.offline ? ' off' : '') + '">' + esc(line) + (Acct.offline ? ' <button class="linkbtn" type="button" data-acct="retry">Try again</button>' : '') + '</p>';
+  var nm = acctName(), sm = syncLineModel(), bad = !!sm.tap;   // v5.16b: the same honest states as the account sheet (never a stuck "Syncing")
+  var line = sm.st === 'fail' && Acct.offline ? offlineText(Acct.lastSync) : sm.text;
+  var h = '<div class="acct"><p class="acct-t">' + (nm ? '@' + esc(nm) : 'Signed in') + '</p><p class="acct-s' + (bad ? ' off' : '') + '">' + esc(line) + (bad ? ' <button class="linkbtn" type="button" data-acct="retry">' + (sm.st === 'never' ? 'Sync now' : 'Try again') + '</button>' : '') + '</p>';
   if (!nm && state === 'in') h += '<button class="mini-btn" type="button" data-acct="name">Pick a username</button>';
   h += '<p class="acct-l">' + (nm ? '<button class="linkbtn" type="button" data-acct="friends">Friends</button><span aria-hidden="true">·</span>' : '') + '<button class="linkbtn" type="button" data-acct="privacy">Privacy</button><span aria-hidden="true">·</span><button class="linkbtn" type="button" data-acct="signout">Sign out</button></p>';
   if (o.about) h += '<p class="acct-l"><button class="linkbtn warn" type="button" data-acct="delete">Delete my account</button></p>';
@@ -6897,15 +7180,23 @@ function acctClick(el){
   var a = el.getAttribute('data-acct'), v = el.getAttribute('data-v') || '';
   if (Acct.demo && /^(signin|signout|delete2|name-save|find|req|accept|notnow|remove|block2|unblock|invite|cancelinv|share-invite|inv-yes|retry|sw)$/.test(a)) { if (a !== 'remove' || el.classList.contains('arm')) { toast('Test mode: nothing was sent.'); return; } }
   switch (a) {
-    case 'signin': closePanel('pSmall'); acctSignIn(); break;
-    case 'signout': closePanel('pSmall'); closePanel('pFriends'); acctSignOut(); break;
+    case 'signin': closePanel('pSmall'); closePanel('pAcct'); acctSignIn(); break;
+    case 'signout': closePanel('pSmall'); closePanel('pFriends'); closePanel('pAcct'); acctSignOut(); break;
     case 'delete': acctDeleteAsk(); break;
     case 'delete2': acctDelete(); break;
     case 'name': acctAskName(); break;
     case 'name-save': acctNameSave(); break;
     case 'friends': closePanel('pSmall'); openFriends(); break;
     case 'privacy': openPrivacy(); break;
-    case 'retry': Acct.offline = false; acctRedraw(); acctLoad().then(function(cl){ if (cl && Acct.user) acctSync('retry'); else if (cl) cl.auth.getSession(); }); break;
+    case 'retry': Acct.failN = 0; if (!acctRetry('retry')) { acctSheetRedraw(); if (!Acct.syncing) toast(navigator.onLine === false ? 'You\'re offline. It retries when you\'re back.' : 'Couldn\'t reach the account service. Try again later.'); } break;   // v5.16b
+    case 'acct-full': acctSheetSize('full'); break;
+    case 'acct-grab': acctSheetSize($('pAcct').classList.contains('full') ? 'close' : 'full'); break;
+    case 'taste-start': closePanel('pAcct'); tasteStartDeck('main'); break;
+    case 'taste-retake': closePanel('pAcct'); tasteStartDeck('retake'); break;
+    case 'taste-open': closePanel('pAcct'); openTaste('profile'); break;
+    case 'lists-saved': closePanel('pAcct'); openLists('saved'); break;
+    case 'lists-been': closePanel('pAcct'); openLists('been'); break;
+    case 'loc-on': locateMe(); setTimeout(function(){ if (!$('pAcct').hidden) renderAcctSheet(); }, 1500); break;
     case 'find': acctFind(); break;
     case 'req': acctRequest(v); break;
     case 'accept': acctAnswer(v, true); break;
@@ -6930,7 +7221,7 @@ function acctDemo(){
   if (!DATA_LOADED) { UI.acctDemoWait = true; return; }
   UI.acctDemoWait = false;
   var sids = Object.keys(SID_INDEX).map(Number).sort(function(a, b){ return a - b; });
-  Acct.demo = true; Acct.state = 'in'; Acct.user = null; Acct.cachedUid = 'demo'; Acct.profile = {username:'stacey'}; Acct.cachedName = 'stacey';
+  Acct.demo = true; Acct.state = 'in'; Acct.user = null; Acct.cachedUid = 'demo'; Acct.profile = {username:'avery.test'}; Acct.cachedName = 'avery.test';
   Acct.settings = {share_saves:true, share_checkins:false, find_by_username:true}; Acct.offline = true; Acct.lastSync = '2026-11-13T18:00:00.000Z';
   Acct.friends = [{user_id:'d1', username:'maya', display_name:'Maya L', status:'accepted', share_saves:true}, {user_id:'d2', username:'jo.k', display_name:'Jo', status:'pending', direction:'in'},
     {user_id:'d3', username:'sam_r', display_name:'', status:'pending', direction:'out'}, {user_id:'d4', username:'max', display_name:'', status:'blocked'}];
@@ -7922,6 +8213,7 @@ function renderAbout(){
   h += '<h3>The three picks</h3><p>The first screen shows three things that are open at the time you chose (or open within 15 minutes), about ' + PICK_NEAR_MIN + ' minutes away or less by the way you chose to get around (further only when fewer than three closer ones are open), of three different kinds, with one limited-time thing when one qualifies. Places you marked "I\'ve been here" in the last ' + RECENT_DAYS + ' days are left out. "Three more" doesn\'t repeat until it has shown everything.</p>';
   h += '<h3>"I\'ve only got..."</h3><p>Off unless you turn it on in More filters. With it on, a place is shown when the trip plus the shortest worthwhile time there is within your time, and it stays open long enough after you arrive (at least 30 minutes). The shortest time comes from our listing when we have it; otherwise it is our rule of thumb: arcades, bars and food stops 30 min, mini golf 40, museums and active places 45, pop-ups 40. Escape rooms, shows, classes, sports and anything you book ahead need their full length.</p>';
   h += '<h3>Been here</h3><p>"I\'ve been here" keeps the place and the date on this phone' + (cloudHost() ? ', and in your account if you sign in' : '') + '. You can change the date or remove it. It never asks for a photo.</p>';
+  if (Acct.state === 'off') h += '<h3>Your taste</h3>' + acctTasteHTML();   // v5.16b: without accounts (claude.ai copy) About is the account sheet's stand-in
   h += '<h3>Account</h3>' + acctCardHTML(Acct.state, {about:true}) + (Acct.state === 'off' ? '' : '<p class="small"><button class="linkbtn" type="button" data-acct="privacy">What we store and how to delete it</button></p>');   // v5.11
   h += '<h3>Tips</h3><p>Saw something fun on Instagram or anywhere? <button class="linkbtn" type="button" data-act="tip">Send a tip</button>. Each tip is read as a lead and checked at the organizer\'s own site before it goes in the app.</p>';
   h += '<h3>Where you are</h3><p>This version can\'t read your phone\'s location inside claude.ai, so you pick a spot or tap the map. Neighborhood, landmark and L-stop points are approximate (typed from general knowledge, needs check). Community areas come from City data. Distances are straight-line (as the crow flies); travel times use rough rules: walking 20 min per mile and CTA about 10 min plus 4 min per mile, both on 1.3 times the straight-line distance. Driving: 8 min to park, plus 4 min per straight-line mile for the first 3 miles, 2.2 min per mile up to 10 miles and 1.15 min per mile after that, with no rush-hour traffic. With "Walk + CTA" picked, places more than ' + CTA_MAX_MI + ' miles away show the drive time and say so (check Metra).</p>';
@@ -8129,9 +8421,125 @@ function openAccount(){ // v5.12 (coordinator): the Home account button
   if (Acct.state === 'off') { renderAbout(); openPanel('pAbout'); return; }
   // v5.14 (owner: "can't sign out"): signed in, the person button opens the account sheet (username, Friends, Privacy, Sign out),
   // not Friends, so Sign out is always one tap away, with or without a username.
-  var brand = '<div class="acct-brand">' + brandIcoHTML() + brandHTML(0, 18) + '</div>';   // v5.15: the name on the account sheet too
-  if (acctSignedIn() || Acct.demo) { openSmall('Your account', function(){ $('pSmallBody').innerHTML = brand + acctCardHTML(Acct.state === 'loading' ? 'in' : Acct.state); }); return; }
-  openSmall('Your account', function(){ $('pSmallBody').innerHTML = brand + '<p class="small">Sign in to sync your saves on every device and see what friends want to do.</p>' + acctCardHTML(Acct.state === 'loading' ? 'loading' : 'out'); });
+  // v5.16b: the account sheet (design/2026-11-14-account-sheet-spec.md): half height on a phone (expandable), a side panel on a laptop.
+  var lap = false; try { lap = window.matchMedia('(min-width:900px)').matches; } catch (e) {}
+  $('pAcct').classList.remove('full');
+  renderAcctSheet();
+  openPanel('pAcct', lap ? false : undefined);   // laptop: no scrim, the map stays usable; Esc closes
+  try { $('pAcctBody').scrollTop = 0; } catch (e) {}
+  clearInterval(openAccount.iv); openAccount.iv = setInterval(function(){ if ($('pAcct').hidden) { clearInterval(openAccount.iv); return; } acctSheetRedraw(); }, 30000);   // "5 min ago" stays true
+  if (Acct.client && Acct.user && !Acct.demo && syncState() !== 'running' && (syncState() !== 'ok' || Date.now() - tsOf(Acct.lastSync) > 120000)) acctRetry('open');
+}
+/* ----- v5.16b account sheet ----- */
+function acctType(){ // HOOK for part A (the fun type): return {code, name, tagline, color, avatarSvg} or null. Until funType() exists, null.
+  try { if (typeof window.funType === 'function') { var t = window.funType(tasteNow()); if (t && t.code) return t; } } catch (e) {}
+  return null;
+}
+function feedbackHref(){ // never carries the username, email, saves or location: only the version
+  var ver = String(VERSION).split(' ')[0];
+  return 'mailto:' + FEEDBACK_EMAIL + '?subject=' + encodeURIComponent(APP_NAME + ' feedback') + '&body=' + encodeURIComponent('\n\n—\n' + APP_NAME + ' ' + ver);
+}
+function acctLocModel(){ // the Location row: {val, btn}
+  if (Platform.onClaude || Platform.inFrame) return {val:'On the website', btn:false};
+  var s = UI.geoState;
+  if (s === 'granted') return {val:'On', btn:false};
+  if (s === 'denied') return {val:'Blocked', btn:false};
+  if (s === 'none') return {val:'Not available', btn:false};
+  return {val:'Off', btn:true};
+}
+function acctTasteHTML(){ // "Your taste": done -> words + Retake / Adjust; never done -> "Take the taste test"
+  var done = !!(TASTE && tasteCardCount(TASTE) > 0), ty = acctType();
+  if (!done) return '<button class="as-row" type="button" data-acct="taste-start"><span class="as-ico">' + glyphSvg('i-heart') + '</span><span><b>Take the taste test</b><small>1 minute. Better picks.</small></span>' + glyphSvg('i-right', 'i chev') + '</button>';
+  var w = traitWords(tasteNow(), 4), h = '<div class="as-card">';
+  if (ty) h += '<button class="as-tt" type="button" data-acct="taste-open"' + (ty.color ? ' style="--type:' + esc(ty.color) + '"' : '') + '><span class="as-code">' + esc(ty.code) + '</span><span class="as-tag">' + esc(ty.tagline || ty.name || '') + '</span></button>';
+  h += w.length ? '<ul class="as-chips" aria-label="Your taste">' + w.map(function(x){ x = String(x); return '<li>' + esc(x.charAt(0).toUpperCase() + x.slice(1)) + '</li>'; }).join('') + '</ul>'
+    : '<p class="as-lock">Swipe a few more to see your taste words.</p>';
+  h += '<div class="as-acts"><button class="as-pill" type="button" data-acct="taste-retake">Retake</button><button class="as-pill" type="button" data-acct="taste-open">Adjust</button></div></div>';
+  return h;
+}
+function acctFriendsHTML(){
+  if (!acctName()) return '<div class="as-card"><p class="as-lock">Pick a username first, then add friends.</p></div>';
+  var acc = (Acct.friends || []).filter(function(f){ return f.status === 'accepted'; }), inc = acctIncoming(), n = acc.length;
+  var ini = function(f){ return (wlChars(acctFriendName(f).replace(/^@/, ''))[0] || '?').toUpperCase(); };
+  var names = acc.slice(0, 3).map(function(f){ return acctFriendName(f); }), sub = '';
+  var cpa = []; try { cpa = coupleActive(); } catch (e) {}
+  if (cpa.length) sub = 'Planning together with ' + cpa[0].name;
+  else if (names.length) sub = names.length === 1 ? names[0] : names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1] + (n > 3 ? ' + ' + (n - 3) + ' more' : '');
+  var h = '<div class="as-card"><button class="as-frt" type="button" data-acct="friends">' + (n ? '<span class="as-stack" aria-hidden="true">' + acc.slice(0, 3).map(function(f){ return '<span>' + esc(ini(f)) + '</span>'; }).join('') + '</span>' : '') +
+    '<span class="t"><b>' + (n ? n + (n === 1 ? ' friend' : ' friends') : 'No friends yet') + '</b>' + (inc.length ? '<span class="as-badge" aria-label="' + inc.length + (inc.length === 1 ? ' request' : ' requests') + '">' + inc.length + '</span>' : '') +
+    (sub ? '<span class="as-frs">' + esc(sub) + '</span>' : '') + '</span>' + glyphSvg('i-right', 'i chev') + '</button>';
+  inc.slice(0, 2).forEach(function(f){
+    h += '<div class="as-req"><span class="t">@' + esc(f.username) + ' wants to be friends</span><button class="as-pill solid" type="button" data-acct="accept" data-v="' + esc(f.user_id) + '">Accept</button><button class="linkbtn" type="button" data-acct="notnow" data-v="' + esc(f.user_id) + '">Not now</button></div>';
+  });
+  return h + '<div class="as-acts"><button class="as-pill" type="button" data-acct="friends">+ Add friend</button><button class="as-pill" type="button" data-acct="invite">' + glyphSvg('i-share') + 'Invite link</button></div></div>';
+}
+function acctSettingsHTML(){
+  var lk = currentLook(), mm = mapMode(), lm = acctLocModel();
+  function seg(attr, cur, opts, lab){ return '<div class="as-seg" role="group" aria-label="' + lab + '">' + opts.map(function(x){ return '<button type="button" ' + attr + '="' + x[0] + '" aria-pressed="' + (cur === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>'; }
+  return '<div class="as-card as-set"><div class="as-lab"><span>Theme</span>' + seg('data-look', lk, [['light', 'Light'], ['dark', 'Dark'], ['auto', 'Auto']], 'Theme') + '</div>' +
+    '<div class="as-lab"><span>Map</span>' + seg('data-mapstyle', mm, [['standard', 'Standard'], ['themed', 'Themed']], 'Map') + '</div>' +
+    '<div class="as-lab"><span>Location<small class="as-help">Shows what\'s near you</small></span>' + (lm.btn ? '<button class="as-pill" type="button" data-acct="loc-on">Turn on</button>' : '<span class="as-val">' + esc(lm.val) + '</span>') + '</div></div>';
+}
+function acctShareHTML(){ // "What friends see": the three existing settings, in plain words
+  var st = Acct.settings || {}, off = !!Acct.offline || (typeof navigator !== 'undefined' && navigator.onLine === false);
+  function sw(k, on, label, help){ return '<div class="as-lab"><span>' + esc(label) + '<small class="as-help">' + esc(help) + '</small></span><button class="as-sw" type="button" data-acct="sw" data-v="' + k + '" aria-pressed="' + !!on + '" aria-label="' + esc(label) + '"' + (off ? ' disabled' : '') + '></button></div>'; }
+  return '<section class="as-sec"><h3>What friends see' + (off ? '<small>Needs a connection</small>' : '') + '</h3><div class="as-card as-set">' +
+    sw('share_saves', st.share_saves !== false, 'My saves', 'The places you saved') + sw('share_checkins', !!st.share_checkins, 'Where I\'ve been', 'Place and month, never the day') + sw('find_by_username', st.find_by_username !== false, 'Find me by username', 'People can send you a request') + '</div></section>';
+}
+function acctSheetHTML(state){ // state: in | cached | out | loading (| demo via Acct.demo). Pure apart from reading app state.
+  var signed = state === 'in' || state === 'cached' || !!Acct.demo, nm = acctName(), ty = acctType(), h = '';
+  var av = ty && ty.avatarSvg ? '<span class="as-av ty" aria-hidden="true"' + (ty.color ? ' style="--type:' + esc(ty.color) + '"' : '') + '>' + ty.avatarSvg + '</span>' : null;
+  if (signed) {
+    var letter = nm ? nm.charAt(0).toUpperCase() : (acctLetter(Acct.user, nm) || '');
+    if (!av) av = '<span class="as-av" aria-hidden="true">' + (letter ? esc(letter) : glyphSvg('i-user')) + '</span>';
+    h += '<div class="as-h">' + av + '<div><h2 class="p-title as-nm" id="pAcctTitle" tabindex="-1">' + (nm ? '@' + esc(nm) : 'Pick a username') + '</h2>' +
+      (nm ? (ty ? '<p class="as-ty">' + esc(ty.name) + '</p>' : '') : '<p class="as-ty">So friends can find you</p>') + '</div>' +
+      (nm ? '<button class="as-pill" type="button" data-acct="name">Edit</button>' : '<button class="as-pill solid" type="button" data-acct="name">Pick</button>') + syncLineHTML() + '</div>';
+  } else {
+    if (!av) av = '<span class="as-av" aria-hidden="true">' + glyphSvg('i-user') + '</span>';
+    var busy = state === 'loading';
+    h += '<div class="as-h out">' + av + '<div><h2 class="p-title as-nm" id="pAcctTitle" tabindex="-1">Sign in to keep it all</h2>' + (ty ? '<p class="as-ty">' + esc(ty.name) + '</p>' : '') + '</div></div>';
+    h += '<div class="as-gbtn"><button class="btn-google" type="button" data-acct="signin"' + (busy ? ' disabled' : '') + '>' + googleG() + (busy ? 'Signing in' : 'Sign in with Google') + '</button></div>' +
+      '<ul class="as-why">' + ['Your saves on every device', 'See what friends want to do', 'Plan together with one person'].map(function(t){ return '<li>' + glyphSvg('i-check') + esc(t) + '</li>'; }).join('') + '</ul>' +
+      '<p class="as-local">Without it, everything stays on this phone.</p>';
+  }
+  h += '<section class="as-sec"><h3>Your taste</h3>' + acctTasteHTML() + '</section>';
+  if (signed) h += '<section class="as-sec"><h3>Friends</h3>' + acctFriendsHTML() + '</section>';
+  var nS = savedIds.length, nB = CHECKINS.length;
+  h += '<section class="as-sec"><h3>Saved &amp; been</h3><div class="as-tiles"><button class="as-card as-tile" type="button" data-acct="lists-saved"><span class="n">' + nS + '</span><span class="l">' + (signed ? 'Saved' : 'Saved on this phone') + '</span></button>' +
+    '<button class="as-card as-tile" type="button" data-acct="lists-been"><span class="n">' + nB + '</span><span class="l">' + (signed ? 'Been' : 'Been on this phone') + '</span></button></div></section>';
+  h += '<section class="as-sec"><h3>Settings</h3>' + acctSettingsHTML() + '</section>';
+  if (signed && nm) h += acctShareHTML();
+  h += '<div class="as-links"><button class="as-row" type="button" data-acct="privacy">' + glyphSvg('i-info', 'i l') + '<b>Privacy</b>' + glyphSvg('i-right', 'i chev') + '</button>' +
+    '<a class="as-row" href="' + esc(feedbackHref()) + '" target="_blank" rel="noopener">' + glyphSvg('i-send', 'i l') + '<b>Send feedback</b>' + glyphSvg('i-right', 'i chev') + '</a></div>';
+  if (signed) h += '<button class="as-out" type="button" data-acct="signout">Sign out</button><button class="as-del" type="button" data-acct="delete">Delete account</button>';
+  h += '<p class="as-foot">' + brandHTML(0, 13) + '<span>' + esc(String(VERSION).split(' ')[0]) + '</span></p>';
+  return h;
+}
+function renderAcctSheet(){
+  var b = $('pAcctBody'); if (!b) return;
+  var st = Acct.state === 'off' ? 'out' : Acct.state;
+  if (st === 'loading' && acctName()) st = 'in';
+  b.innerHTML = acctSheetHTML(st);
+}
+function acctSheetSize(to){ // 'full' | 'half' | 'close' (phone only; the laptop panel has one size)
+  var el = $('pAcct'); if (!el) return;
+  if (to === 'close') { closePanel('pAcct'); return; }
+  el.classList.toggle('full', to === 'full');
+  var g = el.querySelector('.as-grab'); if (g) g.setAttribute('aria-label', to === 'full' ? 'Close' : 'Show more');
+}
+function acctSheetWire(){ // grabber drag (up = full, down = half / close), content scroll at half = full, theme / map controls
+  var el = $('pAcct'), body = $('pAcctBody'), g = el.querySelector('.as-grab'), y0 = null, moved = false;
+  g.addEventListener('pointerdown', function(e){ y0 = e.clientY; moved = false; try { g.setPointerCapture(e.pointerId); } catch (x) {} });
+  g.addEventListener('pointerup', function(e){
+    if (y0 === null) return; var dy = e.clientY - y0; y0 = null;
+    if (Math.abs(dy) < 24) return;
+    moved = true;
+    if (dy < 0) acctSheetSize('full'); else acctSheetSize(el.classList.contains('full') ? 'half' : 'close');
+  });
+  g.addEventListener('click', function(e){ if (moved) { moved = false; e.stopPropagation(); e.preventDefault(); } }, true);
+  body.addEventListener('scroll', function(){ if (body.scrollTop > 6 && !el.classList.contains('full')) { var lap = false; try { lap = window.matchMedia('(min-width:900px)').matches; } catch (x) {} if (!lap) acctSheetSize('full'); } }, {passive:true});
+  body.addEventListener('click', function(e){ if (themeClick(e)) renderAcctSheet(); });
 }
 /* ================= v5.14 pop-ups on open: "Sign in with Google", then the swipe taste test =================
    Owner 2026-11-14: "I want it to be a pop-up when you open an app to sign in. And then also afterwards a taste test ... popping up
@@ -8645,6 +9053,7 @@ function tasteDemo(){ // #tastedemo=1 testing hook: a simulated "active, lively,
   TASTE_DEMO = true; if (!TASTE) tasteLoad();
   var pool = deckPool(DATA, nowMs()), r = simRun(pool, {L:{e:1, v:1, p:-1}, p:0.95}, seededRng(7), false);
   TASTE.log = r.D.log; TASTE.tags = {bugs:'more', bowling:'never'}; TASTE.hard.no21 = true; TASTE.updated_at = SIM_AT; TASTE_REV++; UI.homeHTML = null; refresh();
+  if (!$('pAcct').hidden) renderAcctSheet();   // v5.16b screenshots: the account sheet's taste card
 }
 function deckTestHooks(hsh){ // v5.15 screenshot hooks (with #taste=deck), in memory only: &deckat=12 (12 answers already given), &deckdrag=no:0.7 (a frozen drag)
   var da = /(?:^#|&)deckat=(\d+)/.exec(hsh), dd = /(?:^#|&)deckdrag=(yes|no|love|never):([\d.]+)/.exec(hsh), D = TU.D; if (!D || (!da && !dd)) return;
@@ -8845,6 +9254,12 @@ function bindUI(){
   window.addEventListener('resize', onViewportChange);
   window.addEventListener('hashchange', readHash);
   document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'visible' && DATA_LOADED) refresh(); });
+  // v5.16b: account sync wakes up when she comes back (page visible, window focus) or the phone is back online
+  acctSheetWire();
+  document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'visible') acctWake('visible'); });
+  window.addEventListener('focus', function(){ acctWake('focus'); });
+  window.addEventListener('online', function(){ acctWake('online'); });
+  window.addEventListener('offline', function(){ acctSheetRedraw(); });
 }
 function onHomeClick(e){
   var t = e.target;
@@ -8871,6 +9286,9 @@ function onHomeClick(e){
     else if (a === 'theme') openThemePicker();
     else if (a === 'acct') openAccount();   // v5.12
     else if (a === 'taste' || a === 'tasteprof') openTaste('profile');
+    else if (a === 'tastecard-go') tasteStartDeck('main');   // v5.16b Home taste card
+    else if (a === 'tastecard-no') tasteCardNo();
+    else if (a === 'soonall') openSoonAll();   // v5.16b Opening soon · All N
     else if (a === 'tastego') { tasteNagDone(1); tasteStartDeck('main'); }
     else if (a === 'tastemini') { tasteNagDone(2); tasteStartDeck('mini'); }
     else if (a === 'tastenagx') tasteNagDone(TASTE && TASTE.nag.shown >= 1 ? 2 : 1);
@@ -10517,7 +10935,7 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.15 (2026-11-14)');
+    eq('version', VERSION, 'v5.16 (2026-11-14)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -10824,7 +11242,7 @@ function runSelfTest0(){
     var res = runPipeline([rink, rinkEv, pop, late], T, CTXD, FD); res.all.forEach(function(c){ annotate(c, res.p); });
     var rl = radarList(res.all, res.p);
     eq('radar: within 30 days, one per name, by date', rl.map(function(x){ return x.c.item.name + '@' + x.key; }).join(), 'Ice Rink@2026-11-20,Pop-up@2026-12-01');
-    ok('"Opens Nov 20"', radarHTML(rl).indexOf('Opens Nov 20') >= 0, radarHTML(rl));
+    eq('v5.16b: items without a photo are left out of Opening soon (no grey placeholders)', radarHTML(rl), '');
     eq('radar empty: no section', radarHTML([]), '');
     eq('5 guides with ids', GUIDES.map(function(g){ return g.id; }).join(), 'first-date,rainy-day,visitors,late-night,free');
     eq('guide rules', [guideMatch('first-date', fx({tags:['date'], price_level:'$'}), ''), guideMatch('first-date', fx({tags:['date'], price_level:'$$$'}), ''), guideMatch('rainy-day', fx({indoor_outdoor:'indoor'}), ''), guideMatch('rainy-day', fx({indoor_outdoor:'outdoor'}), ''), guideMatch('free', fx({price_level:'free'}), ''), guideMatch('late-night', fx({hours:allDays(['18:00', '02:00'])}), '2026-11-13'), guideMatch('late-night', fx({hours:allDays(['10:00', '17:00'])}), '2026-11-13')].join(), 'true,false,true,false,true,true,false');
@@ -11164,7 +11582,7 @@ function runSelfTest0(){
       ok('...with three photos when the list is loaded', !DATA_LOADED || popPics().length === 3, popPics().length + ' photos');
       closePanel('pTasteInv');
       ok('the X closes it', !t.classList.contains('on') && POPS.cur === '', 'cur=' + POPS.cur);
-      ok('Home: the big taste box at the bottom is gone, a small "taste" link stays', tasteNagHTML().indexOf('tk-nag') < 0 && (!DATA_LOADED || tasteNagHTML().indexOf('data-act="taste"') >= 0), tasteNagHTML());
+      ok('v5.16b Home: no "Your taste" link and no big taste box (taste lives in the account sheet)', !/Your taste|tk-link|tk-nag/.test($('homeRoot').innerHTML), ($('homeRoot').innerHTML.match(/.{0,60}Your taste.{0,60}/) || [''])[0]);
     } finally { POPS.shown = keep.shown; POPS.log = keep.log; POPS.cur = keep.cur; POPS.test = keep.test; }
   });
   block('v5.14 signed in without a username: picker opens on top, sign out always there, closing works (owner\'s iPhone)', function(){
@@ -11173,9 +11591,9 @@ function runSelfTest0(){
     try {
       Acct.state = 'in'; Acct.user = {id:'t-user', user_metadata:{full_name:'Test Person'}, email:'tester@example.com'}; Acct.profile = null; Acct.cachedUid = 't-user'; Acct.cachedName = ''; Acct.demo = false; Acct.friends = [];
       openAccount();
-      var sb = $('pSmallBody').innerHTML;
-      ok('the person button (signed in, no username) opens the account sheet with "Pick a username" AND "Sign out"', !$('pSmall').hidden && /data-acct="name"/.test(sb) && /data-acct="signout"/.test(sb), sb.slice(0, 200));
-      closePanel('pSmall');
+      var sb = $('pAcctBody').innerHTML;
+      ok('the person button (signed in, no username) opens the account sheet with "Pick a username" AND "Sign out"', !$('pAcct').hidden && /data-acct="name"/.test(sb) && /data-acct="signout"/.test(sb), sb.slice(0, 200));
+      closePanel('pAcct');
       renderFriends(); openPanel('pFriends');
       var fb = $('pFriendsBody').innerHTML;
       ok('Friends without a username: "Pick a username", plus "Not now" and "Sign out"', /data-acct="name"/.test(fb) && /data-acct="signout"/.test(fb) && /data-close="pFriends"/.test(fb), fb.slice(0, 200));
@@ -11187,7 +11605,7 @@ function runSelfTest0(){
       ok('Friends has a working close X', !!$('pFriends').querySelector('[data-close="pFriends"]'), 'missing');
       $('pFriends').querySelector('[data-close="pFriends"]').click();
       ok('...and it closes', !$('pFriends').classList.contains('on') && openStack.indexOf('pFriends') < 0, openStack.join());
-      eq('a bad username is caught before anything is sent', [usernameOk('ab'), usernameOk('Stacey.B'), usernameOk('a b c')].join(), 'false,true,false');
+      eq('a bad username is caught before anything is sent', [usernameOk('ab'), usernameOk('Avery.B'), usernameOk('a b c')].join(), 'false,true,false');
     } finally {
       ['pSmall', 'pFriends'].forEach(function(id){ if (K.stack.indexOf(id) < 0 && openStack.indexOf(id) >= 0) closePanel(id); });
       Acct.state = K.st; Acct.user = K.user; Acct.profile = K.prof; Acct.cachedUid = K.cu; Acct.cachedName = K.cn; Acct.demo = K.demo; Acct.friends = K.fr; syncAcctButtons();
@@ -11283,7 +11701,99 @@ function runSelfTest0(){
     eq('8 Eat > Tea', s({genre:'eat-drink', category:'food-drink-experience', tags:['tea', 'dessert']}), 'tea');
     eq('9 Baths & saunas: hot-tub', s({genre:'relax', category:'seasonal', tags:['hot-tub']}), 'baths');
     ok('Eat and Shows list the new chips; 6 can show', GENRE_BY.eat.subs.some(function(x){ return x[0] === 'tea'; }) && GENRE_BY.shows.subs.some(function(x){ return x[0] === 'parades'; }) && SUB_MAX === 6, 'missing');
-  });  return R;
+  });
+  block('v5.16b sync line: honest states, retries (account-sheet spec §3)', function(){
+    var K = {sy:Acct.syncing, ss:Acct.syncStart, off:Acct.offline, err:Acct.errMsg, last:Acct.lastSync, to:Acct.syncTimeoutMs};
+    try {
+      var N = Date.now();
+      Acct.syncing = null; Acct.offline = false; Acct.errMsg = ''; Acct.lastSync = ''; Acct.syncTimeoutMs = 10000;
+      ok('nothing running, never synced: "Not synced yet · Tap to sync", no Syncing anywhere', syncState(N) === 'never' && /Not synced yet · Tap to sync/.test(syncLineModel(N, true).text + ' · ' + syncLineModel(N, true).tap) && !/Syncing/.test(syncLineHTML(N, true)) && !/Syncing/.test(acctCardHTML('in')), syncLineHTML(N, true));
+      Acct.syncing = {}; Acct.syncStart = N - 2000;
+      eq('a sync started 2 s ago: "Syncing" (no dots)', syncLineModel(N, true).text, 'Syncing');
+      Acct.syncStart = N - 11000;
+      eq('...still not back after 11 s: counts as failed', syncLineModel(N, true).text + ' · ' + syncLineModel(N, true).tap, 'Can\'t sync · Tap to retry');
+      Acct.syncing = null; Acct.offline = true;
+      eq('failed while the phone is offline: "Offline · Tap to retry"', syncLineModel(N, false).text + ' · ' + syncLineModel(N, false).tap, 'Offline · Tap to retry');
+      ok('the failed line is one big retry button', /class="as-sync bad" type="button" data-acct="retry"/.test(syncLineHTML(N, true)), syncLineHTML(N, true));
+      Acct.offline = false; Acct.lastSync = new Date(N - 20000).toISOString();
+      eq('synced 20 s ago: "Synced just now"', syncLineModel(N, true).text, 'Synced just now');
+      Acct.lastSync = new Date(N - 5 * 60000).toISOString();
+      eq('synced 5 min ago', syncLineModel(N, true).text, 'Synced 5 min ago');
+      eq('synced on an earlier day: the date', syncAgoText('2026-11-13T18:00:00.000Z', Date.parse('2026-11-15T18:00:00.000Z')), 'Nov 13');
+      eq('the literal three-dot syncing text is gone from the account card', /Syncing\.\.\./.test(acctCardHTML('in')), false);
+    } finally { Acct.syncing = K.sy; Acct.syncStart = K.ss; Acct.offline = K.off; Acct.errMsg = K.err; Acct.lastSync = K.last; Acct.syncTimeoutMs = K.to; }
+    var W = function(o){ return wakeWanted(ext({why:'focus', cloud:true, signed:true, syncing:false, st:'ok', lastMs:1000000 - 30000, now:1000000, wakeAt:0}, o || {})); };
+    eq('wake-ups: online always tries; a failed or never-synced state tries on focus/visible; a fresh sync does not', [W({why:'online'}), W({st:'fail'}), W({why:'visible', st:'never'}), W(), W({lastMs:1000000 - 180000})].join(), 'true,true,true,false,true');
+    eq('wake-ups: never off the website, signed out, while syncing, or twice within 3 s', [W({why:'online', cloud:false}), W({why:'online', signed:false}), W({why:'online', syncing:true}), W({why:'online', wakeAt:1000000 - 1000})].join(), 'false,false,false,false');
+    var KU = {u:Acct.user, cu:Acct.cachedUid, off:Acct.offline, demo:Acct.demo, wa:Acct.wakeAt, err:Acct.errMsg}, called = [];
+    try {
+      Acct.user = {id:'t-wake'}; Acct.demo = false; Acct.offline = true; Acct.wakeAt = 0;
+      acctWake('online', {cloud:true, retry:function(w){ called.push(w); return true; }});
+      Acct.wakeAt = 0; acctWake('visible', {cloud:true, retry:function(w){ called.push(w); return true; }});
+      eq('the phone back online / the page visible again after a failure: a retry starts', called.join(), 'online,visible');
+      Acct.user = null; Acct.cachedUid = ''; Acct.wakeLog = [];
+      window.dispatchEvent(new Event('online')); window.dispatchEvent(new Event('focus')); document.dispatchEvent(new Event('visibilitychange'));
+      ok('the online, focus and visibility events reach the retry check (' + Acct.wakeLog.join(', ') + ')', Acct.wakeLog.indexOf('online') >= 0 && Acct.wakeLog.indexOf('focus') >= 0 && (document.visibilityState !== 'visible' || Acct.wakeLog.indexOf('visible') >= 0), Acct.wakeLog.join());
+    } finally { Acct.user = KU.u; Acct.cachedUid = KU.cu; Acct.offline = KU.off; Acct.demo = KU.demo; Acct.wakeAt = KU.wa; Acct.errMsg = KU.err; }
+    var KB = {cl:Acct.client, u:Acct.user, n:Acct.failN, demo:Acct.demo}, steps = [];
+    try {
+      Acct.client = {}; Acct.user = {id:'t-back'}; Acct.demo = false; Acct.failN = 0;
+      for (var i = 0; i < 4; i++) steps.push(acctBackoff(false));
+      steps.push(acctBackoff(true) + '/' + Acct.failN);
+      eq('backoff after failures: 5 s, 30 s, 2 min, then wait for focus/online; a success resets', steps.join(), '5000,30000,120000,0,0/0');
+    } finally { clearTimeout(Acct.backTm); Acct.backTm = null; Acct.client = KB.cl; Acct.user = KB.u; Acct.failN = KB.n; Acct.demo = KB.demo; }
+  });
+  block('v5.16b account sheet states (account-sheet spec §2)', function(){
+    var K = {st:Acct.state, user:Acct.user, prof:Acct.profile, cu:Acct.cachedUid, cn:Acct.cachedName, demo:Acct.demo, fr:Acct.friends, set:Acct.settings, off:Acct.offline, T:TASTE};
+    try {
+      Acct.demo = false; Acct.offline = false; TASTE = emptyTaste();
+      Acct.state = 'out'; Acct.user = null; Acct.profile = null; Acct.cachedUid = ''; Acct.cachedName = ''; Acct.friends = [];
+      var o = acctSheetHTML('out');
+      ok('signed out: "Sign in to keep it all", Google button, 3 reasons, "Saved on this phone", no friends or sharing, no sync line', /Sign in to keep it all/.test(o) && /data-acct="signin"/.test(o) && (o.match(/<li>/g) || []).length >= 3 && /Saved on this phone/.test(o) && /Been on this phone/.test(o) && !/What friends see/.test(o) && !/as-syncw/.test(o) && !/data-acct="signout"/.test(o), o.slice(0, 300));
+      ok('never took the taste test: "Take the taste test · 1 minute. Better picks."', /Take the taste test/.test(o) && /1 minute\. Better picks\./.test(o), '');
+      ok('Settings: Theme, Map and Location rows', /data-look="light"/.test(o) && /data-mapstyle="themed"/.test(o) && /Shows what's near you/.test(o), '');
+      Acct.state = 'in'; Acct.user = {id:'t-a', user_metadata:{full_name:'Avery Test'}, email:'avery@example.com'}; Acct.cachedUid = 't-a';
+      var nn = acctSheetHTML('in');
+      ok('signed in, no username: "Pick a username", "So friends can find you", a solid Pick button, friends say pick one first', /Pick a username/.test(nn) && /So friends can find you/.test(nn) && /as-pill solid" type="button" data-acct="name">Pick</.test(nn) && /Pick a username first, then add friends/.test(nn) && !/What friends see/.test(nn) && /data-acct="signout"/.test(nn), nn.slice(0, 300));
+      Acct.profile = {username:'avery.test'}; Acct.cachedName = 'avery.test'; Acct.settings = {share_saves:true, share_checkins:false, find_by_username:true};
+      Acct.friends = [{user_id:'f1', username:'maya', display_name:'Maya L', status:'accepted'}, {user_id:'f2', username:'jo.k', display_name:'Jo', status:'pending', direction:'in'}];
+      TASTE = ext(emptyTaste(), {log:[{t:'card', id:'x', ans:'yes'}]});
+      var s = acctSheetHTML('in');
+      ok('signed in: @username, Edit, a sync line, Friends (1 friend + 1 request), What friends see (3 switches), Sign out, Delete account', /@avery\.test/.test(s) && /data-acct="name">Edit/.test(s) && /as-syncw/.test(s) && /1 friend</.test(s) && /aria-label="1 request"/.test(s) && /@jo\.k wants to be friends/.test(s) && /data-v="share_saves" aria-pressed="true"/.test(s) && /data-v="share_checkins" aria-pressed="false"/.test(s) && /data-v="find_by_username"/.test(s) && /Place and month, never the day/.test(s) && /data-acct="signout"/.test(s) && /data-acct="delete">Delete account/.test(s), s.slice(0, 300));
+      ok('taste done: Retake and Adjust; no "Take the taste test"', /data-acct="taste-retake"/.test(s) && /data-acct="taste-open">Adjust/.test(s) && !/Take the taste test/.test(s), '');
+      ok('the Friends row and "+ Add friend" open the Friends panel; Invite link uses its invite action', (s.match(/data-acct="friends"/g) || []).length >= 2 && /data-acct="invite"/.test(s), '');
+      Acct.offline = true;
+      ok('offline: the sharing switches are disabled and say "Needs a connection"', /Needs a connection/.test(acctSheetHTML('in')) && /data-acct="sw" data-v="share_saves" aria-pressed="true" aria-label="My saves" disabled/.test(acctSheetHTML('in')), '');
+      eq('Send feedback: a draft to the app address with only the version (never sent by the app)', feedbackHref(), 'mailto:localfinds.app@gmail.com?subject=Off-Grid%20feedback&body=%0A%0A%E2%80%94%0AOff-Grid%20v5.16');
+      ok('the feedback link carries no username or email, and FEEDBACK_EMAIL is separate from CONTACT_EMAIL', feedbackHref().indexOf('avery') < 0 && FEEDBACK_EMAIL !== CONTACT_EMAIL && /href="mailto:localfinds\.app@gmail\.com/.test(s) && !/data-acct="feedback"/.test(s), '');
+      eq('the taste hook: no fun type yet (part A adds funType)', typeof window.funType === 'function' || acctType() === null, true);
+      eq('Vibe slider ends read Low-key / Lively', DIAL_ENDS.v.join(' / '), 'Low-key / Lively');
+    } finally { Acct.state = K.st; Acct.user = K.user; Acct.profile = K.prof; Acct.cachedUid = K.cu; Acct.cachedName = K.cn; Acct.demo = K.demo; Acct.friends = K.fr; Acct.settings = K.set; Acct.offline = K.off; TASTE = K.T; }
+  });
+  block('v5.16b Home: taste card, Opening soon (home-guides spec §2.3, §3)', function(){
+    var KT = TASTE;
+    try {
+      TASTE = emptyTaste();
+      var dismissed = !!Platform.store.get(TASTECARD_KEY, false);
+      if (dismissed || !DATA_LOADED) info('taste card: ' + (dismissed ? 'dismissed on this phone ("No thanks")' : 'list not loaded') + ', so it is hidden here');
+      else ok('never took the test: the taste card shows ("What are you into?", Start, No thanks)', /What are you into\?/.test(tasteCardHTML()) && /data-act="tastecard-go"/.test(tasteCardHTML()) && /data-act="tastecard-no"/.test(tasteCardHTML()), tasteCardHTML());
+      TASTE = ext(emptyTaste(), {log:[{t:'card', id:'x', ans:'yes'}]});
+      eq('after even one swipe: no taste card on Home', tasteCardHTML(), '');
+    } finally { TASTE = KT; }
+    eq('shortName', [shortName({name:'Christkindlmarket Chicago (Daley Plaza)'}), shortName({name:'Wintrust Magnificent Mile Lights Festival'}), shortName({name:'Holiday Market 2026'}), shortName({name:'X', short_name:'Short'})].join(' | '), 'Christkindlmarket Chicago | Wintrust Magnificent Mile Lights Festival | Holiday Market | Short');
+    var it = function(id, name, pop, g){ return {c:{item:{id:id, name:name, kind:'event', photos:[{file:'photos/' + id + '.jpg'}], tags:[]}, genre:g || 'shows', st:{}, trav:{min:10}, dist:1}, key:'2026-11-20'}; };
+    var L = [it('a', 'Christkindlmarket Chicago (Daley Plaza)'), it('b', 'Christkindlmarket Wrigleyville'), it('c', 'ZooLights', 0, 'nature'), it('d', 'Winter WonderFest', 0, 'play'), it('e', 'Holiday Lights Show'), it('f', 'Another Show')];
+    L.push({c:{item:{id:'np', name:'No Photo Fest', kind:'event', photos:[]}, genre:'play', st:{}, trav:{min:1}, dist:0}, key:'2026-11-15'});
+    var pk = radarPick(L), names = pk.map(function(x){ return x.c.item.id; });
+    ok('Opening soon: at most 3, photo only, one Christkindlmarket, at most 2 of a kind (' + names.join() + ')', pk.length === 3 && names.indexOf('np') < 0 && !(names.indexOf('a') >= 0 && names.indexOf('b') >= 0), names.join());
+    var rh = radarHTML(L);
+    ok('Opening soon HTML: 3 rows, "All 7" link, full names (no nowrap), no "Opens"', (rh.match(/<li>/g) || []).length === 3 && /data-act="soonall">All 7/.test(rh) && !/nowrap/.test(rh) && !/Opens /.test(rh), rh.slice(0, 200));
+    ok('3 or fewer in total: no "All" link', !/soonall/.test(radarHTML(L.slice(2, 5))), '');
+    var lb = function(k){ return radarLabel({key:k, c:{item:{kind:'place'}, st:{}}}, '2026-11-14'); };
+    eq('date labels (today Sat Nov 14): tomorrow, a weekday, then short date', [lb('2026-11-15'), lb('2026-11-20'), lb('2026-11-27')].join(' | '), 'Tomorrow | Friday | Fri, Nov 27');
+    eq('a one-day event with a start time adds it', radarLabel({key:'2026-11-20', c:{item:{kind:'event'}, st:{ev:{lastKey:'2026-11-20'}, opensAt:fromChicago('2026-11-20', 19 * 60)}}}, '2026-11-14'), 'Friday · 7 pm');
+  });
+  return R;
 }
 function waitFor(fn, ms){ return new Promise(function(res){ var t0 = Date.now(); (function poll(){ var v = false; try { v = fn(); } catch (e) {} if (v || Date.now() - t0 > ms) res(!!v); else setTimeout(poll, 100); })(); }); }
 function runSelfTestAsync(){ // checks that need promises or the map files
@@ -11372,8 +11882,54 @@ function runSelfTestAsync(){ // checks that need promises or the map files
       PL.cur = {code:'0123456789ab', sids:sids3, own:false}; renderPoll();
       ok('real data: a server poll off the website says voting works on the website (' + (pollServerOk() ? 'website' : 'here') + ')', pollServerOk() || (/Voting works on the website/.test(pb.textContent) && !pb.querySelector('[data-poll="vote"]')), pb.textContent.slice(0, 120));
     } finally { PL.cur = keepPL.cur; PL.res = keepPL.res; PL.err = keepPL.err; PL.mine = keepPL.mine; pb.innerHTML = keepH; }    try { tasteRealChecks(R, res, ok, eq); } catch (e) { ok('real data: v5.12 taste checks crashed', false, e && e.message ? e.message + ' ' + (e.stack || '').split('\n')[1] : String(e)); }
-    return R;
+    // v5.16b real data: Opening soon on Home
+    try {
+      var rlAll = radarList(res.all.concat(res.beyond || []), cparts(nowMs())), rp = radarPick(rlAll), rh = radarHTML(rlAll);
+      ok('real data v5.16b: Opening soon shows at most 3 rows, all with photos (' + rp.length + ' of ' + rlAll.length + ': ' + rp.map(function(x){ return shortName(x.c.item); }).join('; ') + ')', rp.length <= 3 && (rh.match(/<li>/g) || []).length === rp.length && rp.every(function(x){ return !!firstPhoto(x.c.item); }), rh.slice(0, 200));
+      var hmLis = document.querySelectorAll('#homeRoot .radar2 li').length;
+      ok('real data v5.16b: this Home screen shows ' + hmLis + ' Opening-soon rows (max 3)', hmLis <= 3, hmLis + '');
+      var hmH = $('homeRoot').innerHTML;
+      ok('real data v5.16b: Home (list loaded, ' + hmH.length + ' chars) has no "Your taste" link', hmH.length > 500 && !/Your taste|tk-link/.test(hmH), (hmH.match(/.{0,60}Your taste.{0,60}/) || [''])[0]);
+      var KT2 = TASTE;
+      try {
+        TASTE = emptyTaste();
+        if (Platform.store.get(TASTECARD_KEY, false)) R.push({ok:true, info:'', note:true, name:'real data v5.16b: taste card dismissed on this phone ("No thanks"), so it stays hidden'});
+        else ok('real data v5.16b: never took the test -> the taste card ("What are you into?", Start, No thanks)', /What are you into\?/.test(tasteCardHTML()) && /data-act="tastecard-go"/.test(tasteCardHTML()) && /data-act="tastecard-no"/.test(tasteCardHTML()), tasteCardHTML());
+        TASTE = ext(emptyTaste(), {done:'2026-11-14'});
+        eq('real data v5.16b: test finished -> no taste card', tasteCardHTML(), '');
+      } finally { TASTE = KT2; }
+    } catch (e) { ok('real data v5.16b: Opening soon check crashed', false, e && e.message); }
+    return acctSyncFailChecks(R).then(function(){ return R; });
   });
+}
+function acctSyncFailChecks(R){ // v5.16b: a sync that hangs or fails must end on "Can't sync · Tap to retry" (never a stuck "Syncing")
+  function ok(name, cond, info){ R.push({ok:!!cond, name:name, info: cond ? '' : (info || '')}); }
+  var K = {cl:Acct.client, user:Acct.user, demo:Acct.demo, off:Acct.offline, err:Acct.errMsg, last:Acct.lastSync, to:Acct.syncTimeoutMs, failN:Acct.failN, st:Acct.state, prof:Acct.profile, cu:Acct.cachedUid, cn:Acct.cachedName, syncing:Acct.syncing};
+  if (K.syncing) { R.push({ok:true, info:'', note:true, name:'v5.16b sync-failure check skipped: a real sync is running'}); return Promise.resolve(); }
+  function restore(){ clearTimeout(Acct.backTm); Acct.backTm = null; Acct.client = K.cl; Acct.user = K.user; Acct.demo = K.demo; Acct.offline = K.off; Acct.errMsg = K.err; Acct.lastSync = K.last; Acct.syncTimeoutMs = K.to; Acct.failN = K.failN; Acct.state = K.st; Acct.profile = K.prof; Acct.cachedUid = K.cu; Acct.cachedName = K.cn; Acct.syncing = null; closePanel('pAcct'); syncAcctButtons(); UI.homeHTML = null; }
+  var hang = {rpc:function(){ return new Promise(function(){}); }, from:function(){ return {select:function(){ return new Promise(function(){}); }}; }};
+  var down = {rpc:function(){ return Promise.reject({message:'Failed to fetch'}); }};
+  try {
+    Acct.demo = false; Acct.user = {id:'t-sync', user_metadata:{}}; Acct.cachedUid = 't-sync'; Acct.cachedName = 'avery.test'; Acct.profile = {username:'avery.test'}; Acct.state = 'in';
+    Acct.offline = false; Acct.errMsg = ''; Acct.lastSync = ''; Acct.failN = 0; Acct.syncTimeoutMs = 80; Acct.client = hang;
+    renderAcctSheet(); openPanel('pAcct');
+    acctSync('selftest');
+    var during = $('pAcctBody').querySelector('.as-syncw');
+    ok('v5.16b sync: while a sync runs the line says "Syncing" (it really runs)', syncState() === 'running' && !!during && during.getAttribute('data-sync') === 'running', during ? during.outerHTML : 'no line');
+  } catch (e) { restore(); ok('v5.16b sync check crashed', false, e && e.message); return Promise.resolve(); }
+  return waitFor(function(){ return !Acct.syncing; }, 3000).then(function(){
+    var w = $('pAcctBody').querySelector('.as-syncw'), t = w ? w.textContent : '';
+    ok('v5.16b sync: a hanging sync times out to "Can\'t sync · Tap to retry", never a stuck Syncing (' + t + ')', syncState() === 'fail' && /Tap to retry/.test(t) && !/Syncing/.test(t) && !!$('pAcctBody').querySelector('.as-sync.bad[data-acct="retry"]'), t);
+    ok('v5.16b sync: after the failure a retry is scheduled in 5 s (backoff step 1)', !!Acct.backTm && Acct.failN === 1, 'tm=' + !!Acct.backTm + ' n=' + Acct.failN);
+    clearTimeout(Acct.backTm); Acct.backTm = null;
+    Acct.client = down; Acct.offline = false; Acct.errMsg = '';
+    return acctSync('selftest2');
+  }).then(function(v){
+    var t = ($('pAcctBody').querySelector('.as-syncw') || {}).textContent || '';
+    ok('v5.16b sync: a refused sync (network error) also ends on "Tap to retry" (' + t + ')', v === false && syncState() === 'fail' && /Tap to retry/.test(t), 'v=' + v + ' ' + t);
+    ok('v5.16b sync: the backoff goes 5 s, then 30 s', Acct.failN === 2, 'n=' + Acct.failN);
+    restore();
+  }, function(e){ restore(); ok('v5.16b sync check crashed (async)', false, e && e.message); });
 }
 function tasteRealChecks(R, resMon, ok, eq){ // v5.12 real-data taste checks (spec §9: T1-T13)
   function info(n){ R.push({ok:true, info:'', name:n, note:true}); }
@@ -11512,7 +12068,7 @@ function readHash(){
   if (/(?:^#|&)acctdemo=1/.test(hsh) && mapEl) acctDemo();
   if (/(?:^#|&)cpdemo=1/.test(hsh) && mapEl) coupleDemo(0);   // v5.13 testing hook (with #acctdemo=1): couple mode on with the made-up friend   // v5.11 testing hook: the signed-in screens with made-up friends (in memory, nothing sent)
   if (/(?:^#|&)panel=friends/.test(hsh) && mapEl) setTimeout(function(){ var go = function(){ if (DATA_LOADED && Acct.demo) { if (/(?:^#|&)noname=1/.test(hsh)) { Acct.profile = null; Acct.cachedName = ''; } openFriends(); if (/(?:^#|&)unamepick=1/.test(hsh)) setTimeout(acctAskName, 400); } else setTimeout(go, 200); }; go(); }, 0);   // v5.14 hooks: &noname=1 (signed in, no username), &unamepick=1 (tap "Pick a username")
-  if (/(?:^#|&)panel=account/.test(hsh) && mapEl) setTimeout(function(){ var go = function(){ if (DATA_LOADED && (Acct.demo || !/acctdemo/.test(hsh))) { if (/(?:^#|&)noname=1/.test(hsh)) { Acct.profile = null; Acct.cachedName = ''; } openAccount(); } else setTimeout(go, 200); }; go(); }, 0);   // v5.14 hook: the person button's sheet
+  if (/(?:^#|&)panel=account/.test(hsh) && mapEl) setTimeout(function(){ var go = function(){ if (DATA_LOADED && (Acct.demo || !/acctdemo/.test(hsh))) { if (/(?:^#|&)noname=1/.test(hsh)) { Acct.profile = null; Acct.cachedName = ''; } openAccount(); if (/(?:^#|&)full=1/.test(hsh)) acctSheetSize('full'); var sc = /(?:^#|&)acscroll=(\d+)/.exec(hsh); if (sc) setTimeout(function(){ $('pAcctBody').scrollTop = +sc[1]; }, 400); } else setTimeout(go, 200); }; go(); }, 0);   // v5.14 hook: the person button's sheet
   if (/(?:^#|&)panel=privacy/.test(hsh) && mapEl) openPrivacy();   // v5.8: a friend's list link, before any place link or test hook (spec 1.2, E17)
   // v5.8 testing hooks for friends' lists (in memory only): #savedsid=3.17.18 #fr=Maya:3.17.18,Jo:40 #wlkey=Qm7x #wl=<link body> #standalone=1 #inapp=1 #panel=saved #wldetail=<sid>
   var wt = {}, wq;
