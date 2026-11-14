@@ -1,0 +1,496 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home and Guides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500..700&family=Figtree:wght@400..800&family=Unbounded:wght@500..700&family=Geist:wght@400..700&display=swap" rel="stylesheet">
+<style>
+/* ===== Tokens: copied from design/2026-11-13-themes-v2-spec.md section 5 (Light = Sorbet light, Dark = Night) ===== */
+[data-skin="night"]{
+  --paper:#0B0A10; --paper-2:#15131D; --paper-3:#1C1A26; --ink:#F7F5FC; --ink-2:#BDB8CC; --ink-3:#948EA6;
+  --rule:#24212E; --rule-strong:#363247;
+  --accent:#C6FF3D; --on-accent:#0B0A10; --accent-text:#C6FF3D; --accent-soft:#2C3A0E;
+  --scrim:rgba(0,0,0,.65); --elev-1:none; --elev-2:0 -1px 0 var(--rule),0 -16px 48px rgba(0,0,0,.55);
+  --open:#3BD98E; --soon:#FFB547; --closed:#948EA6;
+  --g-play:#5AA2FF; --g-look:#B98CFF; --g-nature:#9BE35A; --g-eat:#FFC83D; --g-shows:#FF5FD2;
+  --f-display:"Unbounded",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-body:"Geist",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display-wt:600; --display-ls:-.01em;
+  --f-card:var(--f-body); --card-wt:650; --card-ls:-.01em;
+  --r-tile:20px; --r-card:24px; --r-sheet:28px; --r-thumb:16px;
+  --t-title:24px; --t-sec:19px; --t-card:17px; --t-name:18px;
+  --route:#C6FF3D; --map-bg:#15131D; --map-water:#16243A; --map-park:#17271B; --map-road:#2A2636; --map-label:#7E7892;
+  color-scheme:dark;
+}
+[data-skin="sorbet"]{
+  --paper:#FCFAFF; --paper-2:#F3EFFA; --paper-3:#FFFFFF; --ink:#211B2C; --ink-2:#544C62; --ink-3:#675F75;
+  --rule:#EAE4F2; --rule-strong:#D9D0E6;
+  --accent:#211B2C; --on-accent:#FFFFFF; --accent-text:#A82E58; --accent-soft:#F6E3EC;
+  --scrim:rgba(33,27,44,.36); --elev-1:0 1px 2px rgba(60,40,100,.06),0 8px 24px rgba(60,40,100,.08); --elev-2:0 -12px 40px rgba(60,40,100,.12);
+  --open:#15744A; --soon:#995208; --closed:#675F75;
+  --g-play:#3A5CCC; --g-look:#6A33B8; --g-nature:#3A7218; --g-eat:#856310; --g-shows:#A82A80;
+  --f-display:"Fredoka",ui-rounded,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-body:"Figtree",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display-wt:600; --display-ls:0;
+  --f-card:var(--f-display); --card-wt:600; --card-ls:0;
+  --r-tile:20px; --r-card:28px; --r-sheet:32px; --r-thumb:18px;
+  --t-title:30px; --t-sec:20px; --t-card:18px; --t-name:19px;
+  --route:#A82E58; --map-bg:#F4F1EC; --map-water:#CFE3F5; --map-park:#DCEFD6; --map-road:#FFFFFF; --map-label:#8A8296;
+  color-scheme:light;
+}
+
+/* ===== Board (mock only) ===== */
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:#E6E2EC;color:#211B2C;font:15px/1.45 "Figtree",system-ui,sans-serif;padding:32px 24px 64px}
+.board-h{max-width:1280px;margin:0 auto 20px}
+.board-h h1{font:600 26px/1.15 "Fredoka",sans-serif;margin:0}
+.board-h p{margin:6px 0 0;color:#544C62;max-width:70ch}
+.row{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;max-width:1280px;margin:0 auto 40px}
+.cap{font:600 13px/1.3 "Figtree",sans-serif;color:#544C62;margin:0 0 8px}
+.ph{position:relative;width:390px;background:var(--paper);color:var(--ink);font-family:var(--f-body);border-radius:36px;overflow:hidden;box-shadow:0 30px 60px rgba(40,20,70,.18)}
+.ph.w320{width:320px}
+.ph button{font-family:inherit}
+
+/* ===== Shared bits ===== */
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.btn-main{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:52px;border:0;border-radius:999px;background:var(--accent);color:var(--on-accent);font:650 16px/1 var(--f-body);cursor:pointer}
+.btn-quiet{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 20px;border:1px solid var(--rule-strong);border-radius:999px;background:transparent;color:var(--ink);font:600 16px/1 var(--f-body);cursor:pointer}
+.linkbtn{border:0;background:none;padding:0;color:var(--ink-2);font:600 13.5px/1.3 var(--f-body);cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--rule-strong)}
+
+/* ===== Home (scrolled) ===== */
+.hm{padding:16px 0 28px}
+.pick-tail{margin:0 16px;height:120px;border-radius:var(--r-card);overflow:hidden;position:relative}
+.pick-tail img{width:100%;height:100%;object-fit:cover;display:block}
+.pick-tail::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.55))}
+.pick-tail b{position:absolute;left:16px;bottom:12px;z-index:1;color:#fff;font:var(--card-wt) var(--t-card)/1.2 var(--f-card)}
+.hm .btn-main{margin:16px 16px 0;width:calc(100% - 32px)}
+
+.tcard{position:relative;margin:16px 16px 0;padding:16px;display:grid;grid-template-columns:48px 1fr;gap:14px;background:var(--paper-3);border-radius:var(--r-tile);box-shadow:var(--elev-1),0 0 0 1px var(--rule)}
+.tcard h3{margin:2px 0 2px;font:var(--card-wt) 16px/1.25 var(--f-card);letter-spacing:var(--card-ls)}
+.tcard p{margin:0;font:400 14px/1.4 var(--f-body);color:var(--ink-2)}
+.tcard .acts{grid-column:2;display:flex;align-items:center;gap:16px;margin-top:2px}
+.tcard .start{height:40px;padding:0 18px;border:0;border-radius:999px;background:var(--accent);color:var(--on-accent);font:650 14.5px/1 var(--f-body)}
+
+.sec-h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:32px 16px 12px}
+.sec-h h2{margin:0;font:var(--card-wt) var(--t-sec)/1.15 var(--f-card);letter-spacing:var(--card-ls)}
+.sec-h .more{font:600 14px/1 var(--f-body);color:var(--ink-2);text-decoration:none;display:inline-flex;align-items:center;gap:2px;min-height:44px}
+.sec-h .arrows{display:none;gap:8px}
+.sec-h .arrows button{width:36px;height:36px;border-radius:999px;border:1px solid var(--rule-strong);background:var(--paper-3);color:var(--ink);display:grid;place-items:center}
+
+.car{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;padding:0 16px 4px;scrollbar-width:none}
+.car::-webkit-scrollbar{display:none}
+.gcard{flex:0 0 264px;scroll-snap-align:start;color:inherit;text-decoration:none}
+.w320 .gcard{flex-basis:232px}
+.gimg{position:relative;aspect-ratio:4/3;border-radius:var(--r-tile);overflow:hidden;background:var(--paper-2)}
+.gimg img{width:100%;height:100%;object-fit:cover;display:block}
+.gimg .n{position:absolute;left:10px;top:10px;height:26px;padding:0 10px;border-radius:999px;background:var(--paper-3);color:var(--ink);font:650 12.5px/26px var(--f-body)}
+.gcard h3{margin:10px 2px 0;font:var(--card-wt) var(--t-card)/1.2 var(--f-card);letter-spacing:var(--card-ls);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.gcard p{margin:4px 2px 0;font:500 13.5px/1.3 var(--f-body);color:var(--ink-2)}
+
+.os{list-style:none;margin:0 16px;padding:0}
+.os a{display:flex;align-items:center;gap:14px;padding:10px 0;color:inherit;text-decoration:none;border-top:1px solid var(--rule)}
+.os li:first-child a{border-top:0;padding-top:2px}
+.os img{width:64px;height:64px;border-radius:var(--r-thumb);object-fit:cover;flex:none;background:var(--paper-2)}
+.os small{display:block;margin:0 0 3px;font:600 13px/1.2 var(--f-body);color:var(--ink-3)}
+.os b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font:var(--card-wt) 16px/1.25 var(--f-card);letter-spacing:var(--card-ls)}
+.endnote{margin:28px 16px 0;font:400 13px/1.45 var(--f-body);color:var(--ink-3)}
+
+/* ===== Article ===== */
+.art{position:relative;padding-bottom:28px}
+.art-top{position:absolute;top:14px;left:14px;right:14px;z-index:2;display:flex;justify-content:space-between}
+.art-top div{display:flex;gap:8px}
+.ibtn{width:44px;height:44px;border:0;border-radius:999px;background:var(--paper-3);color:var(--ink);display:grid;place-items:center;box-shadow:0 2px 10px rgba(0,0,0,.18);cursor:pointer}
+.cover{aspect-ratio:4/3;background:var(--paper-2)}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.art-b{padding:22px 20px 0}
+.art h1{margin:0;font:var(--display-wt) var(--t-title)/1.12 var(--f-display);letter-spacing:var(--display-ls);text-wrap:balance}
+.when{display:flex;align-items:center;gap:6px;margin:10px 0 0;font:600 14px/1.3 var(--f-body);color:var(--ink-2)}
+.when svg.i{width:16px;height:16px}
+.intro{margin:14px 0 0;font:400 16.5px/1.5 var(--f-body);color:var(--ink)}
+.steps{list-style:none;margin:28px 0 0;padding:0}
+.step{display:grid;grid-template-columns:28px 1fr;column-gap:14px}
+.rail{position:relative;display:flex;justify-content:center}
+.rail .num{position:relative;z-index:1;width:28px;height:28px;border-radius:999px;background:var(--accent);color:var(--on-accent);font:700 14px/28px var(--f-body);text-align:center}
+.rail::after{content:"";position:absolute;top:32px;bottom:-2px;left:13px;width:2px;background:var(--rule-strong);border-radius:2px}
+.step:last-child .rail::after{display:none}
+.lbl{margin:4px 0 0;font:700 13.5px/1.2 var(--f-body);color:var(--accent-text)}
+.simg{margin:10px 0 12px;aspect-ratio:16/10;border-radius:18px;overflow:hidden;background:var(--paper-2)}
+.simg img{width:100%;height:100%;object-fit:cover;display:block}
+.step h3{margin:0;font:var(--card-wt) var(--t-name)/1.2 var(--f-card);letter-spacing:var(--card-ls)}
+.why{margin:4px 0 0;font:400 15px/1.45 var(--f-body);color:var(--ink-2)}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin:10px 0 0;font:600 13.5px/1.3 var(--f-body)}
+.meta .t{color:var(--ink)}
+.st{display:inline-flex;align-items:center;gap:6px}
+.st::before{content:"";width:8px;height:8px;border-radius:999px;background:currentColor}
+.st.open{color:var(--open)} .st.soon{color:var(--soon)} .st.closed{color:var(--closed)}
+.see{display:inline-flex;align-items:center;gap:4px;margin:12px 0 0;height:38px;padding:0 14px 0 16px;border:0;border-radius:999px;background:var(--paper-2);color:var(--ink);font:600 14px/1 var(--f-body);cursor:pointer}
+.see svg.i{width:16px;height:16px}
+.hop{display:flex;align-items:center;gap:6px;padding:16px 0 22px;font:500 13px/1.2 var(--f-body);color:var(--ink-3)}
+.hop svg.i{width:16px;height:16px}
+.art-end{padding:30px 20px 0}
+.art-end .two{display:flex;gap:10px}
+.art-end .btn-main{flex:1}
+.trust{margin:14px 0 0;font:400 13px/1.4 var(--f-body);color:var(--ink-3)}
+.next{margin:28px 0 0;padding-top:18px;border-top:1px solid var(--rule)}
+.next small{display:block;font:600 13px/1.2 var(--f-body);color:var(--ink-3);margin-bottom:10px}
+.next a{display:flex;align-items:center;gap:14px;color:inherit;text-decoration:none}
+.next img{width:64px;height:64px;border-radius:var(--r-thumb);object-fit:cover}
+.next b{font:var(--card-wt) 16px/1.25 var(--f-card)}
+.next span{display:block;font:500 13px/1.3 var(--f-body);color:var(--ink-2);margin-top:2px}
+
+/* ===== Account sheet ===== */
+.acc{height:560px;position:relative;background:var(--paper-2)}
+.acc .behind{position:absolute;inset:0;padding:20px 16px;opacity:.9}
+.acc .behind div{height:150px;border-radius:var(--r-card);background:var(--paper-3);margin-bottom:12px}
+.acc .scrim{position:absolute;inset:0;background:var(--scrim)}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--paper);border-radius:var(--r-sheet) var(--r-sheet) 0 0;box-shadow:var(--elev-2);padding:10px 20px 28px}
+.grab{width:40px;height:5px;border-radius:9px;background:var(--rule-strong);margin:0 auto 14px}
+.sheet h2{margin:0 0 4px;font:var(--card-wt) 20px/1.2 var(--f-card)}
+.sheet .who{margin:0 0 14px;font:500 14px/1.3 var(--f-body);color:var(--ink-2)}
+.setrow{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:10px 0;border:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:none;color:var(--ink);text-align:left;cursor:pointer}
+.setrow .ic{width:40px;height:40px;border-radius:999px;background:var(--accent-soft);color:var(--accent-text);display:grid;place-items:center;flex:none}
+.setrow b{display:block;font:600 16px/1.25 var(--f-body)}
+.setrow span.s{display:block;margin-top:2px;font:500 13.5px/1.3 var(--f-body);color:var(--ink-2)}
+.setrow .grow{flex:1;min-width:0}
+.setrow .chev{color:var(--ink-3)}
+.links{display:flex;flex-wrap:wrap;gap:6px 14px;margin:16px 0 0;color:var(--ink-3)}
+
+/* ===== Laptop ===== */
+.step .lbl + h3{margin-top:6px}
+body.solo-lap{padding:0;background:#E6E2EC}
+body.solo-lap > header, body.solo-lap > .row:not(.laprow), body.solo-lap .laprow .cap{display:none}
+body.solo-lap .laprow{margin:0;max-width:none}
+body.solo-lap .laprow > div{width:100%}
+body.solo-lap .lap{border-radius:0;box-shadow:none}
+.laprow > div{width:100%}
+.lap{width:100%;max-width:1280px;height:800px;display:flex;border-radius:18px;overflow:hidden;box-shadow:0 30px 60px rgba(40,20,70,.2);background:var(--map-bg);color:var(--ink);font-family:var(--f-body)}
+.lap .panel{width:440px;flex:none;height:100%;overflow:hidden;background:var(--paper);position:relative;box-shadow:8px 0 30px rgba(0,0,0,.12);z-index:1}
+.lap .map{flex:1;position:relative}
+.lap .map svg{position:absolute;inset:0;width:100%;height:100%}
+.pin{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:999px;background:var(--accent);color:var(--on-accent);font:700 15px/34px var(--f-body);text-align:center;box-shadow:0 0 0 3px var(--paper),0 4px 12px rgba(0,0,0,.25)}
+.pin-l{position:absolute;transform:translate(24px,-50%);padding:4px 10px;border-radius:999px;background:var(--paper-3);color:var(--ink);font:600 13px/1.2 var(--f-body);box-shadow:0 2px 8px rgba(0,0,0,.15);white-space:nowrap}
+.lap .map .attr{position:absolute;left:12px;bottom:10px;padding:3px 8px;border-radius:6px;background:var(--paper-3);color:var(--ink-3);font:500 11px var(--f-body)}
+
+@media (min-width:1000px){ .lap .sec-h .arrows{display:flex} }
+@media (max-width:640px){
+  body{padding:12px 0 40px}
+  .board-h{padding:0 16px}
+  .row{gap:24px;margin-bottom:24px}
+  .row > div{width:100%}
+  .cap{padding:0 16px}
+  .ph{width:100%;border-radius:0;box-shadow:none}
+  .ph.w320{width:320px}
+  .laprow{display:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V3M7.5 7.5L12 3l4.5 4.5"/><path d="M6 11H5v10h14V11h-1"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4L3 6.5v13.5l6-2.5 6 2.5 6-2.5V4l-6 2.5z"/><path d="M9 4v13.5M15 6.5V20"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-walk" viewBox="0 0 24 24"><circle cx="13" cy="4.5" r="1.8"/><path d="M10 21l2.2-6.5L15 17v4M9 11l2.5-3.5 3 2 2.5 1.5M11.5 7.5l-.8 5.2"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.2 4.2 0 0 1 12 7.3a4.2 4.2 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/></symbol>
+  <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6.5 3.5h11v17L12 16.5l-5.5 4z"/></symbol>
+</svg>
+
+<header class="board-h">
+  <h1>Home cleanup and guides as articles</h1>
+  <p>Mock for design/2026-11-14-home-guides-spec.md. Light = Sorbet, Dark = Night. Photos are real files from app/photos. Guide titles and the article text are sample copy; the writer's data/guides.json replaces them. Mock "now" = Sat Nov 14, 1:10 pm.</p>
+</header>
+
+<!-- =============== ROW 1: Sorbet light at 390 =============== -->
+<section class="row">
+  <div>
+    <p class="cap">1 · Home, scrolled down · Light · 390 · taste test never done</p>
+    <div class="ph" data-skin="sorbet">
+      <div class="hm">
+        <div class="pick-tail"><img src="../photos/pc-art-institute-of-chicago-1.jpg" alt=""><b>Art Institute of Chicago</b></div>
+        <button class="btn-main" type="button">Browse everything<svg class="i"><use href="#i-right"/></svg></button>
+        <div class="tcard">
+          <svg viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><rect x="6" y="8" width="24" height="32" rx="6" transform="rotate(-10 18 24)" fill="var(--accent-soft)" stroke="var(--accent-text)" stroke-width="1.5"/><rect x="17" y="6" width="24" height="32" rx="6" transform="rotate(8 29 22)" fill="var(--paper-3)" stroke="var(--ink)" stroke-width="1.5"/><path d="M29 18.5c-1.4-2.3-5-1.4-5 1.2 0 2.8 5 5.6 5 5.6s5-2.8 5-5.6c0-2.6-3.6-3.5-5-1.2z" fill="var(--accent-text)"/></svg>
+          <div><h3>What are you into?</h3><p>Swipe for a minute. Get better picks.</p></div>
+          <div class="acts"><button class="start" type="button">Start</button><button class="linkbtn" type="button">No thanks</button></div>
+        </div>
+
+        <div class="sec-h"><h2>Guides</h2></div>
+        <div class="car">
+          <a class="gcard" href="#"><div class="gimg"><img src="../photos/pa-maggie-daley-skating-ribbon-1.jpg" alt=""><span class="n">3 stops</span></div><h3>Skate, a giant tree, then a rooftop</h3><p>Winter afternoon · Loop</p></a>
+          <a class="gcard" href="#"><div class="gimg"><img src="../photos/ev-illumination-morton-arboretum-1.jpg" alt=""><span class="n">3 stops</span></div><h3>Holiday lights after dark</h3><p>Any December night</p></a>
+          <a class="gcard" href="#"><div class="gimg"><img src="../photos/pc-garfield-park-conservatory-1.jpg" alt=""><span class="n">2 stops</span></div><h3>A rainy day in the jungle</h3><p>When it pours · West Side</p></a>
+          <a class="gcard" href="#"><div class="gimg"><img src="../photos/pc-green-mill-1.jpg" alt=""><span class="n">3 stops</span></div><h3>Jazz like it's 1940</h3><p>Late night · Uptown</p></a>
+        </div>
+
+        <div class="sec-h"><h2>Opening soon</h2><a class="more" href="#">All 38<svg class="i" style="width:16px;height:16px"><use href="#i-right"/></svg></a></div>
+        <ul class="os">
+          <li><a href="#"><img src="../photos/ev-christkindlmarket-chicago-daley-plaza-1.jpg" alt=""><span><small>Friday</small><b>Christkindlmarket Chicago</b></span></a></li>
+          <li><a href="#"><img src="../photos/ev-zoolights-lincoln-park-zoo-1.jpg" alt=""><span><small>Friday</small><b>ZooLights at Lincoln Park Zoo</b></span></a></li>
+          <li><a href="#"><img src="../photos/ev-winter-wonderfest-navy-pier-1.jpg" alt=""><span><small>Fri, Nov 27</small><b>Winter WonderFest at Navy Pier</b></span></a></li>
+        </ul>
+        <p class="endnote">Travel times are rough. <button class="linkbtn" type="button">Send a tip</button> · <button class="linkbtn" type="button">About</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <p class="cap">2 · Guide article · Light · 390</p>
+    <div class="ph" data-skin="sorbet">
+      <article class="art">
+        <div class="art-top"><button class="ibtn" type="button" aria-label="Back"><svg class="i"><use href="#i-back"/></svg></button><div><button class="ibtn" type="button" aria-label="Show on the map"><svg class="i"><use href="#i-map"/></svg></button><button class="ibtn" type="button" aria-label="Share"><svg class="i"><use href="#i-share"/></svg></button></div></div>
+        <div class="cover"><img src="../photos/pa-maggie-daley-skating-ribbon-1.jpg" alt="Skaters on the Maggie Daley ribbon with the skyline behind"></div>
+        <div class="art-b">
+          <h1>Skate, a giant tree, then a rooftop</h1>
+          <p class="when"><svg class="i"><use href="#i-clock"/></svg>Winter afternoon · Loop</p>
+          <p class="intro">Ice under the skyline, a tree three floors tall, then a drink up high. It's all a short walk apart.</p>
+          <ol class="steps">
+            <li class="step"><div class="rail"><span class="num">1</span></div><div>
+              <p class="lbl">Start with</p>
+              <h3>Maggie Daley Skating Ribbon</h3>
+              <p class="why">A winding ice path with the skyline all around.</p>
+              <p class="meta"><span class="t">2–4 pm</span><span class="st soon">Opens 2 pm</span></p>
+              <button class="see" type="button">See place<svg class="i"><use href="#i-right"/></svg></button>
+              <p class="hop"><svg class="i"><use href="#i-walk"/></svg>9 min walk</p>
+            </div></li>
+            <li class="step"><div class="rail"><span class="num">2</span></div><div>
+              <p class="lbl">Then</p>
+              <div class="simg"><img src="../photos/ev-walnut-room-great-tree-macys-1.jpg" alt=""></div>
+              <h3>The Great Tree at the Walnut Room</h3>
+              <p class="why">Eat under the Great Tree on Macy's seventh floor.</p>
+              <p class="meta"><span class="t">4:30–5:30</span><span class="st closed">Hours not posted · call first</span></p>
+              <button class="see" type="button">See place<svg class="i"><use href="#i-right"/></svg></button>
+              <p class="hop"><svg class="i"><use href="#i-walk"/></svg>4 min walk</p>
+            </div></li>
+            <li class="step"><div class="rail"><span class="num">3</span></div><div>
+              <p class="lbl">End at</p>
+              <div class="simg"><img src="../photos/pd-cindys-rooftop-1.jpg" alt=""></div>
+              <h3>Cindy's Rooftop</h3>
+              <p class="why">Glass rooftop with the park and the lake below.</p>
+              <p class="meta"><span class="t">Until late</span><span class="st open">Open till midnight</span></p>
+              <button class="see" type="button">See place<svg class="i"><use href="#i-right"/></svg></button>
+            </div></li>
+          </ol>
+        </div>
+        <div class="art-end">
+          <div class="two"><button class="btn-main" type="button"><svg class="i"><use href="#i-bookmark"/></svg>Save this plan</button><button class="btn-quiet" type="button" aria-label="Share"><svg class="i"><use href="#i-share"/></svg>Share</button></div>
+          <p class="trust">Hours checked Nov 13.</p>
+          <div class="next"><small>Next guide</small><a href="#"><img src="../photos/ev-illumination-morton-arboretum-1.jpg" alt=""><span><b>Holiday lights after dark</b><span>Any December night</span></span></a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div>
+    <p class="cap">3 · Account sheet · Light · 390 · taste done</p>
+    <div class="ph" data-skin="sorbet">
+      <div class="acc"><div class="behind"><div></div><div></div><div></div></div><div class="scrim"></div>
+        <div class="sheet"><div class="grab"></div><h2>Your account</h2><p class="who">@yourname · synced</p>
+          <button class="setrow" type="button"><span class="ic"><svg class="i"><use href="#i-heart"/></svg></span><span class="grow"><b>Your taste</b><span class="s">Cozy · Artsy · Night owl</span></span><svg class="i chev"><use href="#i-right"/></svg></button>
+          <p class="links"><button class="linkbtn" type="button">Friends</button><span>·</span><button class="linkbtn" type="button">Privacy</button><span>·</span><button class="linkbtn" type="button">Sign out</button></p>
+        </div>
+      </div>
+    </div>
+    <p class="cap" style="margin-top:24px">3b · Same row, test never done</p>
+    <div class="ph" data-skin="sorbet" style="padding:8px 20px">
+      <button class="setrow" type="button" style="border:0"><span class="ic"><svg class="i"><use href="#i-heart"/></svg></span><span class="grow"><b>Take the taste test</b><span class="s">1 minute. Better picks.</span></span><svg class="i chev"><use href="#i-right"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- =============== ROW 2: Night at 390 =============== -->
+<section class="row">
+  <div>
+    <p class="cap">4 · Home, scrolled down · Dark (Night) · 390</p>
+    <div class="ph" data-skin="night">
+      <div class="hm">
+        <div class="pick-tail"><img src="../photos/pc-art-institute-of-chicago-1.jpg" alt=""><b>Art Institute of Chicago</b></div>
+        <button class="btn-main" type="button">Browse everything<svg class="i"><use href="#i-right"/></svg></button>
+        <div class="tcard">
+          <svg viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><rect x="6" y="8" width="24" height="32" rx="6" transform="rotate(-10 18 24)" fill="var(--accent-soft)" stroke="var(--accent-text)" stroke-width="1.5"/><rect x="17" y="6" width="24" height="32" rx="6" transform="rotate(8 29 22)" fill="var(--paper-3)" stroke="var(--ink)" stroke-width="1.5"/><path d="M29 18.5c-1.4-2.3-5-1.4-5 1.2 0 2.8 5 5.6 5 5.6s5-2.8 5-5.6c0-2.6-3.6-3.5-5-1.2z" fill="var(--accent-text)"/></svg>
+          <div><h3>What are you into?</h3><p>Swipe for a minute. Get better picks.</p></div>
+          <div class="acts"><button class="start" type="button">Start</button><button class="linkbtn" type="button">No thanks</button></div>
+        </div>
+        <div class="sec-h"><h2>Guides</h2></div>
+        <div class="car">
+          <a class="gcard" href="#"><div class="gimg"><img src="../photos/pc-green-mill-1.jpg" alt=""><span class="n">3 stops</span></div><h3>Jazz like it's 1940</h3><p>Late night · Uptown</p></a>
+          <a class="gcard" href="#"><div class="gimg"><img src="../photos/pd-logan-arcade-1.jpg" alt=""><span class="n">2 stops</span></div><h3>Pinball and a pint</h3><p>Weeknight · Logan Square</p></a>
+          <a class="gcard" href="#"><div class="gimg"><img src="../photos/pc-second-city-1.jpg" alt=""><span class="n">3 stops</span></div><h3>Comedy night in Old Town</h3><p>Friday night · Old Town</p></a>
+        </div>
+        <div class="sec-h"><h2>Opening soon</h2><a class="more" href="#">All 38<svg class="i" style="width:16px;height:16px"><use href="#i-right"/></svg></a></div>
+        <ul class="os">
+          <li><a href="#"><img src="../photos/ev-christkindlmarket-chicago-daley-plaza-1.jpg" alt=""><span><small>Friday</small><b>Christkindlmarket Chicago</b></span></a></li>
+          <li><a href="#"><img src="../photos/ev-zoolights-lincoln-park-zoo-1.jpg" alt=""><span><small>Friday</small><b>ZooLights at Lincoln Park Zoo</b></span></a></li>
+          <li><a href="#"><img src="../photos/ev-winter-wonderfest-navy-pier-1.jpg" alt=""><span><small>Fri, Nov 27</small><b>Winter WonderFest at Navy Pier</b></span></a></li>
+        </ul>
+        <p class="endnote">Travel times are rough. <button class="linkbtn" type="button">Send a tip</button> · <button class="linkbtn" type="button">About</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <p class="cap">5 · Guide article · Dark (Night) · 390</p>
+    <div class="ph" data-skin="night">
+      <article class="art">
+        <div class="art-top"><button class="ibtn" type="button" aria-label="Back"><svg class="i"><use href="#i-back"/></svg></button><div><button class="ibtn" type="button" aria-label="Show on the map"><svg class="i"><use href="#i-map"/></svg></button><button class="ibtn" type="button" aria-label="Share"><svg class="i"><use href="#i-share"/></svg></button></div></div>
+        <div class="cover"><img src="../photos/pa-maggie-daley-skating-ribbon-1.jpg" alt=""></div>
+        <div class="art-b">
+          <h1>Skate, a giant tree, then a rooftop</h1>
+          <p class="when"><svg class="i"><use href="#i-clock"/></svg>Winter afternoon · Loop</p>
+          <p class="intro">Ice under the skyline, a tree three floors tall, then a drink up high. It's all a short walk apart.</p>
+          <ol class="steps">
+            <li class="step"><div class="rail"><span class="num">1</span></div><div>
+              <p class="lbl">Start with</p>
+              <h3>Maggie Daley Skating Ribbon</h3>
+              <p class="why">A winding ice path with the skyline all around.</p>
+              <p class="meta"><span class="t">2–4 pm</span><span class="st soon">Opens 2 pm</span></p>
+              <button class="see" type="button">See place<svg class="i"><use href="#i-right"/></svg></button>
+              <p class="hop"><svg class="i"><use href="#i-walk"/></svg>9 min walk</p>
+            </div></li>
+            <li class="step"><div class="rail"><span class="num">2</span></div><div>
+              <p class="lbl">Then</p>
+              <div class="simg"><img src="../photos/ev-walnut-room-great-tree-macys-1.jpg" alt=""></div>
+              <h3>The Great Tree at the Walnut Room</h3>
+              <p class="why">Eat under the Great Tree on Macy's seventh floor.</p>
+              <p class="meta"><span class="t">4:30–5:30</span><span class="st closed">Hours not posted · call first</span></p>
+              <button class="see" type="button">See place<svg class="i"><use href="#i-right"/></svg></button>
+              <p class="hop"><svg class="i"><use href="#i-walk"/></svg>4 min walk</p>
+            </div></li>
+            <li class="step"><div class="rail"><span class="num">3</span></div><div>
+              <p class="lbl">End at</p>
+              <div class="simg"><img src="../photos/pd-cindys-rooftop-1.jpg" alt=""></div>
+              <h3>Cindy's Rooftop</h3>
+              <p class="why">Glass rooftop with the park and the lake below.</p>
+              <p class="meta"><span class="t">Until late</span><span class="st open">Open till midnight</span></p>
+              <button class="see" type="button">See place<svg class="i"><use href="#i-right"/></svg></button>
+            </div></li>
+          </ol>
+        </div>
+        <div class="art-end">
+          <div class="two"><button class="btn-main" type="button"><svg class="i"><use href="#i-bookmark"/></svg>Save this plan</button><button class="btn-quiet" type="button"><svg class="i"><use href="#i-share"/></svg>Share</button></div>
+          <p class="trust">Hours checked Nov 13.</p>
+          <div class="next"><small>Next guide</small><a href="#"><img src="../photos/ev-illumination-morton-arboretum-1.jpg" alt=""><span><b>Holiday lights after dark</b><span>Any December night</span></span></a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <div>
+    <p class="cap">6 · Account sheet · Dark (Night) · 390</p>
+    <div class="ph" data-skin="night">
+      <div class="acc"><div class="behind"><div></div><div></div><div></div></div><div class="scrim"></div>
+        <div class="sheet"><div class="grab"></div><h2>Your account</h2><p class="who">@yourname · synced</p>
+          <button class="setrow" type="button"><span class="ic"><svg class="i"><use href="#i-heart"/></svg></span><span class="grow"><b>Your taste</b><span class="s">Cozy · Artsy · Night owl</span></span><svg class="i chev"><use href="#i-right"/></svg></button>
+          <p class="links"><button class="linkbtn" type="button">Friends</button><span>·</span><button class="linkbtn" type="button">Privacy</button><span>·</span><button class="linkbtn" type="button">Sign out</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== ROW 3: 320 =============== -->
+<section class="row">
+  <div>
+    <p class="cap">7 · Home sections · Light · 320</p>
+    <div class="ph w320" data-skin="sorbet">
+      <div class="hm" style="padding-top:0">
+        <div class="sec-h" style="margin-top:20px"><h2>Guides</h2></div>
+        <div class="car">
+          <a class="gcard" href="#"><div class="gimg"><img src="../photos/pd-color-cocktail-factory-pilsen-1.jpg" alt=""><span class="n">2 stops</span></div><h3>Make something together</h3><p>Date night · Pilsen</p></a>
+          <a class="gcard" href="#"><div class="gimg"><img src="../photos/pc-skydeck-chicago-1.jpg" alt=""><span class="n">3 stops</span></div><h3>Friends in town for a day</h3><p>Weekend · Loop</p></a>
+        </div>
+        <div class="sec-h"><h2>Opening soon</h2><a class="more" href="#">All 38<svg class="i" style="width:16px;height:16px"><use href="#i-right"/></svg></a></div>
+        <ul class="os">
+          <li><a href="#"><img src="../photos/ev-christkindlmarket-chicago-daley-plaza-1.jpg" alt=""><span><small>Friday</small><b>Christkindlmarket Chicago</b></span></a></li>
+          <li><a href="#"><img src="../photos/ev-zoolights-lincoln-park-zoo-1.jpg" alt=""><span><small>Friday</small><b>ZooLights at Lincoln Park Zoo</b></span></a></li>
+          <li><a href="#"><img src="../photos/ev-winter-wonderfest-navy-pier-1.jpg" alt=""><span><small>Fri, Nov 27</small><b>Winter WonderFest at Navy Pier</b></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p class="cap">8 · Article top · Dark (Night) · 320</p>
+    <div class="ph w320" data-skin="night">
+      <article class="art">
+        <div class="art-top"><button class="ibtn" type="button" aria-label="Back"><svg class="i"><use href="#i-back"/></svg></button><div><button class="ibtn" type="button" aria-label="Show on the map"><svg class="i"><use href="#i-map"/></svg></button><button class="ibtn" type="button" aria-label="Share"><svg class="i"><use href="#i-share"/></svg></button></div></div>
+        <div class="cover"><img src="../photos/pc-griffin-msi-1.jpg" alt=""></div>
+        <div class="art-b">
+          <h1>A whole day in Hyde Park</h1>
+          <p class="when"><svg class="i"><use href="#i-clock"/></svg>Saturday · Hyde Park</p>
+          <p class="intro">One big museum, one small one, and a walk by the lake in between.</p>
+          <ol class="steps"><li class="step"><div class="rail"><span class="num">1</span></div><div>
+            <p class="lbl">Start with</p>
+            <h3>Griffin Museum of Science and Industry</h3>
+            <p class="why">A coal mine, a U-boat and a slide inside.</p>
+            <p class="meta"><span class="t">9:30–1</span><span class="st open">Open till 5 pm</span></p>
+          </div></li></ol>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =============== ROW 4: laptop 1280 =============== -->
+<section class="row laprow">
+  <div>
+    <p class="cap">9 · Laptop 1280 · Light · the article fills the left panel; the map shows the stops in order</p>
+    <div class="lap" data-skin="sorbet">
+      <div class="panel">
+        <article class="art">
+          <div class="art-top"><button class="ibtn" type="button" aria-label="Back"><svg class="i"><use href="#i-back"/></svg></button><div><button class="ibtn" type="button" aria-label="Share"><svg class="i"><use href="#i-share"/></svg></button></div></div>
+          <div class="cover" style="aspect-ratio:16/9"><img src="../photos/pa-maggie-daley-skating-ribbon-1.jpg" alt=""></div>
+          <div class="art-b">
+            <h1>Skate, a giant tree, then a rooftop</h1>
+            <p class="when"><svg class="i"><use href="#i-clock"/></svg>Winter afternoon · Loop</p>
+            <p class="intro">Ice under the skyline, a tree three floors tall, then a drink up high. It's all a short walk apart.</p>
+            <ol class="steps">
+              <li class="step"><div class="rail"><span class="num">1</span></div><div>
+                <p class="lbl">Start with</p>
+                  <h3>Maggie Daley Skating Ribbon</h3>
+                <p class="why">A winding ice path with the skyline all around.</p>
+                <p class="meta"><span class="t">2–4 pm</span><span class="st soon">Opens 2 pm</span></p>
+                <button class="see" type="button">See place<svg class="i"><use href="#i-right"/></svg></button>
+                <p class="hop"><svg class="i"><use href="#i-walk"/></svg>9 min walk</p>
+              </div></li>
+              <li class="step"><div class="rail"><span class="num">2</span></div><div>
+                <p class="lbl">Then</p>
+                <div class="simg"><img src="../photos/ev-walnut-room-great-tree-macys-1.jpg" alt=""></div>
+                <h3>The Great Tree at the Walnut Room</h3>
+              </div></li>
+            </ol>
+          </div>
+        </article>
+      </div>
+      <div class="map">
+        <svg viewBox="0 0 840 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="840" height="800" fill="var(--map-bg)"/>
+          <path d="M640 0 L840 0 L840 800 L700 800 C690 640 660 520 650 380 C645 260 655 120 640 0Z" fill="var(--map-water)"/>
+          <path d="M470 230 L640 230 L645 560 L470 560Z" fill="var(--map-park)"/>
+          <g stroke="var(--map-road)" stroke-width="10" fill="none" stroke-linecap="round">
+            <path d="M0 150 H650"/><path d="M0 300 H640"/><path d="M0 450 H645"/><path d="M0 620 H660"/>
+            <path d="M120 0 V800"/><path d="M260 0 V800"/><path d="M400 0 V800"/><path d="M470 0 V800"/>
+          </g>
+          <g stroke="var(--map-road)" stroke-width="4" fill="none"><path d="M0 225 H640"/><path d="M0 375 H640"/><path d="M0 535 H645"/><path d="M190 0 V800"/><path d="M330 0 V800"/></g>
+          <g font-family="Figtree, sans-serif" font-size="13" font-weight="600" fill="var(--map-label)">
+            <text x="404" y="140" transform="rotate(-90 404 140)">State St</text>
+            <text x="20" y="294">Randolph St</text><text x="20" y="444">Monroe St</text>
+            <text x="500" y="400">Grant Park</text><text x="700" y="420">Lake Michigan</text>
+          </g>
+          <path d="M590 330 L420 286 L470 360" fill="none" stroke="var(--route)" stroke-width="4" stroke-dasharray="2 9" stroke-linecap="round"/>
+        </svg>
+        <span class="pin" style="left:70.2%;top:41.25%">1</span><span class="pin-l" style="left:70.2%;top:41.25%">Skating Ribbon</span>
+        <span class="pin" style="left:50%;top:35.75%">2</span><span class="pin-l" style="left:50%;top:35.75%">Walnut Room</span>
+        <span class="pin" style="left:55.95%;top:45%">3</span><span class="pin-l" style="left:55.95%;top:45%">Cindy's</span>
+        <span class="attr">Drawn map (mock) · real app uses OpenFreeMap</span>
+      </div>
+    </div>
+  </div>
+</section>
+<script>if (location.hash === '#lap') document.body.classList.add('solo-lap');</script>
+</body>
+</html>
+
