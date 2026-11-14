@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Test preview A: swipes + questions</title>
+<style>
+:root{--bg:#FBF8FF;--fg:#1D1726;--muted:#6B6378;--chip:#EFE9F8;--accent:#E0356F;--yes:#2E7D4F;--no:#6B6378}
+@media (prefers-color-scheme:dark){:root{--bg:#0F0C14;--fg:#F4F0FA;--muted:#A79FB5;--chip:#231D2E;--accent:#FF5FA0;--yes:#7CE3A3;--no:#C9C2D6}}
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font:15px/1.4 system-ui,-apple-system,Segoe UI,sans-serif}
+.app{max-width:440px;margin:0 auto;height:100dvh;display:flex;flex-direction:column;padding:12px max(12px,env(safe-area-inset-left)) 12px max(12px,env(safe-area-inset-right))}
+.top{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}.bar{flex:1;height:4px;border-radius:4px;background:var(--chip);overflow:hidden}.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.label{margin:10px 0 8px;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.stage{flex:1;position:relative;min-height:0}
+.card{position:absolute;inset:0;border-radius:22px;overflow:hidden;background:#222 center/cover no-repeat;box-shadow:0 8px 30px rgba(0,0,0,.25);touch-action:none;user-select:none}
+.card .meta{position:absolute;left:0;right:0;bottom:0;padding:60px 18px 18px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff}
+.card h2{margin:0 0 4px;font-size:22px}.card p{margin:0;opacity:.9}
+.word{position:absolute;top:24px;left:50%;transform:translateX(-50%);padding:6px 16px;border-radius:999px;font-weight:800;font-size:20px;background:#fff;color:#111;opacity:0}
+.hint{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+.rail{position:absolute;right:12px;bottom:90px;display:flex;flex-direction:column;gap:8px}.rail button{width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.88);font-size:18px;cursor:pointer}
+.wyr{position:absolute;inset:0;display:flex;flex-direction:column;gap:6px}
+.half{flex:1;position:relative;border:0;border-radius:18px;overflow:hidden;background:#222 center/cover no-repeat;cursor:pointer;padding:0;text-align:left;color:#fff;font:inherit}
+.half span{position:absolute;left:0;right:0;bottom:0;padding:40px 16px 14px;background:linear-gradient(transparent,rgba(0,0,0,.78));font-weight:700;font-size:19px}
+.half:active{transform:scale(.98)}
+.or{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;background:var(--bg);color:var(--fg);font-weight:800;border-radius:999px;padding:6px 12px;font-size:13px;pointer-events:none}
+.done{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px}
+.done a{color:var(--accent)}
+</style></head><body>
+<div class="app">
+  <div class="top"><span id="cnt">1 / 35</span><div class="bar"><i id="fill"></i></div></div>
+  <div class="label" id="lbl"></div>
+  <div class="stage" id="stage"></div>
+  <div class="hint" id="hint"></div>
+</div>
+<script>
+var MODE = (location.pathname.indexOf('test-all') >= 0) ? 'all' : 'mix';
+var P = '../photos/';
+var SW = [
+  {img:'pa-pinstripes-northbrook-1.jpg', t:'Pinstripes Northbrook', h:'Bowling and bocce with an Italian bistro'},
+  {img:'pc-garfield-park-conservatory-1.jpg', t:'Garfield Park Conservatory', h:'Tropical plants under glass on a cold day'},
+  {img:'cm-chicago-glass-collective-hot-shop-1.jpg', t:'Chicago Glass Collective', h:'Shape molten glass into your own paperweight'}
+];
+var Q = [
+  ['Wander the quiet Lurie Garden','ps-lurie-garden-1.jpg','Wander the busy Christkindlmarket','ev-christkindlmarket-wrigleyville-1.jpg'],
+  ['Board games at a café table','pd-athena-board-game-cafe-1.jpg','Climb the walls at First Ascent','fgr-first-ascent-west-loop-1.jpg'],
+  ['Masterpieces at the Art Institute','pc-art-institute-of-chicago-1.jpg','Outsider art at Intuit','ps-intuit-art-museum-1.jpg'],
+  ['A quiet neighborhood ice rink','pa-wentworth-ice-rink-1.jpg','Skating at Navy Pier\'s busy WonderFest','ev-winter-wonderfest-navy-pier-1.jpg']
+];
+var steps = MODE === 'mix' ? SW.map(function(s){return {k:'s',d:s};}).concat(Q.slice(0,3).map(function(q){return {k:'q',d:q};}))
+                           : Q.map(function(q){return {k:'q',d:q};});
+var real = MODE === 'mix' ? function(i){ return i < 3 ? i + 1 : 12 + (i - 3) + 1; } : function(i){ return i + 1; };
+var i = 0, stage = document.getElementById('stage');
+function setTop(){ var n = real(i); document.getElementById('cnt').textContent = Math.min(n,35) + ' / 35'; document.getElementById('fill').style.width = (Math.min(n,35) / 35 * 100) + '%'; }
+function render(){
+  stage.innerHTML = ''; setTop();
+  if (i >= steps.length){ stage.innerHTML = '<div class="done"><div style="font-size:40px">🦉</div><b>That\'s the idea!</b><div>This preview shows only a few of the 35. The real test ends with your character.</div><a href="' + (MODE==='mix'?'test-all.html':'test-mix.html') + '">Try the other version →</a></div>'; document.getElementById('lbl').textContent=''; document.getElementById('hint').textContent=''; return; }
+  var s = steps[i];
+  if (s.k === 's'){
+    document.getElementById('lbl').textContent = MODE === 'mix' ? 'Swipe cards (1-12): real places' : '';
+    document.getElementById('hint').textContent = 'Drag right = Into it · left = Nah · up = Love it · down = Never (or tap the icons)';
+    var c = document.createElement('div'); c.className = 'card'; c.style.backgroundImage = 'url(' + P + s.d.img + ')';
+    c.innerHTML = '<div class="word" id="w"></div><div class="meta"><h2>' + s.d.t + '</h2><p>' + s.d.h + '</p></div><div class="rail"><button data-a="love" aria-label="Love it">♥</button><button data-a="yes" aria-label="Into it">✓</button><button data-a="no" aria-label="Nah">✕</button><button data-a="never" aria-label="Never">⦸</button></div>';
+    stage.appendChild(c); drag(c);
+    c.querySelectorAll('.rail button').forEach(function(b){ b.onclick = function(e){ e.stopPropagation(); fly(c, b.dataset.a); }; });
+  } else {
+    document.getElementById('lbl').textContent = MODE === 'mix' ? 'Would you rather (13-35)' : 'Would you rather';
+    document.getElementById('hint').textContent = 'Tap the one you\'d rather do';
+    var w = document.createElement('div'); w.className = 'wyr';
+    var a = Math.random() < .5, q = s.d, A = a ? [q[0],q[1]] : [q[2],q[3]], B = a ? [q[2],q[3]] : [q[0],q[1]];
+    w.innerHTML = '<button class="half" style="background-image:url(' + P + A[1] + ')"><span>' + A[0] + '</span></button><div class="or">or</div><button class="half" style="background-image:url(' + P + B[1] + ')"><span>' + B[0] + '</span></button>';
+    stage.appendChild(w); w.querySelectorAll('.half').forEach(function(h){ h.onclick = function(){ i++; render(); }; });
+  }
+}
+var WORD = {yes:'Into it', no:'Nah', love:'Love it', never:'Never'};
+function dirOf(dx, dy){ return Math.abs(dy) > 1.2 * Math.abs(dx) ? (dy < 0 ? 'love' : 'never') : (dx > 0 ? 'yes' : 'no'); }
+function drag(c){
+  var sx, sy, on = false, w = c.querySelector('#w');
+  c.addEventListener('pointerdown', function(e){ if (e.target.closest('.rail')) return; on = true; sx = e.clientX; sy = e.clientY; c.setPointerCapture(e.pointerId); });
+  c.addEventListener('pointermove', function(e){ if (!on) return; var dx = e.clientX - sx, dy = e.clientY - sy, d = dirOf(dx, dy), p = Math.min(1, Math.max(Math.abs(dx), Math.abs(dy)) / 110);
+    c.style.transform = 'translate(' + dx + 'px,' + dy + 'px) rotate(' + dx / 20 + 'deg)'; w.textContent = WORD[d]; w.style.opacity = p; });
+  c.addEventListener('pointerup', function(e){ if (!on) return; on = false; var dx = e.clientX - sx, dy = e.clientY - sy;
+    if (Math.max(Math.abs(dx), Math.abs(dy)) > 110) fly(c, dirOf(dx, dy)); else { c.style.transition = 'transform .25s'; c.style.transform = ''; w.style.opacity = 0; setTimeout(function(){ c.style.transition = ''; }, 260); } });
+}
+function fly(c, d){ var v = {yes:[600,0], no:[-600,0], love:[0,-800], never:[0,800]}[d]; var w = c.querySelector('#w'); w.textContent = WORD[d]; w.style.opacity = 1;
+  c.style.transition = 'transform .3s'; c.style.transform = 'translate(' + v[0] + 'px,' + v[1] + 'px) rotate(' + v[0] / 30 + 'deg)'; setTimeout(function(){ i++; render(); }, 300); }
+document.addEventListener('keydown', function(e){ var s = steps[i]; if (!s) return; if (s.k === 's'){ var m = {ArrowRight:'yes', ArrowLeft:'no', ArrowUp:'love', ArrowDown:'never'}[e.key]; if (m) fly(stage.firstChild, m); } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'ArrowRight' || e.key === 'ArrowDown'){ i++; render(); } });
+render();
+</script></body></html>
