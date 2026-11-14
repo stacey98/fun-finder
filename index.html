@@ -5922,7 +5922,7 @@ function runSelfTest(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.1 (2026-11-13)');
+    eq('version', VERSION, 'v5.2 (2026-11-13)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
