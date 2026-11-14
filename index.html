@@ -820,7 +820,7 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
 'use strict';
 
 var APP_NAME = 'Chicago Fun Finder';  // THE app name: page title, wordmark, About all read this one constant. Working name until the owner picks one (the earlier proposal was rejected).
-var VERSION = 'v5.1 (2026-11-13)';
+var VERSION = 'v5.2 (2026-11-13)';
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
@@ -3147,7 +3147,7 @@ function bindMap(){
 var ML_JS = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js', ML_CSS = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';
 var OFM_STYLE = {light:'https://tiles.openfreemap.org/styles/liberty', dark:'https://tiles.openfreemap.org/styles/dark'};
 var OFM_ATTRIB = '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> <a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">&copy; OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>';
-var GL_TIMEOUT_MS = 6000, GL_GIVEUP_MS = 30000, GL_PITCH = 38, GL_FIT_SHRINK = 0.82, EARTH_M = 40075016.686;
+var GL_TIMEOUT_MS = 6000, GL_GIVEUP_MS = 30000, GL_PITCH = 0,   /* 2026-11-13: flat by default (she said the tilted map looked 'skewed'); right-drag / two-finger drag still tilts */ GL_FIT_SHRINK = 0.82, EARTH_M = 40075016.686;
 var CTA_HEX = {red:'#C60C30', blue:'#00A1DE', brown:'#62361B', green:'#009B3A', orange:'#F9461C', pink:'#E27EA6', purple:'#522398', yellow:'#F9E300'};
 var GLM = {on:false, map:null, state:'off', why:'', timer:null, dark:null};
 function chooseMapEngine(env){ // pure: 'gl' (street map) or 'svg' (drawn map), and why
