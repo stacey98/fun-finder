@@ -24246,7 +24246,6 @@
         "name":  "Living Water Tea House (tea tastings, Little Italy)",
         "kind":  "place",
         "category":  "food-drink-experience",
-        "genre":  "relax",
         "tags":  [
                      "date",
                      "friends",
@@ -24364,6 +24363,7 @@
                          ],
         "hours_note":  "Mon-Fri 10am-6pm, Sat 10am-7pm, Sun 1-7pm. Tastings are booked time slots inside these hours (e.g. Thu Nov 12: one 5:00 pm slot). No holiday closures listed; no phone, email sales@livingwaterteahouse.com.",
         "description":  "A calm tea house on Taylor Street selling single-origin Chinese and Taiwanese teas and handmade tasting cups. The thing to book is \u0027Tea at the Bar\u0027, a seated tasting where staff brew several teas for you one after another: a nice slow date or catch-up.",
+        "genre":  "eat-drink",
         "photos":  [
                        {
                            "file":  "photos/pr-living-water-tea-house-1.jpg",
@@ -24377,7 +24377,6 @@
         "name":  "Han Cha high tea at Stony Island Arts Bank (Theaster Gates)",
         "kind":  "place",
         "category":  "food-drink-experience",
-        "genre":  "relax",
         "tags":  [
                      "date",
                      "friends",
@@ -24495,6 +24494,7 @@
         "hours_note":  "The building is open Thu-Sat 12-8pm and Sun 12-6pm. Seatings are 2 hours; book on OpenTable to see times. No holiday closures listed; Thanksgiving is a Thursday, so check OpenTable before Nov 26. No phone.",
         "description":  "A Korean-inspired high tea inside the Stony Island Arts Bank, Theaster Gates\u0027s restored bank building in South Shore, blending East Asian teahouse craft with English high tea in a three-course, all-vegetarian menu. Next door, the Yunomi bar serves cocktails and wine.",
         "price_note":  "Prix fixe $75 per person; drinks extra. Admission to the Arts Bank itself is free; the Yunomi bar takes walk-ins.",
+        "genre":  "eat-drink",
         "photos":  [
                        {
                            "file":  "photos/pr-han-cha-stony-island-arts-bank-1.jpg",
@@ -24508,7 +24508,6 @@
         "name":  "Afternoon Tea at the Palm Court (The Drake Hotel)",
         "kind":  "place",
         "category":  "food-drink-experience",
-        "genre":  "relax",
         "tags":  [
                      "date",
                      "friends",
@@ -24946,6 +24945,7 @@
         "price_note":  "Holiday Afternoon Tea: $87 adult ($89 on caroler days), $39 child 3-12, champagne +$18; tax and gratuity extra; extra food refills $30 per person.",
         "hours_note":  "Seatings last 1.5 hours. Regular tea: Fri-Sun, 12:00-4:30pm. Holiday tea: Nov 5-21 seatings 12:00-4:30pm (Thu-Sun or Thu-Sat); then Nov 22-Jan 10 daily, first seating 11am (last seating 4:30pm, or 5:00pm on one menu). Holiday tea is served daily, including Thanksgiving and Christmas Day. After Jan 10 the regular Fri-Sun schedule should return. Festival of Lights tea Sat Nov 21: extra 3:15 and 3:45pm seatings.",
         "description":  "Classic afternoon tea in the Drake Hotel\u0027s Palm Court, a Gold Coast tradition, with tea sandwiches, warm scones and a pastry plate. The holiday version adds a live harpist and carolers on set days and a Little Prince \u0026 Princess tea for kids.",
+        "genre":  "eat-drink",
         "photos":  [
                        {
                            "file":  "photos/pr-drake-palm-court-afternoon-tea-1.jpg",
@@ -24959,7 +24959,6 @@
         "name":  "Oak Park Conservatory",
         "kind":  "place",
         "category":  "nature-outdoors",
-        "genre":  "relax",
         "tags":  [
                      "date",
                      "friends",
@@ -25098,6 +25097,7 @@
                          ],
         "description":  "A small glasshouse run by the Park District of Oak Park, with more than 3,000 plants, some dating to its founding in 1929, along winding stone paths through tropical greenery. A quiet, warm, green place to sit in the middle of winter.",
         "hours_note":  "Tue-Sun 10am-4pm, closed Mondays; closed New Year\u0027s Day, Memorial Day, Independence Day, Labor Day, Thanksgiving and Christmas Day; Christmas Eve 10am-12pm. Groups of 10 or more must register ahead.",
+        "genre":  "nature-animals",
         "photos":  [
                        {
                            "file":  "photos/pr-oak-park-conservatory-1.jpg",
@@ -25111,7 +25111,6 @@
         "name":  "Wilder Park Conservatory (Elmhurst)",
         "kind":  "place",
         "category":  "nature-outdoors",
-        "genre":  "relax",
         "tags":  [
                      "date",
                      "friends",
@@ -25774,6 +25773,7 @@
         "hours_note":  "April-December daily 8am-6pm; January-March daily 8am-2:30pm (Jan 1-Mar 31, 2027). Closed Nov 30-Dec 4, 2026 to set up the Holiday Flower Show and Mar 15-19 for the Spring show; closed 9am-noon on Sat Nov 14 and Sun Nov 15, 2026 for a Park District event. Thanksgiving, Christmas and New Year\u0027s Day are not mentioned: call the Park District, 630-993-8900.",
         "description":  "A greenhouse in Elmhurst\u0027s Wilder Park with tropical plants, flower beds along curving walkways and a pond with koi-like fish, refreshed by three flower shows a year, including a Holiday Flower Show of poinsettias. Small, warm and calm, good for a short walk in downtown Elmhurst.",
         "price_note":  "Free. Flower shows: Fall show to November 29; Holiday Flower Show December 5 to January 17, 2027; Spring show in March.",
+        "genre":  "nature-animals",
         "photos":  [
                        {
                            "file":  "photos/pr-wilder-park-conservatory-1.jpg",
@@ -26016,7 +26016,6 @@
                          "checked_on":  "2026-11-12",
                          "evidence_url":  "https://www.chipublib.org/locations/34/"
                      },
-        "genre":  "relax",
         "hook":  "Glass-roofed hall on the library\u0027s top floor",
         "moods":  [
                       "quiet",
@@ -26057,6 +26056,7 @@
                          ],
         "hours_note":  "Library building hours: Mon-Thu 9am-8pm, Fri-Sat 9am-5pm, Sun 1pm-5pm. The Winter Garden has no separate hours and can close for private events. Thanksgiving Nov 26 and Christmas Dec 25, 2026 closed all day. Dec 24, Dec 31, Jan 1, MLK Day (Jan 18) and Presidents Day (Feb 15, 2027) are not posted yet: call to confirm 312-747-4300.",
         "description":  "The glass-roofed hall on the top floor of Chicago\u0027s main public library, which the library calls the building\u0027s architectural centerpiece, with daylight pouring in all year, greenery and free WiFi. A calm warm-up stop on a cold Loop day, next to the Special Collections exhibit hall.",
+        "genre":  "nature-animals",
         "photos":  [
                        {
                            "file":  "photos/ps-hwlc-winter-garden-1.jpg",
