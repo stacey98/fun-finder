@@ -49525,6 +49525,1051 @@
                    ]
     },
     {
+        "id":  "ev-merry-market-experience-christkindlmarket-2026",
+        "name":  "Merry Market Experience at Christkindlmarket Chicago",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "play",
+        "tags":  [
+                     "holiday",
+                     "friends",
+                     "date",
+                     "family",
+                     "scavenger-hunt",
+                     "limited-time"
+                 ],
+        "hook":  "Skip the line and scavenger-hunt the 30th-anniversary market",
+        "description":  "A weekend add-on at the Daley Plaza Christkindlmarket: you go in through a VIP entrance, then follow a self-guided anniversary scavenger hunt through the wooden huts, learning the stories of longtime vendors along the way. Hot cocoa or cider comes in the 2026 souvenir mug.",
+        "highlights":  [
+                           "Expedited VIP entry",
+                           "Self-guided 30th-anniversary scavenger hunt",
+                           "Hot cocoa or cider in the 2026 souvenir mug"
+                       ],
+        "address":  "Christkindlmarket, Daley Plaza, 50 W Washington St, Chicago, IL 60602",
+        "neighborhood":  "Loop",
+        "lat":  41.88393,
+        "lng":  -87.6302,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "$$",
+        "price_note":  "$38.23 per person including fees; children under 5 free (no mug).",
+        "price_from":  38.23,
+        "duration_minutes":  60,
+        "min_minutes":  60,
+        "hours":  null,
+        "hours_note":  "1-hour time slots: Saturdays 12-8 pm, Sundays 12-7 pm.",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-21T12:00",
+                                "end":  "2026-11-21T20:00"
+                            },
+                            {
+                                "start":  "2026-11-22T12:00",
+                                "end":  "2026-11-22T19:00"
+                            },
+                            {
+                                "start":  "2026-11-28T12:00",
+                                "end":  "2026-11-28T20:00"
+                            },
+                            {
+                                "start":  "2026-11-29T12:00",
+                                "end":  "2026-11-29T19:00"
+                            },
+                            {
+                                "start":  "2026-12-05T12:00",
+                                "end":  "2026-12-05T20:00"
+                            },
+                            {
+                                "start":  "2026-12-06T12:00",
+                                "end":  "2026-12-06T19:00"
+                            },
+                            {
+                                "start":  "2026-12-12T12:00",
+                                "end":  "2026-12-12T20:00"
+                            },
+                            {
+                                "start":  "2026-12-13T12:00",
+                                "end":  "2026-12-13T19:00"
+                            },
+                            {
+                                "start":  "2026-12-19T12:00",
+                                "end":  "2026-12-19T20:00"
+                            },
+                            {
+                                "start":  "2026-12-20T12:00",
+                                "end":  "2026-12-20T19:00"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "booking_url":  "https://bucketlisters.com/experience/merry-market-experience-at-the-christkindlmarket-chicago",
+        "age_note":  "All ages; under 18 with a parent or guardian",
+        "phone":  "(312) 494-2175",
+        "website":  "https://www.christkindlmarket.com/merry-market/",
+        "source_urls":  [
+                            "https://www.christkindlmarket.com/merry-market/",
+                            "https://bucketlisters.com/experience/merry-market-experience-at-the-christkindlmarket-chicago"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.christkindlmarket.com/merry-market/"
+                     },
+        "moods":  [
+                      "festive"
+                  ],
+        "energy":  "easy",
+        "vibe":  "lively",
+        "good_for":  [
+                         "date",
+                         "friends",
+                         "family"
+                     ],
+        "sid":  400,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-merry-market-experience-christkindlmarket-2026-1.jpg",
+                           "credit":  "Choose Chicago (photo Guy Bauer)",
+                           "page_url":  "https://www.choosechicago.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-twas-the-night-before-christkindlmarket-2026",
+        "name":  "\u0027Twas the Night Before: Christkindlmarket Preview Party",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "holiday",
+                     "friends",
+                     "date",
+                     "opening-night",
+                     "limited-time"
+                 ],
+        "hook":  "See the market the night before it opens to everyone",
+        "description":  "The ticketed opening-night preview of the Daley Plaza Christkindlmarket, with the market to yourself before the public opening. You get first dibs on the 2026 souvenir mug, plus live entertainment and the traditional opening ceremony with the Christkind prologue.",
+        "highlights":  [
+                           "Market open only to ticket holders",
+                           "First chance at the 2026 souvenir mug",
+                           "Opening ceremony with the Christkind"
+                       ],
+        "address":  "Christkindlmarket, Daley Plaza, 50 W Washington St, Chicago, IL 60602",
+        "neighborhood":  "Loop",
+        "lat":  41.88393,
+        "lng":  -87.6302,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "$$$",
+        "price_note":  "Adults 21+ $101.53, ages 5-20 $61.43 (fees included); under 5 free without food, drink or mug.",
+        "price_from":  61.43,
+        "duration_minutes":  210,
+        "min_minutes":  90,
+        "hours":  null,
+        "hours_note":  "One night only, 5-8:30 pm.",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-19T17:00",
+                                "end":  "2026-11-19T20:30"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "booking_url":  "https://bucketlisters.com/experience/twas-the-night-before-christkindlmarket-chicago",
+        "age_note":  "All ages with a parent or guardian; adult ticket is 21+",
+        "phone":  "(312) 494-2175",
+        "website":  "https://www.christkindlmarket.com/preview-party/",
+        "source_urls":  [
+                            "https://www.christkindlmarket.com/preview-party/",
+                            "https://bucketlisters.com/experience/twas-the-night-before-christkindlmarket-chicago"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.christkindlmarket.com/preview-party/"
+                     },
+        "moods":  [
+                      "festive"
+                  ],
+        "energy":  "easy",
+        "vibe":  "lively",
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "sid":  401,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-twas-the-night-before-christkindlmarket-2026-1.jpg",
+                           "credit":  "Choose Chicago (photo Guy Bauer)",
+                           "page_url":  "https://www.choosechicago.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-culture-cheer-tours-christkindlmarket-2026",
+        "name":  "Culture \u0026 Cheer Tours at Christkindlmarket Chicago",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "look-learn",
+        "tags":  [
+                     "holiday",
+                     "tour",
+                     "family",
+                     "friends",
+                     "german",
+                     "limited-time"
+                 ],
+        "hook":  "Walk the market with a German-speaking guide before it opens",
+        "description":  "A morning walk through Daley Plaza with a German-speaking market team member while vendors set up, covering German holiday traditions, the vendors and the market\u0027s 30-year history, with a short German phrase lesson. It ends in a heated tent right as the market opens.",
+        "highlights":  [
+                           "Before the market opens to the public",
+                           "Mini German lesson (the Deutschminute)",
+                           "Goodie bag, 2026 souvenir mug and a hot chocolate voucher",
+                           "Max 45 people per tour"
+                       ],
+        "address":  "Christkindlmarket, Daley Plaza, 50 W Washington St, Chicago, IL 60602",
+        "neighborhood":  "Loop",
+        "lat":  41.88393,
+        "lng":  -87.6302,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "$$",
+        "price_note":  "$51.94 per person including fees.",
+        "price_from":  51.94,
+        "duration_minutes":  45,
+        "min_minutes":  45,
+        "hours":  null,
+        "hours_note":  "Tours 10:15-11 am. Enter at the Ticketed Events entrance on the north side of the market, along the Daley Center.",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-19T10:15",
+                                "end":  "2026-11-19T11:00"
+                            },
+                            {
+                                "start":  "2026-11-20T10:15",
+                                "end":  "2026-11-20T11:00"
+                            },
+                            {
+                                "start":  "2026-11-21T10:15",
+                                "end":  "2026-11-21T11:00"
+                            },
+                            {
+                                "start":  "2026-11-22T10:15",
+                                "end":  "2026-11-22T11:00"
+                            },
+                            {
+                                "start":  "2026-11-26T10:15",
+                                "end":  "2026-11-26T11:00"
+                            },
+                            {
+                                "start":  "2026-11-27T10:15",
+                                "end":  "2026-11-27T11:00"
+                            },
+                            {
+                                "start":  "2026-11-28T10:15",
+                                "end":  "2026-11-28T11:00"
+                            },
+                            {
+                                "start":  "2026-11-29T10:15",
+                                "end":  "2026-11-29T11:00"
+                            },
+                            {
+                                "start":  "2026-12-03T10:15",
+                                "end":  "2026-12-03T11:00"
+                            },
+                            {
+                                "start":  "2026-12-04T10:15",
+                                "end":  "2026-12-04T11:00"
+                            },
+                            {
+                                "start":  "2026-12-05T10:15",
+                                "end":  "2026-12-05T11:00"
+                            },
+                            {
+                                "start":  "2026-12-06T10:15",
+                                "end":  "2026-12-06T11:00"
+                            },
+                            {
+                                "start":  "2026-12-10T10:15",
+                                "end":  "2026-12-10T11:00"
+                            },
+                            {
+                                "start":  "2026-12-11T10:15",
+                                "end":  "2026-12-11T11:00"
+                            },
+                            {
+                                "start":  "2026-12-12T10:15",
+                                "end":  "2026-12-12T11:00"
+                            },
+                            {
+                                "start":  "2026-12-13T10:15",
+                                "end":  "2026-12-13T11:00"
+                            },
+                            {
+                                "start":  "2026-12-17T10:15",
+                                "end":  "2026-12-17T11:00"
+                            },
+                            {
+                                "start":  "2026-12-18T10:15",
+                                "end":  "2026-12-18T11:00"
+                            },
+                            {
+                                "start":  "2026-12-19T10:15",
+                                "end":  "2026-12-19T11:00"
+                            },
+                            {
+                                "start":  "2026-12-20T10:15",
+                                "end":  "2026-12-20T11:00"
+                            },
+                            {
+                                "start":  "2026-12-21T10:15",
+                                "end":  "2026-12-21T11:00"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "booking_url":  "https://bucketlisters.com/experience/christkindlmarket-chicago-culture-and-cheer-tours",
+        "age_note":  "",
+        "phone":  "(312) 494-2175",
+        "website":  "https://www.christkindlmarket.com/culture-cheer-tours/",
+        "source_urls":  [
+                            "https://www.christkindlmarket.com/culture-cheer-tours/",
+                            "https://bucketlisters.com/experience/christkindlmarket-chicago-culture-and-cheer-tours"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.christkindlmarket.com/culture-cheer-tours/"
+                     },
+        "moods":  [
+                      "festive",
+                      "curious"
+                  ],
+        "energy":  "easy",
+        "vibe":  "calm",
+        "good_for":  [
+                         "family",
+                         "friends",
+                         "date"
+                     ],
+        "sid":  402,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-culture-cheer-tours-christkindlmarket-2026-1.jpg",
+                           "credit":  "Choose Chicago (photo Guy Bauer)",
+                           "page_url":  "https://www.choosechicago.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-south-loop-farmers-market-winter-water-tower-2027",
+        "name":  "South Loop Farmers Market: Winter Indoor Market at Water Tower Place",
+        "kind":  "event",
+        "category":  "food-drink-experience",
+        "genre":  "eat-drink",
+        "tags":  [
+                     "farmers-market",
+                     "indoor",
+                     "winter",
+                     "sunday",
+                     "free",
+                     "rainy-day"
+                 ],
+        "hook":  "A Sunday farmers market inside Water Tower Place all winter",
+        "description":  "The South Loop Farmers Market moves indoors for winter, filling the fourth floor of Water Tower Place with local farm and food vendors on Sunday afternoons. A warm way to shop local produce and treats on the Mag Mile in January.",
+        "highlights":  [
+                           "Local farm and food vendors",
+                           "Indoors on the 4th floor",
+                           "Pet friendly"
+                       ],
+        "address":  "Water Tower Place, 4th floor, 835 N Michigan Ave, Chicago, IL 60611",
+        "neighborhood":  "Streeterville / Magnificent Mile",
+        "lat":  41.8981097,
+        "lng":  -87.6229314,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "free",
+        "price_note":  "Free entry; 2-hour parking validation.",
+        "price_from":  0,
+        "duration_minutes":  60,
+        "min_minutes":  30,
+        "hours":  null,
+        "hours_note":  "Sundays 12-4 pm. Most vendors take cards; some are cash only.",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2027-01-03T12:00",
+                                "end":  "2027-01-03T16:00"
+                            },
+                            {
+                                "start":  "2027-01-10T12:00",
+                                "end":  "2027-01-10T16:00"
+                            },
+                            {
+                                "start":  "2027-01-17T12:00",
+                                "end":  "2027-01-17T16:00"
+                            },
+                            {
+                                "start":  "2027-01-24T12:00",
+                                "end":  "2027-01-24T16:00"
+                            },
+                            {
+                                "start":  "2027-01-31T12:00",
+                                "end":  "2027-01-31T16:00"
+                            },
+                            {
+                                "start":  "2027-02-07T12:00",
+                                "end":  "2027-02-07T16:00"
+                            },
+                            {
+                                "start":  "2027-02-14T12:00",
+                                "end":  "2027-02-14T16:00"
+                            },
+                            {
+                                "start":  "2027-02-21T12:00",
+                                "end":  "2027-02-21T16:00"
+                            },
+                            {
+                                "start":  "2027-02-28T12:00",
+                                "end":  "2027-02-28T16:00"
+                            },
+                            {
+                                "start":  "2027-03-07T12:00",
+                                "end":  "2027-03-07T16:00"
+                            },
+                            {
+                                "start":  "2027-03-14T12:00",
+                                "end":  "2027-03-14T16:00"
+                            },
+                            {
+                                "start":  "2027-03-21T12:00",
+                                "end":  "2027-03-21T16:00"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "walk-in",
+        "booking_url":  null,
+        "age_note":  "",
+        "phone":  "",
+        "website":  "https://www.southloopfarmersmarket.com/market-locations/winter-indoor-on-sundays",
+        "source_urls":  [
+                            "https://www.southloopfarmersmarket.com/market-locations/winter-indoor-on-sundays"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.southloopfarmersmarket.com/market-locations/winter-indoor-on-sundays"
+                     },
+        "moods":  [
+                      "chill",
+                      "cozy"
+                  ],
+        "energy":  "easy",
+        "vibe":  "calm",
+        "good_for":  [
+                         "date",
+                         "friends",
+                         "family"
+                     ],
+        "sid":  403,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-south-loop-farmers-market-winter-water-tower-2027-1.jpg",
+                           "credit":  "South Loop Farmers Market website",
+                           "page_url":  "https://www.southloopfarmersmarket.com/market-locations/winter-indoor-on-sundays"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-christmas-inn-hubbard-inn-2026",
+        "name":  "The Christmas Inn at Hubbard Inn",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "eat-drink",
+        "tags":  [
+                     "holiday",
+                     "pop-up-bar",
+                     "friends",
+                     "date",
+                     "brunch",
+                     "limited-time"
+                 ],
+        "hook":  "A River North restaurant-bar fully decked out as a Christmas inn",
+        "description":  "Hubbard Inn turns into a holiday-themed restaurant and bar for the season, with Christmas decor throughout and a calendar of weekly holiday events. Good for a festive brunch or drinks with friends.",
+        "highlights":  [
+                           "Whole venue decorated for Christmas",
+                           "Weekly holiday events",
+                           "Weekday happy hour specials"
+                       ],
+        "address":  "110 W Hubbard St, Chicago, IL 60654",
+        "neighborhood":  "River North",
+        "lat":  41.8903249,
+        "lng":  -87.6315832,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "",
+        "price_from":  null,
+        "duration_minutes":  90,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "10:30",
+                                      "00:00"
+                                  ]
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+                                  [
+                                      "10:30",
+                                      "00:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "10:30",
+                                      "00:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:30",
+                                      "02:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "03:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "00:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Closed Tuesdays. Holiday hours not posted.",
+        "season":  {
+                       "open_from":  "2026-11-13",
+                       "open_to":  "2027-01-10",
+                       "note":  "Holiday pop-up, November 13 to January 10."
+                   },
+        "booking":  "recommended",
+        "booking_url":  "https://www.exploretock.com/hubbard-inn/",
+        "age_note":  "Age rule not posted",
+        "phone":  "(312) 827-6234",
+        "website":  "https://hubbardinn.com/christmas-inn",
+        "source_urls":  [
+                            "https://hubbardinn.com/christmas-inn",
+                            "https://hubbardinn.com/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://hubbardinn.com/christmas-inn",
+                         "evidence":  [
+                                          {
+                                              "url":  "https://hubbardinn.com/christmas-inn",
+                                              "quote":  "Throughout November 13th - January 10th, join us for a magical lineup of holiday festivities!",
+                                              "checked_on":  "2026-11-14"
+                                          },
+                                          {
+                                              "url":  "https://hubbardinn.com/christmas-inn",
+                                              "quote":  "Mon, Nov 16 · 4:00 PM - 6:00 PM HO HO HAPPY HOUR",
+                                              "checked_on":  "2026-11-14"
+                                          },
+                                          {
+                                              "url":  "https://www.webull.com/news/15775089410452480",
+                                              "quote":  "CHICAGO, Oct. 19, 2026 /PRNewswire/ ... November 13 – January 10 (SOURCE Hubbard Inn)",
+                                              "checked_on":  "2026-11-14"
+                                          }
+                                      ],
+                         "changes":  [
+                                         "verified.status unverified -\u003e verified (year confirmed by weekday-date pairs on official page + Hubbard Inn press release dated 2026-10-19)"
+                                     ]
+                     },
+        "moods":  [
+                      "festive",
+                      "social"
+                  ],
+        "energy":  "easy",
+        "vibe":  "lively",
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "sid":  404,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-christmas-inn-hubbard-inn-2026-1.jpg",
+                           "credit":  "Hubbard Inn website",
+                           "page_url":  "https://hubbardinn.com/christmas-inn"
+                       }
+                   ]
+    },
+    {
+        "id":  "pa-io-godfrey-winter-wonderland-igloos",
+        "name":  "I|O Godfrey Winter Wonderland igloos",
+        "kind":  "place",
+        "category":  "food-drink-experience",
+        "genre":  "eat-drink",
+        "tags":  [
+                     "rooftop",
+                     "igloo",
+                     "date",
+                     "friends",
+                     "group-friendly",
+                     "winter",
+                     "skyline"
+                 ],
+        "hook":  "Heated clear igloos on a River North hotel rooftop",
+        "description":  "The Godfrey Hotel\u0027s rooftop sets up transparent heated igloos on its outdoor portico in winter, wrapped in string lights, next to a retractable-roof lounge. You book an igloo for your group for a set time slot (about 1.5 to 2.5 hours depending on size) of drinks with the city around you.",
+        "highlights":  [
+                           "Heated transparent igloos",
+                           "Small igloo up to 8, Big Igloo up to 10",
+                           "Weekend brunch 11 am-2:30 pm"
+                       ],
+        "address":  "127 W Huron St, Chicago, IL 60654",
+        "neighborhood":  "River North",
+        "lat":  41.8945777,
+        "lng":  -87.6321416,
+        "indoor_outdoor":  "both",
+        "price_level":  "$$$$",
+        "price_note":  "Small igloo: one-bottle minimum Wednesday to Sunday, $250 deposit Monday and Tuesday. Big Igloo: $750 minimum, prepaid and non-refundable. Service fee and tax extra.",
+        "price_from":  null,
+        "duration_minutes":  120,
+        "min_minutes":  90,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "14:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "14:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "14:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "14:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "12:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "20:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Igloos close by midnight (8 pm Sundays); last igloo booking 10 pm (6 pm Sundays).",
+        "season":  null,
+        "booking":  "required",
+        "booking_url":  "https://www.exploretock.com/iogodfrey/experience/189470/small-igloo-wednesday-sunday",
+        "age_note":  "Age rule not posted",
+        "phone":  "(312) 374-1830",
+        "website":  "https://iogodfrey.com/winter-wonderland/",
+        "source_urls":  [
+                            "https://iogodfrey.com/winter-wonderland/",
+                            "https://iogodfrey.com/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.exploretock.com/iogodfrey/",
+                         "evidence":  [
+                                          {
+                                              "url":  "https://iogodfrey.com/winter-wonderland/",
+                                              "quote":  "Monday-Thursday: 2pm-12am ... Friday: 12pm-2am ... Saturday: 11am-2am ... Sunday: 11am-8pm",
+                                              "checked_on":  "2026-11-14"
+                                          },
+                                          {
+                                              "url":  "https://iogodfrey.com/winter-wonderland/",
+                                              "quote":  "IGLOOS ARE ONLY AVAILABLE FOR A TWO-HOUR WINDOW AND FULLY CLOSE BY MIDNIGHT (8 PM ON SUNDAYS)",
+                                              "checked_on":  "2026-11-14"
+                                          },
+                                          {
+                                              "url":  "https://www.exploretock.com/iogodfrey/",
+                                              "quote":  "Wednesday - Sunday small igloos are available to be reserved for 1 1/2 hours.",
+                                              "checked_on":  "2026-11-14"
+                                          },
+                                          {
+                                              "url":  "https://www.exploretock.com/iogodfrey/",
+                                              "quote":  "The big igloo is available to be reserved for 2 1/2 hours. There is a $750 deposit",
+                                              "checked_on":  "2026-11-14"
+                                          }
+                                      ],
+                         "changes":  [
+                                         "verified.status unverified -\u003e verified (official hours + igloo bookings live on official Tock page)",
+                                         "price_note: added Mon-Tue small igloo $250 deposit (Tock)",
+                                         "min_minutes 120 -\u003e 90 (Tock 1.5 h small igloo)",
+                                         "highlights: removed \u0027Two-hour igloo windows\u0027 (site 2 h vs Tock 1.5/2.5 h conflict)"
+                                     ]
+                     },
+        "moods":  [
+                      "romantic",
+                      "cozy"
+                  ],
+        "energy":  "easy",
+        "vibe":  "lively",
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "sid":  405,
+        "photos":  [
+                       {
+                           "file":  "photos/pa-io-godfrey-winter-wonderland-igloos-1.jpg",
+                           "credit":  "I|O Godfrey website",
+                           "page_url":  "https://iogodfrey.com/winter-wonderland/"
+                       }
+                   ]
+    },
+    {
+        "id":  "pa-great-big-game-show-fulton-market",
+        "name":  "Great Big Game Show - Fulton Market",
+        "kind":  "place",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "rainy-day",
+                     "game-show",
+                     "competitive",
+                     "birthday-party"
+                 ],
+        "hook":  "Your group becomes the contestants, with a live host",
+        "description":  "A game-show studio in Fulton Market where your group plays as the contestants, with a live host, buzzers and a giant prize wheel running rotating mini-games. The a location of the chain that also runs the Woodfield Mall studio.",
+        "highlights":  [
+                           "Live host",
+                           "Buzzers and a giant wheel",
+                           "Groups and private parties"
+                       ],
+        "address":  "173 N Morgan St, Chicago, IL 60607",
+        "neighborhood":  "Fulton Market / West Loop",
+        "lat":  41.885175,
+        "lng":  -87.6517889,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "$43.99 per spot",
+        "price_from":  43.99,
+        "duration_minutes":  60,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "08:00",
+                                      "24:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "08:00",
+                                      "24:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "08:00",
+                                      "24:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "08:00",
+                                      "24:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "08:00",
+                                      "24:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "08:00",
+                                      "24:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "08:00",
+                                      "24:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Shows start at set times; book a slot online.",
+        "season":  null,
+        "booking":  "required",
+        "booking_url":  "https://greatbiggameshow.com/chicago/book-now/",
+        "age_note":  "Best for ages 6+. Players 14 and under need a paying adult (18+) in the game.",
+        "phone":  "(872) 364-4549",
+        "website":  "https://greatbiggameshow.com/chicago/",
+        "source_urls":  [
+                            "https://greatbiggameshow.com/chicago/",
+                            "https://greatbiggameshow.com/chicago/book-now/",
+                            "https://greatbiggameshow.com/locations/"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://greatbiggameshow.com/chicago/",
+                         "evidence":  [
+                                          {
+                                              "url":  "https://greatbiggameshow.com/chicago/",
+                                              "quote":  "173 N Morgan Street, Fulton Market, IL 60607",
+                                              "source":  "official",
+                                              "checked_on":  "2026-11-14"
+                                          },
+                                          {
+                                              "url":  "https://greatbiggameshow.com/chicago/",
+                                              "quote":  "Open 7 days a week, 8 AM-12 AM CT.",
+                                              "source":  "official (Chicago FAQ, opened in Chrome)",
+                                              "checked_on":  "2026-11-14"
+                                          },
+                                          {
+                                              "url":  "https://greatbiggameshow.com/chicago/book-now/",
+                                              "quote":  "60 Minute Game Show $43.99",
+                                              "source":  "official booking page",
+                                              "checked_on":  "2026-11-14"
+                                          },
+                                          {
+                                              "url":  "https://greatbiggameshow.com/chicago/book-now/",
+                                              "quote":  "we do recommend our games for ages 6 and up",
+                                              "source":  "official FAQ",
+                                              "checked_on":  "2026-11-14"
+                                          }
+                                      ]
+                     },
+        "moods":  [
+                      "loud",
+                      "competitive"
+                  ],
+        "energy":  "active",
+        "vibe":  "lively",
+        "good_for":  [
+                         "friends",
+                         "date"
+                     ],
+        "sid":  406,
+        "photos":  [
+
+                   ]
+    },
+    {
+        "id":  "pa-rooftop-cinema-club-fulton-market",
+        "name":  "Rooftop Cinema Club Fulton Market",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "rooftop",
+                     "movies",
+                     "date",
+                     "friends",
+                     "summer",
+                     "skyline"
+                 ],
+        "hook":  "Movies on a rooftop with skyline views and wireless headphones",
+        "description":  "An open-air cinema on the rooftop of The Emily Hotel, showing films at sunset with wireless headphones, Adirondack chairs and loveseats, and a bar. Family matinees run on some days.",
+        "highlights":  [
+                           "Screenings start at sunset",
+                           "Wireless headphones",
+                           "Adirondack chairs and two-person loveseats",
+                           "Family matinees"
+                       ],
+        "address":  "311 N Morgan St, 5th Floor, Chicago, IL 60607",
+        "neighborhood":  "Fulton Market / West Loop",
+        "lat":  41.8874771,
+        "lng":  -87.6518093,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "$$",
+        "price_note":  "Tickets from $13.50; loveseats and premium seats cost more.",
+        "price_from":  13.5,
+        "duration_minutes":  150,
+        "min_minutes":  120,
+        "hours":  null,
+        "hours_note":  "Films start at sunset; doors open up to 60 minutes before.",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  "2026-10-31",
+                       "note":  "Screenings run May through early November."
+                   },
+        "booking":  "required",
+        "booking_url":  "https://rooftopcinemaclub.com/us/chicago/fulton-market/screenings",
+        "age_note":  "Evening screenings 16+ (21+ for the bar, photo ID); family matinees all ages",
+        "phone":  "",
+        "website":  "https://rooftopcinemaclub.com/chicago/",
+        "source_urls":  [
+                            "https://rooftopcinemaclub.com/chicago/",
+                            "https://rooftopcinemaclub.com/us/chicago/fulton-market/screenings"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://rooftopcinemaclub.com/chicago/",
+                         "evidence":  [
+                                          {
+                                              "url":  "https://rooftopcinemaclub.com/chicago/",
+                                              "quote":  "Fulton Market is seasonal - screenings run May through early November.",
+                                              "source":  "official",
+                                              "checked_on":  "2026-11-14"
+                                          },
+                                          {
+                                              "url":  "https://rooftopcinemaclub.com/us/chicago/fulton-market/screenings",
+                                              "quote":  "No upcoming screenings available.",
+                                              "source":  "official",
+                                              "checked_on":  "2026-11-14"
+                                          },
+                                          {
+                                              "url":  "https://rooftopcinemaclub.com/us/chicago/fulton-market/screenings",
+                                              "quote":  "Programming runs summer (May through October).",
+                                              "source":  "official",
+                                              "checked_on":  "2026-11-14"
+                                          }
+                                      ]
+                     },
+        "moods":  [
+                      "romantic",
+                      "chill"
+                  ],
+        "energy":  "easy",
+        "vibe":  "calm",
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "sid":  407,
+        "photos":  [
+                       {
+                           "file":  "photos/pa-rooftop-cinema-club-fulton-market-1.jpg",
+                           "credit":  "Rooftop Cinema Club website",
+                           "page_url":  "https://rooftopcinemaclub.com/chicago/"
+                       }
+                   ]
+    },
+    {
+        "id":  "pa-ravinia-festival",
+        "name":  "Ravinia Festival",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "live-music",
+                     "outdoor",
+                     "picnic",
+                     "summer",
+                     "date",
+                     "friends",
+                     "family"
+                 ],
+        "hook":  "Summer concerts with a picnic on the lawn",
+        "description":  "A summer concert park in Highland Park where you can spread a picnic on the lawn and listen to everything from the Chicago Symphony Orchestra to big pop and rock names, or sit in the open-air pavilion. A classic Chicago summer evening out.",
+        "highlights":  [
+                           "Lawn picnics with your own food",
+                           "Chicago Symphony Orchestra summer home",
+                           "Pop, rock and classical lineups"
+                       ],
+        "address":  "418 Sheridan Rd, Highland Park, IL 60035",
+        "neighborhood":  "Highland Park (North Shore)",
+        "lat":  42.1579055,
+        "lng":  -87.7753927,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "$$",
+        "price_note":  "Prices vary by concert; every guest needs a ticket, including free ones.",
+        "price_from":  null,
+        "duration_minutes":  210,
+        "min_minutes":  150,
+        "hours":  null,
+        "hours_note":  "Concert evenings in summer; times vary by show.",
+        "season":  {
+                       "open_from":  null,
+                       "open_to":  "2026-09-23",
+                       "note":  "Summer season; 2027 dates announced March 11."
+                   },
+        "booking":  "ticket",
+        "booking_url":  "https://www.ravinia.org/events",
+        "age_note":  "All ages; everyone needs a ticket",
+        "phone":  "(847) 266-5100",
+        "website":  "https://www.ravinia.org/",
+        "source_urls":  [
+                            "https://www.ravinia.org/",
+                            "https://www.ravinia.org/events"
+                        ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.ravinia.org/",
+                         "evidence":  [
+                                          {
+                                              "url":  "https://www.ravinia.org/",
+                                              "quote":  "Thanks for a Great Summer!",
+                                              "source":  "official",
+                                              "checked_on":  "2026-11-14"
+                                          },
+                                          {
+                                              "url":  "https://www.ravinia.org/",
+                                              "quote":  "The Summer 2027 season will be announced on March 11.",
+                                              "source":  "official",
+                                              "checked_on":  "2026-11-14"
+                                          },
+                                          {
+                                              "url":  "https://www.timeout.com/chicago/news/ravinia-festival-2026-full-lineup-schedule-and-ticket-info-031226",
+                                              "quote":  "summer season runs from June 3 through September 23",
+                                              "source":  "press, Time Out Chicago, 2026-03-12",
+                                              "checked_on":  "2026-11-14"
+                                          }
+                                      ]
+                     },
+        "moods":  [
+                      "chill",
+                      "romantic",
+                      "outdoorsy"
+                  ],
+        "energy":  "easy",
+        "vibe":  "calm",
+        "good_for":  [
+                         "date",
+                         "friends",
+                         "family"
+                     ],
+        "sid":  408,
+        "photos":  [
+                       {
+                           "file":  "photos/pa-ravinia-festival-1.jpg",
+                           "credit":  "Ravinia website",
+                           "page_url":  "https://www.ravinia.org/"
+                       }
+                   ]
+    },
+    {
         "id":  "pf-paintball-explosion-east-dundee",
         "name":  "Paintball Explosion (East Dundee)",
         "kind":  "place",
