@@ -266,7 +266,7 @@
         "photos":  [
                        {
                            "file":  "photos/ev-balloon-museum-emotionair-chicago-1.jpg",
-                           "credit":  "Balloon Museum (official blog, EmotionAir Chicago post)",
+                           "credit":  "Balloon Museum (official blog)",
                            "page_url":  "https://blog.balloonmuseum.world/balloon-museum-presents-emotionair-art-you-can-feel-chicago/"
                        }
                    ]
@@ -431,8 +431,8 @@
         "photos":  [
                        {
                            "file":  "photos/ev-christkindlmarket-chicago-daley-plaza-1.jpg",
-                           "credit":  "Choose Chicago; photo by Guy Bauer",
-                           "page_url":  "https://www.choosechicago.com/?p=1570273"
+                           "credit":  "Christkindlmarket Chicago",
+                           "page_url":  "https://www.christkindlmarket.com/"
                        }
                    ]
     },
@@ -635,8 +635,8 @@
         "photos":  [
                        {
                            "file":  "photos/ev-christkindlmarket-wrigleyville-1.jpg",
-                           "credit":  "Choose Chicago",
-                           "page_url":  "https://www.choosechicago.com/?p=76316"
+                           "credit":  "@thechristkindlmarket on Instagram (venue\u0027s own account)",
+                           "page_url":  "https://www.instagram.com/p/Dcd6L8RkU1B/"
                        }
                    ]
     },
@@ -982,8 +982,8 @@
         "photos":  [
                        {
                            "file":  "photos/ev-zoolights-lincoln-park-zoo-1.jpg",
-                           "credit":  "Lincoln Park Zoo",
-                           "page_url":  "https://www.lpzoo.org/event/zoolights/"
+                           "credit":  "Christine Zenino via Wikimedia Commons, CC BY 2.0",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Lincoln_Park_Zoo_Lights_(8285736027).jpg"
                        }
                    ]
     },
@@ -2102,8 +2102,8 @@
         "photos":  [
                        {
                            "file":  "photos/ev-chicago-thanksgiving-parade-2026-1.jpg",
-                           "credit":  "Chicago Thanksgiving Parade (via Choose Chicago)",
-                           "page_url":  "https://www.choosechicago.com/blog/special-events/chicago-thanksgiving-day-parade"
+                           "credit":  "U.S. Navy photo by MC1 Andre N. McIntyre, via Wikimedia Commons, public domain",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Flickr_-_Official_U.S._Navy_Imagery_-_Sailors_perform_in_the_Chicago_Thanksgiving_Day_Parade..jpg"
                        }
                    ]
     },
@@ -3863,7 +3863,7 @@
         "photos":  [
                        {
                            "file":  "photos/ev-wondra-woodfield-mall-1.jpg",
-                           "credit":  "WONDRA website (chicago.wondraexperience.com)",
+                           "credit":  "WONDRA (official site)",
                            "page_url":  "https://chicago.wondraexperience.com/"
                        }
                    ]
@@ -5461,8 +5461,8 @@
         "photos":  [
                        {
                            "file":  "photos/ev-candlelight-christmas-carols-art-institute-1.jpg",
-                           "credit":  "Fever (organizer/ticketing)",
-                           "page_url":  "https://feverup.com/en/chicago/candlelight"
+                           "credit":  "Fever",
+                           "page_url":  "https://feverup.com/m/677196"
                        }
                    ]
     },
@@ -5570,8 +5570,8 @@
         "photos":  [
                        {
                            "file":  "photos/ev-walnut-room-great-tree-macys-1.jpg",
-                           "credit":  "Choose Chicago",
-                           "page_url":  "https://www.choosechicago.com/?p=76316"
+                           "credit":  "Richie Diesterheft via Wikimedia Commons, CC BY 2.0",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Macy%27s_Walnut_Room_Christmas_Tree_2007_(2129228971).jpg"
                        }
                    ]
     },
@@ -6718,8 +6718,8 @@
         "photos":  [
                        {
                            "file":  "photos/pa-waveland-bowl-1.jpg",
-                           "credit":  "Waveland Bowl website (wavelandbowl.com)",
-                           "page_url":  "https://wavelandbowl.com/"
+                           "credit":  "@wavelandbowl on Instagram (venue\u0027s own account)",
+                           "page_url":  "https://www.instagram.com/p/DXsH4McCU62/"
                        }
                    ]
     },
@@ -7861,7 +7861,7 @@
         "photos":  [
                        {
                            "file":  "photos/pa-puttery-chicago-1.jpg",
-                           "credit":  "Puttery website",
+                           "credit":  "Puttery",
                            "page_url":  "https://www.puttery.com/locations/chicago"
                        }
                    ]
@@ -8387,7 +8387,7 @@
         "photos":  [
                        {
                            "file":  "photos/pa-douglass-18-mini-golf-1.jpg",
-                           "credit":  "Chicago Park District",
+                           "credit":  "Chicago Park District (official site)",
                            "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/douglass-park-miniature-golf-course"
                        }
                    ]
@@ -9161,7 +9161,7 @@
         "photos":  [
                        {
                            "file":  "photos/pa-k1-speed-addison-1.jpg",
-                           "credit":  "K1 Speed website (k1speed.com), brand photo",
+                           "credit":  "K1 Speed",
                            "page_url":  "https://www.k1speed.com/addison-location.html"
                        }
                    ]
@@ -11750,7 +11750,7 @@
         "photos":  [
                        {
                            "file":  "photos/pa-midway-plaisance-ice-rink-1.jpg",
-                           "credit":  "Chicago Park District",
+                           "credit":  "Chicago Park District (official site)",
                            "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink"
                        }
                    ]
@@ -12219,8 +12219,8 @@
         "photos":  [
                        {
                            "file":  "photos/pa-ifly-chicago-rosemont-1.jpg",
-                           "credit":  "iFLY website",
-                           "page_url":  "https://www.iflyworld.com/chicago-rosemont/"
+                           "credit":  "@iflyrosemont on Instagram (venue\u0027s own account)",
+                           "page_url":  "https://www.instagram.com/p/DZP9tpHDtlL/"
                        }
                    ]
     },
@@ -14466,7 +14466,7 @@
         "photos":  [
                        {
                            "file":  "photos/pc-chicago-architecture-center-1.jpg",
-                           "credit":  "Chicago Architecture Center",
+                           "credit":  "Chicago Architecture Center (official site)",
                            "page_url":  "https://www.architecture.org/"
                        }
                    ]
@@ -15728,8 +15728,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-360-chicago-1.jpg",
-                           "credit":  "360 CHICAGO website",
-                           "page_url":  "https://360chicago.com/"
+                           "credit":  "Jan Pěček / Wikimedia Commons, CC BY 2.0",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:TILT_(14993635707).jpg"
                        }
                    ]
     },
@@ -16244,8 +16244,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-lincoln-park-conservatory-1.jpg",
-                           "credit":  "Chicago Park District",
-                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-park-conservatory"
+                           "credit":  "Krzysztof Ziarnek, Kenraiz / CC BY-SA 4.0, via Wikimedia Commons",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Lincoln_Park_Conservatory_kz02.jpg"
                        }
                    ]
     },
@@ -16388,7 +16388,7 @@
         "photos":  [
                        {
                            "file":  "photos/pc-lincoln-park-zoo-1.jpg",
-                           "credit":  "Lincoln Park Zoo website (lpzoo.org)",
+                           "credit":  "Lincoln Park Zoo (photo H. Johnstone)",
                            "page_url":  "https://www.lpzoo.org/"
                        }
                    ]
@@ -17232,8 +17232,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-montrose-point-bird-sanctuary-1.jpg",
-                           "credit":  "Chicago Park District",
-                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-park-montrose-point-bird-sanctuary"
+                           "credit":  "Raed Mansour / CC BY 2.0, via Wikimedia Commons",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Magic_Hedge,_Montrose_Point_Bird_Sanctuary,_Chicago_(9259).jpg"
                        }
                    ]
     },
@@ -18530,8 +18530,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-pinots-palette-logan-square-1.jpg",
-                           "credit":  "Pinot\u0027s Palette website (pinotspalette.com), brand photo; studio not named",
-                           "page_url":  "https://pinotspalette.com/logansquare/private-parties"
+                           "credit":  "@pinotspalettelogansquare on Instagram (venue\u0027s own account)",
+                           "page_url":  "https://www.instagram.com/p/Dee4etCxydJ/"
                        }
                    ]
     },
@@ -18810,8 +18810,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-flw-home-studio-1.jpg",
-                           "credit":  "Frank Lloyd Wright Trust website",
-                           "page_url":  "https://flwright.org/visit/homeandstudio"
+                           "credit":  "AlasdairW / Wikimedia Commons, CC BY-SA 3.0",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Frank_Lloyd_Wright_Home_playroom_DSCN9790.jpg"
                        }
                    ]
     },
@@ -19745,8 +19745,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-green-mill-1.jpg",
-                           "credit":  "Green Mill website",
-                           "page_url":  "https://www.greenmilljazz.com/"
+                           "credit":  "Kenneth C. Zirkel via Wikimedia Commons, CC BY-SA 4.0",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Thaddeus_Tukes_at_the_Green_Mill_Cocktail_Lounge.jpg"
                        }
                    ]
     },
@@ -20021,8 +20021,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-kingston-mines-1.jpg",
-                           "credit":  "discosour / Wikimedia Commons, CC BY-SA 2.0",
-                           "page_url":  "https://commons.wikimedia.org/wiki/File:Kingston_Mines_02_(185529020).jpg"
+                           "credit":  "Worldlemaster, CC0, via Wikimedia Commons",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Kingston_Mines_Main_Stage.jpg"
                        }
                    ]
     },
@@ -22501,7 +22501,7 @@
         "photos":  [
                        {
                            "file":  "photos/pd-color-cocktail-factory-pilsen-1.jpg",
-                           "credit":  "Color Cocktail Factory website",
+                           "credit":  "Color Cocktail Factory (official site)",
                            "page_url":  "https://www.colorcocktailfactory.com/"
                        }
                    ]
@@ -22930,7 +22930,7 @@
         "photos":  [
                        {
                            "file":  "photos/pd-athena-board-game-cafe-1.jpg",
-                           "credit":  "Athena Board Game Cafe website",
+                           "credit":  "Athena Board Game Cafe (official site, photos page)",
                            "page_url":  "https://athenabgc.com/photos"
                        }
                    ]
@@ -23623,8 +23623,8 @@
         "photos":  [
                        {
                            "file":  "photos/pd-davis-theater-1.jpg",
-                           "credit":  "Cinema Treasures (2016 reopening post)",
-                           "page_url":  "https://cinematreasures.org/blog/2016/12/16/chicago-il-historic-lincoln-square-theater-reveals-5-million-makeover"
+                           "credit":  "Davis Theater (official site)",
+                           "page_url":  "https://www.davistheater.com/"
                        }
                    ]
     },
@@ -24181,8 +24181,8 @@
         "photos":  [
                        {
                            "file":  "photos/pd-windy-city-curling-learn-to-curl-1.jpg",
-                           "credit":  "Windy City Curling website",
-                           "page_url":  "https://windycitycurling.com/index.php/learn-to-curl/register-for-a-learn-to-curl"
+                           "credit":  "@windycitycurling on Instagram (venue\u0027s own account)",
+                           "page_url":  "https://www.instagram.com/p/DVJxloDkbU8/"
                        }
                    ]
     },
@@ -26213,7 +26213,7 @@
         "photos":  [
                        {
                            "file":  "photos/pr-chicago-bath-house-red-square-1.jpg",
-                           "credit":  "Chicago Bath House / Red Square website (sauna rest area with loungers)",
+                           "credit":  "Chicago Bath House / Red Square website",
                            "page_url":  "https://www.bathhousechicago.com/"
                        }
                    ]
@@ -28454,7 +28454,7 @@
         "photos":  [
                        {
                            "file":  "photos/pr-oak-park-conservatory-1.jpg",
-                           "credit":  "Park District of Oak Park website (stone path through the greenhouse)",
+                           "credit":  "Park District of Oak Park (official site)",
                            "page_url":  "https://pdop.org/historic-properties/oak-park-conservatory/"
                        }
                    ]
@@ -29424,8 +29424,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-hwlc-winter-garden-1.jpg",
-                           "credit":  "Chicago Public Library website",
-                           "page_url":  "https://www.chipublib.org/news/your-new-favorite-study-space-winter-garden-at-harold-washington-library-center/"
+                           "credit":  "Cards84664 / Wikimedia Commons, CC BY-SA 4.0",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Harold_Washington_Library,_9th_level.jpg"
                        }
                    ]
     },
@@ -29711,8 +29711,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-lurie-garden-1.jpg",
-                           "credit":  "Lurie Garden website",
-                           "page_url":  "https://luriegarden.org/visit/"
+                           "credit":  "Torsodog / Wikimedia Commons, CC BY-SA 3.0",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Lurie_Garden_2.JPG"
                        }
                    ]
     },
@@ -30133,7 +30133,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-newberry-library-1.jpg",
-                           "credit":  "Newberry Library website",
+                           "credit":  "Newberry Library",
                            "page_url":  "https://www.newberry.org/visit"
                        }
                    ]
@@ -30302,7 +30302,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-driehaus-museum-1.jpg",
-                           "credit":  "Richard H. Driehaus Museum website",
+                           "credit":  "Richard H. Driehaus Museum (official site)",
                            "page_url":  "https://driehausmuseum.org/visit/plan-your-visit"
                        }
                    ]
@@ -30751,8 +30751,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-rookery-light-court-tour-1.jpg",
-                           "credit":  "Frank Lloyd Wright Trust website",
-                           "page_url":  "https://flwright.org/visit/rookery"
+                           "credit":  "Flapane / Wikimedia Commons, CC BY-SA 3.0",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:The_Rookery_Building_court_(Chicago,_IL).jpg"
                        }
                    ]
     },
@@ -31042,8 +31042,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-north-park-village-nature-center-1.jpg",
-                           "credit":  "Chicago Park District website",
-                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/north-park-village-nature-center"
+                           "credit":  "Circa24 / CC BY-SA 4.0, via Wikimedia Commons",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Canada_Geese_chicago_Il,_North_Park_Village_Nature_Center.jpg"
                        }
                    ]
     },
@@ -31186,7 +31186,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-woolly-mammoth-oddities-1.jpg",
-                           "credit":  "Woolly Mammoth Chicago website",
+                           "credit":  "Woolly Mammoth Antiques \u0026 Oddities (official site)",
                            "page_url":  "https://woollymammothchicago.com/"
                        }
                    ]
@@ -32608,8 +32608,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-robie-house-tour-1.jpg",
-                           "credit":  "Frank Lloyd Wright Trust website",
-                           "page_url":  "https://flwright.org/visit/robiehouse"
+                           "credit":  "Stilfehler / Wikimedia Commons, CC BY-SA 4.0",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Robie_House_Interior_01.jpg"
                        }
                    ]
     },
@@ -33189,8 +33189,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-northerly-island-1.jpg",
-                           "credit":  "Chicago Park District website",
-                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/northerly-island-park"
+                           "credit":  "Sea Cow / CC BY-SA 4.0, via Wikimedia Commons",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Northerly_Island_Park_2022.jpg"
                        }
                    ]
     },
@@ -33748,7 +33748,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-ping-tom-memorial-park-1.jpg",
-                           "credit":  "Chicago Park District website",
+                           "credit":  "Chicago Park District (official site)",
                            "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/tom-ping-memorial-park"
                        }
                    ]
@@ -34033,8 +34033,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-swedish-american-museum-1.jpg",
-                           "credit":  "Swedish American Museum website",
-                           "page_url":  "https://www.swedishamericanmuseum.org/childrens-museum-photos"
+                           "credit":  "Swedish American Museum",
+                           "page_url":  "https://www.swedishamericanmuseum.org/special-exhibits"
                        }
                    ]
     },
@@ -34173,8 +34173,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-bahai-house-of-worship-1.jpg",
-                           "credit":  "Baha\u0027is of the United States website",
-                           "page_url":  "https://www.bahai.us/bahai-temple-welcome/bahai-temple/"
+                           "credit":  "King of Hearts via Wikimedia Commons, CC BY-SA 4.0",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Bahai_House_of_Worship_Wilmette_September_2026_001.jpg"
                        }
                    ]
     },
@@ -34445,7 +34445,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-quimbys-bookstore-1.jpg",
-                           "credit":  "Skvader, CC BY-SA 4.0, via Wikimedia Commons",
+                           "credit":  "Skvader via Wikimedia Commons, CC BY-SA 4.0",
                            "page_url":  "https://commons.wikimedia.org/wiki/File:Quimby%27s_Bookstore_inside.jpg"
                        }
                    ]
@@ -35205,8 +35205,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-merz-apothecary-1.jpg",
-                           "credit":  "Merz Apothecary website",
-                           "page_url":  "https://www.merzapothecary.com/merz_press/"
+                           "credit":  "@merzapothecary on Instagram (venue\u0027s own account)",
+                           "page_url":  "https://www.instagram.com/p/DfAg5jzlz9r/"
                        }
                    ]
     },
@@ -35625,8 +35625,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-daves-rock-shop-fossil-museum-1.jpg",
-                           "credit":  "Dave\u0027s Down to Earth Rock Shop website",
-                           "page_url":  "https://davesrockshop.com/"
+                           "credit":  "@davesdowntoearthrockshop on Instagram (venue\u0027s own account)",
+                           "page_url":  "https://www.instagram.com/p/Ddr5w6vRGxD/"
                        }
                    ]
     },
@@ -35762,7 +35762,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-chicago-music-exchange-1.jpg",
-                           "credit":  "Chicago Music Exchange website",
+                           "credit":  "Chicago Music Exchange",
                            "page_url":  "https://www.chicagomusicexchange.com/"
                        }
                    ]
@@ -35903,7 +35903,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-palmisano-park-1.jpg",
-                           "credit":  "Chicago Park District website",
+                           "credit":  "Chicago Park District (official site)",
                            "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/palmisano-henry-park"
                        }
                    ]
@@ -36459,8 +36459,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-gethsemane-garden-center-1.jpg",
-                           "credit":  "Gethsemane Garden Center website",
-                           "page_url":  "https://www.gethsemanegardens.com/about/"
+                           "credit":  "Gethsemane Garden Center",
+                           "page_url":  "https://www.gethsemanegardens.com/christmas-tree-care/"
                        }
                    ]
     },
@@ -36566,8 +36566,8 @@
         "photos":  [
                        {
                            "file":  "photos/pa-forge-lemont-quarries-1.jpg",
-                           "credit":  "The Forge: Lemont Quarries website",
-                           "page_url":  "https://forgeparks.com/plan-your-visit/hours-directions/"
+                           "credit":  "The Forge: Lemont Quarries",
+                           "page_url":  "https://forgeparks.com/activities/aerial-climbing/"
                        }
                    ]
     },
@@ -37318,8 +37318,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-starved-rock-state-park-1.jpg",
-                           "credit":  "Wikimedia Commons (see file page for author and license)",
-                           "page_url":  "https://en.wikipedia.org/wiki/Starved_Rock_State_Park"
+                           "credit":  "hakkun via Wikimedia Commons, CC BY-SA 3.0",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:French_Canyon_-_Starved_Rock_-_panoramio.jpg"
                        }
                    ]
     },
@@ -37560,8 +37560,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-indiana-dunes-national-park-1.jpg",
-                           "credit":  "NPS photo",
-                           "page_url":  "https://www.nps.gov/indu/planyourvisit/basicinfo.htm"
+                           "credit":  "NPS Photo (official park site)",
+                           "page_url":  "https://www.nps.gov/indu/"
                        }
                    ]
     },
@@ -37714,9 +37714,6 @@
         "price_level":  "$$",
         "duration_minutes":  120,
         "min_minutes":  60,
-        "closed_dates":  [
-
-                         ],
         "booking":  "recommended",
         "age_note":  "All ages; drinks add-on 21+",
         "phone":  "630-668-5161",
@@ -37888,6 +37885,13 @@
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-12-24",
+                             "2026-12-25",
+                             "2026-12-31",
+                             "2027-01-01"
+                         ],
         "sid":  316,
         "photos":  [
                        {
@@ -38301,7 +38305,7 @@
         "photos":  [
                        {
                            "file":  "photos/pa-richardson-adventure-farm-1.jpg",
-                           "credit":  "Richardson Adventure Farm website",
+                           "credit":  "Richardson Adventure Farm (official site)",
                            "page_url":  "https://richardsonadventurefarm.com/AdventureFarm/Home"
                        }
                    ]
@@ -38731,8 +38735,8 @@
         "photos":  [
                        {
                            "file":  "photos/ev-anderson-gardens-illuminated-2026-1.jpg",
-                           "credit":  "Anderson Japanese Gardens website",
-                           "page_url":  "https://andersongardens.org/"
+                           "credit":  "Anderson Japanese Gardens (official site)",
+                           "page_url":  "https://andersongardens.org/illuminated/"
                        }
                    ]
     },
@@ -39933,8 +39937,8 @@
         "photos":  [
                        {
                            "file":  "photos/ev-harrys-lakefront-lodge-navy-pier-1.jpg",
-                           "credit":  "Navy Pier website",
-                           "page_url":  "https://navypier.org/pier-events/harrys-lakefront-lodge/"
+                           "credit":  "Harry Caray\u0027s Tavern Navy Pier",
+                           "page_url":  "https://www.harrycarays.com/lakefront-lodge.html"
                        }
                    ]
     },
@@ -40140,7 +40144,7 @@
         "photos":  [
                        {
                            "file":  "photos/ev-music-box-christmas-sing-along-2026-1.jpg",
-                           "credit":  "Music Box Theatre website",
+                           "credit":  "Music Box Theatre (official site)",
                            "page_url":  "https://musicboxtheatre.com/about/auditoriums"
                        }
                    ]
@@ -41958,7 +41962,7 @@
         "photos":  [
                        {
                            "file":  "photos/fgr-pinball-capital-stone-park-1.jpg",
-                           "credit":  "Pinball Capital website",
+                           "credit":  "Pinball Capital (official site)",
                            "page_url":  "https://www.pinballcapital.com/"
                        }
                    ]
@@ -42737,7 +42741,7 @@
         "photos":  [
                        {
                            "file":  "photos/ev-lake-geneva-winterfest-2027-1.jpg",
-                           "credit":  "VISIT Lake Geneva (official Winterfest page)",
+                           "credit":  "Visit Lake Geneva (official organizer site)",
                            "page_url":  "https://www.visitlakegeneva.com/winterfest/"
                        }
                    ]
@@ -43263,7 +43267,7 @@
         "photos":  [
                        {
                            "file":  "photos/ev-midwest-gaming-classic-2027-1.jpg",
-                           "credit":  "Midwest Gaming Classic website",
+                           "credit":  "Midwest Gaming Classic",
                            "page_url":  "https://www.midwestgamingclassic.com/"
                        }
                    ]
@@ -43350,7 +43354,7 @@
         "photos":  [
                        {
                            "file":  "photos/ev-c2e2-2027-1.jpg",
-                           "credit":  "C2E2 website (press photo gallery)",
+                           "credit":  "C2E2 / ReedPop (official press photo gallery page)",
                            "page_url":  "https://www.c2e2.com/en-us/industry/for-press/photo-gallery.html"
                        }
                    ]
@@ -45063,7 +45067,7 @@
         "photos":  [
                        {
                            "file":  "photos/ud-magic-parlour-chicago-1.jpg",
-                           "credit":  "The Magic Parlour website",
+                           "credit":  "The Magic Parlour",
                            "page_url":  "https://www.themagicparlourchicago.com/"
                        }
                    ]
@@ -47221,8 +47225,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-lincoln-park-1.jpg",
-                           "credit":  "Chicago Park District website",
-                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-abraham-park"
+                           "credit":  "Krzysztof Ziarnek, Kenraiz / CC BY-SA 4.0, via Wikimedia Commons",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Lincoln_Park_kz01.jpg"
                        }
                    ]
     },
@@ -47337,8 +47341,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-north-pond-nature-sanctuary-1.jpg",
-                           "credit":  "Chicago Park District website",
-                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/lincoln-park-north-pond"
+                           "credit":  "vxla / CC BY 2.0, via Wikimedia Commons",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:The_Lincoln_Park_North_Pond_(6097472770).jpg"
                        }
                    ]
     },
@@ -47456,7 +47460,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-maggie-daley-park-1.jpg",
-                           "credit":  "Chicago Park District website",
+                           "credit":  "Chicago Park District (official site)",
                            "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/maggie-daley-park"
                        }
                    ]
@@ -47573,8 +47577,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-grant-park-1.jpg",
-                           "credit":  "Chicago Park District website",
-                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/grant-ulysses-park"
+                           "credit":  "Alhill42 / CC BY-SA 4.0, via Wikimedia Commons",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Buckingham_Fountain_Grant_Park_Chicago.jpg"
                        }
                    ]
     },
@@ -47926,7 +47930,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-humboldt-park-1.jpg",
-                           "credit":  "Chicago Park District website",
+                           "credit":  "Chicago Park District (official site; photo C. Primeau per file name)",
                            "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/humboldt-alexander-von-park"
                        }
                    ]
@@ -48038,8 +48042,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-garfield-park-1.jpg",
-                           "credit":  "Chicago Park District website",
-                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/garfield-james-park"
+                           "credit":  "Teemu008 from Palatine, Illinois / CC BY-SA 2.0, via Wikimedia Commons",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Gold_Dome_Administration_Building_(10514252705).jpg"
                        }
                    ]
     },
@@ -48148,7 +48152,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-washington-park-1.jpg",
-                           "credit":  "Chicago Park District website",
+                           "credit":  "Chicago Park District (official site)",
                            "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/washington-george-park"
                        }
                    ]
@@ -48263,7 +48267,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-jackson-park-1.jpg",
-                           "credit":  "Chicago Park District website (photo: Cassi Saari)",
+                           "credit":  "Chicago Park District (official site)",
                            "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/jackson-park"
                        }
                    ]
@@ -48496,8 +48500,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-montrose-beach-1.jpg",
-                           "credit":  "Chicago Park District website",
-                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/montrose-beach"
+                           "credit":  "Bohao Zhao / CC BY 3.0, via Wikimedia Commons",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Montrose_Harbor_-_panoramio.jpg"
                        }
                    ]
     },
@@ -48721,7 +48725,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-douglass-park-1.jpg",
-                           "credit":  "Chicago Park District website",
+                           "credit":  "Chicago Park District (official site)",
                            "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/douglass-anna-and-frederick-park"
                        }
                    ]
@@ -48829,7 +48833,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-columbus-park-1.jpg",
-                           "credit":  "Chicago Park District website",
+                           "credit":  "Chicago Park District (official site)",
                            "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/columbus-christopher-park"
                        }
                    ]
@@ -48940,7 +48944,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-indian-boundary-park-1.jpg",
-                           "credit":  "Chicago Park District website",
+                           "credit":  "Chicago Park District (official site)",
                            "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/indian-boundary-park"
                        }
                    ]
@@ -49050,7 +49054,7 @@
         "photos":  [
                        {
                            "file":  "photos/ps-oz-park-1.jpg",
-                           "credit":  "Chicago Park District website",
+                           "credit":  "Chicago Park District (official site)",
                            "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/oz-park"
                        }
                    ]
@@ -49157,8 +49161,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-rainbow-beach-park-1.jpg",
-                           "credit":  "Chicago Park District website",
-                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/rainbow-beach"
+                           "credit":  "Steven Kevil / CC BY-SA 3.0, via Wikimedia Commons",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Rainbow_Park_Beach_Chicago.jpg"
                        }
                    ]
     },
@@ -49279,8 +49283,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-busse-woods-1.jpg",
-                           "credit":  "Bohao Zhao / Wikimedia Commons, CC BY 3.0",
-                           "page_url":  "https://commons.wikimedia.org/wiki/File:Busse_Woods_Bicycle_Trail_-_panoramio.jpg"
+                           "credit":  "Forest Preserves of Cook County",
+                           "page_url":  "https://fpdcc.com/places/locations/busse-woods/"
                        }
                    ]
     },
@@ -49629,8 +49633,8 @@
         "photos":  [
                        {
                            "file":  "photos/ev-merry-market-experience-christkindlmarket-2026-1.jpg",
-                           "credit":  "Choose Chicago (photo Guy Bauer)",
-                           "page_url":  "https://www.choosechicago.com/"
+                           "credit":  "Christkindlmarket Chicago",
+                           "page_url":  "https://www.christkindlmarket.com/"
                        }
                    ]
     },
@@ -49701,8 +49705,8 @@
         "photos":  [
                        {
                            "file":  "photos/ev-twas-the-night-before-christkindlmarket-2026-1.jpg",
-                           "credit":  "Choose Chicago (photo Guy Bauer)",
-                           "page_url":  "https://www.choosechicago.com/"
+                           "credit":  "Christkindlmarket Chicago",
+                           "page_url":  "https://www.christkindlmarket.com/preview-party/"
                        }
                    ]
     },
@@ -49857,8 +49861,8 @@
         "photos":  [
                        {
                            "file":  "photos/ev-culture-cheer-tours-christkindlmarket-2026-1.jpg",
-                           "credit":  "Choose Chicago (photo Guy Bauer)",
-                           "page_url":  "https://www.choosechicago.com/"
+                           "credit":  "Christkindlmarket Chicago",
+                           "page_url":  "https://www.christkindlmarket.com/culture-cheer-tours/"
                        }
                    ]
     },
@@ -50245,7 +50249,7 @@
         "photos":  [
                        {
                            "file":  "photos/pa-io-godfrey-winter-wonderland-igloos-1.jpg",
-                           "credit":  "I|O Godfrey website",
+                           "credit":  "I|O Godfrey (official site)",
                            "page_url":  "https://iogodfrey.com/winter-wonderland/"
                        }
                    ]
@@ -51746,7 +51750,7 @@
         "photos":  [
                        {
                            "file":  "photos/ig-the-hand-and-the-eye-1.jpg",
-                           "credit":  "The Hand \u0026 The Eye website",
+                           "credit":  "The Hand \u0026 The Eye (official site)",
                            "page_url":  "https://www.handandeye.com/book"
                        }
                    ]
@@ -52264,7 +52268,7 @@
         "photos":  [
                        {
                            "file":  "photos/ig-chicago-fireboat-tours-1.jpg",
-                           "credit":  "Chicago Fireboat Tours website",
+                           "credit":  "Chicago Fireboat Tours (official site)",
                            "page_url":  "https://fireboattours.com/"
                        }
                    ]
@@ -53859,8 +53863,8 @@
         "photos":  [
                        {
                            "file":  "photos/cm-spin-chicago-1.jpg",
-                           "credit":  "Time Out Chicago",
-                           "page_url":  "https://www.timeout.com/chicago/things-to-do/spin"
+                           "credit":  "SPIN (official site, Chicago location page)",
+                           "page_url":  "https://wearespin.com/location/chicago/"
                        }
                    ]
     },
@@ -53969,8 +53973,8 @@
         "photos":  [
                        {
                            "file":  "photos/cm-jazz-showcase-1.jpg",
-                           "credit":  "Max Herman / Jazz Showcase, via Time Out Chicago",
-                           "page_url":  "https://www.timeout.com/chicago/music/jazz-showcase"
+                           "credit":  "Jazz Showcase (official site)",
+                           "page_url":  "https://www.jazzshowcase.com/"
                        }
                    ]
     },
@@ -55341,8 +55345,8 @@
         "photos":  [
                        {
                            "file":  "photos/ev-gwen-winter-curl-chill-2026-1.jpg",
-                           "credit":  "Courtesy of The Gwen, via Time Out Chicago",
-                           "page_url":  "https://timeout.com/chicago/things-to-do/the-gwens-winter-curl-chill"
+                           "credit":  "The Gwen (official site, Winter Curling page hero)",
+                           "page_url":  "https://www.thegwenchicago.com/activities/winter-curling/"
                        }
                    ]
     },

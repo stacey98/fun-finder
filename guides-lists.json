@@ -1,0 +1,591 @@
+[
+    {
+        "id":  "cold-night-dates",
+        "format":  "list",
+        "title":  "{n} date ideas for a cold night",
+        "theme":  "Any night · Indoors",
+        "intro":  "Magic, a 94th-floor view, a Russian bathhouse and jazz, all indoors. Every one is open until 9 pm or later on Fridays and Saturdays.",
+        "entries":  [
+                        {
+                            "place_id":  "ig-the-hand-and-the-eye",
+                            "rank":  1,
+                            "blurb":  "Close-up and stage magic happen in hidden rooms, bars and small theaters inside a historic stone mansion off the Mag Mile, and you move through the house as the night goes on. Make it a dressed-up dinner-and-magic night, or catch a lighter one-hour show in the Vault.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description, highlights; price_unit: price_note (\u0027$75 food and drink credit per person\u0027)"
+                        },
+                        {
+                            "place_id":  "pc-360-chicago",
+                            "rank":  2,
+                            "blurb":  "An observation deck on the 94th floor of the former John Hancock Tower, with views over the lake and the Magnificent Mile. Its TILT ride leans you out over the edge of the building inside a glass wall.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027GA $27 adult / $19 child\u0027)"
+                        },
+                        {
+                            "place_id":  "pr-chicago-bath-house-red-square",
+                            "rank":  3,
+                            "blurb":  "Chicago\u0027s old Russian-style bathhouse on Division Street, operating since 1906, with a sauna, a lounge, and a restaurant and full bar. The classic add-on is a platza, where soaked birch, oak or eucalyptus leaves are used on you in the heat.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Day admission $50 per adult\u0027)"
+                        },
+                        {
+                            "place_id":  "pc-the-drifter",
+                            "rank":  4,
+                            "blurb":  "A 1920s-era speakeasy in the basement of the Green Door Tavern, where the cocktail menu is printed on tarot cards and rotates through more than 100 drinks. Small live acts pop up through the evening.",
+                            "price_unit":  "unknown",
+                            "source":  "blurb: description, highlights; price_unit: price_note says only \u0027Pay per drink\u0027 (no admission price)"
+                        },
+                        {
+                            "place_id":  "pc-andys-jazz-club",
+                            "rank":  5,
+                            "blurb":  "A River North jazz club and restaurant with three live jazz sets a night, so dinner and a show happen at one table.",
+                            "price_unit":  "person",
+                            "source":  "blurb: hook, description, highlights (\u0027Dinner + show date\u0027); price_unit: price_note (\u0027$20 per guest per show\u0027)"
+                        },
+                        {
+                            "place_id":  "fgr-flight-club-chicago",
+                            "rank":  6,
+                            "blurb":  "Your own darts booth with a screen that scores every throw, so beginners can play against experts.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027From $15 per person\u0027)"
+                        },
+                        {
+                            "place_id":  "ig-snakes-and-lattes-chicago",
+                            "rank":  7,
+                            "blurb":  "Borrow any game from walls of board games, order cocktails and food from your table, and let staff help you pick.",
+                            "price_unit":  "person",
+                            "source":  "blurb: hook, description; price_unit: price_note (\u0027$7 per person game fee\u0027)"
+                        },
+                        {
+                            "place_id":  "pa-paniq-logan-square",
+                            "rank":  8,
+                            "blurb":  "Private escape rooms, including The Onyx Tower, a 45-minute room for just two people.",
+                            "price_unit":  "unknown",
+                            "source":  "blurb: description; price_unit: price_note says \u0027likely per person\u0027 and the official page (paniqescaperoom.com/chicago, fetched 2026-11-14) does not say per person or per group"
+                        },
+                        {
+                            "place_id":  "ig-pop-craft-studio",
+                            "rank":  9,
+                            "blurb":  "Tuft your own rug with a tufting gun, or mix a custom lipstick or candle, and take it home. A popular BYOB date night.",
+                            "price_unit":  "unknown",
+                            "source":  "blurb: description, hook; price_unit: official page (popcraftstudio.com, fetched 2026-11-14) prices per item made, not per person or group"
+                        },
+                        {
+                            "place_id":  "pd-sandbox-vr-lincoln-common",
+                            "rank":  10,
+                            "blurb":  "Full-body, free-roam virtual reality that your group plays together, such as a dinosaur adventure.",
+                            "price_unit":  "unknown",
+                            "source":  "blurb: description; price_unit: price_note says \u0027likely per person\u0027 and the official page (sandboxvr.com/chicago/lincoln-common, fetched 2026-11-14) does not say"
+                        }
+                    ]
+    },
+    {
+        "id":  "open-thanksgiving-2026",
+        "format":  "list",
+        "title":  "Open on Thanksgiving: {n} ideas",
+        "theme":  "Thanksgiving · Out \u0026 about",
+        "intro":  "Every place here has posted hours for Thanksgiving Day: markets, skating, afternoon tea and a glass box 103 floors up.",
+        "dates":  [
+                      "2026-11-26"
+                  ],
+        "entries":  [
+                        {
+                            "place_id":  "ev-balloon-museum-emotionair-chicago",
+                            "rank":  1,
+                            "blurb":  "Giant inflatable art installations by more than a dozen international artists fill The Fields Studios in Avondale. You walk through, touch and play in them, and each room is built around a feeling.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027adults 18-65 from $41.20 ... kids 3-11 from $31.99\u0027); date: date_hours 2026-11-26 10:00-19:00"
+                        },
+                        {
+                            "place_id":  "ev-christkindlmarket-chicago-daley-plaza",
+                            "rank":  2,
+                            "blurb":  "Chicago\u0027s big German-style Christmas market fills Daley Plaza for its 30th season, with rows of wooden huts selling ornaments and handmade gifts. The classic order is Glühwein in the collectible yearly souvenir mug.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description; price_unit: price_level free, price_note \u0027Free admission\u0027; date: date_hours 2026-11-26 11:00-16:00, season 2026-11-20..2026-12-24"
+                        },
+                        {
+                            "place_id":  "pc-skydeck-chicago",
+                            "rank":  3,
+                            "blurb":  "The observation deck at the top of Willis Tower, with a Chicago museum exhibit and a fast elevator ride. The star is The Ledge: glass boxes that stick out from the 103rd floor, so you stand on glass 1,353 feet up.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: age_note (\u0027adult price 12+, ages 3-11 youth price, under 3 free\u0027); date: date_hours 2026-11-26 09:00-20:00"
+                        },
+                        {
+                            "place_id":  "pr-drake-palm-court-afternoon-tea",
+                            "rank":  4,
+                            "blurb":  "Classic afternoon tea in the Drake Hotel\u0027s Palm Court, a Gold Coast tradition, with tea sandwiches, warm scones and a pastry plate. The holiday version adds a live harpist, plus carolers on set days.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027$87 adult ... $39 child\u0027, \u0027refills $30 per person\u0027); date: date_hours 2026-11-26 11:00-18:00"
+                        },
+                        {
+                            "place_id":  "pa-maggie-daley-skating-ribbon",
+                            "rank":  5,
+                            "blurb":  "A winding ice path that loops through Maggie Daley Park with the skyline all around.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Ticket incl. skate rental\u0027, priced per ticket, own skates $5); date: date_hours 2026-11-26 three sessions 08:00-16:00, season 2026-11-13..2027-03-07"
+                        },
+                        {
+                            "place_id":  "ev-christkindlmarket-wrigleyville",
+                            "rank":  6,
+                            "blurb":  "The Christkindlmarket\u0027s holiday huts on Gallagher Way next to Wrigley Field, with German-style food, warm drinks and gift stalls.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description, hook; price_unit: price_level free; date: date_hours 2026-11-26 11:00-16:00, season 2026-11-20..2026-12-31"
+                        },
+                        {
+                            "place_id":  "pc-morton-arboretum",
+                            "rank":  7,
+                            "blurb":  "Trails and scenic drives through a huge tree museum in west-suburban Lisle, good for a crisp-weather walk.",
+                            "price_unit":  "unknown",
+                            "source":  "blurb: hook, description; price_unit: price_note gives no unit and the official page (mortonarb.org/visit, fetched 2026-11-14) lists no prices; date: date_hours 2026-11-26 09:00-16:20"
+                        },
+                        {
+                            "place_id":  "pa-topgolf-schaumburg",
+                            "rank":  8,
+                            "blurb":  "Target golf scored like a game from a private bay with food and drinks, easy for people who have never golfed.",
+                            "price_unit":  "group",
+                            "source":  "blurb: hook, description; price_unit: official page (topgolf.com/us/schaumburg, fetched 2026-11-14) shows \u0027Hourly Bay Pricing\u0027 (priced per bay per hour, amounts not shown); date: date_hours 2026-11-26 15:00-22:00"
+                        }
+                    ]
+    },
+    {
+        "id":  "open-christmas-2026",
+        "format":  "list",
+        "title":  "Open on Christmas Day: {n} ideas",
+        "theme":  "Christmas Day · Out \u0026 about",
+        "intro":  "Every place here has posted hours for Christmas Day.",
+        "dates":  [
+                      "2026-12-25"
+                  ],
+        "entries":  [
+                        {
+                            "place_id":  "ev-balloon-museum-emotionair-chicago",
+                            "rank":  1,
+                            "blurb":  "Giant inflatable art installations by more than a dozen international artists fill The Fields Studios in Avondale. You walk through, touch and play in them, and each room is built around a feeling.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (adult/kid ticket prices); date: date_hours 2026-12-25 10:00-20:00, season to 2027-01-19"
+                        },
+                        {
+                            "place_id":  "pr-drake-palm-court-afternoon-tea",
+                            "rank":  2,
+                            "blurb":  "Classic afternoon tea in the Drake Hotel\u0027s Palm Court, a Gold Coast tradition, with tea sandwiches, warm scones and a pastry plate. The holiday version adds a live harpist, plus carolers on set days.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027$87 adult ... $39 child\u0027); date: date_hours 2026-12-25 11:00-18:00"
+                        },
+                        {
+                            "place_id":  "ev-santa-baby-bar-2026",
+                            "rank":  3,
+                            "blurb":  "A Wrigleyville bar goes full Christmas, with several bars over multiple levels, 20+ photo spots, holiday cocktails, festive shakes and pizza. It is back for its ninth season.",
+                            "price_unit":  "unknown",
+                            "source":  "blurb: description, highlights; price_unit: price_note \u0027No cover listed; you pay for food and drinks\u0027; date: date_hours 2026-12-25 12:00-20:00, season 2026-11-20..2027-01-03"
+                        },
+                        {
+                            "place_id":  "pa-maggie-daley-skating-ribbon",
+                            "rank":  4,
+                            "blurb":  "A winding ice path that loops through Maggie Daley Park with the skyline all around.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (per ticket incl. rental); date: date_hours 2026-12-25 three sessions 08:00-16:00"
+                        },
+                        {
+                            "place_id":  "pa-rosemont-skating-in-the-park",
+                            "rank":  5,
+                            "blurb":  "A winter rink on the central lawn of Rosemont\u0027s Parkway Bank Park, ringed by about 15 restaurants and venues, so skating pairs easily with dinner.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description; price_unit: price_level free, price_note \u0027Free skating\u0027; date: date_hours 2026-12-25 16:00-22:00, season 2026-11-21..2027-01-31"
+                        },
+                        {
+                            "place_id":  "pc-morton-arboretum",
+                            "rank":  6,
+                            "blurb":  "Trails and scenic drives through a huge tree museum in west-suburban Lisle, good for a crisp-weather walk.",
+                            "price_unit":  "unknown",
+                            "source":  "blurb: hook, description; price_unit: no unit in data or on mortonarb.org/visit (fetched 2026-11-14); date: date_hours 2026-12-25 09:00-16:20"
+                        },
+                        {
+                            "place_id":  "pa-topgolf-schaumburg",
+                            "rank":  7,
+                            "blurb":  "Target golf scored like a game from a private bay with food and drinks, easy for people who have never golfed.",
+                            "price_unit":  "group",
+                            "source":  "blurb: hook, description; price_unit: official page \u0027Hourly Bay Pricing\u0027 (fetched 2026-11-14); date: date_hours 2026-12-25 15:00-22:00"
+                        }
+                    ]
+    },
+    {
+        "id":  "holiday-light-shows",
+        "format":  "list",
+        "title":  "{n} holiday light shows",
+        "theme":  "Nov–Jan · Lights",
+        "intro":  "Walk-through trails, drive-thrus, a lit Japanese garden and a heated boat past the lights. Each runs for weeks, but many skip Thanksgiving and Christmas.",
+        "entries":  [
+                        {
+                            "place_id":  "ev-lightscape-chicago-botanic-garden",
+                            "rank":  1,
+                            "blurb":  "A 1.3-mile walking trail of large light-art installations set to music, winding through the Chicago Botanic Garden in Glencoe.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027$3 nonmember service fee per ticket; under 3 free\u0027)"
+                        },
+                        {
+                            "place_id":  "ev-christmas-at-cantigny-2026",
+                            "rank":  2,
+                            "blurb":  "A half-mile walk through Cantigny\u0027s gardens lit with music-timed displays, floral sculptures and a 28-foot Christmas tree. There\u0027s an ice rink with rinkside cocoa cabanas, and a drinks add-on puts seasonal cocktails at stops along the route.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Adults $18 on weeknights ... kids 4-15 $10-$15\u0027)"
+                        },
+                        {
+                            "place_id":  "ev-zoolights-lincoln-park-zoo",
+                            "rank":  3,
+                            "blurb":  "Lincoln Park Zoo turns its grounds into a walk-through holiday light show in the evenings.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: official page (lpzoo.org/event/zoolights, fetched 2026-11-14): \u0027every individual in your party, including children, must have a ticket\u0027, gate tickets \u0027$20 each\u0027"
+                        },
+                        {
+                            "place_id":  "ev-anderson-gardens-illuminated-2026",
+                            "rank":  4,
+                            "blurb":  "Rockford\u0027s Japanese garden glows after dark with up-lit trees and thousands of white lights reflected in its ponds. Warm up after with woodfire pizza and a drink fireside in the Visitors Center.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Adults $15, seniors $14, students and military $13\u0027)"
+                        },
+                        {
+                            "place_id":  "ig-santas-rock-n-lights-geneva-2026",
+                            "rank":  5,
+                            "blurb":  "Drive about two miles of lights through Northwestern Medicine Field, synchronized to music you tune in on your car radio. It\u0027s billed as Chicago\u0027s longest-running drive-thru light show.",
+                            "price_unit":  "group",
+                            "source":  "blurb: description, hook; price_unit: price_note (\u0027$49.99 per carload of up to 6\u0027)"
+                        },
+                        {
+                            "place_id":  "ev-illumination-morton-arboretum",
+                            "rank":  6,
+                            "blurb":  "The Morton Arboretum lights up its trees along a one-mile paved trail of light and music installations, now in its 14th season.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Adults from $22 nonmembers\u0027, \u0027about $20-$34 per adult\u0027)"
+                        },
+                        {
+                            "place_id":  "ev-christmas-around-the-world-griffin-msi",
+                            "rank":  7,
+                            "blurb":  "More than 50 trees and displays fill the Griffin Museum of Science and Industry, each decorated by community volunteers to share their family and cultural holiday traditions. There\u0027s also an indoor forest, light displays and a four-story Grand Tree.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (general admission, \u0027$9 off adults and $5 off kids 3-11\u0027)"
+                        },
+                        {
+                            "place_id":  "ev-lake-geneva-santa-cruise-2026",
+                            "rank":  8,
+                            "blurb":  "A 40-minute evening cruise on an enclosed, heated historic boat past holiday light displays along the Geneva Lake shore to Santa\u0027s lakeside hideaway. Santa\u0027s Bar at the harbor festival serves drinks before or after.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Classic cruise $25 adults, $15 children\u0027)"
+                        },
+                        {
+                            "place_id":  "ev-holiday-magic-brookfield-zoo",
+                            "rank":  9,
+                            "blurb":  "Brookfield Zoo Chicago\u0027s long-running holiday lights festival, spread across the zoo grounds.",
+                            "price_unit":  "unknown",
+                            "source":  "blurb: description; price_unit: price_note \u0027From $29.95\u0027 with no unit, and the official page (brookfieldzoo.org/holidaymagic, fetched 2026-11-14) says only \u0027Tickets starting at $29.95\u0027"
+                        },
+                        {
+                            "place_id":  "ev-aurora-festival-of-lights-2026",
+                            "rank":  10,
+                            "blurb":  "A drive-through light display on the roads of Aurora\u0027s Phillips Park, now in its 20th year, so you stay warm in the car.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description; price_unit: price_level free, price_note \u0027Free; volunteers collect free-will donations\u0027"
+                        }
+                    ]
+    },
+    {
+        "id":  "ice-rinks-ranked",
+        "format":  "list",
+        "title":  "{n} ice rinks, ranked",
+        "theme":  "Winter · Skating",
+        "intro":  "A skyline ice ribbon, an indoor holiday rink and six free park rinks. Maggie Daley is skating now; most others open Nov 27.",
+        "entries":  [
+                        {
+                            "place_id":  "pa-maggie-daley-skating-ribbon",
+                            "rank":  1,
+                            "blurb":  "A winding ice path that loops through Maggie Daley Park with the skyline all around. One of Chicago\u0027s signature winter dates.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description, hook; price_unit: price_note (\u0027Ticket incl. skate rental\u0027), good_to_know"
+                        },
+                        {
+                            "place_id":  "ev-winter-wonderfest-navy-pier",
+                            "rank":  2,
+                            "blurb":  "An indoor holiday playground in Navy Pier\u0027s Festival Hall with its own ice rink, and skating comes with every ticket. A good bad-weather pick.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description, highlights; price_unit: good_to_know (\u0027ages 3+ need a ticket\u0027)"
+                        },
+                        {
+                            "place_id":  "pa-midway-plaisance-ice-rink",
+                            "rank":  3,
+                            "blurb":  "A Park District rink on the Midway Plaisance in Hyde Park, next to the University of Chicago. It hosts themed nights such as a community bonfire, a holiday skate with Santa, glow skates and a Valentine\u0027s skate. Free sessions need pre-registration.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description; price_unit: price_level free, price_note (\u0027Open skate free with own skates\u0027)"
+                        },
+                        {
+                            "place_id":  "pa-rosemont-skating-in-the-park",
+                            "rank":  4,
+                            "blurb":  "A winter rink on the central lawn of Parkway Bank Park, Rosemont\u0027s entertainment district near O\u0027Hare. About 15 restaurants and venues ring the lawn, including Kings bowling and iFLY indoor skydiving, so it\u0027s easy to combine skating with dinner or another activity.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description; price_unit: price_level free, price_note (\u0027Free skating\u0027)"
+                        },
+                        {
+                            "place_id":  "pa-warren-park-ice-rink",
+                            "rank":  5,
+                            "blurb":  "A Park District outdoor rink in West Ridge\u0027s Warren Park, ringed by trees, with skate walkers for beginners.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description, highlights; price_unit: price_level free, price_note"
+                        },
+                        {
+                            "place_id":  "pa-mt-greenwood-ice-rink",
+                            "rank":  6,
+                            "blurb":  "A Park District outdoor rink on the far Southwest Side, lit for evening skating, with drop-in learn-to-skate and pond hockey.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description, highlights; price_unit: price_level free, price_note"
+                        },
+                        {
+                            "place_id":  "pa-mckinley-ice-rink",
+                            "rank":  7,
+                            "blurb":  "A Park District outdoor rink in McKinley Park on the Southwest Side, an easy low-key winter outing.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description; price_unit: price_level free, price_note"
+                        },
+                        {
+                            "place_id":  "pa-wentworth-ice-rink",
+                            "rank":  8,
+                            "blurb":  "A Park District outdoor rink near Midway Airport, with drop-in learn-to-skate, stick-and-puck and adult rat hockey.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description, highlights; price_unit: price_level free, price_note"
+                        }
+                    ]
+    },
+    {
+        "id":  "free-indoors",
+        "format":  "list",
+        "title":  "{n} free things to do indoors",
+        "theme":  "Any day · Indoors",
+        "intro":  "Stained-glass domes, old glasshouses, rare books and a museum inside the Federal Reserve. All free; the Lincoln Park Conservatory needs a free timed-entry reservation.",
+        "entries":  [
+                        {
+                            "place_id":  "pc-chicago-cultural-center",
+                            "rank":  1,
+                            "blurb":  "A Loop landmark built over 100 years ago as the city\u0027s first public library and a Civil War memorial, with two stained-glass domes, including the Tiffany dome in Preston Bradley Hall. The city runs music, dance, film, lecture and art events here year-round.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description, highlights; price_unit: price_note (\u0027Free admission\u0027)"
+                        },
+                        {
+                            "place_id":  "ps-smart-museum-of-art",
+                            "rank":  2,
+                            "blurb":  "The University of Chicago\u0027s art museum, now showing a teamLab installation alongside \u0027Nina Chanel Abney: Between Us\u0027 and \u0027How Do We Heal?\u0027. An easy 30-45 minute loop, with Robie House and Rockefeller Chapel a few blocks away.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Always free\u0027)"
+                        },
+                        {
+                            "place_id":  "pc-national-museum-of-mexican-art",
+                            "rank":  3,
+                            "blurb":  "A Pilsen museum dedicated to Mexican and Mexican-American art and culture, an easy pairing with a meal or coffee in Pilsen afterward.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Admission is always free\u0027)"
+                        },
+                        {
+                            "place_id":  "pc-money-museum",
+                            "rank":  4,
+                            "blurb":  "A walk-in museum on the first floor of the Federal Reserve Bank of Chicago in the Loop, all about money and how the Fed works.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Free\u0027)"
+                        },
+                        {
+                            "place_id":  "pc-lincoln-park-conservatory",
+                            "rank":  5,
+                            "blurb":  "A glass conservatory built in stages between 1890 and 1895, a short walk from Lincoln Park Zoo and the Nature Museum. Combine it with the zoo and the butterfly haven for a full afternoon. Reserve a free timed-entry slot first.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Free; reservation required\u0027)"
+                        },
+                        {
+                            "place_id":  "pr-oak-park-conservatory",
+                            "rank":  6,
+                            "blurb":  "A glasshouse with more than 3,000 plants, some dating to its founding in 1929, along winding stone paths through tropical greenery. A quiet, warm, green place to sit in the middle of winter.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Free; suggested donation\u0027)"
+                        },
+                        {
+                            "place_id":  "ps-hwlc-winter-garden",
+                            "rank":  7,
+                            "blurb":  "A glass-roofed hall on the top floor of Chicago\u0027s main public library, with daylight pouring in all year and greenery. A calm warm-up stop on a cold Loop day, next to the Special Collections exhibit hall.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Free (public library)\u0027)"
+                        },
+                        {
+                            "place_id":  "ps-newberry-library",
+                            "rank":  8,
+                            "blurb":  "A grand research library across from Washington Square Park whose galleries anyone can walk into, with changing shows of rare books, maps and manuscripts. Guided building tours run on some days.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Admission is always free\u0027)"
+                        },
+                        {
+                            "place_id":  "ps-poetry-foundation",
+                            "rank":  9,
+                            "blurb":  "The home of Poetry magazine, reached through a tree-lined courtyard in a building designed to unfold step by step \u0027like a poem\u0027. Inside is a public poetry library and gallery for a quiet read, plus readings and music.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Free; events free\u0027)"
+                        },
+                        {
+                            "place_id":  "ps-mocp",
+                            "rank":  10,
+                            "blurb":  "A photography museum at Columbia College Chicago across from Grant Park, with changing exhibitions that make a compact 30-45 minute visit.",
+                            "price_unit":  "free",
+                            "source":  "blurb: description; price_unit: price_note (\u0027MoCP is free\u0027)"
+                        }
+                    ]
+    },
+    {
+        "id":  "twenty-or-less",
+        "format":  "list",
+        "title":  "{n} things for $20 or less each",
+        "theme":  "Any day · Under $20",
+        "intro":  "Board games, darts, a cat arcade, a distillery tour and live jazz. Each one starts at $20 or less per person.",
+        "entries":  [
+                        {
+                            "place_id":  "pd-the-catcade",
+                            "rank":  1,
+                            "blurb":  "A cat rescue lounge in Lakeview where adoptable cats roam free among retro arcade games. Every cat can be adopted through the rescue, and it also runs cat yoga.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description, hook; price_unit: price_note (\u0027$20 per person per hour\u0027)"
+                        },
+                        {
+                            "place_id":  "ig-snakes-and-lattes-chicago",
+                            "rank":  2,
+                            "blurb":  "A board game bar with walls of games you can borrow, and staff help pick one for your group.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description, hook; price_unit: price_note (\u0027$7 per person game fee\u0027)"
+                        },
+                        {
+                            "place_id":  "fgr-flight-club-chicago",
+                            "rank":  3,
+                            "blurb":  "A London-born darts bar where your group gets its own oche (a private throwing booth) and a screen that scores every throw, so beginners can play against experts.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027From $15 per person\u0027)"
+                        },
+                        {
+                            "place_id":  "fgr-electric-shuffle-chicago",
+                            "rank":  4,
+                            "blurb":  "A neon-lit shuffleboard bar from London where the tables score themselves, with four game modes and replays, so nobody argues about whose puck counts. Food and drinks come to your table while you play.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027$20 per person for 90 minutes\u0027)"
+                        },
+                        {
+                            "place_id":  "pf-koval-distillery-tours",
+                            "rank":  5,
+                            "blurb":  "A working grain-to-bottle distillery in Ravenswood. You watch production from a viewing platform, hear how the whiskey is made, then taste three KOVAL spirits.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027$12 per person per tour\u0027)"
+                        },
+                        {
+                            "place_id":  "ud-lizzadro-museum",
+                            "rank":  6,
+                            "blurb":  "A small Oak Brook museum devoted to cutting and carving stone: jade carvings, gemstones, cameos, mosaics, fossils and dioramas. The showpiece is Castle Lizzadro.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Adults $10\u0027)"
+                        },
+                        {
+                            "place_id":  "pd-athena-board-game-cafe",
+                            "rank":  7,
+                            "blurb":  "A relaxed Rogers Park cafe with more than 450 board games to borrow, a kitchen for snacks and drinks, and BYOB.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description, hook; price_unit: price_note (\u0027$10 per person gaming fee\u0027)"
+                        },
+                        {
+                            "place_id":  "fgr-acebounce-chicago",
+                            "rank":  8,
+                            "blurb":  "A ping pong bar in the Loop with rows of orange tables, where groups rally and play doubles over cocktails, beginners welcome.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description, hook; price_unit: price_note (\u0027Ping pong $10 per person\u0027)"
+                        },
+                        {
+                            "place_id":  "pa-puttshack-oak-brook",
+                            "rank":  9,
+                            "blurb":  "Indoor mini golf with smart balls that keep score for you, and trick holes that make it more competitive than classic putt-putt.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description, hook; price_unit: price_note (\u00279 holes per player\u0027)"
+                        },
+                        {
+                            "place_id":  "pc-andys-jazz-club",
+                            "rank":  10,
+                            "blurb":  "Three live jazz sets a night at a River North club and restaurant, a dinner-and-show date.",
+                            "price_unit":  "person",
+                            "source":  "blurb: hook, description, highlights; price_unit: price_note (\u0027$20 per guest per show\u0027)"
+                        }
+                    ]
+    },
+    {
+        "id":  "open-after-11",
+        "format":  "list",
+        "title":  "Still open after 11: {n} ideas",
+        "theme":  "Fri-Sat · Late night",
+        "intro":  "Blues, jazz, magic at your table, saunas, karaoke and arcades. Each is open past 11 pm on Fridays and Saturdays.",
+        "entries":  [
+                        {
+                            "place_id":  "pc-kingston-mines",
+                            "rank":  1,
+                            "blurb":  "A late-night blues club in Lincoln Park with two stages that trade sets all night, so the music barely stops. An early acoustic set starts the night.",
+                            "price_unit":  "unknown",
+                            "source":  "blurb: description, hook; price_unit: price_note gives cover without a unit; official FAQ also gives no unit"
+                        },
+                        {
+                            "place_id":  "pc-green-mill",
+                            "rank":  2,
+                            "blurb":  "Uptown\u0027s long-running jazz bar at Lawrence and Broadway, with live music every night, from early-evening sets to swing orchestras and very late jam sessions.",
+                            "price_unit":  "unknown",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Cover varies by show\u0027)"
+                        },
+                        {
+                            "place_id":  "pc-chicago-magic-lounge",
+                            "rank":  3,
+                            "blurb":  "A magic club and cocktail lounge in Andersonville whose lineup of magicians rotates weekly. In the speakeasy-style Performance Bar, magicians do close-up tricks at your table while you have drinks and small plates.",
+                            "price_unit":  "unknown",
+                            "source":  "blurb: description; price_unit: price_note has no amount or unit"
+                        },
+                        {
+                            "place_id":  "pr-king-spa-sauna-niles",
+                            "rank":  4,
+                            "blurb":  "A big Korean-style bathhouse in Niles with nine themed sauna rooms, from a gold pyramid and a Himalayan salt sauna to a 35 F ice room and an oak-fired Fire Sudatorium. The lounges are co-ed in spa clothes, and there is a Korean restaurant.",
+                            "price_unit":  "unknown",
+                            "source":  "blurb: description; price_unit: price_note and official pricing page give the day pass without a per-person unit"
+                        },
+                        {
+                            "place_id":  "pr-chicago-bath-house-red-square",
+                            "rank":  5,
+                            "blurb":  "A Russian-style bathhouse on Division Street since 1906, with a sauna, a lounge and a full bar. The classic add-on is a platza, where soaked birch, oak or eucalyptus leaves are used on you in the heat.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description, hook; price_unit: price_note (\u0027Day admission $50 per adult\u0027)"
+                        },
+                        {
+                            "place_id":  "pd-whirlyball-chicago",
+                            "rank":  6,
+                            "blurb":  "Home of WhirlyBall, a team game in electric bumper cars where you scoop and throw a ball, like lacrosse, hockey and basketball on wheels. There\u0027s also laser tag, bowling and more than 30 craft beer taps.",
+                            "price_unit":  "unknown",
+                            "source":  "blurb: description, hook; price_unit: price_note points to a pricing PDF, no unit"
+                        },
+                        {
+                            "place_id":  "pd-king-ktv-chinatown",
+                            "rank":  7,
+                            "blurb":  "A second-floor karaoke lounge in Chinatown with 12 private rooms, song catalogs in several languages and Asian-inspired pub food.",
+                            "price_unit":  "group",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Hourly room rental\u0027)"
+                        },
+                        {
+                            "place_id":  "pd-logan-arcade",
+                            "rank":  8,
+                            "blurb":  "A Logan Square bar with more than eighty well-kept pinball machines and arcade games, plus a pinball league and a Killer Queen night.",
+                            "price_unit":  "unknown",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Pay per game (price per play not listed)\u0027)"
+                        },
+                        {
+                            "place_id":  "pa-round1-north-riverside",
+                            "rank":  9,
+                            "blurb":  "The closest Round1 to the city: a big Japanese-style arcade full of rhythm, claw and prize games, with bowling, billiards and private karaoke rooms under one roof.",
+                            "price_unit":  "unknown",
+                            "source":  "blurb: description; price_unit: price_note (\u0027prices not posted\u0027)"
+                        },
+                        {
+                            "place_id":  "pd-andretti-karting-schaumburg",
+                            "rank":  10,
+                            "blurb":  "A huge Schaumburg entertainment center with four electric go-kart tracks, more than 150 arcade games, laser tag, Hologate VR and bowling.",
+                            "price_unit":  "person",
+                            "source":  "blurb: description; price_unit: price_note (\u0027Adult or intermediate 3-race pack\u0027), highlights (\u0027individual racers\u0027)"
+                        }
+                    ]
+    }
+]

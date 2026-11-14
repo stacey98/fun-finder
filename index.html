@@ -1568,6 +1568,168 @@ body{background:var(--paper)}
 .radar2 .tx{flex:1;min-width:0}
 .radar2 .dl{display:block;font:600 13px/1.2 var(--f-body);color:var(--ink-3)}
 .radar2 .nm{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin-top:3px;font:var(--card-wt) 16px/1.25 var(--f-card);color:var(--ink)}
+/* ================= v5.18 guides: Home row, Plan + List articles, map pins (home-guides spec §4-5, guides-v2 spec §3-4) ================= */
+svg.gi{width:20px;height:20px;flex:none}
+.hm-sec.ga-s{margin:32px -16px 0}
+.ga-s .rs-h{margin:0 16px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:36px}
+.ga-s .rs-h h2{margin:0;font:var(--card-wt) 20px/1.15 var(--f-card);color:var(--ink)}
+[data-skin="night"] .ga-s .rs-h h2{font-size:19px}
+.ga-arrows{display:none;gap:8px}
+@media (hover:hover) and (pointer:fine){ .ga-arrows{display:flex} }
+.ga-arr{width:36px;height:36px;border-radius:50%;border:1px solid var(--rule-strong);background:var(--paper-3);color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0}
+.ga-arr[disabled]{opacity:.35;cursor:default}
+.grow{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 16px 4px;scroll-padding:0 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.grow::-webkit-scrollbar{display:none}
+.gcard{flex:none;width:264px;scroll-snap-align:start;color:var(--ink);text-decoration:none;display:block}
+@media (max-width:359px){ .gcard{width:232px} }
+.gcover,.ga-hero,.gtcover,.ncover{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--c,var(--accent)),var(--paper-2) 120%)}
+.gcover{aspect-ratio:4/3;border-radius:var(--r-tile,20px)}
+.gfb{position:absolute;inset:0;display:grid;place-items:center;color:var(--paper);opacity:.55}
+.gfb svg{width:40%;height:40%;max-width:72px;max-height:72px}
+.gcover img,.ga-hero img,.gtcover img,.ncover img,.lph img,.gph img{position:relative;width:100%;height:100%;object-fit:cover;display:block}
+.mosaic{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:2px}
+.mosaic img{min-width:0;min-height:0}
+.mosaic img:nth-of-type(1){grid-row:1 / 3}
+.mosaic .gfb{z-index:0}
+.gcover.mosaic,.ga-hero.mosaic,.gtcover.mosaic,.ncover.mosaic{background:var(--paper)}   /* the 2px gaps between the photos are paper, not the genre color */
+.gpill{position:absolute;top:10px;left:10px;z-index:2;height:26px;padding:0 10px;border-radius:999px;background:var(--paper-3);color:var(--ink);font:650 12.5px/26px var(--f-body);display:inline-flex;align-items:center;gap:5px}
+.gpill svg.gi{width:14px;height:14px}
+.gcard h3{margin:10px 0 0;font:var(--card-wt) 18px/1.2 var(--f-card);color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+[data-skin="night"] .gcard h3{font-size:17px}
+.gwhen{margin:4px 0 0;font:500 13.5px/1.3 var(--f-body);color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gart{position:absolute;top:0;right:0;bottom:0;left:0;z-index:45;background:var(--paper);color:var(--ink);transform:translateX(100%);transition:transform .26s cubic-bezier(.2,.8,.2,1)}
+.gart.on{transform:none}
+.gart.away{visibility:hidden}
+.ga-scroll{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.ga-top{position:absolute;top:calc(var(--sat,0px) + 14px);left:14px;right:14px;z-index:3;display:flex;justify-content:space-between}
+.ga-top .grp{display:flex;gap:8px}
+.ga-circ{width:44px;height:44px;border-radius:50%;border:0;background:var(--paper-3);color:var(--ink);display:grid;place-items:center;box-shadow:0 2px 10px rgba(0,0,0,.18);cursor:pointer;padding:0}
+.ga-hero{aspect-ratio:4/3;width:100%}
+.ga-body{padding:22px 20px 0}
+.ga-kick{display:inline-block;font:700 12.5px/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-text,var(--accent))}
+.ga-body h1{margin:10px 0 0;font:600 30px/1.12 var(--f-display,var(--f-card));color:var(--ink);text-wrap:balance;outline:none}
+[data-skin="night"] .ga-body h1{font-size:24px;letter-spacing:-.01em}
+.ga-when{margin:10px 0 0;display:flex;align-items:center;gap:6px;font:600 14px/1.3 var(--f-body);color:var(--ink-2)}
+.ga-when svg.gi{width:16px;height:16px}
+.ga-intro{margin:14px 0 0;font:400 16.5px/1.5 var(--f-body);color:var(--ink)}
+.ga-sum{margin:14px 0 0;display:flex;align-items:center;gap:8px;font:600 13.5px/1.3 var(--f-body);color:var(--ink-2)}
+.ga-sum .dot,.gart .s .dot{width:8px;height:8px;border-radius:50%;flex:none;background:currentColor;display:inline-block}
+.ga-sum .dot{color:var(--open)} .ga-sum.none .dot{color:var(--closed)}
+.gart .s{display:inline-flex;align-items:center;gap:8px;font:600 13.5px/1.3 var(--f-body)}
+.gart .s.open{color:var(--open)} .gart .s.soon{color:var(--soon)} .gart .s.closed{color:var(--closed)}
+.gart .age{display:inline-block;vertical-align:middle;font:700 11.5px/1 var(--f-body);padding:3px 6px;border-radius:6px;border:1px solid var(--rule-strong);color:var(--ink)}
+.ga-list{list-style:none;margin:8px 0 0;padding:0}
+.le{position:relative;padding:28px 0;border-bottom:1px solid var(--rule)}
+.le:last-child{border-bottom:0}
+.lph{position:relative;aspect-ratio:4/3;border-radius:var(--r-thumb,18px);overflow:hidden;background:linear-gradient(135deg,var(--c,var(--accent)),var(--paper-2) 120%);transition:box-shadow .18s}
+.le.sea .lph img{opacity:.6}
+.le.hot .lph{box-shadow:0 0 0 3px var(--accent)}
+.le.pulse .lph{box-shadow:0 0 0 6px var(--accent)}
+.ga-psave{position:absolute;top:38px;right:10px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:var(--paper-3);color:var(--ink);display:grid;place-items:center;box-shadow:0 2px 10px rgba(0,0,0,.18);cursor:pointer;padding:0}
+.ga-psave[aria-pressed="true"] svg{fill:currentColor}
+.le-link{display:block;color:var(--ink);text-decoration:none}
+.lhead{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;margin-top:14px}
+.rank{font:600 36px/1 var(--f-display,var(--f-card));color:var(--accent-text,var(--accent));font-variant-numeric:tabular-nums;min-width:28px;margin-top:-1px}
+[data-skin="night"] .rank{font-size:30px}
+.lname{display:block;font:var(--card-wt) 21px/1.15 var(--f-card);color:var(--ink)}
+[data-skin="night"] .lname{font-size:20px}
+.lmeta{margin-top:5px;font:500 14px/1.35 var(--f-body);color:var(--ink-2);display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
+.lmeta .sep{color:var(--ink-3)}
+.blurb{display:block;margin:12px 0 0;font:400 16px/1.45 var(--f-body);color:var(--ink)}
+.lstat{margin-top:10px;display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--ink-3)}
+.ga-steps{list-style:none;margin:28px 0 0;padding:0}
+.gst{display:grid;grid-template-columns:28px 1fr;gap:14px}
+.gst.gone{opacity:.55}
+.gst .rail{position:relative;display:flex;justify-content:center}
+.gst .rail b{position:relative;z-index:1;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--on-accent);font:700 14px/28px var(--f-body);text-align:center}
+.gst:not(.last) .rail::after{content:"";position:absolute;top:30px;bottom:0;left:13px;width:2px;background:var(--rule-strong)}
+.gsc{min-width:0;padding-bottom:4px}
+.glab{margin:4px 0 0;font:700 13.5px/1.2 var(--f-body);color:var(--accent-text,var(--accent))}
+.gph{margin-top:10px;aspect-ratio:16/10;border-radius:18px;overflow:hidden;background:var(--paper-2)}
+.gst h3{margin:10px 0 0;font:var(--card-wt) 19px/1.2 var(--f-card);color:var(--ink)}
+[data-skin="night"] .gst h3{font-size:18px}
+.gwhy{margin:4px 0 0;font:400 15px/1.45 var(--f-body);color:var(--ink-2)}
+.gmeta{margin:10px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font:600 13.5px/1.3 var(--f-body)}
+.gtime{color:var(--ink)}
+.ga-see{margin-top:10px;min-height:40px;display:inline-flex;align-items:center;gap:4px;padding:0 16px;border:0;border-radius:999px;background:var(--paper-2);color:var(--ink);font:600 14px var(--f-body);cursor:pointer}
+.ga-see svg.gi{width:16px;height:16px}
+.ghop{margin:0;padding:16px 0 22px;display:flex;align-items:center;gap:6px;font:500 13px/1.2 var(--f-body);color:var(--ink-3)}
+.ghop svg.gi{width:16px;height:16px}
+.gst.last .gsc{padding-bottom:0}
+.ga-end{padding:30px 0 0}
+.ga-end .rowb{display:flex;gap:10px}
+.ga-main{display:flex;align-items:center;justify-content:center;gap:8px;flex:1;min-width:0;height:52px;border:0;border-radius:999px;background:var(--accent);color:var(--on-accent);font:650 16px/1 var(--f-body);cursor:pointer;white-space:nowrap}
+.ga-main.on{background:var(--accent-soft);color:var(--accent-text,var(--accent))}
+.ga-quiet{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 20px;border:1px solid var(--rule-strong);border-radius:999px;background:transparent;color:var(--ink);font:600 16px/1 var(--f-body);cursor:pointer}
+@media (max-width:359px){ .ga-main{font-size:15px;gap:6px} .ga-quiet{padding:0 14px} }
+.ga-trust{margin:14px 0 0;font:400 13px/1.4 var(--f-body);color:var(--ink-3)}
+.ga-next{margin-top:28px;padding-top:20px;border-top:1px solid var(--rule)}
+.ga-next .lbl{margin:0;font:600 13px/1 var(--f-body);color:var(--ink-3)}
+.ga-next .nrow{display:flex;gap:14px;align-items:center;margin-top:12px;width:100%;padding:0;border:0;background:none;text-align:left;color:var(--ink);cursor:pointer}
+.ncover{width:64px;height:64px;flex:none;border-radius:var(--r-thumb,16px)}
+.ga-next b{display:block;font:var(--card-wt) 16px/1.25 var(--f-card)}
+.ga-next .nrow > span > span{font:500 13px/1.3 var(--f-body);color:var(--ink-2)}
+.ga-pad{height:calc(28px + var(--sab,0px))}
+.ga-strip{display:flex;gap:12px;overflow-x:auto;padding:0 16px 8px;scrollbar-width:none}
+.ga-tile{flex:none;width:120px;padding:0;border:0;background:none;text-align:left;color:var(--ink);cursor:pointer;font:600 14px/1.25 var(--f-body)}
+.gtcover{width:120px;height:90px;border-radius:14px;margin-bottom:6px}
+.ga-tile > span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.gpin{position:absolute;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;border:0;padding:0;background:var(--accent);color:var(--on-accent);font:700 14px/30px var(--f-body);text-align:center;box-shadow:0 0 0 3px var(--paper),0 4px 12px rgba(0,0,0,.25);pointer-events:auto;cursor:pointer;z-index:6;transition:width .15s,height .15s}
+.gpin.hot{width:40px;height:40px;line-height:40px;font-size:16px;z-index:8}
+.ga-route{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.ga-route polyline{fill:none;stroke:var(--accent);stroke-width:3;stroke-dasharray:2 7;stroke-linecap:round;opacity:.85}
+.ga-pill{position:absolute;left:16px;right:16px;bottom:calc(16px + var(--sab,0px));z-index:40;display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px 18px;border:0;border-radius:20px;background:var(--paper-3);color:var(--ink);box-shadow:0 6px 24px rgba(0,0,0,.22);text-align:left;cursor:pointer}
+.ga-pill span{font:600 13px/1.2 var(--f-body);color:var(--ink-2);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ga-pill b{font:650 16px/1.2 var(--f-body)}
+@media (min-width:900px), (min-width:600px) and (max-height:500px){
+  .gart{right:auto;width:var(--side);box-shadow:2px 0 18px var(--shadow);transform:translateX(-100%)}
+  .gart.on{transform:none}
+  .ga-hero{aspect-ratio:16/9}
+  .ga-pill{display:none!important}
+}
+@media (prefers-reduced-motion: reduce){ .gart{transition:opacity .12s linear;transform:none;opacity:0} .gart.on{opacity:1} .gpin{transition:none} }
+/* v5.18 feedback (design/2026-11-14-feedback-noon.md): been box, one source, friend profile, Plan together, Compare, Neither */
+.dt-acts.top{margin-top:12px}
+.dt-acts .been-go{background:var(--accent);color:var(--on-accent);border-color:transparent}
+.been-box{display:block}
+.been-box .bb-r1{display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap}
+.been-box .bb-r1 .bb-l{flex:1 1 auto}
+.been-box .bb-stars{display:inline-flex;gap:2px}
+.starbtn{width:40px;height:40px;padding:0;border:0;border-radius:10px;background:none;color:var(--ink-3);font:400 26px/1 var(--f-body);cursor:pointer}
+.starbtn.on{color:var(--soon)}
+.meta .stars{color:var(--soon);letter-spacing:1px}
+@media (max-width:359px){ .starbtn{width:34px;font-size:24px} }
+.been-box .bb-r2{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-top:10px}
+.bb-seg{flex:1 1 230px;min-width:0}
+.bb-seg button{min-height:38px;font-size:13px}
+.been-box input[type="month"]{height:38px;min-width:0;max-width:100%;border-radius:10px;border:1px solid var(--rule-strong);background:var(--paper);color:var(--ink);font:500 15px var(--f-body);padding:0 8px}
+.one-src{margin-top:4px}
+.fr-open{border:0;background:none;padding:6px 0;text-align:left;color:var(--ink);font:inherit;cursor:pointer;min-height:44px}
+.fr-open small{color:var(--ink-3)}
+.fp{margin:4px 20px 14px}
+.fp-h{display:flex;align-items:center;gap:14px}
+.fp-h .fp-av,.fp-h .av.fp-av{width:56px;height:56px;flex:none;font-size:22px}
+.fp-nm{margin:0;font:var(--card-wt) 20px/1.2 var(--f-card);color:var(--ink)}
+.fp-sub{margin:2px 0 0;font:500 13.5px/1.3 var(--f-body);color:var(--ink-2)}
+.fp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.fp-stats span{padding:10px 8px;border-radius:14px;background:var(--paper-2);text-align:center;font:500 12.5px/1.2 var(--f-body);color:var(--ink-2)}
+.fp-stats b{display:block;font:650 18px/1.2 var(--f-body);color:var(--ink);margin-bottom:2px}
+.fp-lab{margin:14px 0 6px;font:600 13px var(--f-body);color:var(--ink-3)}
+.fp-months{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.fp-months li{padding:6px 10px;border-radius:999px;background:var(--paper-2);font:600 13px var(--f-body);color:var(--ink)}
+.fp-months small{color:var(--ink-3);font-weight:500}
+.fp-note{margin:12px 0 0;font:500 13px/1.4 var(--f-body);color:var(--ink-3)}
+.cp-box{margin:0 20px 12px;padding:4px 14px 12px;border-radius:16px;background:var(--paper-2)}
+.cp-box .sw-row{padding-left:0;padding-right:0}
+.cp-how{margin:4px 0 0;padding-left:20px;font:500 13.5px/1.45 var(--f-body);color:var(--ink-2)}
+.cp-how li.done{color:var(--open)}
+.cp-box .mini-btn{margin-top:10px}
+.ty-cmp{display:flex;align-items:center;gap:12px;width:100%;margin:16px 0 0;padding:12px 14px;border:1px solid var(--rule-strong);border-radius:16px;background:var(--paper-3);color:var(--ink);text-align:left;cursor:pointer}
+.ty-cmp > .i{width:22px;height:22px;flex:none}
+.ty-cmp span{flex:1;min-width:0}
+.ty-cmp b{display:block;font:650 15px/1.25 var(--f-body)}
+.ty-cmp small{display:block;margin-top:2px;font:500 13px/1.35 var(--f-body);color:var(--ink-2)}
+.wy-nei{display:block;margin:8px auto calc(10px + var(--sab,0px));min-height:44px;padding:0 24px;border:1px solid var(--rule-strong);border-radius:999px;background:var(--paper-3);color:var(--ink);font:600 15px/1 var(--f-body);cursor:pointer;flex:none}
 </style>
 <meta name="claude:viewport-fit-sides" content="cover">
 
@@ -1688,6 +1850,8 @@ body{background:var(--paper)}
   <span class="mapcredit">Map data: City of Chicago</span>
   <button class="map-pill" id="mapPill" type="button" hidden><svg class="i"><use href="#i-map"/></svg>Map</button>
 
+  <section id="gart" class="gart" hidden role="dialog" aria-modal="true" aria-labelledby="gaTitle"><div class="ga-scroll" id="gaScroll"></div></section>
+  <button class="ga-pill" id="gaPill" type="button" hidden></button>
   <section id="detail" class="detail" hidden role="dialog" aria-modal="true" aria-label="Details">
     <div class="dt-scroll" id="dtScroll"></div>
     <div class="dt-top">
@@ -1745,7 +1909,8 @@ body{background:var(--paper)}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.17 (2026-11-14)';   // v5.17 part A2: 12 swipes + 23 would-you-rather, Result extras (A1: fun types, Result, Adjust, avatar)
+var VERSION = 'v5.18 (2026-11-14)';   // v5.18: guides as articles (Plans + Lists), been date month/none, friend profile, one source link, WYR "Neither"
+var VERSION_PREV = 'v5.17 (2026-11-14)';   // v5.17 part A2: 12 swipes + 23 would-you-rather, Result extras (A1: fun types, Result, Adjust, avatar)
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var FEEDBACK_EMAIL = 'localfinds.app@gmail.com';   // v5.16: "Send feedback" in the account sheet (a mailto draft; never sent by the app). Separate from CONTACT_EMAIL.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
@@ -3975,13 +4140,22 @@ var CHECKINS = [];
 function cleanCheckins(a){
   var seen = {}, out = [];
   (Array.isArray(a) ? a : []).forEach(function(x){
-    if (!x || typeof x.id !== 'string' || !x.id || !isKey(x.date) || seen[x.id]) return;
-    seen[x.id] = 1; var o = {id:x.id, date:x.date, rating: x.rating === 1 || x.rating === -1 ? x.rating : 0, updated_at:String(x.updated_at || '')};
+    var none = x && x.prec === 'none';   // v5.18: "I don't remember when" = no date (visit_date null in the account)
+    if (!x || typeof x.id !== 'string' || !x.id || (!none && !isKey(x.date)) || seen[x.id]) return;
+    seen[x.id] = 1; var o = {id:x.id, date:none ? '' : x.date, rating:ratingOk(x.rating), updated_at:String(x.updated_at || '')};
     if (x.prec === 'month') o.prec = 'month';   // v5.11: a visit known only to the month (imported); date = the 1st
+    if (none) o.prec = 'none';
     out.push(o);
   });
   return out;
 }
+/* v5.18 (owner): 1-5 stars instead of thumbs. Stored rating (here and in the account's checkins.rating, check -1..5): 0 = none,
+   1-5 = that many stars. An old -1 (only from an earlier app version) reads as 1 star and is never written. */
+function ratingOk(v){ v = +v; return v === -1 || (v >= 1 && v <= 5 && Math.floor(v) === v) ? v : 0; }
+function starsOf(v){ v = ratingOk(v); return v === -1 ? 1 : v; }   // coordinator 2026-11-14: the live table had no thumbs ratings, so stars are stored as 1-5; an old -1 reads as 1 star
+function dbRatingOf(stars){ stars = +stars; return stars >= 1 && stars <= 5 && Math.floor(stars) === stars ? stars : 0; }
+function starsText(v){ var s = starsOf(v); return s ? new Array(s + 1).join('★') + new Array(6 - s).join('☆') : ''; }
+function starTaste(v){ var s = starsOf(v); return {r:s >= 4 ? 1 : s && s <= 2 ? -1 : 0, m:s === 5 || s === 1 ? 1.5 : 1}; }   // 5 strong like, 4 like, 3 neutral, 2 dislike, 1 strong dislike (1.5 = the Love / Never weight)
 function checkinOf(id, list){ list = list || CHECKINS; for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i]; return null; }
 function withCheckin(list, id, patch, nowIso){ // a new list with this place added or changed
   var out = [], found = false;
@@ -3990,8 +4164,8 @@ function withCheckin(list, id, patch, nowIso){ // a new list with this place add
   return cleanCheckins(out);
 }
 function withoutCheckin(list, id){ return list.filter(function(x){ return x.id !== id; }); }
-function beenRecently(id, todayKey, list){ var ck = checkinOf(id, list); return !!ck && dayDiff(ck.date, todayKey) <= RECENT_DAYS; }   // within the last 30 days (a future date counts too)
-function beenLabel(ck, todayKey){ return 'Been \u00b7 ' + (ck.prec === 'month' ? monthText(ck.date.slice(0, 7), todayKey) : fmtDate(ck.date, todayKey)); }
+function beenRecently(id, todayKey, list){ var ck = checkinOf(id, list); return !!ck && isKey(ck.date) && dayDiff(ck.date, todayKey) <= RECENT_DAYS; }   // within the last 30 days (a future date counts too); no date = not recent
+function beenLabel(ck, todayKey){ return !isKey(ck.date) ? 'Been here' : 'Been \u00b7 ' + (ck.prec === 'month' ? monthText(ck.date.slice(0, 7), todayKey) : fmtDate(ck.date, todayKey)); }
 
 /* One line of facts: "Open till 10 pm · 12 min walk · $$" */
 function statusShort(c){ if (c.dayText) return c.d.text; return tenseText(statusShort0(c), planCtx(c.st.ms)); }   // v5.3: "On then" for a picked time
@@ -4214,7 +4388,7 @@ function entryVotes(x){ // one log entry -> [{d, s, w, end, card}] (card: counts
     var xp = x.pick === 'a' ? x.xa : x.xb, e = xp ? sgn(xp[x.dial]) : 0;
     if (e) out.push({d:x.dial, s:e, w:TW.pair, end:0, card:1, pair:1});   // a pair shows both ends at once
   } else if (x.t === 'save' || x.t === 'ck') {
-    var r = x.t === 'save' ? 1 : (x.r === 1 ? 1 : x.r === -1 ? -1 : 0), ww = x.t === 'save' ? TW.save : TW.ck;
+    var r = x.t === 'save' ? 1 : (x.r === 1 ? 1 : x.r === -1 ? -1 : 0), ww = x.t === 'save' ? TW.save : TW.ck * (x.m === 1.5 ? 1.5 : 1);   // v5.18: 5 or 1 stars weigh like Love / Never
     if (r) DIALS.forEach(function(d){ if (isNum(v[d]) && Math.abs(v[d]) >= 0.5) out.push({d:d, s:r * sgn(v[d]), w:ww, end:sgn(v[d]), card:0}); });
   }
   return out;
@@ -4679,8 +4853,9 @@ function deckFF(D){ // §3b fast fingers: 6 answers in a row the same way, each 
 function deckAnswer(D, ans, ms, at){
   var c = D.cards[D.log.length]; if (!c) return null;
   if (c.kind === 'wyr') { // v5.17a2: ans 'a' (low end) | 'b' (high end) | 'skip' (no vote, still counts toward the 35). Log per addendum §1 (+ q, pos for the side check)
-    if (ans !== 'a' && ans !== 'b' && ans !== 'skip') return null;
+    if (ans !== 'a' && ans !== 'b' && ans !== 'skip' && ans !== 'neither') return null;
     var ew = {t:'card', kind:'wyr', id:'wyr-' + c.q.q, q:c.q.q, axis:c.q.d, end:ans === 'b' ? 1 : ans === 'a' ? -1 : 0, pos:c.aFirst ? 'a-first' : 'b-first', ms:Math.round(ms || 0), at:at || new Date().toISOString(), deck:D.cfg.name, bar:0, far:0};
+    if (ans === 'neither') ew.nei = 1;   // v5.18: "Neither" = end 0, no vote on the axis (like Skip, but she said so)
     D.log.push(ew); return ew;
   }
   if (['yes', 'no', 'love', 'never'].indexOf(ans) < 0) return null;
@@ -5033,6 +5208,7 @@ function drawMap(){
 function placeOverlays(){
   var i, o, sp;
   for (i = 0; i < pinEls.length; i++) { o = pinEls[i]; sp = toScreen(o.x, o.y); o.el.style.left = sp[0].toFixed(1) + 'px'; o.el.style.top = sp[1].toFixed(1) + 'px'; }
+  if (GA.open) gaRoutePlace();   // v5.18
   if (GLM.on) return;   // v5: the street map draws its own place names
   var all = MV.s >= 0.42, feat = MV.s >= 0.09;
   for (i = 0; i < labelEls.length; i++) {
@@ -5500,6 +5676,8 @@ function recluster(){
   lastClusterS = MV.s;
   if (!pinsEl) return;
   var res = UI.lastRes, html = [];
+  if (guideMapOn()) res = null;   // v5.18: an open guide shows only its own numbered pins
+  if (guideMapOn()) html.push(gaPinsHTML());
   if (res && res.dots) res.dots.forEach(function(e){
     var c = e.c, u = c.u || (c.u = proj(c.item.lat, c.item.lng)), o = e.o || {};
     html.push('<span class="mdot' + (o.faint ? ' faint' : '') + (o.grey ? ' grey' : '') + (UI.pinAnim ? ' in' : '') + '" style="--c:' + genreColor(c.genre || genreOf(c.item)) + '" data-ux="' + r1(u[0]) + '" data-uy="' + r1(u[1]) + '"></span>');
@@ -5673,6 +5851,7 @@ function showView(v, opts){
   if (v === 'map' && UI.view !== 'map') UI.backView = UI.view || 'home';
   if (v !== 'browse' && UI.q) { UI.q = ''; var qi = $('q'); if (qi) qi.value = ''; if ($('qClear')) $('qClear').hidden = true; }
   UI.view = v; UI.sel = null; UI.viewKey = null;
+  if (GA.phoneMap && v !== 'map') { GA.phoneMap = false; $('gart').classList.remove('away'); $('gaPill').hidden = true; }   // v5.18: leaving the map returns to the open guide
   $('app').setAttribute('data-view', v);
   refresh();
   renderMapCard();
@@ -5828,7 +6007,7 @@ function rowHTML(c, opt){
   if (c.bucket === 'fits' && !st.open && st.opensAt && !c.anyDay) h += '<p class="evb">' + (UI.planning ? 'Opens ' + esc(fmtClock(st.opensAt)) : 'Opens in ' + esc(fmtDur(Math.max(1, Math.round((st.opensAt - st.ms) / 60000))))) + '</p>';
   var meta = [], ck = checkinOf(it.id), tsh = travelShort(c), prs = priceShort(it);   // v4: one plain line: where · how far · price (· Been)
   if (opt.fbeen) h = '<p class="meta"><span class="been">' + esc(opt.fbeen) + '</span></p>';   // v5.11: a friend's visit, month only
-  if (opt.been && ck) h = '<p class="meta"><span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' + (ck.rating === 1 ? ' · liked it' : ck.rating === -1 ? ' · not for me' : '') + '</p>';
+  if (opt.been && ck) h = '<p class="meta"><span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' + (starsOf(ck.rating) ? ' · <span class="stars" aria-label="' + starsOf(ck.rating) + ' of 5 stars">' + starsText(ck.rating) + '</span>' : '') + '</p>';   // v5.18 stars
   if (it.neighborhood) meta.push(esc(shortHood(it.neighborhood)));
   if (tsh) meta.push(esc(tsh));
   if (prs) meta.push(esc(prs));
@@ -6249,7 +6428,7 @@ function guideMatch(id, it, dayKey){ // pure
   }
   return false;
 }
-function guidesHTML(){
+function guidesHTML510(){ // v5.10 pill buttons: no longer on Home (v5.18 articles); kept for the old #guide=<id> links only
   return '<section class="hm-sec guides-s"><h2>Mini guides</h2><div class="guides">' + GUIDES.map(function(g){ return '<button type="button" data-guide="' + g.id + '">' + esc(g.name) + '</button>'; }).join('') + '</div></section>';
 }
 function guideRows(id, T, ctx){ // computed rows for a guide: open (fits) first, then the rest; nearest first. Not narrowed by her who/price filters.
@@ -6270,7 +6449,273 @@ function guideListHTML(id){
 }
 function openGuide(id){ if (!GUIDE_BY[id]) return; UI.guide = id; UI.q = ''; if ($('q')) $('q').value = ''; if (UI.view !== 'browse') showView('browse'); refresh(); if ($('sheetScroll')) $('sheetScroll').scrollTop = 0; }
 function closeGuide(){ UI.guide = ''; try { if (/guide=/.test(location.hash || '')) history.replaceState(null, '', location.pathname + location.search); } catch (e) {} refresh(); }
-function shareGuide(id){ var g = GUIDE_BY[id]; if (!g) return; Platform.share({title:g.name, text:g.name + ' · ' + APP_NAME, url:guideLink(id)}).then(function(r){ if (r === 'copied') toast('Link copied'); }, function(){ toast(guideLink(id)); }); }
+function shareGuide(id){ var g = GUIDE_BY[id], R = !g && gaResolveId(id); if (!g && !R) return; var t = g ? g.name : R.title; Platform.share({title:t, text:t + ' · ' + APP_NAME, url:guideLink(id)}).then(function(r){ if (r === 'copied') toast('Link copied'); }, function(){ toast(guideLink(id)); }); }
+/* ================= v5.18 guides as articles (design/2026-11-14-home-guides-spec.md + 2026-11-14-guides-v2-spec.md) =================
+   Two formats. Plan (no `format`): cover, when, intro, 2-4 numbered steps with photo, why, timing, live status, hop time, See place.
+   List (format:"list"): Top N, mosaic cover, ranked entries with a big photo, neighborhood · price · 21+, blurb, live status.
+   Files the app fetches, next to activities.json: guides-v2.json (Plans; falls back to guides.json) and guides-lists.json (Lists;
+   falls back to 2 built-in sample lists). Facts (photo, hours, price, area, age) always come from the live place record.
+   The internal `gaps` list in the guide files is never read or shown. */
+var GA = {all:[], loaded:false, src:{plans:'', lists:''}, open:'', R:null, phoneMap:false, pushed:false, html:'', hot:-1};
+var GA_FILES = {plans:['guides-v2.json', 'guides.json'], lists:['guides-lists.json']};
+var GA_PLANS_KEY = 'og.plans.v1', GA_LIST_MIN = 5, GA_PLAN_MIN = 2, GA_ROW_MAX = 12, GA_WALK_MI = 1.2;
+var GA_SAMPLE_LISTS = [ // used only until data/guides-lists.json exists; blurbs restate each item's own description / hook (guides-v2 spec §7)
+  {id:'cold-night-dates', format:'list', sample:true, title:'{n} date ideas for a cold night', theme:'Any night · Indoors', intro:'Magic, jazz, games and a 94th-floor view, all indoors.', entries:[
+    {place_id:'ig-the-hand-and-the-eye', rank:1, blurb:'Close-up and stage magic in hidden rooms of a historic stone mansion off the Mag Mile.'},
+    {place_id:'pc-andys-jazz-club', rank:2, blurb:'Three jazz sets a night, with dinner.'},
+    {place_id:'pc-360-chicago', rank:3, blurb:'94th-floor views over the lake, and TILT leans you out over the edge behind glass.'},
+    {place_id:'ig-snakes-and-lattes-chicago', rank:4, blurb:'Borrow any game from walls of board games. Staff help you pick one.'},
+    {place_id:'fgr-flight-club-chicago', rank:5, blurb:'Your own darts booth, with a screen that keeps score for you.'},
+    {place_id:'ig-the-library-at-gilt-bar', rank:6, blurb:'A speakeasy behind an unmarked door, with velvet booths and shelves of old books.'},
+    {place_id:'pr-chicago-bath-house-red-square', rank:7, blurb:'A Russian-style bathhouse on Division Street since 1906: sauna, lounge and a full bar.'},
+    {place_id:'pd-sandbox-vr-lincoln-common', rank:8, blurb:'Full-body VR that your group plays together, like a dinosaur adventure.'},
+    {place_id:'pa-paniq-logan-square', rank:9, blurb:'Private escape rooms, including The Onyx Tower, a 45-minute room for two.'},
+    {place_id:'ig-pop-craft-studio', rank:10, blurb:'Tuft your own rug or mix a custom lipstick, then take it home. BYOB.'}]},
+  {id:'free-indoors', format:'list', sample:true, title:'{n} free things to do indoors', theme:'Any day · Free', intro:'Museums, gardens under glass and quiet halls that cost nothing to walk into.', entries:[
+    {place_id:'pc-chicago-cultural-center', rank:1, blurb:'Free landmark with a Tiffany stained-glass dome.'},
+    {place_id:'pc-national-museum-of-mexican-art', rank:2, blurb:'Always-free Mexican art museum in Pilsen.'},
+    {place_id:'pc-lincoln-park-conservatory', rank:3, blurb:'Free 1890s glass conservatory near the zoo.'},
+    {place_id:'ps-hwlc-winter-garden', rank:4, blurb:'Glass-roofed hall on the library\'s top floor.'},
+    {place_id:'pc-money-museum', rank:5, blurb:'Free museum about money inside the Federal Reserve.'},
+    {place_id:'ps-smart-museum-of-art', rank:6, blurb:'Always-free art museum on the UChicago campus.'},
+    {place_id:'ps-mocp', rank:7, blurb:'Free photography museum in the South Loop.'},
+    {place_id:'ps-poetry-foundation', rank:8, blurb:'Free poetry library behind a tree-lined courtyard.'}]}
+];
+var GA_IC = (function(){ var a = ' viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"';
+  function s(p){ return '<svg class="gi"' + a + '>' + p + '</svg>'; }
+  return {back:s('<path d="M15 5l-7 7 7 7"/>'), map:s('<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/>'), share:s('<path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"/>'),
+    mark:s('<path d="M6 3h12v18l-6-4-6 4z"/>'), check:s('<path d="M4.5 12.5l5 5 10-11"/>'), chev:s('<path d="M9 6l6 6-6 6"/>'), prev:s('<path d="M15 6l-6 6 6 6"/>'), list:s('<path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01"/>'),
+    route:s('<circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h6a3 3 0 000-6h-4a3 3 0 010-6h6"/>'), moon:s('<path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/>'), clock:s('<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>'),
+    cal:s('<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>'), walk:s('<circle cx="13" cy="4.5" r="1.8"/><path d="M10 21l2-6-2.5-2.5L11 8l3 3 3 1M9.5 12.5L7 14"/>'), car:s('<path d="M5 16V11l2-5h10l2 5v5"/><path d="M3.5 16h17v3h-17z"/><circle cx="7.5" cy="16.5" r="1"/><circle cx="16.5" cy="16.5" r="1"/>')};
+})();
+function gaArr(raw){ return Array.isArray(raw) ? raw : raw && Array.isArray(raw.guides) ? raw.guides : []; }   // a file may be a bare list or {guides:[...], gaps:[...]} (gaps never read)
+function gaIdOk(id){ return /^[a-z0-9-]{1,80}$/.test(String(id || '')); }   // v5.18: digits allowed (first-date-under-30)
+function gaFormat(g){ return g && g.format === 'list' ? 'list' : 'plan'; }
+function gaFillN(t, n){ return String(t || '').replace(/\{n\}/g, String(n)); }
+function gaDates(g){ return (Array.isArray(g && g.dates) ? g.dates : []).filter(isKey).sort(); }
+function gaWindow(g, todayKey){ // pure: a date-bound list shows from show_from (default 7 days before) through its last date
+  var d = gaDates(g); if (!d.length) return true;
+  var from = isKey(g.show_from) ? g.show_from : addDays(d[0], -7);
+  return todayKey >= from && todayKey <= d[d.length - 1];
+}
+function gaMerge(plans, lists){ // pure: one list of guides, ids unique (first wins), plans and lists alternated in file order
+  var seen = {}, P = [], L = [];
+  (plans || []).concat(lists || []).forEach(function(g){ if (!g || typeof g !== 'object' || !gaIdOk(g.id) || seen[g.id] || !g.title) return; seen[g.id] = 1; (gaFormat(g) === 'list' ? L : P).push(g); });
+  var out = [], i = 0; while (i < P.length || i < L.length) { if (i < P.length) out.push(P[i]); if (i < L.length) out.push(L[i]); i++; }
+  return out;
+}
+function gaFetchFirst(files){ var i = 0; function nx(){ if (i >= files.length) return Promise.resolve(null); var f = files[i++]; return Platform.fetchJSON(f).then(function(d){ var a = gaArr(d); return a.length ? {file:f, list:a} : nx(); }, nx); } return nx(); }
+function loadGuides(){
+  return Promise.all([gaFetchFirst(GA_FILES.plans), gaFetchFirst(GA_FILES.lists)]).then(function(r){
+    GA.src.plans = r[0] ? r[0].file : ''; GA.src.lists = r[1] ? r[1].file : 'built-in samples';
+    GA.all = gaMerge(r[0] ? r[0].list : [], r[1] ? r[1].list : GA_SAMPLE_LISTS); GA.loaded = true;
+    UI.homeHTML = null; if (DATA_LOADED) refresh();
+    if (UI.pendingGuide) { var pg = UI.pendingGuide; UI.pendingGuide = ''; gaDeepLink(pg); }
+  });
+}
+function gaPhotoIndex(){ if (gaPhotoIndex.n === DATA.length && gaPhotoIndex.m) return gaPhotoIndex.m; var m = {}; DATA.forEach(function(it){ (Array.isArray(it.photos) ? it.photos : []).forEach(function(p){ if (p && typeof p.file === 'string' && !/^[a-z]+:/i.test(p.file)) m[p.file.replace(/^.*\//, '').replace(/\.[a-z0-9]+$/i, '')] = p.file; }); }); gaPhotoIndex.n = DATA.length; gaPhotoIndex.m = m; return m; }
+function gaPhotos(it){ return (Array.isArray(it && it.photos) ? it.photos : []).filter(function(p){ return p && typeof p.file === 'string' && p.file && !/^[a-z]+:/i.test(p.file); }).map(function(p){ return p.file; }); }
+function gaResolve(g, find){ // -> {g, fmt, rows:[{it, why|blurb, timing, unit, source}], n, title, seasonal, dates} or null when it can't be shown
+  find = find || findItem;
+  if (!g || !gaIdOk(g.id) || !g.title) return null;
+  var fmt = gaFormat(g), rows = [];
+  if (fmt === 'list') {
+    (Array.isArray(g.entries) ? g.entries : []).filter(Boolean).slice().sort(function(a, b){ return (+a.rank || 999) - (+b.rank || 999); }).forEach(function(e){
+      var it = find(e.place_id); if (!it || (it.verified && it.verified.status === 'closed')) return;   // missing or closed for good: dropped, ranks close up
+      rows.push({it:it, blurb:String(e.blurb || ''), unit:e.price_unit || it.price_unit || '', source:e.source || ''});
+    });
+    if (rows.length < GA_LIST_MIN) return null;
+  } else {
+    (Array.isArray(g.steps) ? g.steps : []).filter(Boolean).forEach(function(s){ var it = find(s.activity_id); if (it) rows.push({it:it, why:String(s.why || ''), timing:String(s.timing || ''), source:s.source || ''}); });
+    if (rows.filter(function(r){ return !(r.it.verified && r.it.verified.status === 'closed'); }).length < GA_PLAN_MIN) return null;
+  }
+  return {g:g, fmt:fmt, rows:rows, n:rows.length, title:gaFillN(g.title, rows.length), dates:gaDates(g)};
+}
+function gaResolveId(id){ if (!DATA_LOADED || !GA.loaded) return null; for (var i = 0; i < GA.all.length; i++) if (GA.all[i].id === id) return gaResolve(GA.all[i]); return null; }
+function gaPriceText(it, unit){ // pure: "Free" · "From $15 each" · "From $300 per group" · the $ symbols · "" (never a bare number)
+  var u = String(unit || '').toLowerCase(), pf = +it.price_from;
+  if (it.price_level === 'free' || u === 'free') return 'Free';
+  var num = isNum(pf) && pf > 0 ? '$' + (Math.round(pf) === pf ? pf : pf.toFixed(2)) : '';
+  if (num && /^(person|each|per person|pp)$/.test(u)) return 'From ' + num + ' each';
+  if (num && /group/.test(u)) return 'From ' + num + ' per group';
+  return typeof it.price_level === 'string' && /^\$+$/.test(it.price_level) ? it.price_level : '';
+}
+function gaNb(it){ return String(it.neighborhood || '').split(/ \/ | \(/)[0].trim(); }
+function gaStatus(it, R){ // live status for now / the picked day / a date-bound list's first date -> {text, tone, key, open}
+  var c, d0 = R && R.dates && R.dates[0];
+  if (d0) c = computeItem(it, fromChicago(d0, 720), ext(ctxNow(), {day:d0})); else c = findComputed(it.id);
+  if (!c) return {text:'', tone:'closed', key:'', open:false};
+  var k = c.st.key, t;
+  if (k === 'gone') t = 'Closed for good';
+  else if (k === 'season') t = 'Closed for the season' + (c.d.sub ? ' · ' + c.d.sub : '');
+  else if (k === 'unknown' && !c.bookTime) t = 'Hours not posted · call first';
+  else t = d0 ? c.d.text : statusShort(c);
+  var open = d0 ? c.d.tone === 'open' : !!(c.st.open && c.d.tone !== 'closed');
+  return {text:t, tone:c.d.tone || 'closed', key:k, open:open};
+}
+function gaHop(a, b, mode){ // pure: stop-to-stop time; a walk under 1.2 mi, else her mode (Drive by default)
+  if (!isNum(a.lat) || !isNum(b.lat)) return null;
+  var mi = distMi(a.lat, a.lng, b.lat, b.lng), t = travel(mi, mi < GA_WALK_MI ? 'walk' : (mode === 'walk' ? 'car' : mode || 'car'));
+  return {min:t.min, how:t.how, text:t.min + ' min ' + (t.how === 'walk' ? 'walk' : t.how === 'CTA' ? 'by CTA' : 'drive')};
+}
+function gaLabel(i, n){ return i === 0 ? 'Start with' : i === n - 1 ? 'End at' : 'Then'; }
+function gaCover(R){ // -> [file] (1 for a plan / a list with cover_photo_id, up to 3 for a list mosaic)
+  var cid = R.g.cover_photo_id, f = '';
+  if (cid) { var pi = gaPhotoIndex(); f = pi[cid] || (findItem(cid) && gaPhotos(findItem(cid))[0]) || ''; }
+  if (f) return [f];
+  if (R.fmt === 'list') return R.rows.map(function(r){ return gaPhotos(r.it)[0]; }).filter(Boolean).slice(0, 3);
+  for (var i = 0; i < R.rows.length; i++) { var p = gaPhotos(R.rows[i].it)[0]; if (p) return [p]; }
+  return [];
+}
+function gaSeasonal(R){ return R.rows.some(function(r){ var c = findComputed(r.it.id); return c && (c.st.key === 'season' || c.st.key === 'gone'); }); }
+function gaHomeList(todayKey){ // the Home row: date-bound lists in their window first (soonest), then file order; a seasonal / gone stop moves a guide to the end
+  if (!DATA_LOADED || !GA.loaded) return [];
+  var dated = [], rest = [], late = [];
+  GA.all.forEach(function(g){ if (!gaWindow(g, todayKey)) return; var R = gaResolve(g); if (!R) return; if (R.dates.length) dated.push(R); else if (gaSeasonal(R)) late.push(R); else rest.push(R); });
+  dated.sort(function(a, b){ return a.dates[0] < b.dates[0] ? -1 : a.dates[0] > b.dates[0] ? 1 : 0; });
+  return dated.concat(rest, late).slice(0, GA_ROW_MAX);
+}
+function gaPill(R){ return R.fmt === 'list' ? GA_IC.list + 'Top ' + R.n : GA_IC.route + R.n + ' stops'; }
+function gaSub(R){ return String((R.fmt === 'list' ? R.g.theme : R.g.when) || ''); }
+function gaCoverHTML(R, cls){
+  var fs = gaCover(R), g0 = R.rows[0] ? genreOf(R.rows[0].it) : '', mos = R.fmt === 'list' && fs.length === 3 && !R.g.cover_photo_id;
+  return '<div class="' + cls + (mos ? ' mosaic' : '') + '" style="--c:' + genreColor(g0) + '"><span class="gfb" aria-hidden="true">' + kindSvg(g0) + '</span>' + (mos ? fs : fs.slice(0, 1)).map(function(f){ return '<img src="' + esc(f) + '" alt="" data-fb="1"' + (cls === 'gcover' ? ' loading="lazy"' : '') + '>'; }).join('') + '</div>';
+}
+function guidesHTML(){ // v5.18: Home "Guides" = a swipeable row of cover cards (Plans: 1 photo + "4 stops"; Lists: 3-photo mosaic + "Top 10")
+  var list = gaHomeList(cparts(nowMs()).key); if (!list.length) return '';
+  return '<section class="hm-sec ga-s"><div class="rs-h"><h2>Guides</h2><div class="ga-arrows"><button class="ga-arr" type="button" data-ga="prev" aria-label="Previous guides" disabled>' + GA_IC.prev + '</button><button class="ga-arr" type="button" data-ga="next" aria-label="Next guides">' + GA_IC.chev + '</button></div></div>' +
+    '<div class="grow" role="list">' + list.map(function(R){
+      return '<a class="gcard" role="listitem" href="#guide=' + esc(R.g.id) + '" data-ga-open="' + esc(R.g.id) + '" aria-label="' + esc(R.title + ', ' + gaSub(R) + ', ' + (R.fmt === 'list' ? 'top ' + R.n : R.n + ' stops')) + '">' + gaCoverHTML(R, 'gcover').replace('</div>', '<span class="gpill">' + gaPill(R) + '</span></div>') +
+        '<h3>' + esc(R.title) + '</h3><p class="gwhen">' + esc(gaSub(R)) + '</p></a>';
+    }).join('') + '</div></section>';
+}
+function gaSaved(){ var a = Platform.store.get(GA_PLANS_KEY, []); return Array.isArray(a) ? a.filter(function(x){ return x && typeof x.id === 'string'; }) : []; }
+function gaIsSaved(id){ return gaSaved().some(function(x){ return x.id === id; }); }
+function gaToggleSave(id){ var a = gaSaved(), on = a.some(function(x){ return x.id === id; }); a = on ? a.filter(function(x){ return x.id !== id; }) : a.concat([{id:id, at:new Date().toISOString()}]); Platform.store.set(GA_PLANS_KEY, a); toast(on ? 'Removed' : 'Saved to your lists'); gaRender(true); if (!$('pSaved').hidden) renderSaved(); }
+function gaSavedStripHTML(){ // Saved tab: a "Guides" strip of the saved Plans and Lists (kept on this device)
+  if (!GA.loaded || !DATA_LOADED) return '';
+  var rs = gaSaved().map(function(x){ return gaResolveId(x.id); }).filter(Boolean); if (!rs.length) return '';
+  return '<h3 class="sec-h"><span>Guides</span><span>' + rs.length + '</span></h3><div class="ga-strip">' + rs.map(function(R){ return '<button type="button" class="ga-tile" data-ga-open="' + esc(R.g.id) + '">' + gaCoverHTML(R, 'gtcover') + '<span>' + esc(R.title) + '</span></button>'; }).join('') + '</div>';
+}
+function gaArticleHTML(R){
+  var g = R.g, list = R.fmt === 'list', wide = isWide(), sts = R.rows.map(function(r){ return gaStatus(r.it, R); }), cov = gaCover(R), h = '';
+  h += '<div class="ga-top"><button class="ga-circ" type="button" data-ga="back" aria-label="Back">' + GA_IC.back + '</button><span class="grp">' + (wide ? '' : '<button class="ga-circ" type="button" data-ga="map" aria-label="Show on the map">' + GA_IC.map + '</button>') + '<button class="ga-circ" type="button" data-ga="share" aria-label="Share this guide">' + GA_IC.share + '</button></span></div>';
+  h += gaCoverHTML(R, 'ga-hero');
+  h += '<div class="ga-body">' + (list ? '<span class="ga-kick">Top ' + R.n + '</span>' : '') + '<h1 id="gaTitle" tabindex="-1">' + esc(R.title) + '</h1>';
+  var sub = gaSub(R); if (sub) h += '<p class="ga-when">' + (list ? (R.dates.length ? GA_IC.cal : GA_IC.moon) : GA_IC.clock) + esc(sub) + '</p>';
+  if (g.intro) h += '<p class="ga-intro">' + esc(g.intro) + '</p>';
+  if (list) {
+    var nOpen = sts.filter(function(s){ return s.open; }).length, when = R.dates.length ? 'open ' + fmtDayDate(R.dates[0], cparts(nowMs()).key) : (UI.planning || UI.anyDay ? 'open then' : 'open now');
+    h += '<p class="ga-sum' + (nOpen ? '' : ' none') + '"><i class="dot"></i>' + esc((nOpen === R.n ? 'All ' + R.n : nOpen ? nOpen + ' of ' + R.n : 'None') + ' ' + when) + '</p>';
+    h += '<ol class="ga-list">' + R.rows.map(function(r, i){
+      var it = r.it, s = sts[i], ph = gaPhotos(it)[0], sv = isSaved(it.id), nm = shortName(it), meta = [gaNb(it), gaPriceText(it, r.unit)].filter(Boolean);
+      return '<li class="le' + (s.key === 'season' ? ' sea' : '') + '" data-gi="' + i + '" style="--c:' + genreColor(genreOf(it)) + '"><div class="lph"><span class="gfb" aria-hidden="true">' + kindSvg(genreOf(it)) + '</span>' + (ph ? '<img src="' + esc(ph) + '" alt="' + esc(nm) + '" loading="lazy" data-fb="1">' : '') + '</div>' +
+        '<button class="ga-psave" type="button" data-ga-save="' + esc(it.id) + '" aria-pressed="' + sv + '" aria-label="' + (sv ? 'Saved: ' : 'Save ') + esc(nm) + '">' + GA_IC.mark + '</button>' +
+        '<a class="le-link" href="#' + esc(it.id) + '" data-ga-place="' + esc(it.id) + '" aria-label="' + (i + 1) + '. ' + esc(nm) + '"><span class="lhead"><span class="rank" aria-hidden="true">' + (i + 1) + '</span><span><span class="lname">' + esc(nm) + '</span>' +
+        '<span class="lmeta">' + meta.map(function(m){ return '<span>' + esc(m) + '</span>'; }).join('<span class="sep">·</span>') + (is21(it) ? (meta.length ? '<span class="sep">·</span>' : '') + '<span class="age">21+</span>' : '') + '</span></span></span>' +
+        (r.blurb ? '<span class="blurb">' + esc(r.blurb) + '</span>' : '') + '<span class="lstat"><span class="s ' + esc(s.tone) + '"><i class="dot"></i>' + esc(s.text) + '</span>' + GA_IC.chev + '</span></a></li>';
+    }).join('') + '</ol>';
+  } else {
+    var live = R.rows.filter(function(r){ return !(r.it.verified && r.it.verified.status === 'closed'); }).length, k = 0;
+    h += '<ol class="ga-steps">' + R.rows.map(function(r, i){
+      var it = r.it, s = sts[i], gone = s.key === 'gone', idx = gone ? -1 : k++, ps = gaPhotos(it), ph = ps[0] === cov[0] ? ps[1] : ps[0], nx = R.rows[i + 1], hop = nx ? gaHop(it, nx.it, S.f.mode) : null;
+      return '<li class="gst' + (gone ? ' gone' : '') + (nx ? '' : ' last') + '" data-gi="' + i + '" style="--c:' + genreColor(genreOf(it)) + '"><span class="rail"><b>' + (i + 1) + '</b></span><div class="gsc">' +
+        '<p class="glab">' + (gone ? 'Skip this one' : gaLabel(idx, live)) + '</p>' + (ph ? '<div class="gph"><img src="' + esc(ph) + '" alt="' + esc(shortName(it)) + '" loading="lazy" data-fb="1"></div>' : '') +
+        '<h3>' + esc(it.name) + (is21(it) ? ' <span class="age">21+</span>' : '') + '</h3>' + (r.why ? '<p class="gwhy">' + esc(r.why) + '</p>' : '') +
+        '<p class="gmeta">' + (r.timing ? '<span class="gtime">' + esc(r.timing) + '</span>' : '') + '<span class="s ' + esc(s.tone) + '"><i class="dot"></i>' + esc(s.text) + '</span></p>' +
+        (gone ? '' : '<button class="ga-see" type="button" data-ga-place="' + esc(it.id) + '">See place' + GA_IC.chev + '</button>') +
+        (hop ? '<p class="ghop">' + (hop.how === 'walk' ? GA_IC.walk : GA_IC.car) + esc(hop.text) + '</p>' : '') + '</div></li>';
+    }).join('') + '</ol>';
+  }
+  var on = gaIsSaved(g.id), oldest = '';
+  R.rows.forEach(function(r){ var d = r.it.verified && (r.it.verified.checked_on || r.it.verified.date); if (isKey(d) && (!oldest || d < oldest)) oldest = d; });
+  h += '<div class="ga-end"><div class="rowb"><button class="ga-main' + (on ? ' on' : '') + '" type="button" data-ga="save" aria-pressed="' + on + '">' + (on ? GA_IC.check + 'Saved' : GA_IC.mark + (list ? 'Save this list' : 'Save this plan')) + '</button><button class="ga-quiet" type="button" data-ga="share">' + GA_IC.share + 'Share</button></div>';
+  if (oldest) h += '<p class="ga-trust">Hours checked ' + esc(fmtMonthDay(oldest)) + '.</p>';
+  var all = gaHomeList(cparts(nowMs()).key), at = -1; all.forEach(function(x, i){ if (x.g.id === g.id) at = i; });
+  var nxt = all.length > 1 ? all[(at + 1) % all.length] : null;
+  if (nxt && nxt.g.id !== g.id) h += '<div class="ga-next"><p class="lbl">Next guide</p><button type="button" class="nrow" data-ga-next="' + esc(nxt.g.id) + '">' + gaCoverHTML(nxt, 'ncover') + '<span><b>' + esc(nxt.title) + '</b><span>' + esc(gaSub(nxt)) + '</span></span></button></div>';
+  return h + '</div><div class="ga-pad"></div></div>';
+}
+function gaRender(keep){
+  if (!GA.open) return;
+  var R = gaResolveId(GA.open); if (!R) { closeArticle(); return; }
+  GA.R = R;
+  var h = gaArticleHTML(R), sc = $('gaScroll'); if (!sc) return;
+  if (h !== GA.html) { var top = sc.scrollTop; GA.html = h; sc.innerHTML = h; wireImages(sc); if (keep) sc.scrollTop = top; }
+}
+function guideMapOn(){ return !!(GA.open && GA.R && (isWide() || GA.phoneMap)); }
+function gaPinsHTML(){ // numbered pins (and the stop order line for a Plan) for the map overlay
+  var R = GA.R, h = '<svg id="gaRoute" class="ga-route" aria-hidden="true"><polyline points=""/></svg>';
+  R.rows.forEach(function(r, i){ var it = r.it; if (!isNum(it.lat) || !isNum(it.lng)) return; var u = proj(it.lat, it.lng); h += '<button class="gpin' + (GA.hot === i ? ' hot' : '') + '" type="button" data-ux="' + r1(u[0]) + '" data-uy="' + r1(u[1]) + '" data-gpin="' + i + '" aria-label="' + (i + 1) + '. ' + esc(shortName(it)) + '">' + (i + 1) + '</button>'; });
+  return h;
+}
+function gaRoutePlace(){ // keeps the dotted stop-order line on the pins (Plans only)
+  var svg = $('gaRoute'); if (!svg) return;
+  var pl = svg.firstChild, pts = [];
+  if (GA.R && GA.R.fmt === 'plan') GA.R.rows.forEach(function(r){ if (isNum(r.it.lat)) { var u = proj(r.it.lat, r.it.lng), sp = toScreen(u[0], u[1]); pts.push(sp[0].toFixed(1) + ',' + sp[1].toFixed(1)); } });
+  pl.setAttribute('points', pts.join(' '));
+}
+function gaFit(){ var R = GA.R; if (!R) return; var pts = R.rows.filter(function(r){ return isNum(r.it.lat) && isNum(r.it.lng); }).map(function(r){ return proj(r.it.lat, r.it.lng); }); if (pts.length) focusPts(pts, true); }
+function openArticle(id, o){
+  o = o || {};
+  var R = gaResolveId(id); if (!R) return false;
+  if (UI.detailId) closeDetail();
+  GA.open = id; GA.R = R; GA.html = ''; GA.hot = -1; GA.phoneMap = false;
+  try { var hs = '#guide=' + id; if (location.hash !== hs) { if (o.replace || GA.pushed) history.replaceState(null, '', location.pathname + location.search + hs); else { history.pushState({ga:id}, '', location.pathname + location.search + hs); GA.pushed = true; } } } catch (e) {}
+  var el = $('gart'); el.hidden = false; el.classList.remove('away'); void el.offsetWidth; el.classList.add('on'); $('app').classList.add('ga-open');
+  gaRender(false); $('gaScroll').scrollTop = 0;
+  if (isWide()) { recluster(); gaFit(); setTimeout(function(){ if (GA.open === id && isWide() && !UI.mapMoved) gaFit(); }, 700); }   // again once a start-up fit (location, first draw) has settled
+  setTimeout(function(){ try { $('gaTitle').focus({preventScroll:true}); } catch (e) {} }, 60);
+  return true;
+}
+function closeArticle(fromPop){
+  if (!GA.open) return;
+  var id = GA.open; GA.open = ''; GA.R = null; GA.html = ''; GA.phoneMap = false;
+  var el = $('gart'); el.classList.remove('on'); $('app').classList.remove('ga-open'); $('gaPill').hidden = true;
+  setTimeout(function(){ if (!el.classList.contains('on')) el.hidden = true; }, 280);
+  if (!fromPop) { if (GA.pushed) { GA.pushed = false; try { history.back(); } catch (e) {} } else { try { if (/guide=/.test(location.hash || '')) history.replaceState(null, '', location.pathname + location.search); } catch (e) {} } }
+  GA.pushed = false;
+  UI.viewKey = null; if (DATA_LOADED) refresh();
+  var card = document.querySelector('#homeRoot [data-ga-open="' + cssEsc(id) + '"]'); if (card) try { card.focus({preventScroll:true}); } catch (e) {}
+}
+function gaPhoneMap(on){ // the Map button on a phone: the article steps aside, the map shows the numbered pins
+  if (!GA.open) return;
+  GA.phoneMap = !!on;
+  $('gart').classList.toggle('away', !!on); $('gaPill').hidden = !on;
+  if (on) { $('gaPill').innerHTML = '<span>' + esc(GA.R ? GA.R.title : '') + '</span><b>Back to the guide</b>'; showView('map'); setTimeout(function(){ recluster(); gaFit(); }, 60); }
+  else { recluster(); }
+}
+function gaLinkKind(id){ return !gaIdOk(id) ? 'none' : gaResolveId(id) ? 'article' : GUIDE_BY[id] ? 'old' : 'none'; }   // no side effects (self-test)
+function gaDeepLink(id){ // #guide=<id>: an article, else an old computed guide, else Home + a toast (spec v1 §7)
+  if (!DATA_LOADED || !GA.loaded) { UI.pendingGuide = id; return 'wait'; }
+  var kind = gaLinkKind(id);
+  if (kind === 'article' && openArticle(id, {replace:true})) return 'article';
+  if (kind === 'old') { openGuide(id); return 'old'; }
+  toast('That guide isn\'t here anymore.'); try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+  return 'none';
+}
+function gaClick(e){
+  var t = e.target;
+  var pl = t.closest('[data-ga-place]'); if (pl) { e.preventDefault(); openDetail(pl.getAttribute('data-ga-place')); return; }
+  var ps = t.closest('[data-ga-save]'); if (ps) { toggleSave(ps.getAttribute('data-ga-save')); gaRender(true); return; }
+  var nx = t.closest('[data-ga-next]'); if (nx) { openArticle(nx.getAttribute('data-ga-next'), {replace:true}); return; }
+  var b = t.closest('[data-ga]'); if (!b) return;
+  var a = b.getAttribute('data-ga');
+  if (a === 'back') closeArticle(false);
+  else if (a === 'share') shareGuide(GA.open);
+  else if (a === 'save') gaToggleSave(GA.open);
+  else if (a === 'map') gaPhoneMap(true);
+}
+function gaHot(i){ GA.hot = i; Array.prototype.forEach.call(document.querySelectorAll('#pins .gpin'), function(p){ p.classList.toggle('hot', +p.getAttribute('data-gpin') === i); }); Array.prototype.forEach.call(document.querySelectorAll('#gaScroll [data-gi]'), function(li){ li.classList.toggle('hot', +li.getAttribute('data-gi') === i); }); }
+function gaPinClick(i){
+  if (!GA.R || !GA.R.rows[i]) return;
+  if (!isWide()) { openDetail(GA.R.rows[i].it.id); return; }
+  var li = document.querySelector('#gaScroll [data-gi="' + i + '"]'), sc = $('gaScroll'); if (!li || !sc) return;
+  try { sc.scrollTo({top:Math.max(0, li.offsetTop - 120), behavior:reduceMotion() ? 'auto' : 'smooth'}); } catch (x) { sc.scrollTop = Math.max(0, li.offsetTop - 120); }
+  gaHot(i); li.classList.add('pulse'); setTimeout(function(){ li.classList.remove('pulse'); }, 400);
+}
+function gaRowScroll(btn){ var row = btn.closest('.ga-s'), g = row && row.querySelector('.grow'); if (!g) return; var card = g.querySelector('.gcard'), w = card ? card.offsetWidth + 12 : 276; try { g.scrollBy({left:btn.getAttribute('data-ga') === 'prev' ? -w : w, behavior:reduceMotion() ? 'auto' : 'smooth'}); } catch (x) { g.scrollLeft += btn.getAttribute('data-ga') === 'prev' ? -w : w; } }
+function gaArrows(g){ var s = g.closest('.ga-s'); if (!s) return; var p = s.querySelector('[data-ga="prev"]'), n = s.querySelector('[data-ga="next"]'); if (p) p.disabled = g.scrollLeft <= 2; if (n) n.disabled = g.scrollLeft + g.clientWidth >= g.scrollWidth - 2; }
 var CARD_LEAVE_MIN = 90;   // the three cards say "Leave by" only when it's within 90 min (otherwise it's noise)
 function cardLeaveHTML(c){ var l = leaveBy(c), ref = c.anyDay && c.anyT ? c.anyT : c.st.ms; return l && l.at - ref <= CARD_LEAVE_MIN * 60000 ? '<p class="c3-leave">' + esc(l.t) + '</p>' : ''; }
 function cardHTML(c){
@@ -6408,12 +6853,13 @@ function refresh(){
   updateMapPill();
   updateRing();
   var key = viewKey(vm);
-  if (key !== UI.viewKey && !UI.picking && DATA_LOADED) { var first = !UI.viewKey; UI.viewKey = key; UI.pinAnim = !reduceMotion(); fitToPins(res, !first); }
+  if (key !== UI.viewKey && !UI.picking && DATA_LOADED && !guideMapOn()) { var first = !UI.viewKey; UI.viewKey = key; UI.pinAnim = !reduceMotion(); fitToPins(res, !first); }
   recluster();
   var n = savedIds.length; $('savedCount').hidden = !n; $('savedCount').textContent = n; $('savedBtn').setAttribute('aria-label', 'Saved, ' + n + (n === 1 ? ' item' : ' items'));
   syncAcctButtons();   // v5.14: the account button on the Map screen and in Browse too
   if (!isWide() && !Sheet.drag) applySheet(Sheet.state, false);
   if (UI.detailId) { var c = findComputed(UI.detailId); if (c) renderDetail(c, true); }
+  if (GA.open) gaRender(true);   // v5.18: statuses and saves stay live in an open guide
   if (UI.draft && !$('pFilters').hidden && DATA_LOADED && !UI.draftReady) { UI.draftReady = true; renderFilters(); }   // the sheet was opened before the list loaded
 }
 function findItem(id){ for (var i = 0; i < DATA.length; i++) if (DATA[i].id === id) return DATA[i]; return null; }
@@ -6484,11 +6930,20 @@ function afterCheckinChange(){ saveCheckins(); UI.homeHTML = null; refresh(); if
 function addCheckin(id, date){ var today = cparts(nowMs()).key; CHECKINS = withCheckin(CHECKINS, id, {date:isKey(date) ? date : today}, new Date().toISOString()); delete CK_GONE[id]; Platform.store.set(CKGONE_KEY, CK_GONE); Acct.dirtyC[id] = 1; afterCheckinChange(); }
 function editCheckin(id, patch){ if (!checkinOf(id)) return; CHECKINS = withCheckin(CHECKINS, id, patch, new Date().toISOString()); Acct.dirtyC[id] = 1; if (patch && 'rating' in patch) tasteOnRate(id, patch.rating, 'ck'); afterCheckinChange(); }   // v5.12: thumbs teach the profile (0.6)
 function removeCheckin(id){ CHECKINS = withoutCheckin(CHECKINS, id); CK_GONE[id] = new Date().toISOString(); Platform.store.set(CKGONE_KEY, CK_GONE); Acct.dirtyC[id] = 1; afterCheckinChange(); }   // v5.11: remembered as removed, so another device can't bring it back
-function beenBoxHTML(ck, todayKey){
-  return '<div class="been-box"><span class="bb-l">' + glyphSvg('i-check') + 'Been here</span><label class="vh" for="beenDate">The day you went</label><input id="beenDate" type="date" max="' + esc(todayKey) + '" value="' + esc(ck.date) + '">' +
-    '<button class="thumbbtn" type="button" data-been="up" aria-pressed="' + (ck.rating === 1) + '" aria-label="Liked it">' + glyphSvg('i-up') + '</button>' +
-    '<button class="thumbbtn" type="button" data-been="down" aria-pressed="' + (ck.rating === -1) + '" aria-label="Not for me">' + glyphSvg('i-down') + '</button>' +
-    '<button class="linkbtn" type="button" data-been="remove">Remove</button></div>';
+function beenBoxHTML(ck, todayKey){ // v5.18: thumbs (optional), then when: a day, a month (Month + Year), or "I don't remember"
+  var pr = ck.prec === 'none' ? 'none' : ck.prec === 'month' ? 'month' : 'day', d = isKey(ck.date) ? ck.date : '';
+  var inp = pr === 'day' ? '<label class="vh" for="beenDate">The day you went</label><input id="beenDate" type="date" max="' + esc(todayKey) + '" value="' + esc(d) + '">'
+    : pr === 'month' ? '<label class="vh" for="beenMonth">The month you went</label><input id="beenMonth" type="month" max="' + esc(todayKey.slice(0, 7)) + '" value="' + esc(d.slice(0, 7)) + '">' : '';
+  return '<div class="been-box"><div class="bb-r1"><span class="bb-l">' + glyphSvg('i-check') + 'Been here</span>' +
+    '<span class="bb-stars" role="group" aria-label="How was it? (optional)">' + [1, 2, 3, 4, 5].map(function(n){ var s = starsOf(ck.rating); return '<button class="starbtn' + (n <= s ? ' on' : '') + '" type="button" data-been="s-' + n + '" aria-pressed="' + (n === s) + '" aria-label="' + n + (n === 1 ? ' star' : ' stars') + '">' + (n <= s ? '★' : '☆') + '</button>'; }).join('') + '</span>' +
+    '<button class="linkbtn" type="button" data-been="remove">Remove</button></div>' +
+    '<div class="bb-r2"><span class="seg bb-seg" role="group" aria-label="When did you go?">' + [['day', 'Day'], ['month', 'Month'], ['none', 'Don’t remember']].map(function(x){ return '<button type="button" data-been="p-' + x[0] + '" aria-pressed="' + (pr === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</span>' + inp + '</div></div>';
+}
+function beenPrecPatch(ck, prec, todayKey){ // pure: switching how exact the visit date is -> the patch for editCheckin
+  var d = ck && isKey(ck.date) ? ck.date : todayKey;
+  if (prec === 'none') return {date:'', prec:'none'};
+  if (prec === 'month') return {date:d.slice(0, 8) + '01', prec:'month'};
+  return {date:ck && ck.prec === 'month' && d.slice(0, 7) === todayKey.slice(0, 7) ? todayKey : d, prec:'day'};
 }
 function beenListHTML(){
   if (!CHECKINS.length) return '<div class="empty" style="padding:8px 20px"><svg class="i" style="width:40px;height:40px;color:var(--ink-3)"><use href="#i-check"/></svg><h3 style="margin-top:10px">Nowhere yet.</h3><p>Open a place and tap “I’ve been here”. It keeps the date, and you can change or remove it. No photo needed.</p></div>';
@@ -6513,6 +6968,7 @@ function renderSaved(){
   var acH = acctCardHTML(Acct.state);   // v5.11: sign in / synced / offline
   if (tab === 'been') { body.innerHTML = h + beenListHTML() + acH; wireImages(body); return; }
   h += friendStripHTML();
+  h += gaSavedStripHTML();   // v5.18: saved Plans and Lists
   h += pollSavedHTML(items.length);   // v5.13 #36
   if (!items.length) { body.innerHTML = h + '<div class="empty" style="padding:8px 20px"><svg class="i" style="width:40px;height:40px;color:var(--ink-3)"><use href="#i-bookmark"/></svg><h3 style="margin-top:10px">Nothing saved yet.</h3><p>Tap the bookmark on anything you\'d do on a free night.</p></div>' + acH; return; }
   var T = evalTime(), ctx = ctxNow(), groups = {open:[], later:[], season:[], other:[]};
@@ -6769,8 +7225,9 @@ function renderFriend(){
   var T = evalTime(), vw = wlView(rec.sids, SID_INDEX, T, ctxNow(), isSaved), n = vw.n;
   function sec(label, k){ return '<h3 class="sec-h"><span>' + esc(label) + '</span><span>' + k + '</span></h3>'; }
   function rows(list){ return '<ul class="rows">' + list.map(function(c){ return rowHTML(c, {fexcept:rec.key}); }).join('') + '</ul>'; }
-  if (rec.live) { // v5.11 stage 2 (spec 6.5): a real friend's list, live
-    h += '<p class="meta fr-meta">@' + esc(rec.username) + (rec.shares ? ' · ' + n + (n === 1 ? ' place' : ' places') : '') + (Acct.offline ? ' · ' + esc(offlineText(Acct.lastSync)) : '') + '</p>';
+  if (rec.live) { // v5.11 stage 2 (spec 6.5): a real friend's list, live. v5.18: a profile on top (character, counts, months been)
+    h += friendProfileHTML(rec, n);
+    if (Acct.offline) h += '<p class="meta fr-meta">' + esc(offlineText(Acct.lastSync)) + '</p>';
     if (!rec.shares) h += '<div class="empty" style="padding:8px 20px"><h3>' + esc(name) + ' isn\'t sharing a list right now.</h3></div>';
     else if (!n) h += '<div class="empty" style="padding:8px 20px"><h3>Nothing saved yet.</h3></div>';
   }
@@ -6932,15 +7389,16 @@ function mergeSaves(localIds, meta, remote, nowIso){
 }
 // Check-ins. local: [{id, date, rating, prec, updated_at}] + gone {id: iso}; remote: rows {item_id, visit_date, date_prec, rating, deleted, updated_at}.
 // -> {list, gone, push:[rows without user_id]}
-function ckRow(c, del){ return {item_id:c.id, visit_date:del ? null : c.date, date_prec:c.prec === 'month' ? 'month' : 'day', rating:c.rating || 0, deleted:!!del, updated_at:c.updated_at}; }
+function ckRow(c, del){ return {item_id:c.id, visit_date:del || !isKey(c.date) ? null : c.date, date_prec:c.prec === 'month' ? 'month' : 'day', rating:c.rating || 0, deleted:!!del, updated_at:c.updated_at}; }
 function mergeCheckins(local, gone, remote, nowIso){
   gone = gone || {}; var L = {}, R = {}, order = [], list = [], outGone = {}, push = [];
   cleanCheckins(local).forEach(function(c){ L[c.id] = {c:c, del:false, iso:c.updated_at}; order.push(c.id); });
   Object.keys(gone).forEach(function(id){ if (!L[id] && tsOf(gone[id])) { L[id] = {c:{id:id, date:'', rating:0, prec:'day', updated_at:gone[id]}, del:true, iso:gone[id]}; order.push(id); } });
   (remote || []).forEach(function(r){
     if (!r || typeof r.item_id !== 'string' || !r.item_id) return;
-    var del = !!r.deleted || !isKey(String(r.visit_date || '').slice(0, 10));
-    R[r.item_id] = {c:{id:r.item_id, date:del ? '' : String(r.visit_date).slice(0, 10), rating:r.rating === 1 || r.rating === -1 ? r.rating : 0, prec:r.date_prec === 'month' ? 'month' : 'day', updated_at:String(r.updated_at || '')}, del:del, iso:String(r.updated_at || '')};
+    var nod = !r.deleted && (r.visit_date === null || r.visit_date === undefined || r.visit_date === '');   // v5.18: a visit with no date ("I don't remember")
+    var del = !!r.deleted || (!nod && !isKey(String(r.visit_date || '').slice(0, 10)));
+    R[r.item_id] = {c:{id:r.item_id, date:del || nod ? '' : String(r.visit_date).slice(0, 10), rating:ratingOk(r.rating), prec:nod ? 'none' : r.date_prec === 'month' ? 'month' : 'day', updated_at:String(r.updated_at || '')}, del:del, iso:String(r.updated_at || '')};
   });
   Object.keys(R).forEach(function(id){ if (!L[id]) order.push(id); });
   order.forEach(function(id){
@@ -6976,7 +7434,7 @@ function liveFrom(friends, saves, beens, idSid){
   (saves || []).forEach(function(r){ if (!r || !r.user_id) return; var s = isNum(+r.sid) && +r.sid >= 1 ? +r.sid : (idSid && idSid[r.item_id]) || 0; if (s) (S[r.user_id] = S[r.user_id] || []).push(s); });
   (beens || []).forEach(function(r){ if (!r || !r.user_id) return; var m = monthOnly(r.month); if (!m) return; var s = isNum(+r.sid) && +r.sid >= 1 ? +r.sid : (idSid && idSid[r.item_id]) || 0; if (s) (B[r.user_id] = B[r.user_id] || []).push({sid:s, month:m}); });
   return (friends || []).filter(function(f){ return f && f.status === 'accepted' && f.user_id && f.username; }).map(function(f){
-    return {key:'@' + f.username, live:true, uid:f.user_id, username:f.username, name:String(f.display_name || '').split(/\s+/)[0] || f.username, shares:f.share_saves !== false, sids:wlSids(S[f.user_id] || []), been:(B[f.user_id] || []).slice(0, 2000)};
+    return {key:'@' + f.username, live:true, uid:f.user_id, username:f.username, name:String(f.display_name || '').split(/\s+/)[0] || f.username, shares:f.share_saves !== false, shareBeen:f.share_checkins === true, funType:isNum(+f.fun_type) && +f.fun_type >= 1 && TYPES[+f.fun_type - 1] ? +f.fun_type : 0, sids:wlSids(S[f.user_id] || []), been:(B[f.user_id] || []).slice(0, 2000)};
   }).sort(function(a, b){ return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1; });
 }
 /* ----- pure: the private one-time import link "#been=1_<count>_<sid>-<YYMM[DD]>.<sid>-<YYMM[DD]>..." -----
@@ -7561,7 +8019,7 @@ function renderFriends(){
     '<p class="fr-or">or</p><div class="frfind"><label class="vh" for="frFind">Username</label><div class="field uname"><span aria-hidden="true">@</span><input id="frFind" type="text" maxlength="21" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" placeholder="username"></div><button class="btn-primary" type="button" data-acct="find">Find</button></div><div id="frFindOut" aria-live="polite"></div>';
   var inc = acctIncoming(), out = Acct.friends.filter(function(f){ return f.status === 'pending' && f.direction === 'out'; }), acc = Acct.friends.filter(function(f){ return f.status === 'accepted'; }), blk = Acct.friends.filter(function(f){ return f.status === 'blocked'; });
   if (inc.length) h += sec('Requests') + '<ul class="frows">' + inc.map(function(f){ return '<li><span class="fr-u">' + esc(acctFriendName(f)) + ' <small>@' + esc(f.username) + '</small></span><span class="fr-b"><button class="mini-btn fill" type="button" data-acct="accept" data-v="' + esc(f.user_id) + '">Accept</button><button class="linkbtn" type="button" data-acct="notnow" data-v="' + esc(f.user_id) + '">Not now</button></span></li>'; }).join('') + '</ul>';
-  h += sec('Friends') + (acc.length ? '<ul class="frows">' + acc.map(function(f){ return '<li><span class="fr-u">' + esc(acctFriendName(f)) + ' <small>@' + esc(f.username) + '</small></span><span class="fr-b"><button class="linkbtn" type="button" data-acct="remove" data-v="' + esc(f.user_id) + '">Remove</button><button class="linkbtn" type="button" data-acct="block" data-v="' + esc(f.user_id) + '">Block</button></span></li>'; }).join('') + '</ul>' : '<p class="p-note">No friends yet. Send an invite link, or find someone by username.</p>');
+  h += sec('Friends') + (acc.length ? '<ul class="frows">' + acc.map(function(f){ return '<li><button class="fr-u fr-open" type="button" data-acct="fprof" data-v="@' + esc(f.username) + '" aria-label="Open ' + esc(acctFriendName(f)) + '\'s profile">' + esc(acctFriendName(f)) + ' <small>@' + esc(f.username) + ' · profile ›</small></button><span class="fr-b"><button class="linkbtn" type="button" data-acct="remove" data-v="' + esc(f.user_id) + '">Remove</button><button class="linkbtn" type="button" data-acct="block" data-v="' + esc(f.user_id) + '">Block</button></span></li>'; }).join('') + '</ul>' : '<p class="p-note">No friends yet. Send an invite link, or find someone by username.</p>');
   if (out.length) h += sec('Waiting') + '<ul class="frows">' + out.map(function(f){ return '<li><span class="fr-u">@' + esc(f.username) + ' <small>request sent</small></span><span class="fr-b"><button class="linkbtn" type="button" data-acct="remove" data-v="' + esc(f.user_id) + '">Cancel</button></span></li>'; }).join('') + '</ul>';
   if (FRIENDS.length) h += sec('Copies') + '<ul class="frows">' + FRIENDS.map(function(f){ return '<li><span class="fr-u">' + esc(f.name) + ' <small>' + esc(fmtMonthDay(wlDayKey(f.day))) + '</small></span><span class="fr-b"><button class="linkbtn" type="button" data-fchip="' + esc(f.key) + '">Open</button></span></li>'; }).join('') + '</ul>';
   if (Acct.invites.length) h += sec('Invites') + '<ul class="frows">' + Acct.invites.map(function(i){ return '<li><span class="fr-u">Link made ' + esc(fmtMonthDay(chicagoDayOf(i.created_at) || today)) + ' <small>expires ' + esc(fmtMonthDay(chicagoDayOf(i.expires_at) || today)) + '</small></span><span class="fr-b"><button class="linkbtn" type="button" data-acct="cancelinv" data-v="' + esc(i.code) + '">Cancel</button></span></li>'; }).join('') + '</ul>';
@@ -7595,6 +8053,8 @@ function acctClick(el){
     case 'name': acctAskName(); break;
     case 'name-save': acctNameSave(); break;
     case 'friends': closePanel('pSmall'); openFriends(); break;
+    case 'fprof': if (wlFind(v)) openFriendView(v); else toast('Their profile shows after the next sync.'); break;   // v5.18 friend profile
+    case 'cp-test': closePanel('pFriend'); closePanel('pFriends'); tasteStartDeck('main'); break;   // v5.18: Plan together needs your own character first
     case 'privacy': openPrivacy(); break;
     case 'retry': Acct.failN = 0; if (!acctRetry('retry')) { acctSheetRedraw(); if (!Acct.syncing) toast(navigator.onLine === false ? 'You\'re offline. It retries when you\'re back.' : 'Couldn\'t reach the account service. Try again later.'); } break;   // v5.16b
     case 'acct-full': acctSheetSize('full'); break;
@@ -7636,6 +8096,7 @@ function acctDemo(){
   Acct.invites = [{code:'7K3M9QZP', created_at:'2026-11-12T18:00:00.000Z', expires_at:'2026-11-19T18:00:00.000Z'}];
   var ms = sids.slice(0, 12).filter(function(s, i){ return i % 2 === 0; });
   LIVE = liveFrom(Acct.friends, ms.map(function(s){ return {user_id:'d1', sid:s}; }), [{user_id:'d1', sid:sids[3], month:'2026-10'}, {user_id:'d1', sid:sids[5], month:'2025-07'}], ID_SID);
+  LIVE.forEach(function(f){ if (f.uid === 'd1') f.funType = 4; });   // v5.18 test mode: the made-up friend shares a character
   if (!savedIds.length) savedIds = [SID_INDEX[sids[0]].id, SID_INDEX[sids[2]].id, SID_INDEX[sids[7]].id];   // in memory only
   acctRedraw();
 }
@@ -7870,9 +8331,27 @@ function coupleToggle(fid){
   if (!mine || !mine.top.length) { toast('Swipe a few photos first, so it knows your taste.'); return; }
   couplePut(fid, mine).then(function(){ CP.on[fid] = true; coupleSync(); toast(CP.theirs[fid] ? 'Picks for you both are ready' : 'On. Picks show when ' + nm + ' turns it on too.'); }, function(e){ if (coupleErr(e)) { toast('Plan together isn\'t switched on yet.'); coupleRedraw(); } else acctFail(e); });
 }
+function friendBeenMonths(been, todayKey){ // pure: a friend's shared check-ins -> [{m:'2026-10', n:2, label:'Oct'}], newest first
+  var by = {}; (been || []).forEach(function(b){ var m = b && monthOnly(b.month); if (m) by[m] = (by[m] || 0) + 1; });
+  return Object.keys(by).sort().reverse().map(function(m){ return {m:m, n:by[m], label:monthText(m, todayKey)}; });
+}
+function coupleStatus(rec){ // pure-ish: 'off' | 'waiting' | 'on'
+  var on = !!CP.on[rec.uid]; return !on ? 'off' : CP.theirs[rec.uid] ? 'on' : 'waiting';
+}
+function friendProfileHTML(rec, n){ // v5.18 (owner 2026-11-14: "I can't see any stats on my friend"): character + type, counts, months been
+  var t = rec.funType ? TYPES[rec.funType - 1] : null, today = cparts(nowMs()).key, ms = friendBeenMonths(rec.been, today), nb = (rec.been || []).length;
+  var h = '<div class="fp"><div class="fp-h">' + (t ? typeAvatarHTML(rec.funType, 'fp-av') : avHTML(rec, ' fp-av')) + '<div><p class="fp-nm">' + esc(rec.name) + '</p><p class="fp-sub">@' + esc(rec.username) + (t ? ' · ' + esc(t.name) + ' · ' + esc(t.tagline) : '') + '</p></div></div>';
+  h += '<div class="fp-stats"><span><b>' + (rec.shares ? n : '–') + '</b>saved</span><span><b>' + nb + '</b>been</span><span><b>' + esc(coupleStatus(rec) === 'on' ? 'On' : coupleStatus(rec) === 'waiting' ? 'Waiting' : 'Off') + '</b>plan together</span></div>';
+  if (ms.length) h += '<p class="fp-lab">Been out</p><ul class="fp-months">' + ms.slice(0, 12).map(function(x){ return '<li>' + esc(x.label) + ' <small>' + x.n + (x.n === 1 ? ' place' : ' places') + '</small></li>'; }).join('') + '</ul>';
+  else h += '<p class="fp-note">No shared months yet: ' + esc(rec.name) + ' keeps "Places I\'ve been" private, or hasn\'t added any.</p>';
+  return h + '</div>';
+}
 function coupleBlockHTML(rec){ // the friend panel: the switch, then (both on) the combined picks as photo cards
   if (!rec || !rec.live || CP.missing || (!Acct.client && !CP.demo)) return '';
-  var on = !!CP.on[rec.uid], th = CP.theirs[rec.uid], h = '<div class="sw-row cp-sw"><span>Plan together<small>Picks for you both. Your taste stays private.</small></span><button class="switch" type="button" data-cp="tog" data-v="' + esc(rec.uid) + '" aria-pressed="' + on + '" aria-label="Plan together with ' + esc(rec.name) + '"></button></div>';
+  var on = !!CP.on[rec.uid], th = CP.theirs[rec.uid], cs0 = coupleStatus(rec), mine = !!funType(tasteMine());
+  var h = '<div class="cp-box"><div class="sw-row cp-sw"><span>Plan together<small>' + (cs0 === 'on' ? 'On for you both' : cs0 === 'waiting' ? 'Waiting for ' + esc(rec.name) : 'Off') + '</small></span><button class="switch" type="button" data-cp="tog" data-v="' + esc(rec.uid) + '" aria-pressed="' + on + '" aria-label="Plan together with ' + esc(rec.name) + '"></button></div>' +
+    '<ol class="cp-how"><li' + (mine ? ' class="done"' : '') + '>Each of you takes your own character test' + (mine ? ' (yours is done)' : '') + '.</li><li>Both of you turn this on. Only one switch on = nothing is shared.</li><li>You see picks you\'d both like. Your swipes stay private.</li></ol>' +
+    (mine ? '' : '<button class="mini-btn" type="button" data-acct="cp-test">Take my test</button>') + '</div>';
   if (on && th) {
     var cs = couplePicksFor(rec.uid, COUPLE_SHOW);
     h += cs.length ? '<h3 class="sec-h"><span>You\'d both like</span><span>' + cs.length + '</span></h3><ul class="cards3 cp-cards">' + cs.map(cardHTML).join('') + '</ul>' : '<p class="p-note">No picks in common yet. Swipe a few more photos.</p>';
@@ -8064,6 +8543,10 @@ function goodToKnowHTML(it){ // "Good to know": tap a question to open its answe
     return '<details><summary>' + esc(x.q) + '</summary><p>' + esc(x.a) + '</p>' + (src ? '<p class="src">Source: <a href="' + esc(src) + '" target="_blank" rel="noopener">' + esc(domainOf(src)) + '</a></p>' : '') + '</details>';
   }).join('') + '</section>';
 }
+function oneSource(it, tr){ // pure-ish: the single source link a place shows (v5.18)
+  var srcs = (Array.isArray(it.source_urls) ? it.source_urls : []).map(safeUrl).filter(Boolean);
+  return (tr && tr.src) || safeUrl(it.website) || srcs[0] || '';
+}
 function renderDetail(c, keepScroll){
   // v4 order: photo, name + hook, status + price, (main button + Share in the bar under your thumb), what you do there, practical facts, good to know, trust and sources (small)
   var it = c.item, cat = catOf(it), st = c.st, d = c.d, p = st.p, tr = trustOf(it, p.key), gid = genreOf(it);
@@ -8084,6 +8567,11 @@ function renderDetail(c, keepScroll){
   h += '<h1 class="dt-title' + (String(it.name).length > 40 ? ' long' : '') + '" id="dtTitle">' + esc(it.name) + '</h1>';
   var hook = hookOf(it);
   if (hook) h += '<p class="dt-hook">' + esc(hook) + '</p>';
+  // v5.18 (owner 2026-11-14): "I've been here" near the top, under the name; after a tap: optional thumbs + when (day, month, or "don't remember")
+  var ck = checkinOf(it.id);
+  h += '<div class="dt-acts top">' + (ck ? '' : '<button class="mini-btn been-go" type="button" data-been="add">' + glyphSvg('i-check') + 'I’ve been here</button>') +
+    '<button class="mini-btn" type="button" data-cal="1">' + glyphSvg('i-cal') + 'Add to calendar</button></div>';
+  if (ck) h += beenBoxHTML(ck, todayKey);
   // status + price
   var pr = priceShort(it), tsh = travelShort(c), pel = (UI.planning || UI.anyDay) ? planEventLines(it, st, nowMs()) : null;
   if (pel) d = {text:pel.text, tone:pel.tone, sub:''};   // v5.10: "Next:" is relative to today; the planned day gets its own short line
@@ -8115,11 +8603,6 @@ function renderDetail(c, keepScroll){
   if (c.deal) { var dl = c.deal, dIn = '<b>' + esc(dl.badge) + '</b><span>' + esc(dl.text) + '</span>'; h += dl.link ? '<a class="dt-deal" href="' + esc(dl.link) + '" target="_blank" rel="noopener">' + dIn + glyphSvg('i-ext') + '</a>' : '<p class="dt-deal">' + dIn + '</p>'; }   // v5.13 #11
   var fwd = wlFriendsFor(it.id);   // v5.8: "Maya wants this too" (tap: her list)
   if (fwd.length) h += '<button class="fw" type="button" data-fw="' + esc(fwd[0].key) + '">' + avsHTML(fwd, '', '') + '<span>' + esc(wlWantsText(fwd)) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>';
-  // quiet actions: been here, calendar
-  var ck = checkinOf(it.id);
-  h += '<div class="dt-acts">' + (ck ? '' : '<button class="mini-btn" type="button" data-been="add">' + glyphSvg('i-check') + 'I’ve been here</button>') +
-    '<button class="mini-btn" type="button" data-cal="1">' + glyphSvg('i-cal') + 'Add to calendar</button></div>';
-  if (ck) h += beenBoxHTML(ck, todayKey);
   // what you do there
   var hi = (Array.isArray(it.highlights) ? it.highlights : []).filter(Boolean).map(String);
   if (it.description || hi.length) {
@@ -8160,12 +8643,14 @@ function renderDetail(c, keepScroll){
   var ckTxt = tr.checked ? esc(fmtDate(tr.checked, todayKey)) : 'an unknown date';
   h += '<section class="trust-s" aria-label="How we know">';
   if (tr.status === 'verified') h += '<p><span class="tick">✓ Hours checked ' + ckTxt + '</span> on ' + srcLink + '.</p>';
-  else if (tr.status === 'conflicting') h += '<p><span class="tick warn">Sources disagree on the hours.</span> See ' + srcLink + ' and the sources below, and call before you go. Last checked ' + ckTxt + '.</p>';
+  else if (tr.status === 'conflicting') h += '<p><span class="tick warn">Sources disagree on the hours.</span> See ' + srcLink + ' and call before you go. Last checked ' + ckTxt + '.</p>';
   else if (tr.status === 'closed') h += '<p>Marked closed for good, per ' + srcLink + '. Last checked ' + ckTxt + '.</p>';
   else h += '<p><span class="tick warn">Not confirmed yet.</span> Found ' + ckTxt + (tr.src ? ' on ' + srcLink : '') + '. Call first.</p>';
   // public release: never shows verified.notes, checked_by, found_via or photos[].note; only the status, the checked date and the evidence link
-  var srcs = (Array.isArray(it.source_urls) ? it.source_urls : []).map(safeUrl).filter(Boolean);
-  h += srcs.length ? '<p>Sources:</p><ol class="sources">' + srcs.map(function(u){ return '<li><a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(shortUrl(u)) + '</a></li>'; }).join('') + '</ol>' : '<p>No sources recorded.</p>';
+  // v5.18 (owner 2026-11-14): ONE source link, the best evidence (the checked page, else the official site, else the first source); none twice
+  var one = oneSource(it, tr);
+  if (one && one !== tr.src) h += '<p class="one-src">Source: <a href="' + esc(one) + '" target="_blank" rel="noopener">' + esc(domainOf(one)) + '</a></p>';
+  else if (!one) h += '<p>No sources recorded.</p>';
   if (it.coord_source === 'approximate') h += '<p>Map point is approximate.</p>';
   h += '</section></div>';
   sc.innerHTML = h;
@@ -8813,7 +9298,8 @@ function tasteOnSave(id, from){ // a save: a light vote (0.3) and, with a profil
 function tasteOnRate(id, r, src){ // a thumbs up/down: 0.6 on the item's clear dials; a new rating replaces the old one
   if (!TASTE) return; var it = findItem(id); if (!it) return;
   TASTE.log = TASTE.log.filter(function(x){ return !(x.t === 'ck' && x.id === id); });
-  if (r === 1 || r === -1) TASTE.log.push({t:'ck', id:id, r:r, x:vecOf(it), src:src || 'ck', at:new Date().toISOString()});
+  var m = 1; if (src === 'ck') { var stt = starTaste(r); r = stt.r; m = stt.m; }   // v5.18: a check-in rating is stars (stored value); 3 stars = neutral
+  if (r === 1 || r === -1) { var le = {t:'ck', id:id, r:r, x:vecOf(it), src:src || 'ck', at:new Date().toISOString()}; if (m !== 1) le.m = m; TASTE.log.push(le); }
   tasteSave(TASTE);
 }
 function tasteNagDone(n){ if (!TASTE) return; TASTE.nag.shown = Math.max(TASTE.nag.shown, n); tasteSave(TASTE, true); refresh(); }
@@ -8863,7 +9349,7 @@ function acctTasteHTML(){ // "Your taste": done -> words + Retake / Adjust; neve
   var done = !!(TASTE && tasteCardCount(TASTE) > 0), ty = acctType();
   if (!done) return '<button class="as-row" type="button" data-acct="taste-start"><span class="as-ico">' + glyphSvg('i-heart') + '</span><span><b>Find your character</b><small>' + esc(deckMinutesLine(DECK_TOTAL)) + '</small></span>' + glyphSvg('i-right', 'i chev') + '</button>';
   var w = ty ? [] : traitWords(tasteMine(), 4), h = '<div class="as-card">';   // v5.17: with a type, the type (never trait words)
-  if (ty) h += '<button class="as-tt" type="button" data-acct="taste-open" style="--type:' + esc(ty.color) + '">' + typeAvatarHTML(ty.id, 'sm') + '<span class="t"><b>' + esc(ty.name) + '</b><small><span class="as-code">' + esc(ty.code) + '</span> ' + esc(ty.tagline) + '</small></span></button>';
+  if (ty) h += '<button class="as-tt" type="button" data-acct="taste-open" style="--type:' + esc(ty.color) + '">' + typeAvatarHTML(ty.id, 'sm') + '<span class="t"><b>' + esc(ty.name) + '</b><small>' + esc(ty.tagline) + '</small></span></button>';
   h += ty ? '' : w.length ? '<ul class="as-chips" aria-label="Your taste">' + w.map(function(x){ x = String(x); return '<li>' + esc(x.charAt(0).toUpperCase() + x.slice(1)) + '</li>'; }).join('') + '</ul>'
     : '<p class="as-lock">Swipe a few more to find your character.</p>';
   if (ty && typeShift()) h += '<button class="as-row as-shift" type="button" data-acct="taste-open"><span class="as-ico">' + glyphSvg('i-heart') + '</span><span><b>Your character shifted</b><small>Keep it? Take a look</small></span>' + glyphSvg('i-right', 'i chev') + '</button>';   // v5.17a2
@@ -9116,10 +9602,11 @@ function deckIntroLine(D, who){ var n = deckTotal(D), nm = D && D.cfg ? D.cfg.na
 function deckMinutesLine(n){ return n + ' quick ' + (n === DECK_TOTAL ? 'answers' : 'swipes') + ' · about ' + Math.max(1, Math.round(n * 3 / 60)) + ' min'; }   // about 3 s an answer, rounded, never more than the truth. v5.17a2: the main deck is swipes + WYR = "answers"
 /* ----- v5.17a2 "would you rather" screen (design/2026-11-14-wyr-questions.md §4): two photo halves, stacked on a phone, side by side from 900 px ----- */
 function wyrSides(c){ return c.aFirst ? ['a', 'b'] : ['b', 'a']; }   // [first (top / left), second]
-function wyrKey(key, c){ // arrow keys: Left / Up = the first half, Right / Down = the second; S = skip (spec §4 keyboard)
+function wyrKey(key, c){ // arrow keys: Left / Up = the first half, Right = the second, Down = Neither (v5.18); S = skip (spec §4 keyboard)
   var s = wyrSides(c);
   if (key === 'ArrowLeft' || key === 'ArrowUp') return s[0];
-  if (key === 'ArrowRight' || key === 'ArrowDown') return s[1];
+  if (key === 'ArrowRight') return s[1];
+  if (key === 'ArrowDown') return 'neither';
   if (key === 's' || key === 'S') return 'skip';
   return null;
 }
@@ -9130,7 +9617,8 @@ function wyrScreenHTML(D, c){
     '<p class="wy-count" id="swCount">' + (n + 1) + ' <span>/ ' + tot + '</span></p><button class="wy-skip" type="button" data-tk="wyrskip">Skip</button>' +
     '<button class="sw-ic" type="button" data-tk="skip" aria-label="Close">' + glyphSvg('i-close') + '</button></header>' +
     '<div class="wy-stage" role="group" aria-label="Pick one">' + half(sd[0]) + half(sd[1]) + '<span class="wy-or" aria-hidden="true">or</span></div>' +
-    '<p class="sw-kbd wy-kbd" aria-hidden="true"><kbd>←</kbd> <kbd>→</kbd> to pick · <kbd>S</kbd> skip · <kbd>Z</kbd> undo</p></div>';
+    '<button class="wy-nei" type="button" data-tk="wyrneither">Neither</button>' +   // v5.18 (owner): no vote on this question
+    '<p class="sw-kbd wy-kbd" aria-hidden="true"><kbd>←</kbd> <kbd>→</kbd> to pick · <kbd>↓</kbd> neither · <kbd>S</kbd> skip · <kbd>Z</kbd> undo</p></div>';
 }
 function wyrAfterRender(D, c){
   var el = tasteEl(), stg = el && el.querySelector('.wy-stage'); if (!stg) return;
@@ -9151,12 +9639,13 @@ function wyrAfterRender(D, c){
 function wyrBothFailed(D, c){ if (TU.D !== D || D.cards[D.log.length] !== c || TU.busy) return; (D.badQ = D.badQ || {})[c.q.q] = 1; D.cards.length = D.log.length; tasteRender(); }   // not counted; the next question on that axis takes the slot
 function wyrPick(k){ // k = 'a' | 'b' | 'skip': the tapped half grows a little with an accent ring, the other fades; then the next card
   var D = TU.D; if (!D || TU.busy || TU.mode !== 'deck') return;
-  var c = D.cards[D.log.length]; if (!c || c.kind !== 'wyr' || (k !== 'a' && k !== 'b' && k !== 'skip')) return;
+  var c = D.cards[D.log.length]; if (!c || c.kind !== 'wyr' || (k !== 'a' && k !== 'b' && k !== 'skip' && k !== 'neither')) return;
   TU.busy = true;
-  var ms = Date.now() - TU.shownAt, rm = reduceMotion(), el = tasteEl(), stg = el && el.querySelector('.wy-stage');
-  if (stg) Array.prototype.forEach.call(stg.querySelectorAll('.wy-half'), function(h){ h.disabled = true; if (k !== 'skip') h.classList.add(h.getAttribute('data-tk-wyr') === k ? 'picked' : 'other'); });   // one tap only
+  var ms = Date.now() - TU.shownAt, rm = reduceMotion(), el = tasteEl(), stg = el && el.querySelector('.wy-stage'), pass = k === 'skip' || k === 'neither';
+  if (stg) Array.prototype.forEach.call(stg.querySelectorAll('.wy-half'), function(h){ h.disabled = true; if (!pass) h.classList.add(h.getAttribute('data-tk-wyr') === k ? 'picked' : 'other'); else if (k === 'neither') h.classList.add('other'); });   // one tap only; Neither fades both
   function next(){ if (TU.D !== D) return; deckAnswer(D, k, ms); var T = tasteTarget(); T.log = D.base.concat(D.log); tasteSave(T); TU.enter = 'in'; tasteRender(); }
   if (k === 'skip') { next(); return; }
+  if (k === 'neither') { TU.busyTap = setTimeout(next, rm ? 120 : 220); return; }
   TU.busyTap = setTimeout(function(){ if (rm && stg) { stg.style.transition = 'opacity .15s linear'; stg.style.opacity = 0; setTimeout(next, 150); } else next(); }, rm ? 200 : 350);
 }
 function deckRailHTML(){
@@ -9397,7 +9886,7 @@ function resultHTML(){ // the Result (spec §5): hero in the type color, the cha
   if (!ty) { TU.mode = 'profile'; return profileHTML(); }
   var t = TYPES[ty.id - 1], side = ty.side ? TYPES[ty.side - 1] : null, chips = typeChips(st, ty);
   var h = '<div class="ty-res" style="--type:' + t.color + '"><div class="ty-sheet">';
-  h += '<div class="ty-hero"><span class="ty-code">' + esc(t.code) + '</span><button class="ty-share" type="button" data-tk="tshare" aria-label="Share your type">' + glyphSvg('i-share') + '</button>' +
+  h += '<div class="ty-hero"><button class="ty-share" type="button" data-tk="tshare" aria-label="Share your type">' + glyphSvg('i-share') + '</button>' +
     '<span class="ty-char' + (TU.enterChar && !reduceMotion() ? ' pop' : '') + '">' + typeSvg(ty.id) + '</span></div>';
   h += '<div class="ty-body"><p class="ty-pre">' + (ty.mix ? 'You\'re a mix. Mostly' : 'You\'re a') + '</p><h1 class="ty-name" tabindex="-1" data-focus>' + esc(t.name) + '</h1><p class="ty-tag">' + esc(t.tagline) + '</p>';
   if (side) h += '<p class="ty-side">' + typeAvatarHTML(ty.side, 'xs') + '<span>with a streak of ' + esc(side.name) + '</span></p>';
@@ -9407,6 +9896,7 @@ function resultHTML(){ // the Result (spec §5): hero in the type color, the cha
   h += tasteFitHTML(t.code);   // v5.17a2 (owner): "Does this fit you?"
   if (st.suggestBar) h += '<div class="ty-sugg"><div class="sw-row"><span>Skip bar-centered stuff<small>You passed on ' + st.barNo + ' bar cards</small></span><button class="switch" type="button" data-tk-hard="noBar" aria-pressed="' + !!TASTE.hard.noBar + '" aria-label="Skip bar-centered stuff"></button></div></div>';
   h += '<p class="ty-not"><button class="linkbtn" type="button" data-tk="profile">Not you? Adjust your sliders ›</button></p><p class="ty-learn">Your picks get smarter as you save places.</p>';
+  h += '<button class="ty-cmp" type="button" data-tk="compare">' + glyphSvg('i-people') + '<span><b>Compare with a friend</b><small>They take their own test, you both turn on Plan together, and you get picks for you both.</small></span>' + glyphSvg('i-right', 'i chev') + '</button>';   // v5.18 (owner: "How do I take a test with him?")
   h += '</div><div class="ty-foot"><button class="btn-primary" type="button" data-tk="close">Done</button><div class="ty-acts">' +
     '<button type="button" data-tk="tshare">' + glyphSvg('i-share') + 'Share</button><button type="button" data-tk="retake">' + glyphSvg('i-undo') + 'Retake</button><button type="button" data-tk="profile">' + glyphSvg('i-sliders') + 'Adjust</button></div></div></div></div>';
   return h;
@@ -9466,7 +9956,7 @@ function typeShareImage(id){ // -> Promise(Blob | null): a 1080 x 1350 PNG (type
           g.fillStyle = '#211B2C'; g.textAlign = 'center';
           g.font = '600 40px sans-serif'; g.fillText('I\'m a', 540, 860);
           g.font = '700 84px sans-serif'; g.fillText(t.name, 540, 960);
-          g.font = '500 44px sans-serif'; g.fillStyle = '#544C62'; g.fillText(t.tagline + ' · ' + t.code, 540, 1040);
+          g.font = '500 44px sans-serif'; g.fillStyle = '#544C62'; g.fillText(t.tagline, 540, 1040);   // v5.18 (owner): no 3-letter code anywhere she sees
           g.font = '600 34px sans-serif'; g.fillStyle = '#211B2C'; g.fillText(APP_NAME, 540, 1270);
           if (c.toBlob) c.toBlob(function(b){ res(b || null); }, 'image/png'); else res(null);
         } catch (e) { res(null); }
@@ -9478,7 +9968,7 @@ function typeShareImage(id){ // -> Promise(Blob | null): a 1080 x 1350 PNG (type
 }
 function typeShare(){ // the phone's share sheet with the picture when it takes files, else the link, else copy
   var ty = funType(tasteMine()); if (!ty) return;
-  var url = typeShareUrl(ty.code), text = 'I\'m a ' + ty.name + ' (' + ty.code + ') on ' + APP_NAME + '. What are you?';
+  var url = typeShareUrl(ty.code), text = 'I\'m a ' + ty.name + ' (' + ty.tagline + ') on ' + APP_NAME + '. What are you?';
   typeShareImage(ty.id).then(function(blob){
     var f = null; try { if (blob && typeof File === 'function') f = new File([blob], 'off-grid-' + ty.code.toLowerCase() + '.png', {type:'image/png'}); } catch (e) {}
     try { if (f && navigator.share && navigator.canShare && navigator.canShare({files:[f]})) return navigator.share({files:[f], title:ty.name, text:text + ' ' + url}).catch(function(){}); } catch (e) {}
@@ -9546,7 +10036,7 @@ function typeHeadInner(ty, now){ // Adjust's header: 64 px avatar + name + "CODE
   if (!ty) return '<h1 class="tk-h1" tabindex="-1" data-focus>Your taste</h1>';
   var t = TYPES[ty.id - 1];
   return '<button class="ty-hbtn" type="button" data-tk="result" aria-label="Open your result: ' + esc(t.name) + '">' + typeAvatarHTML(ty.id, 'lg') +
-    '<span class="t">' + (now ? '<small class="ty-now">You\'re now a</small>' : '') + '<span class="tk-h1 ty-hn" tabindex="-1" data-focus>' + esc(t.name) + '</span><small>' + esc(t.code) + ' · ' + esc(t.tagline) + '</small></span></button>';
+    '<span class="t">' + (now ? '<small class="ty-now">You\'re now a</small>' : '') + '<span class="tk-h1 ty-hn" tabindex="-1" data-focus>' + esc(t.name) + '</span><small>' + esc(t.tagline) + '</small></span></button>';   // v5.18: no code
 }
 function tasteLiveType(){ // v5.17 (owner): while a slider moves, the character follows (manual changes win over the swipes)
   var el = $('tyHead'); if (!el) return;
@@ -9641,6 +10131,8 @@ function tasteClick(e){
   var a = b.getAttribute('data-tk');
   if (a === 'undo') tkUndo();
   else if (a === 'wyrskip') wyrPick('skip');
+  else if (a === 'wyrneither') wyrPick('neither');   // v5.18 (owner): "Neither" = no vote on this axis, counts toward n / 35
+  else if (a === 'compare') { closeTaste(); openFriends(); }   // v5.18: Plan together from the Result
   else if (a.indexOf('fit:') === 0) tasteFitSet(a.slice(4), b);
   else if (a.indexOf('shift:') === 0) typeShiftAnswer(a.slice(6) === 'yes');
   else if (a === 'skip') { var T = tasteTarget(); if (T === TASTE) TASTE.nag.shown = Math.max(TASTE.nag.shown, 1); tasteSave(T);
@@ -9758,11 +10250,24 @@ function bindUI(){
     var a = b.getAttribute('data-been'), ck = checkinOf(id);
     if (a === 'add') addCheckin(id);
     else if (a === 'remove') removeCheckin(id);
-    else if (ck && a === 'up') editCheckin(id, {rating:ck.rating === 1 ? 0 : 1});
-    else if (ck && a === 'down') editCheckin(id, {rating:ck.rating === -1 ? 0 : -1});
+    else if (ck && /^s-[1-5]$/.test(a)) { var sn = +a.slice(2); editCheckin(id, {rating:starsOf(ck.rating) === sn ? 0 : dbRatingOf(sn)}); }   // v5.18 stars; the same star again clears it
+    else if (ck && /^p-(day|month|none)$/.test(a)) editCheckin(id, beenPrecPatch(ck, a.slice(2), cparts(nowMs()).key));   // v5.18
   });
-  $('dtScroll').addEventListener('change', function(e){ if (e.target.id === 'beenDate' && UI.detailId && isKey(e.target.value)) editCheckin(UI.detailId, {date:e.target.value, prec:'day'}); });
-  $('pSavedBody').addEventListener('click', function(e){ var t = e.target.closest('[data-tab]'); if (t) { UI.listTab = t.getAttribute('data-tab'); renderSaved(); }
+  $('dtScroll').addEventListener('change', function(e){
+    if (e.target.id === 'beenDate' && UI.detailId && isKey(e.target.value)) editCheckin(UI.detailId, {date:e.target.value, prec:'day'});
+    if (e.target.id === 'beenMonth' && UI.detailId && /^\d{4}-\d{2}$/.test(e.target.value)) editCheckin(UI.detailId, {date:e.target.value + '-01', prec:'month'});   // v5.18
+  });
+  // v5.18 guides: the article layer, the map pins, the phone "Back to the guide" pill, browser Back, Esc, the row arrows
+  $('gaScroll').addEventListener('click', gaClick);
+  $('gaScroll').addEventListener('mouseover', function(e){ var li = e.target.closest && e.target.closest('[data-gi]'); if (li && isWide() && +li.getAttribute('data-gi') !== GA.hot) gaHot(+li.getAttribute('data-gi')); });
+  $('gaScroll').addEventListener('focusin', function(e){ var li = e.target.closest && e.target.closest('[data-gi]'); if (li && isWide()) gaHot(+li.getAttribute('data-gi')); });
+  $('pins').addEventListener('click', function(e){ var p = e.target.closest && e.target.closest('[data-gpin]'); if (p) { e.stopPropagation(); gaPinClick(+p.getAttribute('data-gpin')); } });
+  $('gaPill').addEventListener('click', function(){ gaPhoneMap(false); showView(UI.backView === 'browse' ? 'browse' : 'home'); });
+  window.addEventListener('popstate', function(){ if (GA.open && !/guide=/.test(location.hash || '')) { GA.pushed = false; closeArticle(true); } });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && GA.open && !UI.detailId && !openStack.length && !(tasteEl() && !tasteEl().hidden)) { e.preventDefault(); closeArticle(false); } });
+  document.addEventListener('scroll', function(e){ var g = e.target; if (g && g.classList && g.classList.contains('grow')) gaArrows(g); }, true);
+  $('pSavedBody').addEventListener('click', function(e){ var gso = e.target.closest('[data-ga-open]'); if (gso) { closePanel('pSaved'); openArticle(gso.getAttribute('data-ga-open')); return; }
+    var t = e.target.closest('[data-tab]'); if (t) { UI.listTab = t.getAttribute('data-tab'); renderSaved(); }
     var fc = e.target.closest('[data-fchip]'); if (fc) { openFriendView(fc.getAttribute('data-fchip')); return; }   // v5.8 friends strip
     var wp = e.target.closest('[data-wl]'); if (wp) wlAction(wp.getAttribute('data-wl'), wp); });
   // v5.8 friends' lists: Share, the friend panel (Keep, rows, Rename, Remove), the paste box
@@ -9905,6 +10410,8 @@ function onHomeClick(e){
   if (wh) { var v = wh.getAttribute('data-when'); if (v === 'pick') openSmall('When?', smallWhen); else { S.when = normWhen(v); refresh(); } return; }
   var pl = t.closest('[data-plan]');
   if (pl) { S.when = 'pick'; S.pickAt = pl.getAttribute('data-plan'); refresh(); return; }
+  var gop = t.closest('[data-ga-open]'); if (gop) { e.preventDefault(); openArticle(gop.getAttribute('data-ga-open')); return; }   // v5.18 guide cards
+  var gar = t.closest('[data-ga="prev"],[data-ga="next"]'); if (gar) { gaRowScroll(gar); return; }
   var hop = t.closest('[data-open]'); if (hop) { openDetail(hop.getAttribute('data-open')); return; }   // v5.10 radar
   var gd = t.closest('[data-guide]'); if (gd) { openGuide(gd.getAttribute('data-guide')); return; }   // v5.10 mini guides
   var act = t.closest('[data-act]');
@@ -11569,7 +12076,7 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.17 (2026-11-14)');
+    eq('version', VERSION, 'v5.18 (2026-11-14)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -11881,7 +12388,7 @@ function runSelfTest0(){
     eq('5 guides with ids', GUIDES.map(function(g){ return g.id; }).join(), 'first-date,rainy-day,visitors,late-night,free');
     eq('guide rules', [guideMatch('first-date', fx({tags:['date'], price_level:'$'}), ''), guideMatch('first-date', fx({tags:['date'], price_level:'$$$'}), ''), guideMatch('rainy-day', fx({indoor_outdoor:'indoor'}), ''), guideMatch('rainy-day', fx({indoor_outdoor:'outdoor'}), ''), guideMatch('free', fx({price_level:'free'}), ''), guideMatch('late-night', fx({hours:allDays(['18:00', '02:00'])}), '2026-11-13'), guideMatch('late-night', fx({hours:allDays(['10:00', '17:00'])}), '2026-11-13')].join(), 'true,false,true,false,true,true,false');
     ok('a guide link ends with #guide=<id>', /#guide=free$/.test(guideLink('free')), guideLink('free'));
-    eq('Home has 5 guide buttons', (guidesHTML().match(/data-guide="/g) || []).length, 5);
+    eq('the old 5 guide buttons are kept for old links only (not on Home)', (guidesHTML510().match(/data-guide="/g) || []).length + '|' + (guidesHTML().indexOf('data-guide="') < 0), '5|true');
     eq('cluster label', clusterLabel(8, 2), '8 places, 2 limited-time. Show the list');
     var ch = clusterHTML({n:8, x:0, y:0, tk:2});
     ok('cluster: a ticket badge with the count, not a dot', ch.indexOf('class="ctk"') >= 0 && ch.indexOf('#g-ticket') >= 0 && /2<\/span>/.test(ch) && ch.indexOf('class="tkb"') < 0, ch);
@@ -12536,7 +13043,7 @@ function runSelfTest0(){
     eq('deckAnswer on a WYR card: swipe answers are refused; "b" logs {t card, kind wyr, id, q, axis, end +1, pos b-first, bar 0, far 0}', [e0 === null, e1.t, e1.kind, e1.id, e1.q, e1.axis, e1.end, e1.pos, e1.bar, e1.far, D.log.length].join(' '), 'true card wyr wyr-V6 V6 v 1 b-first 0 0 1');
     ok('a WYR entry survives cleanTaste (the stored profile)', cleanTaste({v:2, log:[e1]}).log.length === 1, '');
     var cA = {aFirst:true}, cB = {aFirst:false};
-    eq('keys: Left/Up = first half, Right/Down = second, S = skip, others nothing (A on top here, then B on top)', [wyrKey('ArrowLeft', cA), wyrKey('ArrowUp', cA), wyrKey('ArrowRight', cA), wyrKey('ArrowDown', cA), wyrKey('s', cA), wyrKey('Enter', cA), wyrKey('ArrowLeft', cB), wyrKey('ArrowDown', cB)].join(' '), 'a a b b skip  b a');
+    eq('keys (v5.18): Left/Up = first half, Right = second, Down = Neither, S = skip, others nothing (A on top here, then B on top)', [wyrKey('ArrowLeft', cA), wyrKey('ArrowUp', cA), wyrKey('ArrowRight', cA), wyrKey('ArrowDown', cA), wyrKey('s', cA), wyrKey('Enter', cA), wyrKey('ArrowLeft', cB), wyrKey('ArrowDown', cB)].join(' '), 'a a b neither skip  b neither');
     var D2 = newDeck(D.pool, 'main', seededRng(6), {}); for (var k = 0; k < 12; k++) D2.log.push({t:'card', kind:'dial', ans:'yes'});
     var cq = {kind:'wyr', q:wyrQ('E2'), dial:'e', aFirst:false, it:null, x:{}}, wh = wyrScreenHTML(D2, cq);
     var pa = wh.indexOf('data-tk-wyr="a"'), pb = wh.indexOf('data-tk-wyr="b"');
@@ -12550,6 +13057,85 @@ function runSelfTest0(){
     var c0 = cleanTaste(T0);
     eq('cleanTaste keeps the fit answers (bad ones dropped) and the shift fields (codes only)', [c0.fits.length, c0.fits[0].a, c0.typeSeen, c0.shiftAsked, c0.typeKeep === ''].join(' '), '1 kind WMC MBG true');
     ok('the fit answers go up with the taste profile (settings row, user_id = her own)', /"fits":\[\{"a":"kind"/.test(JSON.stringify(tasteForCloud(c0))), '');
+  });
+  block('v5.18 guides as articles: deep links with digits, missing places, Plans and Lists, price, 21+, no gaps', function(){
+    ok('#guide= ids allow digits: "first-date-under-30" is valid and the hash pattern reads it whole', gaIdOk('first-date-under-30') && /(?:^#|&)guide=([a-z0-9-]+)/.exec('#guide=first-date-under-30')[1] === 'first-date-under-30' && !gaIdOk('Bad Id') && !gaIdOk(''), '');
+    var P = {}; function put(o){ var it = fx(o); P[it.id] = it; return it; }
+    var a = put({id:'t18-a', name:'Alpha Place (Loop)', lat:41.880, lng:-87.630, neighborhood:'Loop / Downtown', photos:[{file:'photos/t18-a-1.jpg'}]}), b = put({id:'t18-b', name:'Beta', lat:41.884, lng:-87.632, tags:['21-plus']}), c = put({id:'t18-c', name:'Gamma', lat:41.95, lng:-87.65, price_level:'free'});
+    put({id:'t18-gone', name:'Gone Bar', verified:{status:'closed', checked_on:'2026-11-01'}});
+    for (var i = 1; i <= 6; i++) put({id:'t18-l' + i, name:'List ' + i, lat:41.88 + i / 100, lng:-87.63, price_from:i === 1 ? 15 : null, price_level:'$$'});
+    var find = function(id){ return P[id] || null; };
+    var plan = {id:'plan-t18-2', title:'Test plan', when:'Any day · Loop', intro:'Intro.', steps:[{activity_id:'t18-a', why:'One. Two sentences are fine.', timing:'2–4 pm'}, {activity_id:'t18-missing', why:'x'}, {activity_id:'t18-b', why:'Three', timing:'5 pm'}, {activity_id:'t18-c', why:'Four'}]};
+    var R = gaResolve(plan, find);
+    ok('a Plan with a missing place: the step is skipped, 3 steps left, labels Start with / Then / End at', R && R.fmt === 'plan' && R.n === 3 && [gaLabel(0, 3), gaLabel(1, 3), gaLabel(2, 3)].join('|') === 'Start with|Then|End at', R ? R.n : 'null');
+    eq('a Plan with fewer than 2 places left is hidden', gaResolve({id:'p1', title:'x', steps:[{activity_id:'t18-a'}, {activity_id:'nope'}]}, find), null);
+    eq('a Plan whose 2nd stop is closed for good is hidden too (1 open stop)', gaResolve({id:'p2', title:'x', steps:[{activity_id:'t18-a'}, {activity_id:'t18-gone'}]}, find), null);
+    var lst = {id:'list-t18', format:'list', title:'{n} test ideas', theme:'Any night · Indoors', intro:'I.', entries:[{place_id:'t18-l3', rank:3, blurb:'Three.'}, {place_id:'t18-l1', rank:1, blurb:'One.', price_unit:'person'}, {place_id:'t18-missing', rank:2}, {place_id:'t18-gone', rank:4}, {place_id:'t18-l2', rank:5}, {place_id:'t18-l4', rank:6}, {place_id:'t18-l5', rank:7}]};
+    var L = gaResolve(lst, find);
+    ok('a List skips a missing place and a closed-for-good one; ranks close up; {n} = the live count (5)', L && L.n === 5 && L.title === '5 test ideas' && L.rows.map(function(r){ return r.it.id; }).join() === 't18-l1,t18-l3,t18-l2,t18-l4,t18-l5', L ? L.title + ' ' + L.rows.map(function(r){ return r.it.id; }).join() : 'null');
+    lst.entries.pop(); eq('a List with 4 places left is hidden', gaResolve(lst, find), null);
+    eq('price_unit: each / per group / Free / unknown unit = symbols only (never a bare $X)', [gaPriceText(fx({price_from:15, price_level:'$'}), 'person'), gaPriceText(fx({price_from:15}), 'each'), gaPriceText(fx({price_from:300, price_level:'$$$$'}), 'group'), gaPriceText(fx({price_from:300}), 'per group'), gaPriceText(fx({price_level:'free'}), ''), gaPriceText(fx({price_from:20, price_level:'$$'}), ''), gaPriceText(fx({price_level:''}), ''), gaPriceText(fx({price_from:19.99}), 'person')].join(' | '), 'From $15 each | From $15 each | From $300 per group | From $300 per group | Free | $$ |  | From $19.99 each');
+    eq('area = neighborhood up to " / " or " ("', [gaNb({neighborhood:'Streeterville / Magnificent Mile'}), gaNb({neighborhood:'Lisle (suburb)'}), gaNb({})].join('|'), 'Streeterville|Lisle|');
+    var LH = gaArticleHTML(gaResolve(ext(lst, {entries:lst.entries.concat([{place_id:'t18-l6', rank:8}])}), find) || L);
+    var lr = gaResolve({id:'list-t18b', format:'list', title:'{n} with b', entries:[{place_id:'t18-b', rank:1}, {place_id:'t18-l1', rank:2, price_unit:'person'}, {place_id:'t18-l2', rank:3}, {place_id:'t18-l3', rank:4}, {place_id:'t18-l4', rank:5}]}, find), LH2 = gaArticleHTML(lr);
+    ok('List article: "Top 5" kicker, ranks 1-5, a 21+ tag from the place data, "From $15 each", an open-summary line, Save this list', /Top 5<\/span>/.test(LH2) && /class="rank" aria-hidden="true">5</.test(LH2) && /class="age">21\+</.test(LH2) && /From \$15 each/.test(LH2) && /class="ga-sum/.test(LH2) && /Save this list/.test(LH2), LH2.slice(0, 200));
+    var g2 = ext(plan, {gaps:[{guide:'plan-t18-2', need:'GAPS-SHOULD-NOT-SHOW'}]}), PH = gaArticleHTML(gaResolve(g2, find));
+    ok('Plan article: numbered steps, Start with / End at, the why, the timing, a hop time, See place, Save this plan; the internal "gaps" note is never shown', /Start with/.test(PH) && /End at/.test(PH) && /Two sentences are fine/.test(PH) && /2–4 pm/.test(PH) && /class="ghop"/.test(PH) && /data-ga-place="t18-a"/.test(PH) && /Save this plan/.test(PH) && PH.indexOf('GAPS-SHOULD-NOT-SHOW') < 0 && LH.indexOf('gaps') < 0, '');
+    ok('Plan: 21+ shows on a step from the place data (Beta has the 21-plus tag)', /Beta <span class="age">21\+<\/span>/.test(PH), '');
+    eq('a guide file may be {guides:[...], gaps:[...]}: only the guides are read', gaArr({guides:[{id:'x'}], gaps:[{need:'n'}]}).length + '|' + gaArr([{id:'y'}, {id:'z'}]).length + '|' + gaArr(null).length, '1|2|0');
+    eq('merge: plans and lists alternate, a repeated or bad id is dropped', gaMerge([{id:'p-1', title:'P1'}, {id:'p-2', title:'P2'}, {id:'Bad', title:'B'}], [{id:'l-1', format:'list', title:'L1'}, {id:'p-1', format:'list', title:'dup'}]).map(function(g){ return g.id; }).join(), 'p-1,l-1,p-2');
+    eq('date-bound window: 7 days before through the last date (show_from overrides)', [gaWindow({dates:['2026-11-26']}, '2026-11-18'), gaWindow({dates:['2026-11-26']}, '2026-11-19'), gaWindow({dates:['2026-11-26']}, '2026-11-27'), gaWindow({dates:['2026-11-26'], show_from:'2026-11-10'}, '2026-11-12'), gaWindow({}, '2026-01-01')].join(), 'false,true,false,true,true');
+    var h1 = gaHop(a, b, 'car'), h2 = gaHop(a, c, 'car');
+    ok('hop: under 1.2 mi = a walk; farther = her mode (drive)', h1 && h1.how === 'walk' && /min walk$/.test(h1.text) && h2 && h2.how === 'drive' && /min drive$/.test(h2.text), (h1 && h1.text) + ' / ' + (h2 && h2.text));
+    ok('deep links: an unknown id or a bad id -> "none" (Home + toast); an old computed guide id -> "old"', gaLinkKind('nope-123') === 'none' && gaLinkKind('Bad Id') === 'none' && (gaResolveId('free') ? true : gaLinkKind('free') === 'old'), '');
+    ok('Home: no "Mini guides" pills; Guides is a row of cover cards with "N stops" / "Top N" pills (or nothing before the files load)', guidesHTML().indexOf('Mini guides') < 0 && (guidesHTML() === '' || (/class="grow"/.test(guidesHTML()) && /(stops|Top \d+)<\/span>/.test(guidesHTML()))), GA.loaded ? GA.all.length + ' guides' : 'not loaded');
+    if (GA.loaded && DATA_LOADED) {
+      var real = gaHomeList(cparts(nowMs()).key);
+      ok('real guide files: ' + real.length + ' guides on Home (plans from ' + (GA.src.plans || 'none') + ', lists from ' + GA.src.lists + '), each with >= 2 steps or >= 5 entries', real.length > 0 && real.every(function(R){ return R.fmt === 'list' ? R.n >= GA_LIST_MIN : R.n >= GA_PLAN_MIN; }), real.map(function(R){ return R.g.id + ':' + R.n; }).join());
+      ok('every real guide id opens as an article', real.every(function(R){ return gaLinkKind(R.g.id) === 'article'; }), '');
+    } else ok('real guide files not loaded yet (no data in this run)', true, '');
+  });
+  block('v5.18 feedback: been date (day / month / don\'t remember), one source link, friend profile, Plan together, Neither', function(){
+    var tk = '2026-11-14';
+    eq('been precision patches: month -> the 1st; none -> no date; back to day from this month -> today', JSON.stringify([beenPrecPatch({date:'2026-10-23'}, 'month', tk), beenPrecPatch({date:'2026-10-23'}, 'none', tk), beenPrecPatch({date:'2026-11-01', prec:'month'}, 'day', tk), beenPrecPatch({date:'', prec:'none'}, 'day', tk)]), '[{"date":"2026-10-01","prec":"month"},{"date":"","prec":"none"},{"date":"2026-11-14","prec":"day"},{"date":"2026-11-14","prec":"day"}]');
+    var cl = cleanCheckins([{id:'p-n', date:'', prec:'none', rating:1}, {id:'p-bad', date:''}]);
+    ok('"I don\'t remember when" is kept (no date, prec none); a record with no date and no prec is still dropped', cl.length === 1 && cl[0].id === 'p-n' && cl[0].prec === 'none' && cl[0].date === '' && cl[0].rating === 1, JSON.stringify(cl));
+    ok('no-date visit: label "Been here", not "recent", and the account row sends visit_date null', beenLabel(cl[0], tk) === 'Been here' && !beenRecently('p-n', tk, cl) && ckRow(cl[0], false).visit_date === null, JSON.stringify(ckRow(cl[0], false)));
+    var mg = mergeCheckins([], {}, [{item_id:'p-r', visit_date:null, date_prec:'day', rating:0, deleted:false, updated_at:'2026-11-14T10:00:00.000Z'}], '2026-11-14T12:00:00.000Z');
+    eq('a remote visit with no date comes back as "don\'t remember"', mg.list.map(function(x){ return x.id + '/' + x.date + '/' + x.prec; }).join(), 'p-r//none');
+    var bx = beenBoxHTML({id:'x', date:'2026-10-01', prec:'month', rating:0}, tk);
+    eq('stars stored as 1-5 (0 = none); an old -1 reads as 1 star; junk = 0', [-1, 1, 2, 3, 4, 5, 0, 7, 'x'].map(starsOf).join() + ' | ' + [1, 2, 3, 4, 5, 0, 6].map(dbRatingOf).join(), '1,1,2,3,4,5,0,0,0 | 1,2,3,4,5,0,0');
+    ok('every star count round-trips through the stored value and -1 is never written', [1, 2, 3, 4, 5].every(function(n){ return starsOf(dbRatingOf(n)) === n && dbRatingOf(n) > 0; }), '');
+    eq('stars teach taste: 5 strong like, 4 like, 3 neutral, 2 dislike, 1 strong dislike', [5, 4, 3, 2, 1].map(function(v){ var t = starTaste(v); return t.r + 'x' + t.m; }).join(' '), '1x1.5 1x1 0x1 -1x1 -1x1.5');
+    var vS = entryVotes({t:'ck', id:'x', r:1, m:1.5, x:{e:1, v:0, p:0, w:0}}), vN = entryVotes({t:'ck', id:'x', r:1, x:{e:1, v:0, p:0, w:0}});
+    ok('a 5-star check-in weighs 1.5x a 4-star one on the place\'s dials', vS.length === 1 && vN.length === 1 && Math.abs(vS[0].w - vN[0].w * 1.5) < 1e-9, JSON.stringify([vS, vN]));
+    eq('check-ins keep 1-5 and the old -1 / 1; junk becomes 0', cleanCheckins([{id:'a', date:'2026-11-01', rating:5}, {id:'b', date:'2026-11-01', rating:-1}, {id:'c', date:'2026-11-01', rating:9}]).map(function(x){ return x.rating; }).join(), '5,-1,0');
+    ok('been list line shows the stars', starsText(4) === '★★★★☆' && starsText(1) === '★☆☆☆☆' && starsText(-1) === '★☆☆☆☆' && starsText(0) === '', '');
+    ok('been box: 5 star buttons, Remove, Day / Month / Don\'t remember, a month picker when Month is on', /data-been="s-1"/.test(bx) && /data-been="s-5"/.test(bx) && bx.indexOf('data-been="up"') < 0 && /data-been="p-day"/.test(bx) && /data-been="p-month" aria-pressed="true"/.test(bx) && /data-been="p-none"/.test(bx) && /type="month"[^>]*value="2026-10"/.test(bx), bx.slice(0, 160));
+    eq('one source: the checked page first, else the official site, else the first source', [oneSource({website:'https://a.example/', source_urls:['https://b.example/x']}, {src:'https://c.example/'}), oneSource({website:'https://a.example/', source_urls:['https://b.example/x']}, {}), oneSource({source_urls:['https://b.example/x', 'https://d.example/']}, {}), oneSource({}, {})].join(' | '), 'https://c.example/ | https://a.example/ | https://b.example/x | ');
+    ok('the detail code no longer prints a "Sources:" list', String(renderDetail).indexOf('Sources:') < 0 && String(renderDetail).indexOf('one-src') > 0, '');
+    eq('friend months: grouped, newest first, year only when not this year', friendBeenMonths([{sid:1, month:'2026-10'}, {sid:2, month:'2026-10'}, {sid:3, month:'2025-07'}, {sid:4, month:'bad'}], tk).map(function(x){ return x.label + ':' + x.n; }).join(), 'Oct:2,Jul 2025:1');
+    var lv = liveFrom([{status:'accepted', user_id:'u1', username:'avery', display_name:'Avery Test', share_saves:true, share_checkins:false, fun_type:3}], [{user_id:'u1', sid:5}], [], {});
+    ok('liveFrom keeps the friend\'s character number (when the server sends fun_type) and the been switch', lv.length === 1 && lv[0].funType === 3 && lv[0].shareBeen === false && lv[0].sids.length === 1, JSON.stringify(lv[0]));
+    var fp = friendProfileHTML(ext(lv[0], {been:[{sid:5, month:'2026-10'}]}), 1);
+    ok('friend profile: character + type name, saved / been / plan together counts, months been', /class="ty-av fp-av/.test(fp) && fp.indexOf(TYPES[2].name) > 0 && /<b>1<\/b>saved/.test(fp) && /<b>1<\/b>been/.test(fp) && /plan together/.test(fp) && /Oct <small>1 place/.test(fp), fp.slice(0, 200));
+    var codeRe = new RegExp('>\\s*(' + TYPES.map(function(t){ return t.code; }).join('|') + ')\\s*<|\\((' + TYPES.map(function(t){ return t.code; }).join('|') + ')\\)');
+    ok('v5.18: no 3-letter type code in what she sees (Result badge, account card, taste header, friend profile, share text and image)', String(resultHTML).indexOf('ty-code') < 0 && String(acctTasteHTML).indexOf('as-code') < 0 && String(typeShareImage).indexOf("' · ' + t.code") < 0 && String(typeShare).indexOf("' + ty.code + ') on") < 0 && !codeRe.test(fp) && fp.indexOf(TYPES[2].tagline) > 0, '');
+    var cpOn = CP.on, cpTh = CP.theirs; CP.on = {u1:true}; CP.theirs = {};
+    var st1 = coupleStatus({uid:'u1'}); CP.theirs = {u1:{top:[]}}; var st2 = coupleStatus({uid:'u1'}); CP.on = {}; var st3 = coupleStatus({uid:'u1'}); CP.on = cpOn; CP.theirs = cpTh;
+    eq('Plan together status: only mine on = waiting; both = on; off', [st1, st2, st3].join(), 'waiting,on,off');
+    ok('Plan together explains "both of you turn this on" and offers your own test; the Result has "Compare with a friend"', String(coupleBlockHTML).indexOf('Both of you turn this on') > 0 && String(coupleBlockHTML).indexOf('cp-test') > 0 && String(resultHTML).indexOf('data-tk="compare"') > 0, '');
+    var D = newDeck({dial:{e:{'1':[], '-1':[]}, v:{'1':[], '-1':[]}, p:{'1':[], '-1':[]}}, interest:{}, weird:[], bar:[], n:0}, 'main', seededRng(7), {});
+    D.cards = [{kind:'wyr', q:wyrQ('E2'), dial:'e', aFirst:true, it:null, x:{}}];
+    var en = deckAnswer(D, 'neither', 700, '2026-11-14T18:00:00.000Z');
+    ok('Neither: logged with end 0 (no axis vote), the count moves on (1 answer), and it casts no vote', en && en.end === 0 && en.nei === 1 && D.log.length === 1 && entryVotes(en).length === 0, JSON.stringify(en));
+    var D3 = newDeck(D.pool, 'main', seededRng(8), {}); for (var k = 0; k < 12; k++) D3.log.push({t:'card', kind:'dial', ans:'yes'});
+    var wh = wyrScreenHTML(D3, {kind:'wyr', q:wyrQ('E2'), dial:'e', aFirst:false, it:null, x:{}});
+    ok('WYR screen has a "Neither" button and the Down-arrow hint; Down = Neither', /data-tk="wyrneither">Neither</.test(wh) && /<kbd>↓<\/kbd> neither/.test(wh) && wyrKey('ArrowDown', {aFirst:true}) === 'neither', '');
+    var L10 = []; for (var i = 0; i < 20; i++) L10.push({t:'card', kind:'wyr', id:'wyr-N' + i, q:'E1', axis:['e', 'v', 'p', 'w'][i % 4], end:0, nei:1, bar:0, far:0, at:'2026-11-14T18:00:00.000Z'});
+    L10.push({t:'card', kind:'wyr', id:'wyr-E9', q:'E2', axis:'e', end:1, bar:0, far:0, at:'2026-11-14T18:00:00.000Z'});
+    var sN = tasteStats(cleanTaste({v:2, log:L10}), tsOf('2026-11-14T18:00:00.000Z'));
+    ok('20 Neither + 1 real answer: only that one WYR counts (Energy, both ends shown); V, M, W get no vote, so no strong type is forced', sN.plus.e === 1 && sN.minus.e === 1 && !sN.plus.v && !sN.minus.v && !sN.plus.p && !sN.minus.p && !(sN.wCards), JSON.stringify({plus:sN.plus, minus:sN.minus, w:sN.wCards}));
   });
   block('v5.17a2 swipe feel: the word pill fills and the whole photo gets the wash', function(){
     var deck = document.createElement('div'), word = document.createElement('div'), wash = document.createElement('div'), rail = document.createElement('div'), card = document.createElement('div');
@@ -12574,7 +13160,7 @@ function runSelfTest0(){
       ok('Result: the R4 suggestion card "Skip bar-centered stuff · You passed on 3 bar cards"', /You passed on 3 bar cards/.test(rh) && /data-tk-hard="noBar"/.test(rh), '');
       ok('Result: Mode is close (m.p = -0.14), so the runner-up line reads "with a streak of Wild Card Goose"', /with a streak of Wild Card Goose/.test(rh), '');
       var ph = profileHTML();
-      ok('Adjust: type header (name + "WMC · Off the map"), opens the Result', /Night Walk Possum/.test(ph) && /WMC · Off the map/.test(ph) && /data-tk="result"/.test(ph), '');
+      ok('Adjust: type header (name + "Off the map", v5.18: no "WMC" code), opens the Result', /Night Walk Possum/.test(ph) && /<small>Off the map<\/small>/.test(ph) && ph.indexOf('WMC') < 0 && /data-tk="result"/.test(ph), '');
       ok('Adjust: one helper line under each slider and switch', ['How physical: lounging vs. climbing', 'How loud and busy the place is', 'Learn something vs. play something', 'Classic vs. odd and unusual', 'These show up first', 'Goes to the bottom, never hidden', 'Hides places above this price', 'Hides places where drinks are the point', 'Moves calmer places up', 'Thumbs on 5 places open now'].every(function(s){ return ph.indexOf(s) >= 0 || (s === 'Hides places where drinks are the point' && /You passed on 3 bar cards/.test(ph)); }), '');
       ok('Adjust: "With kids" replaces "No 21+"; "Skip bar-centered stuff" kept', /With kids/.test(ph) && ph.indexOf('No 21+') < 0 && /Skip bar-centered stuff/.test(ph), '');
       ok('Adjust: slider readings are words ("Lively"), never dashes', /data-tk-read="v">Lively</.test(ph) && /data-tk-read="e">Active</.test(ph) && !/-\s?-\s?-/.test(ph.replace(/<[^>]+>/g, '')), '');
@@ -13013,7 +13599,7 @@ function readHash(){
   var whm = /who=(date|friends|solo)/.exec(hsh); if (whm && mapEl) { S.f.who = {}; S.f.who[whm[1]] = true; refresh(); }
   var qm = /(?:^#|&)q=([^&]*)/.exec(hsh); if (qm && mapEl) { var qv = ''; try { qv = decodeURIComponent(qm[1].replace(/\+/g, ' ')); } catch (e) { qv = qm[1]; } if (UI.view !== 'browse') showView('browse'); $('q').value = qv; UI.q = qv.trim(); $('qClear').hidden = !qv; refresh(); }
   if (mapEl && (plain === 'been' || plain === 'saved' || /panel=(been|saved)/.test(hsh))) openLists(/been/.test(hsh) ? 'been' : 'saved');
-  var ckm = /checkin=([A-Za-z0-9_.-]+)@(\d{4}-\d{2}-\d{2})/.exec(hsh); if (ckm && mapEl) { CHECKINS = withCheckin(CHECKINS, ckm[1], {date:ckm[2]}, new Date().toISOString()); refresh(); if (!$('pSaved').hidden) renderSaved(); }   // testing hook (not saved)
+  var ckm = /checkin=([A-Za-z0-9_.-]+)@(\d{4}-\d{2}-\d{2})(?:\*([1-5]))?/.exec(hsh); if (ckm && mapEl) { CHECKINS = withCheckin(CHECKINS, ckm[1], ckm[3] ? {date:ckm[2], rating:dbRatingOf(+ckm[3])} : {date:ckm[2]}, new Date().toISOString()); refresh(); if (!$('pSaved').hidden) renderSaved(); }   // testing hook (not saved)
   var sm = /sheet=(peek|half|full)/.exec(hsh); if (sm && sheetEl) applySheet(sm[1]);
   var gm = /genre=([a-z,+]+)/.exec(hsh); if (gm && mapEl) selectGenre(selCode(gm[1]), {keep:true});   // hash links + testing hooks: #genre=play, #genre=play,limited, #sub=minigolf, #fold=rest, #panel=filters
   var sbm = /sub=([a-z]+)/.exec(hsh); if (sbm && mapEl && selCode(curSel())) { UI.sub = sbm[1]; refresh(); }
@@ -13029,7 +13615,10 @@ function readHash(){
   var im = /item=([a-z0-9-]+)/i.exec(hsh); if (im) UI.pendingItem = im[1];
   if (UI.pendingItem && DATA_LOADED) openPending();
   if (/(^|[#&])tip($|&)/.test(hsh) && mapEl) openTip();
-  var gdm = /(?:^#|&)guide=([a-z-]+)/.exec(hsh); if (gdm && mapEl && GUIDE_BY[gdm[1]]) openGuide(gdm[1]);   // v5.10: shared mini-guide link
+  var gdm = /(?:^#|&)guide=([a-z0-9-]+)/.exec(hsh); if (gdm && mapEl && GA.open !== gdm[1]) gaDeepLink(gdm[1]);   // v5.18: an article (digits allowed), else the old v5.10 list, else a toast
+  if (/(?:^#|&)fprof=1/.test(hsh) && mapEl) { var tryFp = function(n){ if (DATA_LOADED && Acct.demo && LIVE.length) openFriendView(LIVE[0].key); else if (n < 60) setTimeout(function(){ tryFp(n + 1); }, 250); }; tryFp(0); }   // screenshot hook (with #acctdemo=1): the first made-up friend's profile
+  if (/homescroll=guides/.test(hsh) && mapEl) { var tryHs = function(n){ var s = document.querySelector('#homeRoot .ga-s'), hm = $('home'); if (s && hm) hm.scrollTop = Math.max(0, s.offsetTop - 120); else if (n < 60) setTimeout(function(){ tryHs(n + 1); }, 200); }; tryHs(0); }   // screenshot hook
+  var gdx = /gascroll=(\d+)/.exec(hsh); if (gdx && mapEl) { var tryGs = function(n){ var sc = $('gaScroll'); if (GA.open && sc && sc.scrollHeight > 200) sc.scrollTop = +gdx[1] >= 9999 ? sc.scrollHeight : +gdx[1]; else if (n < 60) setTimeout(function(){ tryGs(n + 1); }, 200); }; tryGs(0); }   // screenshot hook: #guide=x&gascroll=900 (9999 = the end)
   if (/selftest/.test(hsh)) showSelfTest();
 }
 function openPending(){ // a link like "#pa-puttery-chicago": open that place once the list is loaded
@@ -13099,6 +13688,7 @@ function loadData(){
     if (UI.pendingItem) openPending();
     if (UI.wlTest) wlTestHooks();
     acctAfterData();   // v5.11
+    if (!GA.loaded) loadGuides(); else if (UI.pendingGuide) { var pg0 = UI.pendingGuide; UI.pendingGuide = ''; gaDeepLink(pg0); }   // v5.18: guides after the places (a bonus: a failed fetch just means no Guides row)
   })['catch'](function(e){
     DATA_ERR = 'The file activities.json could not be read (' + (e && e.message ? e.message : 'unknown error') + ').';
     DATA_LOADED = false; renderList(null); refresh();
@@ -13183,6 +13773,8 @@ function init(){
 
 window.__cff = {
   version: VERSION, appName: APP_NAME,
+  guides: function(){ return {loaded:GA.loaded, src:ext(GA.src, {}), ids:GA.all.map(function(g){ return g.id; }), open:GA.open}; }, gaResolve: gaResolve, gaResolveId: gaResolveId, gaPriceText: gaPriceText, gaHop: gaHop, gaMerge: gaMerge, gaWindow: gaWindow, gaLinkKind: gaLinkKind, openArticle: openArticle, closeArticle: closeArticle,   // v5.18
+  beenPrecPatch: beenPrecPatch, oneSource: oneSource, friendBeenMonths: friendBeenMonths, coupleStatus: coupleStatus,   // v5.18
   popNext: popNext, popTestHash: popTestHash, acctBtnModel: acctBtnModel, popState: function(){ return {cur:POPS.cur, off:POPS.off, shown:ext(POPS.shown, {}), log:POPS.log.slice()}; },   // v5.14
   dealState: dealState, dealOnDay: dealOnDay, dealDayOk: dealDayOk, pollEncode: pollEncode, pollDecode: pollDecode, pollTally: pollTally, coupleMine: coupleMine, couplePicks: couplePicks, coupleSig: coupleSig, cpSids: cpSids, couplePicksFor: couplePicksFor,   // v5.13
   dev: {openFilters: function(){ openFilters(); }, showView: function(v){ showView(v); }, pollStart: function(){ pollStart(); }, openFriendView: function(k){ openFriendView(k); }, openLists: function(t){ openLists(t); }, save: function(ids){ savedIds = ids.slice(); refresh(); }},   // v5.13 screenshot harness (screens only, nothing sent)

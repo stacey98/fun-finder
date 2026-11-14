@@ -1,0 +1,334 @@
+{
+    "updated": "2026-11-14 (v2: longer 'why' for unusual places, built from guides.json; text only from each item's own fields in data/activities-public.json)",
+    "source": "data/activities-public.json",
+    "guides": [
+        {
+            "id": "first-date-under-30",
+            "title": "First date under $30 each",
+            "cover_photo_id": "pd-the-catcade",
+            "intro": "A Lincoln Park afternoon where only the cat lounge costs money (about $20 each). Take the bus or walk: zoo parking alone would blow the budget.",
+            "when": "Thu-Sun daytime",
+            "steps": [
+                {
+                    "activity_id": "pc-lincoln-park-conservatory",
+                    "why": "Warm tropical glasshouse; book your timed entry ahead. The glass conservatory was built in stages between 1890 and 1895, a short walk from the zoo.",
+                    "timing": "11 am, ~45 min",
+                    "source": "guides.json why + description"
+                },
+                {
+                    "activity_id": "pc-lincoln-park-zoo",
+                    "why": "Right next door; stroll the zoo, no ticket needed.",
+                    "timing": "12 pm, ~1.5 h",
+                    "source": "guides.json why (unchanged)"
+                },
+                {
+                    "activity_id": "ps-north-pond-nature-sanctuary",
+                    "why": "Quiet pond loop with a skyline-over-water view. The 13 acres of restored pond, wetland and prairie are a stop on the lakefront bird flyway, so watch for ducks and migrating birds.",
+                    "timing": "1:45 pm, ~30 min",
+                    "source": "guides.json why + description, highlights"
+                },
+                {
+                    "activity_id": "pd-the-catcade",
+                    "why": "Adoptable cats roaming among retro arcade games. It's a cat rescue lounge, so every cat you play with can be adopted through the rescue, and it also runs cat yoga.",
+                    "timing": "2:45 pm, ~1 h",
+                    "source": "guides.json why + description"
+                }
+            ]
+        },
+        {
+            "id": "rainy-day-loop",
+            "title": "Rainy day downtown",
+            "cover_photo_id": "pc-art-institute-of-chicago",
+            "intro": "Four indoor stops, all within a short walk of each other in the Loop.",
+            "when": "Any rainy Thu-Mon (not Nov 26, Dec 25, Jan 1)",
+            "steps": [
+                {
+                    "activity_id": "pc-art-institute-of-chicago",
+                    "why": "Join a daily guided tour, then roam.",
+                    "timing": "11 am, ~2.5 h",
+                    "source": "guides.json why (unchanged)"
+                },
+                {
+                    "activity_id": "pc-chicago-cultural-center",
+                    "why": "Look up at the Tiffany glass dome. The landmark was built over 100 years ago as the city's first public library and a Civil War memorial, and it has two stained-glass domes; the Tiffany one is in Preston Bradley Hall.",
+                    "timing": "1:45 pm, ~45 min",
+                    "source": "guides.json why + description, highlights"
+                },
+                {
+                    "activity_id": "ps-hwlc-winter-garden",
+                    "why": "Glass-roofed library hall, calm and full of daylight. It's on the top floor of the main public library, which calls it the building's architectural centerpiece, next to the Special Collections exhibit hall.",
+                    "timing": "2:45 pm, ~30 min",
+                    "source": "guides.json why + description, highlights"
+                },
+                {
+                    "activity_id": "pd-game-room-chicago-athletic",
+                    "why": "Pool and shuffleboard in a historic billiards room. It's the Chicago Athletic Association hotel's original billiards room, now a bar where you can also play chess and checkers over cocktails.",
+                    "timing": "3:30 pm, ~1.5 h",
+                    "source": "guides.json why + description, highlights"
+                }
+            ]
+        },
+        {
+            "id": "visiting-friends",
+            "title": "Friends in town",
+            "cover_photo_id": "ps-cloud-gate-millennium-park",
+            "intro": "The classic Chicago loop: skyline, river, the Bean, then a drink with a view.",
+            "when": "Any day (not Nov 16, Nov 26, Dec 24-25, Jan 1; call ahead on holidays)",
+            "steps": [
+                {
+                    "activity_id": "pc-chicago-architecture-center",
+                    "why": "Skyline models explain the towers you're about to see.",
+                    "timing": "1 pm, ~1 h",
+                    "source": "guides.json why (unchanged)"
+                },
+                {
+                    "activity_id": "ps-chicago-riverwalk",
+                    "why": "Walk the river canyon of famous buildings. The path runs 1.25 miles at water level along the main branch of the river, from Lake Street to the lakefront, through four districts.",
+                    "timing": "2:15 pm, ~45 min",
+                    "source": "guides.json why + description, highlights"
+                },
+                {
+                    "activity_id": "ps-cloud-gate-millennium-park",
+                    "why": "The Bean: the must-have group photo.",
+                    "timing": "3:15 pm, ~30 min",
+                    "source": "guides.json why (unchanged)"
+                },
+                {
+                    "activity_id": "pd-cindys-rooftop",
+                    "why": "Drinks over Millennium Park and the lake at sunset. The dining room sits under a glass atrium, so the view works all year.",
+                    "timing": "4 pm, ~1.5 h",
+                    "source": "guides.json why + description, highlights"
+                }
+            ]
+        },
+        {
+            "id": "late-night-river-north",
+            "title": "Late night in River North",
+            "cover_photo_id": "pc-andys-jazz-club",
+            "intro": "Jazz, a hidden speakeasy, then a piano bar that stays open until 4. All three are a few blocks apart.",
+            "when": "Fri-Sat nights (not Dec 25)",
+            "steps": [
+                {
+                    "activity_id": "pc-andys-jazz-club",
+                    "why": "Live jazz set in a classic River North club.",
+                    "timing": "8:15 pm set, ~75 min",
+                    "source": "guides.json why (unchanged)"
+                },
+                {
+                    "activity_id": "pc-the-drifter",
+                    "why": "Hidden Prohibition-era speakeasy; tarot-card menu, live acts. It's in the basement of the Green Door Tavern, the tarot-card menu rotates through more than 100 cocktails, and small live acts pop up through the evening.",
+                    "timing": "10 pm, ~1.5 h",
+                    "source": "guides.json why + description, highlights"
+                },
+                {
+                    "activity_id": "pd-redhead-piano-bar",
+                    "why": "Sing along at the piano into the small hours. It's a classic, dimly lit piano bar with live music seven nights a week: the cozy alternative to a loud club.",
+                    "timing": "11:45 pm, until late",
+                    "source": "guides.json why + description, highlights"
+                }
+            ]
+        },
+        {
+            "id": "free-hyde-park",
+            "title": "Free day in Hyde Park",
+            "cover_photo_id": "ev-teamlab-smart-museum",
+            "intro": "Digital art, a Japanese garden and a lake view, and none of it costs a cent.",
+            "when": "Tue-Sun daytime, until Feb 21 (not Nov 26-27, Dec 24-Jan 1)",
+            "steps": [
+                {
+                    "activity_id": "ev-teamlab-smart-museum",
+                    "why": "Immersive teamLab light rooms; no ticket needed. The Japanese digital-art collective, known for its light-and-projection rooms, is showing at the University of Chicago's Smart Museum of Art.",
+                    "timing": "11 am, ~1 h",
+                    "source": "guides.json why + description"
+                },
+                {
+                    "activity_id": "ps-garden-of-the-phoenix",
+                    "why": "Peaceful Japanese garden on Wooded Island. It stands where the US and Japan dedicated the Phoenix Pavilion for the 1893 World's Fair as a symbol of friendship; the present garden was dedicated in 1981. Expect it quiet and stark in winter.",
+                    "timing": "12:30 pm, ~30 min",
+                    "source": "guides.json why + description, highlights"
+                },
+                {
+                    "activity_id": "ps-promontory-point",
+                    "why": "Skyline across the lake from stone ledges. The man-made peninsula was designed by Alfred Caldwell; dress for wind, because the winter ice and waves are dramatic.",
+                    "timing": "1:30 pm, ~30 min",
+                    "source": "guides.json why + description, highlights"
+                }
+            ]
+        },
+        {
+            "id": "holiday-lights-night",
+            "title": "Holiday lights night",
+            "cover_photo_id": "ev-zoolights-lincoln-park-zoo",
+            "intro": "Warm up in a glasshouse, walk ZooLights, then thaw out with live blues.",
+            "when": "Thu-Sun, Nov 20-Jan 3 (not Nov 26, Dec 24-25)",
+            "steps": [
+                {
+                    "activity_id": "pc-lincoln-park-conservatory",
+                    "why": "Tropical plants before dark; reserve a free slot. The glass conservatory was built in stages between 1890 and 1895.",
+                    "timing": "3:45 pm, ~45 min",
+                    "source": "guides.json why + description"
+                },
+                {
+                    "activity_id": "ev-zoolights-lincoln-park-zoo",
+                    "why": "Walk the whole zoo wrapped in holiday lights.",
+                    "timing": "4:45 pm, ~1.5 h",
+                    "source": "guides.json why (unchanged)"
+                },
+                {
+                    "activity_id": "pc-kingston-mines",
+                    "why": "Two blues stages trading sets all night. An early acoustic set opens the night, then the North Stage and Main Stage alternate, so the music barely stops.",
+                    "timing": "7:30 pm, ~2 h",
+                    "source": "guides.json why + description"
+                }
+            ]
+        },
+        {
+            "id": "snowy-day-cozy",
+            "title": "Snowy-day cozy",
+            "cover_photo_id": "ig-snakes-and-lattes-chicago",
+            "intro": "Sweat, sip, play. A slow, warm day in Wicker Park and Logan Square.",
+            "when": "Sat-Sun",
+            "steps": [
+                {
+                    "activity_id": "pr-chicago-bath-house-red-square",
+                    "why": "Old-school Russian banya; bring a swimsuit. It has been on Division Street since 1906 (renovated in 2011), with a sauna, a lounge, and a restaurant and full bar. The classic add-on is a platza: soaked birch, oak or eucalyptus leaves used on you in the heat.",
+                    "timing": "10 am, ~3 h",
+                    "source": "guides.json why + description, highlights"
+                },
+                {
+                    "activity_id": "ps-katherine-anne-confections",
+                    "why": "Thick sipping chocolate and handmade marshmallows. Everything is handmade, including truffles and caramels with new flavors every week, and the shop says Fodor's named its European-style sipping chocolate one of the 15 best in America.",
+                    "timing": "1:30 pm, ~30 min",
+                    "source": "guides.json why + description, highlights"
+                },
+                {
+                    "activity_id": "ig-snakes-and-lattes-chicago",
+                    "why": "Walls of board games; staff help you pick.",
+                    "timing": "2:30 pm, ~2 h",
+                    "source": "guides.json why (unchanged)"
+                }
+            ]
+        },
+        {
+            "id": "sunday-reset",
+            "title": "Sunday reset",
+            "cover_photo_id": "pr-yoga-sound-bath-lakeview",
+            "intro": "Sound bath, lake air, a quiet walk, then an afternoon live set on the North Side (set times change; check the calendar).",
+            "when": "Sundays, until Dec 13",
+            "steps": [
+                {
+                    "activity_id": "pr-yoga-sound-bath-lakeview",
+                    "why": "Lie back while gongs and singing bowls wash over you. You lie on a mat while the practitioner layers crystal singing bowls, gongs, chimes and other tones.",
+                    "timing": "9 am, 1 h",
+                    "source": "guides.json why + description, highlights"
+                },
+                {
+                    "activity_id": "pc-montrose-point-bird-sanctuary",
+                    "why": "Lakefront loop through the famous Magic Hedge. Tens of thousands of migrating birds stop in this line of shrubs and trees each spring and fall, and over 300 species have been recorded, so bring binoculars.",
+                    "timing": "10:30 am, ~1 h",
+                    "source": "guides.json why + description, highlights"
+                },
+                {
+                    "activity_id": "ps-graceland-cemetery",
+                    "why": "Peaceful arboretum walk past famous architects' graves. The 150-year-old cemetery has a self-guided audio tour, so the walk doubles as an outdoor architecture and history lesson; it's still an active cemetery, so be respectful.",
+                    "timing": "1 pm, ~1 h",
+                    "source": "guides.json why + description, highlights"
+                },
+                {
+                    "activity_id": "pc-green-mill",
+                    "why": "Afternoon live set in Uptown's legendary jazz bar. The bar at Lawrence and Broadway is celebrating 40 years in its current form, with music that runs from early-evening sets to swing orchestras and very late jam sessions.",
+                    "timing": "3 pm, ~2 h",
+                    "source": "guides.json why + description"
+                }
+            ]
+        },
+        {
+            "id": "weird-and-wonderful",
+            "title": "Weird & wonderful",
+            "cover_photo_id": "ev-balloon-museum-emotionair-chicago",
+            "intro": "Bugs, giant balloons and a wall of pinball, all on Chicago's northwest side.",
+            "when": "Sat-Sun, until Jan 17",
+            "steps": [
+                {
+                    "activity_id": "pc-insect-asylum",
+                    "why": "Pinned insects and vintage taxidermy. The small, quirky Avondale museum has thousands of pinned insects on display, and it also runs classes such as beetle and insect pinning.",
+                    "timing": "12 pm, ~1 h",
+                    "source": "guides.json why + description, hook, highlights"
+                },
+                {
+                    "activity_id": "ev-balloon-museum-emotionair-chicago",
+                    "why": "Walk through and play in giant inflatable art. More than a dozen international artists made the installations, and each room is built around a feeling.",
+                    "timing": "1:30 pm, ~1.5 h",
+                    "source": "guides.json why + description"
+                },
+                {
+                    "activity_id": "pd-logan-arcade",
+                    "why": "Eighty-plus pinball machines in a Logan Square bar. The well-kept machines share the room with video arcade games, and regular community nights include a pinball league and a Killer Queen night.",
+                    "timing": "3:30 pm, ~1.5 h",
+                    "source": "guides.json why + description"
+                }
+            ]
+        },
+        {
+            "id": "group-birthday",
+            "title": "Group birthday",
+            "cover_photo_id": "fgr-punch-bowl-social-chicago",
+            "intro": "Axes, bowling and karaoke, then an arcade bar, all within a few blocks in the West Loop.",
+            "when": "Any evening; book axes and lanes ahead (not Nov 18, Nov 26, Dec 24-25; some stops 21+)",
+            "steps": [
+                {
+                    "activity_id": "pa-bad-axe-throwing-west-loop",
+                    "why": "A coach teaches you, then it's a lane battle.",
+                    "timing": "5 pm, ~1.5 h",
+                    "source": "guides.json why (unchanged)"
+                },
+                {
+                    "activity_id": "fgr-punch-bowl-social-chicago",
+                    "why": "Bowling, private karaoke rooms and darts in one place. The two-floor 'adult playground' also has an arcade, a 360-degree bar and a diner, so the group can hop between games all night.",
+                    "timing": "7 pm, ~2 h",
+                    "source": "guides.json why + description"
+                },
+                {
+                    "activity_id": "pa-emporium-fulton-market",
+                    "why": "Retro arcade and pinball to finish the night.",
+                    "timing": "9:30 pm, ~1.5 h",
+                    "source": "guides.json why (unchanged)"
+                }
+            ]
+        }
+    ],
+    "gaps": [
+        {
+            "guide": "first-date-under-30",
+            "need": "An evening date with a posted total price under $30. Bars and arcades list no drink prices, and the Green Mill cover varies."
+        },
+        {
+            "guide": "late-night-river-north",
+            "need": "Special late-night food (a night market or late food event that runs year-round). There is no eat step after 11 pm."
+        },
+        {
+            "guide": "snowy-day-cozy",
+            "need": "Snow play inside the city (a sledding hill or snow tubing). The only snow tubing is in Bartlett and Wilmot."
+        },
+        {
+            "guide": "free-hyde-park",
+            "need": "Free things after dark on weekdays. Art on theMART runs Thu-Sun only until Dec 27, and the fireworks are Saturdays only."
+        },
+        {
+            "guide": "holiday-lights-night",
+            "need": "A free light display inside the city on any night. The free ones are one night only (tree lighting, Mag Mile) or in the suburbs."
+        },
+        {
+            "guide": "sunday-reset",
+            "need": "Sound bath sessions after Dec 17 (schedule not posted), plus a special brunch or tea near Uptown."
+        },
+        {
+            "guide": "group-birthday",
+            "need": "Posted prices for axe throwing and karaoke rooms, so a group can budget."
+        },
+        {
+            "guide": "weird-and-wonderful",
+            "need": "A weekday version. Logan Arcade opens at 6 pm on weekdays, and the Busy Beaver Button Museum has no photo."
+        }
+    ]
+}
