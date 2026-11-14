@@ -34015,7 +34015,11 @@
         "taste_checked":  "2026-11-13",
         "sid":  236,
         "photos":  [
-
+                       {
+                           "file":  "photos/ps-national-hellenic-museum-1.jpg",
+                           "credit":  "National Hellenic Museum website",
+                           "page_url":  "https://nationalhellenicmuseum.org/exhibits/current-exhibits/"
+                       }
                    ]
     },
     {
@@ -34356,7 +34360,11 @@
         "taste_checked":  "2026-11-13",
         "sid":  238,
         "photos":  [
-
+                       {
+                           "file":  "photos/ps-hull-house-museum-1.jpg",
+                           "credit":  "Jane Addams Hull-House Museum website (photo: Sarah Larson)",
+                           "page_url":  "https://hullhouse.uic.edu/exhibitions/"
+                       }
                    ]
     },
     {
