@@ -449,6 +449,48 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .p-foot .btn-primary{width:100%;flex:none}
 .p-note{margin:0 0 12px;color:var(--ink-2);font:500 14.5px/1.45 var(--f-body)}
 .p-note.warn{color:var(--soon);font-weight:600}
+/* v5.8 friends' lists, stage 1 (design/2026-11-13-wishlists-spec.md, mockup-wishlists.html): initials, the friends strip, the "You both want" block */
+.p-hbtns{display:flex;align-items:center;gap:8px;flex:none}
+.p-hbtns .mini-btn{margin-top:0}
+.av{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--paper);font:800 13px/1 var(--f-display);letter-spacing:0;box-shadow:0 0 0 2px var(--paper);flex:none}
+.avs{display:inline-flex;flex:none}
+.avs .av + .av{margin-left:-6px}
+.avs.s .av{width:18px;height:18px;font-size:10.5px}
+.av.two{font-size:11px;letter-spacing:-.02em}
+.avs.s .av.two{font-size:8.5px}
+.rcol{display:flex;flex-direction:column;align-items:center}
+.rcol .avs{margin-top:-15px;pointer-events:none;animation:avIn .15s ease-out}
+@keyframes avIn{from{opacity:0}to{opacity:1}}
+.fstrip{display:flex;gap:8px;overflow-x:auto;padding:8px 16px 4px;scrollbar-width:none;overscroll-behavior-x:contain}
+.fstrip::-webkit-scrollbar{display:none}
+.fchip{flex:none;height:40px;padding:6px 12px 6px 6px;border-radius:20px;border:1px solid var(--rule-strong);background:var(--paper);display:inline-flex;align-items:center;gap:8px;font:600 14px var(--f-body);color:var(--ink);cursor:pointer}
+.fchip .nm{max-width:12ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fchip .n{min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:var(--accent);color:var(--on-accent);font:700 12px/22px var(--f-body);text-align:center;font-variant-numeric:tabular-nums}
+.fchip .n.zero{background:var(--paper-2);color:var(--ink-3)}
+.fpaste{margin:4px 16px 0}
+.fr-meta{padding:0 20px;margin:0}
+.fr-hint{padding:10px 20px 0;margin:0}
+.fr-none{font:800 22px/1.1 var(--f-display);margin:0;padding:16px 20px 4px;color:var(--ink)}
+.both{padding:16px 20px 14px}
+.both .k{font:700 11px/1.2 var(--f-body);letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin:0 0 4px}
+.both .big{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:0}
+.both .big b{font:900 64px/.9 var(--f-display);color:var(--accent);font-variant-numeric:tabular-nums}
+.both .big span{font:800 24px/1 var(--f-display);color:var(--ink)}
+.fr-gone{padding:14px 16px 6px}
+.endlinks{display:flex;justify-content:center;align-items:center;gap:18px;padding:24px 16px 28px;color:var(--ink-3)}
+.linkbtn.arm{color:var(--accent)}
+.fw{display:flex;align-items:center;gap:8px;margin:14px 0 0;padding:10px 12px;border-radius:12px;background:var(--paper-2);font:600 14px/1.3 var(--f-body);color:var(--ink-2);border:0;width:100%;text-align:left;cursor:pointer}
+.fw .av{box-shadow:0 0 0 2px var(--paper-2)}
+.fw .chev{margin-left:auto;width:16px;height:16px;color:var(--ink-3);flex:none}
+.p-foot.fr-foot{display:flex;gap:10px;align-items:center}
+.fr-foot input{flex:1 1 auto;min-width:0;height:54px;border-radius:14px;border:1.5px solid var(--rule-strong);background:var(--paper-2);color:var(--ink);font:500 16px var(--f-body);padding:0 14px;-webkit-appearance:none;appearance:none}
+.fr-foot input::placeholder{color:var(--ink-3)}
+.p-foot.fr-foot .btn-primary{width:104px;flex:none}
+.fr-t{flex:1 1 auto;min-width:0}
+.fr-t .p-title{overflow:hidden;text-overflow:ellipsis}
+.fr-ren{display:flex;align-items:center;gap:10px;min-width:0}
+.fr-ren input{flex:1 1 auto;min-width:0;font:800 28px/1 var(--f-display);border:0;border-bottom:1.5px solid var(--rule-strong);background:none;color:var(--ink);padding:2px 0;border-radius:0;-webkit-appearance:none;appearance:none}
+@media (prefers-reduced-motion: reduce){ .rcol .avs{animation:none} }
 .panel.loc .p-title{font-size:34px;line-height:.95}
 .field{position:relative;margin-top:12px}
 .field .i{position:absolute;left:14px;top:15px;width:20px;height:20px;color:var(--ink-3)}
@@ -842,7 +884,8 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
   <section id="pTime" class="panel" hidden role="dialog" aria-labelledby="pTimeTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pTimeTitle" tabindex="-1">How much time do you have?</h2><button class="p-close" type="button" data-close="pTime" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pTimeBody"></div><div class="p-foot"><button class="btn-primary" id="pTimeGo" type="button">Show</button></div></section>
   <section id="pFilters" class="panel" hidden role="dialog" aria-labelledby="pFiltersTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pFiltersTitle" tabindex="-1">More filters</h2><button class="p-close" type="button" data-close="pFilters" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pFiltersBody"></div><div class="p-foot two"><button class="btn-2" id="pFiltersReset" type="button">Reset</button><button class="btn-primary" id="pFiltersGo" type="button">Show</button></div></section>
   <section id="pSmall" class="panel" hidden role="dialog" aria-labelledby="pSmallTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pSmallTitle" tabindex="-1"></h2><button class="p-close" type="button" data-close="pSmall" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pSmallBody"></div></section>
-  <section id="pSaved" class="panel tall" hidden role="dialog" aria-labelledby="pSavedTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pSavedTitle" tabindex="-1">Saved</h2><button class="p-close" type="button" data-close="pSaved" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pSavedBody" style="padding-left:0;padding-right:0"></div></section>
+  <section id="pSaved" class="panel tall" hidden role="dialog" aria-labelledby="pSavedTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pSavedTitle" tabindex="-1">Saved</h2><div class="p-hbtns"><button class="mini-btn" id="wlShare" type="button" aria-label="Share my saved list" hidden><svg class="i"><use href="#i-share"/></svg>Share</button><button class="p-close" type="button" data-close="pSaved" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div></div><div class="p-body" id="pSavedBody" style="padding-left:0;padding-right:0"></div></section>
+  <section id="pFriend" class="panel tall" hidden role="dialog" aria-labelledby="pFriendTitle"><span class="grabber"></span><div class="p-head"><div class="fr-t" id="pFriendT"><h2 class="p-title" id="pFriendTitle" tabindex="-1">A friend's list</h2></div><button class="p-close" type="button" data-close="pFriend" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pFriendBody" style="padding-left:0;padding-right:0"></div><div class="p-foot fr-foot" id="pFriendFoot" hidden><label class="vh" for="fName">Their name</label><input id="fName" type="text" maxlength="24" autocomplete="off" enterkeyhint="done" placeholder="Their name"><button class="btn-primary" id="fKeep" type="button">Keep</button></div></section>
   <section id="pAbout" class="panel tall" hidden role="dialog" aria-labelledby="pAboutTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pAboutTitle" tabindex="-1">About</h2><button class="p-close" type="button" data-close="pAbout" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body about" id="pAboutBody"></div></section>
   <section id="pTip" class="panel" hidden role="dialog" aria-labelledby="pTipTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pTipTitle" tabindex="-1">Send a tip</h2><button class="p-close" type="button" data-close="pTip" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pTipBody"></div><div class="p-foot"><button class="btn-primary" id="tipGo" type="button">Send tip</button></div></section>
   <section id="pSurprise" class="panel board" hidden role="dialog" aria-labelledby="pSurpriseTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title vh" id="pSurpriseTitle" tabindex="-1">Surprise me</h2><span></span><button class="p-close" type="button" data-close="pSurprise" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pSurpriseBody" aria-live="polite"></div></section>
@@ -858,7 +901,7 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.7 (2026-11-13)';
+var VERSION = 'v5.8 (2026-11-13)';
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
@@ -3113,7 +3156,8 @@ function searchItems(items, q){ // [{it, score, fuzzy}] best first
 
 /* Hash links: "#<id>" opens that place. Only plain "#name" hashes pass through claude.ai, so the id is the whole hash. */
 var HASH_WORDS = {selftest:1, tip:1, home:1, browse:1, map:1, been:1, saved:1, search:1};
-function hashItemId(hash){ var s = String(hash || '').replace(/^#/, ''); try { s = decodeURIComponent(s); } catch (e) {} return (/^[A-Za-z0-9][A-Za-z0-9_.-]{1,80}$/.test(s) && !HASH_WORDS[s.toLowerCase()]) ? s : ''; }
+function hashItemId(hash){ var s = String(hash || '').replace(/^#/, ''); try { s = decodeURIComponent(s); } catch (e) {} if (/^w_/i.test(s)) return '';   // v5.8: "#w_..." is a friend's list link, never a place
+  return (/^[A-Za-z0-9][A-Za-z0-9_.-]{1,80}$/.test(s) && !HASH_WORDS[s.toLowerCase()]) ? s : ''; }
 
 /* Share text and calendar entry */
 function whenLine(c){ var b = c.item.kind === 'event' ? untilBadge(c, c.st.p) : null; return String(c.d.text || '') + (b && !b.muted ? ' \u00b7 ' + b.t : ''); }
@@ -3932,9 +3976,11 @@ function rowHTML(c, opt){
   var tl = trustLineText(it, p); if (tl) h += '<p class="trustline"><i></i>' + esc(tl) + '</p>';
   if (opt.call && it.phone) h += phoneHTML(it.phone, Platform.telOk);
   var sv = isSaved(it.id);
+  var saveBtn = '<button class="save" type="button" data-save="' + esc(it.id) + '" aria-pressed="' + sv + '" aria-label="' + (sv ? 'Saved: ' : 'Save: ') + esc(it.name) + '">' + glyphSvg('i-bookmark') + '</button>';
+  var fws = opt.nofriends ? [] : wlFriendsFor(it.id, opt.fexcept);   // v5.8: "Maya wants this too" = her initial under the bookmark
+  if (fws.length) saveBtn = '<div class="rcol">' + saveBtn + avsHTML(fws, 's', wlWantsText(fws)) + '</div>';
   return '<li class="row' + (hollow ? ' quiet' : '') + '" data-id="' + esc(it.id) + '" tabindex="0" style="--c:' + genreColor(g) + '">' + thumbHTML(c, {date:opt.date, hollow:hollow}) +
-    '<div class="row-main">' + kick + '<div class="row-top"><h3>' + esc(it.name) + '</h3>' + tags + '</div>' + h + '</div>' +
-    '<button class="save" type="button" data-save="' + esc(it.id) + '" aria-pressed="' + sv + '" aria-label="' + (sv ? 'Saved: ' : 'Save: ') + esc(it.name) + '">' + glyphSvg('i-bookmark') + '</button></li>';
+    '<div class="row-main">' + kick + '<div class="row-top"><h3>' + esc(it.name) + '</h3>' + tags + '</div>' + h + '</div>' + saveBtn + '</li>';
 }
 function actBtn(b){ return '<button class="mini-btn" type="button" ' + b.attr + '>' + esc(b.label) + '</button>'; }
 function noneRowHTML(g, title, body, btns){
@@ -4376,6 +4422,7 @@ function toggleSave(id){
   UI.homeHTML = null;
   refresh();
   if (!$('pSaved').hidden) renderSaved();
+  if (!$('pFriend').hidden) renderFriend();   // v5.8: saving one of her places moves it to "You both want"
 }
 /* ----- v4 check-ins: "I've been here" (the date, an optional thumbs up or down, never a photo) ----- */
 function saveCheckins(){ if (!Platform.store.set(CHECKIN_KEY, CHECKINS)) toast('This browser isn\'t keeping your list. It\'ll be lost when you close it.'); }
@@ -4407,8 +4454,10 @@ function renderSaved(){
   $('pSavedTitle').textContent = tab === 'been' ? 'Been' : 'Saved';
   h += '<div class="seg tabs"><button type="button" data-tab="saved" aria-pressed="' + (tab === 'saved') + '">Saved</button><button type="button" data-tab="been" aria-pressed="' + (tab === 'been') + '">Been</button></div>';
   if (!Platform.store.ok) h += '<p class="band">This browser isn\'t keeping your lists. They\'ll be lost when you close it.</p>';
-  if (tab === 'been') { body.innerHTML = h + beenListHTML(); wireImages(body); return; }
   var items = savedIds.map(findItem).filter(Boolean);
+  $('wlShare').hidden = tab !== 'saved' || !items.length;   // v5.8: Share only on the Saved tab, and only with something saved (check-ins are never shared)
+  if (tab === 'been') { body.innerHTML = h + beenListHTML(); wireImages(body); return; }
+  h += friendStripHTML();
   if (!items.length) { body.innerHTML = h + '<div class="empty" style="padding:8px 20px"><svg class="i" style="width:40px;height:40px;color:var(--ink-3)"><use href="#i-bookmark"/></svg><h3 style="margin-top:10px">Nothing saved yet.</h3><p>Tap the bookmark on anything you\'d do on a free night.</p></div>'; return; }
   var T = evalTime(), ctx = ctxNow(), groups = {open:[], later:[], season:[], other:[]};
   items.forEach(function(it){ var c = computeItem(it, T, ctx); var k = c.st.key; (c.st.open ? groups.open : k === 'later' ? groups.later : k === 'season' ? groups.season : groups.other).push(c); });
@@ -4417,6 +4466,340 @@ function renderSaved(){
   });
   body.innerHTML = h;
   wireImages(body);
+}
+
+/* ================= v5.8 friends' lists, stage 1 (design/2026-11-13-wishlists-spec.md): no backend =================
+   "Share" puts the saved places' permanent numbers (sid, from tools/assign-sids.ps1) into the "#w_..." part of a link. A friend opens it,
+   sees "You both want N", and can Keep a copy on her phone under a name she types. Nothing goes to any server; no names, check-ins or
+   location are in the link. Link layout (spec 2.1/2.3): "#w_" + "1" + list key (4) + day (2) + mode (d|b) + payload + check (1). */
+var WL_B64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_', WL_A62 = WL_B64.slice(0, 62);
+var WL_EPOCH = '2026-01-01', WL_MAX_PAYLOAD = 1500, WL_MAX_LISTS = 30, WL_MAX_SID = 100000, WL_MAX_N = 2000, WL_MAX_LEN = 2000;
+var SITE_URL = 'https://stacey98.github.io/fun-finder/';   // share links made inside claude.ai (or a local file) point at the website
+var FRIENDS_KEY = 'cff.friends.v1', LISTKEY_KEY = 'cff.listkey.v1', INCOMING_KEY = 'cff.incoming.v1';
+var FRIENDS = [], SID_INDEX = {}, ID_SID = {}, WL_WANTS = {}, WL_INIT = {};
+/* ----- pure: encoding (the self-test checks the spec's worked example) ----- */
+function wlSids(list){ var seen = {}, out = []; (Array.isArray(list) ? list : []).forEach(function(v){ v = +v; if (isNum(v) && v >= 1 && v <= WL_MAX_SID && Math.floor(v) === v && !seen[v]) { seen[v] = 1; out.push(v); } }); return out.sort(function(a, b){ return a - b; }); }
+function wlDeltas(sids){ var s = '', prev = 0; sids.forEach(function(sid){ var v = sid - prev - 1; prev = sid; while (v >= 32) { s += WL_B64.charAt(32 + (v & 31)); v = v >>> 5; } s += WL_B64.charAt(v); }); return s; }
+function wlBits(sids){ var ch = []; sids.forEach(function(sid){ var b = sid - 1, k = Math.floor(b / 6); while (ch.length <= k) ch.push(0); ch[k] |= 1 << (b % 6); }); return ch.map(function(x){ return WL_B64.charAt(x); }).join('').replace(/A+$/, ''); }
+function wlPayload(sids){ var d = wlDeltas(sids), b = wlBits(sids); return b.length < d.length ? {mode:'b', p:b} : {mode:'d', p:d}; }   // the shorter one; a tie is "d"
+function wlDay(key){ return Math.max(0, Math.min(4095, dayDiff(WL_EPOCH, key))); }   // whole days since 2026-01-01 (Chicago date)
+function wlDayKey(day){ return addDays(WL_EPOCH, day); }
+function wlCheck(body){ return WL_A62.charAt(strHash(body) % 62); }
+function wlEncode(key, sids, day){ // -> "#w_..." or '' (nothing to share)
+  sids = wlSids(sids); if (!sids.length || !/^[A-Za-z0-9]{4}$/.test(String(key))) return '';
+  var pl = wlPayload(sids), body = '1' + key + WL_B64.charAt(day >> 6) + WL_B64.charAt(day & 63) + pl.mode + pl.p;
+  return '#w_' + body + wlCheck(body);
+}
+function wlFit(idsInOrder, idSid, max){ // the saves that fit in one link; the oldest (front of savedIds) are dropped first (spec 2.5)
+  max = max || WL_MAX_PAYLOAD;
+  var ord = [], seen = {}; (idsInOrder || []).forEach(function(id){ var s = idSid[id]; if (s && !seen[s]) { seen[s] = 1; ord.push(s); } });
+  var from = 0; while (from < ord.length && wlPayload(wlSids(ord.slice(from))).p.length > max) from++;
+  return {sids:wlSids(ord.slice(from)), dropped:from, total:ord.length};
+}
+function wlToken(raw){ // the part after "#w_" ('' when there is none); a pasted text may have words around the link
+  var s = String(raw || '').trim(), m = /#w_(\S*)/.exec(s);
+  if (m) return m[1];
+  m = /^w_(\S*)$/.exec(s); return m ? m[1] : null;
+}
+function wlDecode(raw){ // -> {ok:true, key, day, sids, mode} | {ok:false, why:'none'|'cut'|'version'}
+  var s = wlToken(raw), cut = {ok:false, why:'cut'}, j, x, sid;
+  if (s === null) return {ok:false, why:'none'};
+  if (s.length < 10 || s.length > WL_MAX_LEN) return cut;
+  for (j = 0; j < s.length; j++) if (WL_B64.indexOf(s.charAt(j)) < 0) return cut;
+  if (s.charAt(0) !== '1') return {ok:false, why:'version'};
+  var body = s.slice(0, -1);
+  if (wlCheck(body) !== s.charAt(s.length - 1)) return cut;
+  var key = body.slice(1, 5); if (!/^[A-Za-z0-9]{4}$/.test(key)) return cut;
+  var day = WL_B64.indexOf(body.charAt(5)) * 64 + WL_B64.indexOf(body.charAt(6)), mode = body.charAt(7), p = body.slice(8), sids = [];
+  if (mode === 'd') {
+    var prev = 0, v = 0, mul = 1;
+    for (j = 0; j < p.length; j++) {
+      x = WL_B64.indexOf(p.charAt(j));
+      if (x >= 32) { v += (x - 32) * mul; mul *= 32; if (mul > 33554432) return cut; continue; }   // "more follows"
+      v += x * mul; sid = prev + v + 1;
+      if (sid < 1 || sid > WL_MAX_SID) return cut;
+      sids.push(sid); prev = sid; v = 0; mul = 1;
+      if (sids.length > WL_MAX_N) return cut;
+    }
+    if (mul !== 1) return cut;   // ended on a "more follows" character
+  } else if (mode === 'b') {
+    if (p.length > WL_MAX_LEN) return cut;
+    for (j = 0; j < p.length; j++) { x = WL_B64.indexOf(p.charAt(j)); for (var b = 0; b < 6; b++) if (x & (1 << b)) { sid = j * 6 + b + 1; if (sid > WL_MAX_SID) return cut; sids.push(sid); } }
+    if (sids.length > WL_MAX_N) return cut;
+  } else return cut;
+  if (!sids.length) return cut;
+  return {ok:true, v:1, key:key, day:day, sids:sids, mode:mode};
+}
+/* ----- pure: kept lists ----- */
+function wlCleanFriends(raw){
+  if (!Array.isArray(raw)) return [];
+  var out = [], seen = {};
+  raw.forEach(function(r){
+    if (!r || typeof r !== 'object' || !/^[A-Za-z0-9]{4}$/.test(String(r.key)) || seen[r.key]) return;
+    var s = wlSids(r.sids); if (!s.length) return;
+    seen[r.key] = 1;
+    out.push({key:String(r.key), name:String(r.name || '').replace(/\s+/g, ' ').trim().slice(0, 24) || 'Friend', day:isNum(r.day) ? r.day : 0, sids:s, kept_at:String(r.kept_at || ''), updated_at:String(r.updated_at || '')});
+  });
+  return out.slice(0, WL_MAX_LISTS);
+}
+function wlIndex(friends, key){ for (var i = 0; i < friends.length; i++) if (friends[i].key === key) return i; return -1; }
+function wlDefaultName(friends){ var nm = {}; friends.forEach(function(f){ nm[String(f.name).toLowerCase()] = 1; }); if (!nm.friend) return 'Friend'; for (var n = 2; n < 1000; n++) if (!nm['friend ' + n]) return 'Friend ' + n; return 'Friend'; }
+function wlRoute(rec, myKey, friends){ // what opening a link does: 'own' (E6) | 'new' | 'newer' | 'same' | 'older' (E1)
+  if (myKey && rec.key === myKey) return 'own';
+  var i = wlIndex(friends, rec.key); if (i < 0) return 'new';
+  var f = friends[i];
+  if (rec.day < f.day) return 'older';
+  return rec.day === f.day && wlSids(rec.sids).join() === f.sids.join() ? 'same' : 'newer';
+}
+function wlUpdate(friends, rec, iso){ var i = wlIndex(friends, rec.key), list = friends.slice(); if (i < 0) return list; list[i] = ext(list[i], {day:rec.day, sids:wlSids(rec.sids), updated_at:iso}); return list; }   // E1 newer: the places change, the name stays
+function wlKeep(friends, rec, name, iso){ // -> {friends, ok, why}
+  var i = wlIndex(friends, rec.key);
+  if (i >= 0) return {friends:wlUpdate(friends, rec, iso), ok:true, why:'', idx:i};
+  if (friends.length >= WL_MAX_LISTS) return {friends:friends, ok:false, why:'full'};   // E12
+  var list = friends.slice(), nm = String(name || '').replace(/\s+/g, ' ').trim().slice(0, 24) || wlDefaultName(list);
+  list.push({key:rec.key, name:nm, day:rec.day, sids:wlSids(rec.sids), kept_at:iso, updated_at:iso});
+  return {friends:list, ok:true, why:'', idx:list.length - 1};
+}
+function wlChars(s){ try { return Array.from(String(s)); } catch (e) { return String(s).split(''); } }
+function wlInitials(friends){ // key -> "M"; two friends with the same first letter get two letters ("Ma" for Maya, "Mx" for Max)
+  var by = {}, out = {};
+  friends.forEach(function(f){ var c = (wlChars(f.name)[0] || '?').toUpperCase(); by[c] = (by[c] || 0) + 1; });
+  friends.forEach(function(f){ var ch = wlChars(f.name), c = (ch[0] || '?').toUpperCase(); out[f.key] = by[c] > 1 && ch.length > 1 ? c + ch[ch.length - 1].toLowerCase() : c; });
+  return out;
+}
+function wlWantsText(fs){
+  var n = fs.length; if (!n) return '';
+  if (n === 1) return fs[0].name + ' wants this too';
+  if (n === 2) return fs[0].name + ' and ' + fs[1].name + ' want this too';
+  return fs[0].name + ', ' + fs[1].name + ' +' + (n - 2) + ' want this too';
+}
+function wlRank(c){ return c.st.open ? 0 : c.st.key === 'later' ? 1 : c.st.key === 'season' ? 2 : 3; }   // the same order as Saved: open, later today, out of season, the rest
+function wlOrder(a, b){ return wlRank(a) - wlRank(b) || (a.item.name < b.item.name ? -1 : a.item.name > b.item.name ? 1 : 0); }
+function wlGoneItem(it, st){ return !it || st.key === 'gone' || st.key === 'ended' || !!(it.verified && it.verified.status === 'closed'); }   // E2: closed for good or an event that ended (seasonal is still "on")
+function wlView(sids, index, T, ctx, savedFn){ // -> {both:[c], only:[c], gone:n, n}
+  var both = [], only = [], gone = 0;
+  wlSids(sids).forEach(function(sid){
+    var it = index[sid]; if (!it) { gone++; return; }
+    var c = computeItem(it, T, ctx);
+    if (wlGoneItem(it, c.st)) { gone++; return; }
+    (savedFn(it.id) ? both : only).push(c);
+  });
+  both.sort(wlOrder); only.sort(wlOrder);
+  return {both:both, only:only, gone:gone, n:both.length + only.length};
+}
+function wlBothCount(rec, index, T, savedFn){ var n = 0; rec.sids.forEach(function(sid){ var it = index[sid]; if (it && savedFn(it.id) && !wlGoneItem(it, statusAt(it, T))) n++; }); return n; }
+function wlInApp(ua){ return /Instagram|FBAN|FBAV/.test(String(ua || '')); }
+/* ----- state on this phone ----- */
+function wlRebuild(){ WL_WANTS = {}; FRIENDS.forEach(function(f){ f.sids.forEach(function(s){ (WL_WANTS[s] = WL_WANTS[s] || []).push(f); }); }); WL_INIT = wlInitials(FRIENDS); }
+function wlLoadFriends(){ FRIENDS = wlCleanFriends(Platform.store.get(FRIENDS_KEY, [])); wlRebuild(); }
+function wlSaveFriends(){ wlRebuild(); UI.homeHTML = null; if (UI.wlMemOnly) return true; return Platform.store.set(FRIENDS_KEY, FRIENDS); }   // false = storage full or blocked (E11): kept for this visit only
+function wlFind(key){ var i = wlIndex(FRIENDS, key); return i >= 0 ? FRIENDS[i] : null; }
+function wlFriendsFor(id, except){ var s = ID_SID[id], l = s ? WL_WANTS[s] : null; return l ? l.filter(function(f){ return f.key !== except; }) : []; }
+function avHTML(f, extra){ var t = WL_INIT[f.key] || (wlChars(f.name)[0] || '?').toUpperCase(); return '<span class="av' + (wlChars(t).length > 1 ? ' two' : '') + (extra || '') + '">' + esc(t) + '</span>'; }
+function avsHTML(fs, size, label){
+  var h = fs.slice(0, 2).map(function(f){ return avHTML(f); }).join('');
+  if (fs.length > 2) h += '<span class="av">+' + (fs.length - 2) + '</span>';
+  return '<span class="avs' + (size ? ' ' + size : '') + '"' + (label ? ' role="img" aria-label="' + esc(label) + '"' : ' aria-hidden="true"') + '>' + h + '</span>';
+}
+function wlMyKey(make){
+  var k = UI.listKey || Platform.store.get(LISTKEY_KEY, '');
+  if (typeof k === 'string' && /^[A-Za-z0-9]{4}$/.test(k)) { UI.listKey = k; return k; }
+  if (!make) return '';
+  var r = [0, 0, 0, 0];
+  try { var a = new Uint8Array(4); window.crypto.getRandomValues(a); r = [a[0], a[1], a[2], a[3]]; } catch (e) { r = r.map(function(){ return Math.floor(Math.random() * 256); }); }
+  k = r.map(function(x){ return WL_A62.charAt(x % 62); }).join('');
+  UI.listKey = k; Platform.store.set(LISTKEY_KEY, k);
+  return k;
+}
+function wlBase(){ // the website's address (never the claude.ai artifact)
+  if (PUBLIC_URL && !/claude\.ai/.test(PUBLIC_URL)) return String(PUBLIC_URL).replace(/#.*$/, '');
+  if (!Platform.onClaude && !Platform.inFrame) { try { if (/^https?:$/.test(location.protocol)) return location.origin + location.pathname + location.search; } catch (e) {} }
+  return SITE_URL;
+}
+function sessGet(k){ try { return window.sessionStorage.getItem(k); } catch (e) { return null; } }
+function sessSet(k, v){ try { window.sessionStorage.setItem(k, v); } catch (e) {} }
+function sessDel(k){ try { window.sessionStorage.removeItem(k); } catch (e) {} }
+function wlClearHash(){ if (/^#w_/.test(location.hash || '')) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { try { location.hash = ''; } catch (e2) {} } } sessDel(INCOMING_KEY); }
+function wlStandalone(){ if (UI.wlStandalone) return true; try { return navigator.standalone === true || !!(window.matchMedia && window.matchMedia('(display-mode: standalone)').matches); } catch (e) { return false; } }
+function wlStoreToast(){ toast('This browser isn\'t keeping your lists. It\'ll be gone when you close it.'); }
+/* ----- Share my list ----- */
+function shareMyList(){
+  if (!DATA_LOADED) { toast('Still loading the list.'); return; }
+  var fit = wlFit(savedIds, ID_SID);
+  if (!fit.sids.length) { toast('Save a place first.'); return; }   // E13
+  var n = fit.sids.length, link = wlBase() + wlEncode(wlMyKey(true), fit.sids, wlDay(cparts(nowMs()).key));
+  UI.lastShareLink = link;
+  Platform.share({title:'My ' + APP_NAME + ' list', text:'My ' + APP_NAME + ' list: ' + n + (n === 1 ? ' place' : ' places') + ' I want to do.', url:link}).then(function(r){
+    if (fit.dropped && r !== 'cancelled') toast('Shared your newest ' + n);
+    else if (r === 'copied') toast('Link copied');
+  }, function(){ // no share sheet and no clipboard (e.g. some frames): the toast from the spec, plus the link to press and hold, as place sharing does
+    toast('Couldn\'t share. Try again.');
+    openSmall('Share', function(){ $('pSmallBody').innerHTML = '<p class="p-note">Press and hold the link to copy it.</p><pre class="calbox">' + esc(link) + '</pre>'; });
+  });
+}
+/* ----- Saved: the friends strip ----- */
+function friendStripHTML(){
+  var h = '';
+  if (FRIENDS.length) {
+    var T = evalTime();
+    h += '<h3 class="sec-h"><span>Friends\' lists</span><span>Both want</span></h3><div class="fstrip">' + FRIENDS.map(function(f){
+      var n = DATA_LOADED ? wlBothCount(f, SID_INDEX, T, isSaved) : 0;
+      return '<button class="fchip" type="button" data-fchip="' + esc(f.key) + '" aria-label="' + esc(f.name) + '\'s list: you both want ' + n + '">' + avHTML(f) + '<span class="nm">' + esc(f.name) + '</span><span class="n' + (n ? '' : ' zero') + '">' + n + '</span></button>';
+    }).join('') + '</div>';
+  }
+  if (wlStandalone()) h += '<p class="fpaste"><button class="linkbtn" type="button" data-wl="paste">Paste a friend\'s link</button></p>';   // E7: the home-screen app keeps its own storage
+  return h;
+}
+function openPaste(){
+  openSmall('Friend\'s link', function(){
+    $('pSmallBody').innerHTML = '<label class="vh" for="wlPasteIn">Paste the link</label><div class="field" style="margin-top:4px"><input id="wlPasteIn" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Paste the link" style="padding-left:14px"></div>' +
+      '<p class="p-note warn" id="wlPasteErr" style="margin-top:10px" hidden>That isn\'t an ' + esc(APP_NAME) + ' list link.</p><button class="btn-primary" type="button" data-wl="pasteopen" style="width:100%;margin-top:14px">Open</button>';
+  });
+}
+function wlPasteOpen(){
+  var inp = $('wlPasteIn'), v = inp ? inp.value : '', r = wlDecode(v);
+  if (!r.ok) { var er = $('wlPasteErr'); if (er) er.hidden = false; return; }
+  closePanel('pSmall');
+  wlOpen('#w_' + wlToken(v), 'paste');
+}
+/* ----- opening a link ----- */
+function wlCloseOthers(){ // E14: close what is open, then show the friend's list
+  UI.friendReturn = false;
+  if (UI.detailId) closeDetail();
+  openStack.slice().forEach(function(id){ if (id === 'pFriend') return; if (id === 'pLoc' && UI.firstOpen) UI.locAfterFriend = true; closePanel(id); });   // I7: the first-visit location ask waits
+}
+function wlOpen(raw, src){ // src: 'hash' | 'paste' | 'stored' | 'test'; returns the decoded record (or the error)
+  var r = wlDecode(raw);
+  if (!r.ok) {
+    wlClearHash();
+    toast(r.why === 'version' ? 'Reload ' + APP_NAME + ' to open this link.' : 'This link got cut off. Ask for a new one.');   // E5 / E4: the app opens normally
+    return r;
+  }
+  var act = wlRoute(r, wlMyKey(false), FRIENDS);
+  wlCloseOthers();
+  if (act === 'own') { wlClearHash(); openLists('saved'); toast('That\'s your own list.'); return ext(r, {act:act}); }   // E6
+  if (act !== 'new') { // E1: a list already kept
+    wlClearHash();
+    var f = wlFind(r.key);
+    if (act === 'newer') { FRIENDS = wlUpdate(FRIENDS, r, new Date().toISOString()); if (wlSaveFriends()) toast(f.name + '\'s list updated'); else wlStoreToast(); refresh(); }
+    else if (act === 'older') toast('You have a newer copy');
+    openFriendView(r.key);
+    return ext(r, {act:act});
+  }
+  sessSet(INCOMING_KEY, '#w_' + wlToken(raw));   // I6: a reload opens it again
+  UI.friendView = {kept:false, key:r.key, day:r.day, sids:r.sids, animated:false};
+  UI.wlRename = false;
+  if ($('fName')) $('fName').value = '';
+  renderFriend(); openPanel('pFriend');
+  return ext(r, {act:act});
+}
+function openFriendView(key){ var f = wlFind(key); if (!f) return; UI.friendView = {kept:true, key:key, animated:false}; UI.wlRename = false; renderFriend(); openPanel('pFriend'); }
+/* ----- the friend panel (1.2 / 1.3) ----- */
+function renderFriend(){
+  var v = UI.friendView, body = $('pFriendBody'), foot = $('pFriendFoot'), head = $('pFriendT');
+  if (!v) return;
+  var kept = !!v.kept, rec = kept ? wlFind(v.key) : v;
+  if (!rec) { closePanel('pFriend'); return; }
+  var name = kept ? rec.name : '';
+  if (kept && UI.wlRename) head.innerHTML = '<div class="fr-ren"><label class="vh" for="fRename">Their name</label><input id="fRename" type="text" maxlength="24" autocomplete="off" enterkeyhint="done" value="' + esc(name) + '"><button class="linkbtn" type="button" data-wl="done">Done</button></div>';
+  else head.innerHTML = '<h2 class="p-title" id="pFriendTitle" tabindex="-1">' + esc(kept ? name : 'A friend\'s list') + '</h2>';
+  var h = '';
+  if (!DATA_LOADED) { // I5 / I6
+    foot.hidden = true;
+    body.innerHTML = DATA_ERR ? '<div class="empty" style="padding:8px 20px"><h3>Couldn\'t load the list.</h3><p>' + esc(DATA_ERR) + '</p><button class="mini-btn" type="button" data-act="retry">Try again</button></div>' : '<p class="loading">Loading Chicago...</p>';
+    return;
+  }
+  var T = evalTime(), vw = wlView(rec.sids, SID_INDEX, T, ctxNow(), isSaved), n = vw.n;
+  function sec(label, k){ return '<h3 class="sec-h"><span>' + esc(label) + '</span><span>' + k + '</span></h3>'; }
+  function rows(list){ return '<ul class="rows">' + list.map(function(c){ return rowHTML(c, {fexcept:rec.key}); }).join('') + '</ul>'; }
+  if (n) h += '<p class="meta fr-meta">' + n + (n === 1 ? ' place' : ' places') + ' · ' + esc(fmtMonthDay(wlDayKey(rec.day))) + '</p>';
+  if (!n) h += '<div class="empty" style="padding:8px 20px"><h3>These places aren\'t in the guide anymore.</h3><p>Ask for a new link.</p></div>';   // I4 / E3
+  else {
+    if (!kept && wlInApp(UI.wlUA || navigator.userAgent)) h += '<p class="band">To keep it, open this in ' + (/Android/i.test(UI.wlUA || navigator.userAgent) ? 'Chrome' : 'Safari') + '.</p>';   // E8
+    if (!Platform.store.ok && !kept) h += '<p class="band">This browser isn\'t keeping your lists. They\'ll be lost when you close it.</p>';   // E10 / E11
+    var theirs = kept ? name + '\'s list' : 'Their list';
+    if (!savedIds.length) h += '<p class="p-note fr-hint">Tap the bookmark on any you\'d do too.</p>' + sec(theirs, n) + rows(vw.only);   // I3
+    else if (!vw.both.length) h += '<p class="fr-none">Nothing in common yet.</p>' + sec(theirs, n) + rows(vw.only);   // I2
+    else {   // I1
+      var bn = vw.both.length;
+      h += '<div class="both"><p class="k">You both want</p><p class="big"><b id="frBig">' + (bn > 999 ? '999+' : bn) + '</b><span>' + (bn === 1 ? 'place' : 'places') + '</span></p></div>';
+      h += sec('You both want', bn) + rows(vw.both);
+      if (vw.only.length) h += sec(kept ? 'Only ' + name : 'Only them', vw.only.length) + rows(vw.only);
+    }
+  }
+  if (vw.gone) h += '<p class="endnote fr-gone">' + (vw.gone === 1 ? '1 is no longer on.' : vw.gone + ' are no longer on.') + '</p>';   // E2
+  if (kept) h += '<p class="endlinks"><button class="linkbtn" type="button" data-wl="rename">Rename</button><span aria-hidden="true">·</span><button class="linkbtn" type="button" data-wl="remove">Remove</button></p>';
+  body.innerHTML = h;
+  foot.hidden = kept || !n;
+  wireImages(body);
+  var big = $('frBig');
+  if (big && !v.animated) { v.animated = true; if (!reduceMotion() && vw.both.length <= 999) wlCountUp(big, vw.both.length); }
+}
+function wlCountUp(el, n){ // 0 -> n over 400 ms, the first time a list opens
+  var t0 = null;
+  function step(ts){ if (t0 === null) t0 = ts; var k = Math.min(1, (ts - t0) / 400); el.textContent = String(Math.round(n * k)); if (k < 1 && el.isConnected !== false) requestAnimationFrame(step); }
+  try { requestAnimationFrame(step); } catch (e) {}
+}
+function wlRowOpen(id){ // a row in the friend panel: the normal detail; Back comes back here (the list is held in UI.friendView)
+  UI.friendHide = true; closePanel('pFriend'); UI.friendHide = false;
+  if (!$('pSaved').hidden) { UI.savedReturn = true; closePanel('pSaved'); }
+  UI.sel = id; recluster(); openDetail(id);
+  UI.friendReturn = true;
+}
+function wlClosed(){ // the friend panel closed (X, Esc, scrim): nothing is stored except her own bookmarks
+  if (UI.friendView && !UI.friendView.kept) wlClearHash();
+  UI.friendView = null; UI.wlRename = false; UI.friendReturn = false;
+  if (UI.locAfterFriend) { UI.locAfterFriend = false; if (UI.firstOpen) setTimeout(function(){ if (UI.firstOpen && $('pLoc').hidden) openLocation(true); }, 340); }   // I7
+}
+function wlKeepNow(){
+  var v = UI.friendView; if (!v || v.kept) return;
+  var r = wlKeep(FRIENDS, v, $('fName') ? $('fName').value : '', new Date().toISOString());
+  if (!r.ok) { toast('You have ' + WL_MAX_LISTS + ' lists. Remove one first.'); return; }
+  FRIENDS = r.friends;
+  var stored = wlSaveFriends();
+  UI.friendView = {kept:true, key:v.key, animated:true};
+  wlClearHash();
+  renderFriend(); refresh();
+  if (!$('pSaved').hidden) renderSaved();
+  if (stored) toast('Kept. It\'s in Saved.'); else wlStoreToast();
+}
+function wlAction(a, el){
+  var v = UI.friendView;
+  if (a === 'keep') { wlKeepNow(); return; }
+  if (a === 'paste') { openPaste(); return; }
+  if (a === 'pasteopen') { wlPasteOpen(); return; }
+  if (!v || !v.kept) return;
+  var f = wlFind(v.key); if (!f) return;
+  if (a === 'rename') { UI.wlRename = true; renderFriend(); var ri = $('fRename'); if (ri) try { ri.focus(); ri.select(); } catch (e) {} return; }
+  if (a === 'done') {
+    var nv = $('fRename') ? $('fRename').value.replace(/\s+/g, ' ').trim().slice(0, 24) : '';
+    if (nv && nv !== f.name) { var i = wlIndex(FRIENDS, f.key), list = FRIENDS.slice(); list[i] = ext(f, {name:nv, updated_at:new Date().toISOString()}); FRIENDS = list; if (!wlSaveFriends()) wlStoreToast(); refresh(); if (!$('pSaved').hidden) renderSaved(); }
+    UI.wlRename = false; renderFriend(); return;
+  }
+  if (a === 'remove') {
+    if (!el.classList.contains('arm')) {
+      el.classList.add('arm'); el.textContent = 'Tap again to remove';
+      clearTimeout(wlAction.tm); wlAction.tm = setTimeout(function(){ if (el.isConnected !== false) { el.classList.remove('arm'); el.textContent = 'Remove'; } }, 4000);
+      return;
+    }
+    clearTimeout(wlAction.tm);
+    FRIENDS = FRIENDS.filter(function(x){ return x.key !== f.key; });
+    if (!wlSaveFriends()) wlStoreToast();
+    closePanel('pFriend'); refresh(); if (!$('pSaved').hidden) renderSaved();
+    toast('Removed ' + f.name + '\'s list');
+  }
+}
+function wlTestHooks(){ // testing hooks (made-up, never saved): #savedsid=3.17.18 · #fr=Maya:3.17.18,Jo:40 · #wlkey=Qm7x · #wl=<link body> · #standalone=1 · #inapp=1
+  var t = UI.wlTest; if (!t || !DATA_LOADED) return;
+  UI.wlTest = null;
+  if (t.saved) savedIds = t.saved.map(function(s){ return SID_INDEX[s] ? SID_INDEX[s].id : null; }).filter(Boolean);   // in memory only
+  if (t.fr) { UI.wlMemOnly = true; FRIENDS = wlCleanFriends(t.fr.map(function(x, i){ return {key:'T' + String.fromCharCode(65 + i) + 'st', name:x.name, day:wlDay(cparts(nowMs()).key), sids:x.sids}; })); wlRebuild(); }
+  if (t.key) UI.listKey = t.key;
+  UI.homeHTML = null; refresh();
+  if (t.panel) openLists('saved');
+  if (t.wl) wlOpen('#w_' + t.wl, 'test');
+  if (t.view && FRIENDS.length) openFriendView(FRIENDS[0].key);
+  if (t.detail && SID_INDEX[t.detail]) openDetail(SID_INDEX[t.detail].id);
 }
 
 /* ================= detail ================= */
@@ -4596,6 +4979,8 @@ function renderDetail(c, keepScroll){
     if (f.min < f.typical) h += '<p class="subline">A quick stop is about ' + esc(fmtDur(f.min)) + ' (' + (f.minSrc === 'data' ? 'the shortest worthwhile time in our listing' : 'our rule of thumb for ' + esc(cat.label.toLowerCase())) + '). A full visit is about ' + esc(fmtDur(f.typical)) + (f.thereKnown ? '' : ' (assumed)') + '.</p>';
   }
   h += '</div>';
+  var fwd = wlFriendsFor(it.id);   // v5.8: "Maya wants this too" (tap: her list)
+  if (fwd.length) h += '<button class="fw" type="button" data-fw="' + esc(fwd[0].key) + '">' + avsHTML(fwd, '', '') + '<span>' + esc(wlWantsText(fwd)) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>';
   // quiet actions: been here, calendar
   var ck = checkinOf(it.id);
   h += '<div class="dt-acts">' + (ck ? '' : '<button class="mini-btn" type="button" data-been="add">' + glyphSvg('i-check') + 'I’ve been here</button>') +
@@ -4714,6 +5099,8 @@ function closeDetail(){
   el.classList.remove('on'); $('app').classList.remove('dt-open');
   setTimeout(function(){ if (!el.classList.contains('on')) el.hidden = true; }, 330);
   if (id) { var row = listRoot.querySelector('[data-id="' + cssEsc(id) + '"]'); if (row) try { row.focus({preventScroll:true}); } catch (e) {} }
+  if (UI.friendReturn && UI.friendView) { UI.friendReturn = false; if (UI.savedReturn) { UI.savedReturn = false; renderSaved(); openPanel('pSaved'); } renderFriend(); openPanel('pFriend'); }   // v5.8: Back returns to the friend's list
+  UI.friendReturn = false; UI.savedReturn = false;
 }
 
 /* ================= panels ================= */
@@ -4733,6 +5120,7 @@ function closePanel(id){
   setTimeout(function(){ if (!el.classList.contains('on')) el.hidden = true; }, 320);
   if (id === 'pLoc') { UI.picking = false; UI.cand = null; mapEl.classList.remove('picking'); $('brand').hidden = true; $('app').classList.remove('onb'); $('app').classList.remove('picking'); recluster(); }
   if (id === 'pTime' || id === 'pFilters') { UI.showRing = false; updateRing(); if (id === 'pFilters') { UI.draft = null; UI.draftB = null; } }
+  if (id === 'pFriend' && !UI.friendHide) wlClosed();   // v5.8 (not when it only steps aside for a place's detail)
   syncScrim();
 }
 function syncScrim(){
@@ -5211,6 +5599,7 @@ function bindUI(){
   document.addEventListener('click', function(e){ var b = e.target.closest ? e.target.closest('[data-share]') : null; if (b) { e.stopPropagation(); shareItem(b.getAttribute('data-share')); } }, true);
   $('dtScroll').addEventListener('click', function(e){
     var id = UI.detailId; if (!id) return;
+    var fwb = e.target.closest('[data-fw]'); if (fwb) { UI.friendReturn = false; closeDetail(); openFriendView(fwb.getAttribute('data-fw')); return; }   // v5.8
     if (e.target.closest('[data-cal]')) { addToCalendar(id); return; }
     var b = e.target.closest('[data-been]'); if (!b) return;
     var a = b.getAttribute('data-been'), ck = checkinOf(id);
@@ -5220,7 +5609,26 @@ function bindUI(){
     else if (ck && a === 'down') editCheckin(id, {rating:ck.rating === -1 ? 0 : -1});
   });
   $('dtScroll').addEventListener('change', function(e){ if (e.target.id === 'beenDate' && UI.detailId && isKey(e.target.value)) editCheckin(UI.detailId, {date:e.target.value}); });
-  $('pSavedBody').addEventListener('click', function(e){ var t = e.target.closest('[data-tab]'); if (t) { UI.listTab = t.getAttribute('data-tab'); renderSaved(); } });
+  $('pSavedBody').addEventListener('click', function(e){ var t = e.target.closest('[data-tab]'); if (t) { UI.listTab = t.getAttribute('data-tab'); renderSaved(); }
+    var fc = e.target.closest('[data-fchip]'); if (fc) { openFriendView(fc.getAttribute('data-fchip')); return; }   // v5.8 friends strip
+    var wp = e.target.closest('[data-wl]'); if (wp) wlAction(wp.getAttribute('data-wl'), wp); });
+  // v5.8 friends' lists: Share, the friend panel (Keep, rows, Rename, Remove), the paste box
+  $('wlShare').addEventListener('click', shareMyList);
+  $('fKeep').addEventListener('click', wlKeepNow);
+  $('pFriend').addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.id === 'fName') { e.preventDefault(); wlKeepNow(); }
+    else if (e.key === 'Enter' && e.target.id === 'fRename') { e.preventDefault(); wlAction('done'); }
+    else if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('row') && e.target.getAttribute('data-id')) { e.preventDefault(); wlRowOpen(e.target.getAttribute('data-id')); }
+  });
+  $('pFriend').addEventListener('click', function(e){
+    var t = e.target;
+    if (t.closest('[data-close]')) return;
+    var sv = t.closest('[data-save]'); if (sv) { e.stopPropagation(); toggleSave(sv.getAttribute('data-save')); return; }
+    var w = t.closest('[data-wl]'); if (w) { wlAction(w.getAttribute('data-wl'), w); return; }
+    if (t.closest('[data-act="retry"]')) { loadData(); return; }
+    var row = t.closest('li[data-id]'); if (row) wlRowOpen(row.getAttribute('data-id'));
+  });
+  $('pSmallBody').addEventListener('keydown', function(e){ if (e.key === 'Enter' && e.target.id === 'wlPasteIn') { e.preventDefault(); wlPasteOpen(); } });
   $('fillTime').addEventListener('click', function(){ renderTime(); UI.showRing = true; updateRing(); openPanel('pTime'); });
   $('fillWhen').addEventListener('click', function(){ openSmall('When?', smallWhen); });
   $('fillLoc').addEventListener('click', function(){ openLocation(false); });
@@ -5295,6 +5703,7 @@ function bindUI(){
   $('pFiltersReset').addEventListener('click', function(){ UI.draft = appDefaultFilters(); UI.draftB = {on:false, val:S.budget}; renderFilters(); });
   $('pFiltersGo').addEventListener('click', commitFilters);
   $('pSmallBody').addEventListener('click', function(e){
+    var wlb = e.target.closest('[data-wl]'); if (wlb) { wlAction(wlb.getAttribute('data-wl'), wlb); return; }   // v5.8 paste box
     var dy = e.target.closest('[data-day],[data-part]');
     if (dy) { pickDay(dy.getAttribute('data-day'), dy.hasAttribute('data-part') ? +dy.getAttribute('data-part') : null); if (smallRender) smallRender(); return; }
     var b = e.target.closest('[data-f]'); if (!b) return;
@@ -6677,11 +7086,138 @@ function runSelfTest0(){
     eq('a list that already fits: left alone', sheetWheel(ev(chip, 120), fitsSc), '');
   });
 
+  /* ---------- v5.8 friends' lists, stage 1 (design/2026-11-13-wishlists-spec.md 2.3, 3, 4) ---------- */
+  block('v5.8 friends\' lists: the link', function(){
+    var day = wlDay('2026-11-13');
+    eq('link day: 2026-11-13 = 316 days since 2026-01-01', day, 316);
+    eq('link day 316 reads back as Nov 13', wlDayKey(316), '2026-11-13');
+    eq('worked example: deltas payload is CNAVjI', wlDeltas([3, 17, 18, 40, 300]), 'CNAVjI');
+    eq('worked example: the bitset would be 50 characters', wlBits([3, 17, 18, 40, 300]).length, 50);
+    eq('worked example encodes to #w_1Qm7xE8dCNAVjI5 (unsorted input, a duplicate)', wlEncode('Qm7x', [300, 3, 17, 18, 40, 17], day), '#w_1Qm7xE8dCNAVjI5');
+    eq('worked example: the whole link', SITE_URL + wlEncode('Qm7x', [3, 17, 18, 40, 300], day), 'https://stacey98.github.io/fun-finder/#w_1Qm7xE8dCNAVjI5');
+    var d = wlDecode('https://stacey98.github.io/fun-finder/#w_1Qm7xE8dCNAVjI5');
+    eq('worked example decodes: key, day, mode, places', d.ok ? [d.key, d.day, d.mode, d.sids.join('.')].join() : d.why, 'Qm7x,316,d,3.17.18.40.300');
+    eq('0 saved: no link is made (E13 "Save a place first.")', wlEncode('Qm7x', [], day), '');
+    function rt(s){ var h = wlEncode('Ab12', s, day), r = wlDecode(h); return r.ok && r.sids.join() === wlSids(s).join() && r.key === 'Ab12' && r.day === day ? 'ok:' + r.mode + ':' + h.length : (r.why || 'mismatch'); }
+    var s200 = [], s287 = [], spread = [], i;
+    for (i = 1; i <= 287; i++) { s287.push(i); if (s200.length < 200 && i % 10 < 7) s200.push(i); }
+    for (i = 1; i <= 200; i++) spread.push(i * 25);
+    var r1 = rt([1]), r2 = rt(s200), r3 = rt(s287), r4 = rt(spread);
+    ok('round trip: 1 place (' + r1 + ')', /^ok:d:/.test(r1), r1);
+    ok('round trip: 200 of 287, bitset chosen, 48 characters (' + r2 + ')', /^ok:b:/.test(r2) && wlPayload(s200).p.length <= 48, r2 + ' / ' + wlPayload(s200).p.length);
+    ok('round trip: all 287, bitset (' + r3 + ')', /^ok:b:/.test(r3), r3);
+    ok('round trip: 200 spread over 5,000 places, deltas chosen (' + r4 + ')', /^ok:d:/.test(r4), r4);
+    eq('a tie (1 place: "A" vs "B") goes to deltas', wlPayload([1]).mode, 'd');
+    eq('5 places: deltas', wlPayload([3, 17, 18, 40, 300]).mode, 'd');
+    eq('a sid of 0, a negative, a fraction, over 100,000 or a duplicate is never written', wlSids([0, 3, 3, -1, 2.5, 100001, 7]).join(), '3,7');
+    ok('every link character is URL-safe and the last one is a letter or digit', /^#w_[A-Za-z0-9_-]*[A-Za-z0-9]$/.test(wlEncode('Ab12', s287, day)) && /^#w_[A-Za-z0-9_-]*[A-Za-z0-9]$/.test(wlEncode('Ab12', spread, day)), 'bad characters');
+    function body(b){ return '#w_' + b + wlCheck(b); }
+    function why(x){ var r = wlDecode(x); return r.ok ? 'ok' : r.why; }
+    eq('rejects (E4): shorter than 10 after #w_', why(body('1Qm7xE8d')), 'cut');
+    eq('rejects (E4): over 2,000 characters (this also caps the bitset)', why(body('1Qm7xE8b' + new Array(1993).join('A') + 'B')), 'cut');
+    eq('rejects (E4): a character outside A-Z a-z 0-9 - _', why('#w_1Qm7xE8dCNA.VjI5'), 'cut');
+    eq('rejects (E4): a percent-encoded space', why('#w_1Qm7xE8dCNAV%20jI5'), 'cut');
+    eq('rejects (E4): a bad check character', why('#w_1Qm7xE8dCNAVjI6'), 'cut');
+    eq('rejects (E4): the last characters lost', why('#w_1Qm7xE8dCNAVj'), 'cut');
+    eq('rejects (E4): a varint ending on "more follows"', why(body('1Qm7xE8dCNj')), 'cut');
+    eq('rejects (E4): a sid over 100,000', why(body('1Qm7xE8d' + wlDeltas([100001]))), 'cut');
+    eq('rejects (E4): more than 2,000 places', why(body('1Qm7xE8b' + new Array(400).join('_'))), 'cut');
+    eq('rejects (E4): an unknown mode letter', why(body('1Qm7xE8xCNAVjI')), 'cut');
+    eq('rejects (E4): a list key with "-"', why(body('1Qm-xE8dCNAVjI')), 'cut');
+    eq('rejects (E4): no places in it', why(body('1Qm7xE8bAAA')), 'cut');
+    eq('version "2" (E5 "Reload Off-Grid to open this link.")', why(body('2Qm7xE8dCNAVjI')), 'version');
+    eq('a place link is not a list link', why('#pa-puttery-chicago'), 'none');
+    eq('#w_... is never taken as a place id', hashItemId('#w_1Qm7xE8dCNAVjI5'), '');
+    eq('a place link still opens the place', hashItemId('#pa-puttery-chicago'), 'pa-puttery-chicago');
+    eq('E17 test-hook words are not list links', [why('#selftest'), why('#now=2026-11-13T18:00')].join(), 'none,none');
+    eq('a pasted message with the link inside it opens (E7)', why('My Off-Grid list: 5 places I want to do.\nhttps://stacey98.github.io/fun-finder/#w_1Qm7xE8dCNAVjI5'), 'ok');
+    eq('a pasted link with a trailing period is cut off', why('https://stacey98.github.io/fun-finder/#w_1Qm7xE8dCNAVjI5.'), 'cut');
+    var fit = wlFit(['a', 'b', 'c', 'd'], {a:1, b:40, c:80, d:120}, 3);
+    eq('over the size limit: the oldest saves are dropped first (2.5)', [fit.sids.join(), fit.dropped].join('/'), '120/3');
+    var fit2 = wlFit(['a', 'x', 'b'], {a:1, b:2});
+    eq('within the limit: nothing dropped; a saved place without a sid is left out', [fit2.sids.join(), fit2.dropped, fit2.total].join('/'), '1,2/0/2');
+  });
+  block('v5.8 friends\' lists: keeping, E1, E6, E12, names', function(){
+    var iso = '2026-11-13T18:00:00.000Z', L = [{key:'Qm7x', name:'Maya', day:316, sids:[3, 17, 18], kept_at:iso, updated_at:iso}];
+    eq('E6 my own link opens my Saved', wlRoute({key:'Qm7x', day:316, sids:[3]}, 'Qm7x', []), 'own');
+    eq('a list not kept yet', wlRoute({key:'Zz99', day:316, sids:[3]}, 'Ab12', L), 'new');
+    eq('E1 a newer link from a kept list: replace', wlRoute({key:'Qm7x', day:320, sids:[3]}, 'Ab12', L), 'newer');
+    eq('E1 same day, other places: replace', wlRoute({key:'Qm7x', day:316, sids:[3, 17]}, 'Ab12', L), 'newer');
+    eq('E1 same day, same places: nothing changes', wlRoute({key:'Qm7x', day:316, sids:[18, 3, 17]}, 'Ab12', L), 'same');
+    eq('E1 an older link: open the newer kept copy', wlRoute({key:'Qm7x', day:300, sids:[40]}, 'Ab12', L), 'older');
+    var up = wlUpdate(L, {key:'Qm7x', day:320, sids:[40, 3]}, iso);
+    eq('E1 update keeps the name and takes the new places', [up[0].name, up[0].day, up[0].sids.join('.')].join(), 'Maya,320,3.40');
+    eq('the old copy is not changed in place', L[0].sids.join('.'), '3.17.18');
+    var k1 = wlKeep([], {key:'Ab12', day:316, sids:[5]}, '  ', iso), k2 = wlKeep(k1.friends, {key:'Cd34', day:316, sids:[6]}, '', iso);
+    eq('no name typed: "Friend", then "Friend 2"', k2.friends.map(function(f){ return f.name; }).join(), 'Friend,Friend 2');
+    eq('a name is cut at 24 characters', wlKeep([], {key:'Ab12', day:1, sids:[1]}, 'Abcdefghijklmnopqrstuvwxyz', iso).friends[0].name.length, 24);
+    eq('E16 the same person on two phones: two lists', wlKeep(k1.friends, {key:'Ef56', day:1, sids:[5]}, 'Friend', iso).friends.length, 2);
+    var thirty = []; for (var i = 0; i < 30; i++) thirty.push({key:'K' + WL_A62.charAt(i) + 'aa', name:'F' + i, day:1, sids:[1]});
+    var k31 = wlKeep(thirty, {key:'Zz99', day:1, sids:[2]}, 'New', iso);
+    eq('E12 a 31st list asks for a removal first', [k31.ok, k31.why, k31.friends.length].join(), 'false,full,30');
+    eq('E12 an update to one of the 30 still works', wlKeep(thirty, {key:thirty[0].key, day:2, sids:[9]}, '', iso).ok, true);
+    var ini = wlInitials([{key:'a', name:'Maya'}, {key:'b', name:'Max'}, {key:'c', name:'jo'}]);
+    eq('initials: Maya and Max share an M ("Ma", "Mx"); jo is "J"', [ini.a, ini.b, ini.c].join(), 'Ma,Mx,J');
+    eq('detail line, 1 friend', wlWantsText([{name:'Maya'}]), 'Maya wants this too');
+    eq('detail line, 2 friends', wlWantsText([{name:'Maya'}, {name:'Jo'}]), 'Maya and Jo want this too');
+    eq('detail line, 4 friends', wlWantsText([{name:'Maya'}, {name:'Jo'}, {name:'A'}, {name:'B'}]), 'Maya, Jo +2 want this too');
+    eq('stored lists are cleaned (bad key, no places, a repeat, junk dropped)', wlCleanFriends([{key:'Ab12', name:'A', sids:[1]}, {key:'bad', sids:[1]}, {key:'Cd34', sids:[]}, {key:'Ab12', sids:[2]}, null, 'x']).length, 1);
+    eq('E8 Instagram and Facebook in-app browsers are spotted, Safari is not', [wlInApp('Mozilla/5.0 (iPhone) Instagram 300.0'), wlInApp('Mozilla/5.0 [FBAN/FBIOS;FBAV/400.0]'), wlInApp('Mozilla/5.0 (iPhone) Version/18.0 Safari/604.1')].join(), 'true,true,false');
+  });
+  block('v5.8 friends\' lists: what shows (E2, order)', function(){
+    var T = at('2026-11-13', '12:00'), ctx = {lat:41.88, lng:-87.63, budget:'any', mode:'transit'}, open = allDays(['10:00', '23:00']);
+    var a = fx({name:'Bowling', sid:1, hours:open}), b = fx({name:'Arcade', sid:2, hours:open}), lb = fx({name:'Late bar', sid:3, hours:allDays(['18:00', '23:00'])});
+    var shut = fx({name:'Shut for good', sid:4, hours:open, verified:{status:'closed', checked_on:'2026-11-10'}});
+    var ended = fx({name:'Old show', sid:5, kind:'event', event_dates:[{start:'2026-10-01', end:'2026-10-05'}]});
+    var seas = fx({name:'Summer golf', sid:6, hours:open, season:{open_from:'2026-05-01', open_to:'2026-10-15'}});
+    var idx = {1:a, 2:b, 3:lb, 4:shut, 5:ended, 6:seas}, mine = function(id){ return id === a.id; };
+    var v = wlView([6, 5, 4, 3, 2, 1, 99], idx, T, ctx, mine), nm = function(c){ return c.item.name; };
+    eq('E2 a removed place, one closed for good and an ended event are counted, not shown', v.gone, 3);
+    eq('"You both want" = the ones I saved too', v.both.map(nm).join(), 'Bowling');
+    eq('seasonal closures still show, in order: open now, later today, out of season', v.only.map(nm).join(), 'Arcade,Late bar,Summer golf');
+    eq('E3 nothing left to show', wlView([4, 5, 99], idx, T, ctx, mine).n, 0);
+  });
+  block('v5.8 friends\' lists: the panel (I1-I4, E8) and "wants this too"', function(){
+    var keep = {S:SID_INDEX, I:ID_SID, F:FRIENDS, sv:savedIds, dl:DATA_LOADED, fv:UI.friendView, ren:UI.wlRename, ua:UI.wlUA, head:$('pFriendT').innerHTML, body:$('pFriendBody').innerHTML, foot:$('pFriendFoot').hidden};
+    try {
+      var p1 = fx({name:'Pin One', sid:1}), p2 = fx({name:'Pin Two', sid:2}), p3 = fx({name:'Pin Three', sid:3}), p4 = fx({name:'Pin Four', sid:4});
+      SID_INDEX = {1:p1, 2:p2, 3:p3, 4:p4}; ID_SID = {}; [p1, p2, p3, p4].forEach(function(it){ ID_SID[it.id] = it.sid; });
+      DATA_LOADED = true; UI.wlUA = 'Mozilla/5.0 (iPhone) Version/18.0 Safari/604.1'; UI.wlRename = false;
+      FRIENDS = [{key:'Qm7x', name:'Maya', day:316, sids:[1, 2, 3, 9], kept_at:'', updated_at:''}]; wlRebuild();
+      function txt(){ return $('pFriendBody').textContent.replace(/\s+/g, ' '); }
+      savedIds = [p1.id]; UI.friendView = {kept:false, key:'Zz99', day:316, sids:[1, 2, 3, 9], animated:true}; renderFriend();
+      var t1 = txt();
+      ok('I1 a new list: "A friend\'s list", 3 places · Nov 13, big "1 place", Only them 2, "1 is no longer on.", name + Keep shown',
+        $('pFriendTitle').textContent === 'A friend\'s list' && /3 places · Nov 13/.test(t1) && /You both want ?1 ?place/.test(t1) && /Only them ?2/.test(t1) && /1 is no longer on\./.test(t1) && !$('pFriendFoot').hidden && !/Rename/.test(t1), t1.slice(0, 240));
+      savedIds = []; renderFriend(); var t3 = txt();
+      ok('I3 nothing saved: the hint, "Their list 3", no big number', /Tap the bookmark on any you’d do too\.|Tap the bookmark on any you'd do too\./.test(t3) && /Their list ?3/.test(t3) && !$('frBig'), t3.slice(0, 200));
+      savedIds = ['not-in-their-list']; renderFriend(); var t2 = txt();
+      ok('I2 saves but no overlap: "Nothing in common yet." and "Their list 3"', /Nothing in common yet\./.test(t2) && /Their list ?3/.test(t2) && !$('frBig'), t2.slice(0, 200));
+      savedIds = [p1.id, p2.id]; UI.friendView = {kept:true, key:'Qm7x', animated:true}; renderFriend(); var tk = txt();
+      ok('kept: the name is the title, "Only Maya 1", Rename · Remove, no footer', $('pFriendTitle').textContent === 'Maya' && /You both want ?2/.test(tk) && /Only Maya ?1/.test(tk) && /Rename/.test(tk) && /Remove/.test(tk) && $('pFriendFoot').hidden, tk.slice(0, 200));
+      UI.friendView = {kept:false, key:'Zz99', day:316, sids:[9, 10], animated:true}; renderFriend(); var t4 = txt();
+      ok('I4 none left: "These places aren\'t in the guide anymore." and no footer', /These places aren't in the guide anymore\./.test(t4) && /Ask for a new link\./.test(t4) && /2 are no longer on\./.test(t4) && $('pFriendFoot').hidden, t4.slice(0, 200));
+      UI.wlUA = 'Mozilla/5.0 (iPhone) Instagram 300.0'; UI.friendView = {kept:false, key:'Zz99', day:316, sids:[1], animated:true}; renderFriend();
+      ok('E8 inside Instagram: "To keep it, open this in Safari."', /To keep it, open this in Safari\./.test(txt()), txt().slice(0, 200));
+      var rh = rowHTML(computeItem(p2, at('2026-11-13', '12:00'), CTX), {}), rn = rowHTML(computeItem(p4, at('2026-11-13', '12:00'), CTX), {});
+      ok('a row in her list shows her initial under the bookmark ("Maya wants this too")', /class="rcol"/.test(rh) && /aria-label="Maya wants this too"/.test(rh) && />M<\/span>/.test(rh), rh.slice(-300));
+      ok('a row not in any kept list has no mark', !/rcol/.test(rn), 'mark found');
+      ok('the friend panel leaves out the friend whose list it is', !/rcol/.test(rowHTML(computeItem(p2, at('2026-11-13', '12:00'), CTX), {fexcept:'Qm7x'})), 'mark found');
+      var sh = friendStripHTML();
+      ok('Saved strip: a chip "Maya\'s list: you both want 2"', /data-fchip="Qm7x"/.test(sh) && /aria-label="Maya's list: you both want 2"/.test(sh) && /class="n">2</.test(sh), sh.slice(0, 300));
+      FRIENDS = []; wlRebuild();
+      eq('no kept lists: no strip', friendStripHTML().indexOf('fstrip'), -1);
+    } finally {
+      SID_INDEX = keep.S; ID_SID = keep.I; FRIENDS = keep.F; savedIds = keep.sv; DATA_LOADED = keep.dl; UI.friendView = keep.fv; UI.wlRename = keep.ren; UI.wlUA = keep.ua; wlRebuild();
+      $('pFriendT').innerHTML = keep.head; $('pFriendBody').innerHTML = keep.body; $('pFriendFoot').hidden = keep.foot;
+    }
+  });
+
   block('v3 page parts', function(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.7 (2026-11-13)');
+    eq('version', VERSION, 'v5.8 (2026-11-13)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -6921,6 +7457,12 @@ function runSelfTestAsync(){ // checks that need promises or the map files
       rr.picks.forEach(function(c){ km[c.genre] = 1; });
       ok('real data, ' + x[1] + ': three picks, three kinds, all popular (' + rr.picks.map(function(c){ return c.item.name + ' ' + c.__pop; }).join('; ') + ')', rr.picks.length === 3 && Object.keys(km).length === 3 && rr.picks.every(function(c){ return c.__pop >= POP_FLOOR; }), rr.picks.map(function(c){ return c.item.name + '=' + c.__pop + '/' + c.genre; }).join(', '));
     });
+    // v5.8: every place in the published list has its own permanent sid, and a real list survives the link
+    var nSid = DATA.filter(function(it){ return ID_SID[it.id] && SID_INDEX[ID_SID[it.id]] === it; }).length;
+    ok('real data: every place has its own sid (' + nSid + ' of ' + DATA.length + ')', nSid === DATA.length, (DATA.length - nSid) + ' without');
+    var pickIds = DATA.filter(function(it, i){ return i % 7 === 0; }).map(function(it){ return it.id; }), fitR = wlFit(pickIds, ID_SID), dec = wlDecode(wlEncode('Ab12', fitR.sids, 316));
+    ok('real data: ' + pickIds.length + ' saved places go through a link and back (' + (dec.ok ? dec.mode + ', ' + wlEncode('Ab12', fitR.sids, 316).length + ' characters' : dec.why) + ')',
+      dec.ok && dec.sids.map(function(s){ return SID_INDEX[s].id; }).sort().join() === pickIds.slice().sort().join(), dec.why || 'ids differ');
     return R;
   });
 }
@@ -6949,6 +7491,18 @@ function showSelfTest(){
 function hideSelfTest(){ $('selftest').hidden = true; if (/selftest/.test(location.hash)) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { try { location.hash = ''; } catch (e2) {} } } }
 function readHash(){
   var hsh = location.hash || '';
+  if (/^#w_/.test(hsh)) { if (mapEl) wlOpen(hsh, 'hash'); return; }   // v5.8: a friend's list link, before any place link or test hook (spec 1.2, E17)
+  // v5.8 testing hooks for friends' lists (in memory only): #savedsid=3.17.18 #fr=Maya:3.17.18,Jo:40 #wlkey=Qm7x #wl=<link body> #standalone=1 #inapp=1 #panel=saved #wldetail=<sid>
+  var wt = {}, wq;
+  if ((wq = /(?:^#|&)savedsid=([\d.]+)/.exec(hsh))) wt.saved = wq[1].split('.').map(Number);
+  if ((wq = /(?:^#|&)fr=([^&]+)/.exec(hsh))) { var frv = ''; try { frv = decodeURIComponent(wq[1]); } catch (e) { frv = wq[1]; } wt.fr = frv.split(',').map(function(x){ var a = x.split(':'); return {name:a[0], sids:String(a[1] || '').split('.').map(Number)}; }); }
+  if ((wq = /(?:^#|&)wlkey=([A-Za-z0-9]{4})/.exec(hsh))) wt.key = wq[1];
+  if ((wq = /(?:^#|&)wl=([A-Za-z0-9_-]+)/.exec(hsh))) wt.wl = wq[1];
+  if ((wq = /(?:^#|&)wldetail=(\d+)/.exec(hsh))) wt.detail = +wq[1];
+  if (/(?:^#|&)standalone=1/.test(hsh)) UI.wlStandalone = true;
+  if (/(?:^#|&)inapp=1/.test(hsh)) UI.wlUA = 'Mozilla/5.0 (iPhone) Instagram 300.0';
+  if (/(?:^#|&)frview=1/.test(hsh)) wt.view = true;
+  if (wt.saved || wt.fr || wt.key || wt.wl || wt.detail || wt.view) { wt.panel = /panel=saved/.test(hsh) && !wt.wl; UI.wlTest = wt; if (DATA_LOADED) setTimeout(wlTestHooks, 0); }
   var m = /now=(\d{4}-\d{2}-\d{2}T\d{1,2}:\d{2})/.exec(hsh);
   if (m) setNow(m[1]);
   var lm = /loc=(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/.exec(hsh); // testing hook: #loc=41.892,-87.634
@@ -7052,15 +7606,20 @@ function loadData(){
     var n = normalize(raw);
     DATA = n.items; SKIPPED = n.skipped; DATA_LOADED = true; freshCache = {k:'', n:-1, v:null}; ivCache = {};
     VENUE_LINKS = linkVenues(DATA);   // v2.1 (tester H-A): events inside venues share the venue's closed days
+    buildSidIndex(DATA);   // v5.8: sid -> place, for friends' list links
     worldFromData();
     refresh();
     if (!$('pSaved').hidden) renderSaved();
+    if (!$('pFriend').hidden) renderFriend();
     if (UI.pendingItem) openPending();
+    if (UI.wlTest) wlTestHooks();
   })['catch'](function(e){
     DATA_ERR = 'The file activities.json could not be read (' + (e && e.message ? e.message : 'unknown error') + ').';
     DATA_LOADED = false; renderList(null); refresh();
+    if (!$('pFriend').hidden) renderFriend();   // I6: the incoming list stays in sessionStorage, so a reload opens it again
   });
 }
+function buildSidIndex(items){ SID_INDEX = {}; ID_SID = {}; items.forEach(function(it){ var s = +it.sid; if (isNum(s) && s >= 1 && Math.floor(s) === s && !SID_INDEX[s]) { SID_INDEX[s] = it; ID_SID[it.id] = s; } }); }
 function loadGeo(){
   Promise.all([Platform.fetchJSON(GEO_AREAS_URL), Platform.fetchJSON(GEO_LINES_URL)['catch'](function(){ return null; })]).then(function(r){
     buildGeo(r[0], r[1]);
@@ -7096,6 +7655,7 @@ function init(){
   S.budgetOn = Platform.store.get('cff.budgetOn.v1', false) === true;   // v4: off unless she turned it on in More filters
   var wh = Platform.store.get('cff.who.v1', []); if (Array.isArray(wh)) wh.forEach(function(k){ if (k === 'date' || k === 'friends' || k === 'solo' || k === 'kids') S.f.who[k] = true; });   // who's coming is remembered
   CHECKINS = cleanCheckins(Platform.store.get(CHECKIN_KEY, []));
+  wlLoadFriends();   // v5.8 kept friends' lists
   UI.view = 'home'; $('app').setAttribute('data-view', 'home');
   var loc = Platform.store.get('cff.loc.v1', null);
   if (loc && isNum(loc.lat) && isNum(loc.lng) && Math.abs(loc.lat - 41.9) < 2 && Math.abs(loc.lng + 87.7) < 3) S.loc = {lat:loc.lat, lng:loc.lng, label:String(loc.label || 'Your pin'), src:loc.src === 'gps' || loc.src === 'address' ? loc.src : 'picked',
@@ -7118,6 +7678,7 @@ function init(){
   setInterval(function(){ if (document.visibilityState !== 'hidden' && DATA_LOADED && UI.nowOverride === null && !gestureActive) refresh(); }, 60000);
   setTimeout(function(){ Platform.tips.db(); }, 1500);   // light up the shared tip box after first paint; never blocks it
   readHash();
+  if (!/^#w_/.test(location.hash || '') && $('pFriend').hidden) { var inc = sessGet(INCOMING_KEY); if (inc && /^#w_/.test(inc)) wlOpen(inc, 'stored'); }   // v5.8 I6: a list that was open (not kept) when the page reloaded
 }
 
 window.__cff = {
@@ -7178,6 +7739,11 @@ window.__cff = {
   tenseText: tenseText, planCtx: planCtx, planWhen: planWhen, restoredSel: restoredSel, appliedChips: appliedChips, limOff: function(){ limOff(); },
   pick: function(v){ if (!v) S.when = 'now'; else { S.when = 'pick'; S.pickAt = v; } refresh(); return UI.planning; },
   setView: function(v){ showView(v); }, openLists: function(tab){ openLists(tab); }, bookingLink: bookingLink, bookingWord: bookingWord,
+  // v5.8 friends' lists, stage 1
+  wlEncode: wlEncode, wlDecode: wlDecode, wlDeltas: wlDeltas, wlBits: wlBits, wlPayload: wlPayload, wlDay: wlDay, wlDayKey: wlDayKey, wlFit: wlFit, wlToken: wlToken,
+  wlRoute: wlRoute, wlKeep: wlKeep, wlUpdate: wlUpdate, wlDefaultName: wlDefaultName, wlInitials: wlInitials, wlWantsText: wlWantsText, wlView: wlView, wlCleanFriends: wlCleanFriends, wlInApp: wlInApp,
+  friends: function(){ return FRIENDS.slice(); }, sidOf: function(id){ return ID_SID[id] || null; }, itemBySid: function(s){ return SID_INDEX[s] || null; },
+  openListLink: function(raw){ return wlOpen(raw, 'test'); }, shareMyList: function(){ shareMyList(); }, lastShareLink: function(){ return UI.lastShareLink || ''; }, friendView: function(){ return UI.friendView; },
   Platform: Platform
 };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
