@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Off-Grid logo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&family=Geist:wght@400..700&family=Fredoka:wght@600&family=Figtree:wght@400..700&display=swap">
+<style>
+:root{--pg:#F4F2F7;--pg-ink:#211B2C;--pg-ink2:#5E566C;--pg-rule:#E2DDEA;--pg-card:#FFFFFF}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--pg:#121118;--pg-ink:#F2F0F7;--pg-ink2:#A9A3B8;--pg-rule:#2A2733;--pg-card:#1A1822}}
+:root[data-theme="dark"]{--pg:#121118;--pg-ink:#F2F0F7;--pg-ink2:#A9A3B8;--pg-rule:#2A2733;--pg-card:#1A1822}
+*{box-sizing:border-box}
+body{margin:0;background:var(--pg);color:var(--pg-ink);font:15px/1.45 "Geist",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 16px 64px}
+h1{font:600 26px/1.15 "Unbounded",sans-serif;margin:0 0 6px;letter-spacing:-.01em}
+.lede{color:var(--pg-ink2);margin:0 0 28px;max-width:60ch}
+h2{font:600 18px/1.2 "Unbounded",sans-serif;margin:0;letter-spacing:-.01em}
+.rec{display:inline-block;font:600 12px/1 "Geist",sans-serif;background:#C6FF3D;color:#0B0A10;padding:5px 9px;border-radius:999px;margin-left:8px;vertical-align:3px}
+.concept{border-top:1px solid var(--pg-rule);padding:24px 0 28px}
+.c-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin-bottom:14px}
+.c-head p{margin:0;color:var(--pg-ink2);font-size:14px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:760px){.pair{grid-template-columns:1fr}}
+.panel{border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:18px}
+.panel.light{background:#FCFAFF;color:#211B2C;box-shadow:inset 0 0 0 1px #EAE4F2}
+.panel.dark{background:#0B0A10;color:#F7F5FC}
+.panel .tag{font:600 12px/1 "Geist",sans-serif;opacity:.6}
+.row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px}
+.cap{font:500 11.5px/1.2 "Geist",sans-serif;opacity:.6;margin-top:6px;text-align:center}
+.cell{display:flex;flex-direction:column;align-items:center}
+.big svg{display:block;max-width:100%;height:auto}
+/* browser tab mock */
+.tabbar{display:flex;align-items:center;gap:8px;border-radius:10px 10px 0 0;padding:6px 8px 0;width:220px}
+.tabbar .tab{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px 8px 0 0;font:400 12.5px/1 "Segoe UI",system-ui,sans-serif;flex:1;min-width:0}
+.tabbar .tab span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.light .tabbar{background:#DEE1E6}.light .tabbar .tab{background:#FFFFFF;color:#1F1F1F}
+.dark .tabbar{background:#1F1F23}.dark .tabbar .tab{background:#35363A;color:#E8EAED}
+/* iOS home screen mock */
+.springboard{border-radius:18px;padding:14px 16px 10px;display:flex;gap:18px;background:linear-gradient(160deg,#6B7FA8,#C9A9C9 55%,#E8C6A8)}
+.dark .springboard{background:linear-gradient(160deg,#1B2340,#3B2A4A 55%,#4A3A30)}
+.springboard .app{display:flex;flex-direction:column;align-items:center;gap:5px;width:64px}
+.springboard .app svg,.springboard .app .ph{width:60px;height:60px;border-radius:14px;display:block}
+.springboard .ph{background:rgba(255,255,255,.35)}
+.springboard .app b{font:500 11px/1 -apple-system,"Segoe UI",sans-serif;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+/* phone mocks */
+.section{border-top:1px solid var(--pg-rule);padding:24px 0}
+.switch{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 18px}
+.switch button{font:600 13px/1 "Geist",sans-serif;height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--pg-rule);background:var(--pg-card);color:var(--pg-ink);cursor:pointer}
+.switch button[aria-pressed="true"]{background:var(--pg-ink);color:var(--pg)}
+.phones{display:flex;flex-wrap:wrap;gap:20px}
+.phone{width:390px;max-width:100%;height:640px;border-radius:40px;overflow:hidden;position:relative;box-shadow:0 0 0 8px #000,0 18px 40px rgba(0,0,0,.25);margin:8px}
+.phone.w320{width:320px}
+.phones > div{min-width:0;max-width:100%}
+@media (max-width:440px){.phone{width:calc(100vw - 48px)}.phone.w320{width:min(320px,calc(100vw - 48px))}}
+.phone .sb{height:47px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;font:600 15px/1 -apple-system,"Segoe UI",sans-serif}
+.t-light{--paper:#FCFAFF;--paper-2:#F3EFFA;--paper-3:#FFFFFF;--ink:#211B2C;--ink-2:#544C62;--ink-3:#675F75;--rule:#EAE4F2;--acc:#A82E58;--elev:0 1px 2px rgba(60,40,100,.06),0 8px 24px rgba(60,40,100,.08);--fd:"Fredoka";--ttl:30px;--land:#F1F3F4;--street:#FFFFFF;--case:#E0E3E7;--park:#CFEBD6;--water:#A9D3F2;background:var(--paper);color:var(--ink)}
+.t-dark{--paper:#0B0A10;--paper-2:#15131D;--paper-3:#1C1A26;--ink:#F7F5FC;--ink-2:#BDB8CC;--ink-3:#948EA6;--rule:#24212E;--acc:#C6FF3D;--elev:none;--fd:"Unbounded";--ttl:26px;--land:#202226;--street:#34373D;--case:#26292E;--park:#1C3027;--water:#14243A;background:var(--paper);color:var(--ink)}
+.home{padding:0 16px}
+.brandrow{display:flex;align-items:center;justify-content:space-between;gap:8px;height:48px}
+.brandrow .lk{display:flex;align-items:center;color:var(--ink)}
+.icons{display:flex;gap:6px}
+.ib{width:48px;height:48px;border-radius:24px;background:var(--paper-3);box-shadow:var(--elev),inset 0 0 0 1px var(--rule);display:grid;place-items:center;color:var(--ink)}
+.ib svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.w320 .ib{width:44px;height:44px}.w320 .icons{gap:4px}
+.ttl{font:600 var(--ttl)/1.12 var(--fd),sans-serif;margin:10px 0 2px}
+.w320 .ttl{font-size:calc(var(--ttl) - 4px)}
+.sub{font:500 13.5px/1.3 "Geist",sans-serif;color:var(--ink-2);margin:0 0 14px}
+.chips{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.chip{height:36px;padding:0 14px;border-radius:999px;display:inline-flex;align-items:center;font:600 13px/1 "Geist",sans-serif;background:var(--paper-3);box-shadow:var(--elev),inset 0 0 0 1px var(--rule)}
+.chip.on{background:var(--ink);color:var(--paper)}
+.card{display:flex;gap:12px;padding:12px;border-radius:24px;background:var(--paper-3);box-shadow:var(--elev),inset 0 0 0 1px var(--rule);margin-bottom:10px}
+.card .th{width:84px;height:84px;border-radius:16px;flex:none}
+.w320 .card .th{width:60px;height:60px}
+.card b{display:block;font:650 17px/1.2 "Geist",sans-serif}
+.card small{display:block;color:var(--ink-2);font:13px/1.35 "Geist",sans-serif;margin-top:4px}
+.card .open{display:inline-block;margin-top:8px;font:600 12.5px/1 "Geist",sans-serif;padding:5px 9px;border-radius:999px}
+.t-light .open{background:#DFF0E7;color:#15744A}.t-dark .open{background:#142C26;color:#3BD98E}
+.mapv{position:absolute;inset:0;background:var(--land)}
+.mapv svg.streets{position:absolute;inset:0;width:100%;height:100%}
+.mchip{position:absolute;top:56px;left:16px;height:36px;padding:0 12px 0 9px;border-radius:18px;background:var(--paper-3);box-shadow:var(--elev),inset 0 0 0 1px var(--rule);display:flex;align-items:center;color:var(--ink)}
+.t-dark .mchip{box-shadow:0 2px 10px rgba(0,0,0,.6),inset 0 0 0 1px var(--rule)}
+.mfabs{position:absolute;top:56px;right:16px;display:flex;flex-direction:column;gap:10px}
+.msheet{position:absolute;left:0;right:0;bottom:0;height:300px;background:var(--paper);border-radius:28px 28px 0 0;padding:8px 16px;box-shadow:0 -12px 40px rgba(60,40,100,.12)}
+.t-dark .msheet{box-shadow:0 -1px 0 var(--rule),0 -16px 48px rgba(0,0,0,.55)}
+.grab{width:38px;height:5px;border-radius:3px;background:var(--ink-3);opacity:.5;margin:0 auto 10px}
+.field{flex:1;height:48px;border-radius:24px;background:var(--paper-3);box-shadow:inset 0 0 0 1px var(--rule);display:flex;align-items:center;gap:8px;padding:0 14px;color:var(--ink-3);font:15px "Geist",sans-serif;min-width:0}
+.field svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;flex:none}
+.sheetrow{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.pin{position:absolute;width:26px;height:26px;border-radius:13px;border:3px solid var(--paper-3);box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.scrim{position:absolute;inset:0;background:rgba(33,27,44,.36)}
+.t-dark .scrim{background:rgba(0,0,0,.65)}
+.pop{position:absolute;left:0;right:0;bottom:0;background:var(--paper);border-radius:28px 28px 0 0;padding:8px 20px 34px}
+.pop .ph{display:flex;align-items:center;gap:12px;margin:6px 0 12px}
+.pop .ph svg.ai{width:44px;height:44px;border-radius:12px;flex:none}
+.pop h3{font:600 22px/1.15 var(--fd),sans-serif;margin:0;flex:1}
+.pop h3 .wl{display:block;font:600 13px/1.2 "Geist",sans-serif;color:var(--ink-2);margin-bottom:5px}
+.pop h3 svg{display:block}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pop p{margin:0 0 16px;color:var(--ink-2);font:15px/1.45 "Geist",sans-serif}
+.pop .gbtn{height:52px;border-radius:26px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font:600 15px "Geist",sans-serif}
+.pop .not{text-align:center;margin-top:12px;font:600 14px "Geist",sans-serif;color:var(--ink-2)}
+.x{width:40px;height:40px;border-radius:20px;background:var(--paper-2);display:grid;place-items:center}
+.x svg{width:18px;height:18px;stroke:var(--ink);stroke-width:2;fill:none;stroke-linecap:round}
+/* laptop */
+.laptop{display:flex;height:430px;border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px var(--pg-rule),0 18px 40px rgba(0,0,0,.18);margin-top:12px}
+.laptop .side{width:440px;flex:none;padding:12px 16px;position:relative;z-index:2;box-shadow:2px 0 18px rgba(0,0,0,.12)}
+.laptop .lmap{flex:1;min-width:0;position:relative;background:var(--land)}
+.lnote{display:none;color:var(--pg-ink2);font-size:14px}
+@media (max-width:720px){.laptop{display:none}.lnote{display:block}}
+.legend{color:var(--pg-ink2);font-size:13.5px;margin:6px 0 0;max-width:70ch}
+.spec{font:500 12px/1.3 "Geist",sans-serif;color:var(--pg-ink2);text-align:center;margin-top:14px;max-width:390px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Off-Grid logo</h1>
+  <p class="lede">Four marks, one drawn wordmark. Each is shown at favicon (16 and 32 px), app-icon (180 px and 60 px on a home screen) and header size, on Light (Sorbet) and Dark (Night).</p>
+  <div id="concepts"></div>
+
+  <div class="section">
+    <h2>Where the name sits</h2>
+    <p class="legend">Home on phone (List), the map view, the welcome pop-up, and a 320 px phone. Pick a mark to swap it in.</p>
+    <div class="switch" id="sw"></div>
+    <div class="phones" id="phones"></div>
+    <h2 style="margin-top:28px">Laptop, 1280 px</h2>
+    <p class="legend">Top: Home (List), Light. Bottom: map view, Dark. The name sits in the left panel, never on the map.</p>
+    <p class="lnote">The laptop mock shows on screens 720 px and wider.</p>
+    <div class="laptop t-light" id="lap1"></div>
+    <div class="laptop t-dark" id="lap2"></div>
+  </div>
+</div>
+<script>
+var REC = 3;
+var NAMES = {1:'Pop-out', 2:'Pin out', 3:'Diagonal', 4:'Breakout'};
+var IDEAS = {
+  1:'A 3 by 3 block grid with one block popped off. Reads as "off the grid" in one look.',
+  2:'A pin past the corner of a faint street grid: the place you go is off the usual map.',
+  3:'A route follows the grid, then cuts out on a diagonal to a dot. Chicago has diagonal avenues on its grid; every city reads it as "a way out".',
+  4:'The O with a gap and a dot that slipped out. Simplest at tiny sizes; least about maps.'
+};
+var T = {
+  light:{ink:'#211B2C', acc:'#A82E58', bg:'#FCFAFF'},
+  dark: {ink:'#F7F5FC', acc:'#C6FF3D', bg:'#0B0A10'}
+};
+function markInner(c, t, small){
+  var k = T[t], ink = k.ink, acc = k.acc, bg = k.bg, s = '';
+  if (c === 3 && small) { // small-size cut (32 px and under): 2+2 grid lines, heavier strokes
+    s += '<path d="M18 12V46M31 12V46M2 29H36M2 42H36" fill="none" stroke="'+ink+'" stroke-opacity="'+(t==='dark'?.5:.45)+'" stroke-width="4.5" stroke-linecap="round"/>';
+    s += '<path d="M5 42H18V29L32 15" fill="none" stroke="'+acc+'" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40.5" cy="7.5" r="6.5" fill="'+acc+'"/>';
+    return s;
+  }
+  if (c === 1) {
+    [[3,13],[15,13],[3,25],[15,25],[27,25],[3,37],[15,37],[27,37]].forEach(function(p){ s += '<rect x="'+p[0]+'" y="'+p[1]+'" width="9" height="9" rx="2" fill="'+ink+'"/>'; });
+    s += '<rect x="34" y="2" width="9" height="9" rx="2" fill="'+acc+'" transform="rotate(14 38.5 6.5)"/>';
+  } else if (c === 2) {
+    s += '<path d="M6 18V46M17 18V46M28 30V46M2 22H22M2 33H34M2 44H34" fill="none" stroke="'+ink+'" stroke-opacity="'+(t==='dark'?.34:.32)+'" stroke-width="3.4" stroke-linecap="round"/>';
+    s += '<path d="M34 37C34 37 23 25.5 23 15a11 11 0 0 1 22 0c0 10.5-11 22-11 22z" fill="'+acc+'" stroke="'+bg+'" stroke-width="3" paint-order="stroke"/><circle cx="34" cy="15" r="4" fill="'+bg+'"/>';
+  } else if (c === 3) {
+    s += '<path d="M6 14V46M18 14V46M30 14V46M2 18H34M2 30H34M2 42H34" fill="none" stroke="'+ink+'" stroke-opacity="'+(t==='dark'?.34:.32)+'" stroke-width="3.4" stroke-linecap="round"/>';
+    s += '<path d="M6 42H18V30L33 15" fill="none" stroke="'+acc+'" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="41" cy="7" r="5.5" fill="'+acc+'"/>';
+  } else {
+    s += '<path d="M35.1 21.9A15 15 0 1 1 26.1 12.9" fill="none" stroke="'+ink+'" stroke-width="7" stroke-linecap="round"/><circle cx="40" cy="8.5" r="5.5" fill="'+acc+'"/>';
+  }
+  return s;
+}
+function wordInner(t){
+  var k = T[t];
+  return '<g fill="none" stroke="'+k.ink+'" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">' +
+    '<circle cx="16" cy="20" r="13"/><path d="M46 33V15a8 8 0 0 1 8-8"/><path d="M64 33V15a8 8 0 0 1 8-8"/><path d="M40 15H70"/>' +
+    '<path d="M81 23H89" stroke="'+k.acc+'"/><path d="M121.2 10.8A13 13 0 1 0 125 20H114"/><path d="M136 33V22a7 7 0 0 1 7-7h3"/><path d="M158 15V33"/>' +
+    '<circle cx="158" cy="5" r="3.6" fill="'+k.ink+'" stroke="none"/><circle cx="178" cy="24" r="9"/><path d="M187 7V33"/></g>';
+}
+function mark(c, t, px){ return '<svg viewBox="0 0 48 48" width="'+px+'" height="'+px+'" aria-hidden="true">'+markInner(c,t,px<=32)+'</svg>'; }
+function lockup(c, t, h){ return '<svg viewBox="0 0 254 48" height="'+h+'" width="'+Math.round(h*254/48)+'" role="img" aria-label="Off-Grid">'+markInner(c,t,h<=32)+'<g transform="translate(62 5)">'+wordInner(t)+'</g></svg>'; }
+function wordOnly(t, h){ return '<svg viewBox="-3 -2 196 41" height="'+h+'" width="'+Math.round(h*196/41)+'" role="img" aria-label="Off-Grid">'+wordInner(t)+'</svg>'; }
+var gid = 0;
+function appIcon(c, px, rx){ // always the Night tile: one icon on every home screen
+  var id = 'g' + (++gid);
+  return '<svg class="ai" viewBox="0 0 180 180" width="'+px+'" height="'+px+'" aria-hidden="true"><defs><radialGradient id="'+id+'" cx="0" cy="0" r="1.2"><stop offset="0" stop-color="#8B5CF6" stop-opacity=".38"/><stop offset=".6" stop-color="#8B5CF6" stop-opacity="0"/></radialGradient></defs>' +
+    '<rect width="180" height="180" rx="'+(rx||0)+'" fill="#0B0A10"/><rect width="180" height="180" rx="'+(rx||0)+'" fill="url(#'+id+')"/>' +
+    '<g transform="translate(36 36) scale(2.25)">'+markInner(c,'dark',px<=64)+'</g></svg>';
+}
+function favicon(c, px){ return '<svg viewBox="0 0 48 48" width="'+px+'" height="'+px+'" aria-hidden="true"><rect width="48" height="48" rx="11" fill="#0B0A10"/><g transform="translate(4.8 4.8) scale(.8)">'+markInner(c,'dark',true)+'</g></svg>'; }
+
+function panel(c, t){
+  return '<div class="panel '+t+'"><span class="tag">'+(t==='light'?'Light · Sorbet':'Dark · Night')+'</span>' +
+    '<div class="big">'+lockup(c,t,56)+'</div>' +
+    '<div class="row">' +
+      '<div class="cell">'+lockup(c,t,24)+'<div class="cap">Phone header, 24 px</div></div>' +
+      '<div class="cell">'+lockup(c,t,28)+'<div class="cap">Laptop header, 28 px</div></div>' +
+      '<div class="cell">'+wordOnly(t,16)+'<div class="cap">Under 360 px, 16 px</div></div>' +
+    '</div>' +
+    '<div class="row">' +
+      '<div class="cell"><div class="tabbar"><div class="tab">'+favicon(c,16)+'<span>Off-Grid</span></div></div><div class="cap">Browser tab, 16 px</div></div>' +
+      '<div class="cell">'+favicon(c,32)+'<div class="cap">32 px</div></div>' +
+      '<div class="cell">'+mark(c,t,16)+'<div class="cap">Bare 16 px</div></div>' +
+    '</div>' +
+    '<div class="row">' +
+      '<div class="cell">'+appIcon(c,180,40)+'<div class="cap">App icon, 180 px</div></div>' +
+      '<div class="cell"><div class="springboard"><div class="app"><span class="ph"></span><b>Photos</b></div><div class="app">'+appIcon(c,60,14)+'<b>Off-Grid</b></div><div class="app"><span class="ph"></span><b>Maps</b></div></div><div class="cap">Home screen, 60 px</div></div>' +
+    '</div></div>';
+}
+var out = '';
+[1,2,3,4].forEach(function(c){
+  out += '<section class="concept"><div class="c-head"><h2>'+c+' · '+NAMES[c]+(c===REC?'<span class="rec">Recommended</span>':'')+'</h2><p>'+IDEAS[c]+'</p></div><div class="pair">'+panel(c,'light')+panel(c,'dark')+'</div></section>';
+});
+document.getElementById('concepts').innerHTML = out;
+
+var IC = {
+  palette:'<svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.8 1.8-1.7 0-1.3-1-1.6-1-2.7 0-1 .8-1.6 1.8-1.6H17a4 4 0 0 0 4-4C21 6.6 17 3 12 3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10.5" cy="7.2" r="1"/><circle cx="15" cy="7.5" r="1"/></svg>',
+  search:'<svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.6-4.6"/></svg>',
+  saved:'<svg viewBox="0 0 24 24"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z"/></svg>',
+  user:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c1.2-3.8 4-5.5 7.5-5.5s6.3 1.7 7.5 5.5"/></svg>',
+  target:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>'
+};
+function ib(n){ return '<span class="ib">'+IC[n]+'</span>'; }
+function streets(){ // simple drawn grid with one diagonal, std map colors
+  var s = '<svg class="streets" viewBox="0 0 390 640" preserveAspectRatio="xMidYMid slice"><rect x="250" y="0" width="140" height="640" fill="var(--water)"/><rect x="40" y="120" width="120" height="90" rx="6" fill="var(--park)"/>';
+  for (var x = 20; x < 250; x += 46) s += '<path d="M'+x+' 0V640" stroke="var(--case)" stroke-width="9"/><path d="M'+x+' 0V640" stroke="var(--street)" stroke-width="6"/>';
+  for (var y = 30; y < 640; y += 46) s += '<path d="M0 '+y+'H250" stroke="var(--case)" stroke-width="9"/><path d="M0 '+y+'H250" stroke="var(--street)" stroke-width="6"/>';
+  s += '<path d="M0 520L250 170" stroke="var(--case)" stroke-width="12"/><path d="M0 520L250 170" stroke="var(--street)" stroke-width="9"/></svg>';
+  return s;
+}
+function pins(){ return '<span class="pin" style="left:90px;top:250px;background:#3A5CCC"></span><span class="pin" style="left:170px;top:200px;background:#A82A80"></span><span class="pin" style="left:60px;top:150px;background:#3A7218"></span><span class="pin" style="left:200px;top:290px;background:#BC2843"></span>'; }
+function card(name, meta, color){ return '<div class="card"><span class="th" style="background:linear-gradient(135deg,'+color+','+color+'B3)"></span><div><b>'+name+'</b><small>'+meta+'</small><span class="open">Open till 10 pm</span></div></div>'; }
+function homePhone(c, t, w320){
+  if (window.innerWidth < 440) w320 = true;   // the mock itself is narrower than 360 px here, so it follows the under-360 rule
+  var lk = w320 ? wordOnly(t,16) : lockup(c,t,24);
+  return '<div><div class="phone t-'+t+(w320?' w320':'')+'"><div class="sb"><span>9:41</span><span>&#9679;&#9679;&#9679;</span></div><div class="home">' +
+    '<div class="brandrow"><span class="lk">'+lk+'</span><span class="icons">'+ib('palette')+ib('search')+ib('saved')+ib('user')+'</span></div>' +
+    '<h1 class="ttl">Three for now</h1><p class="sub">near Lincoln Park ›</p>' +
+    '<div class="chips"><span class="chip">Date</span><span class="chip on">Friends</span><span class="chip">Solo</span><span class="chip on">Now</span><span class="chip">Today</span></div>' +
+    card('Ice skating at the Ribbon','Skating · 12 min walk','#3A5CCC') + card('Lantern night at the Zoo','Lights · 8 min drive','#A82A80') +
+    '</div></div><p class="spec">'+(w320?'320 px: wordmark only (16 px), no mark':'Home (List), '+(t==='light'?'Light':'Dark')+': lockup 24 px, left of the icons')+'</p></div>';
+}
+function mapPhone(c, t){
+  return '<div><div class="phone t-'+t+'"><div class="mapv">'+streets()+pins()+'</div><div class="sb" style="position:relative"><span>9:41</span><span>&#9679;&#9679;&#9679;</span></div>' +
+    '<div class="mchip">'+lockup(c,t,20)+'</div><div class="mfabs">'+ib('saved')+ib('target')+'</div>' +
+    '<div class="msheet"><div class="grab"></div><div class="sheetrow"><span class="field">'+IC.search+'Karaoke, cheese, Pilsen</span>'+ib('saved')+'</div>' +
+    '<p class="sub" style="font-size:15px;color:var(--ink)">Now near Lincoln Park</p>'+card('Ice skating at the Ribbon','Skating · 12 min walk','#3A5CCC')+'</div></div><p class="spec">Map view: 36 px pill top-left (lockup 20 px). Fabs stay top-right.</p></div>';
+}
+function laptopMap(c, t){ // map view on laptop: the sheet is the side panel; a 40 px brand row sits above the search row
+  return '<div class="side" style="background:var(--paper)"><div class="brandrow" style="height:40px">'+lockup(c,t,28)+'</div>' +
+    '<div class="sheetrow" style="margin-top:4px"><span class="field">'+IC.search+'Karaoke, cheese, Pilsen</span>'+ib('saved')+ib('user')+'</div>' +
+    '<p class="sub" style="font-size:15px;color:var(--ink)">Now near Lincoln Park</p>'+card('Ice skating at the Ribbon','Skating · 12 min walk','#3A5CCC')+card('Lantern night at the Zoo','Lights · 8 min drive','#A82A80')+'</div><div class="lmap">'+streets()+pins()+'</div>';
+}
+function welcomePhone(c, t){
+  return '<div><div class="phone t-'+t+'"><div class="mapv">'+streets()+pins()+'</div><div class="scrim"></div>' +
+    '<div class="pop"><div class="grab"></div><div class="ph">'+appIcon(c,44,0)+'<h3><small class="wl">Welcome to</small><span class="vh">Off-Grid</span>'+wordOnly(t,22)+'</h3><span class="x"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></span></div>' +
+    '<p>Keep your saves on every device.</p><div class="gbtn">Sign in with Google</div><div class="not">Not now</div></div></div><p class="spec">Welcome pop-up: the app icon (44 px, radius 12) before the title.</p></div>';
+}
+function laptop(c, t){
+  return '<div class="side" style="background:var(--paper)"><div class="brandrow"><span class="lk">'+lockup(c,t,28)+'</span><span class="icons">'+ib('palette')+ib('search')+ib('saved')+ib('user')+'</span></div>' +
+    '<h1 class="ttl">Three for now</h1><p class="sub">near Lincoln Park ›</p>'+card('Ice skating at the Ribbon','Skating · 12 min walk','#3A5CCC')+card('Lantern night at the Zoo','Lights · 8 min drive','#A82A80')+'</div>' +
+    '<div class="lmap">'+streets()+pins()+'</div>';
+}
+function drawMocks(c){
+  document.getElementById('phones').innerHTML = homePhone(c,'light') + homePhone(c,'dark') + mapPhone(c,'light') + mapPhone(c,'dark') + welcomePhone(c,'dark') + homePhone(c,'light',true);
+  document.getElementById('lap1').innerHTML = laptop(c,'light');
+  document.getElementById('lap2').innerHTML = laptopMap(c,'dark');
+  [].forEach.call(document.querySelectorAll('#sw button'), function(b){ b.setAttribute('aria-pressed', String(+b.dataset.c === c)); });
+}
+document.getElementById('sw').innerHTML = [1,2,3,4].map(function(c){ return '<button type="button" data-c="'+c+'">'+c+' · '+NAMES[c]+'</button>'; }).join('');
+document.getElementById('sw').addEventListener('click', function(e){ var b = e.target.closest('button'); if (b) drawMocks(+b.dataset.c); });
+var q = +(location.search.match(/c=(\d)/) || [])[1]; drawMocks(q >= 1 && q <= 4 ? q : REC);
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 254 48" width="508" height="96" role="img" aria-labelledby="t">
+  <title id="t">Off-Grid (concept 2: Pin out)</title>
+  <!-- Concept 2 "Pin out": a faint street grid; the pin sits past its top-right corner, half off the grid. -->
+  <style>
+    .ink{fill:#211B2C}.inks{stroke:#211B2C}.acc{fill:#A82E58}.accs{stroke:#A82E58}.dims{stroke:#211B2C;stroke-opacity:.32}.bg{fill:#FCFAFF}.bgs{stroke:#FCFAFF}
+    @media (prefers-color-scheme:dark){.ink{fill:#F7F5FC}.inks{stroke:#F7F5FC}.acc{fill:#C6FF3D}.accs{stroke:#C6FF3D}.dims{stroke:#F7F5FC;stroke-opacity:.34}.bg{fill:#0B0A10}.bgs{stroke:#0B0A10}}
+  </style>
+  <g id="mark">
+    <g class="dims" fill="none" stroke-width="3.4" stroke-linecap="round">
+      <path d="M6 18V46M17 18V46M28 30V46M2 22H22M2 33H34M2 44H34"/>
+    </g>
+    <path class="acc bgs" stroke-width="3" paint-order="stroke" d="M34 37C34 37 23 25.5 23 15a11 11 0 0 1 22 0c0 10.5-11 22-11 22z"/>
+    <circle class="bg" cx="34" cy="15" r="4"/>
+  </g>
+  <g id="wordmark" transform="translate(62 5)" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" class="inks">
+    <circle cx="16" cy="20" r="13"/>
+    <path d="M46 33V15a8 8 0 0 1 8-8"/>
+    <path d="M64 33V15a8 8 0 0 1 8-8"/>
+    <path d="M40 15H70"/>
+    <path class="accs" d="M81 23H89"/>
+    <path d="M121.2 10.8A13 13 0 1 0 125 20H114"/>
+    <path d="M136 33V22a7 7 0 0 1 7-7h3"/>
+    <path d="M158 15V33"/>
+    <circle class="ink" stroke="none" cx="158" cy="5" r="3.6"/>
+    <circle cx="178" cy="24" r="9"/>
+    <path d="M187 7V33"/>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+<!-- Off-Grid brand symbols (concept 3 "Diagonal"). Paste these two <symbol>s into the app's existing hidden <svg><defs> sprite.
+     Colors come from CSS: the ink parts use currentColor, the accent parts use var(--brand-acc). See design/2026-11-14-logo-spec.md section 4. -->
+<symbol id="brand-mark" viewBox="0 0 48 48">
+  <!-- small-size cut: used everywhere in the app (all in-app sizes are 32 px or less) -->
+  <path d="M18 12V46M31 12V46M2 29H36M2 42H36" fill="none" stroke="currentColor" stroke-opacity=".45" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M5 42H18V29L32 15" fill="none" style="stroke:var(--brand-acc)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="40.5" cy="7.5" r="6.5" style="fill:var(--brand-acc)"/>
+</symbol>
+<symbol id="brand-word" viewBox="-3 -2 196 41">
+  <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="16" cy="20" r="13"/><path d="M46 33V15a8 8 0 0 1 8-8"/><path d="M64 33V15a8 8 0 0 1 8-8"/><path d="M40 15H70"/>
+    <path d="M81 23H89" style="stroke:var(--brand-acc)"/>
+    <path d="M121.2 10.8A13 13 0 1 0 125 20H114"/><path d="M136 33V22a7 7 0 0 1 7-7h3"/><path d="M158 15V33"/>
+    <circle cx="158" cy="5" r="3.6" fill="currentColor" stroke="none"/><circle cx="178" cy="24" r="9"/><path d="M187 7V33"/>
+  </g>
+</symbol>
+<!-- Usage:
+<span class="brand-lk" role="img" aria-label="Off-Grid"><svg class="bm" aria-hidden="true"><use href="#brand-mark"/></svg><svg class="bw" aria-hidden="true"><use href="#brand-word"/></svg></span>
+-->

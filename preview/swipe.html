@@ -1,0 +1,577 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Swipe Deck v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Geist:wght@400;500;600&family=Fredoka:wght@500;600&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== Tokens: Night (default) ===== */
+:root, [data-skin="night"]{
+  --paper:#0B0A10; --paper-2:#15131D; --ink:#F7F5FC; --ink-2:#BDB8CC; --ink-3:#948EA6;
+  --accent:#C6FF3D; --on-accent:#0B0A10;
+  --f-display:"Unbounded",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-body:"Geist",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display-wt:600; --display-ls:-.01em;
+  --r-card:28px;
+  /* swipe layer */
+  --scrim-rgb:0 0 0;            /* scrims and rail backs */
+  --rail-bg:rgb(11 10 16 / .42); --rail-ring:rgb(255 255 255 / .16); --rail-ico:#fff;
+  --sw-yes:#C6FF3D;  --sw-yes-on:#0B0A10;
+  --sw-no:#F7F5FC;   --sw-no-on:#0B0A10;
+  --sw-love:#FF5FD2; --sw-love-on:#0B0A10;
+  --sw-never:#FF4F6E;--sw-never-on:#0B0A10;
+  --under-num:rgb(247 245 252 / .07);
+  --hero:radial-gradient(120% 90% at 0% 0%,rgba(139,92,246,.22),transparent 60%),radial-gradient(90% 80% at 100% 0%,rgba(255,95,210,.12),transparent 62%);
+  color-scheme:dark;
+}
+/* ===== Tokens: Sorbet light ===== */
+[data-skin="sorbet"]{
+  --paper:#FCFAFF; --paper-2:#F3EFFA; --ink:#211B2C; --ink-2:#544C62; --ink-3:#675F75;
+  --accent:#211B2C; --on-accent:#FFFFFF;
+  --f-display:"Fredoka",ui-rounded,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-body:"Figtree",ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --display-wt:600; --display-ls:0;
+  --r-card:32px;
+  --scrim-rgb:33 27 44;
+  --rail-bg:rgb(255 255 255 / .88); --rail-ring:rgb(33 27 44 / .08); --rail-ico:#211B2C;
+  --sw-yes:#B8F2C9;  --sw-yes-on:#10331F;
+  --sw-no:#FFFFFF;   --sw-no-on:#211B2C;
+  --sw-love:#FF9ECF; --sw-love-on:#2A1020;
+  --sw-never:#211B2C;--sw-never-on:#FFFFFF;
+  --under-num:rgb(33 27 44 / .07);
+  --hero:radial-gradient(110% 90% at 0% 0%,rgba(255,196,163,.55),transparent 60%),radial-gradient(90% 80% at 100% 0%,rgba(200,166,255,.45),transparent 62%);
+  color-scheme:light;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);overflow:hidden;
+  overscroll-behavior:none;-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+svg{display:block}
+
+/* ===== Stage: phone = full screen; laptop = centered tall card ===== */
+.stage{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.deck{position:relative;width:100%;height:100%;overflow:hidden;background:var(--paper);isolation:isolate}
+
+/* Under layer: the next card number, seen only while the photo is moving */
+.under{position:absolute;inset:0;display:grid;place-items:center;z-index:0}
+.under b{font-family:var(--f-display);font-weight:var(--display-wt);font-size:min(52vw,240px);line-height:1;
+  color:var(--under-num);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+
+/* The card = the full photo plus its own text. It is the only thing that moves. */
+.card{position:absolute;inset:0;z-index:1;touch-action:none;user-select:none;-webkit-user-select:none;
+  will-change:transform;transform-origin:50% 85%;overflow:hidden;border-radius:0;
+  transition:border-radius .16s ease, box-shadow .16s ease}
+.card.lifted{border-radius:var(--r-card);box-shadow:0 18px 48px rgb(0 0 0 / .35)}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;
+  -webkit-user-drag:none;transition:filter .08s linear}
+/* answer wash: a soft glow from the edge the card is heading to */
+.wash{position:absolute;inset:0;opacity:0;pointer-events:none;mix-blend-mode:normal}
+/* bottom scrim: only as tall as the text needs */
+.scrim-b{position:absolute;left:0;right:0;bottom:0;height:calc(210px + env(safe-area-inset-bottom));pointer-events:none;
+  background:linear-gradient(to top,rgb(var(--scrim-rgb) / .74) 0%,rgb(var(--scrim-rgb) / .46) 45%,rgb(var(--scrim-rgb) / 0) 100%)}
+.meta{position:absolute;left:20px;right:84px;bottom:calc(24px + env(safe-area-inset-bottom));color:#fff;pointer-events:none}
+.kind{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 10px 0 6px;border-radius:999px;
+  font-size:12px;font-weight:600;letter-spacing:.01em;color:#0B0A10;margin-bottom:10px}
+.kind svg{width:14px;height:14px}
+.name{font-family:var(--f-display);font-weight:var(--display-wt);letter-spacing:var(--display-ls);
+  font-size:26px;line-height:30px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  text-shadow:0 1px 12px rgb(0 0 0 / .25)}
+.hook{margin-top:6px;font-size:15px;line-height:20px;color:rgb(255 255 255 / .88);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.intro-line{font-family:var(--f-display);font-weight:var(--display-wt);letter-spacing:var(--display-ls);
+  font-size:30px;line-height:34px;color:#fff;position:absolute;left:20px;right:20px;z-index:3;
+  top:calc(68px + env(safe-area-inset-top));opacity:0;transform:translateY(-6px);text-shadow:0 1px 14px rgb(0 0 0 / .3);
+  transition:opacity .24s ease, transform .24s ease;pointer-events:none}
+.intro-line small{display:block;font-family:var(--f-body);font-size:14px;line-height:20px;font-weight:500;color:rgb(255 255 255 / .85);margin-top:8px;letter-spacing:0}
+.deck.intro .intro-line{opacity:1;transform:none}
+.deck.intro .scrim-t{height:calc(250px + env(safe-area-inset-top))}
+.scrim-t{transition:height .3s ease}
+.meta{transition:opacity .2s ease}
+
+/* The live word: a pill that fills toward the threshold, stays level while the photo tilts */
+.word{position:absolute;left:50%;top:42%;z-index:3;height:56px;transform:translate(-50%,-50%) scale(.7);opacity:0;
+  pointer-events:none;border-radius:999px;font-family:var(--f-display);font-weight:var(--display-wt);
+  font-size:26px;letter-spacing:var(--display-ls);white-space:nowrap}
+.word .base,.word .fill{display:flex;align-items:center;gap:10px;height:56px;padding:0 24px;border-radius:999px}
+.word .base{color:#fff;box-shadow:inset 0 0 0 2px rgb(255 255 255 / .9);background:rgb(0 0 0 / .18)}
+.word .fill{position:absolute;inset:0;background:var(--c);color:var(--on);clip-path:inset(0 100% 0 0 round 999px)}
+.word svg{width:22px;height:22px;flex:none}
+.word .tick{width:0;overflow:hidden;transition:width .14s ease}
+.word.locked .tick{width:22px}
+.word.pop{animation:pop .18s ease-out}
+@keyframes pop{0%{scale:1}45%{scale:1.1}100%{scale:1}}
+
+/* ===== Fixed layer above the photo (never moves with the card) ===== */
+.scrim-t{position:absolute;left:0;right:0;top:0;height:calc(116px + env(safe-area-inset-top));z-index:2;pointer-events:none;
+  background:linear-gradient(to bottom,rgb(var(--scrim-rgb) / .52),rgb(var(--scrim-rgb) / 0))}
+.top{position:absolute;left:0;right:0;top:env(safe-area-inset-top);z-index:3;padding:4px 8px 0;color:#fff}
+.top-row{display:grid;grid-template-columns:44px 1fr auto;align-items:center;height:44px}
+.icon-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:999px}
+.icon-btn svg{width:22px;height:22px}
+.icon-btn:disabled{opacity:.35;cursor:default}
+.count{justify-self:center;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.count span{opacity:.7;font-weight:500}
+.skip{height:44px;padding:0 10px;font-size:15px;font-weight:500;color:rgb(255 255 255 / .92)}
+.bar{display:flex;gap:2px;margin:2px 8px 0;height:4px}
+.bar i{flex:1;border-radius:2px;background:rgb(255 255 255 / .28);transition:background .2s ease}
+.bar i.done{background:#fff}
+.bar i.now{background:rgb(255 255 255 / .6)}
+
+/* Rail: 4 quiet icons, bottom right. Order mirrors the gestures: up on top, down at the bottom. */
+.rail{position:absolute;right:12px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:3;display:flex;flex-direction:column;gap:0}
+.rail button{position:relative;width:52px;height:48px;display:grid;place-items:center}
+.rail .dot{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;
+  background:var(--rail-bg);box-shadow:inset 0 0 0 1px var(--rail-ring);color:var(--rail-ico);
+  transition:transform .12s ease, background .12s ease, color .12s ease}
+.rail .dot svg{width:20px;height:20px}
+.rail button:active .dot{transform:scale(.9)}
+.rail button.hot .dot{background:var(--c);color:var(--on);transform:scale(1.12)}
+.rail .lbl{position:absolute;right:54px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:13px;font-weight:600;
+  color:#fff;background:rgb(0 0 0 / .45);padding:4px 10px;border-radius:999px;opacity:0;transition:opacity .2s ease;pointer-events:none}
+[data-skin="sorbet"] .rail .lbl{background:rgb(255 255 255 / .92);color:#211B2C}
+.deck.intro .rail .lbl{opacity:1}
+.deck.intro .meta{opacity:0}
+.rail button.peek .lbl{opacity:1}
+.rail button:hover .lbl{opacity:1}
+
+/* Finger used by the one-time hint */
+.finger{position:absolute;left:50%;top:52%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:999px;z-index:4;
+  background:rgb(255 255 255 / .28);box-shadow:0 0 0 2px rgb(255 255 255 / .9), 0 6px 18px rgb(0 0 0 / .3);opacity:0;pointer-events:none}
+
+/* End screen */
+.end{position:absolute;inset:0;z-index:6;background:var(--paper);background-image:var(--hero);display:none;
+  flex-direction:column;justify-content:flex-end;padding:24px 20px calc(32px + env(safe-area-inset-bottom))}
+.end.on{display:flex}
+.end h2{font-family:var(--f-display);font-weight:var(--display-wt);font-size:34px;line-height:38px;letter-spacing:var(--display-ls)}
+.end p{color:var(--ink-2);margin-top:10px;font-size:16px;line-height:22px}
+.end button{margin-top:24px;height:52px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-weight:600;font-size:16px}
+
+.toast{position:absolute;left:50%;top:calc(76px + env(safe-area-inset-top));transform:translate(-50%,-6px);z-index:5;opacity:0;
+  background:rgb(0 0 0 / .62);color:#fff;font-size:13px;font-weight:600;padding:7px 14px;border-radius:999px;transition:opacity .18s, transform .18s;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+[data-skin="sorbet"] .toast{background:rgb(255 255 255 / .94);color:#211B2C}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.kbd,.panel{display:none}
+
+/* ===== 320 px ===== */
+@media (max-width:359px){
+  .name{font-size:21px;line-height:25px}
+  .hook{font-size:14px;line-height:19px;-webkit-line-clamp:1}
+  .meta{left:16px;right:72px}.intro-line{left:16px;right:16px}
+  .intro-line{font-size:24px;line-height:28px}
+  .rail{right:8px}
+  .rail button{width:48px;height:44px}
+  .rail .dot{width:36px;height:36px}
+  .scrim-b{height:calc(180px + env(safe-area-inset-bottom))}
+  .word{font-size:22px;height:50px}.word .base,.word .fill{height:50px;padding:0 20px}
+}
+/* ===== Laptop ===== */
+@media (min-width:700px){
+  body{background-image:var(--hero);background-attachment:fixed}
+  .stage{gap:14px}
+  .deck{height:min(820px,calc(100vh - 72px));width:auto;aspect-ratio:9/16;border-radius:var(--r-card);
+    box-shadow:0 30px 80px rgb(0 0 0 / .28)}
+  .card.lifted{border-radius:var(--r-card)}
+  .kbd{display:block;font-size:12px;color:var(--ink-3);letter-spacing:.02em}
+  .kbd kbd{font-family:inherit;display:inline-block;min-width:20px;padding:1px 5px;border-radius:5px;
+    box-shadow:inset 0 0 0 1px var(--ink-3);text-align:center;margin:0 1px}
+  .panel{display:flex;position:fixed;top:16px;right:16px;gap:6px;font-size:13px}
+  .panel button{height:34px;padding:0 12px;border-radius:999px;background:var(--paper-2);color:var(--ink-2)}
+  .panel button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+  .rail button .lbl::after{content:attr(data-key);margin-left:6px;opacity:.6}
+}
+@media (prefers-reduced-motion:reduce){
+  .card,.word,.toast{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body data-skin="night">
+<div class="stage">
+  <div class="deck intro first" id="deck">
+    <div class="under" aria-hidden="true"><b id="underNum">2</b></div>
+
+    <div class="card" id="card" role="group" aria-roledescription="swipe card" aria-label="">
+      <img id="photo" alt="" draggable="false">
+      <div class="wash" id="wash"></div>
+      <div class="scrim-b"></div>
+      <div class="meta" id="meta">
+        <div class="kind" id="kind"></div>
+        <div class="name" id="name"></div>
+        <div class="hook" id="hook"></div>
+      </div>
+    </div>
+
+    <div class="word" id="word" aria-hidden="true">
+      <div class="base"><span class="ico"></span><span class="txt"></span></div>
+      <div class="fill"><span class="ico"></span><span class="txt"></span></div>
+    </div>
+    <div class="scrim-t"></div>
+    <div class="intro-line">24 swipes to get to know you<small>Drag the photo, or tap an icon</small></div>
+    <header class="top">
+      <div class="top-row">
+        <button class="icon-btn" id="undo" aria-label="Undo (Z)" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
+        </button>
+        <div class="count" id="count" aria-live="off">1 <span>/ 24</span></div>
+        <button class="skip" id="skip">Skip</button>
+      </div>
+      <div class="bar" id="bar" aria-hidden="true"></div>
+    </header>
+
+    <div class="rail" id="rail">
+      <button data-dir="up" aria-label="Love it (up)"><span class="lbl" data-key="↑">Love it</span><span class="dot"></span></button>
+      <button data-dir="right" aria-label="Into it (right)"><span class="lbl" data-key="→">Into it</span><span class="dot"></span></button>
+      <button data-dir="left" aria-label="Nah (left)"><span class="lbl" data-key="←">Nah</span><span class="dot"></span></button>
+      <button data-dir="down" aria-label="Never (down)"><span class="lbl" data-key="↓">Never</span><span class="dot"></span></button>
+    </div>
+
+    <div class="finger" id="finger" aria-hidden="true"></div>
+    <div class="toast" id="toast"></div>
+    <div class="sr" aria-live="polite" id="live"></div>
+
+    <div class="end" id="end">
+      <h2>That's 24.<br>Here's what we learned.</h2>
+      <p>Mock ends here. In the app this opens the reveal.</p>
+      <button id="again">Start again</button>
+    </div>
+  </div>
+  <div class="kbd"><kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd> to answer · <kbd>Z</kbd> undo</div>
+</div>
+<div class="panel">
+  <button data-skin-btn="night" aria-pressed="true">Night</button>
+  <button data-skin-btn="sorbet" aria-pressed="false">Sorbet</button>
+  <button id="replay">Replay hint</button>
+</div>
+
+<script>
+(function(){
+'use strict';
+var TOTAL = 24;
+var ICON = {
+  up:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2Z"/></svg>',
+  right:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
+  left:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg>',
+  down:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M6.5 6.5l11 11"/></svg>',
+  tick:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>'
+};
+var WORD = {up:'Love it', right:'Into it', left:'Nah', down:'Never'};
+var KINDS = {
+  play:{label:'Play', color:'#5AA2FF', svg:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="9" cy="9" r="1.3" fill="currentColor"/><circle cx="15" cy="15" r="1.3" fill="currentColor"/></svg>'},
+  nature:{label:'Nature', color:'#9BE35A', svg:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 19C5 10 11 5 19 5c0 8-5 14-14 14Z"/><path d="M5 19 13 11"/></svg>'},
+  make:{label:'Make', color:'#FF8A3D', svg:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5 4 4L9 19H5v-4L15 5Z"/></svg>'}
+};
+/* Real items, real hooks (data/activities.json, 2026-11-14). Photos from app/photos. */
+var ITEMS = [
+  {name:'Pinstripes Northbrook', hook:'Bowling and bocce with a full Italian bistro', kind:'play', img:'../photos/pa-pinstripes-northbrook-1.jpg', focus:'52% 50%'},
+  {name:'Garfield Park Conservatory', hook:'Tropical plants under glass on a cold day', kind:'nature', img:'../photos/pc-garfield-park-conservatory-1.jpg', focus:'62% 50%'},
+  {name:'Chicago Glass Collective', hook:'Shape molten glass into your own paperweight', kind:'make', img:'../photos/cm-chicago-glass-collective-hot-shop-1.jpg', focus:'45% 50%'}
+];
+ITEMS.forEach(function(it){ var i = new Image(); i.src = it.img; });
+
+var $ = function(id){ return document.getElementById(id); };
+var deck = $('deck'), card = $('card'), photo = $('photo'), wash = $('wash'), word = $('word');
+var rail = $('rail'), finger = $('finger');
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var params = new URLSearchParams(location.search);
+
+var idx = 0;            /* answered so far; the current card is idx+1 */
+var history = [];       /* directions answered */
+var busy = false, hinting = false, hintTimers = [];
+
+/* rail icons */
+Array.prototype.forEach.call(rail.querySelectorAll('button'), function(b){
+  b.querySelector('.dot').innerHTML = ICON[b.dataset.dir];
+});
+/* progress segments */
+var bar = $('bar');
+for (var s = 0; s < TOTAL; s++) bar.appendChild(document.createElement('i'));
+
+function colorsFor(dir){
+  var cs = getComputedStyle(document.body);
+  var key = {up:'love', right:'yes', left:'no', down:'never'}[dir];
+  return {c: cs.getPropertyValue('--sw-' + key).trim(), on: cs.getPropertyValue('--sw-' + key + '-on').trim()};
+}
+function render(){
+  var it = ITEMS[idx % ITEMS.length];
+  photo.src = it.img; photo.style.objectPosition = it.focus;
+  var k = KINDS[it.kind];
+  $('kind').innerHTML = k.svg + k.label; $('kind').style.background = k.color;
+  $('name').textContent = it.name; $('hook').textContent = it.hook;
+  card.setAttribute('aria-label', it.name + '. ' + it.hook);
+  $('count').innerHTML = (idx + 1) + ' <span>/ ' + TOTAL + '</span>';
+  $('underNum').textContent = Math.min(idx + 2, TOTAL);
+  Array.prototype.forEach.call(bar.children, function(seg, i){
+    seg.className = i < idx ? 'done' : (i === idx ? 'now' : '');
+  });
+  $('undo').disabled = idx === 0;
+  $('live').textContent = it.name;
+}
+
+/* ===== Drag visuals ===== */
+var W = 0, H = 0;
+function measure(){ var r = deck.getBoundingClientRect(); W = r.width; H = r.height; }
+function thresholds(){
+  return {x: Math.max(96, Math.min(140, W * 0.30)), y: Math.max(110, Math.min(170, H * 0.18))};
+}
+function dirOf(dx, dy){
+  /* vertical must clearly win (1.2x), so a sloppy right swipe is not read as love or never */
+  if (Math.abs(dy) > Math.abs(dx) * 1.2) return dy < 0 ? 'up' : 'down';
+  return dx >= 0 ? 'right' : 'left';
+}
+var curDir = null, locked = false;
+function setWord(dir){
+  if (dir === curDir) return;
+  curDir = dir;
+  var col = colorsFor(dir);
+  word.style.setProperty('--c', col.c); word.style.setProperty('--on', col.on);
+  Array.prototype.forEach.call(word.querySelectorAll('.ico'), function(n){ n.innerHTML = ICON[dir]; });
+  Array.prototype.forEach.call(word.querySelectorAll('.txt'), function(n){ n.textContent = WORD[dir]; });
+  Array.prototype.forEach.call(word.querySelectorAll('.tick'), function(n){ n.innerHTML = ICON.tick; });
+  Array.prototype.forEach.call(rail.querySelectorAll('button'), function(b){
+    var c2 = colorsFor(b.dataset.dir); b.style.setProperty('--c', c2.c); b.style.setProperty('--on', c2.on);
+  });
+}
+function paint(dx, dy){
+  var t = thresholds();
+  var dir = dirOf(dx, dy);
+  var dist = (dir === 'left' || dir === 'right') ? Math.abs(dx) : Math.abs(dy);
+  var p = dist / ((dir === 'left' || dir === 'right') ? t.x : t.y);
+  var rot = reduce ? 0 : Math.max(-9, Math.min(9, dx / 28));
+  card.style.transform = 'translate(' + dx + 'px,' + dy + 'px) rotate(' + rot + 'deg) scale(' + (dist > 2 ? .97 : 1) + ')';
+  var show = Math.min(1, Math.max(0, (dist - 8) / 40));     /* word fades in after 8 px */
+  setWord(dir);
+  var f = Math.min(1, p);
+  word.style.opacity = show;
+  /* the word lives on the fixed layer: it stays level and on screen while the photo moves */
+  word.style.transform = 'translate(-50%,-50%) scale(' + (0.7 + 0.3 * Math.min(1, show + f * .5)) + ')';
+  var fill = word.querySelector('.fill');
+  fill.style.clipPath = 'inset(0 ' + ((1 - f) * 100).toFixed(1) + '% 0 0 round 999px)';
+  /* wash from the edge it is heading to */
+  var col = colorsFor(dir).c;
+  var at = {right:'100% 50%', left:'0% 50%', up:'50% 0%', down:'50% 100%'}[dir];
+  wash.style.background = 'radial-gradient(90% 70% at ' + at + ',' + col + ',transparent 70%)';
+  wash.style.opacity = (Math.min(1, p) * 0.38).toFixed(3);
+  photo.style.filter = dir === 'down' ? 'grayscale(' + (Math.min(1, p) * 0.85).toFixed(2) + ')' :
+                       dir === 'up' ? 'saturate(' + (1 + Math.min(1, p) * 0.25).toFixed(2) + ')' : '';
+  var nowLocked = p >= 1;
+  if (nowLocked !== locked){
+    locked = nowLocked;
+    word.classList.toggle('locked', locked);
+    if (locked){
+      word.classList.remove('pop'); void word.offsetWidth; word.classList.add('pop');
+      if (navigator.vibrate && !hinting) { try { navigator.vibrate(12); } catch(e){} }
+    }
+  }
+  Array.prototype.forEach.call(rail.querySelectorAll('button'), function(b){
+    b.classList.toggle('hot', locked && b.dataset.dir === dir);
+  });
+  return {dir: dir, p: p};
+}
+function clearVisuals(){
+  word.style.opacity = 0; wash.style.opacity = 0; photo.style.filter = '';
+  word.classList.remove('locked'); locked = false; curDir = null;
+  Array.prototype.forEach.call(rail.querySelectorAll('button'), function(b){ b.classList.remove('hot'); });
+}
+function springBack(){
+  card.style.transition = reduce ? 'none' : 'transform .34s cubic-bezier(.34,1.56,.64,1), border-radius .16s ease, box-shadow .16s ease';
+  card.style.transform = 'translate(0,0) rotate(0) scale(1)';
+  word.style.transition = 'opacity .16s ease'; clearVisuals();
+  card.classList.remove('lifted');
+  setTimeout(function(){ card.style.transition = ''; word.style.transition = ''; }, 360);
+}
+
+/* ===== Commit ===== */
+function commit(dir, fromX, fromY){
+  if (busy) return; busy = true;
+  stopHint();
+  measure();
+  var off = {right:[W * 1.5, (fromY || 0) + 40], left:[-W * 1.5, (fromY || 0) + 40],
+             up:[fromX || 0, -H * 1.25], down:[fromX || 0, H * 1.25]}[dir];
+  var rot = (dir === 'right') ? 16 : (dir === 'left') ? -16 : (fromX || 0) / 28;
+  if (reduce){
+    card.style.transition = 'opacity .12s linear'; card.style.opacity = 0;
+  } else {
+    card.classList.add('lifted');
+    card.style.transition = 'transform .26s cubic-bezier(.4,0,1,1), border-radius .16s ease';
+    card.style.transform = 'translate(' + off[0] + 'px,' + off[1] + 'px) rotate(' + rot + 'deg) scale(.97)';
+  }
+  if (dir === 'up') toast('Saved');
+  setTimeout(function(){
+    history.push(dir); idx++;
+    deck.classList.remove('first');
+    if (idx >= TOTAL){ $('end').classList.add('on'); busy = false; return; }
+    clearVisuals();
+    card.style.transition = 'none'; card.classList.remove('lifted');
+    card.style.transform = reduce ? 'none' : 'scale(1.04)'; card.style.opacity = 0;
+    render();
+    void card.offsetWidth;
+    card.style.transition = reduce ? 'opacity .12s linear' : 'transform .22s cubic-bezier(.2,.8,.2,1), opacity .18s ease';
+    card.style.transform = 'none'; card.style.opacity = 1;
+    setTimeout(function(){ card.style.transition = ''; busy = false; }, 240);
+  }, reduce ? 200 : 260);
+}
+function tapAnswer(dir){
+  if (busy) return;
+  stopHint();
+  /* taps play a short version of the gesture, so tapping teaches swiping */
+  measure();
+  var t = thresholds();
+  var v = {right:[t.x, 0], left:[-t.x, 0], up:[0, -t.y], down:[0, t.y]}[dir];
+  card.classList.add('lifted');
+  card.style.transition = reduce ? 'none' : 'transform .14s ease-out';
+  paint(v[0], v[1]);
+  setTimeout(function(){ commit(dir, v[0], v[1]); }, reduce ? 200 : 170);
+}
+function undo(){
+  if (busy || !history.length) return;
+  stopHint();
+  busy = true; measure();
+  var dir = history.pop(); idx--;
+  $('end').classList.remove('on');
+  render();
+  var from = {right:[W * 1.5, 40], left:[-W * 1.5, 40], up:[0, -H * 1.2], down:[0, H * 1.2]}[dir];
+  card.style.transition = 'none'; card.style.opacity = 1;
+  card.style.transform = 'translate(' + from[0] + 'px,' + from[1] + 'px) rotate(' + (dir === 'right' ? 16 : dir === 'left' ? -16 : 0) + 'deg)';
+  card.classList.add('lifted');
+  void card.offsetWidth;
+  card.style.transition = reduce ? 'none' : 'transform .3s cubic-bezier(.2,.9,.3,1.1), border-radius .16s ease .2s';
+  card.style.transform = 'none';
+  setTimeout(function(){ card.classList.remove('lifted'); card.style.transition = ''; busy = false; }, 320);
+  if (dir === 'up') toast('Unsaved');
+}
+
+/* ===== Pointer drag ===== */
+var drag = null;
+card.addEventListener('pointerdown', function(e){
+  if (busy || e.button > 0) return;
+  stopHint();
+  measure();
+  drag = {id: e.pointerId, x: e.clientX, y: e.clientY, dx: 0, dy: 0, samples: [{x: e.clientX, y: e.clientY, t: e.timeStamp}]};
+  try { card.setPointerCapture(e.pointerId); } catch(err){}
+  card.style.transition = 'border-radius .16s ease, box-shadow .16s ease';
+  card.classList.add('lifted');
+  card.style.transform = 'scale(.97)';
+});
+card.addEventListener('pointermove', function(e){
+  if (!drag || e.pointerId !== drag.id) return;
+  drag.dx = e.clientX - drag.x; drag.dy = e.clientY - drag.y;
+  drag.samples.push({x: e.clientX, y: e.clientY, t: e.timeStamp});
+  if (drag.samples.length > 6) drag.samples.shift();
+  paint(drag.dx, drag.dy);
+});
+function endDrag(e){
+  if (!drag || e.pointerId !== drag.id) return;
+  var d = drag; drag = null;
+  var r = paint(d.dx, d.dy);
+  var a = d.samples[0], b = d.samples[d.samples.length - 1], dt = Math.max(1, b.t - a.t);
+  var vx = (b.x - a.x) / dt, vy = (b.y - a.y) / dt;
+  var v = (r.dir === 'left' || r.dir === 'right') ? Math.abs(vx) : Math.abs(vy);
+  var dist = (r.dir === 'left' || r.dir === 'right') ? Math.abs(d.dx) : Math.abs(d.dy);
+  if (r.p >= 1 || (v > 0.5 && dist > 32)) commit(r.dir, d.dx, d.dy);
+  else springBack();
+}
+card.addEventListener('pointerup', endDrag);
+card.addEventListener('pointercancel', function(e){ if (drag && e.pointerId === drag.id){ drag = null; springBack(); } });
+
+/* tap = answer; press and hold 400 ms = show the label only (no answer) */
+var holdT = null, held = false;
+rail.addEventListener('pointerdown', function(e){
+  var b = e.target.closest('button'); if (!b) return;
+  held = false;
+  holdT = setTimeout(function(){ held = true; b.classList.add('peek'); }, 400);
+});
+['pointerup','pointercancel','pointerleave'].forEach(function(ev){
+  rail.addEventListener(ev, function(){
+    clearTimeout(holdT);
+    Array.prototype.forEach.call(rail.querySelectorAll('.peek'), function(b){ setTimeout(function(){ b.classList.remove('peek'); }, 700); });
+  });
+});
+rail.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+rail.addEventListener('click', function(e){
+  var b = e.target.closest('button'); if (!b) return;
+  if (held){ held = false; return; }
+  tapAnswer(b.dataset.dir);
+});
+$('undo').addEventListener('click', undo);
+$('skip').addEventListener('click', function(){ toast('Skip leaves the deck (mock)'); });
+$('again').addEventListener('click', function(){ idx = 0; history = []; $('end').classList.remove('on'); render(); });
+document.addEventListener('keydown', function(e){
+  var map = {ArrowRight:'right', ArrowLeft:'left', ArrowUp:'up', ArrowDown:'down'};
+  if (map[e.key]){ e.preventDefault(); tapAnswer(map[e.key]); }
+  else if (e.key === 'z' || e.key === 'Z' || e.key === 'Backspace'){ e.preventDefault(); undo(); }
+  else if (e.key === 'Escape'){ $('skip').click(); }
+});
+
+var toastT;
+function toast(msg){
+  var t = $('toast'); t.textContent = msg; t.classList.add('on');
+  clearTimeout(toastT); toastT = setTimeout(function(){ t.classList.remove('on'); }, 1400);
+}
+
+/* ===== One-time hint: the card shows each move once, with a finger ===== */
+function stopHint(){
+  if (!hinting) return;
+  hinting = false;
+  hintTimers.forEach(clearTimeout); hintTimers = [];
+  finger.style.transition = 'opacity .15s'; finger.style.opacity = 0;
+  deck.classList.remove('intro');
+  if (!drag && !busy){ card.style.transition = 'transform .2s ease'; card.style.transform = 'none'; clearVisuals(); card.classList.remove('lifted'); }
+}
+function runHint(){
+  if (reduce){ deck.classList.add('intro'); hintTimers.push(setTimeout(function(){ deck.classList.remove('intro'); }, 2600)); hinting = true; return; }
+  hinting = true; deck.classList.add('intro','first'); measure();
+  var t = thresholds();
+  var steps = [['right', t.x * 1.05, 0], ['left', -t.x * 1.05, 0], ['up', 0, -t.y * 1.05], ['down', 0, t.y * 1.05]];
+  var at = 900;
+  function q(fn, ms){ hintTimers.push(setTimeout(fn, ms)); }
+  q(function(){ finger.style.transition = 'opacity .2s'; finger.style.opacity = 1; }, at - 200);
+  steps.forEach(function(s){
+    q(function(){
+      card.classList.add('lifted');
+      card.style.transition = 'transform .5s cubic-bezier(.3,.7,.3,1)';
+      finger.style.transition = 'transform .5s cubic-bezier(.3,.7,.3,1), opacity .2s';
+      finger.style.transform = 'translate(' + s[1] + 'px,' + s[2] + 'px)';
+      paint(s[1], s[2]);
+    }, at);
+    q(function(){
+      card.style.transition = 'transform .32s cubic-bezier(.34,1.4,.64,1)';
+      finger.style.transform = 'translate(0,0)';
+      card.style.transform = 'none'; word.style.transition = 'opacity .16s'; clearVisuals();
+    }, at + 850);
+    q(function(){ word.style.transition = ''; card.classList.remove('lifted'); }, at + 1150);
+    at += 1250;
+  });
+  q(function(){ finger.style.opacity = 0; }, at - 200);
+  q(function(){ hinting = false; deck.classList.remove('intro'); }, at + 600);
+}
+
+/* ===== Theme and test switches ===== */
+function setSkin(k){
+  document.body.dataset.skin = k;
+  Array.prototype.forEach.call(document.querySelectorAll('[data-skin-btn]'), function(b){ b.setAttribute('aria-pressed', b.dataset.skinBtn === k); });
+}
+Array.prototype.forEach.call(document.querySelectorAll('[data-skin-btn]'), function(b){ b.addEventListener('click', function(){ setSkin(b.dataset.skinBtn); }); });
+$('replay').addEventListener('click', function(){ stopHint(); idx = 0; history = []; render(); runHint(); });
+
+if (params.get('skin') === 'sorbet') setSkin('sorbet');
+var startAt = parseInt(params.get('at'), 10);
+if (startAt > 1 && startAt <= TOTAL){ idx = startAt - 1; for (var h = 0; h < idx; h++) history.push('right'); deck.classList.remove('intro','first'); }
+render();
+if (params.get('drag')){ /* freeze a drag state for screenshots: ?drag=right&p=0.7 */
+  measure(); var t0 = thresholds(), pp = parseFloat(params.get('p') || '0.7'), dd = params.get('drag');
+  deck.classList.remove('intro','first'); card.classList.add('lifted');
+  var vv = {right:[t0.x * pp, 10], left:[-t0.x * pp, 10], up:[8, -t0.y * pp], down:[8, t0.y * pp]}[dd];
+  paint(vv[0], vv[1]);
+} else if (idx === 0 && params.get('hint') !== '0'){ runHint(); }
+else { deck.classList.remove('intro'); }
+window.addEventListener('resize', measure);
+})();
+</script>
+</body>
+</html>
+

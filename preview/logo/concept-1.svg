@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 254 48" width="508" height="96" role="img" aria-labelledby="t">
+  <title id="t">Off-Grid (concept 1: Pop-out)</title>
+  <!-- Concept 1 "Pop-out": a 3x3 city grid with one block popped off. Mark = 48x48 box, wordmark = 190x38 monoline strokes (no font needed). -->
+  <style>
+    .ink{fill:#211B2C}.inks{stroke:#211B2C}.acc{fill:#A82E58}.accs{stroke:#A82E58}
+    @media (prefers-color-scheme:dark){.ink{fill:#F7F5FC}.inks{stroke:#F7F5FC}.acc{fill:#C6FF3D}.accs{stroke:#C6FF3D}}
+  </style>
+  <g id="mark">
+    <rect class="ink" x="3" y="13" width="9" height="9" rx="2"/>
+    <rect class="ink" x="15" y="13" width="9" height="9" rx="2"/>
+    <rect class="ink" x="3" y="25" width="9" height="9" rx="2"/>
+    <rect class="ink" x="15" y="25" width="9" height="9" rx="2"/>
+    <rect class="ink" x="27" y="25" width="9" height="9" rx="2"/>
+    <rect class="ink" x="3" y="37" width="9" height="9" rx="2"/>
+    <rect class="ink" x="15" y="37" width="9" height="9" rx="2"/>
+    <rect class="ink" x="27" y="37" width="9" height="9" rx="2"/>
+    <rect class="acc" x="34" y="2" width="9" height="9" rx="2" transform="rotate(14 38.5 6.5)"/>
+  </g>
+  <g id="wordmark" transform="translate(62 5)" fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" class="inks">
+    <circle cx="16" cy="20" r="13"/>
+    <path d="M46 33V15a8 8 0 0 1 8-8"/>
+    <path d="M64 33V15a8 8 0 0 1 8-8"/>
+    <path d="M40 15H70"/>
+    <path class="accs" d="M81 23H89"/>
+    <path d="M121.2 10.8A13 13 0 1 0 125 20H114"/>
+    <path d="M136 33V22a7 7 0 0 1 7-7h3"/>
+    <path d="M158 15V33"/>
+    <circle class="ink" stroke="none" cx="158" cy="5" r="3.6"/>
+    <circle cx="178" cy="24" r="9"/>
+    <path d="M187 7V33"/>
+  </g>
+</svg>

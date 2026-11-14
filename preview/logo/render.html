@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Off-Grid asset render</title>
+<!-- Asset builder, not a page for people. Draws one asset at the top-left corner at its exact pixel size, for a headless screenshot + crop.
+     ?c=1..4 (concept, default 3) & what=icon|maskable|og & s=<px for icon/maskable>
+     Example: render.html?c=3&what=icon&s=180  ->  apple-touch-icon.png -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@500&display=swap">
+<style>html,body{margin:0;background:#0B0A10}#out{position:absolute;left:0;top:0}#out svg{display:block}</style>
+</head>
+<body>
+<div id="out"></div>
+<script>
+var T = {dark:{ink:'#F7F5FC', acc:'#C6FF3D', bg:'#0B0A10'}};
+function markInner(c, small){
+  var ink = T.dark.ink, acc = T.dark.acc, bg = T.dark.bg, s = '';
+  if (c === 3 && small) {
+    return '<path d="M18 12V46M31 12V46M2 29H36M2 42H36" fill="none" stroke="'+ink+'" stroke-opacity=".5" stroke-width="4.5" stroke-linecap="round"/>' +
+      '<path d="M5 42H18V29L32 15" fill="none" stroke="'+acc+'" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="40.5" cy="7.5" r="6.5" fill="'+acc+'"/>';
+  }
+  if (c === 1) {
+    [[3,13],[15,13],[3,25],[15,25],[27,25],[3,37],[15,37],[27,37]].forEach(function(p){ s += '<rect x="'+p[0]+'" y="'+p[1]+'" width="9" height="9" rx="2" fill="'+ink+'"/>'; });
+    s += '<rect x="34" y="2" width="9" height="9" rx="2" fill="'+acc+'" transform="rotate(14 38.5 6.5)"/>';
+  } else if (c === 2) {
+    s += '<path d="M6 18V46M17 18V46M28 30V46M2 22H22M2 33H34M2 44H34" fill="none" stroke="'+ink+'" stroke-opacity=".34" stroke-width="3.4" stroke-linecap="round"/>';
+    s += '<path d="M34 37C34 37 23 25.5 23 15a11 11 0 0 1 22 0c0 10.5-11 22-11 22z" fill="'+acc+'" stroke="'+bg+'" stroke-width="3" paint-order="stroke"/><circle cx="34" cy="15" r="4" fill="'+bg+'"/>';
+  } else if (c === 3) {
+    s += '<path d="M6 14V46M18 14V46M30 14V46M2 18H34M2 30H34M2 42H34" fill="none" stroke="'+ink+'" stroke-opacity=".34" stroke-width="3.4" stroke-linecap="round"/>';
+    s += '<path d="M6 42H18V30L33 15" fill="none" stroke="'+acc+'" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="41" cy="7" r="5.5" fill="'+acc+'"/>';
+  } else {
+    s += '<path d="M35.1 21.9A15 15 0 1 1 26.1 12.9" fill="none" stroke="'+ink+'" stroke-width="7" stroke-linecap="round"/><circle cx="40" cy="8.5" r="5.5" fill="'+acc+'"/>';
+  }
+  return s;
+}
+function wordInner(){
+  var k = T.dark;
+  return '<g fill="none" stroke="'+k.ink+'" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">' +
+    '<circle cx="16" cy="20" r="13"/><path d="M46 33V15a8 8 0 0 1 8-8"/><path d="M64 33V15a8 8 0 0 1 8-8"/><path d="M40 15H70"/>' +
+    '<path d="M81 23H89" stroke="'+k.acc+'"/><path d="M121.2 10.8A13 13 0 1 0 125 20H114"/><path d="M136 33V22a7 7 0 0 1 7-7h3"/><path d="M158 15V33"/>' +
+    '<circle cx="158" cy="5" r="3.6" fill="'+k.ink+'" stroke="none"/><circle cx="178" cy="24" r="9"/><path d="M187 7V33"/></g>';
+}
+var GLOW = '<radialGradient id="glow" cx="0" cy="0" r="1.2"><stop offset="0" stop-color="#8B5CF6" stop-opacity=".38"/><stop offset=".6" stop-color="#8B5CF6" stop-opacity="0"/></radialGradient>';
+function icon(c, px, maskable){ // square, full bleed (iOS and Android round the corners themselves)
+  var pad = maskable ? 52 : 36, sc = (180 - 2 * pad) / 48;   // maskable: mark inside the 80% safe circle
+  return '<svg viewBox="0 0 180 180" width="'+px+'" height="'+px+'"><defs>'+GLOW+'</defs><rect width="180" height="180" fill="#0B0A10"/><rect width="180" height="180" fill="url(#glow)"/>' +
+    '<g transform="translate('+pad+' '+pad+') scale('+sc+')">'+markInner(c, px <= 64)+'</g></svg>';
+}
+function og(c){ // 1200 x 630 share preview: name big, left-aligned, one short line
+  return '<svg viewBox="0 0 1200 630" width="1200" height="630"><defs><radialGradient id="g1" cx="0" cy="0" r="1.1"><stop offset="0" stop-color="#8B5CF6" stop-opacity=".34"/><stop offset=".6" stop-color="#8B5CF6" stop-opacity="0"/></radialGradient>' +
+    '<radialGradient id="g2" cx="1" cy="0" r=".9"><stop offset="0" stop-color="#FF5FD2" stop-opacity=".16"/><stop offset=".62" stop-color="#FF5FD2" stop-opacity="0"/></radialGradient></defs>' +
+    '<rect width="1200" height="630" fill="#0B0A10"/><rect width="1200" height="630" fill="url(#g1)"/><rect width="1200" height="630" fill="url(#g2)"/>' +
+    '<g transform="translate(96 214) scale(4.2)">'+markInner(c,false)+'<g transform="translate(62 5)">'+wordInner()+'</g></g>' +
+    '<text x="100" y="480" fill="#BDB8CC" font-family="Geist, Segoe UI, sans-serif" font-weight="500" font-size="44">Fun that\'s open now, near you.</text></svg>';
+}
+var q = new URLSearchParams(location.search), c = +q.get('c') || 3, what = q.get('what') || 'icon', s = +q.get('s') || 180;
+document.getElementById('out').innerHTML = what === 'og' ? og(c) : icon(c, s, what === 'maskable');
+</script>
+</body>
+</html>
