@@ -14687,7 +14687,6 @@
                      "views",
                      "night-out"
                  ],
-        "description":  "The observation deck at the top of Willis Tower in the Loop, open 365 days a year. Winter hours (Oct 1 to Feb 28) are 9am-8pm daily and until 9pm on Saturdays, with last entry 30 minutes before closing. Over Thanksgiving weekend it stays open later: 9am-10pm on Friday Nov 27 and Saturday Nov 28. Every ticket includes the Chicago museum exhibit, the fast elevator ride and The Ledge, glass boxes that stick out 4.3 feet from the 103rd floor so you stand on glass 1,353 feet up. Tickets are timed (30-minute windows); Expedited Entry skips the regular elevator line, adult pricing is 12+, ages 3-11 pay youth price and under 3 are free. \u0027Holidays @ Skydeck\u0027 runs Nov 13 to Jan 4. Prices are only on the separate ticket site and were not captured.",
         "highlights":  [
                            "Winter: 9am-8pm daily, Saturday until 9pm",
                            "The Ledge: glass boxes 103 floors up (included)",
@@ -14825,6 +14824,7 @@
                              }
                          ],
         "price_note":  "Prices on tickets.theskydeck.com",
+        "description":  "The observation deck at the top of Willis Tower in the Loop, open 365 days a year. Winter hours (Oct 1 to Feb 28) are 9am-8pm daily and until 9pm on Saturdays, with last entry 30 minutes before closing. Over Thanksgiving weekend it stays open later: 9am-10pm on Friday Nov 27 and Saturday Nov 28. Every ticket includes the Chicago museum exhibit, the fast elevator ride and The Ledge, glass boxes that stick out 4.3 feet from the 103rd floor so you stand on glass 1,353 feet up. Tickets are timed (30-minute windows); Expedited Entry skips the regular elevator line, adult pricing is 12+, ages 3-11 pay youth price and under 3 are free. \u0027Holidays @ Skydeck\u0027 runs Nov 13 to Jan 4. Prices are only on the separate ticket site.",
         "photos":  [
                        {
                            "file":  "photos/pc-skydeck-chicago-1.jpg",
@@ -16877,7 +16877,6 @@
                      "class",
                      "cooking"
                  ],
-        "description":  "A cooking school and kitchen shop in Lincoln Square offering hands-on cooking classes, multi-session boot camps, and wine and cocktail classes led by sommeliers and mixologists. It also hosts private group cooking events. Class prices and store hours are on the class pages (not captured), so pick a class date online. Thanksgiving pies were available for pre-order and pickup at this location in 2026.",
         "highlights":  [
                            "Hands-on cooking classes",
                            "Wine and cocktail classes",
@@ -16942,6 +16941,7 @@
                          ],
         "price_note":  "",
         "hours_note":  "Classes at scheduled times; store hours not posted.",
+        "description":  "A cooking school and kitchen shop in Lincoln Square offering hands-on cooking classes, multi-session boot camps, and wine and cocktail classes led by sommeliers and mixologists. It also hosts private group cooking events. Class prices and store hours are on the class pages, so pick a class date online. Thanksgiving pies were available for pre-order and pickup at this location in 2026.",
         "photos":  [
                        {
                            "file":  "photos/pc-chopping-block-1.jpg",
@@ -17579,7 +17579,6 @@
                      "night-out",
                      "comedy"
                  ],
-        "description":  "Chicago\u0027s famous sketch and improv comedy theater in Old Town, with several stages in the same complex: the Mainstage at 1616 N. Wells and the e.t.c. Theater, UP Comedy Club and smaller rooms at 230 W. North Ave. Most shows start at 8pm, with a few earlier ones. Current listings include the Mainstage revue \u0027Pandemonium, Please Hold\u0027, \u0027Reality Detox: The Improv Experience\u0027 at e.t.c., \u0027Best of The Second City\u0027, and holiday shows: \u0027Not Today, Santa\u0027 at UP Comedy Club (from Nov 25) and the family show \u0027Rudolph Runs Wild\u0027 on the Mainstage (from Nov 27, 11am). Ticket prices and age rules are on the individual show pages (not captured).",
         "highlights":  [
                            "Legendary sketch/improv theater",
                            "Several stages: Mainstage, e.t.c., UP Comedy Club",
@@ -17640,6 +17639,7 @@
                          ],
         "price_note":  "Prices vary by show",
         "hours_note":  "Show-time venue, no fixed opening hours. Typical show times: most shows 8pm (Nov 11-13), some 7pm (Nov 18 at UP), a family matinee 11am (Nov 27). Show nights vary by stage and week. Box office hours not posted - call to confirm 312-337-3992.",
+        "description":  "Chicago\u0027s famous sketch and improv comedy theater in Old Town, with several stages in the same complex: the Mainstage at 1616 N. Wells and the e.t.c. Theater, UP Comedy Club and smaller rooms at 230 W. North Ave. Most shows start at 8pm, with a few earlier ones. Current listings include the Mainstage revue \u0027Pandemonium, Please Hold\u0027, \u0027Reality Detox: The Improv Experience\u0027 at e.t.c., \u0027Best of The Second City\u0027, and holiday shows: \u0027Not Today, Santa\u0027 at UP Comedy Club (from Nov 25) and the family show \u0027Rudolph Runs Wild\u0027 on the Mainstage (from Nov 27, 11am). Ticket prices and age rules are on the individual show pages.",
         "photos":  [
                        {
                            "file":  "photos/pc-second-city-1.jpg",
@@ -18007,7 +18007,6 @@
                      "magic",
                      "21plus"
                  ],
-        "description":  "A magic club and cocktail lounge in Andersonville with a lineup of magicians that rotates weekly. In the speakeasy-style Performance Bar, magicians do close-up tricks at your table while you order drinks and small plates (no show ticket needed for the bar), and the ticketed Harry Blackstone Cabaret show mixes close-up and stage magic. It is open every night: Monday-Wednesday 5-11pm, Thursday until midnight, Friday-Saturday until 2am and Sunday 3-11pm. Tickets and the show calendar are on its ThunderTix page (prices not captured). It is a 21+ venue, though 16+ are allowed with a legal guardian.",
         "highlights":  [
                            "Live magic shows plus cocktails",
                            "Open nightly (Fri-Sat until 2am)",
@@ -18115,6 +18114,7 @@
                          ],
         "price_note":  "",
         "hours_note":  "",
+        "description":  "A magic club and cocktail lounge in Andersonville with a lineup of magicians that rotates weekly. In the speakeasy-style Performance Bar, magicians do close-up tricks at your table while you order drinks and small plates (no show ticket needed for the bar), and the ticketed Harry Blackstone Cabaret show mixes close-up and stage magic. It is open every night: Monday-Wednesday 5-11pm, Thursday until midnight, Friday-Saturday until 2am and Sunday 3-11pm. Tickets and the show calendar are on its ThunderTix page. It is a 21+ venue, though 16+ are allowed with a legal guardian.",
         "photos":  [
                        {
                            "file":  "photos/pc-chicago-magic-lounge-1.jpg",
