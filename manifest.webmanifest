@@ -1,0 +1,16 @@
+{
+  "name": "Off-Grid",
+  "short_name": "Off-Grid",
+  "description": "Fun that's open now, near you.",
+  "id": "/off-grid/",
+  "start_url": "/off-grid/",
+  "scope": "/off-grid/",
+  "display": "browser",
+  "background_color": "#0B0A10",
+  "theme_color": "#0B0A10",
+  "icons": [
+    { "src": "/off-grid/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/off-grid/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/off-grid/icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
