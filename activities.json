@@ -52414,5 +52414,2688 @@
                            "page_url":  "https://www.loganarchchicago.com/"
                        }
                    ]
+    },
+    {
+        "id":  "cm-spin-chicago",
+        "name":  "SPIN Chicago (ping pong social club)",
+        "kind":  "place",
+        "category":  "games-arcade",
+        "genre":  "play",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "competitive",
+                     "group-friendly",
+                     "rainy-day"
+                 ],
+        "hook":  "Rent a ping pong table with drinks and a DJ",
+        "description":  "A ping pong social club in River North with rows of tables you rent by the hour, a bar and food, and DJ nights. Late at night it turns into SPIN After Dark with half-off ping pong.",
+        "highlights":  [
+                           "Tables hold up to 10 people",
+                           "SPIN After Dark: half-off ping pong from 9 pm weeknights, 10 pm weekends",
+                           "Family Day Out on Saturdays before 6 pm",
+                           "DJ nights, watch parties and leagues"
+                       ],
+        "address":  "344 N State St, Chicago, IL 60654",
+        "neighborhood":  "River North",
+        "lat":  41.8886664,
+        "lng":  -87.6283104,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_note":  "$29 per table per hour Tue-Thu, $39 Fri-Sat; split across your group",
+        "duration_minutes":  90,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+                                  [
+                                      "16:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "16:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "16:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "16:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "14:00",
+                                      "00:00"
+                                  ]
+                              ],
+                      "sun":  [
+
+                              ]
+                  },
+        "hours_note":  "Sunday and Monday are for private events only.",
+        "season":  null,
+        "booking":  "recommended",
+        "booking_url":  "https://www.sevenrooms.com/reservations/spinchicago/",
+        "age_note":  "All ages for Saturday family packages before 6 pm",
+        "phone":  "(773) 635-9999",
+        "website":  "https://wearespin.com/location/chicago/",
+        "source_urls":  [
+                            "https://wearespin.com/location/chicago/"
+                        ],
+        "energy":  "easy",
+        "vibe":  "lively",
+        "moods":  [
+                      "loud",
+                      "boozy"
+                  ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://wearespin.com/location/chicago/"
+                     },
+        "taste_checked":  "2026-11-14",
+        "sid":  375,
+        "photos":  [
+                       {
+                           "file":  "photos/cm-spin-chicago-1.jpg",
+                           "credit":  "Time Out Chicago",
+                           "page_url":  "https://www.timeout.com/chicago/things-to-do/spin"
+                       }
+                   ]
+    },
+    {
+        "id":  "cm-jazz-showcase",
+        "name":  "Jazz Showcase",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "live-music",
+                     "jazz",
+                     "solo"
+                 ],
+        "hook":  "Chicago\u0027s jazz club since 1947, two sets a night",
+        "description":  "A classic sit-down jazz club near Dearborn Station that books national and local jazz acts for two sets a night. The Sunday afternoon matinee is a relaxed way in, and kids 12 and under get in free to it.",
+        "highlights":  [
+                           "Two sets nightly, usually 8 pm and 10 pm",
+                           "Sunday matinee at 4 pm",
+                           "Kids 12 and under free at the matinee",
+                           "Short walk from the Harrison Red Line stop"
+                       ],
+        "address":  "806 S Plymouth Ct, Chicago, IL 60605",
+        "neighborhood":  "Printer\u0027s Row / South Loop",
+        "lat":  41.8717526,
+        "lng":  -87.6287938,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "Headliner weeks about $30-$35, VIP seats $45-$50. Kids 12 and under free at the Sunday matinee.",
+        "duration_minutes":  90,
+        "min_minutes":  75,
+        "hours":  null,
+        "hours_note":  "Sets at 8 pm and 10 pm Monday-Saturday (Monday-Wednesday vary by week). Sunday 4 pm matinee and 8 pm.",
+        "season":  null,
+        "booking":  "recommended",
+        "booking_url":  "https://www.jazzshowcase.com/calendar",
+        "age_note":  null,
+        "phone":  "(312) 360-0234",
+        "website":  "https://www.jazzshowcase.com/",
+        "source_urls":  [
+                            "https://www.jazzshowcase.com/",
+                            "https://www.jazzshowcase.com/visit"
+                        ],
+        "energy":  "chill",
+        "vibe":  "mixed",
+        "moods":  [
+                      "artsy",
+                      "romantic",
+                      "cozy"
+                  ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.jazzshowcase.com/visit"
+                     },
+        "taste_checked":  "2026-11-14",
+        "sid":  376,
+        "photos":  [
+                       {
+                           "file":  "photos/cm-jazz-showcase-1.jpg",
+                           "credit":  "Max Herman / Jazz Showcase, via Time Out Chicago",
+                           "page_url":  "https://www.timeout.com/chicago/music/jazz-showcase"
+                       }
+                   ]
+    },
+    {
+        "id":  "cm-buddy-guys-legends",
+        "name":  "Buddy Guy\u0027s Legends (blues club)",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "live-music",
+                     "blues"
+                 ],
+        "hook":  "Buddy Guy\u0027s own blues club, free early sets",
+        "description":  "The South Loop blues club owned by Buddy Guy, with a kitchen, a stage under the big Legends sign and Chicago blues bands most nights. Early evening sets are free and all ages; the later headline shows are 21+.",
+        "highlights":  [
+                           "Free all-ages acoustic set at dinner time Wed-Sat, free jazz set Sundays",
+                           "21+ shows from 9-9:30 pm",
+                           "No reservations, first come first served",
+                           "Kitchen open until about 11 pm"
+                       ],
+        "address":  "700 S Wabash Ave, Chicago, IL 60605",
+        "neighborhood":  "South Loop",
+        "lat":  41.8729625,
+        "lng":  -87.6264641,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_note":  "Early sets free. Cover $15 Sun-Thu, $25 Fri-Sat for the night shows.",
+        "duration_minutes":  120,
+        "min_minutes":  60,
+        "hours":  null,
+        "hours_note":  "Closed Monday and Tuesday. Free set Wed-Thu 6-8:30 pm, Fri-Sat 5:30-8 pm, Sun 5-8 pm; night shows from 9 or 9:30 pm.",
+        "closed_dates":  [
+                             "2026-11-25",
+                             "2026-11-26"
+                         ],
+        "season":  null,
+        "booking":  "walk-in",
+        "booking_url":  "https://buddyguy.com/",
+        "age_note":  "All ages until 8 pm, then 21+",
+        "phone":  "(312) 427-1190",
+        "website":  "https://buddyguy.com/",
+        "source_urls":  [
+                            "https://buddyguy.com/",
+                            "https://buddyguy.com/faq/"
+                        ],
+        "energy":  "chill",
+        "vibe":  "lively",
+        "moods":  [
+                      "loud",
+                      "boozy",
+                      "artsy"
+                  ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://buddyguy.com/faq/"
+                     },
+        "taste_checked":  "2026-11-14",
+        "sid":  377,
+        "photos":  [
+                       {
+                           "file":  "photos/cm-buddy-guys-legends-1.jpg",
+                           "credit":  "Wikimedia Commons (see file page for author and license)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Buddy_Guy_at_Legends,_2013.jpg"
+                       }
+                   ]
+    },
+    {
+        "id":  "cm-blue-chicago",
+        "name":  "Blue Chicago (blues bar)",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "live-music",
+                     "blues",
+                     "late-night"
+                 ],
+        "hook":  "Small River North bar with live blues 5 nights",
+        "description":  "A small, friendly blues bar in River North with live Chicago blues five nights a week, often led by powerhouse vocalists. Easy to pair with dinner downtown.",
+        "highlights":  [
+                           "Live blues Wednesday-Sunday",
+                           "Open late, until 2:30 am on Saturdays",
+                           "Near many River North hotels"
+                       ],
+        "address":  "536 N Clark St, Chicago, IL 60654",
+        "neighborhood":  "River North",
+        "lat":  41.89196,
+        "lng":  -87.6314113,
+        "indoor_outdoor":  "indoor",
+        "price_level":  null,
+        "price_note":  null,
+        "duration_minutes":  90,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+                                  [
+                                      "20:00",
+                                      "01:30"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "20:00",
+                                      "01:30"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "20:00",
+                                      "01:30"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "20:00",
+                                      "02:30"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "20:00",
+                                      "01:30"
+                                  ]
+                              ]
+                  },
+        "hours_note":  null,
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-12-24",
+                             "2026-12-25"
+                         ],
+        "season":  null,
+        "booking":  "walk-in",
+        "age_note":  "21+ with photo ID",
+        "phone":  "(312) 661-0100",
+        "website":  "https://www.bluechicago.com/",
+        "source_urls":  [
+                            "https://www.bluechicago.com/",
+                            "https://www.choosechicago.com/listing/blue-chicago/"
+                        ],
+        "energy":  "chill",
+        "vibe":  "lively",
+        "moods":  [
+                      "loud",
+                      "boozy"
+                  ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.bluechicago.com/"
+                     },
+        "taste_checked":  "2026-11-14",
+        "sid":  378,
+        "photos":  [
+                       {
+                           "file":  "photos/cm-blue-chicago-1.jpg",
+                           "credit":  "Choose Chicago",
+                           "page_url":  "https://www.choosechicago.com/listing/blue-chicago/"
+                       }
+                   ]
+    },
+    {
+        "id":  "cm-rosas-lounge",
+        "name":  "Rosa\u0027s Lounge (blues club)",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "live-music",
+                     "blues"
+                 ],
+        "hook":  "Family-run blues club with a weekly blues jam",
+        "description":  "A family-run neighborhood blues club in Logan Square, going for about 45 years, with Chicago blues bands Tuesday to Saturday and a Wednesday blues jam. Early acoustic sets some nights make a quieter start.",
+        "highlights":  [
+                           "Two main sets a night, 9:30 and 11 pm",
+                           "Wednesday blues jam",
+                           "Early 8:30 pm acoustic sets on some Wednesdays and Thursdays",
+                           "Tickets online or at the door"
+                       ],
+        "address":  "3420 W Armitage Ave, Chicago, IL 60647",
+        "neighborhood":  "Logan Square",
+        "lat":  41.9175256,
+        "lng":  -87.7127916,
+        "indoor_outdoor":  "indoor",
+        "price_level":  null,
+        "price_note":  null,
+        "duration_minutes":  120,
+        "min_minutes":  75,
+        "hours":  null,
+        "hours_note":  "Open Tuesday-Saturday; doors 8 pm, shows usually 9:30 and 11 pm. Sunday and Monday for special events only.",
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-12-24",
+                             "2026-12-25",
+                             "2027-01-01"
+                         ],
+        "season":  null,
+        "booking":  "recommended",
+        "booking_url":  "https://www.rosaslounge.com/events",
+        "age_note":  null,
+        "phone":  "(773) 342-0452",
+        "website":  "https://www.rosaslounge.com/",
+        "source_urls":  [
+                            "https://www.rosaslounge.com/",
+                            "https://www.rosaslounge.com/events"
+                        ],
+        "energy":  "chill",
+        "vibe":  "lively",
+        "moods":  [
+                      "loud",
+                      "boozy",
+                      "cozy"
+                  ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.rosaslounge.com/events"
+                     },
+        "taste_checked":  "2026-11-14",
+        "sid":  379,
+        "photos":  [
+                       {
+                           "file":  "photos/cm-rosas-lounge-1.jpg",
+                           "credit":  "Chicago Bar Project",
+                           "page_url":  "https://chibarproject.com/reviews/rosas/"
+                       }
+                   ]
+    },
+    {
+        "id":  "cm-constellation-chicago",
+        "name":  "Constellation (jazz and new-music venue)",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "live-music",
+                     "jazz",
+                     "cheap"
+                 ],
+        "hook":  "Adventurous jazz and new music, tickets from $5",
+        "description":  "A small North Center venue for creative jazz, new classical and experimental music. Good for a curious, listening-focused night out.",
+        "highlights":  [
+                           "Jazz, classical and experimental bookings",
+                           "Tickets roughly $5-$25",
+                           "Shows usually start 7:30-8:30 pm"
+                       ],
+        "address":  "3111 N Western Ave, Chicago, IL 60618",
+        "neighborhood":  "North Center",
+        "lat":  41.9381033,
+        "lng":  -87.6876392,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_note":  "Tickets $5-$25; many shows are sliding-scale.",
+        "duration_minutes":  90,
+        "min_minutes":  75,
+        "hours":  null,
+        "hours_note":  "Show nights only: doors 7-8 pm, music 7:30-8:30 pm.",
+        "season":  null,
+        "booking":  "recommended",
+        "booking_url":  "https://constellation-chicago.com/",
+        "age_note":  null,
+        "phone":  null,
+        "website":  "https://constellation-chicago.com/",
+        "source_urls":  [
+                            "https://constellation-chicago.com/"
+                        ],
+        "energy":  "chill",
+        "vibe":  "quiet",
+        "moods":  [
+                      "artsy",
+                      "quiet",
+                      "cheap"
+                  ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://constellation-chicago.com/"
+                     },
+        "taste_checked":  "2026-11-14",
+        "sid":  380,
+        "photos":  [
+                       {
+                           "file":  "photos/cm-constellation-chicago-1.jpg",
+                           "credit":  "Brett Swinney / Constellation, via Time Out Chicago",
+                           "page_url":  "https://www.timeout.com/chicago/music/constellation"
+                       }
+                   ]
+    },
+    {
+        "id":  "cm-chicago-glass-collective-hot-shop",
+        "name":  "Chicago Glass Collective: Hot Shop Saturdays (make a glass paperweight)",
+        "kind":  "place",
+        "category":  "classes-workshops",
+        "genre":  "make-something",
+        "tags":  [
+                     "date",
+                     "make-something",
+                     "glassblowing"
+                 ],
+        "hook":  "Shape molten glass into your own paperweight",
+        "description":  "A beginner glassblowing session in a Ravenswood glass studio: an instructor guides you one-on-one at the furnace while you gather and shape hot glass into a round, organic or egg-shaped paperweight. Book two back-to-back slots to go as a couple.",
+        "highlights":  [
+                           "One-on-one with the instructor",
+                           "Up to 2 people per hour, taking turns",
+                           "Lighted base available as an add-on",
+                           "Ages 14+"
+                       ],
+        "address":  "1770 W Berteau Ave, Suite 203-B, Chicago, IL 60613",
+        "neighborhood":  "Ravenswood",
+        "lat":  41.9583362,
+        "lng":  -87.6736649,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "price_note":  "$85 per person; lighted base $20 extra",
+        "duration_minutes":  40,
+        "min_minutes":  20,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+
+                              ],
+                      "thu":  [
+
+                              ],
+                      "fri":  [
+
+                              ],
+                      "sat":  [
+
+                              ],
+                      "sun":  [
+
+                              ]
+                  },
+        "hours_note":  "Hot Shop Saturdays only, 11 am-5 pm, booked in 20-minute slots.",
+        "date_hours":  {
+                           "2026-11-21":  [
+                                              [
+                                                  "11:00",
+                                                  "17:00"
+                                              ]
+                                          ],
+                           "2026-11-28":  [
+                                              [
+                                                  "11:00",
+                                                  "17:00"
+                                              ]
+                                          ],
+                           "2026-12-05":  [
+                                              [
+                                                  "11:00",
+                                                  "17:00"
+                                              ]
+                                          ],
+                           "2026-12-12":  [
+                                              [
+                                                  "11:00",
+                                                  "17:00"
+                                              ]
+                                          ],
+                           "2026-12-19":  [
+                                              [
+                                                  "11:00",
+                                                  "17:00"
+                                              ]
+                                          ]
+                       },
+        "hours_valid_to":  "2026-12-19",
+        "season":  null,
+        "booking":  "required",
+        "booking_url":  "https://www.chicagoglasscollective.com/scheduling",
+        "age_note":  "Ages 14+",
+        "phone":  "(216) 543-2329",
+        "website":  "https://www.chicagoglasscollective.com/",
+        "source_urls":  [
+                            "https://www.chicagoglasscollective.com/",
+                            "https://www.chicagoglasscollective.com/glass-blowing-info-page"
+                        ],
+        "energy":  "easy",
+        "vibe":  "quiet",
+        "moods":  [
+                      "artsy",
+                      "nerdy"
+                  ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.chicagoglasscollective.com/glass-blowing-info-page"
+                     },
+        "taste_checked":  "2026-11-14",
+        "sid":  382,
+        "photos":  [
+                       {
+                           "file":  "photos/cm-chicago-glass-collective-hot-shop-1.jpg",
+                           "credit":  "Chicago Glass Collective website",
+                           "page_url":  "https://www.chicagoglasscollective.com/glass-blowing-info-page"
+                       }
+                   ]
+    },
+    {
+        "id":  "cm-le-piano-rogers-park",
+        "name":  "Le Piano (jazz supper club, Rogers Park)",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "live-music",
+                     "jazz",
+                     "dinner"
+                 ],
+        "hook":  "Candlelit jazz and dinner with a Monday jam",
+        "description":  "A moody, vintage-styled jazz room in the Glenwood Arts District with a grand piano, dinner from the kitchen and live music every night. Monday is a jam session where local players sit in.",
+        "highlights":  [
+                           "Live music nightly from 7 pm",
+                           "Monday jam session",
+                           "Kitchen open during the shows",
+                           "Tickets online"
+                       ],
+        "address":  "6970 N Glenwood Ave, Chicago, IL 60626",
+        "neighborhood":  "Rogers Park",
+        "lat":  42.0087285,
+        "lng":  -87.6663449,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_note":  "Cover $10 Monday, $15 Tue-Thu, $20 Fri-Sat",
+        "duration_minutes":  120,
+        "min_minutes":  75,
+        "hours":  null,
+        "hours_note":  "Doors 6 pm, music from 7 pm. Kitchen until 9:30 pm Tue-Thu and Sun, 10:30 pm Fri-Sat.",
+        "season":  null,
+        "booking":  "recommended",
+        "booking_url":  "https://le-piano.turntabletickets.com",
+        "age_note":  null,
+        "phone":  "(773) 656-0456",
+        "website":  "https://www.lepianochicago.com/",
+        "source_urls":  [
+                            "https://www.lepianochicago.com/"
+                        ],
+        "energy":  "chill",
+        "vibe":  "mixed",
+        "moods":  [
+                      "romantic",
+                      "cozy",
+                      "artsy"
+                  ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.lepianochicago.com/"
+                     },
+        "taste_checked":  "2026-11-14",
+        "sid":  383,
+        "photos":  [
+                       {
+                           "file":  "photos/cm-le-piano-rogers-park-1.jpg",
+                           "credit":  "Le Piano website",
+                           "page_url":  "https://www.lepianochicago.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "cm-zebra-lounge",
+        "name":  "Zebra Lounge (Gold Coast piano bar)",
+        "kind":  "place",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "piano-bar",
+                     "late-night",
+                     "sing-along"
+                 ],
+        "hook":  "Tiny zebra-striped piano bar, open till 2 or 3",
+        "description":  "A tiny, old-school piano bar on a Gold Coast side street, decorated in zebra stripes, where a pianist plays requests and the room sings along late into the night. It fills up fast once the piano starts.",
+        "highlights":  [
+                           "Live piano and sing-alongs",
+                           "Open late every night",
+                           "Very small room; come early for a seat"
+                       ],
+        "address":  "1220 N State Pkwy, Chicago, IL 60610",
+        "neighborhood":  "Gold Coast",
+        "lat":  41.9045207,
+        "lng":  -87.6290613,
+        "indoor_outdoor":  "indoor",
+        "price_level":  null,
+        "price_note":  null,
+        "duration_minutes":  90,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "19:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "19:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "19:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "19:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "19:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "19:30",
+                                      "03:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "19:30",
+                                      "02:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  null,
+        "season":  null,
+        "booking":  "walk-in",
+        "age_note":  null,
+        "phone":  "(312) 642-5140",
+        "website":  "https://thezebralounge.net/",
+        "source_urls":  [
+                            "https://thezebralounge.net/"
+                        ],
+        "energy":  "chill",
+        "vibe":  "lively",
+        "moods":  [
+                      "loud",
+                      "boozy",
+                      "cozy"
+                  ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://thezebralounge.net/"
+                     },
+        "taste_checked":  "2026-11-14",
+        "sid":  385,
+        "photos":  [
+                       {
+                           "file":  "photos/cm-zebra-lounge-1.jpg",
+                           "credit":  "Zebra Lounge website",
+                           "page_url":  "https://thezebralounge.net/"
+                       }
+                   ]
+    },
+    {
+        "id":  "cm-chicago-archery-wood-dale",
+        "name":  "Chicago Archery (indoor range and lessons, Wood Dale)",
+        "kind":  "place",
+        "category":  "active",
+        "genre":  "play",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "archery",
+                     "competitive",
+                     "rainy-day"
+                 ],
+        "hook":  "Learn to shoot a bow at an indoor archery range",
+        "description":  "An indoor archery range and shop near O\u0027Hare where first-timers take a one-hour lesson with an instructor, then can come back to shoot on the open range. A different kind of date: calm, focused, and surprisingly competitive.",
+        "highlights":  [
+                           "First visit = a one-hour lesson with an instructor",
+                           "Open range time for returning archers",
+                           "Group and private lessons"
+                       ],
+        "address":  "365 Georgetown Square, Wood Dale, IL 60191",
+        "neighborhood":  "Wood Dale (west suburbs, near O\u0027Hare)",
+        "lat":  41.965034,
+        "lng":  -87.9963851,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "price_note":  "First visit: 1-hour private lesson $60 ($100 for two), bow and targets included. Range time $21 for trained archers.",
+        "duration_minutes":  60,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+                                  [
+                                      "14:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "14:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "14:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "15:00",
+                                      "18:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "12:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "12:00",
+                                      "16:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Open range closes at 6 pm on weekdays when classes run. Beginners must book a lesson.",
+        "season":  null,
+        "booking":  "required",
+        "booking_url":  "https://chicagoarchery.com/collections/frontpage/products/reserve-individual-private-lesson-here",
+        "age_note":  null,
+        "phone":  null,
+        "website":  "https://chicagoarchery.com/",
+        "source_urls":  [
+                            "https://www.chicagoarchery.com/"
+                        ],
+        "energy":  "easy",
+        "vibe":  "quiet",
+        "moods":  [
+                      "quiet",
+                      "nerdy"
+                  ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.chicagoarchery.com/"
+                     },
+        "closed_dates":  [
+                             "2026-11-26"
+                         ],
+        "taste_checked":  "2026-11-14",
+        "sid":  386,
+        "photos":  [
+
+                   ]
+    },
+    {
+        "id":  "cm-ballroom-dance-chicago-group-classes",
+        "name":  "Ballroom Dance Chicago (no-partner salsa, swing and ballroom classes)",
+        "kind":  "place",
+        "category":  "classes-workshops",
+        "genre":  "make-something",
+        "tags":  [
+                     "date",
+                     "dance",
+                     "salsa",
+                     "swing",
+                     "beginner-friendly"
+                 ],
+        "hook":  "Drop-in Latin and swing classes, no partner needed",
+        "description":  "A dance studio with beginner group classes in Latin (salsa, bachata), ballroom and swing, plus country, where you don\u0027t need to bring a partner. Drop in for one evening class or sign up for a 4-week course together.",
+        "highlights":  [
+                           "No partner needed",
+                           "Evening drop-in classes Tue, Wed and Fri",
+                           "4-week beginner courses (salsa from Jan 5, bachata from Feb 3)",
+                           "Second studio in the West Loop"
+                       ],
+        "address":  "4039B N Ravenswood Ave, Chicago, IL 60613 (second studio: 845 W Fulton Market, Suite 213)",
+        "neighborhood":  "Lakeview / Ravenswood",
+        "lat":  41.9555964,
+        "lng":  -87.6735899,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "4-week course $120",
+        "duration_minutes":  60,
+        "min_minutes":  60,
+        "hours":  null,
+        "hours_note":  "Lakeview: Country Tue 6:45 pm, Ballroom \u0026 Swing Wed 6:45 pm, Latin Fri 6:45 pm. West Loop: Wed and Fri 6 pm. Crash course 2nd and 3rd Saturdays 11 am; social dance 4th Saturday 7 pm.",
+        "season":  null,
+        "booking":  "recommended",
+        "booking_url":  "https://www.ballroomdancechicago.com/book-now",
+        "age_note":  null,
+        "phone":  "312-504-5866",
+        "website":  "https://www.ballroomdancechicago.com/",
+        "source_urls":  [
+                            "https://www.ballroomdancechicago.com/",
+                            "https://www.ballroomdancechicago.com/group-dance-classes-chicago"
+                        ],
+        "energy":  "active",
+        "vibe":  "mixed",
+        "moods":  [
+                      "active",
+                      "romantic"
+                  ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.ballroomdancechicago.com/group-dance-classes-chicago"
+                     },
+        "taste_checked":  "2026-11-14",
+        "sid":  387,
+        "photos":  [
+                       {
+                           "file":  "photos/cm-ballroom-dance-chicago-group-classes-1.jpg",
+                           "credit":  "Ballroom Dance Chicago website",
+                           "page_url":  "https://www.ballroomdancechicago.com/group-dance-classes-chicago"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-jingle-junkie-2026",
+        "name":  "Jingle Junkie at Roadhouse 66 (Wrigleyville)",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "eat-drink",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "holiday",
+                     "pop-up",
+                     "limited-time",
+                     "rainy-day"
+                 ],
+        "description":  "A Wrigleyville bar turned into a holiday pop-up, with a heated, ski-lodge-style covered patio and fireplace. Come for seasonal cocktails, festive bites and a lot of tinsel.",
+        "highlights":  [
+                           "Opened Nov 13, 2026, runs into January",
+                           "Heated ski-lodge patio with a fireplace",
+                           "Seasonal cocktail and beer list",
+                           "No cover"
+                       ],
+        "address":  "3478 N Clark St, Chicago, IL 60657",
+        "neighborhood":  "Wrigleyville",
+        "lat":  41.9453486,
+        "lng":  -87.6554623,
+        "indoor_outdoor":  "both",
+        "price_level":  "$$",
+        "price_note":  "No cover; you pay for food and drinks.",
+        "duration_minutes":  90,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "10:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "10:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "10:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "10:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "10:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "10:00",
+                                      "03:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "02:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "",
+        "season":  {
+                       "open_from":  "2026-11-13",
+                       "open_to":  "2026-12-31",
+                       "note":  "Runs into January; the closing day isn\u0027t announced yet."
+                   },
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-13",
+                                "end":  "2026-12-31"
+                            }
+                        ],
+        "end_date_confirmed":  false,
+        "hours_valid_to":  "2026-12-31",
+        "booking":  "walk-in",
+        "age_note":  "",
+        "phone":  "872-206-5309",
+        "website":  "https://www.jinglejunkie.com/",
+        "source_urls":  [
+                            "https://www.jinglejunkie.com/",
+                            "https://www.fox32chicago.com/news/list-holiday-themed-bars-restaurants-chicago-2026-christmas"
+                        ],
+        "moods":  [
+                      "festive",
+                      "boozy",
+                      "cozy"
+                  ],
+        "energy":  "easy",
+        "vibe":  "lively",
+        "hook":  "Holiday bar with a heated ski-lodge patio",
+        "taste_checked":  "2026-11-14",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.jinglejunkie.com/"
+                     },
+        "sid":  388,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-jingle-junkie-2026-1.jpg",
+                           "credit":  "Jingle Junkie website",
+                           "page_url":  "https://www.jinglejunkie.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-elfd-up-2026",
+        "name":  "Elf\u0027d Up at Stretch Bar \u0026 Grill (Wrigleyville)",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "eat-drink",
+        "tags":  [
+                     "friends",
+                     "holiday",
+                     "pop-up",
+                     "limited-time",
+                     "rainy-day"
+                 ],
+        "description":  "A high-energy, Elf-the-movie-themed holiday bar on Clark Street, with themed specialty cocktails, holiday food and a weekend \u0027Buddy\u0027s Brunch\u0027. Loud, silly and very festive.",
+        "highlights":  [
+                           "Elf-themed cocktails",
+                           "Buddy\u0027s Brunch Fri-Sun",
+                           "First come, first served",
+                           "No cover"
+                       ],
+        "address":  "3485 N Clark St, Chicago, IL 60657",
+        "neighborhood":  "Wrigleyville",
+        "lat":  41.9457851,
+        "lng":  -87.6550299,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "price_note":  "No cover; you pay for food and drinks.",
+        "duration_minutes":  90,
+        "min_minutes":  45,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "15:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "15:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "15:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "15:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "11:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "02:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "11:00",
+                                      "02:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Until Nov 22, open Friday to Sunday only. Opens at 11 AM every day Dec 21 to Jan 2 and on holidays. No reservations.",
+        "season":  {
+                       "open_from":  "2026-11-07",
+                       "open_to":  "2027-01-02",
+                       "note":  "Holiday pop-up; the final day isn\u0027t announced."
+                   },
+        "date_hours":  {
+                           "2026-11-26":  "unknown",
+                           "2026-12-21":  [
+                                              [
+                                                  "11:00",
+                                                  "02:00"
+                                              ]
+                                          ],
+                           "2026-12-22":  [
+                                              [
+                                                  "11:00",
+                                                  "02:00"
+                                              ]
+                                          ],
+                           "2026-12-23":  [
+                                              [
+                                                  "11:00",
+                                                  "02:00"
+                                              ]
+                                          ],
+                           "2026-12-24":  "unknown",
+                           "2026-12-25":  "unknown",
+                           "2026-12-28":  [
+                                              [
+                                                  "11:00",
+                                                  "02:00"
+                                              ]
+                                          ],
+                           "2026-12-29":  [
+                                              [
+                                                  "11:00",
+                                                  "02:00"
+                                              ]
+                                          ],
+                           "2026-12-30":  [
+                                              [
+                                                  "11:00",
+                                                  "02:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  "unknown",
+                           "2027-01-01":  "unknown"
+                       },
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-07",
+                                "end":  "2027-01-02"
+                            }
+                        ],
+        "end_date_confirmed":  false,
+        "hours_valid_to":  "2027-01-02",
+        "booking":  "walk-in",
+        "age_note":  "Kids allowed before 6 PM Mon-Thu and before 2 PM Fri-Sun",
+        "phone":  "",
+        "website":  "https://www.elfdup.com/",
+        "source_urls":  [
+                            "https://www.elfdup.com/",
+                            "https://www.elfdup.com/hours-and-map"
+                        ],
+        "moods":  [
+                      "festive",
+                      "boozy",
+                      "loud"
+                  ],
+        "energy":  "easy",
+        "vibe":  "lively",
+        "hook":  "An Elf-themed holiday bar on Clark Street",
+        "taste_checked":  "2026-11-14",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.elfdup.com/hours-and-map"
+                     },
+        "closed_dates":  [
+                             "2026-11-16",
+                             "2026-11-17",
+                             "2026-11-18",
+                             "2026-11-19"
+                         ],
+        "sid":  389,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-elfd-up-2026-1.jpg",
+                           "credit":  "Elf\u0027d Up website",
+                           "page_url":  "https://www.elfdup.com/faq"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-gwen-winter-curl-chill-2026",
+        "name":  "Winter Curl \u0026 Chill at The Gwen (rooftop curling)",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "play",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "holiday",
+                     "limited-time",
+                     "curling",
+                     "rooftop"
+                 ],
+        "description":  "Rooftop curling on the terrace of The Gwen hotel just off Michigan Avenue, with your own firepit table for the hour. A cozy, slightly competitive winter date.",
+        "highlights":  [
+                           "1 hour on the curling court",
+                           "Firepit table included",
+                           "Seasonal treat included",
+                           "Book ahead on OpenTable"
+                       ],
+        "address":  "521 N Rush St, Chicago, IL 60611 (Upstairs at The Gwen, rooftop terrace)",
+        "neighborhood":  "River North / Magnificent Mile",
+        "lat":  41.8911753,
+        "lng":  -87.6251872,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "$$",
+        "price_note":  "$26.52 a person, paid when you book. Includes an hour on the court, a firepit table and a seasonal treat.",
+        "duration_minutes":  60,
+        "min_minutes":  60,
+        "hours":  null,
+        "hours_note":  "Book a 1-hour slot online. Uncovered rooftop: sessions are cancelled in bad weather.",
+        "season":  {
+                       "open_from":  "2026-11-20",
+                       "open_to":  "2027-03-31",
+                       "note":  "Winter season into March. Closed in bad weather."
+                   },
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-20",
+                                "end":  "2027-03-31"
+                            }
+                        ],
+        "end_date_confirmed":  false,
+        "booking":  "required",
+        "age_note":  "",
+        "phone":  "(872) 271-6010",
+        "website":  "https://www.thegwenchicago.com/activities/winter-curling/",
+        "booking_url":  "https://www.opentable.com/booking/experiences-availability?rid=6650\u0026restref=6650\u0026experienceId=854257",
+        "source_urls":  [
+                            "https://www.thegwenchicago.com/activities/winter-curling/"
+                        ],
+        "moods":  [
+                      "cozy",
+                      "romantic",
+                      "outdoorsy"
+                  ],
+        "energy":  "easy",
+        "vibe":  "mixed",
+        "hook":  "Curl on a hotel rooftop next to your own firepit",
+        "taste_checked":  "2026-11-14",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.opentable.com/booking/experiences-availability?rid=6650\u0026restref=6650\u0026experienceId=854257"
+                     },
+        "sid":  390,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-gwen-winter-curl-chill-2026-1.jpg",
+                           "credit":  "Courtesy of The Gwen, via Time Out Chicago",
+                           "page_url":  "https://timeout.com/chicago/things-to-do/the-gwens-winter-curl-chill"
+                       }
+                   ]
+    },
+    {
+        "id":  "pa-warren-park-ice-rink",
+        "name":  "Warren Park Ice Rink",
+        "kind":  "place",
+        "category":  "active",
+        "genre":  "play",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "free",
+                     "skating",
+                     "winter",
+                     "seasonal"
+                 ],
+        "description":  "A Chicago Park District outdoor rink in West Ridge\u0027s Warren Park, ringed by trees. Free open skate if you bring skates, plus rentals, learn-to-skate and drop-in hockey sessions.",
+        "highlights":  [
+                           "Free open skate",
+                           "Skate rental $7",
+                           "Skate walkers for beginners",
+                           "Sled-assisted skating on request"
+                       ],
+        "address":  "6601 N Western Ave, Chicago, IL 60645",
+        "neighborhood":  "West Ridge",
+        "lat":  42.001493,
+        "lng":  -87.68987,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free with your own skates; rental $7.",
+        "duration_minutes":  75,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "15:00",
+                                      "19:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "15:00",
+                                      "19:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "15:00",
+                                      "19:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "15:00",
+                                      "19:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "14:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "13:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "12:00",
+                                      "18:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Open skate times. Reserve a free spot online first. Holiday weeks are 12-7 PM; shorter hours Christmas Eve.",
+        "season":  {
+                       "open_from":  "2026-11-27",
+                       "open_to":  "2027-02-15",
+                       "note":  "Weather permitting."
+                   },
+        "closed_dates":  [
+                             "2026-12-25"
+                         ],
+        "date_hours":  {
+                           "2026-11-27":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-11-28":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-11-29":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-19":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-20":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-21":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-22":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-23":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-24":  "unknown",
+                           "2026-12-26":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-27":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-28":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-29":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-30":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-01":  "unknown",
+                           "2027-01-02":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-03":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-04":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-08":  "unknown",
+                           "2027-01-10":  "unknown",
+                           "2027-01-18":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-02-14":  "unknown",
+                           "2027-02-15":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ]
+                       },
+        "booking":  "required",
+        "age_note":  "All ages",
+        "phone":  "773-761-8663",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/warren-park-ice-rink",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/warren-park-ice-rink",
+                            "https://www.chicagoparkdistrict.com/parks-facilities/ice-rinks"
+                        ],
+        "moods":  [
+                      "active",
+                      "cheap",
+                      "outdoorsy"
+                  ],
+        "energy":  "active",
+        "vibe":  "mixed",
+        "hook":  "Free outdoor skating in a tree-lined North Side park",
+        "taste_checked":  "2026-11-14",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/warren-park-ice-rink"
+                     },
+        "hours_valid_to":  "2027-02-15",
+        "sid":  391,
+        "photos":  [
+                       {
+                           "file":  "photos/pa-warren-park-ice-rink-1.jpg",
+                           "credit":  "Chicago Park District",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/warren-park-ice-rink"
+                       }
+                   ]
+    },
+    {
+        "id":  "pa-mt-greenwood-ice-rink",
+        "name":  "Mt. Greenwood Ice Rink",
+        "kind":  "place",
+        "category":  "active",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "free",
+                     "skating",
+                     "winter",
+                     "seasonal"
+                 ],
+        "description":  "A Chicago Park District outdoor rink in Mount Greenwood Park on the far Southwest Side, under lights. Free open skate with your own skates, rentals, and drop-in learn-to-skate and pond hockey.",
+        "highlights":  [
+                           "Free open skate",
+                           "Skate rental $7",
+                           "Learn to Skate drop-in $10",
+                           "Lit for evening skating"
+                       ],
+        "address":  "3721 W 111th St, Chicago, IL 60655",
+        "neighborhood":  "Mount Greenwood",
+        "lat":  41.690888,
+        "lng":  -87.713742,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free with your own skates; rental $7.",
+        "duration_minutes":  75,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+                                  [
+                                      "15:00",
+                                      "19:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "15:00",
+                                      "19:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "15:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "12:00",
+                                      "13:30"
+                                  ],
+                                  [
+                                      "15:30",
+                                      "20:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "12:00",
+                                      "18:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Open skate times. Reserve a free spot online first (opens Mondays at noon, two weeks ahead). From Jan 18, open Friday to Sunday only.",
+        "hours_valid_to":  "2027-01-17",
+        "season":  {
+                       "open_from":  "2026-11-27",
+                       "open_to":  "2027-02-15",
+                       "note":  "Weather permitting."
+                   },
+        "closed_dates":  [
+                             "2026-12-25",
+                             "2027-01-20",
+                             "2027-01-21",
+                             "2027-01-27",
+                             "2027-01-28",
+                             "2027-02-03",
+                             "2027-02-04",
+                             "2027-02-10",
+                             "2027-02-11"
+                         ],
+        "date_hours":  {
+                           "2026-11-27":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-11-28":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-11-29":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-19":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-20":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-21":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-22":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-23":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-24":  "unknown",
+                           "2026-12-26":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-27":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-28":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-29":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-30":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-01":  "unknown",
+                           "2027-01-02":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-03":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-04":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-18":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-02-15":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ]
+                       },
+        "booking":  "required",
+        "age_note":  "All ages",
+        "phone":  "312-747-3690",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/mt-greenwood-ice-rink",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/mt-greenwood-ice-rink"
+                        ],
+        "moods":  [
+                      "active",
+                      "cheap",
+                      "outdoorsy"
+                  ],
+        "energy":  "active",
+        "vibe":  "mixed",
+        "hook":  "Free outdoor skating under the lights on the Southwest Side",
+        "taste_checked":  "2026-11-14",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/mt-greenwood-ice-rink"
+                     },
+        "sid":  392,
+        "photos":  [
+                       {
+                           "file":  "photos/pa-mt-greenwood-ice-rink-1.jpg",
+                           "credit":  "Chicago Park District",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/mt-greenwood-ice-rink"
+                       }
+                   ]
+    },
+    {
+        "id":  "pa-mckinley-ice-rink",
+        "name":  "McKinley Ice Rink",
+        "kind":  "place",
+        "category":  "active",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "free",
+                     "skating",
+                     "winter",
+                     "seasonal"
+                 ],
+        "description":  "A Chicago Park District outdoor rink in McKinley Park on the Southwest Side. Free open skate with your own skates or cheap rentals, an easy low-key winter outing.",
+        "highlights":  [
+                           "Free open skate",
+                           "Skate rental $7",
+                           "Reserve a free spot first"
+                       ],
+        "address":  "2210 W Pershing Rd, Chicago, IL 60609",
+        "neighborhood":  "McKinley Park",
+        "lat":  41.8237474,
+        "lng":  -87.6824577,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free with your own skates; rental $7.",
+        "duration_minutes":  75,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+                                  [
+                                      "15:00",
+                                      "19:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "15:00",
+                                      "19:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "15:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "13:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "12:00",
+                                      "18:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Open skate times. Reserve a free spot online first. Holiday weeks are 12-7 PM. From Jan 18, open Friday to Sunday only.",
+        "season":  {
+                       "open_from":  "2026-11-27",
+                       "open_to":  "2027-02-15",
+                       "note":  "Weather permitting."
+                   },
+        "closed_dates":  [
+                             "2026-12-25",
+                             "2027-01-20",
+                             "2027-01-21",
+                             "2027-01-27",
+                             "2027-01-28",
+                             "2027-02-03",
+                             "2027-02-04",
+                             "2027-02-10",
+                             "2027-02-11"
+                         ],
+        "date_hours":  {
+                           "2026-11-27":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-11-28":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-11-29":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-19":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-20":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-21":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-22":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-23":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-24":  "unknown",
+                           "2026-12-26":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-27":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-28":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-29":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-30":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-01":  "unknown",
+                           "2027-01-02":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-03":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-04":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-18":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-02-15":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ]
+                       },
+        "booking":  "required",
+        "age_note":  "All ages",
+        "phone":  "312-747-5992",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/mckinley-ice-rink",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/mckinley-ice-rink"
+                        ],
+        "moods":  [
+                      "active",
+                      "cheap",
+                      "outdoorsy"
+                  ],
+        "energy":  "active",
+        "vibe":  "mixed",
+        "hook":  "Free neighborhood outdoor rink in McKinley Park",
+        "taste_checked":  "2026-11-14",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/mckinley-ice-rink"
+                     },
+        "hours_valid_to":  "2027-01-17",
+        "sid":  393,
+        "photos":  [
+                       {
+                           "file":  "photos/pa-mckinley-ice-rink-1.jpg",
+                           "credit":  "Chicago Park District",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/mckinley-ice-rink"
+                       }
+                   ]
+    },
+    {
+        "id":  "pa-wentworth-ice-rink",
+        "name":  "Wentworth Ice Rink",
+        "kind":  "place",
+        "category":  "active",
+        "genre":  "play",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "free",
+                     "skating",
+                     "winter",
+                     "seasonal"
+                 ],
+        "description":  "A Chicago Park District outdoor rink in Garfield Ridge, near Midway Airport. Free open skate with your own skates, rentals, plus drop-in learn-to-skate and stick-and-puck sessions.",
+        "highlights":  [
+                           "Free open skate",
+                           "Skate rental $7",
+                           "Learn to Skate drop-in $10",
+                           "Rat hockey for adults"
+                       ],
+        "address":  "5625 S Mobile Ave, Chicago, IL 60638",
+        "neighborhood":  "Garfield Ridge",
+        "lat":  41.7895478,
+        "lng":  -87.7788976,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free with your own skates; rental $7.",
+        "duration_minutes":  75,
+        "min_minutes":  30,
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+                                  [
+                                      "15:00",
+                                      "19:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "15:00",
+                                      "19:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "15:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "13:00",
+                                      "20:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "12:00",
+                                      "18:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Open skate times. Reserve a free spot online first (opens Mondays at noon, two weeks ahead). Holiday weeks are 12-7 PM. From Jan 18, open Friday to Sunday only.",
+        "hours_valid_to":  "2027-01-17",
+        "season":  {
+                       "open_from":  "2026-11-27",
+                       "open_to":  "2027-02-15",
+                       "note":  "Weather permitting."
+                   },
+        "closed_dates":  [
+                             "2026-12-25",
+                             "2027-01-20",
+                             "2027-01-21",
+                             "2027-01-27",
+                             "2027-01-28",
+                             "2027-02-03",
+                             "2027-02-04",
+                             "2027-02-10",
+                             "2027-02-11"
+                         ],
+        "date_hours":  {
+                           "2026-11-27":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-11-28":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-11-29":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-19":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-20":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-21":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-22":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-23":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-24":  "unknown",
+                           "2026-12-26":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-27":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-28":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-29":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-30":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-01":  "unknown",
+                           "2027-01-02":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-03":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-04":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-01-18":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ],
+                           "2027-02-15":  [
+                                              [
+                                                  "12:00",
+                                                  "19:00"
+                                              ]
+                                          ]
+                       },
+        "booking":  "required",
+        "age_note":  "All ages (rat hockey 18+)",
+        "phone":  "312-446-0553",
+        "website":  "https://www.chicagoparkdistrict.com/parks-facilities/wentworth-ice-rink",
+        "source_urls":  [
+                            "https://www.chicagoparkdistrict.com/parks-facilities/wentworth-ice-rink"
+                        ],
+        "moods":  [
+                      "active",
+                      "cheap",
+                      "outdoorsy"
+                  ],
+        "energy":  "active",
+        "vibe":  "mixed",
+        "hook":  "Free outdoor skating near Midway",
+        "taste_checked":  "2026-11-14",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/wentworth-ice-rink"
+                     },
+        "sid":  394,
+        "photos":  [
+                       {
+                           "file":  "photos/pa-wentworth-ice-rink-1.jpg",
+                           "credit":  "Chicago Park District",
+                           "page_url":  "https://www.chicagoparkdistrict.com/parks-facilities/wentworth-ice-rink"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-navy-pier-nye-fireworks-2026",
+        "name":  "New Year\u0027s Eve Fireworks at Navy Pier",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "free",
+                     "holiday",
+                     "new-years-eve",
+                     "fireworks",
+                     "limited-time"
+                 ],
+        "description":  "Navy Pier\u0027s free midnight fireworks show over Lake Michigan to ring in 2027. Bundle up and watch the lakefront sky light up at the stroke of midnight.",
+        "highlights":  [
+                           "Thu Dec 31, 2026 at 11:59 PM",
+                           "Free",
+                           "Over the lake, seen along the lakefront"
+                       ],
+        "address":  "Navy Pier, 600 E Grand Ave, Chicago, IL 60611",
+        "neighborhood":  "Streeterville",
+        "lat":  41.89138889,
+        "lng":  -87.59972222,
+        "indoor_outdoor":  "outdoor",
+        "price_level":  "free",
+        "price_note":  "Free",
+        "duration_minutes":  20,
+        "min_minutes":  20,
+        "hours":  null,
+        "hours_note":  "",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-12-31T23:59",
+                                "end":  "2027-01-01T00:15"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "312-595-7437",
+        "website":  "https://navypier.org/pier-events/new-years-eve-fireworks/",
+        "source_urls":  [
+                            "https://navypier.org/location/navy-pier/",
+                            "https://www.enjoyillinois.com/things-to-do/festivals-and-events/festivals-and-fairs/listing/new-years-eve-fireworks-at-navy-pier/"
+                        ],
+        "moods":  [
+                      "festive",
+                      "romantic",
+                      "outdoorsy",
+                      "cheap"
+                  ],
+        "energy":  "easy",
+        "vibe":  "lively",
+        "hook":  "Free midnight fireworks over the lake",
+        "taste_checked":  "2026-11-14",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://navypier.org/pier-events/new-years-eve-fireworks/"
+                     },
+        "sid":  395,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-navy-pier-nye-fireworks-2026-1.jpg",
+                           "credit":  "Navy Pier",
+                           "page_url":  "https://navypier.org/pier-events/new-years-eve-fireworks/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-renegade-chicago-holiday-2026",
+        "name":  "Renegade Craft Chicago Holiday Market (Bridgeport Art Center)",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "look-learn",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "holiday",
+                     "market",
+                     "shopping",
+                     "limited-time",
+                     "rainy-day"
+                 ],
+        "description":  "A big indie makers\u0027 market with 170+ artists selling prints, ceramics, clothing and gifts inside a brick warehouse in Bridgeport. Friday is a night market.",
+        "highlights":  [
+                           "Dec 18-20, 2026",
+                           "Friday 5-8 PM night market",
+                           "170-200+ makers",
+                           "Pets on leash welcome"
+                       ],
+        "address":  "Bridgeport Art Center, 1200 W 35th St, Chicago, IL 60609",
+        "neighborhood":  "Bridgeport",
+        "lat":  41.8309771,
+        "lng":  -87.6565482,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$",
+        "price_note":  "Suggested $5 entry.",
+        "duration_minutes":  90,
+        "min_minutes":  45,
+        "hours":  null,
+        "hours_note":  "",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-12-18T17:00",
+                                "end":  "2026-12-18T20:00"
+                            },
+                            {
+                                "start":  "2026-12-19T11:00",
+                                "end":  "2026-12-19T17:00"
+                            },
+                            {
+                                "start":  "2026-12-20T11:00",
+                                "end":  "2026-12-20T17:00"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "walk-in",
+        "age_note":  "All ages",
+        "phone":  "",
+        "website":  "https://www.renegadecraft.com/event/chicago-winter/",
+        "source_urls":  [
+                            "https://www.renegadecraft.com/event/chicago-winter/",
+                            "https://www.renegadecraft.com/events/"
+                        ],
+        "moods":  [
+                      "festive",
+                      "artsy",
+                      "cheap"
+                  ],
+        "energy":  "easy",
+        "vibe":  "lively",
+        "hook":  "200 indie makers in a Bridgeport warehouse",
+        "taste_checked":  "2026-11-14",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.renegadecraft.com/event/chicago-winter/"
+                     },
+        "sid":  396,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-renegade-chicago-holiday-2026-1.jpg",
+                           "credit":  "Renegade Craft",
+                           "page_url":  "https://www.renegadecraft.com/event/chicago-winter/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-sauced-night-market-before-xmas-2026",
+        "name":  "SAUCED Night Market Before Xmas (Chicago Athletic Association)",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "look-learn",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "holiday",
+                     "market",
+                     "night",
+                     "shopping",
+                     "limited-time",
+                     "rainy-day"
+                 ],
+        "description":  "SAUCED\u0027s holiday night market fills the Chicago Athletic Association hotel with local makers for two evenings before Christmas. A fun after-dark way to gift-shop in a grand old building.",
+        "highlights":  [
+                           "Fri Dec 11 and Sat Dec 12, 2026",
+                           "Evening market",
+                           "Inside the Chicago Athletic Association"
+                       ],
+        "address":  "Chicago Athletic Association, 12 S Michigan Ave, Chicago, IL 60603",
+        "neighborhood":  "Loop",
+        "lat":  41.8816573,
+        "lng":  -87.6249801,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "free",
+        "price_note":  "Free; RSVP online.",
+        "duration_minutes":  90,
+        "min_minutes":  45,
+        "hours":  null,
+        "hours_note":  "Entry first come, first served until the venue is full.",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-12-11T17:00",
+                                "end":  "2026-12-11T22:00"
+                            },
+                            {
+                                "start":  "2026-12-12T17:00",
+                                "end":  "2026-12-12T22:00"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "recommended",
+        "age_note":  "All ages; drinks 21+ with ID",
+        "phone":  "",
+        "website":  "https://www.saucedmarket.com/",
+        "source_urls":  [
+                            "https://www.saucedmarket.com/",
+                            "https://www.choosechicago.com/event/series/night-market-before-xmas"
+                        ],
+        "moods":  [
+                      "festive",
+                      "artsy",
+                      "loud",
+                      "cheap"
+                  ],
+        "energy":  "easy",
+        "vibe":  "lively",
+        "hook":  "A party-style night market in a grand Loop hotel",
+        "taste_checked":  "2026-11-14",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.tixtree.com/e/sauced-night-market-bfb1bc83bf96"
+                     },
+        "booking_url":  "https://www.tixtree.com/e/sauced-night-market-bfb1bc83bf96",
+        "sid":  397,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-sauced-night-market-before-xmas-2026-1.jpg",
+                           "credit":  "SAUCED Market",
+                           "page_url":  "https://www.saucedmarket.com/"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-candlelight-valentines-art-institute-2027",
+        "name":  "Candlelight: Valentine\u0027s Day Special (Art Institute of Chicago)",
+        "kind":  "event",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "date",
+                     "valentines",
+                     "live-music",
+                     "limited-time",
+                     "rainy-day"
+                 ],
+        "description":  "A string quartet plays love songs and film themes (Unchained Melody, La Vie en Rose, My Heart Will Go On and more) surrounded by candles in the Art Institute\u0027s domed Fullerton Hall. An easy, romantic Valentine\u0027s night.",
+        "highlights":  [
+                           "Sun Feb 14, 2027: 6:30 or 8:45 PM",
+                           "60 minutes",
+                           "Metropolis String Quartet",
+                           "Doors 45 min early; no late entry"
+                       ],
+        "address":  "Art Institute of Chicago, 111 S Michigan Ave, Chicago, IL 60603",
+        "neighborhood":  "Loop",
+        "lat":  41.87944444,
+        "lng":  -87.62388889,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$$",
+        "price_note":  "$49.50-$91 a ticket plus booking fee, by seating zone.",
+        "duration_minutes":  60,
+        "min_minutes":  60,
+        "hours":  null,
+        "hours_note":  "",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2027-02-14T18:30",
+                                "end":  "2027-02-14T19:30"
+                            },
+                            {
+                                "start":  "2027-02-14T20:45",
+                                "end":  "2027-02-14T21:45"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "booking_url":  "https://feverup.com/m/679816",
+        "age_note":  "8+; under 16 with an adult",
+        "phone":  "",
+        "website":  "https://feverup.com/m/679816",
+        "source_urls":  [
+                            "https://feverup.com/m/679816"
+                        ],
+        "moods":  [
+                      "romantic",
+                      "quiet",
+                      "artsy"
+                  ],
+        "energy":  "chill",
+        "vibe":  "quiet",
+        "hook":  "Love songs by candlelight under a stained-glass dome",
+        "taste_checked":  "2026-11-14",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://feverup.com/m/679816"
+                     },
+        "sid":  398,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-candlelight-valentines-art-institute-2027-1.jpg",
+                           "credit":  "Fever (Candlelight)",
+                           "page_url":  "https://feverup.com/m/679816"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-blue-man-holiday-surprise-2026",
+        "name":  "Blue Man Group: A New Holiday Surprise (CIBC Theatre)",
+        "kind":  "event",
+        "category":  "show-comedy-music",
+        "genre":  "shows-nights",
+        "tags":  [
+                     "friends",
+                     "date",
+                     "holiday",
+                     "limited-time",
+                     "rainy-day",
+                     "live-music"
+                 ],
+        "description":  "Blue Man Group\u0027s all-new holiday show: holiday songs on their homemade instruments, drumming, comedy and audience participation, in a Loop Broadway theater.",
+        "highlights":  [
+                           "Nov 24 - Dec 13, 2026",
+                           "90 minutes, no intermission",
+                           "Ages 3+",
+                           "Every guest needs a ticket"
+                       ],
+        "address":  "CIBC Theatre, 18 W Monroe St, Chicago, IL 60603",
+        "neighborhood":  "Loop",
+        "lat":  41.8811752,
+        "lng":  -87.6285961,
+        "indoor_outdoor":  "indoor",
+        "price_level":  null,
+        "price_note":  "",
+        "duration_minutes":  90,
+        "min_minutes":  90,
+        "hours":  null,
+        "hours_note":  "",
+        "season":  null,
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-24T19:00",
+                                "end":  "2026-11-24T20:30"
+                            },
+                            {
+                                "start":  "2026-11-25T13:00",
+                                "end":  "2026-11-25T14:30"
+                            },
+                            {
+                                "start":  "2026-11-25T19:00",
+                                "end":  "2026-11-25T20:30"
+                            },
+                            {
+                                "start":  "2026-11-27T13:00",
+                                "end":  "2026-11-27T14:30"
+                            },
+                            {
+                                "start":  "2026-11-27T16:00",
+                                "end":  "2026-11-27T17:30"
+                            },
+                            {
+                                "start":  "2026-11-28T13:00",
+                                "end":  "2026-11-28T14:30"
+                            },
+                            {
+                                "start":  "2026-11-28T16:00",
+                                "end":  "2026-11-28T17:30"
+                            },
+                            {
+                                "start":  "2026-11-28T19:00",
+                                "end":  "2026-11-28T20:30"
+                            },
+                            {
+                                "start":  "2026-11-29T13:00",
+                                "end":  "2026-11-29T14:30"
+                            },
+                            {
+                                "start":  "2026-11-29T16:00",
+                                "end":  "2026-11-29T17:30"
+                            },
+                            {
+                                "start":  "2026-12-01T19:00",
+                                "end":  "2026-12-01T20:30"
+                            },
+                            {
+                                "start":  "2026-12-02T13:00",
+                                "end":  "2026-12-02T14:30"
+                            },
+                            {
+                                "start":  "2026-12-02T19:00",
+                                "end":  "2026-12-02T20:30"
+                            },
+                            {
+                                "start":  "2026-12-03T19:00",
+                                "end":  "2026-12-03T20:30"
+                            },
+                            {
+                                "start":  "2026-12-04T19:00",
+                                "end":  "2026-12-04T20:30"
+                            },
+                            {
+                                "start":  "2026-12-05T13:00",
+                                "end":  "2026-12-05T14:30"
+                            },
+                            {
+                                "start":  "2026-12-05T19:00",
+                                "end":  "2026-12-05T20:30"
+                            },
+                            {
+                                "start":  "2026-12-06T13:00",
+                                "end":  "2026-12-06T14:30"
+                            },
+                            {
+                                "start":  "2026-12-08T19:00",
+                                "end":  "2026-12-08T20:30"
+                            },
+                            {
+                                "start":  "2026-12-09T13:00",
+                                "end":  "2026-12-09T14:30"
+                            },
+                            {
+                                "start":  "2026-12-09T19:00",
+                                "end":  "2026-12-09T20:30"
+                            },
+                            {
+                                "start":  "2026-12-10T19:00",
+                                "end":  "2026-12-10T20:30"
+                            },
+                            {
+                                "start":  "2026-12-11T19:00",
+                                "end":  "2026-12-11T20:30"
+                            },
+                            {
+                                "start":  "2026-12-12T13:00",
+                                "end":  "2026-12-12T14:30"
+                            },
+                            {
+                                "start":  "2026-12-12T19:00",
+                                "end":  "2026-12-12T20:30"
+                            },
+                            {
+                                "start":  "2026-12-13T13:00",
+                                "end":  "2026-12-13T14:30"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "required",
+        "booking_url":  "https://www.broadwayinchicago.com/?p=35183",
+        "age_note":  "Recommended 3+; everyone needs a ticket",
+        "phone":  "",
+        "website":  "https://www.broadwayinchicago.com/?p=35183",
+        "source_urls":  [
+                            "https://www.broadwayinchicago.com/?p=35183"
+                        ],
+        "moods":  [
+                      "festive",
+                      "loud",
+                      "weird"
+                  ],
+        "energy":  "chill",
+        "vibe":  "lively",
+        "hook":  "Blue Man Group\u0027s brand-new holiday show",
+        "taste_checked":  "2026-11-14",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.broadwayinchicago.com/?p=35183"
+                     },
+        "sid":  399,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-blue-man-holiday-surprise-2026-1.jpg",
+                           "credit":  "Broadway In Chicago",
+                           "page_url":  "https://www.broadwayinchicago.com/?p=35183"
+                       }
+                   ]
     }
 ]
