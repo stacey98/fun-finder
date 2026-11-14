@@ -18,7 +18,9 @@
   /* CTA 'L' colors (commonly published CTA values; needs check against a CTA source) */
   --cta-red:#C60C30; --cta-blue:#00A1DE; --cta-brown:#62361B; --cta-green:#009B3A; --cta-orange:#F9461C; --cta-purple:#522398; --cta-pink:#E27EA6; --cta-yellow:#F9E300;
   /* 7 genres (v3, layout spec 2.1): Play/Look/Nature/Eat/Shows/Make reuse the v1 group colors; Relax is new */
-  --g-play:#E1532B; --g-look:#BF3278; --g-nature:#0E7C87; --g-eat:#B98309; --g-shows:#5A3C93; --g-make:#9C4F2A; --g-relax:#3F6E9E; --on-cat:#FFFFFF;
+  /* v5.4 (owner: "very hard to see if it's Sights versus Limited"): 8 clearly different hues, red / blue / violet for Limited / Play / Sights.
+     Every pair is at least dE76 30 apart, and each is 4.6:1 or more on the paper and with white (checked in the v5.4 report). */
+  --g-limited:#D7192F; --g-play:#1F62D6; --g-look:#8B3FD0; --g-nature:#0E7F68; --g-eat:#976804; --g-shows:#C2257E; --g-make:#C0500A; --g-relax:#336FA0; --on-cat:#FFFFFF;
   --f-display:"Big Shoulders Display","Big Shoulders","Arial Narrow","Roboto Condensed",sans-serif;
   --f-body:"Instrument Sans",ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --ease-snap:cubic-bezier(.2,.9,.25,1);
@@ -36,7 +38,7 @@
     --lake:#0D2531; --lake-hatch:#123243; --lake-ink:#62AACB; --shore:#1D4A5E; --river:#143546;
     --land-0:#1F2124; --land-1:#1C1E21; --land-2:#222428; --land-3:#1A1C1F; --area-line:#111315;
     --suburb:#141618; --map-label:#6D737A; --line-casing:#17191C; --you:#F1F2EF; --you-halo:rgba(241,242,239,.14);
-    --g-play:#FF7448; --g-look:#EA5C9E; --g-nature:#2BB3BF; --g-eat:#E3AB2E; --g-shows:#9F80E2; --g-make:#D27C4E; --g-relax:#79A7D6; --on-cat:#101114;
+    --g-limited:#FF4A5C; --g-play:#4FA0FF; --g-look:#C08AFF; --g-nature:#2CC09C; --g-eat:#E8B030; --g-shows:#FF6CB8; --g-make:#FF8C42; --g-relax:#86B8E0; --on-cat:#101114;
     color-scheme:dark;
   }
 }
@@ -49,7 +51,7 @@
   --lake:#0D2531; --lake-hatch:#123243; --lake-ink:#62AACB; --shore:#1D4A5E; --river:#143546;
   --land-0:#1F2124; --land-1:#1C1E21; --land-2:#222428; --land-3:#1A1C1F; --area-line:#111315;
   --suburb:#141618; --map-label:#6D737A; --line-casing:#17191C; --you:#F1F2EF; --you-halo:rgba(241,242,239,.14);
-  --g-play:#FF7448; --g-look:#EA5C9E; --g-nature:#2BB3BF; --g-eat:#E3AB2E; --g-shows:#9F80E2; --g-make:#D27C4E; --g-relax:#79A7D6; --on-cat:#101114;
+  --g-limited:#FF4A5C; --g-play:#4FA0FF; --g-look:#C08AFF; --g-nature:#2CC09C; --g-eat:#E8B030; --g-shows:#FF6CB8; --g-make:#FF8C42; --g-relax:#86B8E0; --on-cat:#101114;
   color-scheme:dark;
 }
 
@@ -106,18 +108,20 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 /* ---------- markers (v3, layout spec 3.11): one shape, 7 genre colors, a red ticket = limited time ---------- */
 .mk{position:absolute;width:40px;height:46px;padding:0;border:0;background:none;transform:translate(-50%,calc(-100% + 4px));z-index:5;--c:var(--g-play);pointer-events:auto;touch-action:none}
 .mk.in{animation:pinIn .18s var(--ease-snap) both}
-.mk-body{position:relative;display:grid;place-items:center;width:32px;height:32px;margin:0 auto;border-radius:10px;background:var(--c);color:var(--on-cat);border:2px solid var(--paper);box-shadow:0 2px 6px var(--shadow);transition:transform .16s var(--ease-snap)}
-.mk-body svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+/* v5.4: the pin head is a neutral circle (paper) with the kind's solid icon in its color; a thin ring in the same color ties it to the stem */
+.mk-body{position:relative;display:grid;place-items:center;width:32px;height:32px;margin:0 auto;border-radius:50%;background:var(--paper);color:var(--c);border:2px solid var(--c);box-shadow:0 2px 6px var(--shadow);transition:transform .16s var(--ease-snap)}
+.mk-body svg{width:21px;height:21px;display:block}
 .mk::after{content:"";position:absolute;left:50%;bottom:0;width:8px;height:8px;margin-left:-4px;border-radius:50%;background:var(--c);border:2px solid var(--paper)}
 .mk::before{content:"";position:absolute;left:50%;bottom:6px;width:2px;height:8px;margin-left:-1px;background:var(--c)}
 .mk.sm{width:30px;height:38px}
-.mk.sm .mk-body{width:24px;height:24px;border-radius:8px}
-.mk.sm .mk-body svg{width:13px;height:13px}
+.mk.sm .mk-body{width:26px;height:26px}
+.mk.sm .mk-body svg{width:17px;height:17px}
 .mk.sel{z-index:8}
 .mk.sel .mk-body{transform:scale(1.14) translateY(-2px);box-shadow:0 0 0 2px var(--paper),0 0 0 4.5px var(--ink),0 6px 14px var(--shadow)}
 .mk.unk,.mk.shut{--c:var(--closed)}
 .mk.hollow{opacity:.9}
 .mk.hollow .mk-body{background:var(--paper);color:var(--c);border:2px dashed var(--c);box-shadow:none}
+.mk.hollow .mk-body svg{opacity:.75}
 .tkb{position:absolute;top:-6px;right:-8px;width:18px;height:13px;filter:drop-shadow(0 1px 1.5px var(--shadow));pointer-events:none}
 .tkb path{fill:var(--accent);stroke:var(--paper);stroke-width:1.6}
 .tkb .perf{fill:none;stroke:var(--on-accent);stroke-width:1.2;stroke-dasharray:1.4 1.6}
@@ -176,22 +180,20 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .tile{position:relative;min-width:0;height:47px;padding:5px 6px 4px 7px;border:1px solid var(--rule);background:var(--paper);text-align:left;display:flex;flex-direction:column;justify-content:space-between;border-radius:11px;--c:var(--g-play);color:var(--ink);transition:background .12s,border-color .12s,transform .09s}
 .tile:active{transform:scale(.97)}
 .tile .top{display:flex;align-items:center;gap:6px;min-width:0}
-.tile .gl{width:21px;height:21px;border-radius:6px;background:var(--c);color:var(--on-cat);display:grid;place-items:center;flex:none}
-.tile .gl svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+/* v5.4: no badge behind the icon; the solid icon in the kind's color is the shape (owner: "the icon itself is the shape") */
+.tile .gl{width:23px;height:23px;color:var(--c);display:grid;place-items:center;flex:none}
+.tile .gl svg{width:23px;height:23px;display:block}
 .tile .num{font:800 19px/1 var(--f-display);font-variant-numeric:tabular-nums}
 .tile .nm{display:block;font:600 11.5px/1.15 var(--f-body);color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.005em}
 .tile[aria-pressed="true"]{background:var(--paper-2);border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c)}
 .tile[aria-pressed="true"] .nm{color:var(--ink);font-weight:700}
 .tile.zero{background:transparent;border-style:dashed}
-.tile.zero .gl{background:var(--closed-bg);color:var(--closed)}
+.tile.zero .gl{color:var(--closed)}
 .tile.zero .num,.tile.zero .nm{color:var(--ink-3)}
-.tile.lt .gl{background:var(--accent);color:var(--on-accent)}   /* v5.1 (tester M4): unpicked Limited looks like every other tile */
-.tile.lt.zero .gl{background:var(--closed-bg);color:var(--closed)}
 /* v5.1 (tester M4): a picked tile has one strong look (tinted fill, solid colored border, a check) that wins over the dimmed 0 look */
 .tile[aria-pressed="true"],.tile.zero[aria-pressed="true"]{background:var(--paper-2);background:color-mix(in srgb,var(--c) 15%,var(--paper));border-style:solid;border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c)}
 .tile[aria-pressed="true"] .num,.tile[aria-pressed="true"] .nm{color:var(--ink)}
-.tile.zero[aria-pressed="true"] .gl{background:var(--c);color:var(--on-cat)}
-.tile.lt.zero[aria-pressed="true"] .gl{background:var(--accent);color:var(--on-accent)}
+.tile.zero[aria-pressed="true"] .gl{color:var(--c)}
 .tile[aria-pressed="true"]::after{content:"\2713";position:absolute;top:4px;right:5px;width:14px;height:14px;border-radius:50%;background:var(--c);color:var(--on-cat);font:800 9px/14px var(--f-body);text-align:center}
 .tile.lt[aria-pressed="true"]::after{color:var(--on-accent)}
 .tiles.has-pick .tile:not([aria-pressed="true"]) .gl{opacity:.75}
@@ -243,7 +245,7 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 @keyframes flash{0%{background:var(--accent-soft)}100%{background:transparent}}
 .thumb{position:relative;width:52px;height:52px;border-radius:13px;background:var(--c);color:var(--on-cat);display:grid;place-items:center;overflow:hidden}
 .thumb::before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.14) 0 6px,transparent 6px 12px)}
-.thumb svg{position:relative;width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.thumb svg{position:relative;width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .thumb img{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1}
 .thumb.hollow{background:transparent;border:2px dashed var(--c);color:var(--c)}
 .thumb.hollow::before{display:none}
@@ -540,7 +542,11 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
 .cards3{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px}
 .card3{position:relative;height:clamp(186px,54vw,236px);border-radius:20px;overflow:hidden;background:var(--c);cursor:pointer;color:#FFFFFF;isolation:isolate;--c:var(--g-play)}
 .card3 .cover{z-index:0}
-.card3 .cover svg{right:auto;bottom:auto;left:50%;top:40%;width:112px;height:112px;margin:-56px 0 0 -56px;stroke:rgba(255,255,255,.6);stroke-width:1.3}   /* no photo: a drawn card in the kind's color with its icon, on purpose */
+.card3 .cover svg{right:auto;bottom:auto;left:50%;top:40%;width:112px;height:112px;margin:-56px 0 0 -56px;stroke:rgba(255,255,255,.6);stroke-width:1.3;color:rgba(255,255,255,.5)}   /* no photo: a drawn card in the kind's color with its icon, on purpose */
+/* v5.4: the kind's solid icon on a neutral circle, top left of every card (decorative: the card's label already says what it is) */
+.c3-kind{position:absolute;top:10px;left:10px;z-index:3;width:34px;height:34px;border-radius:50%;background:var(--paper);color:var(--c);display:grid;place-items:center;box-shadow:0 1px 4px rgba(0,0,0,.3);pointer-events:none}
+.c3-kind svg{width:22px;height:22px;display:block}
+.c3-kind ~ .been-mark{left:52px;top:16px}
 .map-pill{left:auto;right:calc(16px + var(--sar));transform:none}
 .been-box .bb-l{flex:1 0 100%}
 .been-box input[type="date"]{width:150px}
@@ -731,6 +737,16 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 12.5l5 5 10-11"/></symbol>
     <symbol id="i-up" viewBox="0 0 24 24"><path d="M7.5 10.5 11 3.6a2.1 2.1 0 0 1 2.6 2.4l-.7 3.5h5a2 2 0 0 1 2 2.4l-1.1 6a2.5 2.5 0 0 1-2.4 2.1H7.5zM7.5 10.5H4V20h3.5"/></symbol>
     <symbol id="i-down" viewBox="0 0 24 24"><g transform="rotate(180 12 12)"><path d="M7.5 10.5 11 3.6a2.1 2.1 0 0 1 2.6 2.4l-.7 3.5h5a2 2 0 0 1 2 2.4l-1.1 6a2.5 2.5 0 0 1-2.4 2.1H7.5zM7.5 10.5H4V20h3.5"/></g></symbol>
+    <!-- v5.4 kind icons (owner 2026-11-13: "the icon itself is the shape"): solid silhouettes, each a different object, holes cut with evenodd.
+         Every part carries its own fill/stroke, so they draw the same inside outline-styled svgs. Used by the tiles, pins, thumbs and cards. -->
+    <symbol id="k-limited" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" fill-rule="evenodd" d="M3.5 5.5h17A1.5 1.5 0 0 1 22 7v2.8a2.2 2.2 0 0 0 0 4.4V17a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 17v-2.8a2.2 2.2 0 0 0 0-4.4V7a1.5 1.5 0 0 1 1.5-1.5zM14.6 7.5h1.6v2.3h-1.6zM14.6 10.85h1.6v2.3h-1.6zM14.6 14.2h1.6v2.3h-1.6z"/></symbol>
+    <symbol id="k-play" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" fill-rule="evenodd" d="M7 6h10c3.3 0 5 2.5 5.6 6.2l.7 4.2c.4 2.4-2.3 3.6-4 1.9l-2.5-2.5H7.2l-2.5 2.5c-1.7 1.7-4.4.5-4-1.9l.7-4.2C2 8.5 3.7 6 7 6zM6 8.4h1.7v1.75h1.75v1.7H7.7v1.75H6v-1.75H4.25v-1.7H6zM17.5 12.4a1.3 1.3 0 1 0-2.6 0a1.3 1.3 0 1 0 2.6 0zM19.9 10a1.3 1.3 0 1 0-2.6 0a1.3 1.3 0 1 0 2.6 0z"/></symbol>
+    <symbol id="k-look" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" fill-rule="evenodd" d="M12 2.2l9.8 5.2v1.8H2.2V7.4zM13 6.3a1 1 0 1 0-2 0a1 1 0 1 0 2 0zM3.6 10.4H7v7.2H3.6zM10.3 10.4h3.4v7.2h-3.4zM17 10.4h3.4v7.2H17zM2.2 18.6h19.6v2.6H2.2z"/></symbol>
+    <symbol id="k-nature" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" fill-rule="evenodd" d="M4.6 19.4C4.6 9.8 10 3.6 20.6 3.4C20.4 14 14.2 19.4 4.6 19.4zM7.4 17.6l9-9 .8.8-9 9z"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M3 21l3.2-3.2"/></symbol>
+    <symbol id="k-eat" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" fill-rule="evenodd" d="M2.8 3.5h18.4l-8.1 9.3v5.9h3.6a1.3 1.3 0 0 1 1.3 1.3v1.2H6v-1.2a1.3 1.3 0 0 1 1.3-1.3h3.6v-5.9zM17 6.6a1.4 1.4 0 1 0-2.8 0a1.4 1.4 0 1 0 2.8 0z"/></symbol>
+    <symbol id="k-shows" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" fill-rule="evenodd" d="M12 2a3.6 3.6 0 0 1 3.6 3.6v4.8a3.6 3.6 0 0 1-7.2 0V5.6A3.6 3.6 0 0 1 12 2zM10.1 5.9h3.8v1.3h-3.8zM10.1 8.5h3.8v1.3h-3.8z"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M5.2 11a6.8 6.8 0 0 0 13.6 0M12 18v3.2M8.2 21.4h7.6"/></symbol>
+    <symbol id="k-make" viewBox="0 0 24 24"><g transform="rotate(45 12 12)" fill="currentColor" stroke="none"><path d="M9.3 4.4V3.7a2.7 2.7 0 0 1 5.4 0v.7z"/><rect x="9.3" y="5.8" width="5.4" height="10.4"/><path d="M9.3 17.5h5.4L12 23z"/></g></symbol>
+    <symbol id="k-relax" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M2 10.8h20v1.4c0 4.2-3.2 6.8-7.2 6.8H9.2C5.2 19 2 16.4 2 12.2z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6.6 19l-1 2.4M17.4 19l1 2.4M8 8.4c-1.2-1.3 1.2-2.2 0-3.4s1.2-2.2 0-3.4M12 8.4c-1.2-1.3 1.2-2.2 0-3.4s1.2-2.2 0-3.4M16 8.4c-1.2-1.3 1.2-2.2 0-3.4s1.2-2.2 0-3.4"/></symbol>
     <symbol id="star6" viewBox="0 0 24 24"><path d="M12 1 14.2 8.19 21.53 6.5 16.4 12 21.53 17.5 14.2 15.81 12 23 9.8 15.81 2.47 17.5 7.6 12 2.47 6.5 9.8 8.19z"/></symbol>
   </defs>
 </svg>
@@ -823,7 +839,7 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.3 (2026-11-13)';
+var VERSION = 'v5.4 (2026-11-13)';
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
@@ -2198,8 +2214,34 @@ function toggleSel(sel, id){ // tap a tile: add or remove it
   return s;
 }
 function inSel(c, s){ return (!s.gs.length || s.gs.indexOf(c.genre || genreOf(c.item)) >= 0) && (!s.lim || c.lim === 'now'); }
-function genreColor(id){ return GENRE_BY[id] ? 'var(--g-' + id + ')' : 'var(--accent)'; }
-function genreGlyph(id){ return GENRE_BY[id] ? GENRE_BY[id].glyph : 'g-ticket'; }
+function genreColor(id){ return GENRE_BY[id] ? 'var(--g-' + id + ')' : id === 'limited' ? 'var(--g-limited)' : 'var(--accent)'; }
+function genreGlyph(id){ return GENRE_BY[id] ? GENRE_BY[id].glyph : 'g-ticket'; }   // thin outline glyphs: big decorative covers only
+// v5.4 (owner 2026-11-13: "Could it have different shapes too?" then "the icon itself is the shape"): each kind is a solid silhouette of a
+// different object, with no badge behind it. Tiles, pins, thumbs and cards all use these. KIND_SHAPE is the legend (self-test + report).
+var KIND_ICON = {limited:'k-limited', play:'k-play', look:'k-look', nature:'k-nature', eat:'k-eat', shows:'k-shows', make:'k-make', relax:'k-relax'};
+var KIND_SHAPE = {limited:'ticket', play:'game controller', look:'museum', nature:'leaf', eat:'cocktail glass', shows:'microphone', make:'pencil', relax:'bathtub'};
+function kindIcon(id){ return KIND_ICON[id] || 'k-limited'; }
+var KIND_IDS = ['limited', 'play', 'look', 'nature', 'eat', 'shows', 'make', 'relax'];
+function hexRgb(h){ var m = /^#?([0-9a-f]{6})$/i.exec(String(h || '').trim()); if (!m) return null; var n = parseInt(m[1], 16); return [n >> 16 & 255, n >> 8 & 255, n & 255]; }
+function srgbLin(v){ v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }
+function relLum(h){ var c = hexRgb(h); return c ? 0.2126 * srgbLin(c[0]) + 0.7152 * srgbLin(c[1]) + 0.0722 * srgbLin(c[2]) : NaN; }
+function contrastRatio(a, b){ var x = relLum(a), y = relLum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+function labOf(h){ var c = hexRgb(h); if (!c) return null; var r = srgbLin(c[0]), g = srgbLin(c[1]), b = srgbLin(c[2]);
+  var X = (r * 0.4124 + g * 0.3576 + b * 0.1805) / 0.95047, Y = r * 0.2126 + g * 0.7152 + b * 0.0722, Z = (r * 0.0193 + g * 0.1192 + b * 0.9505) / 1.08883;
+  function f(t){ return t > 0.008856 ? Math.pow(t, 1 / 3) : 7.787 * t + 16 / 116; }
+  return [116 * f(Y) - 16, 500 * (f(X) - f(Y)), 200 * (f(Y) - f(Z))]; }
+function deltaE76(a, b){ var p = labOf(a), q = labOf(b); return p && q ? Math.sqrt(Math.pow(p[0] - q[0], 2) + Math.pow(p[1] - q[1], 2) + Math.pow(p[2] - q[2], 2)) : NaN; }
+function kindColorsFor(theme){ // {kind: '#hex', paper: '#hex', onCat: '#hex'} read from the CSS tokens with the theme forced for a moment
+  var de = document.documentElement, keep = de.getAttribute('data-theme'), out = {};
+  try {
+    if (theme === 'light' || theme === 'dark') de.setAttribute('data-theme', theme);
+    var cs = getComputedStyle(de);
+    KIND_IDS.forEach(function(k){ out[k] = cs.getPropertyValue('--g-' + k).trim(); });
+    out.paper = cs.getPropertyValue('--paper').trim(); out.onCat = cs.getPropertyValue('--on-cat').trim();
+  } finally { if (keep === null) de.removeAttribute('data-theme'); else de.setAttribute('data-theme', keep); }
+  return out;
+}
+function kindSvg(id, cls){ return '<svg' + (cls ? ' class="' + cls + '"' : '') + ' aria-hidden="true" focusable="false"><use href="#' + kindIcon(id) + '"/></svg>'; }
 function subOf(it, g){ // sub-chip of an item inside its genre (adapted from the mockup's subOf())
   g = g || genreOf(it);
   var n = String(it.name || ''), id = String(it.id || ''), cat = it.category;
@@ -3352,7 +3394,7 @@ function pinHTML(e, u){
   }
   var aria = it.name + ', ' + genreName(g) + ', ' + c.d.text + (o.tk ? ', limited time' : '') + (c.dist !== null ? ', ' + travelText(c.trav) : '');
   return '<button class="' + pinClass(c, o) + '" type="button" style="--c:' + genreColor(g) + '" data-id="' + esc(it.id) + '" data-ux="' + r1(u[0]) + '" data-uy="' + r1(u[1]) + '" aria-label="' + esc(aria) + '">' + label +
-    '<span class="mk-body"><svg aria-hidden="true"><use href="#' + genreGlyph(g) + '"/></svg>' + (o.tk ? TICKET_SVG : '') + '</span></button>';
+    '<span class="mk-body">' + kindSvg(g) + (o.tk ? TICKET_SVG : '') + '</span></button>';
 }
 function recluster(){
   lastClusterS = MV.s;
@@ -3560,8 +3602,8 @@ function renderTiles(vm){
     // v5.3: a kind tile always shows what that kind has open (never a 0 that reads as "closed"); with Limited on, a small red count says how many of them are limited
     var ltd = !isL && vm.lim && t.lim ? t.lim : 0;
     var lab = name + ', ' + t.n + (isL ? ' limited, ' + openWords() : ' ' + openWords() + (S.budgetOn ? ', ' + doableWords() : '') + (vm.lim ? ', ' + (t.lim || 0) + ' limited' : ''));
-    h += '<button class="tile' + (isL ? ' lt' : '') + (t.n ? '' : ' zero') + (ltd ? ' has-ltd' : '') + '" type="button" data-tile="' + t.id + '" aria-pressed="' + tilePressed(vm, t.id) + '" aria-label="' + esc(lab) + '" title="' + esc(lab) + '" style="--c:' + (isL ? 'var(--accent)' : genreColor(t.id)) + '">' +
-      '<span class="top"><span class="gl"><svg aria-hidden="true"><use href="#' + genreGlyph(t.id) + '"/></svg></span><span class="num">' + t.n + '</span></span><span class="nm">' + esc(genreShort(t.id)) + '</span>' + (ltd ? '<span class="ltd" aria-hidden="true">' + ltd + '</span>' : '') + '</button>';
+    h += '<button class="tile' + (isL ? ' lt' : '') + (t.n ? '' : ' zero') + (ltd ? ' has-ltd' : '') + '" type="button" data-tile="' + t.id + '" aria-pressed="' + tilePressed(vm, t.id) + '" aria-label="' + esc(lab) + '" title="' + esc(lab) + '" style="--c:' + genreColor(t.id) + '">' +
+      '<span class="top"><span class="gl" data-shape="' + esc(KIND_SHAPE[t.id] || '') + '">' + kindSvg(t.id) + '</span><span class="num">' + t.n + '</span></span><span class="nm">' + esc(genreShort(t.id)) + '</span>' + (ltd ? '<span class="ltd" aria-hidden="true">' + ltd + '</span>' : '') + '</button>';
   });
   el.innerHTML = h;
   el.classList.toggle('has-pick', !!vm.sel);
@@ -3605,9 +3647,9 @@ function thumbHTML(c, o){
   o = o || {};
   var it = c.item, g = c.genre || genreOf(it);
   if (o.date && isKey(o.date)) { var dd = dayDiff(c.st.p.key, o.date); return '<div class="thumb date"><small>' + (dd > 10 ? MON_SHORT[+o.date.slice(5, 7) - 1] : DOW_SHORT[wdOfKey(o.date)]) + '</small><b>' + (+o.date.slice(8)) + '</b></div>'; }
-  if (o.hollow) return '<div class="thumb hollow">' + glyphSvg(genreGlyph(g), '') + '</div>';
+  if (o.hollow) return '<div class="thumb hollow">' + kindSvg(g) + '</div>';
   var ph = firstPhoto(it);
-  return '<div class="thumb">' + glyphSvg(genreGlyph(g), '') + (ph ? '<img src="' + esc(ph.file) + '" alt="" loading="lazy" data-fb="1">' : '') + '</div>';
+  return '<div class="thumb">' + kindSvg(g) + (ph ? '<img src="' + esc(ph.file) + '" alt="" loading="lazy" data-fb="1">' : '') + '</div>';
 }
 function shortHood(h){ h = String(h || ''); return h.length > 34 ? h.split(/[\/(,]/)[0].trim() : h; }
 function phoneHTML(ph, telOk){ // number as selectable text + Copy; a tel: link only outside claude.ai / frames (Platform.telOk, tester M5)
@@ -3672,7 +3714,7 @@ function rowHTML(c, opt){
 }
 function actBtn(b){ return '<button class="mini-btn" type="button" ' + b.attr + '>' + esc(b.label) + '</button>'; }
 function noneRowHTML(g, title, body, btns){
-  return '<li class="row none" style="--c:' + genreColor(g) + '"><div class="thumb hollow">' + glyphSvg(genreGlyph(g), '') + '</div><div class="row-main"><p class="rk"><span>' + esc(genreName(g)) + '</span><span></span></p>' +
+  return '<li class="row none" style="--c:' + genreColor(g) + '"><div class="thumb hollow">' + kindSvg(g) + '</div><div class="row-main"><p class="rk"><span>' + esc(genreName(g)) + '</span><span></span></p>' +
     '<h3>' + esc(title) + '</h3><p class="meta">' + esc(body) + '</p>' + (btns || []).map(actBtn).join(' ') + '</div></li>';
 }
 var THIN_GENRE = 12;   // a kind with fewer items than this asks for tips in its empty state
@@ -3928,8 +3970,9 @@ function searchListHTML(q){
 function cardHTML(c){
   var it = c.item, g = c.genre || genreOf(it), ph = firstPhoto(it), sv = isSaved(it.id), ck = checkinOf(it.id), hook = hookOf(it), facts = factsLine(c);
   return '<li class="card3" data-id="' + esc(it.id) + '" tabindex="0" aria-label="' + esc(it.name + '. ' + facts) + '" style="--c:' + genreColor(g) + '">' +
-    '<div class="cover"><svg aria-hidden="true"><use href="#' + genreGlyph(g) + '"/></svg></div>' +
+    '<div class="cover">' + kindSvg(g) + '</div>' +
     (ph ? '<img src="' + esc(ph.file) + '" alt="" data-fb="1">' : '') +
+    '<span class="c3-kind" aria-hidden="true">' + kindSvg(g) + '</span>' +
     (ck ? '<span class="been-mark">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' : '') +
     '<div class="c3-btns"><button class="c3-btn" type="button" data-share="' + esc(it.id) + '" aria-label="Share ' + esc(it.name) + '">' + glyphSvg('i-share') + '</button>' +
     '<button class="c3-btn" type="button" data-save="' + esc(it.id) + '" aria-pressed="' + sv + '" aria-label="' + (sv ? 'Saved: ' : 'Save: ') + esc(it.name) + '">' + glyphSvg('i-bookmark') + '</button></div>' +
@@ -6024,12 +6067,58 @@ function runSelfTest0(){
     eq('remembered Limited alone comes back as nothing picked', selCode(restoredSel(['limited'])) + '|' + selCode(restoredSel(null, 'limited')), '|');
     eq('kinds alone come back unchanged', selCode(restoredSel(['look', 'eat'])), selCode('look+eat'));
   });
+  block('v5.4 every kind has its own icon shape and its own color', function(){
+    var icons = KIND_IDS.map(kindIcon), shapes = KIND_IDS.map(function(k){ return KIND_SHAPE[k] || ''; });
+    function uniq(a){ var s = {}; a.forEach(function(x){ s[x] = 1; }); return Object.keys(s).length; }
+    eq('8 kinds (Limited + 7)', KIND_IDS.length + '|' + GENRES.length, '8|7');
+    ok('every genre is in the kind list', GENRES.every(function(g){ return KIND_IDS.indexOf(g.id) >= 0; }), 'missing');
+    eq('8 different icons, 8 different named shapes', uniq(icons) + '|' + uniq(shapes.filter(Boolean)), '8|8');
+    var missing = icons.filter(function(id){ return !document.getElementById(id); });
+    eq('every icon is drawn in the page', missing.join(), '');
+    var marks = icons.map(function(id){ var s = document.getElementById(id); return s ? s.innerHTML.replace(/\s+/g, ' ') : ''; });
+    eq('no two icons have the same drawing', uniq(marks), 8);
+    var notSolid = icons.filter(function(id){ var s = document.getElementById(id); return !s || !s.querySelector('[fill="currentColor"]'); });
+    eq('every icon is a solid silhouette (filled, not a thin outline)', notSolid.join(), '');
+    eq('shapes: ' + KIND_IDS.map(function(k){ return genreShort(k) + '=' + KIND_SHAPE[k]; }).join(', '), uniq(shapes), 8);
+    ['light', 'dark'].forEach(function(th){
+      var C = kindColorsFor(th), bad = [], pairs = [], minD = 999, minPair = '';
+      KIND_IDS.forEach(function(k){ if (!hexRgb(C[k])) bad.push(k + '=' + C[k]); });
+      eq(th + ': every kind has a color token (--g-kind)', bad.join(), '');
+      if (bad.length) return;
+      for (var i = 0; i < KIND_IDS.length; i++) for (var j = i + 1; j < KIND_IDS.length; j++) {
+        var d = deltaE76(C[KIND_IDS[i]], C[KIND_IDS[j]]); if (d < minD) { minD = d; minPair = KIND_IDS[i] + '/' + KIND_IDS[j]; }
+      }
+      ok(th + ': every two kind colors are clearly different (dE76 25+; closest ' + minPair + ' ' + minD.toFixed(1) + ')', minD >= 25, minPair + ' ' + minD.toFixed(1));
+      var lp = Math.min(deltaE76(C.limited, C.play), deltaE76(C.limited, C.look), deltaE76(C.play, C.look));
+      ok(th + ': Limited, Play and Sights are far apart (dE76 25+, got ' + lp.toFixed(1) + ')', lp >= 25, lp.toFixed(1));
+      var low = KIND_IDS.filter(function(k){ return contrastRatio(C[k], C.paper) < 3 || (hexRgb(C.onCat) && contrastRatio(C[k], C.onCat) < 3); });
+      eq(th + ': every kind color has 3:1 or more on the page and under its icon color', low.join(), '');
+    });
+  });
+  block('v5.4 the icons are used on tiles, pins and cards (no badge behind them)', function(){
+    var t = $('tiles'), tl = t ? t.querySelectorAll('.tile') : [], wrong = [], withBg = [];
+    Array.prototype.forEach.call(tl, function(el){
+      var id = el.getAttribute('data-tile'), u = el.querySelector('.gl use'), gl = el.querySelector('.gl');
+      if (!u || u.getAttribute('href') !== '#' + kindIcon(id)) wrong.push(id);
+      if (gl) { var bg = getComputedStyle(gl).backgroundColor; if (bg && bg !== 'transparent' && !/rgba\(0, 0, 0, 0\)/.test(bg)) withBg.push(id); }
+    });
+    eq('each tile shows its kind\'s icon', wrong.join(), '');
+    eq('no rounded-square badge behind tile icons', withBg.join(), '');
+    var fake = {item:{id:'t-pin-shape', name:'Pin test'}, genre:'shows', st:{key:'open', open:false}, d:{text:'Open'}, dist:null};
+    var ph = pinHTML({c:fake, o:{tk:true}}, [0, 0]);
+    ok('a pin carries its kind\'s icon and the limited-time ticket', ph.indexOf('#k-shows') >= 0 && ph.indexOf('class="tkb"') >= 0, ph.slice(0, 200));
+    ok('the pin\'s spoken label is unchanged (name, kind, status, limited time)', ph.indexOf('aria-label="Pin test, Shows &amp; Nights, Open, limited time"') >= 0, ph.slice(0, 240));
+    var ph2 = pinHTML({c:ext(fake, {genre:'look'}), o:{}}, [0, 0]);
+    ok('a Sights pin uses the museum, no ticket when not limited', ph2.indexOf('#k-look') >= 0 && ph2.indexOf('tkb') < 0, ph2.slice(0, 200));
+    ok('icons inside pins are hidden from screen readers', /<svg[^>]*aria-hidden="true"[^>]*><use href="#k-shows"/.test(ph), ph.slice(0, 200));
+    ok('clusters stay neutral (a number, no kind icon)', typeof recluster === 'function' && String(recluster).indexOf('class="cluster"') >= 0 && !/cluster[^\n]*kindSvg/.test(String(recluster)), 'cluster markup changed');
+  });
 
   block('v3 page parts', function(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.3 (2026-11-13)');
+    eq('version', VERSION, 'v5.4 (2026-11-13)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -6437,6 +6526,7 @@ function init(){
 
 window.__cff = {
   version: VERSION, appName: APP_NAME,
+  KIND_ICON: KIND_ICON, KIND_SHAPE: KIND_SHAPE, kindIcon: kindIcon, kindColors: function(theme){ return kindColorsFor(theme); },   // v5.4
   statusAt: statusAt, describe: describe, eventBadge: eventBadge, fitFor: fitFor, fitNote: fitNote, trustOf: trustOf,
   seasonState: seasonState, eventEntries: eventEntries, closedSet: closedSet, dayRanges: dayRanges,
   cparts: cparts, fromChicago: fromChicago, hm: hm, fmtTime: fmtTime, thanksgiving: thanksgiving, holidayName: holidayName, sunTimes: sunTimes,
