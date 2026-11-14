@@ -71,6 +71,17 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .map.dragging{cursor:grabbing}
 .map.picking{cursor:crosshair}
 .mapsvg{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+/* v5 street map (MapLibre + OpenFreeMap); the drawn SVG map stays underneath as the fallback */
+.glmap{position:absolute;left:0;top:0;width:100%;height:100%;visibility:hidden}   /* shown only once the street map is ready */
+.map.gl .glmap{visibility:visible}
+.map:not(.gl) .glmap .maplibregl-control-container{display:none}
+.map.gl .mapsvg,.map.gl .mlabels{display:none}
+.map.gl{cursor:default}
+#app.gl .mapcredit,#app.gl .credit{display:none!important}
+.glmap .maplibregl-ctrl-bottom-left{bottom:calc(var(--sab) + 2px);z-index:4}
+.glmap .maplibregl-ctrl-attrib{font:500 10.5px/1.4 var(--f-body);background:rgba(255,255,255,.82);color:#333}
+.glmap .maplibregl-ctrl-attrib a{color:#333}
+#app:has(#mapCard:not([hidden])) .glmap .maplibregl-ctrl-bottom-left{bottom:calc(var(--sab) + 118px)}
 .mapsvg path{stroke-linejoin:round}
 .suburb{fill:var(--suburb);stroke:none}
 .halo{fill:none;stroke:var(--shore);stroke-width:var(--halo,5px)}
@@ -501,10 +512,10 @@ input.tin{height:48px;padding:0 12px}
 .q-clear{position:absolute;right:4px;top:4px;width:36px;height:36px;border-radius:18px;border:0;background:none;color:var(--ink-3);display:grid;place-items:center;padding:0}
 .q-clear .i{position:static;width:18px;height:18px}
 .icon-btn{position:relative;flex:none;width:44px;height:44px;border-radius:22px;border:0;background:var(--paper-2);display:grid;place-items:center;color:var(--ink);padding:0}
-.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(--ink-2);display:flex;flex-wrap:wrap;gap:0 5px;align-items:center}
+p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(--ink-2);display:flex;flex-wrap:wrap;gap:0 5px;align-items:center}   /* v5: was ".quiet", which also hit season rows (li.row.quiet) and broke their layout */
 .quiet .fill{font:600 13.5px/1.4 var(--f-body);color:var(--ink);text-decoration-thickness:1.5px;text-underline-offset:3px;min-height:30px}
 .quiet .fill svg{width:.6em;height:.6em}
-.sheet.searching .tiles,.sheet.searching .subchips,.sheet.searching .resline,.sheet.searching .applied,.sheet.searching .quiet{display:none}
+.sheet.searching .tiles,.sheet.searching .subchips,.sheet.searching .resline,.sheet.searching .applied,.sheet.searching p.quiet{display:none}
 .been{color:var(--open);font-weight:700;white-space:nowrap}
 .home{position:absolute;top:0;right:0;bottom:0;left:0;z-index:35;background:var(--paper);overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:calc(var(--sat) + 12px) calc(16px + var(--sar)) calc(92px + var(--sab)) calc(16px + var(--sal))}
 #app:not([data-view="home"]) .home{display:none}
@@ -599,6 +610,16 @@ input.tin{height:48px;padding:0 12px}
 .trust-s .sources{font-size:12.5px;color:var(--ink-3);margin-top:4px}
 .dt-bar .btn-sq{background:var(--paper)}
 
+/* ---------- v5: shorter filter sheet, multi-select tiles, home "Only ..." chip ---------- */
+#pFiltersBody .fsec{margin-top:16px}
+#pFiltersBody .fsec:first-child{margin-top:2px}
+#pFiltersBody .fsec h3{margin:0 0 7px}
+#pFiltersBody .chip{min-height:36px;padding:0 12px}
+#pFiltersBody .chips-w{gap:6px}
+#pFiltersBody .seg button{min-height:40px}
+.qchip.selchip{flex:0 1 auto;display:inline-flex;align-items:center;gap:6px;padding:0 12px 0 14px;max-width:100%}
+.qchip.selchip .i{width:14px;height:14px;flex:none}
+
 /* ---------- self-test ---------- */
 .selftest{position:fixed;top:0;right:0;bottom:0;left:0;z-index:300;background:var(--paper);color:var(--ink);overflow:auto;padding:calc(var(--sat) + 14px) 14px 40px;font:500 13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 .selftest h1{font:900 30px/1 var(--f-display);text-transform:uppercase;margin:0 0 6px}
@@ -642,6 +663,11 @@ input.tin{height:48px;padding:0 12px}
   .panel.tall{height:calc(100% - 48px)}
   .panel .grabber{display:none}
   .map-note{left:calc(var(--side) + (100% - var(--side)) / 2)}
+}
+@media (min-width:1200px){ /* v5 laptop: a roomier list, the map still gets two thirds */
+  :root{--side:clamp(440px,34vw,520px)}
+  .detail{width:var(--side)!important}
+  .dt-photo{height:340px}
 }
 @media (prefers-reduced-motion: reduce){
   .sheet,.mk-body,.chip,.detail,.panel,.scrim,.switch,.switch::after,.tile,.sc,.fold .chev,.surprise .disc{transition:none!important}
@@ -772,7 +798,7 @@ input.tin{height:48px;padding:0 12px}
     <div class="p-foot"><button class="btn-primary" id="locGo" type="button">Start at The Loop</button></div>
   </section>
   <section id="pTime" class="panel" hidden role="dialog" aria-labelledby="pTimeTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pTimeTitle" tabindex="-1">How much time do you have?</h2><button class="p-close" type="button" data-close="pTime" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pTimeBody"></div><div class="p-foot"><button class="btn-primary" id="pTimeGo" type="button">Show</button></div></section>
-  <section id="pFilters" class="panel tall" hidden role="dialog" aria-labelledby="pFiltersTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pFiltersTitle" tabindex="-1">More filters</h2><button class="p-close" type="button" data-close="pFilters" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pFiltersBody"></div><div class="p-foot two"><button class="btn-2" id="pFiltersReset" type="button">Reset</button><button class="btn-primary" id="pFiltersGo" type="button">Show</button></div></section>
+  <section id="pFilters" class="panel" hidden role="dialog" aria-labelledby="pFiltersTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pFiltersTitle" tabindex="-1">More filters</h2><button class="p-close" type="button" data-close="pFilters" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pFiltersBody"></div><div class="p-foot two"><button class="btn-2" id="pFiltersReset" type="button">Reset</button><button class="btn-primary" id="pFiltersGo" type="button">Show</button></div></section>
   <section id="pSmall" class="panel" hidden role="dialog" aria-labelledby="pSmallTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pSmallTitle" tabindex="-1"></h2><button class="p-close" type="button" data-close="pSmall" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pSmallBody"></div></section>
   <section id="pSaved" class="panel tall" hidden role="dialog" aria-labelledby="pSavedTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pSavedTitle" tabindex="-1">Saved</h2><button class="p-close" type="button" data-close="pSaved" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pSavedBody" style="padding-left:0;padding-right:0"></div></section>
   <section id="pAbout" class="panel tall" hidden role="dialog" aria-labelledby="pAboutTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pAboutTitle" tabindex="-1">About</h2><button class="p-close" type="button" data-close="pAbout" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body about" id="pAboutBody"></div></section>
@@ -790,7 +816,7 @@ input.tin{height:48px;padding:0 12px}
 'use strict';
 
 var APP_NAME = 'Chicago Fun Finder';  // THE app name: page title, wordmark, About all read this one constant. Working name until the owner picks one (the earlier proposal was rejected).
-var VERSION = 'v4 (2026-11-12)';
+var VERSION = 'v5 (2026-11-13)';
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
@@ -835,10 +861,24 @@ var Platform = (function(){
         } else cb('prompt');
       } catch (e) { cb('prompt'); }
     },
-    get: function(ok, fail){
+    // v5: options {timeout, maximumAge}; fail() always gets an object with a numeric code (1 denied, 2 unavailable, 3 timeout, 0 other)
+    get: function(ok, fail, o){
+      o = o || {};
       try {
-        navigator.geolocation.getCurrentPosition(function(p){ ok(p.coords.latitude, p.coords.longitude); }, function(e){ fail(e); }, {enableHighAccuracy:false, timeout:9000, maximumAge:300000});
-      } catch (e) { fail(e); }
+        navigator.geolocation.getCurrentPosition(function(p){ ok(p.coords.latitude, p.coords.longitude, p.coords.accuracy); }, function(e){ fail(e && typeof e.code === 'number' ? e : {code:0}); },
+          {enableHighAccuracy:false, timeout:o.timeout || 10000, maximumAge:(o.maximumAge === 0 || o.maximumAge) ? o.maximumAge : 300000});
+      } catch (e) { fail({code:0, message:String(e && e.message || e)}); }
+    },
+    // v5: keep the blue dot updated while the page is visible (low power)
+    watch: function(ok){
+      try { return navigator.geolocation.watchPosition(function(p){ ok(p.coords.latitude, p.coords.longitude, p.coords.accuracy); }, function(){}, {enableHighAccuracy:false, maximumAge:60000, timeout:30000}); } catch (e) { return null; }
+    },
+    unwatch: function(id){ try { if (id !== null && id !== undefined) navigator.geolocation.clearWatch(id); } catch (e) {} },
+    // v5: allowing location later (in the browser's site settings) works without a reload
+    onChange: function(cb){
+      try {
+        if (navigator.permissions && navigator.permissions.query) navigator.permissions.query({name:'geolocation'}).then(function(r){ var h = function(){ cb(r.state); }; if (r.addEventListener) r.addEventListener('change', h); else r.onchange = h; }, function(){});
+      } catch (e) {}
     }
   };
   function copy(text){
@@ -1884,6 +1924,25 @@ function travel(mi, mode){
   return {min: carMin(mi), how:'drive', switched:true};
 }
 function miToUnits(mi){ return mi * 1609.344 / UNIT_M; }
+// v5 location errors (pure, self-tested). Geolocation API codes: 1 PERMISSION_DENIED, 2 POSITION_UNAVAILABLE (e.g. Windows location
+// services off), 3 TIMEOUT. Only 1 means blocked. 2 and 3 get one retry with a longer wait, then "Couldn't find you".
+var GEO_FIRST_MS = 10000, GEO_RETRY_MS = 20000;
+function geoErrKind(e){ var c = e && e.code; return c === 1 ? 'blocked' : (c === 2 || c === 3) ? 'notfound' : 'error'; }
+function geoNextStep(e, tries){ // -> {kind, retry, opts}
+  var k = geoErrKind(e);
+  if (k === 'notfound' && !tries) return {kind:k, retry:true, opts:{timeout:GEO_RETRY_MS, maximumAge:0}};
+  return {kind:k === 'error' ? 'notfound' : k, retry:false, opts:null};
+}
+function geoErrorText(kind, ua){ // one short line
+  ua = String(ua || '');
+  var ios = /iPhone|iPad|iPod/.test(ua), android = /Android/.test(ua), win = /Windows NT/.test(ua), mac = /Macintosh/.test(ua) && !ios;
+  if (kind === 'blocked') {
+    if (ios) return 'Location is blocked. Turn it on: Settings > Apps > Safari > Location.';
+    if (android) return 'Location is blocked. Tap the icon left of the address > Permissions > Location.';
+    return 'Location is blocked. Click the icon left of the address and allow Location.';
+  }
+  return 'Couldn\'t find you. Try again.' + (win ? ' Also check Windows Settings > Privacy > Location.' : mac ? ' Also check System Settings > Privacy > Location Services.' : '');
+}
 
 /* ================= fits my time ================= */
 /* SHORTEST WORTHWHILE VISIT (tester H1). Used when an item has no `min_minutes` (README data format). Minutes.
@@ -2097,7 +2156,32 @@ function genreOf(it){
   return g;
 }
 function validGenre(v){ return (v === 'limited' || (typeof v === 'string' && GENRE_BY[v])) ? v : ''; }   // for the remembered tile
-function genreName(id){ return id === 'limited' ? 'Limited time' : (GENRE_BY[id] ? GENRE_BY[id].name : ''); }
+function genreName(id){
+  id = String(id || '');
+  if (id.indexOf('+') >= 0) { var s = normSel(id), nm = s.gs.map(function(g){ return GENRE_SHORT[g] || GENRE_BY[g].name; }); if (s.lim) nm.push('Limited'); return nm.join(' + '); }   // v5: several kinds at once
+  return id === 'limited' ? 'Limited time' : (GENRE_BY[id] ? GENRE_BY[id].name : '');
+}
+/* v5 (owner 2026-11-13: "what if I want to do play that is limited? I can't"): the kind tiles are multi-select and Limited time is a toggle
+   that narrows whatever is picked. A selection is {gs:[genre ids in GENRES order], lim:bool}; nothing picked = everything.
+   Its text code is 'limited+play+look' (used for hash links, the view key and "genreName"). */
+function normSel(sel){
+  var gs = [], lim = false, parts;
+  if (Array.isArray(sel)) parts = sel.slice();
+  else if (sel && typeof sel === 'object') { parts = (Array.isArray(sel.gs) ? sel.gs : []).slice(); if (sel.lim) parts.push('limited'); }
+  else parts = String(sel || '').split(/[+,\s]+/);
+  parts.forEach(function(p){ if (p === 'limited') lim = true; });
+  GENRES.forEach(function(g){ if (parts.indexOf(g.id) >= 0) gs.push(g.id); });
+  return {gs:gs, lim:lim};
+}
+function selCode(sel){ var s = normSel(sel); return (s.lim ? ['limited'] : []).concat(s.gs).join('+'); }
+function selList(sel){ var s = normSel(sel); return (s.lim ? ['limited'] : []).concat(s.gs); }   // what is remembered (a list)
+function toggleSel(sel, id){ // tap a tile: add or remove it
+  var s = normSel(sel);
+  if (id === 'limited') s.lim = !s.lim;
+  else if (GENRE_BY[id]) { var i = s.gs.indexOf(id); if (i >= 0) s.gs.splice(i, 1); else s.gs.push(id); s = normSel(s); }
+  return s;
+}
+function inSel(c, s){ return (!s.gs.length || s.gs.indexOf(c.genre || genreOf(c.item)) >= 0) && (!s.lim || c.lim === 'now'); }
 function genreColor(id){ return GENRE_BY[id] ? 'var(--g-' + id + ')' : 'var(--accent)'; }
 function genreGlyph(id){ return GENRE_BY[id] ? GENRE_BY[id].glyph : 'g-ticket'; }
 function subOf(it, g){ // sub-chip of an item inside its genre (adapted from the mockup's subOf())
@@ -2212,6 +2296,17 @@ function interestList(items){ // [{id, label, n}] for every interest with INTERE
   items.forEach(function(it){ interestsOf(it).forEach(function(k){ cnt[k] = (cnt[k] || 0) + 1; }); });
   return Object.keys(cnt).filter(function(k){ return cnt[k] >= INTEREST_MIN; }).map(function(k){ return {id:k, label:interestLabel(k), n:cnt[k]}; })
     .sort(function(a, b){ return b.n - a.n || (a.label < b.label ? -1 : a.label > b.label ? 1 : 0); });
+}
+// v5: More filters shows at most POP_INTERESTS popular interests (search finds the rest). Short labels; any interest already picked stays visible.
+var POP_INTERESTS = 6;
+var INTEREST_SHORT = {'views':'Views', 'music':'Live music', 'cocktails':'Cocktails', 'animals':'Animals', 'art':'Art', 'history':'History', 'games':'Games', 'bugs':'Bugs',
+  'theater':'Theater', 'comedy':'Comedy', 'sweets':'Sweets', 'garden':'Gardens', 'lake':'Lake', 'museum':'Museums', 'immersive':'Immersive', 'holiday':'Holiday', 'lights':'Lights',
+  'arcade':'Arcades', 'karaoke':'Karaoke', 'mini-golf':'Mini golf', 'bowling':'Bowling', 'science':'Science', 'nature':'Nature', 'cheese':'Cheese', 'quiet':'Cozy', 'weird':'Weird', 'photo':'Photo spots'};
+function popularInterests(items, F, max){ // [{id, label}] top interests by count, plus any picked ones not in the top
+  var top = interestList(items).slice(0, max), seen = {}, out = [];
+  top.forEach(function(x){ seen[x.id] = 1; out.push({id:x.id, label:INTEREST_SHORT[x.id] || x.label}); });
+  Object.keys((F && F.interests) || {}).forEach(function(k){ if (F.interests[k] && !seen[k]) out.push({id:k, label:INTEREST_SHORT[k] || interestLabel(k)}); });
+  return out;
 }
 function matchesInterests(it, sel){ // multi-select: an item matches when it has ANY picked interest
   var tags = Array.isArray(it.tags) ? it.tags : [];
@@ -2389,14 +2484,16 @@ function rankFits(a, b){ // best-pick rule (spec §4.1): trust, whole visit befo
 }
 function byTravel(a, b){ return a.trav.min - b.trav.min || (a.dist === null ? 1e9 : a.dist) - (b.dist === null ? 1e9 : b.dist); }
 function annotate(c, p){ c.genre = genreOf(c.item); c.sub = subOf(c.item, c.genre); c.bucket = bucketOf(c); c.lim = limitedPhase(c, p); return c; }
-function buildView(res, F, sel, sub){
-  var p = res.p, vm = {p:p, sel:sel || '', sub:sub || '', F:F, all:res.all, tiles:[], byGenre:{}, main:[], onNow:[], soon:[], ending:null, picks:[], empty:[], kind:null, openNow:0, firstOpen:null};
-  GENRES.forEach(function(g){ vm.byGenre[g.id] = []; });
+function buildView(res, F, sel, sub){ // sel: '' | 'play' | 'limited' | 'limited+play+look' | {gs, lim} (v5 multi-select)
+  var p = res.p, s = normSel(sel), vm = {p:p, sel:selCode(s), gs:s.gs, lim:s.lim, s:s, sub:sub || '', F:F, all:res.all, tiles:[], byGenre:{}, limByGenre:{}, main:[], onNow:[], soon:[], ending:null, picks:[], empty:[], kind:null, openNow:0, firstOpen:null};
+  var inGs = function(c){ return !s.gs.length || s.gs.indexOf(c.genre) >= 0; };
+  GENRES.forEach(function(g){ vm.byGenre[g.id] = []; vm.limByGenre[g.id] = 0; });
   res.all.forEach(function(c){
     annotate(c, p);
     if (c.st.open) vm.openNow++;
     if (c.bucket === 'fits') { vm.main.push(c); vm.byGenre[c.genre].push(c); }
-    if (c.lim === 'now') vm.onNow.push(c); else if (c.lim === 'soon' && startKeyOf(c)) vm.soon.push(c);
+    if (c.lim === 'now') vm.limByGenre[c.genre]++;
+    if (!inGs(c)) {} else if (c.lim === 'now') vm.onNow.push(c); else if (c.lim === 'soon' && startKeyOf(c)) vm.soon.push(c);
     if (c.st.opensAt && !c.st.open && (c.st.key === 'later' || c.st.key === 'closed') && (!vm.firstOpen || c.st.opensAt < vm.firstOpen.st.opensAt || (c.st.opensAt === vm.firstOpen.st.opensAt && byTravel(c, vm.firstOpen) < 0))) vm.firstOpen = c;
   });
   GENRES.forEach(function(g){ vm.byGenre[g.id].sort(rankFits); });
@@ -2406,15 +2503,16 @@ function buildView(res, F, sel, sub){
   vm.wknd = vm.soon.filter(function(c){ return c.when === 'wknd'; });
   // Ending soon strip: the on-now item with the nearest announced last date, only if within 7 days
   vm.onNow.forEach(function(c){ var ev = c.st.ev; if (!vm.ending && ev && ev.lastKey && !ev.endUnconfirmed && !c.st.checkDates && dayDiff(p.key, ev.lastKey) >= 0 && dayDiff(p.key, ev.lastKey) <= ENDING_SOON_DAYS) vm.ending = c; });
-  vm.tiles.push({id:'limited', n:vm.onNow.length});
-  GENRES.forEach(function(g){ vm.tiles.push({id:g.id, n:vm.byGenre[g.id].length}); });
+  vm.tiles.push({id:'limited', n:vm.onNow.length});   // v5: on now in the picked kinds (all kinds when none is picked)
+  GENRES.forEach(function(g){ vm.tiles.push({id:g.id, n:s.lim ? vm.limByGenre[g.id] : vm.byGenre[g.id].length}); });   // with Limited on, each kind shows its limited count
   GENRES.forEach(function(g){ var m = vm.byGenre[g.id]; if (m.length) vm.picks.push({g:g.id, c:m[0], n:m.length}); else vm.empty.push(g.id); });
-  if (sel && sel !== 'limited' && GENRE_BY[sel]) {
-    var inG = function(c){ return c.genre === sel && (!sub || c.sub === sub); };
+  if (s.gs.length && !s.lim) {
+    var one = s.gs.length === 1, useSub = one && sub;   // sub-chips only when exactly one kind is picked
+    var inG = function(c){ return s.gs.indexOf(c.genre) >= 0 && (!useSub || c.sub === sub); };
+    if (!one) vm.sub = '';
     var k = {fits:[], tight:[], rest:{}, restN:0, all:0, subs:[]};
     REST_ORDER.forEach(function(r){ k.rest[r] = []; });
     res.all.forEach(function(c){
-      if (c.genre !== sel) return;
       if (!inG(c)) return;
       k.all++;
       if (c.bucket === 'fits') k.fits.push(c);
@@ -2446,15 +2544,15 @@ function genreFitCounts(items, T, ctx, F){ // per-genre count of things that fit
   }
   return out;
 }
-function countView(items, T, ctx, F, sel, sub){ // what "Show N things" counts: the current view's main list
-  var p = cparts(T), n = 0;
+function countView(items, T, ctx, F, sel, sub){ // what "Show N things" counts: the current view's main list (v5: sel may be several kinds + Limited)
+  var p = cparts(T), n = 0, s = normSel(sel), useSub = s.gs.length === 1 && !s.lim && sub;
   for (var i = 0; i < items.length; i++) {
     var c = computeItem(items[i], T, ctx);
     if (!passFilters(c, F)) continue;
-    if (sel === 'limited') { if (limitedPhase({item:c.item, st:c.st}, p) === 'now') n++; continue; }
     var g = genreOf(c.item);
-    if (sel && g !== sel) continue;
-    if (sub && subOf(c.item, g) !== sub) continue;
+    if (s.gs.length && s.gs.indexOf(g) < 0) continue;
+    if (s.lim) { if (limitedPhase({item:c.item, st:c.st}, p) === 'now') n++; continue; }
+    if (useSub && subOf(c.item, g) !== sub) continue;
     if (groupOf(c, F) === 'fits') n++;
   }
   return n;
@@ -2468,7 +2566,7 @@ function moreTimeFor(items, T, ctx, F, genres, sub){ // first longer time at whi
     var b = BUDGET_LADDER[i], c2 = ext(ctx, {budget:b}), cnt;
     if (sub && need.length === 1) { cnt = {}; cnt[need[0]] = countView(items, T, c2, F, need[0], sub); }
     else cnt = genreFitCounts(items, T, c2, F);
-    need = need.filter(function(g){ if (cnt[g] > 0) { out[g] = {budget:b, n:cnt[g]}; return false; } return true; });
+    need = need.filter(function(g){ var cg = (cnt[g] === undefined && String(g).indexOf('+') >= 0) ? normSel(g).gs.reduce(function(a, x){ return a + (cnt[x] || 0); }, 0) : cnt[g]; if (cg > 0) { out[g] = {budget:b, n:cg}; return false; } return true; });   // v5: 'play+look' = the sum of its kinds
   }
   return out;
 }
@@ -2504,7 +2602,7 @@ var DATA = [], SKIPPED = [], DATA_ERR = null, DATA_LOADED = false;
 var S = {loc:null, budget:120, budgetOn:false, when:'now', pickAt:'', f:appDefaultFilters()};   // v4: the time budget is off by default (More filters turns it on); when on, the last amount is remembered
 var UI = {nowOverride:null, sel:null, detailId:null, expand:{}, picking:false, cand:null, firstOpen:false, geoState:'none', lastRes:null, planning:false,
   view:'home', backView:'home', q:'', three:[], seen3:{}, threeKey:null, threeN:0, homeHTML:null, listTab:'saved', draftB:null,   // v4: home / browse / map, search text, the three picks
-  genre:'', sub:'', foldTight:false, foldRest:false, limMore:false, showRing:false, viewKey:null, pinAnim:false, draft:null, surprise:null};   // v3: the picked tile, its sub-chip and the folds
+  gsel:{gs:[], lim:false}, sub:'', foldTight:false, foldRest:false, limMore:false, showRing:false, viewKey:null, pinAnim:false, draft:null, surprise:null};   // v3: the picked tile, its sub-chip and the folds
 var savedIds = [];
 function nowMs(){ return UI.nowOverride !== null ? UI.nowOverride : Date.now(); }
 function evalTime(){
@@ -2601,7 +2699,8 @@ var REACH_MIN = 45;                    // "reachable" = about 45 min door to doo
 function tasteScore(c){ return 0; }    // hook for the taste profile (step group D): a higher score moves a place up. Not built yet.
 function strHash(s){ var h = 5381; for (var i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return h >>> 0; }
 function threePool(vm, todayKey, checkins){ // everything that could be one of the three, best first. The order changes each day (strHash) so it isn't always the same three.
-  var all = (vm.all || []).filter(function(c){ return c.bucket === 'fits' && !beenRecently(c.item.id, todayKey, checkins); });
+  var s = vm.s || normSel(vm.sel), any = s.gs.length || s.lim;   // v5: the picked kinds (and Limited) narrow the three too
+  var all = (vm.all || []).filter(function(c){ return c.bucket === 'fits' && !beenRecently(c.item.id, todayKey, checkins) && (!any || inSel(c, s)); });
   var near = all.filter(function(c){ return c.citywide || c.trav.min <= REACH_MIN; });
   var pool = near.length >= 3 ? near : all;
   function band(c){ var m = c.trav.min; return m <= 15 ? 0 : m <= 30 ? 1 : m <= REACH_MIN ? 2 : 3; }
@@ -2781,7 +2880,7 @@ function buildGeo(areasGJ, linesGJ){
     linesOf(f.geometry).forEach(function(ln){ var pr = ln.map(function(pt){ return proj(pt[1], pt[0]); }); d += ptsPath(pr, false); bb = bboxOf(pr, bb); });
     if (d) lines.push({d:d, cols:cols.slice(0, 5), bb:bb});
   });
-  GEO.areas = areas; GEO.lines = lines; GEO.ready = areas.length > 0;
+  GEO.areas = areas; GEO.lines = lines; GEO.ready = areas.length > 0; GEO.linesGJ = linesGJ || null;   // v5: the street map draws the CTA lines from the raw file
 }
 function pointInRing(x, y, ring){ var inside = false; for (var i = 0, j = ring.length - 1; i < ring.length; j = i++) { var xi = ring[i][0], yi = ring[i][1], xj = ring[j][0], yj = ring[j][1]; if (((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi)) inside = !inside; } return inside; }
 var SUB_RING = null;
@@ -2815,12 +2914,19 @@ var S_MIN = 0.012, S_MAX = 6;
 var mapEl, svgEl, pinsEl, ringEl, labelEls = [], pinEls = [], lastClusterS = 0, rafPending = false, gestureActive = false;
 var WORLD = [-16000, -9000, 16000, 12000];
 function measureMap(){ MV.W = mapEl.clientWidth || window.innerWidth; MV.H = mapEl.clientHeight || window.innerHeight; }
-function toScreen(x, y){ return [(x - MV.cx) * MV.s + MV.W / 2, (y - MV.cy) * MV.s + MV.H / 2]; }
-function toUnits(px, py){ return [(px - MV.W / 2) / MV.s + MV.cx, (py - MV.H / 2) / MV.s + MV.cy]; }
+function toScreen(x, y){
+  if (GLM.on) { var ll = unproj(x, y), pt = GLM.map.project([ll[1], ll[0]]); return [pt.x, pt.y]; }   // v5: street map (handles the 3D tilt)
+  return [(x - MV.cx) * MV.s + MV.W / 2, (y - MV.cy) * MV.s + MV.H / 2];
+}
+function toUnits(px, py){
+  if (GLM.on) { var l = GLM.map.unproject([px, py]); return proj(l.lat, l.lng); }
+  return [(px - MV.W / 2) / MV.s + MV.cx, (py - MV.H / 2) / MV.s + MV.cy];
+}
 function clampView(){ MV.s = clamp(MV.s, S_MIN, S_MAX); MV.cx = clamp(MV.cx, WORLD[0], WORLD[2]); MV.cy = clamp(MV.cy, WORLD[1], WORLD[3]); }
 function requestDraw(){ if (!rafPending) { rafPending = true; (window.requestAnimationFrame || function(f){ return setTimeout(f, 16); })(drawMap); } }
 function drawMap(){
   rafPending = false;
+  if (GLM.on) { placeOverlays(); return; }
   if (!MV.W || !MV.H) measureMap();
   var w = MV.W / MV.s, h = MV.H / MV.s;
   svgEl.setAttribute('viewBox', r1(MV.cx - w / 2) + ' ' + r1(MV.cy - h / 2) + ' ' + r1(w) + ' ' + r1(h));
@@ -2835,6 +2941,7 @@ function drawMap(){
 function placeOverlays(){
   var i, o, sp;
   for (i = 0; i < pinEls.length; i++) { o = pinEls[i]; sp = toScreen(o.x, o.y); o.el.style.left = sp[0].toFixed(1) + 'px'; o.el.style.top = sp[1].toFixed(1) + 'px'; }
+  if (GLM.on) return;   // v5: the street map draws its own place names
   var all = MV.s >= 0.42, feat = MV.s >= 0.09;
   for (i = 0; i < labelEls.length; i++) {
     o = labelEls[i];
@@ -2844,10 +2951,15 @@ function placeOverlays(){
     if (vis !== o.on) { o.el.style.display = vis ? '' : 'none'; o.on = vis; }
   }
 }
-function setView(cx, cy, s){ MV.cx = cx; MV.cy = cy; MV.s = s; clampView(); requestDraw(); }
+function setView(cx, cy, s){
+  MV.cx = cx; MV.cy = cy; MV.s = s; clampView();
+  if (GLM.on) { var c = viewToCamera(MV.cx, MV.cy, MV.s); GLM.map.jumpTo({center:[c.lng, c.lat], zoom:c.zoom}); glSyncFromMap(); placeOverlays(); return; }
+  requestDraw();
+}
 var animTimer = null;
 function animateView(cx, cy, s, ms){
   if (animTimer) { cancelAnimationFrame(animTimer); animTimer = null; }
+  if (GLM.on) { var v = {cx:cx, cy:cy, s:clamp(s, S_MIN, S_MAX)}, c = viewToCamera(clamp(v.cx, WORLD[0], WORLD[2]), clamp(v.cy, WORLD[1], WORLD[3]), v.s); GLM.map.easeTo({center:[c.lng, c.lat], zoom:c.zoom, duration:reduceMotion() ? 0 : (ms || 320)}); return; }
   if (reduceMotion() || !window.requestAnimationFrame) { setView(cx, cy, s); recluster(); return; }
   var a = {cx:MV.cx, cy:MV.cy, s:MV.s}, t0 = null, dur = ms || 320;
   function step(t){
@@ -2860,7 +2972,9 @@ function animateView(cx, cy, s, ms){
   }
   animTimer = requestAnimationFrame(step);
 }
-function zoomAt(px, py, f){ var u = toUnits(px, py), s = clamp(MV.s * f, S_MIN, S_MAX); MV.s = s; MV.cx = u[0] - (px - MV.W / 2) / s; MV.cy = u[1] - (py - MV.H / 2) / s; clampView(); requestDraw(); scheduleRecluster(); }
+function zoomAt(px, py, f){
+  if (GLM.on) { GLM.map.easeTo({zoom:GLM.map.getZoom() + Math.log(f) / Math.LN2, around:GLM.map.unproject([px, py]), duration:reduceMotion() ? 0 : 250}); return; }
+  var u = toUnits(px, py), s = clamp(MV.s * f, S_MIN, S_MAX); MV.s = s; MV.cx = u[0] - (px - MV.W / 2) / s; MV.cy = u[1] - (py - MV.H / 2) / s; clampView(); requestDraw(); scheduleRecluster(); }
 var reclusterTimer = null;
 function scheduleRecluster(){ clearTimeout(reclusterTimer); reclusterTimer = setTimeout(recluster, 160); }
 function mapVisibleBox(){ // part of the map not covered by the sheet or the Saved button (screen px inside the map element); layout spec 3.1: y 108 to the sheet top - 16
@@ -2897,6 +3011,7 @@ function focusPts(pts, animate){ // fit the map to these projected points inside
   var box = mapVisibleBox(), hv = Math.max(140, box.bottom - box.top), bb = bboxOf(pts);
   var bw = Math.max(bb[2] - bb[0], 90), bh = Math.max(bb[3] - bb[1], 90), side = 42;
   var s = clamp(Math.min((MV.W - 2 * side) / bw, (hv - 48) / bh, FIT_MAX_S), S_MIN, S_MAX);
+  if (GLM.on) s *= GL_FIT_SHRINK;   // v5: the 3D tilt makes the near (bottom) part bigger, so leave a little more room
   var cx = (bb[0] + bb[2]) / 2, cy = (bb[1] + bb[3]) / 2 - 14 / s - ((box.top + hv / 2) - MV.H / 2) / s;
   if (animate) animateView(cx, cy, s, 280); else { setView(cx, cy, s); recluster(); }
 }
@@ -2909,6 +3024,7 @@ function onViewportChange(){ // window resize and ResizeObserver on the map
   measureMap();
   applySheet(isWide() ? 'wide' : (Sheet.state === 'wide' ? 'half' : Sheet.state), false);
   if (UI.detailId) $('app').classList.toggle('dt-open', !isWide());
+  if (GLM.map) { try { GLM.map.resize(); } catch (e) {} glSyncFromMap(); }
   if (!refitIfIdle()) { requestDraw(); scheduleRecluster(); }
 }
 function focusOn(lat, lng, radiusMi, animate){
@@ -2944,6 +3060,7 @@ function localXY(e){ var r = mapEl.getBoundingClientRect(); return {x:e.clientX 
 function bindMap(){
   mapEl.addEventListener('pointerdown', function(e){
     if (e.pointerType === 'mouse' && e.button !== 0) return;
+    if (GLM.on && !(e.target && e.target.closest && e.target.closest('#pins'))) return;   // v5: the street map handles its own drag / pinch / taps
     if (animTimer) { cancelAnimationFrame(animTimer); animTimer = null; }
     ptrs[e.pointerId] = localXY(e);
     try { mapEl.setPointerCapture(e.pointerId); } catch (err) {}
@@ -2956,6 +3073,7 @@ function bindMap(){
     ptrs[e.pointerId] = localXY(e);
     if (tap && Math.abs(e.clientX - tap.x) + Math.abs(e.clientY - tap.y) > 8) tap.moved = true;
     if (tap && !tap.moved) return;
+    if (GLM.on) return;   // v5: a drag that starts on a pin doesn't pan the street map
     markMapMoved();
     var a = ptList();
     if (!gest || a.length !== gest.n) beginGesture();
@@ -2980,11 +3098,12 @@ function bindMap(){
   mapEl.addEventListener('pointerup', endPtr);
   mapEl.addEventListener('pointercancel', endPtr);
   mapEl.addEventListener('wheel', function(e){
+    if (GLM.on) return;
     e.preventDefault(); markMapMoved();
     var xy = localXY(e), dy = e.deltaY * (e.deltaMode === 1 ? 16 : 1);
     zoomAt(xy.x, xy.y, Math.exp(-dy * (e.ctrlKey ? 0.01 : 0.0018)));
   }, {passive:false});
-  mapEl.addEventListener('dblclick', function(e){ markMapMoved(); var xy = localXY(e); zoomAt(xy.x, xy.y, 2); });
+  mapEl.addEventListener('dblclick', function(e){ if (GLM.on) return; markMapMoved(); var xy = localXY(e); zoomAt(xy.x, xy.y, 2); });
   pinsEl.addEventListener('click', function(e){ // keyboard / programmatic activation (pointer taps are handled above)
     if (e.detail !== 0) return;
     var mk = e.target.closest ? e.target.closest('.mk,.cluster') : null;
@@ -2994,6 +3113,142 @@ function bindMap(){
   $('zoomOut').addEventListener('click', function(){ markMapMoved(); zoomAt(MV.W / 2, MV.H / 2, 1 / 1.8); });
   // v2.1 (tester M-A): refit on the first real size and on later size changes, until she moves the map herself
   if (window.ResizeObserver) { try { new ResizeObserver(function(){ onViewportChange(); }).observe(mapEl); } catch (e) {} }
+}
+
+/* ================= v5 street map: MapLibre GL JS + OpenFreeMap vector tiles (website only) =================
+   Real streets and street names, a gentle 3D tilt. Our pins, clusters, "you" dot and pick-a-spot pin stay as HTML on top and are placed
+   through map.project(), so everything above keeps working. Inside claude.ai (or any frame), without WebGL, or when MapLibre / the style
+   doesn't load within GL_TIMEOUT_MS, the drawn SVG map is used unchanged. OpenFreeMap: free, no key; attribution shown bottom-left. */
+var ML_JS = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js', ML_CSS = 'https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css';
+var OFM_STYLE = {light:'https://tiles.openfreemap.org/styles/liberty', dark:'https://tiles.openfreemap.org/styles/dark'};
+var OFM_ATTRIB = '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> <a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">&copy; OpenMapTiles</a> Data from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>';
+var GL_TIMEOUT_MS = 6000, GL_GIVEUP_MS = 30000, GL_PITCH = 38, GL_FIT_SHRINK = 0.82, EARTH_M = 40075016.686;
+var CTA_HEX = {red:'#C60C30', blue:'#00A1DE', brown:'#62361B', green:'#009B3A', orange:'#F9461C', pink:'#E27EA6', purple:'#522398', yellow:'#F9E300'};
+var GLM = {on:false, map:null, state:'off', why:'', timer:null, dark:null};
+function chooseMapEngine(env){ // pure: 'gl' (street map) or 'svg' (drawn map), and why
+  if (env.force === 'svg') return {engine:'svg', why:'asked for the drawn map'};
+  if (env.onClaude) return {engine:'svg', why:'inside claude.ai (no outside tiles)'};
+  if (env.inFrame && env.force !== 'gl') return {engine:'svg', why:'inside a frame'};
+  if (!env.webgl) return {engine:'svg', why:'this browser has no WebGL'};
+  return {engine:'gl', why:''};
+}
+function zoomForScale(s, lat){ return Math.log(EARTH_M * Math.cos(lat * Math.PI / 180) * s / (512 * UNIT_M)) / Math.LN2; }   // our px-per-unit -> MapLibre zoom (512 px tiles)
+function scaleForZoom(z, lat){ return 512 * UNIT_M * Math.pow(2, z) / (EARTH_M * Math.cos(lat * Math.PI / 180)); }
+function viewToCamera(cx, cy, s){ var ll = unproj(cx, cy); return {lat:ll[0], lng:ll[1], zoom:zoomForScale(s, ll[0])}; }
+function hasWebGL(){ try { var cv = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (cv.getContext('webgl2') || cv.getContext('webgl'))); } catch (e) { return false; } }
+function themeIsDark(){ var t = document.documentElement.getAttribute('data-theme'); if (t === 'dark') return true; if (t === 'light') return false; return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
+function glStyleUrl(){ return themeIsDark() ? OFM_STYLE.dark : OFM_STYLE.light; }
+function initMapEngine(){
+  var m = null; try { m = /(?:^|[#&])map=(gl|svg)/.exec(location.hash || ''); } catch (e) {}
+  var ch = chooseMapEngine({onClaude:Platform.onClaude, inFrame:Platform.inFrame, webgl:hasWebGL(), force:m ? m[1] : ''});
+  GLM.why = ch.why;
+  if (ch.engine !== 'gl') { GLM.state = 'svg'; mapEl.setAttribute('data-engine', 'svg: ' + ch.why); return; }
+  GLM.state = 'loading'; mapEl.setAttribute('data-engine', 'loading');
+  // The drawn map shows while this loads. After GL_TIMEOUT_MS a loaded style is used even if some tiles are still coming;
+  // a slow phone keeps waiting (on the drawn map) up to GL_GIVEUP_MS, then stays on the drawn map for this visit.
+  var wm = null; try { wm = /(?:^|[#&])glwait=(\d+)/.exec(location.hash || ''); } catch (e) {}
+  var giveUp = wm ? +wm[1] * 1000 : GL_GIVEUP_MS;
+  GLM.timer = setTimeout(function(){
+    if (GLM.state !== 'loading') return;
+    if (GLM.map && GLM.map.isStyleLoaded && GLM.map.isStyleLoaded()) { glActivate(); return; }
+    GLM.timer = setTimeout(function(){ if (GLM.state === 'loading') glFail('took too long'); }, Math.max(0, giveUp - GL_TIMEOUT_MS));
+  }, Math.min(GL_TIMEOUT_MS, giveUp));
+  try {
+    var head = document.head || document.getElementsByTagName('head')[0] || document.documentElement;
+    var lk = document.createElement('link'); lk.rel = 'stylesheet'; lk.href = ML_CSS; head.appendChild(lk);
+    var sc = document.createElement('script'); sc.src = ML_JS; sc.async = true; sc.crossOrigin = 'anonymous';
+    sc.onload = function(){ if (GLM.state !== 'loading') return; if (!window.maplibregl || !window.maplibregl.Map) { glFail('MapLibre missing'); return; } try { glStart(); } catch (e) { glFail('start: ' + (e && e.message)); } };
+    sc.onerror = function(){ glFail('MapLibre didn\'t load'); };
+    head.appendChild(sc);
+  } catch (e) { glFail('script: ' + (e && e.message)); }
+}
+function glStart(){
+  measureMap();
+  var div = document.createElement('div'); div.id = 'glmap'; div.className = 'glmap'; div.setAttribute('aria-hidden', 'true');
+  mapEl.insertBefore(div, mapEl.firstChild);
+  var c = viewToCamera(MV.cx, MV.cy, MV.s);
+  GLM.dark = themeIsDark();
+  var map = new window.maplibregl.Map({container:div, style:glStyleUrl(), center:[c.lng, c.lat], zoom:c.zoom, pitch:GL_PITCH, maxPitch:60, minZoom:7, maxZoom:19,
+    attributionControl:false, maxBounds:[[-89.6, 40.9], [-86.0, 42.9]], fadeDuration:120, keyboard:true, cooperativeGestures:false});
+  GLM.map = map;
+  map.addControl(new window.maplibregl.AttributionControl(), 'bottom-left');   // the OpenFreeMap tile source carries the OpenFreeMap / OpenMapTiles / OpenStreetMap line
+  map.once('idle', function(){ try { var el = div.querySelector('.maplibregl-ctrl-attrib-inner'); if (el && !/openstreetmap/i.test(el.textContent)) el.innerHTML = OFM_ATTRIB; } catch (e) {} });   // safety net if the source ever drops it
+  map.on('load', function(){ if (GLM.state === 'loading') glActivate(); });
+  map.on('error', function(e){ var msg = String(e && e.error && e.error.message || ''); if (GLM.state === 'loading' && !map.isStyleLoaded() && /style|json|Failed to fetch|NetworkError|404|403/i.test(msg)) glFail('style: ' + msg); });   // a single tile failing later is fine
+  map.on('move', function(){ if (!GLM.on) return; glSyncFromMap(); placeOverlays(); });
+  map.on('moveend', function(){ if (!GLM.on) return; glSyncFromMap(); if (!lastClusterS || Math.abs(Math.log(MV.s / lastClusterS)) > 0.2) recluster(); else placeOverlays(); });
+  map.on('dragstart', function(){ markMapMoved(); });
+  ['zoomstart', 'rotatestart', 'pitchstart'].forEach(function(ev){ map.on(ev, function(e){ if (e && e.originalEvent) markMapMoved(); }); });
+  map.on('click', function(e){ if (GLM.on) onMapTap(e.point.x, e.point.y); });
+}
+function glActivate(){
+  clearTimeout(GLM.timer);
+  if (GLM.state !== 'loading' || !GLM.map) return;
+  GLM.state = 'on'; GLM.on = true; GLM.why = ''; mapEl.setAttribute('data-engine', 'gl');
+  mapEl.classList.add('gl'); $('app').classList.add('gl');
+  mapEl.setAttribute('aria-label', 'Street map of Chicago. Drag to move, pinch or scroll to zoom.');
+  try { GLM.map.resize(); } catch (e) {}
+  glAddExtras();
+  glSyncFromMap();
+  if (lastFocus) { lastFocus.done = false; refitIfIdle(); }
+  recluster(); updateRing();
+  if (window.matchMedia) { try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', glApplyTheme); } catch (e) {} }
+}
+function glFail(why){
+  clearTimeout(GLM.timer);
+  var wasOn = GLM.on;
+  GLM.state = 'failed'; GLM.why = why; GLM.on = false;
+  try { mapEl.setAttribute('data-engine', 'svg: ' + why); } catch (e) {}   // for testers (screenshots and DOM dumps)
+  try { if (GLM.map) GLM.map.remove(); } catch (e) {}
+  GLM.map = null;
+  var d = $('glmap'); if (d && d.parentNode) d.parentNode.removeChild(d);
+  mapEl.classList.remove('gl'); $('app').classList.remove('gl');
+  if (wasOn) { requestDraw(); recluster(); }
+}
+function glSyncFromMap(){ // keep MV (used by clustering and fitting) in step with the street map's camera
+  if (!GLM.map) return;
+  var c = GLM.map.getCenter(), u = proj(c.lat, c.lng);
+  MV.cx = u[0]; MV.cy = u[1]; MV.s = scaleForZoom(GLM.map.getZoom(), c.lat);
+  MV.W = mapEl.clientWidth || MV.W; MV.H = mapEl.clientHeight || MV.H;
+}
+function glSyncOverlays(){ glSyncFromMap(); placeOverlays(); }
+function glFirstSymbol(map){ var ls = (map.getStyle() || {}).layers || []; for (var i = 0; i < ls.length; i++) if (ls[i].type === 'symbol') return ls[i].id; return undefined; }
+function glAddExtras(){ // CTA 'L' lines in their colors, 3D buildings for the dark style, the radius ring
+  var map = GLM.map; if (!map || !GLM.on) return;
+  try {
+    var before = glFirstSymbol(map), dark = themeIsDark();
+    if (!map.getLayer('building-3d') && !map.getLayer('cff-3d') && map.getSource('openmaptiles')) {
+      map.addLayer({id:'cff-3d', type:'fill-extrusion', source:'openmaptiles', 'source-layer':'building', minzoom:14, filter:['!', ['has', 'hide_3d']],
+        paint:{'fill-extrusion-color':dark ? '#2B2F36' : '#D9D3C7', 'fill-extrusion-height':['get', 'render_height'], 'fill-extrusion-base':['get', 'render_min_height'], 'fill-extrusion-opacity':0.75}}, before);
+    }
+    if (GEO.linesGJ && !map.getSource('cff-cta')) {
+      map.addSource('cff-cta', {type:'geojson', data:GEO.linesGJ});
+      var col = ['case']; LINE_ORDER.slice().reverse().forEach(function(k){ col.push(['in', k, ['downcase', ['to-string', ['get', 'lines']]]], CTA_HEX[k]); }); col.push('#7A7F87');
+      map.addLayer({id:'cff-cta', type:'line', source:'cff-cta', layout:{'line-join':'round', 'line-cap':'round'}, paint:{'line-color':col, 'line-width':['interpolate', ['linear'], ['zoom'], 10, 1.6, 14, 3.4, 17, 5], 'line-opacity':0.8}}, before);
+    }
+    if (!map.getSource('cff-ring')) {
+      map.addSource('cff-ring', {type:'geojson', data:{type:'FeatureCollection', features:[]}});
+      map.addLayer({id:'cff-ring', type:'line', source:'cff-ring', paint:{'line-color':dark ? '#9CC3FF' : '#2E6BD8', 'line-width':2, 'line-dasharray':[2, 2], 'line-opacity':0.85}});
+    }
+    glRing();
+  } catch (e) {}
+}
+function circleRing(lat, lng, mi, n){ // pure: closed ring of [lng, lat] points, mi miles around a point
+  var out = [], dLat = mi / 69.055, dLng = mi / (69.172 * Math.cos(lat * Math.PI / 180));
+  for (var i = 0; i <= n; i++) { var a = 2 * Math.PI * i / n; out.push([lng + dLng * Math.cos(a), lat + dLat * Math.sin(a)]); }
+  return out;
+}
+function glRing(){
+  var map = GLM.map; if (!map || !GLM.on) return;
+  var src = map.getSource && map.getSource('cff-ring'); if (!src) return;
+  var on = !!(S.loc && UI.showRing);
+  try { src.setData({type:'FeatureCollection', features:on ? [{type:'Feature', properties:{}, geometry:{type:'LineString', coordinates:circleRing(S.loc.lat, S.loc.lng, S.f.radius, 72)}}] : []}); } catch (e) {}
+}
+function glApplyTheme(){ // light/dark street style follows the app's theme
+  var map = GLM.map; if (!map || !GLM.on) return;
+  var dark = themeIsDark(); if (dark === GLM.dark) return;
+  GLM.dark = dark;
+  try { map.setStyle(glStyleUrl()); map.once('idle', glAddExtras); } catch (e) {}
 }
 
 /* ================= pins + clustering (v3, layout spec 3.11: genre colors, ticket badge, quiet dots) ================= */
@@ -3052,6 +3307,7 @@ function recluster(){
   UI.pinAnim = false;
 }
 function updateRing(){ // the radius ring shows only while the time or filter sheet is open (layout spec 0.2)
+  glRing();   // v5: the same ring on the street map
   if (!S.loc || !UI.showRing) { ringEl.setAttribute('r', '0'); return; }
   var u = proj(S.loc.lat, S.loc.lng);
   ringEl.setAttribute('cx', r1(u[0])); ringEl.setAttribute('cy', r1(u[1])); ringEl.setAttribute('r', r1(miToUnits(S.f.radius)));
@@ -3212,12 +3468,14 @@ function renderHeader(res){
   $('fillLoc').setAttribute('aria-label', 'Where: ' + lab + '. Change');
   $('budgetBit').hidden = !S.budgetOn;
 }
+function curSel(){ return UI.gsel || {gs:[], lim:false}; }
+function tilePressed(vm, id){ return id === 'limited' ? !!vm.lim : (vm.gs || []).indexOf(id) >= 0; }
 function renderTiles(vm){
   var F = S.f, el = $('tiles'), h = '';
-  vm.tiles.forEach(function(t){ // v3.1: 4 x 2 grid, all 8 visible; tiles with 0 stay in place, dimmed
+  vm.tiles.forEach(function(t){ // v3.1: 4 x 2 grid, all 8 visible; tiles with 0 stay in place, dimmed. v5: tap to add or remove (multi-select)
     var isL = t.id === 'limited', name = genreName(t.id);
-    var lab = name + ', ' + t.n + (isL ? ' on now' : ' ' + openWords() + (S.budgetOn ? ', ' + doableWords() : ''));
-    h += '<button class="tile' + (isL ? ' lt' : '') + (t.n ? '' : ' zero') + '" type="button" data-tile="' + t.id + '" aria-pressed="' + (vm.sel === t.id) + '" aria-label="' + esc(lab) + '" title="' + esc(lab) + '" style="--c:' + (isL ? 'var(--accent)' : genreColor(t.id)) + '">' +
+    var lab = name + ', ' + t.n + (isL || vm.lim ? ' limited, on now' : ' ' + openWords() + (S.budgetOn ? ', ' + doableWords() : ''));
+    h += '<button class="tile' + (isL ? ' lt' : '') + (t.n ? '' : ' zero') + '" type="button" data-tile="' + t.id + '" aria-pressed="' + tilePressed(vm, t.id) + '" aria-label="' + esc(lab) + '" title="' + esc(lab) + '" style="--c:' + (isL ? 'var(--accent)' : genreColor(t.id)) + '">' +
       '<span class="top"><span class="gl"><svg aria-hidden="true"><use href="#' + genreGlyph(t.id) + '"/></svg></span><span class="num">' + t.n + '</span></span><span class="nm">' + esc(genreShort(t.id)) + '</span></button>';
   });
   el.innerHTML = h;
@@ -3225,17 +3483,17 @@ function renderTiles(vm){
 }
 function renderSubchips(vm){
   var el = $('subchips'), h = '', items = [];
-  if (vm.sel === 'limited') items = [['now', 'On now', vm.onNow.length], ['wknd', comingLabel('wknd', vm.p), vm.wknd.length], ['up', 'Coming up', vm.soon.length]];
-  else if (vm.sel) { var n = subCounts(vm, vm.sel); items = subsShown(DATA, vm.sel).map(function(s){ return [s[0], s[1], n[s[0]] || 0]; }); }
+  if (vm.lim && !vm.gs.length) items = [['now', 'On now', vm.onNow.length], ['wknd', comingLabel('wknd', vm.p), vm.wknd.length], ['up', 'Coming up', vm.soon.length]];
+  else if (!vm.lim && vm.gs.length === 1) { var g1 = vm.gs[0], n = subCounts(vm, g1); items = subsShown(DATA, g1).map(function(s){ return [s[0], s[1], n[s[0]] || 0]; }); }   // v5: only when exactly one kind is picked
   items.forEach(function(s){ h += '<button class="sc' + (s[2] ? '' : ' zero') + '" type="button" data-sub="' + s[0] + '" aria-pressed="' + (vm.sub === s[0]) + '">' + esc(s[1]) + ' <b>' + s[2] + '</b></button>'; });
   el.innerHTML = h; el.hidden = !h;
 }
 function resultLine(vm){
   var openW = ' ' + openWords(), bw = S.budgetOn ? ', ' + esc(doableWords()) : '';
   if (!vm.sel) return '<b>' + vm.main.length + openW + '</b>' + bw;
-  if (vm.sel === 'limited') return '<b>' + vm.onNow.length + ' on now</b> · ' + vm.wknd.length + ' ' + esc(comingLabel('wknd', vm.p).toLowerCase());
+  if (vm.lim) return '<b>' + vm.onNow.length + (vm.gs.length ? ' ' + esc(genreName(vm.gs.join('+'))) : '') + ' limited, on now</b> · ' + vm.wknd.length + ' ' + esc(comingLabel('wknd', vm.p).toLowerCase());
   var k = vm.kind;
-  return '<b>' + k.fits.length + ' ' + esc(genreName(vm.sel)) + '</b>' + openW + bw + (k.tight.length ? ' · ' + k.tight.length + ' closing soon' : '');
+  return '<b>' + k.fits.length + ' ' + esc(genreName(vm.gs.join('+'))) + '</b>' + openW + bw + (k.tight.length ? ' · ' + k.tight.length + ' closing soon' : '');
 }
 function renderResline(vm){
   var nf = appliedFilters(S.f).length + (S.budgetOn ? 1 : 0);
@@ -3325,10 +3583,11 @@ function noneRowHTML(g, title, body, btns){
 var THIN_GENRE = 12;   // a kind with fewer items than this asks for tips in its empty state
 function genreTotals(items){ var t = {}, b = {}; GENRES.forEach(function(g){ t[g.id] = 0; b[g.id] = 0; }); items.forEach(function(it){ var g = genreOf(it); t[g]++; if (it.booking === 'required') b[g]++; }); return {n:t, booked:b}; }
 function emptyInfo(vm, g, more){ // why a kind has nothing that fits right now, the next real option, and the "Make it 2 hrs" button
-  var all = (vm.all || []).filter(function(c){ return c.genre === g && (!vm.sub || vm.sel !== g || c.sub === vm.sub); });
+  var gs = normSel(g).gs;   // v5: g may be several kinds ('play+look')
+  var all = (vm.all || []).filter(function(c){ return gs.indexOf(c.genre) >= 0 && (!vm.sub || vm.sel !== g || c.sub === vm.sub); });
   var later = all.filter(function(c){ return c.group === 'later' && c.st.opensAt; }).sort(function(a, b){ return a.st.opensAt - b.st.opensAt || byTravel(a, b); });
   var longer = all.filter(function(c){ return c.group === 'over' || c.group === 'tight'; }).length;
-  var tot = genreTotals(DATA), total = tot.n[g] || 0, booked = tot.booked[g] || 0;
+  var tot = genreTotals(DATA), total = 0, booked = 0; gs.forEach(function(x){ total += tot.n[x] || 0; booked += tot.booked[x] || 0; });
   var body;
   if (later.length) { var x = later[0]; body = x.item.name + ' opens at ' + fmtClock(x.st.opensAt) + (x.dist !== null ? ', ' + travelText(x.trav).replace(/^about /, '') : '') + '.'; }
   else if (total && booked * 2 >= total) body = 'Most places here are booked ahead for a set time (' + booked + ' of ' + total + ' list class or session times).';
@@ -3413,7 +3672,7 @@ function limitedListHTML(vm){
   if (!sub || sub === 'now') {
     h += '<h3 class="sec-h"><span>On now</span><span>ends soonest first</span></h3>';
     if (vm.onNow.length) h += '<ul class="rows">' + vm.onNow.map(function(c){ return rowHTML(c, {kicker:genreName(c.genre), badge:untilBadge(c, p), note:c.bucket !== 'fits'}); }).join('') + '</ul>';
-    else h += '<div class="empty"><h4>Nothing limited is on right now.</h4><p>' + (vm.soon.length ? 'The next one starts ' + esc(fmtDayDate(startKeyOf(vm.soon[0]), p.key)) + '.' : 'Nothing new is listed yet.') + '</p></div>';
+    else h += '<div class="empty"><h4>Nothing limited' + (vm.gs && vm.gs.length ? ' in ' + esc(genreName(vm.gs.join('+'))) : '') + ' is on right now.</h4><p>' + (vm.soon.length ? 'The next one starts ' + esc(fmtDayDate(startKeyOf(vm.soon[0]), p.key)) + '.' : 'Nothing new is listed yet.') + '</p></div>';
   }
   if (sub !== 'now') {
     var list = sub === 'wknd' ? vm.wknd : vm.soon;
@@ -3447,7 +3706,7 @@ function renderList(res, vm, more){
   if (UI.pickPast) h += '<p class="band info">That time has already passed, so this shows right now.</p>';
   if (UI.planning) h += '<p class="band info">Planning ahead: everything below is for ' + esc(fmtDayDate(p.key, cparts(nowMs()).key)) + ' at ' + esc(fmtTime(p.min)) + '. <button class="linkbtn" type="button" data-act="whennow">Back to now</button></p>';
   if (!vm.sel) h += homeListHTML(vm, more);
-  else if (vm.sel === 'limited') h += limitedListHTML(vm);
+  else if (vm.lim) h += limitedListHTML(vm);
   else h += kindListHTML(vm, more);
   listRoot.innerHTML = h;
   wireImages(listRoot);
@@ -3527,7 +3786,7 @@ function buildPins(vm, res){ // which pins, small pins and dots each state shows
     vm.picks.forEach(function(pk){ pin(pk.c, {tk:pk.c.lim === 'now'}); if (near(pk.c, 10)) focus.push(pk.c); });
     vm.onNow.forEach(function(c){ if (near(c, 1.3)) pin(c, {sm:true, tk:true}); });
     vm.main.forEach(function(c){ dot(c); });
-  } else if (vm.sel === 'limited') {
+  } else if (vm.lim) {
     var showNow = !vm.sub || vm.sub === 'now';
     if (showNow) vm.onNow.forEach(function(c){ pin(c, {tk:true}); if (near(c, 8)) focus.push(c); });
     if (vm.sub !== 'now') (vm.sub === 'up' ? vm.soon : vm.wknd).forEach(function(c){ pin(c, {tk:c.item.kind === 'event', sm:true, hollow:true}); if ((!showNow || !focus.length) && near(c, 8)) focus.push(c); });
@@ -3572,7 +3831,7 @@ function cardHTML(c){
     '<button class="c3-btn" type="button" data-save="' + esc(it.id) + '" aria-pressed="' + sv + '" aria-label="' + (sv ? 'Saved: ' : 'Save: ') + esc(it.name) + '">' + glyphSvg('i-bookmark') + '</button></div>' +
     '<div class="c3-text"><h3>' + esc(it.name) + '</h3>' + (hook ? '<p class="c3-hook">' + esc(hook) + '</p>' : '') + '<p class="c3-facts"><i class="dot ' + esc(c.d.tone) + '"></i>' + esc(facts) + '</p></div></li>';
 }
-function threeKey(){ return [S.when, S.pickAt, S.loc ? r1(S.loc.lat * 1000) + ',' + r1(S.loc.lng * 1000) : '', S.budgetOn ? S.budget : 'any', JSON.stringify(S.f), DATA_LOADED ? 1 : 0].join('|'); }
+function threeKey(){ return [selCode(curSel()), S.when, S.pickAt, S.loc ? r1(S.loc.lat * 1000) + ',' + r1(S.loc.lng * 1000) : '', S.budgetOn ? S.budget : 'any', JSON.stringify(S.f), DATA_LOADED ? 1 : 0].join('|'); }
 function updateThree(vm, more){ // keeps the same three on screen until she asks for more, or the place / time / filters change, or one of them closes
   var key = threeKey(), pool = threePool(vm, cparts(nowMs()).key, CHECKINS), byId = {};
   pool.forEach(function(c){ byId[c.item.id] = c; });
@@ -3602,6 +3861,8 @@ function renderHome(res, vm, picks){
   var picked = S.when === 'pick' || S.when === 'weekend';
   h += '<div class="hm-ctl" role="group" aria-label="When">' + '<button class="qchip" type="button" data-when="now" aria-pressed="' + (S.when === 'now') + '">Now</button><button class="qchip" type="button" data-when="tonight" aria-pressed="' + (S.when === 'tonight') + '">Tonight</button>' +
     '<button class="qchip" type="button" data-when="pick" aria-pressed="' + picked + '">' + (picked ? esc(whenLabel()) : 'Pick a day') + '</button></div>';
+  var hsel = selCode(curSel());   // v5: the kinds picked in Browse also narrow the three; one chip says so and clears it
+  if (hsel) h += '<div class="hm-ctl"><button class="qchip selchip" type="button" data-act="clearsel" aria-pressed="true" aria-label="Only ' + esc(genreName(hsel)) + '. Show everything">Only ' + esc(genreName(hsel)) + glyphSvg('i-close') + '</button></div>';
   if (!DATA_LOADED) {
     h += DATA_ERR ? '<div class="empty"><h3>Couldn\'t load the list.</h3><p>Your saved things are still here. ' + esc(DATA_ERR) + '</p><button class="mini-btn" type="button" data-act="retry">Try again</button></div>' : '<p class="loading">Loading Chicago...</p>';
   } else {
@@ -3636,8 +3897,8 @@ function refresh(){
   Platform.store.set('cff.who.v1', Object.keys(S.f.who).filter(function(k){ return S.f.who[k]; }));
   var T = evalTime(), ctx = ctxNow();
   var res = DATA_LOADED ? runPipeline(DATA, T, ctx, S.f) : {T:T, p:cparts(T), all:[], groups:{fits:[], tight:[], over:[], later:[], unknown:[], season:[], closed:[], upcoming:[]}, leaving:[], weekend:[], count:0, endingSoon:0};
-  if (UI.genre && UI.genre !== 'limited' && !GENRE_BY[UI.genre]) UI.genre = '';
-  var vm = buildView(res, S.f, UI.genre, UI.sub);
+  UI.gsel = normSel(curSel());
+  var vm = buildView(res, S.f, UI.gsel, UI.sub);
   var more = {};
   if (DATA_LOADED) {
     var need = !vm.sel ? vm.empty : (vm.kind && !vm.kind.fits.length ? [vm.sel] : []);
@@ -3661,12 +3922,12 @@ function refresh(){
 }
 function findItem(id){ for (var i = 0; i < DATA.length; i++) if (DATA[i].id === id) return DATA[i]; return null; }
 function findComputed(id){ var it = findItem(id); return it ? computeItem(it, evalTime(), ctxNow()) : null; }
-function selectGenre(id, opts){
+function selectGenre(id, opts){ // v5: a tile tap adds or removes that kind (or Limited); opts.keep = show exactly this (links, "See all", hash)
   opts = opts || {};
-  UI.genre = (UI.genre === id && !opts.keep) ? '' : id;
+  UI.gsel = opts.keep ? normSel(id) : toggleSel(curSel(), id);
   UI.sub = ''; UI.foldTight = false; UI.foldRest = !!opts.rest || !S.f.openNow; UI.limMore = false; UI.sel = null;
-  if (UI.genre === 'limited' && S.when === 'weekend') UI.sub = 'wknd';   // spec 4.3: "This weekend" in the sentence opens Limited time on This weekend
-  Platform.store.set('cff.genre.v1', UI.genre);
+  if (UI.gsel.lim && !UI.gsel.gs.length && S.when === 'weekend') UI.sub = 'wknd';   // spec 4.3: "This weekend" in the sentence opens Limited time on This weekend
+  Platform.store.set('cff.genres.v2', selList(UI.gsel));   // remembered as a list, e.g. ["limited","play"]
   refresh();
   $('sheetScroll').scrollTop = 0;
   if (!isWide() && Sheet.state === 'peek') applySheet('half');
@@ -3676,7 +3937,7 @@ function selectGenre(id, opts){
 var surpriseVeto = [];
 function surprisePool(){
   var vm = UI.lastVm; if (!vm) return [];
-  var list = vm.sel === 'limited' ? vm.onNow.filter(function(c){ return c.bucket === 'fits'; }) : (vm.sel && vm.kind) ? vm.kind.fits : vm.main;
+  var list = vm.lim ? vm.onNow.filter(function(c){ return c.bucket === 'fits'; }) : (vm.sel && vm.kind) ? vm.kind.fits : vm.main;
   return list.filter(function(c){ return surpriseVeto.indexOf(c.item.id) < 0; });
 }
 function pickSurprise(pool, rnd){ // weighted toward limited things that end soon
@@ -3691,10 +3952,10 @@ function renderSurprise(){
   var c = UI.surprise, left = 3 - surpriseVeto.length, h = '';
   function flaps(t){ return '<p class="board-name" aria-hidden="true">' + String(t).split(/\s+/).filter(Boolean).slice(0, 12).map(function(w){ return '<span>' + esc(w) + '</span>'; }).join('') + '</p>'; }
   if (!c) {
-    h += '<p class="board-k">Next fun departing</p>' + flaps('No departures') + '<p class="board-line">Nothing ' + esc(S.budgetOn ? 'open is ' + doableWords() : 'is open') + (UI.planning ? ' then' : ' right now') + (UI.genre ? ' in ' + esc(genreName(UI.genre)) : '') + '.</p>';
+    h += '<p class="board-k">Next fun departing</p>' + flaps('No departures') + '<p class="board-line">Nothing ' + esc(S.budgetOn ? 'open is ' + doableWords() : 'is open') + (UI.planning ? ' then' : ' right now') + (selCode(curSel()) ? ' in ' + esc(genreName(selCode(curSel()))) : '') + '.</p>';
     if (DATA_LOADED && S.budgetOn && S.budget !== 'night') {
       var T = evalTime(), ctx = ctxNow(), i0 = BUDGET_LADDER.indexOf(S.budget);
-      for (var i = Math.max(0, i0 + 1); i < BUDGET_LADDER.length; i++) { var b = BUDGET_LADDER[i]; if (i0 < 0 && b !== 'night' && b <= S.budget) continue; var n = countView(DATA, T, ext(ctx, {budget:b}), S.f, UI.genre, UI.sub); if (n > 0) { h += '<div class="board-btns"><button class="go" type="button" data-relax="budget:' + b + '">Make it ' + esc(b === 'night' ? 'the rest of the night' : fmtBudget(b)) + ' (' + n + (n === 1 ? ' thing' : ' things') + ')</button></div>'; break; } }
+      for (var i = Math.max(0, i0 + 1); i < BUDGET_LADDER.length; i++) { var b = BUDGET_LADDER[i]; if (i0 < 0 && b !== 'night' && b <= S.budget) continue; var n = countView(DATA, T, ext(ctx, {budget:b}), S.f, curSel(), UI.sub); if (n > 0) { h += '<div class="board-btns"><button class="go" type="button" data-relax="budget:' + b + '">Make it ' + esc(b === 'night' ? 'the rest of the night' : fmtBudget(b)) + ' (' + n + (n === 1 ? ' thing' : ' things') + ')</button></div>'; break; } }
     }
   } else {
     var f = c.fit || {}, tl = trustLineText(c.item, c.st.p);
@@ -4115,12 +4376,65 @@ function openLocation(first){
   $('spotSearch').value = ''; $('spotResults').innerHTML = '';
   $('quickPicks').innerHTML = QUICK_PICKS.map(function(n){ return '<button class="chip" type="button" data-pick="' + esc(n) + '" aria-pressed="' + (UI.cand.label === n) + '">' + esc(n) + '</button>'; }).join('');
   $('locGo').textContent = 'Start at ' + UI.cand.label;
-  $('gpsBtn').hidden = !(UI.geoState === 'prompt' || UI.geoState === 'granted');
+  if (!geoBusy) gpsBtnReset();
   openPanel('pLoc', false);
   setTimeout(function(){ if (first && UI.firstOpen && UI.picking) focusCity(); recluster(); }, 30);
 }
+/* ----- v5: "Use my location" (owner 2026-11-13: it said "not allowed" after she allowed it). Each error code is handled on its own;
+   only code 1 means blocked. Codes 2/3 retry once with a longer wait. The button is never hidden for good. ----- */
+function gpsBtnShown(state, onClaude){ return !onClaude && state !== 'none'; }   // pure: claude.ai can't give a location; everywhere else the button stays
+function setLocNote(t, warn){ var n = $('locNote'); if (!n) return; n.textContent = t; n.className = 'p-note' + (warn ? ' warn' : ''); }
+function gpsBtnReset(){ var b = $('gpsBtn'); if (!b) return; b.disabled = false; b.innerHTML = glyphSvg('i-target') + 'Use my location'; b.hidden = !gpsBtnShown(UI.geoState, Platform.onClaude); }
+var geoWatchId = null, geoBusy = false;
+function locateMe(){
+  if (geoBusy) return;
+  var b = $('gpsBtn'), ua = navigator.userAgent || '', tries = 0;
+  geoBusy = true; b.disabled = true; b.textContent = 'Finding you...'; setLocNote('Finding you...', false);
+  function attempt(o){
+    Platform.geo.get(function(lat, lng){
+      geoBusy = false; UI.geoState = 'granted'; gpsBtnReset();
+      if (distMi(lat, lng, LOOP.lat, LOOP.lng) > 80) { setLocNote('You look far from Chicago. Pick a spot instead.', true); return; }
+      setLocNote('Found you.', false);
+      UI.firstOpen = false; commitLocation({lat:lat, lng:lng, label:'Your location', src:'gps'});
+      startGeoWatch();
+    }, function(e){
+      var plan = geoNextStep(e, tries);
+      if (plan.retry) { tries++; b.textContent = 'Still looking...'; attempt(plan.opts); return; }
+      geoBusy = false;
+      if (plan.kind === 'blocked') UI.geoState = 'denied';
+      gpsBtnReset();
+      setLocNote(geoErrorText(plan.kind, ua), true);
+    }, o);
+  }
+  attempt({timeout:GEO_FIRST_MS});
+}
+function startGeoWatch(){
+  if (geoWatchId !== null || !S.loc || S.loc.src !== 'gps' || Platform.onClaude || !navigator.geolocation) return;
+  if (document.visibilityState === 'hidden') return;
+  geoWatchId = Platform.geo.watch(function(lat, lng){
+    if (!S.loc || S.loc.src !== 'gps' || distMi(lat, lng, LOOP.lat, LOOP.lng) > 80) return;
+    var moved = distMi(lat, lng, S.loc.lat, S.loc.lng);
+    if (moved < 0.03) return;                             // under ~50 m: leave it
+    S.loc = {lat:lat, lng:lng, label:'Your location', src:'gps'};
+    Platform.store.set('cff.loc.v1', S.loc);
+    if (moved >= 0.25) refresh(); else { recluster(); if (GLM.on) glSyncOverlays(); }   // small moves only move the blue dot
+  });
+}
+function stopGeoWatch(){ Platform.geo.unwatch(geoWatchId); geoWatchId = null; }
+function onGeoPermission(state){ // permissions "change" event and the first check
+  UI.geoState = state;
+  if (!geoBusy) gpsBtnReset();
+  if (state === 'granted') {
+    if (!$('pLoc').hidden && /blocked/i.test($('locNote').textContent)) setLocNote('Location is on. Tap "Use my location".', false);
+    Platform.geo.get(function(lat, lng){
+      if (distMi(lat, lng, LOOP.lat, LOOP.lng) > 80) return;
+      if (UI.firstOpen || (S.loc && S.loc.src === 'gps')) { UI.firstOpen = false; commitLocation({lat:lat, lng:lng, label:'Your location', src:'gps'}); startGeoWatch(); }
+    }, function(){}, {timeout:GEO_RETRY_MS});
+  } else if (state === 'denied') stopGeoWatch();
+}
 function commitLocation(loc){
   S.loc = {lat:loc.lat, lng:loc.lng, label:String(loc.label || 'Dropped pin'), src:loc.src || 'picked'};
+  if (S.loc.src !== 'gps') stopGeoWatch();
   Platform.store.set('cff.loc.v1', S.loc);
   UI.sel = null; UI.viewKey = null;   // v3: refresh() re-fits the map to the new pins
   closePanel('pLoc');
@@ -4156,7 +4470,7 @@ function stepBudget(dir){
 function chipsGroup(items){ return '<div class="chips-w">' + items.map(function(x){ return '<button class="chip" type="button" data-f="' + esc(x[0]) + '" aria-pressed="' + (x[2] ? 'true' : 'false') + '">' + x[1] + '</button>'; }).join('') + '</div>'; }
 function copyF(F){ return JSON.parse(JSON.stringify(F)); }
 function openFilters(){ UI.draft = copyF(S.f); UI.draftB = {on:!!S.budgetOn, val:S.budget}; UI.draftReady = DATA_LOADED; UI.showRing = true; updateRing(); renderFilters(); openPanel('pFilters'); }
-function draftCount(F){ var B = UI.draftB || {on:S.budgetOn, val:S.budget}; return DATA_LOADED ? countView(DATA, evalTime(), ext(ctxNow(), {mode:F.mode, budget:B.on ? B.val : 'any'}), F, UI.genre, UI.sub) : 0; }
+function draftCount(F){ var B = UI.draftB || {on:S.budgetOn, val:S.budget}; return DATA_LOADED ? countView(DATA, evalTime(), ext(ctxNow(), {mode:F.mode, budget:B.on ? B.val : 'any'}), F, curSel(), UI.sub) : 0; }
 var LIMIT_TRIES = [['who', {who:{}}], ['price', {price:{}}], ['io', {io:'either'}], ['reach', {mode:'transit', radius:APP_RADIUS}], ['booking', {walkin:false, hide21:false}], ['been', {notBeen:false}], ['interests', {interests:{}}], ['always', {openNow:false}]];
 function mostLimitingDraft(F){ // the section whose removal brings back the most (layout spec 3.10 "MOST LIMITING")
   var best = null, bn = 0;
@@ -4183,24 +4497,18 @@ function renderFilters(){
   function chips(items){ return '<div class="chips-w">' + items.map(function(x){ return '<button class="chip" type="button" data-d="' + esc(x[0]) + '" aria-pressed="' + !!x[2] + '">' + x[1] + '</button>'; }).join('') + '</div>'; }
   function seg(items){ return '<div class="seg">' + items.map(function(x){ return '<button type="button" data-d="' + esc(x[0]) + '" aria-pressed="' + !!x[2] + '">' + x[1] + '</button>'; }).join('') + '</div>'; }
   function sw(code, on, label, sub){ return '<div class="sw-row"><span>' + label + (sub ? '<small>' + sub + '</small>' : '') + '</span><button class="switch" type="button" data-d="' + code + '" aria-pressed="' + !!on + '" aria-label="' + esc(label) + '"></button></div>'; }
+  // v5 (owner 2026-11-13: "gigantic number of filters ... a lot of text to read"): only the filters people use, short labels, no helper paragraphs.
   var h = '';
-  h += '<div class="fsec">' + H('Who’s coming', 'who') + chips([['who:date', 'Date', F.who.date], ['who:friends', 'Friends', F.who.friends], ['who:solo', 'Solo', F.who.solo], ['who:kids', 'Kids OK', F.who.kids]]) + '</div>';
-  var B = UI.draftB || {on:!!S.budgetOn, val:S.budget};   // v4: the time budget lives here, off by default
-  h += '<div class="fsec">' + H('I’ve only got…', 'time') + chips([['tb:off', 'No limit', !B.on]].concat([30, 60, 90, 120, 180].map(function(x){ return ['tb:' + x, esc(fmtBudget(x)), B.on && B.val === x]; }))) +
-    '<p class="note">Pick one to hide things you couldn’t get to and enjoy in that time, door to door.</p></div>';
-  h += '<div class="fsec">' + H('Price', 'price') + chips([['price:free', 'Free', F.price.free], ['price:$', '$', F.price.$], ['price:$$', '$$', F.price.$$], ['price:$$$', '$$$', F.price.$$$], ['price:$$$$', '$$$$', F.price.$$$$]]) + '</div>';
-  h += '<div class="fsec">' + H('Inside or out', 'io') + seg([['io:either', 'Either', F.io === 'either'], ['io:indoor', 'Indoors', F.io === 'indoor'], ['io:outdoor', 'Outdoors', F.io === 'outdoor']]) + '</div>';
-  h += '<div class="fsec">' + H('Getting there', 'reach') + seg([['mode:transit', 'Walk + CTA', F.mode === 'transit'], ['mode:walk', 'Walk only', F.mode === 'walk'], ['mode:car', 'I’ll drive', F.mode === 'car']]) +
-    '<p class="note">Changes travel times. Door to door, one way. With Walk + CTA, places more than ' + CTA_MAX_MI + ' mi away show a drive time.</p>' +
-    '<div style="margin-top:12px">' + chips(RADII.map(function(r){ return ['radius:' + r, 'Within ' + fmtRadius(r), F.radius === r]; })) + '</div><p class="note">How far, as the crow flies from your pin.</p></div>';
-  h += '<div class="fsec">' + H('Booking and age', 'booking') + sw('walkin', F.walkin, 'Walk-in only', 'Hide places you have to book') + sw('hide21', F.hide21, 'Hide 21+ places') + '</div>';
-  var ia = interestList(DATA), nPicked = 0, kk;
-  for (kk in F.interests) if (F.interests[kk]) nPicked++;
-  if (ia.length) h += '<div class="fsec fsec-int"><h3>Interests' + (lim === 'interests' ? '<span class="lim">Most limiting</span>' : '') + (nPicked ? '<button class="int-clear" type="button" data-d="int-clear">Clear ' + nPicked + '</button>' : '') + '</h3>' +
-    '<p class="note int-note">Pick as many as you like: a place shows if it has any of them. The number is how many places in the guide have it.</p>' +
-    '<div class="chips-w int">' + ia.map(function(x){ var on = !!F.interests[x.id]; return '<button class="chip" type="button" data-d="int:' + esc(x.id) + '" aria-pressed="' + on + '" aria-label="' + esc(x.label) + ', ' + x.n + ' places">' + esc(x.label) + '<span class="ct">' + x.n + '</span></button>'; }).join('') + '</div></div>';
-  h += '<div class="fsec">' + H('Been there', 'been') + sw('notBeen', F.notBeen, 'Only places I haven’t been', CHECKINS.length ? 'Hides the ' + CHECKINS.length + (CHECKINS.length === 1 ? ' place' : ' places') + ' you marked “I’ve been here”' : 'Mark places with “I’ve been here” on their page') + '</div>';
-  h += '<div class="fsec">' + H('Always on', 'always') + sw('openNow', F.openNow, 'Open now only', 'Off: closed and later things are shown unfolded') + '</div>';
+  h += '<div class="fsec">' + H('Who', 'who') + chips([['who:date', 'Date', F.who.date], ['who:friends', 'Friends', F.who.friends], ['who:solo', 'Solo', F.who.solo]]) + '</div>';
+  h += '<div class="fsec">' + H('Price', 'price') + chips([['price:free', 'Free', F.price.free], ['price:$', '$', F.price.$], ['price:$$', '$$', F.price.$$], ['price:$$$', '$$$', F.price.$$$]]) + '</div>';
+  h += '<div class="fsec">' + H('How far', 'reach') + seg([['mode:transit', 'Walk + CTA', F.mode === 'transit'], ['mode:walk', 'Walk', F.mode === 'walk'], ['mode:car', 'Drive', F.mode === 'car']]) +
+    '<div class="chips-w" style="margin-top:8px">' + RADII.map(function(r){ return '<button class="chip" type="button" data-d="radius:' + r + '" aria-pressed="' + (F.radius === r) + '" aria-label="Within ' + esc(fmtRadius(r)) + '">' + (r === APP_RADIUS ? 'Any' : esc(fmtRadius(r))) + '</button>'; }).join('') + '</div></div>';
+  h += '<div class="fsec">' + H('Inside or out', 'io') + seg([['io:either', 'Either', F.io === 'either'], ['io:indoor', 'Inside', F.io === 'indoor'], ['io:outdoor', 'Outside', F.io === 'outdoor']]) + '</div>';
+  h += '<div class="fsec">' + H('Booking', 'booking') + chips([['walkin', 'Walk-in only', F.walkin], ['hide21', 'No 21+', F.hide21]]) + '</div>';
+  var B = UI.draftB || {on:!!S.budgetOn, val:S.budget};   // the optional "I have N hours" budget, off by default
+  h += '<div class="fsec">' + H('Time I have', 'time') + chips([['tb:off', 'Any', !B.on]].concat([60, 120, 180].map(function(x){ return ['tb:' + x, esc(fmtBudget(x)), B.on && B.val === x]; })).concat(B.on && [60, 120, 180].indexOf(B.val) < 0 ? [['tb:' + B.val, esc(B.val === 'night' ? 'Tonight' : fmtBudget(B.val)), true]] : [])) + '</div>';
+  var ia = popularInterests(DATA, F, POP_INTERESTS);
+  if (ia.length) h += '<div class="fsec">' + H('Into', 'interests') + chips(ia.map(function(x){ return ['int:' + x.id, esc(x.label), !!F.interests[x.id]]; })) + '</div>';
   body.innerHTML = h; body.scrollTop = st;
   var go = $('pFiltersGo');
   if (!DATA_LOADED) { go.textContent = 'Done'; go.classList.remove('zero'); go.removeAttribute('aria-disabled'); return; }
@@ -4219,7 +4527,7 @@ function commitFilters(){
   refresh();
 }
 function showLaterSection(){ // v3: the "later" things live in "Show the rest" inside a kind
-  if (UI.genre && UI.genre !== 'limited') { UI.foldRest = true; refresh(); if (Sheet.state === 'peek') applySheet('half'); var fd = listRoot.querySelector('[data-fold="rest"]'); if (fd) $('sheetScroll').scrollTop = Math.max(0, fd.offsetTop - 4); return; }
+  if (curSel().gs.length && !curSel().lim) { UI.foldRest = true; refresh(); if (Sheet.state === 'peek') applySheet('half'); var fd = listRoot.querySelector('[data-fold="rest"]'); if (fd) $('sheetScroll').scrollTop = Math.max(0, fd.offsetTop - 4); return; }
   toast('Tap a kind of fun above, then "Show the rest" to see what opens later.');
 }
 function applyF(code){ // single filter change (pSmall panels, the "Make it 2 hrs" buttons, the test hook)
@@ -4363,7 +4671,7 @@ function submitTip(){
   }
   Platform.tips.send(tip).then(done, function(){ done({where:'local', code:'error'}); });
 }
-function setTheme(v){ if (v === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', v); Platform.store.set('cff.theme', v); }
+function setTheme(v){ if (v === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', v); Platform.store.set('cff.theme', v); glApplyTheme(); }
 
 /* ================= events wiring ================= */
 function bindUI(){
@@ -4452,17 +4760,7 @@ function bindUI(){
     if (sp) { var s = spotByName(sp.getAttribute('data-spot') || sp.getAttribute('data-pick')); if (s) { setCandidate(s.lat, s.lng, s.name, 'picked'); $('spotResults').innerHTML = ''; $('spotSearch').value = ''; } }
   });
   $('locGo').addEventListener('click', function(){ var c = UI.cand || LOOP; UI.firstOpen = false; commitLocation(c); });
-  $('gpsBtn').addEventListener('click', function(){
-    $('gpsBtn').textContent = 'Finding you...';
-    Platform.geo.get(function(lat, lng){
-      $('gpsBtn').innerHTML = glyphSvg('i-target') + 'Use my location';
-      if (distMi(lat, lng, LOOP.lat, LOOP.lng) > 80) { $('locNote').textContent = 'Your location looks far from Chicago. Pick a spot instead.'; $('locNote').className = 'p-note warn'; return; }
-      UI.firstOpen = false; commitLocation({lat:lat, lng:lng, label:'Your location', src:'gps'});
-    }, function(){
-      $('gpsBtn').hidden = true; UI.geoState = 'denied';
-      $('locNote').textContent = 'Location is off. Pick a spot instead.'; $('locNote').className = 'p-note warn';
-    });
-  });
+  $('gpsBtn').addEventListener('click', function(){ locateMe(); });
   // time
   $('pTimeBody').addEventListener('click', function(e){
     var b = e.target.closest('[data-budget],[data-tb]'); if (!b) return;
@@ -4473,7 +4771,7 @@ function bindUI(){
   // More filters: changes go into a draft; "Show N things" applies them (spec 3.10)
   $('pFiltersBody').addEventListener('click', function(e){ var b = e.target.closest('[data-d]'); if (!b || !UI.draft) return;
     var code = b.getAttribute('data-d');
-    if (/^tb:/.test(code)) { var tv = code.slice(3), old = UI.draftB || {on:false, val:S.budget}; UI.draftB = tv === 'off' ? {on:false, val:old.val} : {on:true, val:+tv}; }
+    if (/^tb:/.test(code)) { var tv = code.slice(3), old = UI.draftB || {on:false, val:S.budget}; UI.draftB = tv === 'off' ? {on:false, val:old.val} : {on:true, val:tv === 'night' ? 'night' : +tv}; }
     else applyDraft(UI.draft, code);
     renderFilters(); });
   $('pFiltersReset').addEventListener('click', function(){ UI.draft = appDefaultFilters(); UI.draftB = {on:false, val:S.budget}; renderFilters(); });
@@ -4518,7 +4816,8 @@ function onHomeClick(e){
     else if (a === 'tip') openTip();
     else if (a === 'about') { renderAbout(); openPanel('pAbout'); }
     else if (a === 'retry') loadData();
-    else if (a === 'clearall') { S.f = ext(appDefaultFilters(), {radius:S.f.radius, mode:S.f.mode}); S.budgetOn = false; refresh(); }
+    else if (a === 'clearall') { S.f = ext(appDefaultFilters(), {radius:S.f.radius, mode:S.f.mode}); S.budgetOn = false; selectGenre('', {keep:true}); }
+    else if (a === 'clearsel') selectGenre('', {keep:true});   // v5: the "Play + Limited" chip on the home screen
     return;
   }
   var card = t.closest('.card3[data-id]');
@@ -5360,6 +5659,79 @@ function runSelfTest(){
     eq('Surprise weighting: a limited thing ending within 14 days weighs 3', pickSurprise([{lim:'', st:{p:cparts(T)}}, {lim:'now', st:{p:cparts(T), ev:{lastKey:'2026-11-15'}}}], 0.3).lim, 'now');
   });
 
+  block('v5 kinds: pick several, and Limited narrows what is picked (owner: "play that is limited")', function(){
+    var T = at('2026-11-12', '12:00'), ctx = {lat:41.88, lng:-87.63, budget:120, mode:'transit'}, F = defaultFilters(), open = allDays(['10:00', '20:00']);
+    var pl = fx({name:'Play limited', kind:'event', category:'games-arcade', hours:open, event_dates:[{start:'2026-11-01', end:'2026-11-30'}]});
+    var pp = fx({name:'Play plain', category:'games-arcade', hours:open});
+    var ll = fx({name:'Look limited', kind:'event', category:'art-museum', hours:open, event_dates:[{start:'2026-11-01', end:'2026-12-19'}]});
+    var lp = fx({name:'Look plain', category:'art-museum', hours:open});
+    var items = [pl, pp, ll, lp];
+    function names(list){ return list.map(function(c){ return c.item.name; }).sort().join('|'); }
+    eq('selection codes: order follows the tiles, Limited first', [selCode('play,limited'), selCode({gs:['look', 'play'], lim:false}), selCode('sauna+play'), selCode('')].join(' / '), 'limited+play / play+look / play / ');
+    eq('tap adds, tap again removes', [selCode(toggleSel({gs:['play'], lim:false}, 'look')), selCode(toggleSel({gs:['play', 'look'], lim:false}, 'play')), selCode(toggleSel({gs:['play'], lim:false}, 'limited')), selCode(toggleSel({gs:[], lim:true}, 'limited'))].join(' / '), 'play+look / look / limited+play / ');
+    eq('names: "Play + Limited", "Play + Sights", single kind unchanged', [genreName('limited+play'), genreName('play+look'), genreName('play'), genreName('limited')].join(' / '), 'Play + Limited / Play + Sights / Play / Limited time');
+    var res = runPipeline(items, T, ctx, F);
+    var vPL = buildView(res, F, {gs:['play'], lim:true}, '');
+    eq('Play + Limited: only limited things in Play', names(vPL.onNow), 'Play limited');
+    eq('...view code and list type', vPL.sel + '|' + vPL.lim + '|' + (vPL.kind === null), 'limited+play|true|true');
+    eq('...tile counts follow (Limited, Play, Look ... = limited counts per kind)', vPL.tiles.map(function(t){ return t.n; }).join(), '1,1,1,0,0,0,0,0');
+    var hl = limitedListHTML(vPL);
+    ok('...the list shows Play limited, not Look limited', hl.indexOf('Play limited') >= 0 && hl.indexOf('Look limited') < 0, hl.slice(0, 160));
+    eq('...the result line', resultLine(vPL).replace(/<[^>]+>/g, '').split(' · ')[0], '1 Play limited, on now');
+    eq('Limited alone: every limited thing', names(buildView(res, F, 'limited', '').onNow), 'Look limited|Play limited');
+    var vPLk = buildView(res, F, {gs:['play', 'look'], lim:false}, 'games');
+    eq('Play + Look: both kinds in one list', names(vPLk.kind.fits), 'Look limited|Look plain|Play limited|Play plain');
+    eq('...no sub-chip when two kinds are picked (sub ignored)', vPLk.sub, '');
+    eq('...with Play picked, the Limited tile counts Play only', buildView(res, F, 'play', '').tiles[0].n, 1);
+    eq('"Show N things" counts: Play+Limited / Play+Look / Limited', [countView(items, T, ctx, F, 'limited+play', ''), countView(items, T, ctx, F, 'play+look', ''), countView(items, T, ctx, F, {gs:[], lim:true}, '')].join(), '1,4,2');
+    eq('the three picks follow the picked kinds', names(threePool(vPL, '2026-11-12', [])), 'Play limited');
+    eq('...and everything when nothing is picked', threePool(buildView(res, F, '', ''), '2026-11-12', []).length, 4);
+    eq('"Make it longer" adds up several kinds', show(moreTimeFor(items, T, ext(ctx, {budget:30}), F, ['play+look'])['play+look'] ? 'found' : 'none'), '"found"');
+    var mem = {}, fake = {getItem:function(k){ return Object.prototype.hasOwnProperty.call(mem, k) ? mem[k] : null; }, setItem:function(k, v){ mem[k] = String(v); }, removeItem:function(k){ delete mem[k]; }};
+    var stg = Platform.makeStore(fake); stg.set('cff.genres.v2', selList({gs:['play'], lim:true}));
+    eq('remembered as a list and read back', JSON.stringify(stg.get('cff.genres.v2', null)) + ' -> ' + selCode(stg.get('cff.genres.v2', [])), '["limited","play"] -> limited+play');
+    eq('hash link #genre=play,limited reads the same', selCode(/genre=([a-z,+]+)/.exec('#genre=play,limited')[1]), 'limited+play');
+  });
+
+  block('v5 location errors (only code 1 is "blocked"; 2 and 3 retry once with a longer wait)', function(){
+    var WIN = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36 Edg/130.0', IOS = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 Mobile/15E148';
+    eq('kinds of error: 1 / 2 / 3 / other', [geoErrKind({code:1}), geoErrKind({code:2}), geoErrKind({code:3}), geoErrKind({})].join(), 'blocked,notfound,notfound,error');
+    var s3 = geoNextStep({code:3}, 0), s3b = geoNextStep({code:3}, 1), s2 = geoNextStep({code:2}, 0), s1 = geoNextStep({code:1}, 0);
+    eq('timeout: retry once with a 20 s wait, then give up', [s3.retry, s3.opts && s3.opts.timeout, s3b.retry, s3b.kind].join(), 'true,20000,false,notfound');
+    eq('position unavailable (Windows location off) also retries', s2.retry, true);
+    eq('permission denied never retries', [s1.retry, s1.kind].join(), 'false,blocked');
+    eq('blocked: one short line on how to turn it on (laptop)', geoErrorText('blocked', WIN), 'Location is blocked. Click the icon left of the address and allow Location.');
+    ok('not found on Windows: "Couldn\'t find you. Try again" + Windows hint', /^Couldn't find you\. Try again\./.test(geoErrorText('notfound', WIN)) && geoErrorText('notfound', WIN).indexOf('Windows Settings > Privacy > Location') > 0, geoErrorText('notfound', WIN));
+    eq('...on an iPhone, no Windows hint', geoErrorText('notfound', IOS), 'Couldn\'t find you. Try again.');
+    ok('...iPhone blocked names Safari settings', geoErrorText('blocked', IOS).indexOf('Safari') > 0, geoErrorText('blocked', IOS));
+    eq('the button is never hidden for good (denied / prompt / granted / no API / claude.ai)', [gpsBtnShown('denied', false), gpsBtnShown('prompt', false), gpsBtnShown('granted', false), gpsBtnShown('none', false), gpsBtnShown('granted', true)].join(), 'true,true,true,false,false');
+  });
+
+  block('v5 street map choice and camera math', function(){
+    function eng(o){ return chooseMapEngine(o).engine; }
+    eq('claude.ai -> drawn map; frame -> drawn map; no WebGL -> drawn map; website -> street map', [eng({onClaude:true, webgl:true}), eng({inFrame:true, webgl:true}), eng({webgl:false}), eng({webgl:true})].join(), 'svg,svg,svg,gl');
+    eq('test hooks: #map=gl inside a frame, #map=svg anywhere; claude.ai always drawn', [eng({inFrame:true, webgl:true, force:'gl'}), eng({webgl:true, force:'svg'}), eng({onClaude:true, webgl:true, force:'gl'})].join(), 'gl,svg,svg');
+    near('our scale 1 px per unit (~10.3 m) = MapLibre zoom ~12.47', zoomForScale(1, 41.88), 12.47, 0.05);
+    near('zoom <-> scale round trip', scaleForZoom(zoomForScale(0.37, 41.9), 41.9), 0.37, 1e-9);
+    var c = viewToCamera(proj(41.8819, -87.6278)[0], proj(41.8819, -87.6278)[1], 1);
+    near('view -> camera keeps the center (the Loop)', distMi(c.lat, c.lng, 41.8819, -87.6278), 0, 0.001);
+    var ring = circleRing(41.88, -87.63, 2, 36);
+    near('radius ring: 2 mi out', distMi(41.88, -87.63, ring[9][1], ring[9][0]), 2, 0.02);
+    eq('...closed ring of 37 points', ring.length + '|' + (ring[0][0] === ring[36][0] && ring[0][1] === ring[36][1]), '37|true');
+    info('This page: ' + (GLM.on ? 'street map on' : GLM.state === 'loading' ? 'street map loading' : 'drawn map' + (GLM.why ? ' (' + GLM.why + ')' : '')) + '.');
+  });
+
+  block('v5 shorter filter sheet', function(){
+    var keep = UI.draft, keepB = UI.draftB; UI.draft = copyF(S.f); UI.draftB = {on:false, val:120};
+    renderFilters();
+    var body = $('pFiltersBody'), nBtn = body.querySelectorAll('button').length, nSec = body.querySelectorAll('.fsec').length, nNote = body.querySelectorAll('.note,small,p').length;
+    ok('at most 7 sections and ~35 buttons, no helper sentences', nSec <= 7 && nBtn <= 35 && nNote === 0, nSec + ' sections, ' + nBtn + ' buttons, ' + nNote + ' notes');
+    eq('interests: at most ' + POP_INTERESTS + ' popular ones (+ any picked)', popularInterests(DATA, {interests:{}}, POP_INTERESTS).length <= POP_INTERESTS, true);
+    ok('a picked interest outside the top stays visible', popularInterests([fx({tags:['cheese']}), fx({tags:['cheese']})], {interests:{bugs:true}}, 1).map(function(x){ return x.id; }).join() === 'cheese,bugs', show(popularInterests([fx({tags:['cheese']}), fx({tags:['cheese']})], {interests:{bugs:true}}, 1)));
+    UI.draft = keep; UI.draftB = keepB;
+    if (!$('pFilters').hidden && UI.draft) renderFilters();
+  });
+
   block('v3 empty states', function(){
     var ctx = {lat:41.88, lng:-87.63, budget:60, mode:'transit'}, F = defaultFilters();
     var a = fx({name:'Early arcade', category:'games-arcade', hours:allDays(['06:00', '22:00']), lat:northOf(0.2)});
@@ -5397,7 +5769,7 @@ function runSelfTest(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v4 (2026-11-12)');
+    eq('version', VERSION, 'v5 (2026-11-13)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -5654,8 +6026,8 @@ function readHash(){
   if (mapEl && (plain === 'been' || plain === 'saved' || /panel=(been|saved)/.test(hsh))) openLists(/been/.test(hsh) ? 'been' : 'saved');
   var ckm = /checkin=([A-Za-z0-9_.-]+)@(\d{4}-\d{2}-\d{2})/.exec(hsh); if (ckm && mapEl) { CHECKINS = withCheckin(CHECKINS, ckm[1], {date:ckm[2]}, new Date().toISOString()); refresh(); if (!$('pSaved').hidden) renderSaved(); }   // testing hook (not saved)
   var sm = /sheet=(peek|half|full)/.exec(hsh); if (sm && sheetEl) applySheet(sm[1]);
-  var gm = /genre=([a-z]+)/.exec(hsh); if (gm && mapEl) { UI.genre = ''; selectGenre(validGenre(gm[1]), {keep:true}); }   // testing hooks: #genre=play, #sub=minigolf, #fold=rest, #panel=filters
-  var sbm = /sub=([a-z]+)/.exec(hsh); if (sbm && mapEl && UI.genre) { UI.sub = sbm[1]; refresh(); }
+  var gm = /genre=([a-z,+]+)/.exec(hsh); if (gm && mapEl) selectGenre(selCode(gm[1]), {keep:true});   // hash links + testing hooks: #genre=play, #genre=play,limited, #sub=minigolf, #fold=rest, #panel=filters
+  var sbm = /sub=([a-z]+)/.exec(hsh); if (sbm && mapEl && selCode(curSel())) { UI.sub = sbm[1]; refresh(); }
   var fm = /fold=(rest|tight|both)/.exec(hsh); if (fm && mapEl) { if (fm[1] !== 'tight') UI.foldRest = true; if (fm[1] !== 'rest') UI.foldTight = true; refresh(); }
   if (/panel=filters/.test(hsh) && mapEl) { openFilters(); var dm = /draft=([a-z0-9:$-]+)/i.exec(hsh); if (dm) { applyDraft(UI.draft, dm[1]); renderFilters(); } }
   if (/panel=surprise/.test(hsh) && mapEl) { var trySurprise = function(){ if (DATA_LOADED) openSurprise(); else setTimeout(trySurprise, 200); }; trySurprise(); }
@@ -5740,7 +6112,9 @@ function loadGeo(){
     drawGeoIntoMap();
     worldFromData();
     requestDraw();
+    if (GLM.on) glAddExtras();
   })['catch'](function(){
+    if (GLM.on) return;   // v5: the street map doesn't need the drawn-map files
     GEO.failed = true;
     var n = $('mapNote'); n.textContent = 'Map couldn\'t load. The list works.'; n.hidden = false;
     if (!isWide()) applySheet('full');
@@ -5757,7 +6131,8 @@ function init(){
   var sv = Platform.store.get('cff.saved.v1', []); savedIds = Array.isArray(sv) ? sv.filter(function(x){ return typeof x === 'string'; }) : [];
   var r = Platform.store.get('cff.radius.v3', APP_RADIUS); if ([0.5, 1, 2, 5, 10, 25].indexOf(r) >= 0) S.f.radius = r;
   var md = Platform.store.get('cff.mode.v1', 'transit'); if (md === 'car' || md === 'transit' || md === 'walk') S.f.mode = md;
-  UI.genre = validGenre(Platform.store.get('cff.genre.v1', ''));   // v3: the last tile she picked (try/catch inside the store)
+  var gl2 = Platform.store.get('cff.genres.v2', null);   // v5: the picked kinds, as a list (e.g. ["limited","play"]); v3/v4 kept one tile as a string
+  UI.gsel = Array.isArray(gl2) ? normSel(gl2.filter(function(x){ return typeof x === 'string'; })) : normSel(validGenre(Platform.store.get('cff.genre.v1', '')));
   UI.foldRest = false;
   var bg = Platform.store.get('cff.budget.v1', 120); if (bg === 'night' || (isNum(bg) && bg >= 30 && bg <= 360)) S.budget = bg;
   S.budgetOn = Platform.store.get('cff.budgetOn.v1', false) === true;   // v4: off unless she turned it on in More filters
@@ -5774,14 +6149,11 @@ function init(){
   startSizeWatch();   // v2.1 (tester M-A)
   refresh();
   loadGeo(); loadData();
-  Platform.geo.check(function(state){
-    UI.geoState = state;
-    if (state === 'granted') Platform.geo.get(function(lat, lng){
-      if (distMi(lat, lng, LOOP.lat, LOOP.lng) > 80) return;
-      if (UI.firstOpen || (S.loc && S.loc.src === 'gps')) { UI.firstOpen = false; commitLocation({lat:lat, lng:lng, label:'Your location', src:'gps'}); }
-    }, function(){});
-    if (!$('pLoc').hidden) $('gpsBtn').hidden = !(state === 'prompt' || state === 'granted');
-  });
+  if (!Platform.onClaude && navigator.geolocation) setLocNote('Use your location, or pick a spot. We\'ll remember it.', false);
+  Platform.geo.check(function(state){ onGeoPermission(state); });
+  if (!Platform.onClaude) Platform.geo.onChange(onGeoPermission);   // v5: allowing it later works without a reload
+  document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'hidden') stopGeoWatch(); else startGeoWatch(); });
+  initMapEngine();   // v5: real street map (MapLibre + OpenFreeMap) when hosted outside claude.ai; the drawn map otherwise
   if (UI.firstOpen) openLocation(true);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ applySheet(Sheet.state, false); placeOverlays(); });
   setInterval(function(){ if (document.visibilityState !== 'hidden' && DATA_LOADED && UI.nowOverride === null && !gestureActive) refresh(); }, 60000);
@@ -5819,6 +6191,11 @@ window.__cff = {
   // v3 (calm layout)
   GENRES: GENRES, genreOf: genreOf, subOf: subOf, subsShown: subsShown, buildView: buildView, bucketOf: bucketOf, limitedPhase: limitedPhase, untilBadge: untilBadge,
   countView: countView, genreFitCounts: genreFitCounts, moreTimeFor: moreTimeFor, appliedFilters: appliedFilters, removeFilter: removeFilter, rankFits: rankFits,
+  // v5
+  normSel: normSel, selCode: selCode, toggleSel: toggleSel, selection: function(){ return curSel(); }, tapTile: function(id){ selectGenre(id); },
+  geoErrKind: geoErrKind, geoNextStep: geoNextStep, geoErrorText: geoErrorText, gpsBtnShown: gpsBtnShown, locateMe: function(){ locateMe(); },
+  chooseMapEngine: chooseMapEngine, zoomForScale: zoomForScale, scaleForZoom: scaleForZoom, circleRing: circleRing, popularInterests: popularInterests,
+  mapEngine: function(){ return {state:GLM.state, on:GLM.on, why:GLM.why, zoom:GLM.map ? GLM.map.getZoom() : null, pitch:GLM.map ? GLM.map.getPitch() : null}; },
   selectGenre: function(id){ selectGenre(id, {keep:true}); }, setSub: function(s){ UI.sub = s || ''; refresh(); }, openFilters: function(){ openFilters(); }, openSurprise: function(){ openSurprise(); },
   view: function(){ return UI.lastVm; },
   // v3.1 (tiles grid, interests from tags, class rule)
