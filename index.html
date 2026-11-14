@@ -211,6 +211,11 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 }
 .subchips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 16px 0;flex:none;-webkit-overflow-scrolling:touch}
 .subchips::-webkit-scrollbar{display:none}
+/* v5.7 (owner on her PC: "under Play ... I can't scroll past Escape rooms"): the sub-chip row scrolled sideways with a hidden scrollbar,
+   so a mouse wheel or trackpad could never reach the chips after "Escape rooms". With a mouse, or in the laptop layout, the chips wrap. */
+@media (min-width:900px), (hover:hover) and (pointer:fine){
+  .subchips,.applied{flex-wrap:wrap;overflow-x:visible;row-gap:6px}
+}
 .sc{flex:none;height:32px;padding:0 12px;border-radius:16px;border:1px solid var(--rule-strong);background:var(--paper);color:var(--ink);font:600 13.5px var(--f-body);display:inline-flex;align-items:center;gap:6px;transition:background .12s,color .12s;white-space:nowrap}
 .sc b{font-weight:700;color:var(--ink-3);font-variant-numeric:tabular-nums}
 .sc[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
@@ -853,7 +858,7 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.6 (2026-11-13)';
+var VERSION = 'v5.7 (2026-11-13)';
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
@@ -2963,6 +2968,35 @@ function hookOf(it){ // the data's `hook`, else the first sentence of the descri
   return s;
 }
 
+/* v5.7 popularity (owner 2026-11-13: the three "should be popular and not all in one category, but also not something less popular
+   like a library date"). 0-100. The data's own `popularity` (0-100) wins when present. Until the data has it, a rough score from what
+   we already know: the kind of place, a short list of names everyone in Chicago knows, how complete and checked the entry is, and a
+   few "quiet" words (library, cemetery, bookstore ...) that mark nice-but-niche places. It only orders and filters the three picks. */
+var POP_FLOOR = 55, POP_STAR = 75;   // below the floor: never one of the three unless nothing else fits; at or above "star": shown first
+var POP_CAT = {'seasonal':42, 'immersive-popup':40, 'art-museum':36, 'nature-outdoors':36, 'show-comedy-music':36, 'games-arcade':36, 'food-drink-experience':36,
+  'active':36, 'mini-golf':36, 'escape-room':34, 'racing-karting':34, 'sports-watch':36, 'social-events':28, 'classes-workshops':28, 'unique-niche':22};
+var POP_KNOWN = /art institute|field museum|shedd|museum of science and industry|griffin museum|lincoln park zoo|brookfield zoo|navy pier|millennium park|cloud gate|the bean|maggie daley|skydeck|willis tower|360 chicago|second city|christkindlmarket|adler planetarium|garfield park conservatory|lincoln park conservatory|botanic garden|morton arboretum|riverwalk|the 606|museum of contemporary art|chicago architecture center|zoolights|lightscape|magnificent mile lights|kingston mines|green mill|music box theatre|chicago cultural center|joffrey|nutcracker|goodman theatre|christmas carol|topgolf|puttshack|museum of ice cream|cindy s rooftop|three dots and a dash|eataly|lakefront trail|northerly island|king spa|aire ancient baths|chicago auto show|thanksgiving parade|tree lighting|winter wonderfest|frank lloyd wright home|robie house|baha i house of worship/;
+var POP_QUIET = /\blibrary\b|cemetery|bookstore|\bbooks\b|apothecary|\brecords\b|button museum|rock shop|pedway|chapel|cathedral|house of worship|antiques|lapidary|broadcast|garden center|visitor center/;
+function popularityOf(it){
+  if (!it) return 0;
+  if (isNum(it.popularity)) return Math.max(0, Math.min(100, Math.round(it.popularity)));
+  var name = norm(it.name), g = genreOf(it), v = (it.verified || {}).status;
+  var s = POP_CAT[it.category];
+  if (!isNum(s)) s = 30;
+  if (it.category === 'unique-niche' && (g === 'relax' || g === 'play' || g === 'eat' || g === 'nature')) s = 32;   // spas, cat cafes, Butterbeer: a real outing, not a curiosity
+  if (v === 'verified' || (v === 'closed' && closedKind(it) === 'season')) s += 10; else if (v === 'conflicting') s -= 8;
+  if (firstPhoto(it)) s += 5;
+  if (it.price_level) s += 3;
+  if (typeof it.hook === 'string' && it.hook.trim()) s += 2;
+  s += Math.min(6, (Array.isArray(it.good_to_know) ? it.good_to_know.filter(function(x){ return x && x.q && x.a; }).length : 0)) * 2;
+  if (it.kind === 'event') s += 4;
+  var known = POP_KNOWN.test(name);
+  if (known) s += 30;
+  else if (POP_QUIET.test(name)) s -= 18;
+  return Math.max(0, Math.min(100, s));
+}
+function popOk(c){ return c.__popOk !== false; }   // set by threePool; anything else counts as popular enough
+
 /* The three picks. Rule: open at the chosen time (or opening within 15 min), reachable, three different kinds,
    at least one limited-time thing when one qualifies, nothing she checked in to in the last 30 days. "Three more" never repeats until the pool runs out. */
 var REACH_MIN = 45;                    // "reachable" = about 45 min door to door or less, when at least three such places are open
@@ -2971,12 +3005,18 @@ function strHash(s){ var h = 5381; for (var i = 0; i < s.length; i++) h = ((h <<
 function threePool(vm, todayKey, checkins){ // everything that could be one of the three, best first. The order changes each day (strHash) so it isn't always the same three.
   var s = vm.s || normSel(vm.sel), any = s.gs.length || s.lim;   // v5: the picked kinds (and Limited) narrow the three too
   var all = (vm.all || []).filter(function(c){ return c.bucket === 'fits' && !beenRecently(c.item.id, todayKey, checkins) && (!any || inSel(c, s)); });
-  all.forEach(function(c){ c.__tier = reachTier(c); });
-  var near = all.filter(function(c){ return c.__tier === 0; }), mid = all.filter(function(c){ return c.__tier <= 1; });
-  var pool = near.length >= 3 ? near : mid.length >= 3 ? mid : all;   // v5.1 (tester M2): within ~30 min first; further only when fewer than 3 closer ones fit
+  all.forEach(function(c){ c.__tier = reachTier(c); c.__pop = popularityOf(c.item); c.__popOk = c.__pop >= POP_FLOOR; });
+  // v5.7: only popular things (popularity >= POP_FLOOR) when at least three of them fit; below-floor ones come in only when fewer than three popular ones do
+  var popular = all.filter(function(c){ return c.__popOk; }), base = popular.length >= 3 ? popular : all;
+  function kinds(l){ var m = {}; l.forEach(function(c){ m[c.genre] = 1; }); return Object.keys(m).length; }
+  var want = Math.min(3, kinds(base));   // v5.7: a closer band is used only when it also has three different kinds (or as many as there are)
+  function enough(l){ return l.length >= 3 && kinds(l) >= want; }
+  var near = base.filter(function(c){ return c.__tier === 0; }), mid = base.filter(function(c){ return c.__tier <= 1; });
+  var pool = enough(near) ? near : enough(mid) ? mid : base;   // v5.1 (tester M2): within ~30 min first; further only when fewer than 3 closer ones fit
   function band(c){ var m = c.trav.min; return m <= 15 ? 0 : m <= 30 ? 1 : m <= REACH_MIN ? 2 : 3; }
-  pool.forEach(function(c){ c.__r = [c.__tier, -(tasteScore(c) || 0), trustRank(c), (c.anyDay && c.fit && c.fit.short) ? 1 : 0, firstPhoto(c.item) ? 0 : 1, band(c), strHash(String(c.item.id) + '|' + todayKey)]; });   // v5.6: "Any time" prefers a whole visit over a quick stop; never "opens soonest"
-  pool.sort(function(a, b){ for (var i = 0; i < 7; i++) if (a.__r[i] !== b.__r[i]) return a.__r[i] - b.__r[i]; return 0; });
+  function popBand(c){ return !c.__popOk ? 2 : c.__pop >= POP_STAR ? 0 : 1; }   // v5.7: well-known places first, then popular, then the rest
+  pool.forEach(function(c){ c.__r = [c.__tier, popBand(c), -(tasteScore(c) || 0), trustRank(c), (c.anyDay && c.fit && c.fit.short) ? 1 : 0, firstPhoto(c.item) ? 0 : 1, band(c), strHash(String(c.item.id) + '|' + todayKey)]; });   // v5.6: "Any time" prefers a whole visit over a quick stop; never "opens soonest"
+  pool.sort(function(a, b){ for (var i = 0; i < a.__r.length; i++) if (a.__r[i] !== b.__r[i]) return a.__r[i] - b.__r[i]; return 0; });
   return pool;
 }
 var PICK_NEAR_MIN = 30;   // v5.1: the three prefer things about 30 min away or less in the chosen mode
@@ -2994,11 +3034,14 @@ function pickThree(pool, seen){ // -> {picks:[up to 3], wrapped:true when the un
     out.forEach(function(c){ used[c.genre] = 1; ids[c.item.id] = 1; });
     list = list.filter(function(c){ return !ids[c.item.id]; });
     var cap = list.length ? (list[Math.min(2, list.length - 1)].__tier || 0) : 0;   // v5.1 (tester M2): a limited thing is pulled forward only if it is no further away than the picks it would replace
+    var anyPop = list.some(popOk);
     if (out.length < 3 && !out.some(function(c){ return c.lim === 'now'; })) {
-      for (i = 0; i < list.length; i++) if (list[i].lim === 'now' && !used[list[i].genre] && (list[i].__tier || 0) <= cap) { out.push(list[i]); used[list[i].genre] = 1; ids[list[i].item.id] = 1; break; }
+      for (i = 0; i < list.length; i++) if (list[i].lim === 'now' && (popOk(list[i]) || !anyPop) && !used[list[i].genre] && (list[i].__tier || 0) <= cap) { out.push(list[i]); used[list[i].genre] = 1; ids[list[i].item.id] = 1; break; }   // v5.7: only a popular limited thing jumps the queue
     }
-    [true, false].forEach(function(distinct){
-      list.forEach(function(c){ if (out.length >= 3 || ids[c.item.id] || (distinct && used[c.genre])) return; out.push(c); used[c.genre] = 1; ids[c.item.id] = 1; });
+    // v5.7: popular ones first (three different kinds, then any kind), and below-the-floor ones only to fill an empty card
+    [[true, true], [false, true], [true, false], [false, false]].forEach(function(pass){
+      var distinct = pass[0], popOnly = pass[1];
+      list.forEach(function(c){ if (out.length >= 3 || ids[c.item.id] || (distinct && used[c.genre]) || (popOnly && !popOk(c))) return; out.push(c); used[c.genre] = 1; ids[c.item.id] = 1; });
     });
     return out;
   }
@@ -5120,7 +5163,25 @@ function submitTip(){
 function setTheme(v){ if (v === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', v); Platform.store.set('cff.theme', v); glApplyTheme(); }
 
 /* ================= events wiring ================= */
+/* v5.7 (owner on her PC): a mouse wheel over the top of the list screen (search, tiles, sub-chips, result line) did nothing, and a
+   sideways chip row could not be scrolled with a wheel at all. Now: over a chip row that still scrolls sideways, the wheel moves it
+   sideways until it reaches the end; anywhere else above the list, the wheel scrolls the list. Never blocks the list's own scrolling. */
+function sheetWheel(e, sc){ // -> 'side' | 'list' | '' (what the wheel did); exposed for the self-test
+  if (!e || e.ctrlKey) return '';   // ctrl + wheel = browser zoom
+  var dy = e.deltaY || 0, dx = e.deltaX || 0, t = e.target && e.target.closest ? e.target : null;
+  if (!t || !sc || t.closest('.sh-scroll')) return '';
+  var dyPx = e.deltaMode === 1 ? dy * 16 : e.deltaMode === 2 ? dy * 400 : dy;
+  var row = t.closest('.subchips,.applied');
+  if (row && Math.abs(dy) > Math.abs(dx) && row.scrollWidth > row.clientWidth + 1) {
+    var max = row.scrollWidth - row.clientWidth;
+    if ((dyPx > 0 && row.scrollLeft < max - 1) || (dyPx < 0 && row.scrollLeft > 0)) { row.scrollLeft = Math.max(0, Math.min(max, row.scrollLeft + dyPx)); if (e.preventDefault) e.preventDefault(); return 'side'; }
+  }
+  if (Math.abs(dy) <= Math.abs(dx) || t.closest('input,textarea,select')) return '';
+  if (sc.scrollHeight <= sc.clientHeight) return '';
+  sc.scrollTop = sc.scrollTop + dyPx; if (e.preventDefault) e.preventDefault(); return 'list';
+}
 function bindUI(){
+  $('sheet').addEventListener('wheel', function(e){ sheetWheel(e, $('sheetScroll')); }, {passive:false});
   $('tiles').addEventListener('click', function(e){ var b = e.target.closest('[data-tile]'); if (b) selectGenre(b.getAttribute('data-tile')); });
   $('subchips').addEventListener('click', function(e){
     var b = e.target.closest('[data-sub]'); if (!b) return;
@@ -6547,11 +6608,80 @@ function runSelfTest0(){
     } finally { UI.farMore = keepF; UI.view = keepV; }
   });
 
+  /* ---------- v5.7 checks (owner 2026-11-13: the three "should be popular and not all in one category, but also not ... a library date") ---------- */
+  block('v5.7 popularity score', function(){
+    function gtk(n){ var a = []; for (var i = 0; i < n; i++) a.push({q:'q' + i, a:'a' + i}); return a; }
+    var full = {photos:[{file:'photos/x.jpg'}], hook:'A hook', good_to_know:gtk(5), price_level:'$$'};
+    eq('the data\'s own "popularity" wins (12 for a famous name stays 12)', popularityOf(fx({name:'Art Institute of Chicago', category:'art-museum', popularity:12})), 12);
+    eq('...and is kept within 0-100 (140 -> 100, -5 -> 0, 61.6 -> 62)', [popularityOf(fx({popularity:140})), popularityOf(fx({popularity:-5})), popularityOf(fx({popularity:61.6}))].join(), '100,0,62');
+    var known = popularityOf(fx(ext({name:'Art Institute of Chicago', category:'art-museum'}, full)));
+    var museum = popularityOf(fx(ext({name:'Neighborhood History Museum', category:'art-museum'}, full)));
+    var library = popularityOf(fx(ext({name:'Winter Garden at Harold Washington Library Center', category:'unique-niche'}, full)));
+    ok('fallback: a famous name is a "star" (>= ' + POP_STAR + ')', known >= POP_STAR, known);
+    ok('fallback: a well-filled, checked museum is above the floor (>= ' + POP_FLOOR + ')', museum >= POP_FLOOR && museum < POP_STAR, museum);
+    ok('fallback: a library winter garden is below the floor', library < POP_FLOOR, library);
+    ok('order: famous > ordinary museum > library', known > museum && museum > library, [known, museum, library].join(' > '));
+    ok('checked beats not checked; a photo, answers and a hook each add a little', popularityOf(fx(ext({category:'art-museum'}, full))) > popularityOf(fx(ext({category:'art-museum', verified:{status:'unverified'}}, full))) && popularityOf(fx(ext({category:'art-museum'}, full))) > popularityOf(fx({category:'art-museum'})), '');
+    ok('a spa filed as "unique" counts as a real outing, not a curiosity', popularityOf(fx(ext({name:'Some Spa', category:'unique-niche', genre:'relax'}, full))) >= POP_FLOOR, popularityOf(fx(ext({name:'Some Spa', category:'unique-niche', genre:'relax'}, full))));
+    ok('names: 360 CHICAGO, Cindy\'s Rooftop, The Second City, Christkindlmarket are stars', ['360 CHICAGO Observation Deck (TILT)', 'Cindy\'s Rooftop', 'The Second City (Chicago)', 'Christkindlmarket Chicago (Daley Plaza)'].every(function(n){ return popularityOf(fx({name:n, category:'food-drink-experience'})) >= POP_STAR; }), '');
+    eq('no item: 0, no crash', popularityOf(null), 0);
+  });
+  block('v5.7 the three picks are popular and mixed', function(){
+    var T = at('2026-11-13', '19:30'), ctx = {lat:41.88, lng:-87.63, budget:'any', mode:'transit'}, F = ext(defaultFilters(), {radius:25}), open = allDays(['10:00', '23:00']), today = '2026-11-13';
+    function gtk(n){ var a = []; for (var i = 0; i < n; i++) a.push({q:'q' + i, a:'a' + i}); return a; }
+    var full = {photos:[{file:'photos/x.jpg'}], hook:'A hook', good_to_know:gtk(5), price_level:'$$'};
+    function mk(name, cat, mi, o){ return fx(ext(ext({id:'p7-' + name.toLowerCase().replace(/\W+/g, '-'), name:name, category:cat, hours:open, lat:northOf(mi)}, full), o || {})); }
+    function pool(list){ return threePool(buildView(runPipeline(list, T, ctx, F), F, '', ''), today, []); }
+    function nm(l){ return l.map(function(c){ return c.item.name; }).sort().join(); }
+    function kinds(l){ var m = {}; l.forEach(function(c){ m[c.genre] = 1; }); return Object.keys(m).length; }
+    var field = mk('Field Museum', 'art-museum', 0.4), mines = mk('Kingston Mines', 'show-comedy-music', 0.4), emp = mk('Emporium Arcade Bar', 'games-arcade', 0.4), lucky = mk('Lucky Strike', 'games-arcade', 0.4);
+    var lib = mk('Quiet Library Reading Room', 'unique-niche', 0.1), books = mk('Corner Bookstore', 'unique-niche', 0.1);
+    var P = pool([field, mines, emp, lucky, lib, books]), r = pickThree(P, {});
+    ok('the library and the bookstore (closer, but below the floor) are not in the pool', P.every(function(c){ return c.item !== lib && c.item !== books; }), nm(P));
+    eq('three picks, three different kinds', [r.picks.length, kinds(r.picks)].join(), '3,3');
+    ok('...and every pick is above the floor', r.picks.every(function(c){ return c.__pop >= POP_FLOOR; }), r.picks.map(function(c){ return c.item.name + '=' + c.__pop; }).join(', '));
+    ok('the famous one comes first in the pool', P[0].item === field || P[0].item === mines, nm(P.slice(0, 2)));
+    var a1 = mk('Arcade One', 'games-arcade', 0.3), a2 = mk('Arcade Two', 'games-arcade', 0.3), a3 = mk('Arcade Three', 'games-arcade', 0.3), farMuseum = mk('Big Museum', 'art-museum', 4.5);
+    var P2 = pool([a1, a2, a3, farMuseum]), r2 = pickThree(P2, {});
+    ok('three close arcades + a popular museum ~33 min away: the museum is still one of the three (different kinds first)', r2.picks.some(function(c){ return c.item === farMuseum; }) && kinds(r2.picks) === 2, nm(r2.picks));
+    var P3 = pool([field, mines, lib, books]), r3 = pickThree(P3, {});
+    ok('only two popular ones fit: both are picked, and a below-floor one fills the third card', r3.picks.length === 3 && r3.picks.some(function(c){ return c.item === field; }) && r3.picks.some(function(c){ return c.item === mines; }), nm(r3.picks));
+    ok('...the popular two come first in the pool', P3.slice(0, 2).every(function(c){ return c.__popOk; }), nm(P3.slice(0, 2)));
+    var libEvent = mk('Library pop-up reading', 'unique-niche', 0.2, {kind:'event', event_dates:[{start:'2026-11-01', end:'2026-12-31'}]});
+    var r4 = pickThree(pool([field, mines, emp, libEvent]), {});
+    ok('a below-floor limited thing does not jump ahead of popular places', r4.picks.every(function(c){ return c.item !== libEvent; }), nm(r4.picks));
+    var market = mk('Christkindlmarket Chicago', 'seasonal', 0.5, {kind:'event', genre:'eat-drink', event_dates:[{start:'2026-11-01', end:'2026-12-24'}]});
+    var r5 = pickThree(pool([field, mines, emp, market]), {});
+    ok('a popular limited thing still gets one of the three cards', r5.picks.some(function(c){ return c.item === market; }), nm(r5.picks));
+    var shows = [mk('Show A', 'show-comedy-music', 0.3), mk('Show B', 'show-comedy-music', 0.3), mk('Show C', 'show-comedy-music', 0.3)];
+    ok('a popular same-kind place beats a below-floor place of a new kind', nm(pickThree(pool(shows.concat([books])), {}).picks) === 'Show A,Show B,Show C', nm(pickThree(pool(shows.concat([books])), {}).picks));
+    var rated = mk('Rated low', 'games-arcade', 0.3, {name:'Art Institute of Chicago', popularity:10});
+    ok('the data\'s own low "popularity" keeps even a famous name out when 3 others fit', pool([field, mines, emp, rated]).every(function(c){ return c.item !== rated; }), nm(pool([field, mines, emp, rated])));
+  });
+  block('v5.7 laptop: chips wrap, the wheel works above the list', function(){
+    ok('wide layout or a mouse: the sub-chip row wraps (no hidden sideways scroll)', (function(){ for (var i = 0; i < document.styleSheets.length; i++) { var rs; try { rs = document.styleSheets[i].cssRules; } catch (e) { continue; } for (var j = 0; j < rs.length; j++) if (rs[j].media && /pointer:\s*fine/.test(rs[j].media.mediaText) && /\.subchips/.test(rs[j].cssText) && /flex-wrap:\s*wrap/.test(rs[j].cssText)) return true; } return false; })(), 'rule missing');
+    var row = document.createElement('div'), sc = document.createElement('div'), chip = document.createElement('button');
+    row.className = 'subchips'; row.appendChild(chip);
+    var fakeSc = {scrollTop:0, scrollHeight:1000, clientHeight:400};
+    function ev(t, dy, dx){ return {target:t, deltaY:dy, deltaX:dx || 0, deltaMode:0, preventDefault:function(){ this.prevented = true; }}; }
+    var e1 = ev(chip, 120);
+    eq('wheel over a chip row that does not scroll sideways: scrolls the list', [sheetWheel(e1, fakeSc), fakeSc.scrollTop, !!e1.prevented].join(), 'list,120,true');
+    var inList = document.createElement('div'); sc.className = 'sh-scroll'; sc.appendChild(inList);
+    var e2 = ev(inList, 120);
+    eq('wheel inside the list: left alone (the browser scrolls it)', [sheetWheel(e2, fakeSc), !!e2.prevented].join(), ',false');
+    var e3 = ev(chip, 0, 80);
+    eq('sideways trackpad swipe: left alone', sheetWheel(e3, fakeSc), '');
+    var e4 = ev(chip, 120); e4.ctrlKey = true;
+    eq('ctrl + wheel (zoom): left alone', sheetWheel(e4, fakeSc), '');
+    var fitsSc = {scrollTop:0, scrollHeight:300, clientHeight:400};
+    eq('a list that already fits: left alone', sheetWheel(ev(chip, 120), fitsSc), '');
+  });
+
   block('v3 page parts', function(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.6 (2026-11-13)');
+    eq('version', VERSION, 'v5.7 (2026-11-13)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -6779,6 +6909,18 @@ function runSelfTestAsync(){ // checks that need promises or the map files
     });
     var ctx = {lat:41.9405, lng:-87.6680, budget:'any', mode:'transit'}, res = runPipeline(DATA, T, ctx, appDefaultFilters()), nOpen = res.all.filter(function(c){ return c.st.open; }).length;   // North Center / Lincoln Park edge, nothing picked
     ok('real data: Mon noon near Lincoln Park / North Center, many things open (' + nOpen + ' open, ' + res.groups.fits.length + ' fit)', nOpen >= 40, nOpen + ' open');
+    // v5.7: popularity on the real list
+    var byName = function(re){ for (var i = 0; i < DATA.length; i++) if (re.test(DATA[i].name || '')) return DATA[i]; return null; };
+    var aic = byName(/^Art Institute of Chicago$/), wg = byName(/Winter Garden at Harold Washington Library/);
+    if (aic) ok('real data: Art Institute is a "star" (' + popularityOf(aic) + ')', popularityOf(aic) >= POP_STAR, popularityOf(aic));
+    if (wg) ok('real data: the library Winter Garden is below the floor (' + popularityOf(wg) + ')', popularityOf(wg) < POP_FLOOR, popularityOf(wg));
+    var nAbove = DATA.filter(function(it){ return popularityOf(it) >= POP_FLOOR; }).length, nStar = DATA.filter(function(it){ return popularityOf(it) >= POP_STAR; }).length;
+    R.push({ok:true, info:'', name:'real data: ' + nAbove + ' of ' + DATA.length + ' at or above the popularity floor (' + POP_FLOOR + '), ' + nStar + ' stars (' + POP_STAR + '+)', note:true});
+    [[res, 'Mon noon, North Center'], [runPipeline(DATA, fromChicago('2026-11-13', 1080), {lat:41.8819, lng:-87.6278, budget:'any', mode:'transit'}, appDefaultFilters()), 'Fri 6 pm, the Loop']].forEach(function(x){
+      var pp = threePool(buildView(x[0], appDefaultFilters(), '', ''), '2026-11-13', []), rr = pickThree(pp, {}), km = {};
+      rr.picks.forEach(function(c){ km[c.genre] = 1; });
+      ok('real data, ' + x[1] + ': three picks, three kinds, all popular (' + rr.picks.map(function(c){ return c.item.name + ' ' + c.__pop; }).join('; ') + ')', rr.picks.length === 3 && Object.keys(km).length === 3 && rr.picks.every(function(c){ return c.__pop >= POP_FLOOR; }), rr.picks.map(function(c){ return c.item.name + '=' + c.__pop + '/' + c.genre; }).join(', '));
+    });
     return R;
   });
 }
@@ -7026,7 +7168,7 @@ window.__cff = {
   genreShort: genreShort, subName: subName, MAKE_TAGS: MAKE_TAGS, interestList: interestList, interestsOf: interestsOf, interestKey: interestKey, interestLabel: interestLabel,
   matchesInterests: matchesInterests, INTEREST_STOP: INTEREST_STOP, INTEREST_ALIAS: INTEREST_ALIAS,
   // v4 (the three picks, search, share, calendar, check-ins, hash links)
-  threePool: threePool, pickThree: pickThree, tasteScore: tasteScore, reachTier: reachTier, homeEmpty: homeEmpty, photoFocus: photoFocus, glTuneDark: function(){ return glTuneDark(GLM.map); }, darkPaint: GL_DARK_PAINT, three: function(){ return UI.three.slice(); }, threeMore: function(){ UI.more3 = true; refresh(); return UI.three.slice(); },
+  threePool: threePool, pickThree: pickThree, tasteScore: tasteScore, popularityOf: popularityOf, popFloor: POP_FLOOR, popStar: POP_STAR, sheetWheel: sheetWheel, reachTier: reachTier, homeEmpty: homeEmpty, photoFocus: photoFocus, glTuneDark: function(){ return glTuneDark(GLM.map); }, darkPaint: GL_DARK_PAINT, three: function(){ return UI.three.slice(); }, threeMore: function(){ UI.more3 = true; refresh(); return UI.three.slice(); },
   searchItems: searchItems, search: function(q){ return searchItems(DATA, q).map(function(r){ return r.it.id; }); }, editWithin: editWithin, norm: norm,
   factsLine: factsLine, statusShort: statusShort, travelShort: travelShort, priceShort: priceShort, hookOf: hookOf,
   hashItemId: hashItemId, shareText: shareText, shareItem: function(id){ shareItem(id); }, calEvent: calEvent, icsFor: icsFor, calText: calText, addToCalendar: function(id){ addToCalendar(id); },
