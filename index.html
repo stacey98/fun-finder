@@ -322,6 +322,47 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .row h3{font:700 21px/1.03 var(--f-display);margin:0;letter-spacing:.004em;text-wrap:balance;overflow-wrap:anywhere}
 .tag{font:700 9.5px/1 var(--f-body);letter-spacing:.1em;text-transform:uppercase;padding:4px 6px 3px;border-radius:5px;border:1px solid var(--rule-strong);color:var(--ink-2);white-space:nowrap;position:relative;top:-2px}
 .tag.book{border-color:var(--ink);color:var(--ink)}
+.dt-deal{display:flex;align-items:center;gap:10px;margin:12px 0 0;padding:10px 12px;border-radius:12px;background:var(--open-bg);color:var(--ink);text-decoration:none;font:500 14px/1.3 var(--f-body)}.dt-deal b{color:var(--open);white-space:nowrap}.dt-deal span{flex:1}.dt-deal svg{width:16px;height:16px;flex:none}
+.tag.deal{border-color:var(--open);color:var(--open)}.tag.deal.on{background:var(--open-bg)}
+.c3-deal{position:absolute;top:18px;left:58px;z-index:3;font:700 11.5px/1 var(--f-body);color:#0B0A10;background:#6FE3A8;padding:6px 8px;border-radius:8px}.c3-deal.low{top:50px;left:12px}
+.pl-ph .c3-deal{top:8px;left:8px}
+#pFriendBody .cp-sw{padding:0 20px}#pFriendBody .cp-cards{padding:0 16px}#pFriendBody .cp-sw+.p-note,#pFriendBody .cp-cards+.p-note{padding:0 20px}
+/* v5.13 poll + couple mode */
+.pl-pick{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-height:min(58vh,520px);overflow-y:auto}
+.pl-pick button{display:block;width:100%;padding:0;border:0;background:none;color:var(--ink);text-align:left;cursor:pointer;font:inherit}
+.pl-ph{position:relative;display:block;width:100%;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--c);color:#FFFFFF;border:0;padding:0;cursor:pointer}
+.pl-ph>svg{position:absolute;inset:0;margin:auto;width:40%;height:40%;opacity:.35}
+.pl-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pl-ck{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:rgba(10,12,14,.45);border:2px solid #FFFFFF;display:grid;place-items:center}
+.pl-ck svg{width:15px;height:15px;opacity:0}
+.pl-pick [aria-pressed="true"] .pl-ph{outline:3px solid var(--accent-text);outline-offset:-3px}
+.pl-pick [aria-pressed="true"] .pl-ck{background:var(--accent-text);border-color:var(--accent-text)}
+.pl-pick [aria-pressed="true"] .pl-ck svg{opacity:1;color:var(--paper)}
+.pl-nm{display:block;margin-top:6px;font:600 13.5px/1.25 var(--f-body);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.pl-note{margin:0 0 12px;font:500 14px var(--f-body);color:var(--ink-2)}
+.pl-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.pl-card{display:grid;grid-template-columns:118px minmax(0,1fr);gap:12px;align-items:start;padding:10px;border-radius:18px;background:var(--paper-2,rgba(127,127,127,.08));border:2px solid transparent}
+.pl-card.mine{border-color:var(--accent-text)}
+.pl-card.gone{opacity:.55}
+.pl-card .pl-ph{aspect-ratio:1/1}
+.pl-card h3{margin:2px 0 4px;font:700 16px/1.2 var(--f-body)}
+.pl-facts{margin:0;font:500 13px/1.3 var(--f-body);color:var(--ink-2)}
+.pl-facts .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:1px;background:var(--closed)}
+.pl-facts .dot.open{background:var(--open)}.pl-facts .dot.soon{background:var(--soon)}
+.pl-bar{position:relative;height:22px;margin:10px 0 0;border-radius:11px;background:var(--rule,rgba(127,127,127,.2));overflow:hidden}
+.pl-bar i{position:absolute;left:0;top:0;bottom:0;background:var(--open);border-radius:11px;transition:width .3s}
+.pl-card.lead .pl-bar i{background:var(--accent-text)}
+.pl-bar span{position:relative;display:block;padding:0 9px;font:700 12px/22px var(--f-body);color:var(--ink)}
+.pl-vote{margin-top:10px;min-height:44px;width:100%;border-radius:12px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font:700 14px var(--f-body);display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer}
+.pl-vote svg{width:16px;height:16px}
+.pl-vote[aria-pressed="true"]{background:var(--accent-text);border-color:var(--accent-text);color:var(--paper)}
+.pl-acts{margin:16px 0 4px;display:flex;justify-content:center}
+.pl-make small{display:block;font:500 12.5px var(--f-body);color:var(--ink-2);margin-top:2px}
+.pl-mine{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
+.pl-mine .qchip svg{width:14px;height:14px;margin-right:5px;vertical-align:-2px}
+.cp-sw{margin:6px 0 10px}
+.cp-cards{margin-bottom:8px}
+.cp-h .avs{vertical-align:middle}
 .until{display:inline-flex;align-items:center;font:700 10px/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1.5px solid currentColor;border-radius:4px;padding:3px 7px 2px;white-space:nowrap;-webkit-mask:radial-gradient(circle 3.5px at 0 50%,transparent 95%,#000) left/51% 100% no-repeat,radial-gradient(circle 3.5px at 100% 50%,transparent 95%,#000) right/51% 100% no-repeat;mask:radial-gradient(circle 3.5px at 0 50%,transparent 95%,#000) left/51% 100% no-repeat,radial-gradient(circle 3.5px at 100% 50%,transparent 95%,#000) right/51% 100% no-repeat}
 .until.hot{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
 .until.muted{color:var(--ink-2)}
@@ -1242,6 +1283,7 @@ body{background:var(--paper)}
   <section id="pTheme" class="panel theme" hidden role="dialog" aria-labelledby="pThemeTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pThemeTitle" tabindex="-1">Theme</h2><button class="p-close" type="button" data-close="pTheme" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pThemeBody"></div></section>
   <section id="pTip" class="panel" hidden role="dialog" aria-labelledby="pTipTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pTipTitle" tabindex="-1">Send a tip</h2><button class="p-close" type="button" data-close="pTip" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pTipBody"></div><div class="p-foot"><button class="btn-primary" id="tipGo" type="button">Send tip</button></div></section>
   <section id="pSurprise" class="panel board" hidden role="dialog" aria-labelledby="pSurpriseTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title vh" id="pSurpriseTitle" tabindex="-1">Surprise me</h2><span></span><button class="p-close" type="button" data-close="pSurprise" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pSurpriseBody" aria-live="polite"></div></section>
+  <section id="pPoll" class="panel tall" hidden role="dialog" aria-labelledby="pPollTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pPollTitle" tabindex="-1">Which one?</h2><button class="p-close" type="button" data-close="pPoll" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pPollBody"></div></section>
   <div id="taste" class="taste" hidden role="dialog" aria-modal="true" aria-label="Your taste"></div>
   <div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
 </div>
@@ -1255,7 +1297,7 @@ body{background:var(--paper)}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.12 (2026-11-14)';
+var VERSION = 'v5.13 (2026-11-14)';
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
@@ -2618,6 +2660,40 @@ function trustOf(it, todayKey){
   return o;
 }
 
+/* ================= v5.13 deals: the "On sale" chip and the deal badge (her #11; format: reports/2026-11-14-deals.md) ================= */
+// item.deal = {text, kind:'free'|'discount'|'happy-hour'|'rush', link, days?:['Wed'|'2nd Tue'|'weekdays'|'daily'|'Mon-Thu'], dates?:['YYYY-MM-DD'], valid_from?, valid_to?}
+// Pure. A deal is hidden after valid_to, and "On sale" only lists deals whose next day is today or within DEAL_AHEAD_DAYS.
+var DEAL_AHEAD_DAYS = 14;
+var DEAL_DOW = {sun:0, mon:1, tue:2, wed:3, thu:4, fri:5, sat:6}, DEAL_NTH = {'1st':1, '2nd':2, '3rd':3, '4th':4, 'last':-1};
+function dealOf(it){ var d = it && it.deal; return d && typeof d === 'object' && typeof d.text === 'string' && d.text.trim() ? d : null; }
+function dealDayOk(tok, key){ // one `days` entry on one Chicago date
+  var t = String(tok || '').trim().toLowerCase(), wd = wdOfKey(key), m;
+  if (t === 'daily' || t === 'every day') return true;
+  if (t === 'weekdays') return wd >= 1 && wd <= 5;
+  if (t === 'weekends') return wd === 0 || wd === 6;
+  if ((m = /^(1st|2nd|3rd|4th|last)\s+([a-z]{3})/.exec(t)) && DEAL_DOW[m[2]] !== undefined) { var a = key.split('-'); return nthWeekdayKey(+a[0], +a[1], DEAL_DOW[m[2]], DEAL_NTH[m[1]]) === key; }
+  if ((m = /^([a-z]{3})[a-z]*\s*[-\u2013]\s*([a-z]{3})/.exec(t)) && DEAL_DOW[m[1]] !== undefined && DEAL_DOW[m[2]] !== undefined) { var s = DEAL_DOW[m[1]], e = DEAL_DOW[m[2]]; return s <= e ? (wd >= s && wd <= e) : (wd >= s || wd <= e); }
+  m = /^([a-z]{3})[a-z]*$/.exec(t); return !!m && DEAL_DOW[m[1]] === wd;
+}
+function dealOnDay(d, key){
+  if (isKey(d.valid_from) && key < d.valid_from) return false;
+  if (isKey(d.valid_to) && key > d.valid_to) return false;
+  var ds = Array.isArray(d.dates) ? d.dates.filter(isKey) : [], dy = Array.isArray(d.days) ? d.days : [];
+  if (!ds.length && !dy.length) return true;
+  if (ds.indexOf(key) >= 0) return true;
+  for (var i = 0; i < dy.length; i++) if (dealDayOk(dy[i], key)) return true;
+  return false;
+}
+function dealState(it, key){ // -> null | {text, kind, link, today, next, badge}
+  var d = dealOf(it); if (!d || !isKey(key)) return null;
+  if (isKey(d.valid_to) && key > d.valid_to) return null;
+  var next = null;
+  for (var i = 0; i <= DEAL_AHEAD_DAYS; i++) { var k = addDays(key, i); if (isKey(d.valid_to) && k > d.valid_to) break; if (dealOnDay(d, k)) { next = k; break; } }
+  if (!next) return null;
+  var dd = dayDiff(key, next), when = dd === 0 ? 'today' : dd === 1 ? 'tomorrow' : dd < 7 ? DOW_SHORT[wdOfKey(next)] : fmtMonthDay(next);
+  return {text:String(d.text).trim().slice(0, 80), kind:String(d.kind || 'discount'), link:safeUrl(d.link || d.source), today:dd === 0, next:next, badge:(d.kind === 'free' ? 'Free ' : 'Deal ') + when};
+}
+function dealBadgeHTML(c, cls){ return c && c.deal ? '<span class="' + (cls || 'tag deal') + (c.deal.today ? ' on' : '') + '">' + esc(c.deal.badge) + '</span>' : ''; }
 /* ================= categories ================= */
 var CATS = {
   'games-arcade':{label:'Games & arcade', g:'play', glyph:'g-die'},
@@ -2659,8 +2735,8 @@ var GENRES = [
   {id:'play', name:'Play', glyph:'g-die', subs:[['games', 'Games & arcades'], ['minigolf', 'Mini golf'], ['racing', 'Racing'], ['escape', 'Escape rooms'], ['move', 'Get moving']]},
   {id:'look', name:'Look & Learn', glyph:'g-frame', subs:[['museums', 'Museums'], ['views', 'Views'], ['art', 'Art & immersive'], ['arch', 'Architecture'], ['odd', 'Odd & curious']]},
   {id:'nature', name:'Nature & Animals', glyph:'g-leaf', subs:[['animals', 'Animals & bugs'], ['gardens', 'Gardens'], ['walks', 'Parks & walks']]},
-  {id:'eat', name:'Eat & Drink', glyph:'g-cup', subs:[['treats', 'Treats'], ['bars', 'Bars'], ['dinner', 'Dinner with a twist'], ['markets', 'Markets'], ['cheese', 'Cheese']]},
-  {id:'shows', name:'Shows & Nights', glyph:'g-mic', subs:[['comedy', 'Comedy'], ['music', 'Music'], ['theater', 'Theater'], ['movies', 'Movies']]},
+  {id:'eat', name:'Eat & Drink', glyph:'g-cup', subs:[['treats', 'Treats'], ['bars', 'Bars'], ['dinner', 'Dinner with a twist'], ['markets', 'Markets'], ['tea', 'Tea'], ['cheese', 'Cheese']]},
+  {id:'shows', name:'Shows & Nights', glyph:'g-mic', subs:[['comedy', 'Comedy'], ['music', 'Music'], ['theater', 'Theater'], ['movies', 'Movies'], ['parades', 'Parades & festivals']]},
   {id:'make', name:'Make Something', glyph:'g-pencil', subs:[['craft', 'Art & crafts'], ['cook', 'Cooking & cocktails'], ['music', 'Music & dance']]},
   {id:'relax', name:'Relax', glyph:'g-steam', subs:[['baths', 'Baths & saunas'], ['quiet', 'Quiet spots'], ['tea', 'Tea']]}
 ];
@@ -2762,7 +2838,8 @@ function kindSvg(id, cls){ return '<svg' + (cls ? ' class="' + cls + '"' : '') +
 /* v5.10 (owner: "Animals & bugs" only where seeing animals or bugs is the main thing: zoos, aquariums, butterfly houses, live-animal or
    insect exhibits, farms and petting zoos, the Busse Woods elk herd, birding only when it is the stated purpose). Parks, beaches and
    trails go under "Parks & walks" even when their tags mention wildlife. Explicit tags and names only, never mood or interest words. */
-var ANIMAL_MAIN_TAGS = ['zoo', 'aquarium', 'butterflies', 'butterfly', 'insects', 'insect-exhibit', 'farm-animals', 'petting-zoo', 'wildlife-viewing', 'elk', 'birding'];
+var ARCH_NOT_NAME = /museum|library|newberry|poetry/i;   // v5.13: never Architecture by the tag alone
+var ANIMAL_MAIN_TAGS = ['zoo', 'aquarium', 'butterflies', 'butterfly', 'bugs', 'insects', 'insect-exhibit', 'farm-animals', 'petting-zoo', 'wildlife-viewing', 'elk', 'birding'];
 var ANIMAL_MAIN_NAME = /\bzoo\b|zoolights|aquarium|butterfl|insect|dragonfl|\belk\b|petting|\bfarm\b|bird sanctuary|birding|reptile|wolf park|raptor/i;
 var PARKLIKE_NAME = /\bpark\b|\bbeach\b|\btrail\b|\bwoods\b|\bpreserve\b|lakefront|\bharbor\b|\bisland\b/i;
 function isAnimalsMain(it){
@@ -2778,14 +2855,16 @@ function subOf(it, g){ // sub-chip of an item inside its genre (adapted from the
   function tg(list){ for (var i = 0; i < list.length; i++) if (hasTag(it, list[i])) return true; return false; }
   switch (g) {
     case 'play':
-      if (cat === 'mini-golf' || tg(['indoor-mini-golf', 'outdoor-mini-golf'])) return 'minigolf';
+      if (cat === 'mini-golf' || tg(['mini-golf', 'indoor-mini-golf', 'outdoor-mini-golf'])) return 'minigolf';   // v5.13: the consistency pass merged both into `mini-golf`
       if (cat === 'racing-karting' || tg(['go-karts', 'racing-simulators'])) return 'racing';
       if (cat === 'escape-room') return 'escape';
       if (cat === 'active' || cat === 'seasonal' || cat === 'social-events' || cat === 'classes-workshops' || tg(['ice-skating', 'climbing', 'trampoline', 'zipline', 'kayaking', 'curling', 'pickleball', 'running'])) return 'move';
       return 'games';
     case 'look':
-      if (/skydeck|360-chicago|navy-pier/.test(id) || tg(['views', 'skyline', 'skyline-views', 'lake-view'])) return 'views';
-      if (/architecture-center|rookery|robie|flw-home/.test(id) || tg(['frank-lloyd-wright'])) return 'arch';
+      if (/skydeck|360-chicago|navy-pier/.test(id)) return 'views';
+      // v5.13 (consistency #4): the `architecture` tag puts buildings you visit here, never libraries or museums (Newberry, Poetry Foundation, Driehaus)
+      if (/architecture-center|rookery|robie|flw-home/.test(id) || tg(['frank-lloyd-wright']) || (tg(['architecture']) && !ARCH_NOT_NAME.test(n) && !tg(['museum', 'library', 'books']))) return 'arch';
+      if (tg(['views'])) return cat === 'art-museum' || tg(['museum']) ? 'museums' : 'views';   // v5.13 (#3): a museum with a view (Adler) stays a museum
       if (cat === 'immersive-popup' || tg(['public-art', 'immersive'])) return 'art';
       if (cat === 'unique-niche' || cat === 'seasonal') return 'odd';
       return 'museums';
@@ -2795,21 +2874,23 @@ function subOf(it, g){ // sub-chip of an item inside its genre (adapted from the
       return 'walks';
     case 'eat':
       if (tg(['cheese'])) return 'cheese';
+      if (tg(['tea', 'tea-house'])) return 'tea';   // v5.13 (#8): the tea places moved to Eat
       if (/market/i.test(n)) return 'markets';
       if (tg(['chocolate', 'dessert', 'candy', 'bakery', 'sweet'])) return 'treats';
-      if (tg(['cocktails', 'bar', 'wine', '21+', 'hidden-bar', 'speakeasy', 'beer', 'whisky', 'whiskey'])) return 'bars';
+      if (tg(['cocktails', 'bar', 'wine', '21-plus', 'speakeasy', 'beer', 'whiskey'])) return 'bars';   // v5.13 (#2): `21-plus` (was '21+'), whisky/hidden-bar merged away
       return 'dinner';
     case 'shows':
-      if (tg(['comedy', 'stand-up'])) return 'comedy';
+      if (tg(['parade', 'fireworks']) || /tree lighting|lights festival|parade|krampus/i.test(n)) return 'parades';   // v5.13 (#6), checked first
       if (tg(['movies'])) return 'movies';
-      if (tg(['theater', 'ballet', 'magic', 'drag', 'burlesque']) || /nutcracker|carol|neo-futurists|theater|theatre/i.test(n)) return 'theater';
+      if (tg(['theater', 'ballet', 'magic', 'drag', 'burlesque', 'murder-mystery', 'dinner-show']) || /nutcracker|carol|neo-futurists|theater|theatre/i.test(n)) return 'theater';   // v5.13 (#7): theater before comedy
+      if (tg(['comedy', 'stand-up'])) return 'comedy';
       return 'music';
     case 'make':
       if (tg(['cooking']) || /chopping block|cooking/i.test(n)) return 'cook';
       if (tg(['dance', 'music']) || /dance|samba|folk/i.test(n)) return 'music';
       return 'craft';
     case 'relax':
-      if (tg(['spa', 'sauna', 'bathhouse', 'float', 'cold-plunge', 'salt-room', 'banya', 'hydrotherapy', 'massage'])) return 'baths';
+      if (tg(['spa', 'sauna', 'bathhouse', 'float', 'cold-plunge', 'salt-room', 'banya', 'hydrotherapy', 'massage', 'hot-tub'])) return 'baths';   // v5.13 (#9): hot-tub
       if (tg(['tea', 'tea-house']) || /\btea\b/i.test(n)) return 'tea';
       return 'quiet';
   }
@@ -2821,7 +2902,7 @@ function subName(it, g){ // v3.1: "Mini golf" for Puttery, so a best-pick row sa
   for (var i = 0; i < gg.subs.length; i++) if (gg.subs[i][0] === s) return gg.subs[i][1];
   return '';
 }
-var SUB_MIN_ITEMS = 2, SUB_MIN_CHIPS = 2, SUB_MAX = 5;   // spec §2.1: a sub-chip needs 2+ items in the whole dataset; the row needs 2+ such chips
+var SUB_MIN_ITEMS = 2, SUB_MIN_CHIPS = 2, SUB_MAX = 6;   // v5.13: 6 (Eat gained Tea)   // spec §2.1: a sub-chip needs 2+ items in the whole dataset; the row needs 2+ such chips
 function subChipsFor(counts, g, picked){ // v5.9 (owner: 'Clay & glass 1 · Crafts 1 · Music & dance 0'): pure -> [[id, name, n]]
   var gg = GENRE_BY[g]; if (!gg) return [];
   var ok = gg.subs.filter(function(s){ return (counts[s[0]] || 0) >= SUB_MIN_ITEMS || s[0] === picked; }).map(function(s){ return [s[0], s[1], counts[s[0]] || 0]; });
@@ -2915,7 +2996,7 @@ function migrateMode(stored, migrated){ // pure: the mode to use at start-up, an
   return {mode:stored, migrated:true};                                               // anything she picks after this is kept
 }
 function appDefaultFilters(){ return ext(defaultFilters(), {radius:APP_RADIUS}); }
-function defaultFilters(){ return {openNow:true, fits:true, radius:5, mode:DEFAULT_MODE, who:{}, io:'either', price:{}, walkin:false, kind:'all', social:false, hide21:false, showGone:false, notBeen:false, interests:{}, groups:{}, cats:{}, sort:'best'}; }
+function defaultFilters(){ return {openNow:true, fits:true, radius:5, mode:DEFAULT_MODE, who:{}, io:'either', price:{}, walkin:false, sale:false, kind:'all', social:false, hide21:false, showGone:false, notBeen:false, interests:{}, groups:{}, cats:{}, sort:'best'}; }
 function computeItem(it, T, ctx){
   var pcx = planCtx(T);   // v5.3: a picked time never says "now" (the wording is part of the cached row)
   var day = ctx.day && isKey(ctx.day) ? ctx.day : '';   // v5.6: "Any time" on a picked day
@@ -2948,6 +3029,7 @@ function computeItem(it, T, ctx){
   }
   var btm = bookTimeOf(it, st, day || cparts(T0in).key);
   if (btm) { c.bookTime = btm; c.d = {text:btm.text, tone:'soon', sub:''}; }   // v5.10: "Showtimes vary · see times" / "Book a time"
+  if (it.deal) c.deal = dealState(it, day || cparts(T0in).key);   // v5.13: On sale (null when expired or too far ahead)
   cc.m[sig] = c; cc.n++;
   return c;
 }
@@ -3030,6 +3112,7 @@ function passFilters(c, F){
     if (it.price_level || onlyFree) return false;
   }
   if (F.walkin && it.booking !== 'walk-in') return false;
+  if (F.sale && !c.deal) return false;   // v5.13: "On sale" = a deal that is on now or within DEAL_AHEAD_DAYS (dealState)
   if (F.hide21 && is21(it)) return false;
   if (tasteHides(it)) return false;   // v5.12: the taste "hard no's" (Budget, No 21+, Skip bar-centered stuff) are the ONLY taste settings that hide anything
   if (F.notBeen && checkinOf(it.id)) return false;   // v4: "Only places I haven't been"
@@ -3336,6 +3419,7 @@ function appliedFilters(F){ // removable chips under the result line (Baymard pa
   if (F.mode === 'walk') a.push({code:'mode', label:'Walk only'}); else if (F.mode === 'transit') a.push({code:'mode', label:'Walk + CTA'});   // v5.5: Drive is the default, so it has no chip
   if (F.radius !== APP_RADIUS) a.push({code:'radius', label:'Within ' + fmtRadius(F.radius)});
   if (F.walkin) a.push({code:'walkin', label:'Walk-in only'});
+  if (F.sale) a.push({code:'sale', label:'On sale'});
   if (F.hide21) a.push({code:'hide21', label:'No 21+'});
   if (F.notBeen) a.push({code:'notBeen', label:'Not been yet'});
   for (k in F.interests) if (F.interests[k]) a.push({code:'int:' + k, label:interestLabel(k)});
@@ -3350,7 +3434,7 @@ function removeFilter(F, code){ // returns a new filter object without that one 
   else if (k === 'mode') G.mode = DEFAULT_MODE;
   else if (k === 'radius') G.radius = APP_RADIUS;
   else if (k === 'openNow' || k === 'fits') G[k] = true;
-  else if (k === 'walkin' || k === 'hide21' || k === 'notBeen') G[k] = false;
+  else if (k === 'walkin' || k === 'hide21' || k === 'notBeen' || k === 'sale') G[k] = false;
   return G;
 }
 
@@ -3428,7 +3512,7 @@ function filterCount(F, when){ // v2: the radius has its own chip and is not cou
   for (k in F.interests) if (F.interests[k]) n++;
   for (k in F.groups) if (F.groups[k]) n++;
   for (k in F.cats) if (F.cats[k]) n++;
-  if (F.io !== 'either') n++; if (F.walkin) n++; if (F.kind !== 'all') n++; if (F.hide21) n++; if (F.social) n++; if (F.showGone) n++; if (F.notBeen) n++;
+  if (F.io !== 'either') n++; if (F.walkin) n++; if (F.sale) n++; if (F.kind !== 'all') n++; if (F.hide21) n++; if (F.social) n++; if (F.showGone) n++; if (F.notBeen) n++;
   if (F.mode !== DEFAULT_MODE) n++; if (when && when !== 'now') n++;
   return n;
 }
@@ -4963,6 +5047,7 @@ function rowHTML(c, opt){
   var tags = '';
   if (is21(it)) tags += '<span class="tag">21+</span>';
   if (it.booking === 'required') tags += '<span class="tag book">Book ahead</span>';
+  tags += dealBadgeHTML(c);   // v5.13
   var lim = c.lim || limitedPhase(c, p);
   if (!opt.badge && lim === 'now' && !opt.noBadge) tags += badgeHTML(untilBadge(c, p));
   var right = '';
@@ -5373,7 +5458,7 @@ function cardHTML(c){
     '<div class="cover">' + kindSvg(g) + '</div>' +
     (ph ? '<img src="' + esc(ph.file) + '" alt="" data-fb="1">' : '') +
     '<span class="c3-kind" aria-hidden="true">' + kindSvg(g) + '</span>' +
-    (ck ? '<span class="been-mark">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' : '') +
+    (ck ? '<span class="been-mark">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' : '') + dealBadgeHTML(c, 'c3-deal' + (ck ? ' low' : '')) +
     '<div class="c3-btns"><button class="c3-btn" type="button" data-share="' + esc(it.id) + '" aria-label="Share ' + esc(it.name) + '">' + glyphSvg('i-share') + '</button>' +
     '<button class="c3-btn" type="button" data-save="' + esc(it.id) + '" aria-pressed="' + sv + '" aria-label="' + (sv ? 'Saved: ' : 'Save: ') + esc(it.name) + '">' + glyphSvg('i-bookmark') + '</button></div>' +
     '<div class="c3-text"><h3>' + esc(it.name) + '</h3>' + (hook ? '<p class="c3-hook">' + esc(hook) + '</p>' : '') + '<p class="c3-facts"><i class="dot ' + esc(c.d.tone) + '"></i>' + esc(facts) + '</p>' + cardLeaveHTML(c) + (why ? '<p class="c3-why">' + esc(why) + '</p>' : '') + '</div>' + whoB + '</li>';
@@ -5453,6 +5538,7 @@ function renderHome(res, vm, picks){
       var hw = hardHidingWords(); if (hw.length) h += '<p class="band info tk-hiding">Hiding ' + esc(hw.join(', ')) + ' · <button class="linkbtn" type="button" data-act="tasteprof">Change</button></p>';   // v5.12: a hard no is hiding things
       h += '<ul class="cards3">' + picks.map(cardHTML).join('') + '</ul>';
       if (UI.threeN > picks.length) h += '<button class="hm-btn" type="button" data-act="more3">Three more</button>';
+      h += coupleHomeHTML(res);   // v5.13 #45: You + Maya
       var few = fewLine(picks.length, p, !!UI.anyDay); if (few) h += '<p class="hm-few">' + esc(few.t) + ' <button class="linkbtn" type="button" data-plan="' + few.plan + '">' + esc(few.btn) + ' ›</button></p>';   // v5.10
     } else {
       var e = homeEmpty(vm, hsel, lab), btn = '', fo = e.fo, whoOn = anyKey(who) || appliedFilters(S.f).length > 0 || S.budgetOn;
@@ -5601,6 +5687,7 @@ function renderSaved(){
   var acH = acctCardHTML(Acct.state);   // v5.11: sign in / synced / offline
   if (tab === 'been') { body.innerHTML = h + beenListHTML() + acH; wireImages(body); return; }
   h += friendStripHTML();
+  h += pollSavedHTML(items.length);   // v5.13 #36
   if (!items.length) { body.innerHTML = h + '<div class="empty" style="padding:8px 20px"><svg class="i" style="width:40px;height:40px;color:var(--ink-3)"><use href="#i-bookmark"/></svg><h3 style="margin-top:10px">Nothing saved yet.</h3><p>Tap the bookmark on anything you\'d do on a free night.</p></div>' + acH; return; }
   var T = evalTime(), ctx = ctxNow(), groups = {open:[], later:[], season:[], other:[]};
   items.forEach(function(it){ var c = computeItem(it, T, ctx); var k = c.st.key; (c.st.open ? groups.open : k === 'later' ? groups.later : k === 'season' ? groups.season : groups.other).push(c); });
@@ -5862,6 +5949,7 @@ function renderFriend(){
     else if (!n) h += '<div class="empty" style="padding:8px 20px"><h3>Nothing saved yet.</h3></div>';
   }
   else if (n) h += '<p class="meta fr-meta">' + n + (n === 1 ? ' place' : ' places') + ' · ' + esc(fmtMonthDay(wlDayKey(rec.day))) + '</p>';
+  if (rec.live) h += coupleBlockHTML(rec);   // v5.13 #45: Plan together
   if (!n && !rec.live) h += '<div class="empty" style="padding:8px 20px"><h3>These places aren\'t in the guide anymore.</h3><p>Ask for a new link.</p></div>';   // I4 / E3
   else {
     if (!kept && wlInApp(UI.wlUA || navigator.userAgent)) h += '<p class="band">To keep it, open this in ' + (/Android/i.test(UI.wlUA || navigator.userAgent) ? 'Chrome' : 'Safari') + '.</p>';   // E8
@@ -6191,7 +6279,7 @@ function acctOnSession(session, ev){
   Acct.cachedUid = u.id;
   if (changed || ev === 'SIGNED_IN') acctSync('session');
 }
-function acctForget(){ LIVE = []; Acct.friends = []; Acct.invites = []; Acct.profile = null; Acct.settings = null; Acct.cachedUid = ''; Acct.cachedName = ''; Acct.lastSync = ''; try { window.localStorage.removeItem(ACCT_KEY); } catch (e) {} wlRebuild(); }
+function acctForget(){ CP.on = {}; CP.theirs = {}; CP.sig = {}; LIVE = []; Acct.friends = []; Acct.invites = []; Acct.profile = null; Acct.settings = null; Acct.cachedUid = ''; Acct.cachedName = ''; Acct.lastSync = ''; try { window.localStorage.removeItem(ACCT_KEY); } catch (e) {} wlRebuild(); }
 function acctSignIn(){
   if (!cloudHost()) { toast('Sign-in works on the website.'); return; }
   Acct.state = 'loading'; acctRedraw();
@@ -6253,6 +6341,7 @@ function acctSync(why){
       Acct.invites = (r[3] || []).filter(function(i){ return !i.used_by && !i.cancelled && tsOf(i.expires_at) > now; }).map(function(i){ return {code:i.code, created_at:i.created_at, expires_at:i.expires_at}; });
     }
     Acct.offline = false; Acct.errMsg = ''; Acct.lastSync = nowIso; Acct.state = 'in';
+    coupleSync();   // v5.13 couple mode (supabase/couple.sql); a missing table is ignored
     tasteAfterSync();   // v5.12: the taste profile rides in settings.taste (supabase/taste.sql); a missing column is ignored
     acctSaveCache(); acctRedraw();
     if (!Acct.profile && !Acct.askedName) { Acct.askedName = true; acctAskName(); }
@@ -6509,7 +6598,7 @@ function renderFriends(){
 }
 function renderPrivacy(){
   var h = '<p>Without an account, everything stays on this device: your saves, places you\'ve been, friends\' list copies and your spot. Nothing is sent anywhere.</p>';
-  h += '<h3>With an account</h3><ul><li><b>From Google:</b> your email address and name, used only to sign you in. We never see your Google password.</li><li><b>What you add:</b> your username, saved places, places you\'ve been (place, date, thumbs up or down), friends, requests, blocks, invite links and your three "What friends see" switches.</li><li><b>Never stored:</b> your location, and anything about your phone beyond the sign-in.</li></ul>';
+  h += '<h3>With an account</h3><ul><li><b>From Google:</b> your email address and name, used only to sign you in. We never see your Google password.</li><li><b>What you add:</b> your username, saved places, places you\'ve been (place, date, thumbs up or down), friends, requests, blocks, invite links and your three "What friends see" switches.</li><li><b>Polls (optional):</b> the 2-4 places and the votes. No names: a vote is a random code kept in the voter\'s browser.</li><li><b>Plan together (optional):</b> a short list of places picked from your taste, shared with one friend only when you both turn it on. Your swipes and taste stay private.</li><li><b>Never stored:</b> your location, and anything about your phone beyond the sign-in.</li></ul>';
   h += '<h3>Where</h3><p>In a database run by Supabase, in the United States. Off-Grid has no ads and never sells or shares your data.</p>';
   h += '<h3>Who sees it</h3><p>Only you. A friend you accept sees your saved places (if "Saved places" is on) and where you\'ve been, by month only (if "Places I\'ve been" is on; it starts off). Nothing is public, and nobody can browse people. Someone you block can\'t find you, invite you or see anything.</p>';
   h += '<h3>Delete it</h3><p>' + (acctSignedIn() ? '<button class="linkbtn warn" type="button" data-acct="delete">Delete my account</button> removes your account and everything in it right away.' : 'Sign in, then Saved → Privacy → Delete my account removes your account and everything in it right away.') + ' Signing out keeps the copy on this device; clearing the browser\'s site data removes that.</p>';
@@ -6569,6 +6658,262 @@ function acctDemo(){
   acctRedraw();
 }
 
+/* ================= v5.13 poll link (her #36): pick 2-4 places, share a link, friends vote with no account (supabase/poll.sql) =================
+   Link: <site>#poll=<code>.<sid>.<sid>[.<sid>[.<sid>]]. The place numbers ride in the link, so without the vote server (claude.ai, a local
+   file, poll.sql not run, no connection) the same link still opens as a plain shared list. code "0" = made without the server.
+   A vote sends only the poll code, a random 16-character token kept in this browser (og.voter.v1) and the choice. No names. */
+var POLL_MIN = 2, POLL_MAX = 4, POLL_KEY = 'og.polls.v1', VOTER_KEY = 'og.voter.v1', MYVOTE_KEY = 'og.pollvote.v1';
+var PL = {pick:[], cur:null, res:null, busy:false, err:'', mine:null};
+function pollSids(list){ var out = [], seen = {}; (Array.isArray(list) ? list : []).forEach(function(v){ v = +v; if (isNum(v) && v >= 1 && v <= WL_MAX_SID && Math.floor(v) === v && !seen[v]) { seen[v] = 1; out.push(v); } }); return out; }   // keeps her order
+function pollEncode(code, sids){ var s = pollSids(sids); if (s.length < POLL_MIN || s.length > POLL_MAX || s.length !== (sids || []).length) return ''; return '#poll=' + (/^[0-9a-f]{12}$/.test(String(code)) ? code : '0') + '.' + s.join('.'); }
+function pollDecode(raw){ // -> {ok:true, code:'' | 12 hex, sids} | {ok:false}
+  var m = /(?:^|#|&)poll=([0-9a-f]{12}|0)\.(\d{1,6}(?:\.\d{1,6}){1,3})(?![\d.])/.exec(String(raw || '')); if (!m) return {ok:false};
+  var sids = m[2].split('.').map(Number); if (pollSids(sids).length !== sids.length) return {ok:false};
+  return {ok:true, code:m[1] === '0' ? '' : m[1], sids:sids};
+}
+function pollTally(res, n){ // pure: the server's reply -> {counts, total, mine, lead, open} (a bad reply counts as no votes)
+  var counts = [], total = 0, i;
+  for (i = 0; i < n; i++) { var v = res && Array.isArray(res.counts) ? +res.counts[i] : 0; v = isNum(v) && v > 0 ? Math.floor(v) : 0; counts.push(v); total += v; }
+  var max = 0; counts.forEach(function(c){ if (c > max) max = c; });
+  var lead = []; if (max > 0) counts.forEach(function(c, j){ if (c === max) lead.push(j); });
+  var mine = res && isNum(res.mine) && res.mine >= 0 && res.mine < n ? res.mine : null;
+  return {counts:counts, total:total, mine:mine, lead:lead, open:!(res && res.open === false)};
+}
+function pollPct(n, total){ return total > 0 ? Math.round(n / total * 100) : 0; }
+function pollVoter(){
+  var v = Platform.store.get(VOTER_KEY, ''); if (typeof v === 'string' && /^[A-Za-z0-9]{16}$/.test(v)) return v;
+  var a = [], i; try { var b = new Uint8Array(16); window.crypto.getRandomValues(b); for (i = 0; i < 16; i++) a.push(WL_A62.charAt(b[i] % 62)); } catch (e) { a = []; for (i = 0; i < 16; i++) a.push(WL_A62.charAt(Math.floor(Math.random() * 62))); }
+  v = a.join(''); Platform.store.set(VOTER_KEY, v); return v;
+}
+function pollServerOk(){ return !PL.demo && cloudHost(); }   // the website only (claude.ai and local files have no outside fetches)
+function pollFetch(path, body){ // the Supabase REST API with the publishable key: no account and no supabase-js needed
+  if (!pollServerOk()) return Promise.reject({message:'offline'});
+  var ctl = null, tm = null; try { ctl = new AbortController(); tm = setTimeout(function(){ try { ctl.abort(); } catch (e) {} }, 8000); } catch (e) { ctl = null; }
+  var hd = {'apikey':SB_KEY, 'Content-Type':'application/json'}; if (path.indexOf('rpc/') !== 0) hd.Prefer = 'return=minimal';
+  return fetch(SB_URL + '/rest/v1/' + path, {method:'POST', headers:hd, body:JSON.stringify(body), signal:ctl ? ctl.signal : undefined}).then(function(r){
+    clearTimeout(tm);
+    return r.text().then(function(tx){ if (!r.ok) throw {message:/limit/i.test(tx) ? 'limit' : 'http ' + r.status}; if (!tx) return null; try { return JSON.parse(tx); } catch (e) { return null; } });
+  }, function(e){ clearTimeout(tm); throw {message:'offline'}; });
+}
+function pollMine(){ var m = Platform.store.get(POLL_KEY, []); return Array.isArray(m) ? m.filter(function(p){ return p && typeof p.code === 'string' && pollSids(p.sids).length >= POLL_MIN; }).slice(0, 10) : []; }
+function pollRemember(code, sids){ if (!code) return; var l = pollMine().filter(function(p){ return p.code !== code; }); l.unshift({code:code, sids:sids, at:new Date().toISOString()}); Platform.store.set(POLL_KEY, l.slice(0, 10)); }
+function pollMyVote(code){ var m = Platform.store.get(MYVOTE_KEY, {}); return m && typeof m === 'object' && isNum(m[code]) ? m[code] : null; }
+function pollSetMyVote(code, i){ var m = Platform.store.get(MYVOTE_KEY, {}); if (!m || typeof m !== 'object') m = {}; m[code] = i; var ks = Object.keys(m); if (ks.length > 40) delete m[ks[0]]; Platform.store.set(MYVOTE_KEY, m); }
+/* ----- making one (Saved -> Make a poll) ----- */
+function pollStart(){
+  if (!DATA_LOADED) { toast('Still loading the list.'); return; }
+  var items = savedIds.map(findItem).filter(function(it){ return it && ID_SID[it.id]; });
+  if (items.length < POLL_MIN) { toast('Save 2 places first.'); return; }
+  PL.pick = [];
+  openSmall('Pick 2 to 4', pollPickRender);
+}
+function pollPickRender(){
+  var items = savedIds.map(findItem).filter(function(it){ return it && ID_SID[it.id]; }), n = PL.pick.length;
+  $('pSmallBody').innerHTML = '<ul class="pl-pick">' + items.map(function(it){
+    var on = PL.pick.indexOf(it.id) >= 0, ph = firstPhoto(it), g = genreOf(it);
+    return '<li><button type="button" data-poll="tog" data-v="' + esc(it.id) + '" aria-pressed="' + on + '" style="--c:' + genreColor(g) + '"><span class="pl-ph">' + kindSvg(g) + (ph ? '<img src="' + esc(ph.file) + '" alt="" loading="lazy" data-fb="1">' : '') + '<i class="pl-ck">' + glyphSvg('i-check') + '</i></span><span class="pl-nm">' + esc(it.name) + '</span></button></li>';
+  }).join('') + '</ul><button class="btn-primary" type="button" data-poll="go" style="width:100%;margin-top:14px"' + (n < POLL_MIN ? ' aria-disabled="true"' : '') + '>' + (n < POLL_MIN ? 'Pick ' + (POLL_MIN - n) + ' more' : 'Get the link') + '</button>';
+  wireImages($('pSmallBody'));
+}
+function pollToggle(id){
+  var i = PL.pick.indexOf(id);
+  if (i >= 0) PL.pick.splice(i, 1); else if (PL.pick.length >= POLL_MAX) { toast('4 at most'); return; } else PL.pick.push(id);
+  pollPickRender();
+}
+function pollGo(){
+  if (PL.pick.length < POLL_MIN || PL.busy) return;
+  var sids = PL.pick.map(function(id){ return ID_SID[id]; }).filter(Boolean);
+  PL.busy = true;
+  var done = function(code){
+    PL.busy = false;
+    var link = wlBase() + pollEncode(code, sids); UI.lastShareLink = link;
+    closePanel('pSmall');
+    if (code) pollRemember(code, sids);
+    Platform.share({title:'Which one?', text:'Which one should we do? Tap to vote.', url:link}).then(function(r){ if (r === 'copied') toast(code ? 'Link copied' : 'Link copied (as a list: voting needs the website)'); }, function(){
+      openSmall('Share', function(){ $('pSmallBody').innerHTML = '<p class="p-note">Press and hold the link to copy it.</p><pre class="calbox">' + esc(link) + '</pre>'; });
+    });
+    pollShow({code:code, sids:sids, own:true});
+  };
+  if (!pollServerOk()) { done(''); return; }
+  pollFetch('rpc/create_poll', {p_sids:sids}).then(function(r){ done(typeof r === 'string' && /^[0-9a-f]{12}$/.test(r) ? r : ''); }, function(){ done(''); });
+}
+/* ----- opening one ----- */
+function pollOpen(raw){
+  var r = pollDecode(raw);
+  if (!r.ok) { pollClearHash(); toast('This link got cut off. Ask for a new one.'); return r; }
+  pollShow({code:r.code, sids:r.sids, own:pollMine().some(function(p){ return p.code === r.code; })});
+  return r;
+}
+function pollShow(v){
+  PL.cur = v; PL.res = null; PL.err = ''; PL.mine = v.code ? pollMyVote(v.code) : null;
+  UI.pollReturn = false; if (UI.detailId) closeDetail();
+  openStack.slice().forEach(function(id){ if (id === 'pPoll') return; if (id === 'pLoc' && UI.firstOpen) UI.locAfterPoll = true; closePanel(id); });   // like a friend's list: the first-visit location ask waits
+  renderPoll(); openPanel('pPoll');
+  pollLoad();
+}
+function pollLoad(){
+  var v = PL.cur; if (!v || !v.code || !pollServerOk()) return;
+  pollFetch('rpc/poll_results', {p_code:v.code, p_voter:pollVoter()}).then(function(res){
+    if (PL.cur !== v) return;
+    if (!res) { PL.err = 'gone'; } else { PL.res = res; PL.err = ''; var t = pollTally(res, v.sids.length); if (t.mine !== null) PL.mine = t.mine; }
+    renderPoll();
+  }, function(e){ if (PL.cur !== v) return; PL.err = e && e.message === 'limit' ? 'limit' : 'offline'; renderPoll(); });
+}
+function pollVote(i){
+  var v = PL.cur; if (!v || !v.code || PL.busy) return;
+  if (PL.demo) { PL.mine = i; renderPoll(); toast('Test mode: nothing was sent.'); return; }
+  if (!pollServerOk()) { toast('Voting works on the website.'); return; }
+  PL.busy = true; var was = PL.mine; PL.mine = i; renderPoll();
+  pollFetch('poll_votes', {poll_code:v.code, voter:pollVoter(), choice:i}).then(function(){ PL.busy = false; pollSetMyVote(v.code, i); toast('Voted'); pollLoad(); }, function(e){
+    PL.busy = false; PL.mine = was; renderPoll(); toast(e && e.message === 'limit' ? 'That\'s a lot of votes. Try later.' : 'Couldn\'t send your vote. Try again.');
+  });
+}
+function pollClearHash(){ if (/^#poll=/.test(location.hash || '')) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} } }
+function renderPoll(){
+  var v = PL.cur, body = $('pPollBody'); if (!v || !body) return;
+  if (!DATA_LOADED) { body.innerHTML = DATA_ERR ? '<div class="empty"><h3>Couldn\'t load the list.</h3><p>' + esc(DATA_ERR) + '</p><button class="mini-btn" type="button" data-act="retry">Try again</button></div>' : '<p class="loading">Loading Chicago...</p>'; return; }
+  var srv = pollServerOk() || !!PL.demo, vote = !!v.code && srv && PL.err !== 'gone', n = v.sids.length, ty = pollTally(PL.res, n), T = evalTime(), ctx = ctxNow(), h = '';
+  if (PL.res && !ty.open) vote = false;
+  var note = !v.code ? 'Tap one to see it.' : !srv ? 'Voting works on the website.' : PL.err === 'gone' ? 'This poll ended.' : PL.err ? 'Votes didn\'t load. <button class="linkbtn" type="button" data-poll="reload">Try again</button>' :
+    !PL.res ? 'Loading votes...' : !ty.open ? 'Voting closed · ' + ty.total + (ty.total === 1 ? ' vote' : ' votes') : ty.total ? ty.total + (ty.total === 1 ? ' vote' : ' votes') : 'No votes yet. Be first.';
+  h += '<p class="pl-note">' + note + '</p><ul class="pl-list">';
+  v.sids.forEach(function(sid, i){
+    var it = SID_INDEX[sid];
+    if (!it) { h += '<li class="pl-card gone"><div class="pl-body"><h3>No longer in the guide</h3></div></li>'; return; }
+    var c = computeItem(it, T, ctx), g = genreOf(it), ph = firstPhoto(it), gone = wlGoneItem(it, c.st), cnt = ty.counts[i] || 0, pct = pollPct(cnt, ty.total), mine = PL.mine === i, lead = ty.total > 0 && ty.lead.indexOf(i) >= 0;
+    var facts = [c.d.text, travelShort(c), priceShort(it)].filter(Boolean).join(' · ');
+    h += '<li class="pl-card' + (mine ? ' mine' : '') + (lead ? ' lead' : '') + (gone ? ' gone' : '') + '" style="--c:' + genreColor(g) + '">' +
+      '<button class="pl-ph" type="button" data-poll="open" data-v="' + esc(it.id) + '" aria-label="See ' + esc(it.name) + '">' + kindSvg(g) + (ph ? '<img src="' + esc(ph.file) + '" alt="" loading="lazy" data-fb="1">' : '') + (c.deal ? dealBadgeHTML(c, 'c3-deal') : '') + '</button>' +
+      '<div class="pl-body"><h3>' + esc(it.name) + '</h3><p class="pl-facts"><i class="dot ' + esc(c.d.tone) + '"></i>' + esc(gone ? 'No longer on' : facts) + '</p>' +
+      (vote && PL.res ? '<div class="pl-bar" role="img" aria-label="' + cnt + (cnt === 1 ? ' vote' : ' votes') + '"><i style="width:' + pct + '%"></i><span>' + cnt + '</span></div>' : '') +
+      (vote ? '<button class="pl-vote" type="button" data-poll="vote" data-v="' + i + '" aria-pressed="' + mine + '"' + (PL.busy ? ' aria-disabled="true"' : '') + '>' + (mine ? glyphSvg('i-check') + 'Your pick' : 'Pick this') + '</button>' : '') + '</div></li>';
+  });
+  h += '</ul><div class="pl-acts"><button class="mini-btn" type="button" data-poll="share">' + glyphSvg('i-share') + 'Send to more friends</button></div>';
+  body.innerHTML = h;
+  wireImages(body);
+}
+function pollShareAgain(){ var v = PL.cur; if (!v) return; var link = wlBase() + pollEncode(v.code, v.sids); Platform.share({title:'Which one?', text:'Which one should we do? Tap to vote.', url:link}).then(function(r){ if (r === 'copied') toast('Link copied'); }, function(){ toast(link); }); }
+function pollClick(el){
+  var a = el.getAttribute('data-poll'), v = el.getAttribute('data-v') || '';
+  if (el.getAttribute('aria-disabled') === 'true' && a !== 'tog') return;
+  switch (a) {
+    case 'make': pollStart(); break;
+    case 'tog': pollToggle(v); break;
+    case 'go': pollGo(); break;
+    case 'vote': pollVote(+v); break;
+    case 'reload': PL.err = ''; renderPoll(); pollLoad(); break;
+    case 'share': pollShareAgain(); break;
+    case 'mine': { var m = pollMine().filter(function(p){ return p.code === v; })[0]; if (m) { if (!$('pSaved').hidden) closePanel('pSaved'); pollShow({code:m.code, sids:pollSids(m.sids), own:true}); } } break;
+    case 'open': UI.pollReturn = true; closePanel('pPoll'); UI.sel = v; recluster(); openDetail(v); break;
+  }
+}
+function pollSavedHTML(n){ // Saved: "Make a poll" (2+ saved), and her recent polls
+  var h = n >= POLL_MIN ? '<button class="frrow pl-make" type="button" data-poll="make">' + glyphSvg('i-people') + '<span>Make a poll<small>Friends vote, no account needed</small></span>' + glyphSvg('i-right', 'i chev') + '</button>' : '';
+  var mine = pollMine().slice(0, 3);
+  if (mine.length && DATA_LOADED) h += '<div class="pl-mine">' + mine.map(function(p){ var nm = pollSids(p.sids).map(function(s){ var it = SID_INDEX[s]; return it ? it.name.split(/[:(,]/)[0].trim() : '?'; }); return '<button class="qchip" type="button" data-poll="mine" data-v="' + esc(p.code) + '">' + glyphSvg('i-people') + esc(nm.slice(0, 2).join(' or ') + (nm.length > 2 ? ' +' + (nm.length - 2) : '')) + '</button>'; }).join('') + '</div>';
+  return h;
+}
+
+/* ================= v5.13 couple mode (her #45): two friends' tastes -> one set of picks (supabase/couple.sql) =================
+   Only with an accepted friend, and only when both turn "Plan together" on. Each phone shares a short list of place numbers worked out
+   from its own taste (best fits, and the ones it would never pick), never the taste profile itself (no swipes, dials or interests).
+   The screens show only the combined picks. */
+var COUPLE_TOP = 60, COUPLE_NEVER_MAX = 400, COUPLE_SHOW = 4;
+var CP = {on:{}, theirs:{}, sig:{}, missing:false, loaded:false, demo:false, demoMine:null};
+function cpSids(list, max){ var out = [], seen = {}; (Array.isArray(list) ? list : []).forEach(function(v){ v = +v; if (isNum(v) && v >= 1 && v <= WL_MAX_SID && Math.floor(v) === v && !seen[v]) { seen[v] = 1; out.push(v); } }); return out.slice(0, max || 400); }   // keeps the order (it is a ranking)
+function coupleMine(items, st, idSid){ // pure: my own short list -> {top:[sid], never:[sid]}, or null with no taste yet
+  if (!st || !tasteOn(st)) return null;
+  var sc = [], never = [];
+  (items || []).forEach(function(it){
+    var sid = idSid ? idSid[it.id] : +it.sid; if (!isNum(sid) || sid < 1) return;
+    if (it.verified && it.verified.status === 'closed') return;
+    if (isNever(it, st) || tasteHides(it, st)) { never.push(sid); return; }
+    var f = fitOf(it, st); if (f > 0.05) sc.push({sid:sid, f:f});
+  });
+  sc.sort(function(a, b){ return b.f - a.f || a.sid - b.sid; });
+  never.sort(function(a, b){ return a - b; });
+  return {top:sc.slice(0, COUPLE_TOP).map(function(x){ return x.sid; }), never:never.slice(0, COUPLE_NEVER_MAX)};
+}
+function couplePicks(mine, theirs){ // pure: both lists -> sids, liked by both first, then by rank; nobody's "never"
+  if (!mine || !theirs) return [];
+  var no = {}, sc = {}, both = {};
+  (mine.never || []).concat(theirs.never || []).forEach(function(s){ no[s] = 1; });
+  function add(list){ (list || []).forEach(function(s, i){ if (no[s]) return; sc[s] = (sc[s] || 0) + 1 / (8 + i); both[s] = (both[s] || 0) + 1; }); }
+  add(mine.top); add(theirs.top);
+  return Object.keys(sc).map(Number).sort(function(a, b){ return (both[b] - both[a]) || (sc[b] - sc[a]) || a - b; });
+}
+function coupleSig(top, never){ return cpSids(top, 120).join('.') + '|' + cpSids(never, 400).join('.'); }
+function coupleMineNow(){
+  if (CP.demo) return CP.demoMine;
+  if (!DATA_LOADED || !TASTE) return null;
+  var st = tasteStats(TASTE); st.use = true;   // her own taste only (never the date-mode guest), even if "Use my taste to sort" is off
+  return coupleMine(DATA, st, ID_SID);
+}
+function coupleActive(){ return LIVE.filter(function(f){ return f.live && CP.on[f.uid] && CP.theirs[f.uid]; }); }
+function couplePicksFor(uid, max, T, ctx){ // -> [c]: combined picks, open or later today first (keeps the combined order inside)
+  var sids = couplePicks(coupleMineNow(), CP.theirs[uid]), out = [];
+  T = T || evalTime(); ctx = ctx || ctxNow();
+  sids.forEach(function(s, i){ var it = SID_INDEX[s]; if (!it) return; var c = computeItem(it, T, ctx); if (wlGoneItem(it, c.st) || c.st.key === 'ended') return; out.push({c:c, i:i, r:c.st.open || c.st.key === 'later' ? 0 : c.st.key === 'season' ? 2 : 1}); });
+  out.sort(function(a, b){ return a.r - b.r || a.i - b.i; });
+  return out.slice(0, max || COUPLE_SHOW).map(function(x){ return x.c; });
+}
+function coupleErr(e){ var m = String(e && (e.message || e.code) || ''); if (/couple_share|relation|schema cache|PGRST2\d\d|does not exist/i.test(m)) { CP.missing = true; return true; } return false; }
+function coupleSync(){ // after an account sync: who I turned it on for, and (both on) their short lists
+  var cl = Acct.client, u = Acct.user; if (!cl || !u || Acct.demo || CP.missing) return Promise.resolve(false);
+  return cl.from('couple_share').select('owner,friend,top_sids,never_sids,updated_at').then(chk).then(function(rows){
+    var on = {}, th = {}, sig = {};
+    (rows || []).forEach(function(r){ if (!r) return; if (r.owner === u.id) { on[r.friend] = true; sig[r.friend] = coupleSig(r.top_sids, r.never_sids); } else if (r.friend === u.id) th[r.owner] = {top:cpSids(r.top_sids, 120), never:cpSids(r.never_sids, 400), at:String(r.updated_at || '')}; });
+    CP.on = on; CP.theirs = th; CP.sig = sig; CP.loaded = true;
+    var mine = coupleMineNow();
+    if (mine) Object.keys(on).forEach(function(fid){ if (coupleSig(mine.top, mine.never) !== sig[fid]) couplePut(fid, mine); });   // her taste changed: refresh what that friend gets
+    coupleRedraw(); return true;
+  }, function(e){ coupleErr(e); return false; });
+}
+function couplePut(fid, mine){
+  var cl = Acct.client, u = Acct.user; if (!cl || !u) return Promise.reject({message:'signin'});
+  return cl.from('couple_share').upsert({owner:u.id, friend:fid, top_sids:mine.top, never_sids:mine.never, updated_at:new Date().toISOString()}, {onConflict:'owner,friend'}).then(chk).then(function(){ CP.sig[fid] = coupleSig(mine.top, mine.never); });
+}
+function coupleRedraw(){ UI.homeHTML = null; if (DATA_LOADED) refresh(); if (!$('pFriend').hidden) renderFriend(); }
+function coupleToggle(fid){
+  var f = acctFriendBy(fid), nm = acctFriendName(f) || 'them';
+  if (CP.demo) { CP.on[fid] = !CP.on[fid]; coupleRedraw(); toast('Test mode: nothing was sent.'); return; }
+  if (!f || f.status !== 'accepted') { toast('Only for friends you\'ve accepted.'); return; }
+  var cl = Acct.client, u = Acct.user; if (!cl || !u) { toast('Sign in first.'); return; }
+  if (CP.missing) { toast('Plan together isn\'t switched on yet.'); return; }
+  if (CP.on[fid]) {
+    cl.from('couple_share').delete().eq('owner', u.id).eq('friend', fid).then(chk).then(function(){ delete CP.on[fid]; delete CP.theirs[fid]; coupleRedraw(); toast('Plan together is off'); }, function(e){ if (!coupleErr(e)) acctFail(e); else coupleRedraw(); });
+    return;
+  }
+  var mine = coupleMineNow();
+  if (!mine || !mine.top.length) { toast('Swipe a few photos first, so it knows your taste.'); return; }
+  couplePut(fid, mine).then(function(){ CP.on[fid] = true; coupleSync(); toast(CP.theirs[fid] ? 'Picks for you both are ready' : 'On. Picks show when ' + nm + ' turns it on too.'); }, function(e){ if (coupleErr(e)) { toast('Plan together isn\'t switched on yet.'); coupleRedraw(); } else acctFail(e); });
+}
+function coupleBlockHTML(rec){ // the friend panel: the switch, then (both on) the combined picks as photo cards
+  if (!rec || !rec.live || CP.missing || (!Acct.client && !CP.demo)) return '';
+  var on = !!CP.on[rec.uid], th = CP.theirs[rec.uid], h = '<div class="sw-row cp-sw"><span>Plan together<small>Picks for you both. Your taste stays private.</small></span><button class="switch" type="button" data-cp="tog" data-v="' + esc(rec.uid) + '" aria-pressed="' + on + '" aria-label="Plan together with ' + esc(rec.name) + '"></button></div>';
+  if (on && th) {
+    var cs = couplePicksFor(rec.uid, COUPLE_SHOW);
+    h += cs.length ? '<h3 class="sec-h"><span>You\'d both like</span><span>' + cs.length + '</span></h3><ul class="cards3 cp-cards">' + cs.map(cardHTML).join('') + '</ul>' : '<p class="p-note">No picks in common yet. Swipe a few more photos.</p>';
+  } else if (on) h += '<p class="p-note">Waiting for ' + esc(rec.name) + ' to turn it on.</p>';
+  return h;
+}
+function coupleHomeHTML(res){ // Home: "You + Maya", up to 3 combined picks that pass today's filters
+  var fs = coupleActive(); if (!fs.length || !res || !res.all) return '';
+  var f = fs[0], ok = {}; res.all.forEach(function(c){ if (c.group === 'fits' || c.group === 'tight' || c.group === 'later') ok[c.item.id] = c; });
+  var cs = couplePicksFor(f.uid, 40).filter(function(c){ return ok[c.item.id]; }).slice(0, 3).map(function(c){ return ok[c.item.id]; });
+  if (!cs.length) return '';
+  return '<h3 class="sec-h cp-h"><span>You + ' + esc(f.name) + '</span><span>' + avsHTML([f], 's', '') + '</span></h3><ul class="cards3 cp-cards">' + cs.map(cardHTML).join('') + '</ul>';
+}
+function cpClick(el){ var a = el.getAttribute('data-cp'), v = el.getAttribute('data-v') || ''; if (a === 'tog') coupleToggle(v); }
+// Testing hook "#cpdemo=1" (with #acctdemo=1): both turned on with the made-up friend Maya, in memory only. Nothing is sent.
+function coupleDemo(n){
+  if (!DATA_LOADED || !Acct.demo) { if ((n || 0) < 100) setTimeout(function(){ coupleDemo((n || 0) + 1); }, 200); return; }
+  var ph = DATA.filter(function(it){ return ID_SID[it.id] && firstPhoto(it) && !(it.verified && it.verified.status === 'closed'); }).map(function(it){ return ID_SID[it.id]; });
+  CP.demo = true; CP.missing = false;
+  CP.demoMine = {top:ph.filter(function(s, i){ return i % 3 !== 2; }).slice(0, 40), never:[]};
+  CP.on = {d1:true}; CP.theirs = {d1:{top:ph.filter(function(s, i){ return i % 3 !== 1; }).slice(0, 40).reverse(), never:[], at:''}};
+  coupleRedraw();
+}
 /* ================= detail ================= */
 var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 function appleMaps(it){ return 'https://maps.apple.com/?daddr=' + it.lat + ',' + it.lng + '&q=' + encodeURIComponent(it.name); }
@@ -6785,6 +7130,7 @@ function renderDetail(c, keepScroll){
     if (f.min < f.typical) h += '<p class="subline">A quick stop is about ' + esc(fmtDur(f.min)) + ' (' + (f.minSrc === 'data' ? 'the shortest worthwhile time in our listing' : 'our rule of thumb for ' + esc(cat.label.toLowerCase())) + '). A full visit is about ' + esc(fmtDur(f.typical)) + (f.thereKnown ? '' : ' (assumed)') + '.</p>';
   }
   h += '</div>';
+  if (c.deal) { var dl = c.deal, dIn = '<b>' + esc(dl.badge) + '</b><span>' + esc(dl.text) + '</span>'; h += dl.link ? '<a class="dt-deal" href="' + esc(dl.link) + '" target="_blank" rel="noopener">' + dIn + glyphSvg('i-ext') + '</a>' : '<p class="dt-deal">' + dIn + '</p>'; }   // v5.13 #11
   var fwd = wlFriendsFor(it.id);   // v5.8: "Maya wants this too" (tap: her list)
   if (fwd.length) h += '<button class="fw" type="button" data-fw="' + esc(fwd[0].key) + '">' + avsHTML(fwd, '', '') + '<span>' + esc(wlWantsText(fwd)) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>';
   // quiet actions: been here, calendar
@@ -6908,6 +7254,8 @@ function closeDetail(){
   if (id) { var row = listRoot.querySelector('[data-id="' + cssEsc(id) + '"]'); if (row) try { row.focus({preventScroll:true}); } catch (e) {} }
   if (UI.friendReturn && UI.friendView) { UI.friendReturn = false; if (UI.savedReturn) { UI.savedReturn = false; renderSaved(); openPanel('pSaved'); } renderFriend(); openPanel('pFriend'); }   // v5.8: Back returns to the friend's list
   UI.friendReturn = false; UI.savedReturn = false;
+  if (UI.pollReturn && PL.cur) { UI.pollReturn = false; renderPoll(); openPanel('pPoll'); }   // v5.13: Back returns to the poll
+  UI.pollReturn = false;
 }
 
 /* ================= panels ================= */
@@ -6927,7 +7275,8 @@ function closePanel(id){
   setTimeout(function(){ if (!el.classList.contains('on')) el.hidden = true; }, 320);
   if (id === 'pLoc') { UI.picking = false; UI.cand = null; mapEl.classList.remove('picking'); $('brand').hidden = true; $('app').classList.remove('onb'); $('app').classList.remove('picking'); recluster(); }
   if (id === 'pTime' || id === 'pFilters') { UI.showRing = false; updateRing(); if (id === 'pFilters') { UI.draft = null; UI.draftB = null; } }
-  if (id === 'pFriend' && !UI.friendHide) wlClosed();   // v5.8 (not when it only steps aside for a place's detail)
+  if (id === 'pFriend' && !UI.friendHide) wlClosed();
+  if (id === 'pPoll' && !UI.pollReturn) { pollClearHash(); PL.cur = null; if (UI.locAfterPoll) { UI.locAfterPoll = false; if (UI.firstOpen) setTimeout(function(){ if (UI.firstOpen && $('pLoc').hidden) openLocation(true); }, 340); } }   // v5.8 (not when it only steps aside for a place's detail)
   syncScrim();
 }
 function syncScrim(){
@@ -7148,7 +7497,7 @@ function chipsGroup(items){ return '<div class="chips-w">' + items.map(function(
 function copyF(F){ return JSON.parse(JSON.stringify(F)); }
 function openFilters(){ UI.draft = copyF(S.f); UI.draftB = {on:!!S.budgetOn, val:S.budget}; UI.draftReady = DATA_LOADED; UI.showRing = true; updateRing(); renderFilters(); openPanel('pFilters'); }
 function draftCount(F){ var B = UI.draftB || {on:S.budgetOn, val:S.budget}; return DATA_LOADED ? countView(DATA, evalTime(), ext(ctxNow(), {mode:F.mode, budget:B.on ? B.val : 'any'}), F, curSel(), UI.sub) : 0; }
-var LIMIT_TRIES = [['price', {price:{}}], ['io', {io:'either'}], ['reach', {mode:DEFAULT_MODE, radius:APP_RADIUS}], ['booking', {walkin:false, hide21:false}], ['interests', {interests:{}}]];   // v5.1: only sections the sheet shows
+var LIMIT_TRIES = [['price', {price:{}, sale:false}], ['io', {io:'either'}], ['reach', {mode:DEFAULT_MODE, radius:APP_RADIUS}], ['booking', {walkin:false, hide21:false}], ['interests', {interests:{}}]];   // v5.1: only sections the sheet shows
 function mostLimitingDraft(F){ // the section whose removal brings back the most (layout spec 3.10 "MOST LIMITING")
   var best = null, bn = 0;
   LIMIT_TRIES.forEach(function(t){ var n = draftCount(ext(F, t[1])); if (n > bn) { bn = n; best = t[0]; } });
@@ -7165,7 +7514,7 @@ function applyDraft(F, code){
     case 'io': F.io = v; break;
     case 'mode': F.mode = v; break;
     case 'radius': F.radius = +v; break;
-    case 'walkin': case 'hide21': case 'openNow': case 'fits': case 'notBeen': F[k] = !F[k]; break;
+    case 'walkin': case 'hide21': case 'openNow': case 'fits': case 'notBeen': case 'sale': F[k] = !F[k]; break;
   }
   return F;
 }
@@ -7179,7 +7528,7 @@ function renderFilters(){
   // v5 (owner 2026-11-13: "gigantic number of filters ... a lot of text to read"): only the filters people use, short labels, no helper paragraphs.
   var h = '';
   // v5.1 (tester L1): Who (Date / Friends / Solo) is on Home, so it is not repeated here. "Time I have" stays: it is the only place to turn it on.
-  h += '<div class="fsec">' + H('Price', 'price') + chips([['price:free', 'Free', F.price.free], ['price:$', '$', F.price.$], ['price:$$', '$$', F.price.$$], ['price:$$$', '$$$', F.price.$$$]]) + '</div>';
+  h += '<div class="fsec">' + H('Price', 'price') + chips([['price:free', 'Free', F.price.free], ['price:$', '$', F.price.$], ['price:$$', '$$', F.price.$$], ['price:$$$', '$$$', F.price.$$$], ['sale', 'On sale', F.sale]]) + '</div>';
   h += '<div class="fsec">' + H('How far', 'reach') + seg([['mode:car', 'Drive', F.mode === 'car'], ['mode:transit', 'Walk + CTA', F.mode === 'transit'], ['mode:walk', 'Walk', F.mode === 'walk']]) +
     '<div class="chips-w" style="margin-top:8px">' + RADII.map(function(r){ return '<button class="chip" type="button" data-d="radius:' + r + '" aria-pressed="' + (F.radius === r) + '" aria-label="Within ' + esc(fmtRadius(r)) + '">' + (r === APP_RADIUS ? 'Any' : esc(fmtRadius(r))) + '</button>'; }).join('') + '</div></div>';
   h += '<div class="fsec">' + H('Inside or out', 'io') + seg([['io:either', 'Either', F.io === 'either'], ['io:indoor', 'Inside', F.io === 'indoor'], ['io:outdoor', 'Outside', F.io === 'outdoor']]) + '</div>';
@@ -7228,6 +7577,7 @@ function applyF(code){ // single filter change (pSmall panels, the "Make it 2 hr
     case 'io': F.io = v; break;
     case 'price': F.price[v] = !F.price[v]; if (!F.price[v]) delete F.price[v]; break;
     case 'walkin': F.walkin = !F.walkin; break;
+    case 'sale': F.sale = !F.sale; break;
     case 'hide21': F.hide21 = !F.hide21; break;
     case 'kind': F.kind = v; break;
     case 'social': F.social = !F.social; break;
@@ -7863,7 +8213,8 @@ function bindUI(){
     var wp = e.target.closest('[data-wl]'); if (wp) wlAction(wp.getAttribute('data-wl'), wp); });
   // v5.8 friends' lists: Share, the friend panel (Keep, rows, Rename, Remove), the paste box
   $('wlShare').addEventListener('click', function(){ if (acctName() && acctSignedIn()) shareAsk(); else shareMyList(); });   // v5.11: signed in, Share asks: invite or just the list
-  document.addEventListener('click', function(e){ var ac = e.target.closest ? e.target.closest('[data-acct]') : null; if (ac && !ac.disabled) { e.preventDefault(); acctClick(ac); } });   // v5.11 accounts, friends, privacy, been import
+  document.addEventListener('click', function(e){ var ac = e.target.closest ? e.target.closest('[data-acct]') : null; if (ac && !ac.disabled) { e.preventDefault(); acctClick(ac); } });
+  document.addEventListener('click', function(e){ if (!e.target.closest) return; var pb = e.target.closest('[data-poll]'); if (pb) { e.preventDefault(); e.stopPropagation(); pollClick(pb); return; } var cb = e.target.closest('[data-cp]'); if (cb) { e.preventDefault(); e.stopPropagation(); cpClick(cb); } }, true);   // v5.13 poll + couple mode (capture: before the panels' own row handlers)   // v5.11 accounts, friends, privacy, been import
   document.addEventListener('keydown', function(e){ if (e.key !== 'Enter' || !e.target) return; if (e.target.id === 'unameIn') { e.preventDefault(); acctNameSave(); } else if (e.target.id === 'frFind') { e.preventDefault(); acctFind(); } });
   $('pClusterBody').addEventListener('click', function(e){   // v5.11 cluster sheet: a row opens the place; Show N more
     if (e.target.closest('[data-clmore]')) { UI.clusterAll = true; renderClusterList(); return; }
@@ -8796,7 +9147,7 @@ function runSelfTest0(){
     eq('the tag "quiet" alone does not move a garden', genreOf(fx({category:'nature-outdoors', tags:['quiet']})), 'nature');
     eq('seasonal goes by name: market, parade, rink, light show, other', [genreOf(fx({category:'seasonal', name:'Holiday Market'})), genreOf(fx({category:'seasonal', name:'Thanksgiving Parade'})), genreOf(fx({category:'seasonal', name:'Ice Rink at the Park'})), genreOf(fx({category:'seasonal', name:'Lightscape'})), genreOf(fx({category:'seasonal', name:'Christmas exhibit'}))].join(), 'eat,shows,play,nature,look');
     eq('arcade and skyscraper land in different kinds (her example)', [genreOf(fx({category:'games-arcade'})), genreOf(fx({id:'pc-360-chicago', category:'food-drink-experience'}))].join(), 'play,look');
-    eq('sub-chips: mini golf, views, bugs (in Animals since v5.9), cheese, baths', [subOf(fx({category:'mini-golf'})), subOf(fx({category:'art-museum', tags:['skyline']})), subOf(fx({category:'unique-niche', genre:'nature-animals', tags:['insects']})), subOf(fx({category:'unique-niche', genre:'eat-drink', tags:['cheese']})), subOf(fx({category:'unique-niche', tags:['sauna']}))].join(), 'minigolf,views,animals,cheese,baths');
+    eq('sub-chips: mini golf, views, bugs (in Animals since v5.9), cheese, baths', [subOf(fx({category:'mini-golf'})), subOf(fx({category:'unique-niche', genre:'look-learn', tags:['views']})), subOf(fx({category:'unique-niche', genre:'nature-animals', tags:['insects']})), subOf(fx({category:'unique-niche', genre:'eat-drink', tags:['cheese']})), subOf(fx({category:'unique-niche', tags:['sauna']}))].join(), 'minigolf,views,animals,cheese,baths');
     var five = [fx({category:'mini-golf'}), fx({category:'mini-golf'}), fx({category:'escape-room'}), fx({category:'escape-room'}), fx({category:'racing-karting'})];
     eq('sub-chip rule: a chip needs 2+ items (Racing has 1)', subsShown(five, 'play').map(function(s){ return s[0]; }).join(), 'minigolf,escape');
     eq('...and the row needs 2+ such chips', subsShown([fx({category:'mini-golf'}), fx({category:'mini-golf'}), fx({category:'escape-room'})], 'play').length, 0);
@@ -9650,7 +10001,7 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.12 (2026-11-14)');
+    eq('version', VERSION, 'v5.13 (2026-11-14)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -9968,7 +10319,7 @@ function runSelfTest0(){
     ok('cluster: a ticket badge with the count, not a dot', ch.indexOf('class="ctk"') >= 0 && ch.indexOf('#g-ticket') >= 0 && /2<\/span>/.test(ch) && ch.indexOf('class="tkb"') < 0, ch);
     eq('no limited ones: no badge', clusterHTML({n:3, x:0, y:0, tk:0}).indexOf('ctk'), -1);
     function nsub(o){ return subOf(fx(ext({category:'nature-outdoors', genre:'nature'}, o)), 'nature'); }
-    eq('Animals & bugs is strict: zoo, butterflies, elk herd yes; parks and beaches with bird tags go to Parks & walks', [nsub({name:'Lincoln Park Zoo'}), nsub({name:'The Butterfly House'}), nsub({name:'Busse Woods elk herd'}), nsub({name:'Jackson Park', tags:['birds', 'wildlife', 'animals']}), nsub({name:'Montrose Beach', tags:['birding']}), nsub({name:'Some sanctuary', tags:['petting-zoo']}), nsub({name:'River walk', tags:['animals', 'bugs']})].join(), 'animals,animals,animals,walks,walks,animals,walks');
+    eq('Animals & bugs is strict: zoo, butterflies, elk herd yes; parks and beaches with bird tags go to Parks & walks', [nsub({name:'Lincoln Park Zoo'}), nsub({name:'The Butterfly House'}), nsub({name:'Busse Woods elk herd'}), nsub({name:'Jackson Park', tags:['birds', 'wildlife', 'animals']}), nsub({name:'Montrose Beach', tags:['birding']}), nsub({name:'Some sanctuary', tags:['petting-zoo']}), nsub({name:'River walk', tags:['animals', 'wildlife']})].join(), 'animals,animals,animals,walks,walks,animals,walks');   // v5.13: the tag bugs now counts (consistency #5), so this fixture uses interest words only
   });
   /* ---------- v5.11 checks: accounts (pure parts), month only, the been link, signed-out mode, place names, cluster list ---------- */
   block('v5.11 saves merge (last edit wins per place)', function(){
@@ -10172,7 +10523,85 @@ function runSelfTest0(){
     eq('save-rank: top third of all saves, and of map + search only', [sr.top, sr.n, sr.ctop, sr.cn].join(), '2,4,1,2');
     eq('pick 2 of 6 running total', JSON.stringify(p26Total([{round:1, hits:2}, {round:2, hits:1}, {round:1, hits:0}])), '{"x":3,"y":6}');
   });
-  return R;
+  block('v5.13 deals: which days count (#11)', function(){
+    eq('"Wed" on Wed Nov 18 / Thu Nov 19', dealDayOk('Wed', '2026-11-18') + ',' + dealDayOk('Wed', '2026-11-19'), 'true,false');
+    eq('"weekdays" Fri / Sat; "daily" Sun', [dealDayOk('weekdays', '2026-11-20'), dealDayOk('weekdays', '2026-11-21'), dealDayOk('daily', '2026-11-22')].join(), 'true,false,true');
+    eq('"2nd Tue": Dec 8 yes, Dec 1 no, Nov 10 yes', [dealDayOk('2nd Tue', '2026-12-08'), dealDayOk('2nd Tue', '2026-12-01'), dealDayOk('2nd Tue', '2026-11-10')].join(), 'true,false,true');
+    eq('"Mon-Thu": Thu yes, Fri no, Mon yes; "Fri-Sun" wraps: Sun yes, Wed no', [dealDayOk('Mon-Thu', '2026-11-19'), dealDayOk('Mon-Thu', '2026-11-20'), dealDayOk('Mon-Thu', '2026-11-16'), dealDayOk('Fri-Sun', '2026-11-22'), dealDayOk('Fri-Sun', '2026-11-18')].join(), 'true,false,true,true,false');
+    eq('"Wednesday" spelled out counts; nonsense never does', dealDayOk('Wednesday', '2026-11-18') + ',' + dealDayOk('wedx days', '2026-11-18') + ',' + dealDayOk('', '2026-11-18'), 'true,false,false');
+  });
+  block('v5.13 deals: valid_to, badge, On sale filter (#11)', function(){
+    var today = '2026-11-14';   // Sat
+    eq('no deal / garbage -> nothing', [dealState(fx({}), today), dealState(fx({deal:'50% off'}), today), dealState(fx({deal:{text:'  '}}), today)].join(), ',,');
+    eq('hidden the day after valid_to', dealState(fx({deal:{text:'x', valid_to:'2026-11-13'}}), today), null);
+    ok('still shown ON valid_to', !!dealState(fx({deal:{text:'x', valid_to:'2026-11-14'}}), today), 'hidden');
+    var fm = dealState(fx({deal:{text:'Free Wed', kind:'free', days:['Wed'], valid_from:'2026-11-18', valid_to:'2027-03-31', link:'https://example.org/free'}}), today);
+    eq('starts Wed Nov 18 (valid_from): next day, badge "Free Wed", not today, link kept', fm ? [fm.next, fm.badge, fm.today, fm.link].join() : 'null', '2026-11-18,Free Wed,false,https://example.org/free');
+    eq('a Saturday deal on Saturday: "Deal today"', (dealState(fx({deal:{text:'x', days:['Sat']}}), today) || {}).badge, 'Deal today');
+    eq('a date tomorrow: "Deal tomorrow"; 10 days out: "Deal Nov 24"', (dealState(fx({deal:{text:'x', dates:['2026-11-15']}}), today) || {}).badge + ' / ' + (dealState(fx({deal:{text:'x', dates:['2026-11-24']}}), today) || {}).badge, 'Deal tomorrow / Deal Nov 24');
+    eq('next date more than ' + DEAL_AHEAD_DAYS + ' days out (MSI in January): not on sale yet', dealState(fx({deal:{text:'x', dates:['2027-01-11']}}), today), null);
+    eq('all listed dates past (but valid_to later): nothing', dealState(fx({deal:{text:'x', dates:['2026-11-10'], valid_to:'2026-12-31'}}), today), null);
+    eq('a javascript: link is dropped', (dealState(fx({deal:{text:'x', link:'javascript:alert(1)'}}), today) || {}).link, '');
+    var T = at(today, '12:00'), mk = function(id, d){ return fx({id:id, name:id, hours:allDays(['09:00', '23:00']), deal:d}); };
+    var items = [mk('d-on', {text:'Half off', days:['Sat']}), mk('d-old', {text:'Old', valid_to:'2026-11-01'}), mk('d-none', undefined), mk('d-soon', {text:'Free Wed', kind:'free', days:['Wed']})];
+    var F = ext(defaultFilters(), {radius:25}), all = runPipeline(items, T, CTX, F).all, sale = runPipeline(items, T, CTX, ext(F, {sale:true})).all;
+    eq('On sale off: every item listed (an expired deal hides only the deal)', all.length, 4);
+    eq('On sale on: only live deals (today + coming up)', sale.map(function(c){ return c.item.id; }).sort().join(), 'd-on,d-soon');
+    eq('On sale is a removable chip', appliedFilters(ext(appDefaultFilters(), {sale:true})).map(function(a){ return a.label; }).join() + '|' + removeFilter(ext(appDefaultFilters(), {sale:true}), 'sale').sale, 'On sale|false');
+    eq('On sale counts as a filter and toggles in the sheet', filterCount(ext(appDefaultFilters(), {sale:true})) - filterCount(appDefaultFilters()) + ',' + applyDraft(copyF(appDefaultFilters()), 'sale').sale, '1,true');
+    var cOn = all.filter(function(c){ return c.item.id === 'd-on'; })[0], cOld = all.filter(function(c){ return c.item.id === 'd-old'; })[0];
+    ok('list row: a small deal badge', /class="tag deal on">Deal today</.test(rowHTML(cOn)), rowHTML(cOn).slice(0, 300));
+    ok('photo card: the badge on the photo', /class="c3-deal on">Deal today</.test(cardHTML(cOn)), 'no badge');
+    ok('expired deal: no badge anywhere', !/deal/.test(rowHTML(cOld)) && !/c3-deal/.test(cardHTML(cOld)), 'badge shown');
+  });
+  block('v5.13 poll link (#36): the link format', function(){
+    eq('encode keeps her order', pollEncode('0123456789ab', [12, 5, 40]), '#poll=0123456789ab.12.5.40');
+    eq('no server: code "0", same places', pollEncode('', [3, 4]), '#poll=0.3.4');
+    eq('1 place, 5 places, a repeat or a bad number: no link', [pollEncode('', [3]), pollEncode('', [1, 2, 3, 4, 5]), pollEncode('', [3, 3]), pollEncode('', [3, -1])].join('|'), '|||');
+    var d = pollDecode('Vote! https://stacey98.github.io/fun-finder/#poll=0123456789ab.12.5.40');
+    eq('decode from a pasted message', d.ok ? d.code + '/' + d.sids.join('.') : 'fail', '0123456789ab/12.5.40');
+    eq('decode the no-server link: empty code (plain list)', JSON.stringify(pollDecode('#poll=0.3.4')), '{"ok":true,"code":"","sids":[3,4]}');
+    eq('bad links refused: short code, 1 place, a repeat, 5 places', [pollDecode('#poll=abc.1.2').ok, pollDecode('#poll=0.1').ok, pollDecode('#poll=0.1.1').ok, pollDecode('#poll=0.1.2.3.4.5').ok].join(), 'false,false,false,false');
+    ok('round trip for 2, 3 and 4 places', [[1, 2], [9, 8, 7], [100, 5, 77, 3]].every(function(s){ var x = pollDecode(pollEncode('ffffffffffff', s)); return x.ok && x.sids.join() === s.join(); }), 'mismatch');
+  });
+  block('v5.13 poll link (#36): counting and fallback', function(){
+    eq('tally: counts, total, leader, my pick', JSON.stringify(pollTally({counts:[3, 1, 'x'], mine:1, open:true}, 3)), '{"counts":[3,1,0],"total":4,"mine":1,"lead":[0],"open":true}');
+    eq('a tie has two leaders; no votes has none', pollTally({counts:[2, 2]}, 2).lead.join() + '|' + pollTally({counts:[0, 0]}, 2).lead.join(), '0,1|');
+    eq('a bad reply counts as no votes; an out-of-range pick is ignored', JSON.stringify(pollTally(null, 2)) + ' ' + pollTally({counts:[1], mine:7}, 2).mine, '{"counts":[0,0],"total":0,"mine":null,"lead":[],"open":true} null');
+    eq('closed poll', pollTally({counts:[1, 0], open:false}, 2).open, false);
+    eq('percent', [pollPct(1, 4), pollPct(0, 0), pollPct(2, 3)].join(), '25,0,67');
+    eq('votes go to the server only on the website (here: ' + (cloudHost() ? 'website' : 'not the website') + ')', pollServerOk(), cloudHost() && !PL.demo);
+    ok('a voter token is 16 letters and numbers, the same on every call', /^[A-Za-z0-9]{16}$/.test(pollVoter()) && pollVoter() === pollVoter(), pollVoter());
+    ok('Saved: "Make a poll" needs 2 saved places', pollSavedHTML(1).indexOf('data-poll="make"') < 0 && pollSavedHTML(2).indexOf('data-poll="make"') >= 0, 'wrong');
+    ok('the votes table gets only code, token and choice (no names)', /poll_code:v\.code, voter:pollVoter\(\), choice:i\}/.test(String(pollVote)), 'other fields sent');
+  });
+  block('v5.13 couple mode (#45): combined picks, never raw taste', function(){
+    var mk = function(i, o){ return fx(ext({id:'cp-' + i, name:'C' + i, sid:i + 1}, o)); };
+    var items = [mk(0, {energy:'active', vibe:'lively'}), mk(1, {energy:'active'}), mk(2, {energy:'chill', vibe:'quiet'}), mk(3, {energy:'active', tags:['bowling']}), mk(4, {energy:'active', verified:{status:'closed', checked_on:'2026-11-10'}}), mk(5, {energy:'easy'})];
+    eq('no taste yet: nothing to share', coupleMine(items, emptyStats(), null), null);
+    var st = strongSt({e:1, v:1}, {never:{bowling:1}}), mine = coupleMine(items, st, null);
+    eq('my list: best fit first, "never" kept apart, closed-for-good left out', mine ? mine.top.join() + '|' + mine.never.join() : 'null', '1,2|4');
+    eq('what is shared is place numbers only (no dials, swipes or interests)', mine ? Object.keys(mine).sort().join() + ':' + mine.top.concat(mine.never).every(function(x){ return typeof x === 'number'; }) : '', 'never,top:true');
+    var A = {top:[10, 11, 12, 13], never:[20]}, B = {top:[13, 20, 14, 10], never:[11]};
+    eq('combined: liked by both first (10, 13), then the rest; nobody\'s never (11, 20)', couplePicks(A, B).join(), '10,13,12,14');
+    eq('only one person on: no picks', couplePicks(A, null).length + couplePicks(null, B).length, 0);
+    eq('lists keep their order, lose repeats and junk', cpSids([5, 3, 5, 'x', -2, 3.5, 9]).join(), '5,3,9');
+    eq('signature changes when the list changes', coupleSig([1, 2], [3]) === coupleSig([1, 2], [3]) && coupleSig([1, 2], [3]) !== coupleSig([2, 1], [3]), true);
+    eq('no switch for a kept copy (not an accepted friend)', coupleBlockHTML({live:false, key:'Ab12', name:'Maya'}), '');
+  });
+  block('v5.13 the 10 sub-chip changes (reports/2026-11-14-consistency.md)', function(){
+    var s = function(o){ var it = fx(o); return subOf(it, genreOf(it)); };
+    eq('1 Mini golf: tag mini-golf', s({genre:'play', category:'games-arcade', tags:['mini-golf']}), 'minigolf');
+    eq('2 Bars: tag 21-plus; whisky alone no longer', s({genre:'eat-drink', category:'food-drink-experience', tags:['21-plus']}) + ',' + s({genre:'eat-drink', category:'food-drink-experience', tags:['whisky']}), 'bars,dinner');
+    eq('3 Views: a museum with a view stays a museum; a deck is a view', s({genre:'look-learn', category:'art-museum', tags:['views']}) + ',' + s({genre:'look-learn', category:'unique-niche', tags:['views']}), 'museums,views');
+    eq('4 Architecture: a cathedral yes; a library or museum no', s({genre:'look-learn', category:'unique-niche', name:'Holy Name Cathedral', tags:['architecture']}) + ',' + s({genre:'look-learn', category:'art-museum', name:'Newberry Library', tags:['books', 'architecture']}) + ',' + s({genre:'look-learn', category:'art-museum', name:'Driehaus Museum', tags:['architecture']}), 'arch,museums,museums');
+    eq('5 Animals: tag bugs (a park with bugs stays a walk)', s({genre:'nature-animals', category:'nature-outdoors', name:'Bug Hall', tags:['bugs']}) + ',' + s({genre:'nature-animals', category:'nature-outdoors', name:'Big Marsh Park', tags:['bugs']}), 'animals,walks');
+    eq('6 Parades & festivals: parade / fireworks tags, Krampus or tree lighting names', [s({genre:'shows-nights', tags:['parade', 'music']}), s({genre:'shows-nights', tags:['fireworks']}), s({genre:'shows-nights', name:'Krampus Run'}), s({genre:'shows-nights', name:'Tree Lighting'})].join(), 'parades,parades,parades,parades');
+    eq('7 Theater before comedy; murder mystery and dinner shows are theater', [s({genre:'shows-nights', tags:['comedy', 'theater']}), s({genre:'shows-nights', tags:['murder-mystery', 'comedy']}), s({genre:'shows-nights', tags:['dinner-show']}), s({genre:'shows-nights', tags:['comedy']})].join(), 'theater,theater,theater,comedy');
+    eq('8 Eat > Tea', s({genre:'eat-drink', category:'food-drink-experience', tags:['tea', 'dessert']}), 'tea');
+    eq('9 Baths & saunas: hot-tub', s({genre:'relax', category:'seasonal', tags:['hot-tub']}), 'baths');
+    ok('Eat and Shows list the new chips; 6 can show', GENRE_BY.eat.subs.some(function(x){ return x[0] === 'tea'; }) && GENRE_BY.shows.subs.some(function(x){ return x[0] === 'parades'; }) && SUB_MAX === 6, 'missing');
+  });  return R;
 }
 function waitFor(fn, ms){ return new Promise(function(res){ var t0 = Date.now(); (function poll(){ var v = false; try { v = fn(); } catch (e) {} if (v || Date.now() - t0 > ms) res(!!v); else setTimeout(poll, 100); })(); }); }
 function runSelfTestAsync(){ // checks that need promises or the map files
@@ -10245,7 +10674,22 @@ function runSelfTestAsync(){ // checks that need promises or the map files
     var parkAnimals = DATA.filter(function(it){ return genreOf(it) === 'nature' && subOf(it, 'nature') === 'animals' && /\b(park|beach|trail)\b/i.test(it.name) && !/zoo|elk|butterfl|aquarium/i.test(it.name); }).map(function(it){ return it.name; });
     eq('real data: no plain park, beach or trail under Animals & bugs', parkAnimals.join('; '), '');
     ok('real data: the Escape rooms view lists every "Escape room:" room (' + nE + ' rooms, ' + nPre + ' with the prefix)', nE >= nPre && vE.kind.escape.filter(function(c){ return /^Escape room:/.test(c.item.name); }).length === nPre, nE + ' of ' + nPre);
-    try { tasteRealChecks(R, res, ok, eq); } catch (e) { ok('real data: v5.12 taste checks crashed', false, e && e.message ? e.message + ' ' + (e.stack || '').split('\n')[1] : String(e)); }
+    // v5.13 real data: the sub-chip changes, deals and a poll view without the vote server
+    var subIs = function(id, want){ var it = findItem(id); if (!it) { R.push({ok:true, info:'', name:'real data: ' + id + ' not in this list (skipped)', note:true}); return; } var g = genreOf(it), s = subOf(it, g); ok('real data: ' + it.name + ' -> ' + g + ' / ' + s, s === want, 'got ' + s + ', expected ' + want); };
+    [['ud-dinner-detective-chicago', 'theater'], ['ev-chicago-thanksgiving-parade-2026', 'parades'], ['pc-adler-planetarium', 'museums'], ['pc-chicago-cultural-center', 'arch'], ['ps-driehaus-museum', 'museums'], ['ps-newberry-library', 'museums'],
+     ['ud-hot-tub-boat-chicago-river', 'baths'], ['pa-puttshack-skokie', 'minigolf'], ['pc-peggy-notebaert-nature-museum', 'animals'], ['pr-living-water-tea-house', 'tea'], ['pc-second-city', 'comedy'], ['pc-skydeck-chicago', 'views']].forEach(function(x){ subIs(x[0], x[1]); });
+    ['eat', 'shows', 'look'].forEach(function(g){ R.push({ok:true, info:'', note:true, name:'real data: ' + genreName(g) + ' sub-chips: ' + subsShown(DATA, g).map(function(s){ var n = DATA.filter(function(it){ return genreOf(it) === g && subOf(it, g) === s[0]; }).length; return s[1] + ' ' + n; }).join(' · ')}); });
+    var nDeal = DATA.filter(function(it){ return dealOf(it); }).length, nLive = DATA.filter(function(it){ return dealState(it, cparts(nowMs()).key); }).length;
+    R.push({ok:true, info:'', note:true, name:'real data: ' + nDeal + ' places carry a deal, ' + nLive + ' on sale today or within ' + DEAL_AHEAD_DAYS + ' days'});
+    ok('real data: no Shedd or Art Institute deal (dates not verified)', !dealOf(findItem('pc-shedd-aquarium') || {}) && !dealOf(findItem('pc-art-institute-of-chicago') || {}), 'deal present');
+    if (nDeal) { var ds = runPipeline(DATA, T16, cL, ext(F16, {sale:true})).all; ok('real data: On sale on Mon Nov 16 lists only places with a live deal (' + ds.length + ')', ds.length > 0 && ds.every(function(c){ return c.deal; }), ds.length + ''); }
+    var keepPL = {cur:PL.cur, res:PL.res, err:PL.err, mine:PL.mine}, pb = $('pPollBody'), keepH = pb.innerHTML, sids3 = DATA.slice(0, 3).map(function(it){ return ID_SID[it.id]; });
+    try {
+      PL.cur = {code:'', sids:sids3, own:false}; PL.res = null; PL.err = ''; renderPoll();
+      ok('real data: a poll link without the vote server opens as a plain list (3 places, no vote buttons)', pb.querySelectorAll('.pl-card').length === 3 && !pb.querySelector('[data-poll="vote"]') && /Tap one to see it/.test(pb.textContent), pb.textContent.slice(0, 120));
+      PL.cur = {code:'0123456789ab', sids:sids3, own:false}; renderPoll();
+      ok('real data: a server poll off the website says voting works on the website (' + (pollServerOk() ? 'website' : 'here') + ')', pollServerOk() || (/Voting works on the website/.test(pb.textContent) && !pb.querySelector('[data-poll="vote"]')), pb.textContent.slice(0, 120));
+    } finally { PL.cur = keepPL.cur; PL.res = keepPL.res; PL.err = keepPL.err; PL.mine = keepPL.mine; pb.innerHTML = keepH; }    try { tasteRealChecks(R, res, ok, eq); } catch (e) { ok('real data: v5.12 taste checks crashed', false, e && e.message ? e.message + ' ' + (e.stack || '').split('\n')[1] : String(e)); }
     return R;
   });
 }
@@ -10379,9 +10823,12 @@ function hideSelfTest(){ $('selftest').hidden = true; if (/selftest/.test(locati
 function readHash(){
   var hsh = location.hash || '';
   if (/^#w_/.test(hsh)) { if (mapEl) wlOpen(hsh, 'hash'); return; }
-  if (/^#been=/.test(hsh)) { if (mapEl) beenOpen(hsh); return; }   // v5.11: her private one-time import link (confirm screen first)
+  if (/^#been=/.test(hsh)) { if (mapEl) beenOpen(hsh); return; }
+  if (/^#poll=/.test(hsh)) { if (mapEl) pollOpen(hsh); return; }   // v5.13: a poll link (or the same link as a plain list without the vote server)
+  if (/(?:^#|&)polldemo=1/.test(hsh) && mapEl) { PL.demo = true; setTimeout(function(){ var go = function(n){ if (DATA_LOADED) { var ss = DATA.filter(function(it){ return ID_SID[it.id] && firstPhoto(it); }).slice(0, 3).map(function(it){ return ID_SID[it.id]; }); PL.cur = {code:'0123456789ab', sids:ss, own:true}; PL.res = {counts:[3, 1, 0], total:4, mine:0, open:true}; PL.mine = 0; renderPoll(); openPanel('pPoll'); } else if (n < 100) setTimeout(function(){ go(n + 1); }, 200); }; go(0); }, 0); }   // testing hook: a poll with made-up votes (nothing sent)   // v5.11: her private one-time import link (confirm screen first)
   var ivc = inviteCode(hsh); if (ivc) { if (mapEl) inviteOpen(ivc); return; }   // v5.11: a friend invite
-  if (/(?:^#|&)acctdemo=1/.test(hsh) && mapEl) acctDemo();   // v5.11 testing hook: the signed-in screens with made-up friends (in memory, nothing sent)
+  if (/(?:^#|&)acctdemo=1/.test(hsh) && mapEl) acctDemo();
+  if (/(?:^#|&)cpdemo=1/.test(hsh) && mapEl) coupleDemo(0);   // v5.13 testing hook (with #acctdemo=1): couple mode on with the made-up friend   // v5.11 testing hook: the signed-in screens with made-up friends (in memory, nothing sent)
   if (/(?:^#|&)panel=friends/.test(hsh) && mapEl) setTimeout(function(){ var go = function(){ if (DATA_LOADED && Acct.demo) openFriends(); else setTimeout(go, 200); }; go(); }, 0);
   if (/(?:^#|&)panel=privacy/.test(hsh) && mapEl) openPrivacy();   // v5.8: a friend's list link, before any place link or test hook (spec 1.2, E17)
   // v5.8 testing hooks for friends' lists (in memory only): #savedsid=3.17.18 #fr=Maya:3.17.18,Jo:40 #wlkey=Qm7x #wl=<link body> #standalone=1 #inapp=1 #panel=saved #wldetail=<sid>
@@ -10520,7 +10967,7 @@ function loadData(){
     if (!$('pFriend').hidden) renderFriend();   // I6: the incoming list stays in sessionStorage, so a reload opens it again
   });
 }
-function acctAfterData(){ wlRebuild(); if (UI.beenWait) beenConfirm(); if (UI.acctDemoWait) acctDemo(); if (UI.syncAfterData) { UI.syncAfterData = false; acctSync('data'); } else if (Acct.user) acctRedraw(); }
+function acctAfterData(){ if (PL.cur && !$('pPoll').hidden) renderPoll(); if (!$('pFriend').hidden && UI.friendView) renderFriend(); wlRebuild(); if (UI.beenWait) beenConfirm(); if (UI.acctDemoWait) acctDemo(); if (UI.syncAfterData) { UI.syncAfterData = false; acctSync('data'); } else if (Acct.user) acctRedraw(); }
 function buildSidIndex(items){ SID_INDEX = {}; ID_SID = {}; items.forEach(function(it){ var s = +it.sid; if (isNum(s) && s >= 1 && Math.floor(s) === s && !SID_INDEX[s]) { SID_INDEX[s] = it; ID_SID[it.id] = s; } }); }
 function loadGeo(){
   Promise.all([Platform.fetchJSON(GEO_AREAS_URL), Platform.fetchJSON(GEO_LINES_URL)['catch'](function(){ return null; })]).then(function(r){
@@ -10596,6 +11043,8 @@ function init(){
 
 window.__cff = {
   version: VERSION, appName: APP_NAME,
+  dealState: dealState, dealOnDay: dealOnDay, dealDayOk: dealDayOk, pollEncode: pollEncode, pollDecode: pollDecode, pollTally: pollTally, coupleMine: coupleMine, couplePicks: couplePicks, coupleSig: coupleSig, cpSids: cpSids, couplePicksFor: couplePicksFor,   // v5.13
+  dev: {openFilters: function(){ openFilters(); }, showView: function(v){ showView(v); }, pollStart: function(){ pollStart(); }, openFriendView: function(k){ openFriendView(k); }, openLists: function(t){ openLists(t); }, save: function(ids){ savedIds = ids.slice(); refresh(); }},   // v5.13 screenshot harness (screens only, nothing sent)
   bestTimeOfDay: bestTimeOfDay, dayHoursText: dayHoursText, isFar: isFar, farSectionHTML: farSectionHTML, FAR_MIN_BY_MODE: FAR_MIN_BY_MODE,   // v5.6
   KIND_ICON: KIND_ICON, KIND_SHAPE: KIND_SHAPE, kindIcon: kindIcon, kindColors: function(theme){ return kindColorsFor(theme); },   // v5.4
   statusAt: statusAt, describe: describe, eventBadge: eventBadge, fitFor: fitFor, fitNote: fitNote, trustOf: trustOf,
