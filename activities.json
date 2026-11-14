@@ -13180,6 +13180,29 @@
         "taste_checked":  "2026-11-13",
         "genre":  "look-learn",
         "min_minutes":  90,
+        "deal":  {
+                     "text":  "Free for Illinois residents on select days",
+                     "kind":  "free",
+                     "link":  "https://www.artic.edu/visit/free-admission",
+                     "dates":  [
+                                   "2026-11-19",
+                                   "2026-12-02",
+                                   "2026-12-03",
+                                   "2026-12-04",
+                                   "2026-12-07",
+                                   "2026-12-09",
+                                   "2026-12-10",
+                                   "2026-12-11",
+                                   "2026-12-14",
+                                   "2026-12-16",
+                                   "2026-12-17",
+                                   "2026-12-18",
+                                   "2027-01-21",
+                                   "2027-02-18"
+                               ],
+                     "valid_from":  "2026-11-19",
+                     "valid_to":  "2027-02-18"
+                 },
         "sid":  91,
         "photos":  [
                        {
@@ -15074,6 +15097,20 @@
         "taste_checked":  "2026-11-13",
         "genre":  "nature-animals",
         "min_minutes":  90,
+        "deal":  {
+                     "text":  "Free for Illinois residents Tue 5-9 pm",
+                     "kind":  "free",
+                     "link":  "https://www.sheddaquarium.org/plan-a-visit/get-tickets/discounts-and-free-hours/illinois-resident-free-hours",
+                     "dates":  [
+                                   "2026-11-17",
+                                   "2026-11-24",
+                                   "2026-12-01",
+                                   "2026-12-08",
+                                   "2026-12-15"
+                               ],
+                     "valid_from":  "2026-11-17",
+                     "valid_to":  "2026-12-15"
+                 },
         "sid":  101,
         "photos":  [
                        {
@@ -21075,7 +21112,6 @@
         "price_level":  "$$",
         "duration_minutes":  150,
         "min_minutes":  100,
-        "hours":  null,
         "season":  null,
         "booking":  "recommended",
         "phone":  "872-298-3961",
@@ -21119,7 +21155,6 @@
                              }
                          ],
         "age_note":  "Film ratings apply",
-        "hours_note":  "No fixed opening hours; it opens around showtimes. Check daily showtimes or call 872-298-3961. Peak times and holidays may have premium pricing.",
         "description":  "A dine-in movie theater at Clark and Addison where food and drinks are brought to your seat, with a strict no-talking, no-texting rule, so it\u0027s good for people who actually want to watch. It also runs special screenings and has a bar, Video Vortex, for before or after.",
         "price_note":  "Ticket prices vary by show; food and drink extra. No-talking, no-texting rule: one warning, then you are removed without a refund.",
         "moods":  [
@@ -21130,12 +21165,70 @@
         "energy":  "chill",
         "vibe":  "quiet",
         "taste_checked":  "2026-11-13",
+        "genre":  "shows-nights",
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+
+                              ],
+                      "thu":  [
+
+                              ],
+                      "fri":  [
+
+                              ],
+                      "sat":  [
+
+                              ],
+                      "sun":  [
+
+                              ]
+                  },
+        "date_hours":  {
+                           "2026-11-14":  [
+                                              [
+                                                  "11:00",
+                                                  "22:30"
+                                              ]
+                                          ],
+                           "2026-11-15":  [
+                                              [
+                                                  "11:00",
+                                                  "22:30"
+                                              ]
+                                          ],
+                           "2026-11-16":  [
+                                              [
+                                                  "11:30",
+                                                  "22:30"
+                                              ]
+                                          ],
+                           "2026-11-17":  [
+                                              [
+                                                  "11:30",
+                                                  "22:30"
+                                              ]
+                                          ],
+                           "2026-11-18":  [
+                                              [
+                                                  "11:15",
+                                                  "22:30"
+                                              ]
+                                          ]
+                       },
+        "hours_valid_to":  "2026-11-18",
+        "hours_note":  "Showtimes change daily; the hours shown run from the first to the last showtime. The Video Vortex bar is open Mon-Thu 4 pm-midnight, Fri 4 pm-2 am, Sat noon-2 am, Sun noon-8 pm.",
+        "booking_url":  "https://drafthouse.com/chicago/theater/wrigleyville",
         "verified":  {
-                         "status":  "unverified",
+                         "status":  "verified",
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://drafthouse.com/chicago/theater/wrigleyville"
                      },
-        "genre":  "shows-nights",
         "sid":  142,
         "photos":  [
                        {
@@ -23967,7 +24060,6 @@
         "price_level":  "$$",
         "duration_minutes":  120,
         "min_minutes":  120,
-        "hours":  null,
         "season":  null,
         "phone":  "630-426-9150",
         "website":  "https://windycitycurling.com/index.php/learn-to-curl/register-for-a-learn-to-curl",
@@ -24021,14 +24113,8 @@
         "energy":  "active",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
-        "hours_note":  "No walk-in hours. Learn to Curl classes run on set dates through the season and fill up fast; book online when new dates appear.",
         "booking":  "required",
         "booking_url":  "https://windycitycurling.com/index.php/learn-to-curl/register-for-a-learn-to-curl",
-        "verified":  {
-                         "status":  "unverified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://windycitycurling.com/index.php/learn-to-curl/register-for-a-learn-to-curl"
-                     },
         "tags":  [
                      "date",
                      "friends",
@@ -24039,6 +24125,50 @@
                      "suburbs"
                  ],
         "age_note":  "Age rules for public classes not posted; the club also has a juniors league",
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+
+                              ],
+                      "thu":  [
+
+                              ],
+                      "fri":  [
+
+                              ],
+                      "sat":  [
+
+                              ],
+                      "sun":  [
+
+                              ]
+                  },
+        "date_hours":  {
+                           "2026-11-20":  [
+                                              [
+                                                  "19:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2026-12-04":  [
+                                              [
+                                                  "19:00",
+                                                  "21:00"
+                                              ]
+                                          ]
+                       },
+        "hours_valid_to":  "2026-12-04",
+        "hours_note":  "Learn to Curl runs on set Friday nights, 7-9 pm. Book online; classes fill fast.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://windycitycurling.com/index.php/learn-to-curl/register-for-a-learn-to-curl"
+                     },
         "sid":  171,
         "photos":  [
                        {
@@ -51750,11 +51880,9 @@
         "lng":  -88.2818967,
         "indoor_outdoor":  "outdoor",
         "price_level":  "$$",
-        "price_note":  "$49.99 per carload; season pass $69.99",
         "duration_minutes":  50,
         "min_minutes":  40,
         "hours":  null,
-        "hours_note":  "Open most nights; times vary by date.",
         "season":  {
                        "open_from":  "2026-11-20",
                        "open_to":  "2027-01-02",
@@ -51769,11 +51897,6 @@
                             "http://santasrocknlights.com/geneva",
                             "http://santasrocknlights.com/"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://santasrocknlights.com/geneva"
-                     },
         "hook":  "Drive 2 miles of lights synced to your car radio",
         "energy":  "chill",
         "vibe":  "quiet",
@@ -51794,6 +51917,156 @@
                          "friends"
                      ],
         "genre":  "nature-animals",
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-20T18:00",
+                                "end":  "2026-11-20T22:00"
+                            },
+                            {
+                                "start":  "2026-11-21T17:00",
+                                "end":  "2026-11-21T22:00"
+                            },
+                            {
+                                "start":  "2026-11-22T17:00",
+                                "end":  "2026-11-22T21:00"
+                            },
+                            {
+                                "start":  "2026-11-27T17:00",
+                                "end":  "2026-11-27T22:00"
+                            },
+                            {
+                                "start":  "2026-11-28T17:00",
+                                "end":  "2026-11-28T22:00"
+                            },
+                            {
+                                "start":  "2026-11-29T17:00",
+                                "end":  "2026-11-29T21:00"
+                            },
+                            {
+                                "start":  "2026-12-02T17:00",
+                                "end":  "2026-12-02T21:00"
+                            },
+                            {
+                                "start":  "2026-12-03T17:00",
+                                "end":  "2026-12-03T21:00"
+                            },
+                            {
+                                "start":  "2026-12-04T17:00",
+                                "end":  "2026-12-04T21:00"
+                            },
+                            {
+                                "start":  "2026-12-05T17:00",
+                                "end":  "2026-12-05T22:00"
+                            },
+                            {
+                                "start":  "2026-12-06T17:00",
+                                "end":  "2026-12-06T21:00"
+                            },
+                            {
+                                "start":  "2026-12-09T17:00",
+                                "end":  "2026-12-09T21:00"
+                            },
+                            {
+                                "start":  "2026-12-10T17:00",
+                                "end":  "2026-12-10T21:00"
+                            },
+                            {
+                                "start":  "2026-12-11T17:00",
+                                "end":  "2026-12-11T22:00"
+                            },
+                            {
+                                "start":  "2026-12-12T17:00",
+                                "end":  "2026-12-12T22:00"
+                            },
+                            {
+                                "start":  "2026-12-13T17:00",
+                                "end":  "2026-12-13T21:00"
+                            },
+                            {
+                                "start":  "2026-12-15T17:00",
+                                "end":  "2026-12-15T21:00"
+                            },
+                            {
+                                "start":  "2026-12-16T17:00",
+                                "end":  "2026-12-16T21:00"
+                            },
+                            {
+                                "start":  "2026-12-17T17:00",
+                                "end":  "2026-12-17T21:00"
+                            },
+                            {
+                                "start":  "2026-12-18T17:00",
+                                "end":  "2026-12-18T21:00"
+                            },
+                            {
+                                "start":  "2026-12-19T17:00",
+                                "end":  "2026-12-19T22:00"
+                            },
+                            {
+                                "start":  "2026-12-20T17:00",
+                                "end":  "2026-12-20T22:00"
+                            },
+                            {
+                                "start":  "2026-12-21T17:00",
+                                "end":  "2026-12-21T22:00"
+                            },
+                            {
+                                "start":  "2026-12-22T17:00",
+                                "end":  "2026-12-22T22:00"
+                            },
+                            {
+                                "start":  "2026-12-23T17:00",
+                                "end":  "2026-12-23T22:00"
+                            },
+                            {
+                                "start":  "2026-12-24T17:00",
+                                "end":  "2026-12-24T22:00"
+                            },
+                            {
+                                "start":  "2026-12-25T17:00",
+                                "end":  "2026-12-25T22:00"
+                            },
+                            {
+                                "start":  "2026-12-26T17:00",
+                                "end":  "2026-12-26T22:00"
+                            },
+                            {
+                                "start":  "2026-12-27T17:00",
+                                "end":  "2026-12-27T22:00"
+                            },
+                            {
+                                "start":  "2026-12-28T17:00",
+                                "end":  "2026-12-28T21:00"
+                            },
+                            {
+                                "start":  "2026-12-29T17:00",
+                                "end":  "2026-12-29T21:00"
+                            },
+                            {
+                                "start":  "2026-12-30T17:00",
+                                "end":  "2026-12-30T21:00"
+                            },
+                            {
+                                "start":  "2026-12-31T17:00",
+                                "end":  "2026-12-31T21:00"
+                            },
+                            {
+                                "start":  "2027-01-01T17:00",
+                                "end":  "2027-01-01T22:00"
+                            },
+                            {
+                                "start":  "2027-01-02T17:00",
+                                "end":  "2027-01-02T22:00"
+                            }
+                        ],
+        "hours_note":  "Book a 30-minute arrival slot; the 2-mile drive takes 40-50 minutes. Busiest 6-8 pm Fridays and Saturdays.",
+        "price_note":  "$49.99 per carload of up to 6 ($9.99 more over 6); season pass $69.99",
+        "booking_url":  "https://santasrocknlights.com/2026genevatickets",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://runsignup.com/TicketEvent/SantasRockNLightsGeneva2026/Register/2026-11-20"
+                     },
         "sid":  368,
         "photos":  [
                        {
@@ -52543,8 +52816,6 @@
         "price_note":  "Headliner weeks about $30-$35, VIP seats $45-$50. Kids 12 and under free at the Sunday matinee.",
         "duration_minutes":  90,
         "min_minutes":  75,
-        "hours":  null,
-        "hours_note":  "Sets at 8 pm and 10 pm Monday-Saturday (Monday-Wednesday vary by week). Sunday 4 pm matinee and 8 pm.",
         "season":  null,
         "booking":  "recommended",
         "booking_url":  "https://www.jazzshowcase.com/calendar",
@@ -52562,12 +52833,61 @@
                       "romantic",
                       "cozy"
                   ],
+        "taste_checked":  "2026-11-14",
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "20:00",
+                                      "23:30"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "20:00",
+                                      "23:30"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "20:00",
+                                      "23:30"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "20:00",
+                                      "23:30"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "20:00",
+                                      "23:30"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "20:00",
+                                      "23:30"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "16:00",
+                                      "17:30"
+                                  ],
+                                  [
+                                      "20:00",
+                                      "21:30"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Sets at 8 pm and 10 pm Monday-Saturday (Monday-Wednesday times vary by week). Sunday 4 pm matinee and 8 pm. Hours shown end about 90 minutes after the last set starts.",
         "verified":  {
-                         "status":  "verified",
+                         "status":  "unverified",
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.jazzshowcase.com/visit"
                      },
-        "taste_checked":  "2026-11-14",
         "sid":  376,
         "photos":  [
                        {
@@ -52606,12 +52926,6 @@
         "price_note":  "Early sets free. Cover $15 Sun-Thu, $25 Fri-Sat for the night shows.",
         "duration_minutes":  120,
         "min_minutes":  60,
-        "hours":  null,
-        "hours_note":  "Closed Monday and Tuesday. Free set Wed-Thu 6-8:30 pm, Fri-Sat 5:30-8 pm, Sun 5-8 pm; night shows from 9 or 9:30 pm.",
-        "closed_dates":  [
-                             "2026-11-25",
-                             "2026-11-26"
-                         ],
         "season":  null,
         "booking":  "walk-in",
         "booking_url":  "https://buddyguy.com/",
@@ -52629,12 +52943,55 @@
                       "boozy",
                       "artsy"
                   ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://buddyguy.com/faq/"
-                     },
         "taste_checked":  "2026-11-14",
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+                                  [
+                                      "18:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "18:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "17:30",
+                                      "00:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "17:30",
+                                      "00:30"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "17:00",
+                                      "23:00"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Closed Monday and Tuesday. Free early set Wed-Thu 6-8:30 pm, Fri-Sat 5:30-8 pm, Sun 5-8 pm. Night shows Wed, Thu and Sun at 9:30 pm; Fri 9 pm and 10:30 pm; Sat 9:30 pm and 11 pm. Kitchen until 11 pm. Hours shown end about 90 minutes after the last show starts.",
+        "closed_dates":  [
+                             "2026-11-25",
+                             "2026-11-26"
+                         ],
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.buddyguy.com/faq"
+                     },
         "sid":  377,
         "photos":  [
                        {
@@ -52776,8 +53133,6 @@
         "price_note":  null,
         "duration_minutes":  120,
         "min_minutes":  75,
-        "hours":  null,
-        "hours_note":  "Open Tuesday-Saturday; doors 8 pm, shows usually 9:30 and 11 pm. Sunday and Monday for special events only.",
         "closed_dates":  [
                              "2026-11-26",
                              "2026-12-24",
@@ -52801,12 +53156,51 @@
                       "boozy",
                       "cozy"
                   ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.rosaslounge.com/events"
-                     },
         "taste_checked":  "2026-11-14",
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+                                  [
+                                      "20:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "20:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "20:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "20:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "20:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+
+                              ]
+                  },
+        "hours_note":  "Live music Tuesday-Saturday. Doors 8 pm, show around 9-9:30 pm. Sunday and Monday for special events only. Hours shown end about 90 minutes after showtime.",
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.rosaslounge.com/pages/faq"
+                     },
         "sid":  379,
         "photos":  [
                        {
@@ -52844,8 +53238,6 @@
         "price_note":  "Tickets $5-$25; many shows are sliding-scale.",
         "duration_minutes":  90,
         "min_minutes":  75,
-        "hours":  null,
-        "hours_note":  "Show nights only: doors 7-8 pm, music 7:30-8:30 pm.",
         "season":  null,
         "booking":  "recommended",
         "booking_url":  "https://constellation-chicago.com/",
@@ -52862,12 +53254,123 @@
                       "quiet",
                       "cheap"
                   ],
+        "taste_checked":  "2026-11-14",
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+
+                              ],
+                      "wed":  [
+
+                              ],
+                      "thu":  [
+
+                              ],
+                      "fri":  [
+
+                              ],
+                      "sat":  [
+
+                              ],
+                      "sun":  [
+
+                              ]
+                  },
+        "date_hours":  {
+                           "2026-11-14":  [
+                                              [
+                                                  "20:00",
+                                                  "22:00"
+                                              ]
+                                          ],
+                           "2026-11-15":  [
+                                              [
+                                                  "20:00",
+                                                  "22:00"
+                                              ]
+                                          ],
+                           "2026-11-18":  [
+                                              [
+                                                  "19:00",
+                                                  "21:30"
+                                              ]
+                                          ],
+                           "2026-11-19":  [
+                                              [
+                                                  "19:00",
+                                                  "21:30"
+                                              ]
+                                          ],
+                           "2026-11-21":  [
+                                              [
+                                                  "20:00",
+                                                  "22:00"
+                                              ]
+                                          ],
+                           "2026-11-22":  [
+                                              [
+                                                  "19:00",
+                                                  "21:00"
+                                              ]
+                                          ],
+                           "2026-11-27":  [
+                                              [
+                                                  "20:00",
+                                                  "22:00"
+                                              ]
+                                          ],
+                           "2026-11-28":  [
+                                              [
+                                                  "20:00",
+                                                  "22:00"
+                                              ]
+                                          ],
+                           "2026-12-03":  [
+                                              [
+                                                  "20:00",
+                                                  "22:00"
+                                              ]
+                                          ],
+                           "2026-12-06":  [
+                                              [
+                                                  "20:00",
+                                                  "22:00"
+                                              ]
+                                          ],
+                           "2026-12-13":  [
+                                              [
+                                                  "20:00",
+                                                  "22:00"
+                                              ]
+                                          ],
+                           "2026-12-16":  [
+                                              [
+                                                  "19:30",
+                                                  "21:30"
+                                              ]
+                                          ],
+                           "2026-12-17":  [
+                                              [
+                                                  "20:00",
+                                                  "22:00"
+                                              ]
+                                          ],
+                           "2026-12-18":  [
+                                              [
+                                                  "20:00",
+                                                  "22:00"
+                                              ]
+                                          ]
+                       },
+        "hours_valid_to":  "2026-12-18",
+        "hours_note":  "Open on show nights only. Doors 7-8 pm, music 30-60 minutes later. Hours shown end about 90 minutes after the show starts.",
         "verified":  {
-                         "status":  "verified",
+                         "status":  "unverified",
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://constellation-chicago.com/"
                      },
-        "taste_checked":  "2026-11-14",
         "sid":  380,
         "photos":  [
                        {
@@ -53022,8 +53525,6 @@
         "price_note":  "Cover $10 Monday, $15 Tue-Thu, $20 Fri-Sat",
         "duration_minutes":  120,
         "min_minutes":  75,
-        "hours":  null,
-        "hours_note":  "Doors 6 pm, music from 7 pm. Kitchen until 9:30 pm Tue-Thu and Sun, 10:30 pm Fri-Sat.",
         "season":  null,
         "booking":  "recommended",
         "booking_url":  "https://le-piano.turntabletickets.com",
@@ -53040,12 +53541,57 @@
                       "cozy",
                       "artsy"
                   ],
+        "taste_checked":  "2026-11-14",
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "18:00",
+                                      "20:30"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "18:00",
+                                      "21:30"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "18:00",
+                                      "21:30"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "18:00",
+                                      "21:30"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "18:00",
+                                      "22:30"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "18:00",
+                                      "22:30"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "18:00",
+                                      "21:30"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Doors 6 pm, music from 7 pm. Kitchen until 9:30 pm Tue-Thu and Sun, 10:30 pm Fri-Sat; music can run later. Monday is jam night.",
         "verified":  {
-                         "status":  "verified",
+                         "status":  "unverified",
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.lepianochicago.com/"
                      },
-        "taste_checked":  "2026-11-14",
         "sid":  383,
         "photos":  [
                        {
@@ -53288,8 +53834,6 @@
         "price_note":  "4-week course $120",
         "duration_minutes":  60,
         "min_minutes":  60,
-        "hours":  null,
-        "hours_note":  "Lakeview: Country Tue 6:45 pm, Ballroom \u0026 Swing Wed 6:45 pm, Latin Fri 6:45 pm. West Loop: Wed and Fri 6 pm. Crash course 2nd and 3rd Saturdays 11 am; social dance 4th Saturday 7 pm.",
         "season":  null,
         "booking":  "recommended",
         "booking_url":  "https://www.ballroomdancechicago.com/book-now",
@@ -53306,12 +53850,51 @@
                       "active",
                       "romantic"
                   ],
+        "taste_checked":  "2026-11-14",
+        "hours":  {
+                      "mon":  [
+
+                              ],
+                      "tue":  [
+                                  [
+                                      "12:00",
+                                      "21:30"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "12:00",
+                                      "21:30"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "12:00",
+                                      "21:30"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "12:00",
+                                      "21:30"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "11:00",
+                                      "17:00"
+                                  ]
+                              ],
+                      "sun":  [
+
+                              ]
+                  },
+        "hours_note":  "Group classes, no partner needed. Lakeview: Country Tue 6:45 pm, Ballroom \u0026 Swing Wed 6:45 pm, Smooth technique Thu 6:45 pm, Latin Fri 6:45 pm. West Loop: Wed and Fri 6 pm. Crash course 2nd and 3rd Saturdays 11 am; social dance 4th Saturday 7 pm.",
         "verified":  {
                          "status":  "verified",
                          "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.ballroomdancechicago.com/group-dance-classes-chicago"
+                         "evidence_url":  "https://ballroomdancechicago.com/group-dance-classes-chicago"
                      },
-        "taste_checked":  "2026-11-14",
         "sid":  387,
         "photos":  [
                        {

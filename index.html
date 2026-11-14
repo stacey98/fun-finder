@@ -919,6 +919,16 @@ html.tk-open,html.tk-open body{overscroll-behavior:none}
 .c3-why{margin:4px 0 0;font:500 13px var(--f-body);color:rgb(255 255 255 / .8)}
 .tk-lean{position:absolute;right:12px;bottom:12px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:#fff;color:#0B0A10;font:700 11px/20px var(--f-body);text-align:center}
 .acct-btn .acct-ini{display:grid;place-items:center;width:26px;height:26px;border-radius:999px;background:var(--ink);color:var(--paper);font:700 13px var(--f-body)}
+/* v5.14: the welcome sign-in and taste-test pop-ups (one at a time; short) */
+.panel.pop .p-body{padding-bottom:calc(18px + var(--sab))}
+.gis-host{display:flex;justify-content:center;min-height:44px;margin:4px 0}
+.pop-s{margin:0 0 16px;color:var(--ink-2);font:500 15px/1.4 var(--f-body)}
+.pop .btn-google{min-height:56px;font-size:16px;border-radius:15px}
+.pop .btn-primary{width:100%;flex:none}
+.pop-not{display:block;margin:12px auto 0;min-height:44px;padding:0 16px;font-size:14px}
+.pop-pics{display:flex;gap:8px;margin:0 0 16px}
+.pop-pics img{display:block;flex:1 1 0;min-width:0;width:0;height:auto;max-height:150px;aspect-ratio:3/4;object-fit:cover;border-radius:12px;background:var(--paper-2)}
+.pop-pics img:nth-child(2){transform:rotate(-3deg) translateY(4px)}
 @media (max-height:640px){.tk-top{height:40px}.tk-stage{margin-top:4px}.tk-foot{padding:6px 16px 10px}.tk-hint{display:none}.tk-btns{gap:14px;height:60px}.tk-b.never,.tk-b.love{width:40px;height:40px}.tk-b.no,.tk-b.yes{width:52px;height:52px}.tk-text h2{font-size:20px;line-height:24px;-webkit-line-clamp:1}}
 @media (min-width:900px){.tk-stage{max-width:400px;max-height:560px}.tk-keys{display:block}.tk-grid{grid-template-columns:repeat(3,1fr)}}
 @media (prefers-reduced-motion:reduce){.tk-card.nudge{animation:none}.tk-prog i{transition:none}}
@@ -956,6 +966,7 @@ html.tk-open,html.tk-open body{overscroll-behavior:none}
   .home{right:auto;width:var(--side);box-shadow:2px 0 18px var(--shadow)}
   #app.picking .home,#app.picking .sheet{visibility:visible}
   .mapbar,.mapcard,.mapcredit{display:none!important}
+  #bwAcct{display:none!important}   /* v5.14: the laptop keeps the account button in the top-right map buttons */
   .detail{right:auto;width:440px;box-shadow:2px 0 24px var(--shadow)}
   .zoomctl{display:flex;flex-direction:column;gap:10px;position:absolute;right:16px;bottom:24px;z-index:20}
   .zoomctl .fab{font:700 22px/1 var(--f-body)}
@@ -1213,6 +1224,7 @@ body{background:var(--paper)}
   </div>
   <div class="fabs">
     <button id="savedBtn" class="fab" type="button" aria-label="Saved"><svg class="i"><use href="#i-bookmark"/></svg><span class="count" id="savedCount" hidden>0</span></button>
+    <button id="acctFab" class="fab acct-btn" type="button" data-act="acct" aria-label="Sign in" hidden><svg class="i"><use href="#i-user"/></svg></button>
     <button id="recenterBtn" class="fab" type="button" aria-label="Back to my pin" hidden><svg class="i"><use href="#i-target"/></svg></button>
   </div>
   <div class="zoomctl"><button id="zoomIn" class="fab" type="button" aria-label="Zoom in">+</button><button id="zoomOut" class="fab" type="button" aria-label="Zoom out">&minus;</button></div>
@@ -1226,6 +1238,7 @@ body{background:var(--paper)}
         <button class="icon-btn" id="bwBack" type="button" aria-label="Back to the three picks"><svg class="i"><use href="#i-back"/></svg></button>
         <div class="field"><svg class="i"><use href="#i-search"/></svg><label class="vh" for="q">Search places and events</label><input id="q" type="search" placeholder="Karaoke, cheese, Pilsen" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"><button class="q-clear" id="qClear" type="button" aria-label="Clear the search" hidden><svg class="i"><use href="#i-close"/></svg></button></div>
         <button class="icon-btn" id="bwSaved" type="button" aria-label="Saved and Been"><svg class="i"><use href="#i-bookmark"/></svg></button>
+        <button class="icon-btn acct-btn" id="bwAcct" type="button" data-act="acct" aria-label="Sign in" hidden><svg class="i"><use href="#i-user"/></svg></button>
       </div>
       <p class="kicker" id="kicker" hidden>&nbsp;</p>
       <p class="quiet" id="sentence"><button class="fill" id="fillWhen" type="button">Now</button><span>near</span><button class="fill" id="fillLoc" type="button">The&nbsp;Loop</button><span id="budgetBit" hidden>&middot; <button class="fill" id="fillTime" type="button">1&nbsp;hr</button> only</span></p>
@@ -1284,6 +1297,8 @@ body{background:var(--paper)}
   <section id="pTip" class="panel" hidden role="dialog" aria-labelledby="pTipTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pTipTitle" tabindex="-1">Send a tip</h2><button class="p-close" type="button" data-close="pTip" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pTipBody"></div><div class="p-foot"><button class="btn-primary" id="tipGo" type="button">Send tip</button></div></section>
   <section id="pSurprise" class="panel board" hidden role="dialog" aria-labelledby="pSurpriseTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title vh" id="pSurpriseTitle" tabindex="-1">Surprise me</h2><span></span><button class="p-close" type="button" data-close="pSurprise" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pSurpriseBody" aria-live="polite"></div></section>
   <section id="pPoll" class="panel tall" hidden role="dialog" aria-labelledby="pPollTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pPollTitle" tabindex="-1">Which one?</h2><button class="p-close" type="button" data-close="pPoll" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pPollBody"></div></section>
+  <section id="pWelcome" class="panel pop" hidden role="dialog" aria-labelledby="pWelcomeTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pWelcomeTitle" tabindex="-1">Welcome to Off-Grid</h2><button class="p-close" type="button" data-close="pWelcome" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pWelcomeBody"></div></section>
+  <section id="pTasteInv" class="panel pop" hidden role="dialog" aria-labelledby="pTasteInvTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pTasteInvTitle" tabindex="-1">What's your kind of fun?</h2><button class="p-close" type="button" data-close="pTasteInv" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pTasteInvBody"></div></section>
   <div id="taste" class="taste" hidden role="dialog" aria-modal="true" aria-label="Your taste"></div>
   <div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
 </div>
@@ -1297,7 +1312,7 @@ body{background:var(--paper)}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.13 (2026-11-14)';
+var VERSION = 'v5.14 (2026-11-14)';
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
 var TITLE_AT_LOAD = (function(){ try { return document.title; } catch (e) { return ''; } })();   // the static <title> (the publisher reads it); self-test checks it equals APP_NAME
@@ -4037,12 +4052,26 @@ function tastePick(local, remote, remoteAt){
 }
 function tasteForCloud(T){ var c = JSON.parse(JSON.stringify(T)); c.log = c.log.slice(-300); return c; }
 /* v5.12 (coordinator): a visible account button on Home. Website only (not claude.ai / a local file, where accounts are off). */
+/* v5.14: the same button also sits in the map's top-right buttons (#acctFab) and the Browse header (#bwAcct). The v5.12 button lived
+   only inside the Home screen, so it vanished on the Map screen and in Browse (owner 2026-11-14: "only shows in the list view"). */
+function acctBtnModel(state, name){ // -> null (accounts off here) | {label, ini}
+  if (!state || state === 'off') return null;
+  var inn = (state === 'in' || state === 'cached') && name;
+  return {label:inn ? 'Account: @' + name : 'Sign in', ini:inn ? String(name).charAt(0).toUpperCase() : ''};
+}
+function acctBtnInner(m){ return m.ini ? '<span class="acct-ini" aria-hidden="true">' + esc(m.ini) + '</span>' : glyphSvg('i-user'); }
+function syncAcctButtons(){
+  var m = acctBtnModel(Acct.state, acctName());
+  ['acctFab', 'bwAcct'].forEach(function(id){
+    var b = $(id); if (!b) return;
+    b.hidden = !m; if (!m) return;
+    var k = m.label + '|' + m.ini;
+    if (b.getAttribute('data-k') !== k) { b.setAttribute('data-k', k); b.setAttribute('aria-label', m.label); b.innerHTML = acctBtnInner(m); b.classList.toggle('in', !!m.ini); }
+  });
+}
 function homeIconsHTML(state, name){
-  var acct = '';
-  if (state && state !== 'off') {
-    var inn = (state === 'in' || state === 'cached') && name;
-    acct = '<button class="icon-btn acct-btn' + (inn ? ' in' : '') + '" type="button" data-act="acct" aria-label="' + (inn ? 'Account: @' + esc(name) : 'Sign in') + '">' + (inn ? '<span class="acct-ini" aria-hidden="true">' + esc(String(name).charAt(0).toUpperCase()) + '</span>' : glyphSvg('i-user')) + '</button>';
-  }
+  var acct = '', m = acctBtnModel(state, name);
+  if (m) acct = '<button class="icon-btn acct-btn' + (m.ini ? ' in' : '') + '" type="button" data-act="acct" aria-label="' + esc(m.label) + '">' + acctBtnInner(m) + '</button>';
   return '<div class="hm-icons"><button class="icon-btn" type="button" data-act="theme" aria-label="Theme">' + glyphSvg('i-palette') + '</button><button class="icon-btn" type="button" data-act="search" aria-label="Search">' + glyphSvg('i-search') + '</button><button class="icon-btn" type="button" data-act="saved" aria-label="Saved and Been">' + glyphSvg('i-bookmark') + '</button>' + acct + '</div>';
 }
 function swipeDecision(dx, dy, vx, vy){ // §3b: past 96 px across or 110 px up/down, or a flick over 0.5 px/ms; diagonals count as the bigger direction
@@ -5586,6 +5615,7 @@ function refresh(){
   if (key !== UI.viewKey && !UI.picking && DATA_LOADED) { var first = !UI.viewKey; UI.viewKey = key; UI.pinAnim = !reduceMotion(); fitToPins(res, !first); }
   recluster();
   var n = savedIds.length; $('savedCount').hidden = !n; $('savedCount').textContent = n; $('savedBtn').setAttribute('aria-label', 'Saved, ' + n + (n === 1 ? ' item' : ' items'));
+  syncAcctButtons();   // v5.14: the account button on the Map screen and in Browse too
   if (!isWide() && !Sheet.drag) applySheet(Sheet.state, false);
   if (UI.detailId) { var c = findComputed(UI.detailId); if (c) renderDetail(c, true); }
   if (UI.draft && !$('pFilters').hidden && DATA_LOADED && !UI.draftReady) { UI.draftReady = true; renderFilters(); }   // the sheet was opened before the list loaded
@@ -5704,7 +5734,7 @@ function renderSaved(){
    location are in the link. Link layout (spec 2.1/2.3): "#w_" + "1" + list key (4) + day (2) + mode (d|b) + payload + check (1). */
 var WL_B64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_', WL_A62 = WL_B64.slice(0, 62);
 var WL_EPOCH = '2026-01-01', WL_MAX_PAYLOAD = 1500, WL_MAX_LISTS = 30, WL_MAX_SID = 100000, WL_MAX_N = 2000, WL_MAX_LEN = 2000;
-var SITE_URL = 'https://stacey98.github.io/fun-finder/';   // share links made inside claude.ai (or a local file) point at the website
+var SITE_URL = 'https://stacey98.github.io/off-grid/';   // v5.14: the site moved from /fun-finder/ (old links still decode: the decoders read only the #part). Share links made inside claude.ai (or a local file) point at the website
 var FRIENDS_KEY = 'cff.friends.v1', LISTKEY_KEY = 'cff.listkey.v1', INCOMING_KEY = 'cff.incoming.v1';
 var FRIENDS = [], SID_INDEX = {}, ID_SID = {}, WL_WANTS = {}, WL_INIT = {};
 /* ----- pure: encoding (the self-test checks the spec's worked example) ----- */
@@ -6216,6 +6246,7 @@ function acctIncoming(){ return (Acct.friends || []).filter(function(f){ return 
 function acctRedraw(){
   wlRebuild(); UI.homeHTML = null;
   try { $('savedBtn').classList.toggle('reqdot', acctIncoming().length > 0); } catch (e) {}
+  try { syncAcctButtons(); } catch (e) {}   // v5.14
   if (DATA_LOADED || mapEl) refresh();
   if (!$('pSaved').hidden) renderSaved();
   if (!$('pFriends').hidden) renderFriends();
@@ -6274,6 +6305,7 @@ function acctOnSession(session, ev){
   }
   var changed = !Acct.user || Acct.user.id !== u.id;
   Acct.user = u; Acct.state = 'in';
+  Platform.store.set(EVERIN_KEY, true);   // v5.14: never show the welcome sign-in pop-up on this phone again
   acctCleanUrl(false);
   if (Acct.cachedUid && Acct.cachedUid !== u.id) { LIVE = []; Acct.friends = []; Acct.invites = []; Acct.settings = null; Acct.cachedName = ''; }   // a different person signed in on this phone
   Acct.cachedUid = u.id;
@@ -6287,6 +6319,69 @@ function acctSignIn(){
     if (!cl) { toast('Couldn\'t reach the account service. Try again later.'); return; }
     return cl.auth.signInWithOAuth({provider:'google', options:{redirectTo:acctRedirect()}}).then(function(r){ if (r && r.error) throw r.error; });
   })['catch'](function(){ Acct.state = 'out'; acctRedraw(); toast('Couldn\'t start sign-in. Try again.'); });
+}
+/* ----- v5.14: Google's own "Sign in with Google" button (Google Identity Services) -----
+   Owner 2026-11-14: Google's redirect page said it continues to "dhpfjmlukcznwypdpfuu.supabase.co", which looked scary. With GIS,
+   Google's pop-up names this site instead. Google gets the SHA-256 of a one-time nonce; Supabase gets the nonce itself and checks
+   the match (supabase.auth.signInWithIdToken). The GIS script loads only on the website, and only once a sign-in button is shown.
+   If it can't load (blocked, offline, an old browser), our own button stays and uses the old redirect flow. */
+var GOOGLE_CLIENT_ID = '34865153701-gk4bs01ldoam7tqe0dhgojf1u6ui9u0t.apps.googleusercontent.com';   // public by design (not a secret)
+var GIS_JS = 'https://accounts.google.com/gsi/client';
+var GIS = {state:'', raw:'', obs:null, tm:null, n:0};   // state: '' | loading | ready | failed
+function gisWanted(){ return cloudHost() && !!(window.crypto && window.crypto.subtle && window.TextEncoder); }
+function randNonce(){ var a = new Uint8Array(24); window.crypto.getRandomValues(a); return Array.prototype.map.call(a, function(b){ return ('0' + b.toString(16)).slice(-2); }).join(''); }
+function sha256Hex(s){ return window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)).then(function(buf){ return Array.prototype.map.call(new Uint8Array(buf), function(b){ return ('0' + b.toString(16)).slice(-2); }).join(''); }); }
+function gisInit(){ // a fresh nonce for every sign-in attempt
+  var raw = randNonce();
+  return sha256Hex(raw).then(function(hashed){
+    GIS.raw = raw;
+    window.google.accounts.id.initialize({client_id:GOOGLE_CLIENT_ID, callback:gisCallback, nonce:hashed, ux_mode:'popup', auto_select:false, cancel_on_tap_outside:true, itp_support:true, use_fedcm_for_button:true});
+  });
+}
+function gisLoad(){
+  if (!gisWanted() || GIS.state) return;
+  GIS.state = 'loading';
+  var sc = document.createElement('script'), tm = setTimeout(function(){ fail(); }, 10000);
+  function fail(){ if (GIS.state === 'loading') GIS.state = 'failed'; }
+  sc.src = GIS_JS; sc.async = true;
+  sc.onload = function(){
+    clearTimeout(tm);
+    if (!window.google || !window.google.accounts || !window.google.accounts.id) { fail(); return; }
+    gisInit().then(function(){ GIS.state = 'ready'; gisMountAll(); }, fail);
+  };
+  sc.onerror = function(){ clearTimeout(tm); fail(); };
+  document.head.appendChild(sc);
+}
+function gisMountAll(){ // swap each of our sign-in buttons for Google's (ours stays, hidden, as the fallback)
+  if (GIS.state !== 'ready') return;
+  Array.prototype.forEach.call(document.querySelectorAll('.btn-google[data-acct="signin"], [data-pop="signin"]'), function(btn){
+    if (btn.getAttribute('data-gis') === '1' || !btn.offsetParent && !btn.closest('.panel')) return;
+    var host = document.createElement('div'); host.className = 'gis-host';
+    btn.parentNode.insertBefore(host, btn);
+    var w = Math.max(200, Math.min(400, Math.round((btn.offsetWidth || (btn.parentNode && btn.parentNode.offsetWidth) || 320))));
+    try {
+      window.google.accounts.id.renderButton(host, {type:'standard', theme:'outline', size:'large', text:'signin_with', shape:'pill', logo_alignment:'center', width:w});
+      btn.setAttribute('data-gis', '1'); btn.hidden = true;
+    } catch (e) { if (host.parentNode) host.parentNode.removeChild(host); }
+  });
+}
+function gisWatch(){ // our sign-in buttons appear in many places (account sheet, Saved, About, the welcome pop-up): watch for them
+  if (!gisWanted() || GIS.obs || !window.MutationObserver) return;
+  GIS.obs = new MutationObserver(function(){
+    clearTimeout(GIS.tm);
+    GIS.tm = setTimeout(function(){ if (document.querySelector('.btn-google[data-acct="signin"]:not([data-gis]), [data-pop="signin"]:not([data-gis])')) { if (!GIS.state) gisLoad(); else gisMountAll(); } }, 30);
+  });
+  GIS.obs.observe($('app'), {childList:true, subtree:true});
+}
+function gisCallback(resp){
+  var token = resp && resp.credential, raw = GIS.raw;
+  if (!token) { toast('Sign-in didn\'t finish. Try again.'); return; }
+  Acct.state = 'loading'; acctRedraw(); closePanel('pSmall'); closePanel('pWelcome');
+  acctLoad().then(function(cl){
+    if (!cl) throw {message:'offline'};
+    return cl.auth.signInWithIdToken({provider:'google', token:token, nonce:raw}).then(function(r){ if (r && r.error) throw r.error; });
+  })['catch'](function(){ Acct.state = 'out'; acctRedraw(); toast('Couldn\'t sign in. Try again.'); })
+    .then(function(){ if (window.google && window.google.accounts) return gisInit(); });   // the nonce is used once
 }
 function acctSignOut(){
   var cl = Acct.client;
@@ -6393,6 +6488,7 @@ function acctNameSave(){
   acctRpc('claim_username', {p_username:v, p_display:String(md.full_name || md.name || '').slice(0, 40)}).then(function(r){
     if (r === 'ok') { closePanel('pSmall'); toast('You\'re @' + v); Acct.cachedName = v; acctSync('name'); }
     else if (r === 'taken') bad('That one\'s taken.');
+    else if (r === 'signin') bad('Your sign-in ran out. Sign out and sign in again.');
     else bad('Use 3-20 letters, numbers, dots or underscores.');
   }, function(e){ acctFail(e); });
 }
@@ -6582,7 +6678,7 @@ function renderFriends(){
   function sw(k, on, label, sub){ return '<div class="sw-row"><span>' + label + (sub ? '<small>' + sub + '</small>' : '') + '</span><button class="switch" type="button" data-acct="sw" data-v="' + k + '" aria-pressed="' + !!on + '" aria-label="' + esc(label) + '"></button></div>'; }
   function sec(t){ return '<h3 class="fsec-h">' + esc(t) + '</h3>'; }
   if (Acct.offline) h += '<p class="band">' + esc(offlineText(Acct.lastSync)) + '. Changes here need a connection. <button class="linkbtn" type="button" data-acct="retry">Try again</button></p>';
-  if (!acctName()) { b.innerHTML = h + '<p class="p-note">Pick a username first, so friends can find you.</p><button class="btn-primary" type="button" data-acct="name" style="width:100%">Pick a username</button>'; return; }
+  if (!acctName()) { b.innerHTML = h + '<p class="p-note">Pick a username first, so friends can find you.</p><button class="btn-primary" type="button" data-acct="name" style="width:100%">Pick a username</button><p class="acct-l"><button class="linkbtn" type="button" data-close="pFriends">Not now</button><span aria-hidden="true">·</span><button class="linkbtn" type="button" data-acct="signout">Sign out</button></p>'; return; }   // v5.14: skippable, and Sign out is here too
   h += sec('Add a friend') + '<button class="frrow" type="button" data-acct="invite">' + glyphSvg('i-share') + '<span>Send an invite link</span>' + glyphSvg('i-right', 'i chev') + '</button>' +
     '<p class="fr-or">or</p><div class="frfind"><label class="vh" for="frFind">Username</label><div class="field uname"><span aria-hidden="true">@</span><input id="frFind" type="text" maxlength="21" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" placeholder="username"></div><button class="btn-primary" type="button" data-acct="find">Find</button></div><div id="frFindOut" aria-live="polite"></div>';
   var inc = acctIncoming(), out = Acct.friends.filter(function(f){ return f.status === 'pending' && f.direction === 'out'; }), acc = Acct.friends.filter(function(f){ return f.status === 'accepted'; }), blk = Acct.friends.filter(function(f){ return f.status === 'blocked'; });
@@ -6615,7 +6711,7 @@ function acctClick(el){
   if (Acct.demo && /^(signin|signout|delete2|name-save|find|req|accept|notnow|remove|block2|unblock|invite|cancelinv|share-invite|inv-yes|retry|sw)$/.test(a)) { if (a !== 'remove' || el.classList.contains('arm')) { toast('Test mode: nothing was sent.'); return; } }
   switch (a) {
     case 'signin': closePanel('pSmall'); acctSignIn(); break;
-    case 'signout': acctSignOut(); break;
+    case 'signout': closePanel('pSmall'); closePanel('pFriends'); acctSignOut(); break;
     case 'delete': acctDeleteAsk(); break;
     case 'delete2': acctDelete(); break;
     case 'name': acctAskName(); break;
@@ -7262,7 +7358,11 @@ function closeDetail(){
 var openStack = [];
 function openPanel(id, modal){
   var el = $(id);
-  if (openStack.indexOf(id) < 0) openStack.push(id);
+  var at = openStack.indexOf(id); if (at >= 0) openStack.splice(at, 1);
+  openStack.push(id);
+  // v5.14 root cause of "Pick a username does nothing" (owner's iPhone): every panel had the same z-index, so a sheet opened from a
+  // panel that comes later in the page (Friends, Saved, About...) opened BEHIND it, out of sight. The newest panel is now always on top.
+  el.style.zIndex = String(70 + openStack.length);
   el.hidden = false; void el.offsetWidth; el.classList.add('on');
   el.dataset.modal = modal === false ? '0' : '1';
   syncScrim();
@@ -7272,10 +7372,11 @@ function closePanel(id){
   var el = $(id); if (!el) return;
   el.classList.remove('on');
   var i = openStack.indexOf(id); if (i >= 0) openStack.splice(i, 1);
-  setTimeout(function(){ if (!el.classList.contains('on')) el.hidden = true; }, 320);
+  setTimeout(function(){ if (!el.classList.contains('on')) { el.hidden = true; el.style.zIndex = ''; } }, 320);
   if (id === 'pLoc') { UI.picking = false; UI.cand = null; mapEl.classList.remove('picking'); $('brand').hidden = true; $('app').classList.remove('onb'); $('app').classList.remove('picking'); recluster(); }
   if (id === 'pTime' || id === 'pFilters') { UI.showRing = false; updateRing(); if (id === 'pFilters') { UI.draft = null; UI.draftB = null; } }
   if (id === 'pFriend' && !UI.friendHide) wlClosed();
+  if (id === 'pWelcome' || id === 'pTasteInv') popClosed(id);   // v5.14
   if (id === 'pPoll' && !UI.pollReturn) { pollClearHash(); PL.cur = null; if (UI.locAfterPoll) { UI.locAfterPoll = false; if (UI.firstOpen) setTimeout(function(){ if (UI.firstOpen && $('pLoc').hidden) openLocation(true); }, 340); } }   // v5.8 (not when it only steps aside for a place's detail)
   syncScrim();
 }
@@ -7833,15 +7934,105 @@ function tasteNagHTML(){ // first open: a skippable invite, never forced; after 
   if (!TASTE || !DATA_LOADED) return '';
   var cards = tasteCardCount(TASTE);
   if (cards) { var w = traitWords(tasteNow(), 2); return '<p class="tk-link"><button class="linkbtn" type="button" data-act="taste">' + glyphSvg('i-heart') + 'Your taste' + (w.length ? ': ' + esc(w.join(' · ')) : '') + ' ›</button></p>'; }
-  var x = '<button class="tk-nagx" type="button" data-act="tastenagx" aria-label="Not now">' + glyphSvg('i-close') + '</button>';
-  if (TASTE.nag.shown === 0) return '<div class="tk-nag"><div><p class="tk-nag-t">Teach ' + esc(APP_NAME) + ' your taste</p><p class="tk-nag-s">Swipe a few photos · 1 min</p></div><button class="mini-btn" type="button" data-act="tastego">Start</button>' + x + '</div>';
-  if (TASTE.nag.shown === 1 && savedIds.length >= 3) return '<div class="tk-nag"><div><p class="tk-nag-t">Want it to learn faster?</p><p class="tk-nag-s">Swipe 5 · 15 s</p></div><button class="mini-btn" type="button" data-act="tastemini">Swipe 5</button>' + x + '</div>';
+  // v5.14 (owner 2026-11-14: "It's kind of in the bottom. You're not going to really see it"): the big invite boxes down here are gone;
+  // the taste test now starts from a pop-up on open (popNext). This small link stays as the quiet way back in.
   return '<p class="tk-link"><button class="linkbtn" type="button" data-act="taste">' + glyphSvg('i-heart') + 'Teach it your taste ›</button></p>';
 }
 function openAccount(){ // v5.12 (coordinator): the Home account button
   if (Acct.state === 'off') { renderAbout(); openPanel('pAbout'); return; }
-  if (acctSignedIn() || Acct.demo) { openFriends(); return; }
+  // v5.14 (owner: "can't sign out"): signed in, the person button opens the account sheet (username, Friends, Privacy, Sign out),
+  // not Friends, so Sign out is always one tap away, with or without a username.
+  if (acctSignedIn() || Acct.demo) { openSmall('Your account', function(){ $('pSmallBody').innerHTML = acctCardHTML(Acct.state === 'loading' ? 'in' : Acct.state); }); return; }
   openSmall('Your account', function(){ $('pSmallBody').innerHTML = '<p class="small">Sign in to sync your saves on every device and see what friends want to do.</p>' + acctCardHTML(Acct.state === 'loading' ? 'loading' : 'out'); });
+}
+/* ================= v5.14 pop-ups on open: "Sign in with Google", then the swipe taste test =================
+   Owner 2026-11-14: "I want it to be a pop-up when you open an app to sign in. And then also afterwards a taste test ... popping up
+   right away. People can close it if they want to."
+   Rules: one pop-up at a time, never on top of anything else (a place link, a poll, a friend's list, the been link, the first-open
+   location sheet, any panel); they wait until the screen is free. Sign-in only on the website (claude.ai / a local file skip it).
+   Closed = not again for a week; never again after a sign-in on this phone (sign-in) or after the taste test is done (taste). */
+var POP_WEEK = 7 * 86400000, WELCOME_KEY = 'og.welcome.v1', TASTEINV_KEY = 'og.tasteinv.v1', EVERIN_KEY = 'og.signedin.v1';
+var POPS = {cur:'', iv:null, free:0, t0:0, force:'', off:false, shown:{}, log:[]};
+function popNext(o){ // pure. o: {busy, cloud, acct, everIn, welcomeAt, tasteDone, tasteAt, now, shown:{welcome, taste}} -> 'welcome' | 'taste' | 'wait' | ''
+  var sh = o.shown || {};
+  if (o.busy) return 'wait';
+  if (o.cloud && o.acct === 'loading') return 'wait';   // a sign-in is coming back: wait for it
+  if (o.cloud && o.acct === 'out' && !o.everIn && !sh.welcome && !(o.welcomeAt && o.now - o.welcomeAt < POP_WEEK)) return 'welcome';
+  if (!o.tasteDone && !sh.taste && !(o.tasteAt && o.now - o.tasteAt < POP_WEEK)) return 'taste';
+  return '';
+}
+function popTestHash(h){ // test hooks and screenshots keep the screen clean; real links (place, poll, been, friend list, invite, guide) only make the pop-ups wait
+  h = String(h || '');
+  if (/^#(been=|poll=|w_|f_|guide=)/.test(h)) return false;
+  return /selftest|=/.test(h);
+}
+function tasteIsDone(){ return !!(TASTE && (TASTE.done || tasteCardCount(TASTE) >= 8)); }
+function popBlocked(){ // something else is on screen (or about to be): the pop-ups wait
+  try {
+    if (openStack.length || UI.picking || UI.pendingItem || PL.cur || UI.detailId) return true;
+    if (!$('detail').hidden || !$('taste').hidden || !$('selftest').hidden) return true;
+    if ($('app').classList.contains('onb')) return true;
+  } catch (e) { return true; }
+  return false;
+}
+function popCtx(now){
+  var cloud = cloudHost(), busy = !DATA_LOADED || popBlocked() || (POPS.link && now - POPS.t0 < 5000);
+  if (cloud && (Acct.syncing || (Acct.state === 'cached' && !Acct.user && now - POPS.t0 < 8000))) busy = true;   // let the account (and a synced taste profile) arrive first
+  return {busy:busy, cloud:cloud, acct:Acct.state, everIn:!!(Platform.store.get(EVERIN_KEY, false) || Acct.cachedUid || Acct.user),
+    welcomeAt:tsOf(Platform.store.get(WELCOME_KEY, '')), tasteDone:tasteIsDone(), tasteAt:tsOf(Platform.store.get(TASTEINV_KEY, '')), now:now, shown:POPS.shown};
+}
+function popInit(){
+  POPS.t0 = Date.now();
+  var h = ''; try { h = location.hash || ''; } catch (e) {}
+  var f = /(?:^#|&)(welcome|tasteinv)=1/.exec(h); if (f) POPS.force = f[1] === 'welcome' ? 'welcome' : 'taste';   // testing hooks: #welcome=1, #tasteinv=1
+  POPS.off = popTestHash(h) && !POPS.force;
+  if (POPS.off) return;
+  var hid = null; try { hid = hashItemId(h); } catch (e) {}
+  POPS.link = /^#(been=|poll=|w_|f_|guide=)/.test(h) || !!hid;   // a link opens first; its screen may need a moment (the invite checks the account first)
+  if (/^#f_/.test(h)) POPS.shown.welcome = true;   // a friend invite brings its own "Sign in to accept"
+  clearInterval(POPS.iv); POPS.iv = setInterval(popTick, 700);
+}
+function popTick(){
+  if (POPS.cur) return;
+  var r;
+  if (POPS.force) r = DATA_LOADED && !popBlocked() ? POPS.force : 'wait';
+  else r = popNext(popCtx(Date.now()));
+  if (r === 'wait') { POPS.free = 0; return; }
+  if (!r) { clearInterval(POPS.iv); POPS.iv = null; return; }
+  if (++POPS.free < 2 && !POPS.force) return;   // the screen must be free for two ticks (no pop-up the instant a panel closes)
+  POPS.force = ''; POPS.free = 0; popShow(r);
+}
+function popPics(){ // three photos of different kinds, most popular first, for the taste invite
+  if (!DATA_LOADED) return [];
+  var seen = {}, out = [];
+  DATA.filter(function(it){ return firstPhoto(it); }).sort(function(a, b){ return popularityOf(b) - popularityOf(a) || (a.id < b.id ? -1 : 1); }).forEach(function(it){
+    var g = genreOf(it); if (out.length >= 3 || seen[g] || g === 'limited') return; seen[g] = 1; out.push(firstPhoto(it).file);
+  });
+  return out;
+}
+function welcomeHTML(){ return '<p class="pop-s">Keep your saves on every device.</p><button class="btn-google" type="button" data-pop="signin">' + googleG() + 'Sign in with Google</button><button class="linkbtn pop-not" type="button" data-pop="not">Not now</button>'; }
+function tasteInvHTML(pics){
+  pics = pics || [];
+  return (pics.length === 3 ? '<div class="pop-pics" aria-hidden="true">' + pics.map(function(f){ return '<img src="' + esc(f) + '" alt="" data-fb="1" loading="eager">'; }).join('') + '</div>' : '') +
+    '<p class="pop-s">Swipe a few photos and we\'ll pick better ideas for you. 1 min.</p><button class="btn-primary" type="button" data-pop="taste">Start</button><button class="linkbtn pop-not" type="button" data-pop="not">Not now</button>';
+}
+function popShow(which){
+  POPS.cur = which; POPS.shown[which] = true; POPS.log.push(which);
+  if (which === 'welcome') { $('pWelcomeTitle').textContent = 'Welcome to ' + APP_NAME; $('pWelcomeBody').innerHTML = welcomeHTML(); openPanel('pWelcome'); }
+  else { var b = $('pTasteInvBody'); b.innerHTML = tasteInvHTML(popPics()); wireImages(b); openPanel('pTasteInv'); }
+}
+function popClosed(id){ // any close (X, Not now, the scrim, Escape) counts as "not now" for a week
+  var which = id === 'pWelcome' ? 'welcome' : 'taste';
+  if (POPS.cur === which) POPS.cur = '';
+  if (!POPS.test) Platform.store.set(which === 'welcome' ? WELCOME_KEY : TASTEINV_KEY, new Date().toISOString());
+  if (!POPS.iv && !POPS.off) POPS.iv = setInterval(popTick, 700);   // the next one (the taste invite after the sign-in one) follows
+}
+function popClick(e){
+  var b = e.target.closest('[data-pop]'); if (!b) return;
+  var a = b.getAttribute('data-pop');
+  if (a === 'signin') { closePanel('pWelcome'); acctSignIn(); }
+  else if (a === 'taste') { if (TASTE) { TASTE.nag.shown = Math.max(TASTE.nag.shown, 1); tasteSave(TASTE, true); } closePanel('pTasteInv'); tasteStartDeck('main'); }
+  else if (a === 'not') closePanel(b.closest('.panel').id);
 }
 /* sync with the account (settings.taste, own row only; see supabase/taste.sql) */
 function tastePushSoon(){
@@ -8250,6 +8441,9 @@ function bindUI(){
     else if (a === 'veto' && c) { surpriseVeto.push(c.item.id); spinSurprise(); }
   });
   $('savedBtn').addEventListener('click', function(){ openLists(UI.listTab); });
+  $('acctFab').addEventListener('click', function(){ openAccount(); });   // v5.14
+  $('pWelcomeBody').addEventListener('click', popClick); $('pTasteInvBody').addEventListener('click', popClick);
+  $('bwAcct').addEventListener('click', function(){ openAccount(); });
   $('recenterBtn').addEventListener('click', function(){ UI.viewKey = null; if (UI.lastRes) fitToPins(UI.lastRes, true); else if (S.loc) focusOn(S.loc.lat, S.loc.lng, Math.min(S.f.radius, 3), true); UI.viewKey = UI.lastVm ? viewKey(UI.lastVm) : null; });
   listRoot.addEventListener('click', onListClick);
   listRoot.addEventListener('keydown', function(e){ if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('row') && e.target.getAttribute('data-id')) { e.preventDefault(); openDetail(e.target.getAttribute('data-id')); } });
@@ -9878,9 +10072,11 @@ function runSelfTest0(){
     eq('worked example: deltas payload is CNAVjI', wlDeltas([3, 17, 18, 40, 300]), 'CNAVjI');
     eq('worked example: the bitset would be 50 characters', wlBits([3, 17, 18, 40, 300]).length, 50);
     eq('worked example encodes to #w_1Qm7xE8dCNAVjI5 (unsorted input, a duplicate)', wlEncode('Qm7x', [300, 3, 17, 18, 40, 17], day), '#w_1Qm7xE8dCNAVjI5');
-    eq('worked example: the whole link', SITE_URL + wlEncode('Qm7x', [3, 17, 18, 40, 300], day), 'https://stacey98.github.io/fun-finder/#w_1Qm7xE8dCNAVjI5');
-    var d = wlDecode('https://stacey98.github.io/fun-finder/#w_1Qm7xE8dCNAVjI5');
+    eq('worked example: the whole link', SITE_URL + wlEncode('Qm7x', [3, 17, 18, 40, 300], day), 'https://stacey98.github.io/off-grid/#w_1Qm7xE8dCNAVjI5');
+    var d = wlDecode('https://stacey98.github.io/off-grid/#w_1Qm7xE8dCNAVjI5');
     eq('worked example decodes: key, day, mode, places', d.ok ? [d.key, d.day, d.mode, d.sids.join('.')].join() : d.why, 'Qm7x,316,d,3.17.18.40.300');
+    var dOld = wlDecode('https://stacey98.github.io/fun-finder/#w_1Qm7xE8dCNAVjI5');
+    eq('v5.14: an old /fun-finder/ list link still decodes the same', dOld.ok ? [dOld.key, dOld.day, dOld.mode, dOld.sids.join('.')].join() : dOld.why, 'Qm7x,316,d,3.17.18.40.300');
     eq('0 saved: no link is made (E13 "Save a place first.")', wlEncode('Qm7x', [], day), '');
     function rt(s){ var h = wlEncode('Ab12', s, day), r = wlDecode(h); return r.ok && r.sids.join() === wlSids(s).join() && r.key === 'Ab12' && r.day === day ? 'ok:' + r.mode + ':' + h.length : (r.why || 'mismatch'); }
     var s200 = [], s287 = [], spread = [], i;
@@ -9914,8 +10110,8 @@ function runSelfTest0(){
     eq('#w_... is never taken as a place id', hashItemId('#w_1Qm7xE8dCNAVjI5'), '');
     eq('a place link still opens the place', hashItemId('#pa-puttery-chicago'), 'pa-puttery-chicago');
     eq('E17 test-hook words are not list links', [why('#selftest'), why('#now=2026-11-13T18:00')].join(), 'none,none');
-    eq('a pasted message with the link inside it opens (E7)', why('My Off-Grid list: 5 places I want to do.\nhttps://stacey98.github.io/fun-finder/#w_1Qm7xE8dCNAVjI5'), 'ok');
-    eq('a pasted link with a trailing period is cut off', why('https://stacey98.github.io/fun-finder/#w_1Qm7xE8dCNAVjI5.'), 'cut');
+    eq('a pasted message with the link inside it opens (E7)', why('My Off-Grid list: 5 places I want to do.\nhttps://stacey98.github.io/off-grid/#w_1Qm7xE8dCNAVjI5'), 'ok');
+    eq('a pasted link with a trailing period is cut off', why('https://stacey98.github.io/off-grid/#w_1Qm7xE8dCNAVjI5.'), 'cut');
     var fit = wlFit(['a', 'b', 'c', 'd'], {a:1, b:40, c:80, d:120}, 3);
     eq('over the size limit: the oldest saves are dropped first (2.5)', [fit.sids.join(), fit.dropped].join('/'), '120/3');
     var fit2 = wlFit(['a', 'x', 'b'], {a:1, b:2});
@@ -10001,7 +10197,7 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.13 (2026-11-14)');
+    eq('version', VERSION, 'v5.14 (2026-11-14)');
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -10523,6 +10719,112 @@ function runSelfTest0(){
     eq('save-rank: top third of all saves, and of map + search only', [sr.top, sr.n, sr.ctop, sr.cn].join(), '2,4,1,2');
     eq('pick 2 of 6 running total', JSON.stringify(p26Total([{round:1, hits:2}, {round:2, hits:1}, {round:1, hits:0}])), '{"x":3,"y":6}');
   });
+  block('v5.14 pop-ups on open: which one, and when (popNext)', function(){
+    var D = 86400000, N = Date.parse('2026-11-14T18:00:00Z');
+    function P(o){ return popNext(ext({busy:false, cloud:true, acct:'out', everIn:false, welcomeAt:0, tasteDone:false, tasteAt:0, now:N, shown:{}}, o || {})); }
+    eq('first open on the website, signed out -> the sign-in pop-up', P(), 'welcome');
+    eq('...then, once it was shown this visit -> the taste test invite right after', P({shown:{welcome:true}}), 'taste');
+    eq('sign-in closed 2 days ago -> no sign-in nag, taste invite instead', P({welcomeAt:N - 2 * D}), 'taste');
+    eq('sign-in closed 8 days ago -> it may show again (at most once a week)', P({welcomeAt:N - 8 * D}), 'welcome');
+    eq('ever signed in on this phone -> never the sign-in pop-up', P({everIn:true}), 'taste');
+    eq('signed in / remembered account -> no sign-in pop-up', [P({acct:'in'}), P({acct:'cached'})].join(), 'taste,taste');
+    eq('claude.ai or a local file (accounts off) -> skip sign-in, taste invite only', P({cloud:false, acct:'off'}), 'taste');
+    eq('a sign-in coming back (loading) -> wait for it', P({acct:'loading'}), 'wait');
+    eq('taste test already done -> nothing after the sign-in one', [P({tasteDone:true}), P({tasteDone:true, welcomeAt:N - D})].join(), 'welcome,');
+    eq('taste invite closed 3 days ago -> nothing; 8 days ago -> again', [P({welcomeAt:N - D, tasteAt:N - 3 * D}), P({welcomeAt:N - D, tasteAt:N - 8 * D})].join(), ',taste');
+    eq('both shown this visit -> nothing more (never twice in one visit)', P({shown:{welcome:true, taste:true}}), '');
+    eq('anything else on screen (a link, a panel, the location sheet) -> wait, never stack', P({busy:true}), 'wait');
+    eq('test hooks keep the screen clean; real links only make pop-ups wait', ['#selftest', '#loc=41.9,-87.6', '#poll=0123456789ab.3.17', '#been=1_1_3-2601', '#w_1abc', '#f_ABCDEFGH', '#pa-puttery-chicago', '#guide=date-night', ''].map(popTestHash).join(), 'true,true,false,false,false,false,false,false,false');
+    ok('this page (#selftest): no pop-ups', POPS.off && !POPS.cur, 'off=' + POPS.off + ' cur=' + POPS.cur);
+    var kT = TASTE, cards = function(n){ var t = emptyTaste(); for (var i = 0; i < n; i++) t.log.push({t:'card', id:'x' + i, ans:'yes'}); return t; };
+    try { var r = []; TASTE = cards(3); r.push(tasteIsDone()); TASTE = cards(8); r.push(tasteIsDone()); TASTE = ext(emptyTaste(), {done:'2026-11-14'}); r.push(tasteIsDone()); TASTE = emptyTaste(); r.push(tasteIsDone());
+      eq('taste test counts as done after the full deck or 8+ cards (3 cards / 8 / finished / none)', r.join(), 'false,true,true,false'); } finally { TASTE = kT; }
+  });
+  block('v5.14 the account button on every screen (owner: "disappears" on the Map screen)', function(){
+    eq('account button model: off -> none; signed out -> "Sign in"; signed in -> initial', JSON.stringify([acctBtnModel('off', ''), acctBtnModel('out', ''), acctBtnModel('in', 'maya'), acctBtnModel('loading', '')]), '[null,{"label":"Sign in","ini":""},{"label":"Account: @maya","ini":"M"},{"label":"Sign in","ini":""}]');
+    ok('the map buttons and the Browse header have their own account button', !!$('acctFab') && !!$('bwAcct') && $('acctFab').getAttribute('data-act') === 'acct', 'missing');
+    var keep = {st:Acct.state, view:UI.view, scr:$('home').scrollTop};
+    var W = window.innerWidth, H = window.innerHeight;
+    function vis(el){ if (!el || el.hidden) return false; var cs = getComputedStyle(el); if (cs.display === 'none' || cs.visibility === 'hidden') return false; var r = el.getBoundingClientRect(); if (!r.width || !r.height) return false; var p = el.parentElement; while (p && p !== document.body) { var pc = getComputedStyle(p); if (pc.display === 'none' || pc.visibility === 'hidden') return false; p = p.parentElement; } return r.left >= -0.5 && r.right <= W + 0.5 && r.top >= -0.5 && r.bottom <= H + 0.5; }
+    function hit(a, b){ var x = a.getBoundingClientRect(), y = b.getBoundingClientRect(); return x.left < y.right - 1 && y.left < x.right - 1 && x.top < y.bottom - 1 && y.top < x.bottom - 1; }
+    var appCls = $('app').className;   // a fresh test browser has the first-open location sheet up (it hides the map buttons on purpose); measure the normal screens
+    try {
+      $('app').classList.remove('onb'); $('app').classList.remove('picking');
+      Acct.state = 'out'; UI.homeHTML = null; $('home').scrollTop = 0;
+      ['home', 'browse', 'map'].forEach(function(v){
+        showView(v); syncAcctButtons();
+        var L = document.querySelectorAll(UI.view === 'home' ? '#homeRoot [data-act="acct"], #acctFab' : UI.view === 'browse' ? '#bwAcct, #acctFab' : '#acctFab'), b = null;   // the buttons that belong to this screen (others sit under another layer)
+        for (var i = 0; i < L.length && !b; i++) if (vis(L[i])) b = L[i];
+        var shown = UI.view + (UI.view !== v ? ' (asked ' + v + ')' : '');
+        var dbg = function(el){ if (!el) return 'none'; var r = el.getBoundingClientRect(), cs = getComputedStyle(el), pp = getComputedStyle(el.parentElement); return (el.id || 'home') + ':h=' + el.hidden + ',d=' + cs.display + ',v=' + cs.visibility + ',pd=' + pp.display + ',r=' + Math.round(r.left) + '/' + Math.round(r.top) + '/' + Math.round(r.width); };
+        ok('website, ' + shown + ' at ' + W + ' px: a "Sign in" button is on screen (' + (b ? (b.id || 'Home header') : 'none') + ')', !!b, Array.prototype.map.call(L, dbg).join(' | '));
+        if (!b) return;
+        // the controls that share the screen in this view (things hidden under another layer don't count)
+        var ids = UI.view === 'map' ? ['savedBtn', 'recenterBtn', 'mapBack', 'mapList', 'mapTheme', 'zoomIn', 'zoomOut'] : UI.view === 'browse' ? ['savedBtn', 'recenterBtn', 'zoomIn', 'zoomOut', 'bwSaved', 'bwBack'] : ['savedBtn', 'recenterBtn', 'zoomIn', 'zoomOut'];
+        var others = ids.map($).filter(function(el){ return el && el !== b && vis(el); });
+        if (UI.view === 'home') Array.prototype.forEach.call(document.querySelectorAll('#homeRoot .hm-icons .icon-btn'), function(el){ if (el !== b && vis(el)) others.push(el); });
+        var clash = others.filter(function(el){ return hit(b, el); }).map(function(el){ return el.id || el.getAttribute('aria-label'); });
+        ok('...' + shown + ': it overlaps no other control', !clash.length, clash.join(', '));
+      });
+      Acct.state = 'off'; syncAcctButtons();
+      ok('accounts off (claude.ai / a local file): the extra account buttons hide', $('acctFab').hidden && $('bwAcct').hidden, 'shown');
+    } finally { Acct.state = keep.st; UI.homeHTML = null; showView(keep.view); syncAcctButtons(); $('home').scrollTop = keep.scr; $('app').className = appCls; }
+  });
+  block('v5.14 the pop-ups themselves', function(){
+    var keep = {shown:ext(POPS.shown, {}), log:POPS.log.slice(), cur:POPS.cur, test:POPS.test};
+    POPS.test = true;   // nothing is written to this phone's storage
+    try {
+      popShow('welcome');
+      var w = $('pWelcome'), wb = $('pWelcomeBody').innerHTML;
+      ok('welcome: open, one big "Sign in with Google" button, a "Not now" link and a close X', w.classList.contains('on') && (wb.match(/data-pop="signin"/g) || []).length === 1 && /Sign in with Google/.test(wb) && /data-pop="not"/.test(wb) && !!w.querySelector('[data-close="pWelcome"]'), wb.slice(0, 160));
+      ok('welcome: few words (under 12 outside the buttons)', $('pWelcomeBody').querySelector('.pop-s').textContent.split(/\s+/).length < 12, $('pWelcomeBody').querySelector('.pop-s').textContent);
+      ok('while it is open, nothing else may pop (blocked)', popBlocked(), 'not blocked');
+      $('pWelcomeBody').querySelector('[data-pop="not"]').click();
+      ok('"Not now" closes it', !w.classList.contains('on') && POPS.cur === '', 'cur=' + POPS.cur);
+      popShow('taste');
+      var t = $('pTasteInv'), tb = $('pTasteInvBody').innerHTML;
+      ok('taste invite: one tap "Start", plus "Not now" and a close X', t.classList.contains('on') && /data-pop="taste"/.test(tb) && /data-pop="not"/.test(tb) && !!t.querySelector('[data-close="pTasteInv"]'), tb.slice(0, 160));
+      ok('...with three photos when the list is loaded', !DATA_LOADED || popPics().length === 3, popPics().length + ' photos');
+      closePanel('pTasteInv');
+      ok('the X closes it', !t.classList.contains('on') && POPS.cur === '', 'cur=' + POPS.cur);
+      ok('Home: the big taste box at the bottom is gone, a small "taste" link stays', tasteNagHTML().indexOf('tk-nag') < 0 && (!DATA_LOADED || tasteNagHTML().indexOf('data-act="taste"') >= 0), tasteNagHTML());
+    } finally { POPS.shown = keep.shown; POPS.log = keep.log; POPS.cur = keep.cur; POPS.test = keep.test; }
+  });
+  block('v5.14 signed in without a username: picker opens on top, sign out always there, closing works (owner\'s iPhone)', function(){
+    var K = {st:Acct.state, user:Acct.user, prof:Acct.profile, cu:Acct.cachedUid, cn:Acct.cachedName, demo:Acct.demo, fr:Acct.friends, stack:openStack.slice()};
+    function top(){ var best = null, z = -1; openStack.forEach(function(id){ var v = +($(id).style.zIndex || 70); if (v >= z) { z = v; best = id; } }); return best; }
+    try {
+      Acct.state = 'in'; Acct.user = {id:'t-user', user_metadata:{full_name:'Test Person'}, email:'tester@example.com'}; Acct.profile = null; Acct.cachedUid = 't-user'; Acct.cachedName = ''; Acct.demo = false; Acct.friends = [];
+      openAccount();
+      var sb = $('pSmallBody').innerHTML;
+      ok('the person button (signed in, no username) opens the account sheet with "Pick a username" AND "Sign out"', !$('pSmall').hidden && /data-acct="name"/.test(sb) && /data-acct="signout"/.test(sb), sb.slice(0, 200));
+      closePanel('pSmall');
+      renderFriends(); openPanel('pFriends');
+      var fb = $('pFriendsBody').innerHTML;
+      ok('Friends without a username: "Pick a username", plus "Not now" and "Sign out"', /data-acct="name"/.test(fb) && /data-acct="signout"/.test(fb) && /data-close="pFriends"/.test(fb), fb.slice(0, 200));
+      $('pFriendsBody').querySelector('[data-acct="name"]').click();
+      ok('tapping "Pick a username" opens the picker ON TOP of Friends (was: behind it, so nothing seemed to happen)', !$('pSmall').hidden && $('pSmall').classList.contains('on') && !!$('unameIn') && top() === 'pSmall' && +$('pSmall').style.zIndex > +$('pFriends').style.zIndex, 'top=' + top() + ' z=' + $('pSmall').style.zIndex + '/' + $('pFriends').style.zIndex);
+      eq('the picker suggests a username from the Google email', $('unameIn').value, 'tester');
+      $('pSmall').querySelector('[data-close="pSmall"]').click();
+      ok('the picker\'s X closes it (skippable)', !$('pSmall').classList.contains('on') && openStack.indexOf('pSmall') < 0, openStack.join());
+      ok('Friends has a working close X', !!$('pFriends').querySelector('[data-close="pFriends"]'), 'missing');
+      $('pFriends').querySelector('[data-close="pFriends"]').click();
+      ok('...and it closes', !$('pFriends').classList.contains('on') && openStack.indexOf('pFriends') < 0, openStack.join());
+      eq('a bad username is caught before anything is sent', [usernameOk('ab'), usernameOk('Stacey.B'), usernameOk('a b c')].join(), 'false,true,false');
+    } finally {
+      ['pSmall', 'pFriends'].forEach(function(id){ if (K.stack.indexOf(id) < 0 && openStack.indexOf(id) >= 0) closePanel(id); });
+      Acct.state = K.st; Acct.user = K.user; Acct.profile = K.prof; Acct.cachedUid = K.cu; Acct.cachedName = K.cn; Acct.demo = K.demo; Acct.friends = K.fr; syncAcctButtons();
+    }
+  });
+  block('v5.14 Google sign-in button (Google Identity Services) and its fallback', function(){
+    ok('the OAuth client ID is set (public value)', /^\d+-[a-z0-9]+\.apps\.googleusercontent\.com$/.test(GOOGLE_CLIENT_ID), GOOGLE_CLIENT_ID);
+    eq('the GIS script is the official one, loaded only on the website', GIS_JS + '|' + (gisWanted() === (cloudHost() && !!(window.crypto && window.crypto.subtle))), 'https://accounts.google.com/gsi/client|true');
+    ok('this page: Google\'s script ' + (cloudHost() ? 'may load (website)' : 'never loads here (not the website)'), cloudHost() || (!GIS.state && !document.querySelector('script[src*="accounts.google.com"]')), 'state=' + GIS.state);
+    var d = document.createElement('div'); d.innerHTML = acctCardHTML('out'); var bt = d.querySelector('.btn-google[data-acct="signin"]');
+    ok('until Google\'s button is ready, our own "Sign in with Google" button is there (redirect fallback)', !!bt && !bt.hidden, d.innerHTML.slice(0, 120));
+    var n = randNonce ? (window.crypto && window.crypto.getRandomValues ? randNonce() : '') : '';
+    ok('a fresh 48-character nonce for each attempt', !window.crypto || (n.length === 48 && n !== randNonce()), n);
+  });
   block('v5.13 deals: which days count (#11)', function(){
     eq('"Wed" on Wed Nov 18 / Thu Nov 19', dealDayOk('Wed', '2026-11-18') + ',' + dealDayOk('Wed', '2026-11-19'), 'true,false');
     eq('"weekdays" Fri / Sat; "daily" Sun', [dealDayOk('weekdays', '2026-11-20'), dealDayOk('weekdays', '2026-11-21'), dealDayOk('daily', '2026-11-22')].join(), 'true,false,true');
@@ -10558,8 +10860,11 @@ function runSelfTest0(){
     eq('encode keeps her order', pollEncode('0123456789ab', [12, 5, 40]), '#poll=0123456789ab.12.5.40');
     eq('no server: code "0", same places', pollEncode('', [3, 4]), '#poll=0.3.4');
     eq('1 place, 5 places, a repeat or a bad number: no link', [pollEncode('', [3]), pollEncode('', [1, 2, 3, 4, 5]), pollEncode('', [3, 3]), pollEncode('', [3, -1])].join('|'), '|||');
-    var d = pollDecode('Vote! https://stacey98.github.io/fun-finder/#poll=0123456789ab.12.5.40');
+    var d = pollDecode('Vote! https://stacey98.github.io/off-grid/#poll=0123456789ab.12.5.40');
     eq('decode from a pasted message', d.ok ? d.code + '/' + d.sids.join('.') : 'fail', '0123456789ab/12.5.40');
+    var dO = pollDecode('Vote! https://stacey98.github.io/fun-finder/#poll=0123456789ab.12.5.40');
+    eq('v5.14: an old /fun-finder/ poll link still decodes', dO.ok ? dO.code + '/' + dO.sids.join('.') : 'fail', '0123456789ab/12.5.40');
+    eq('v5.14: SITE_URL is the new /off-grid/ address; the sign-in return goes to the page itself or SITE_URL', SITE_URL + '|' + (acctRedirect().indexOf('fun-finder') < 0 || location.pathname.indexOf('fun-finder') >= 0), 'https://stacey98.github.io/off-grid/|true');
     eq('decode the no-server link: empty code (plain list)', JSON.stringify(pollDecode('#poll=0.3.4')), '{"ok":true,"code":"","sids":[3,4]}');
     eq('bad links refused: short code, 1 place, a repeat, 5 places', [pollDecode('#poll=abc.1.2').ok, pollDecode('#poll=0.1').ok, pollDecode('#poll=0.1.1').ok, pollDecode('#poll=0.1.2.3.4.5').ok].join(), 'false,false,false,false');
     ok('round trip for 2, 3 and 4 places', [[1, 2], [9, 8, 7], [100, 5, 77, 3]].every(function(s){ var x = pollDecode(pollEncode('ffffffffffff', s)); return x.ok && x.sids.join() === s.join(); }), 'mismatch');
@@ -10829,7 +11134,8 @@ function readHash(){
   var ivc = inviteCode(hsh); if (ivc) { if (mapEl) inviteOpen(ivc); return; }   // v5.11: a friend invite
   if (/(?:^#|&)acctdemo=1/.test(hsh) && mapEl) acctDemo();
   if (/(?:^#|&)cpdemo=1/.test(hsh) && mapEl) coupleDemo(0);   // v5.13 testing hook (with #acctdemo=1): couple mode on with the made-up friend   // v5.11 testing hook: the signed-in screens with made-up friends (in memory, nothing sent)
-  if (/(?:^#|&)panel=friends/.test(hsh) && mapEl) setTimeout(function(){ var go = function(){ if (DATA_LOADED && Acct.demo) openFriends(); else setTimeout(go, 200); }; go(); }, 0);
+  if (/(?:^#|&)panel=friends/.test(hsh) && mapEl) setTimeout(function(){ var go = function(){ if (DATA_LOADED && Acct.demo) { if (/(?:^#|&)noname=1/.test(hsh)) { Acct.profile = null; Acct.cachedName = ''; } openFriends(); if (/(?:^#|&)unamepick=1/.test(hsh)) setTimeout(acctAskName, 400); } else setTimeout(go, 200); }; go(); }, 0);   // v5.14 hooks: &noname=1 (signed in, no username), &unamepick=1 (tap "Pick a username")
+  if (/(?:^#|&)panel=account/.test(hsh) && mapEl) setTimeout(function(){ var go = function(){ if (DATA_LOADED && (Acct.demo || !/acctdemo/.test(hsh))) { if (/(?:^#|&)noname=1/.test(hsh)) { Acct.profile = null; Acct.cachedName = ''; } openAccount(); } else setTimeout(go, 200); }; go(); }, 0);   // v5.14 hook: the person button's sheet
   if (/(?:^#|&)panel=privacy/.test(hsh) && mapEl) openPrivacy();   // v5.8: a friend's list link, before any place link or test hook (spec 1.2, E17)
   // v5.8 testing hooks for friends' lists (in memory only): #savedsid=3.17.18 #fr=Maya:3.17.18,Jo:40 #wlkey=Qm7x #wl=<link body> #standalone=1 #inapp=1 #panel=saved #wldetail=<sid>
   var wt = {}, wq;
@@ -11037,12 +11343,15 @@ function init(){
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ applySheet(Sheet.state, false); placeOverlays(); });
   setInterval(function(){ if (document.visibilityState !== 'hidden' && DATA_LOADED && UI.nowOverride === null && !gestureActive) refresh(); }, 60000);
   setTimeout(function(){ Platform.tips.db(); }, 1500);   // light up the shared tip box after first paint; never blocks it
+  gisWatch();   // v5.14: Google's sign-in button replaces ours on the website once one is on screen
+  popInit();   // v5.14: the welcome sign-in and taste-test pop-ups (they only start a timer; anything a link opens below comes first)
   readHash();
   if (!/^#w_/.test(location.hash || '') && $('pFriend').hidden) { var inc = sessGet(INCOMING_KEY); if (inc && /^#w_/.test(inc)) wlOpen(inc, 'stored'); }   // v5.8 I6: a list that was open (not kept) when the page reloaded
 }
 
 window.__cff = {
   version: VERSION, appName: APP_NAME,
+  popNext: popNext, popTestHash: popTestHash, acctBtnModel: acctBtnModel, popState: function(){ return {cur:POPS.cur, off:POPS.off, shown:ext(POPS.shown, {}), log:POPS.log.slice()}; },   // v5.14
   dealState: dealState, dealOnDay: dealOnDay, dealDayOk: dealDayOk, pollEncode: pollEncode, pollDecode: pollDecode, pollTally: pollTally, coupleMine: coupleMine, couplePicks: couplePicks, coupleSig: coupleSig, cpSids: cpSids, couplePicksFor: couplePicksFor,   // v5.13
   dev: {openFilters: function(){ openFilters(); }, showView: function(v){ showView(v); }, pollStart: function(){ pollStart(); }, openFriendView: function(k){ openFriendView(k); }, openLists: function(t){ openLists(t); }, save: function(ids){ savedIds = ids.slice(); refresh(); }},   // v5.13 screenshot harness (screens only, nothing sent)
   bestTimeOfDay: bestTimeOfDay, dayHoursText: dayHoursText, isFar: isFar, farSectionHTML: farSectionHTML, FAR_MIN_BY_MODE: FAR_MIN_BY_MODE,   // v5.6
