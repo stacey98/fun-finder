@@ -2966,7 +2966,11 @@
         "age_note":  "Age rules not posted",
         "sid":  19,
         "photos":  [
-
+                       {
+                           "file":  "photos/ev-kusama-infinity-rooms-wrightwood-659-1.jpg",
+                           "credit":  "Jim Urquhart / Chicago Sun-Times",
+                           "page_url":  "https://chicago.suntimes.com/art/2026/09/24/yayoi-kusamas-infinity-mirror-rooms-wrightwood-659"
+                       }
                    ]
     },
     {
@@ -4071,8 +4075,8 @@
         "photos":  [
                        {
                            "file":  "photos/ev-goodman-a-christmas-carol-2026-1.jpg",
-                           "credit":  "Goodman Theatre website (goodmantheatre.org)",
-                           "page_url":  "https://www.goodmantheatre.org/show/a-christmas-carol-2026/"
+                           "credit":  "Goodman Theatre production photo, via Time Out Chicago",
+                           "page_url":  "https://www.timeout.com/chicago/theater/a-christmas-carol"
                        }
                    ]
     },
@@ -12065,7 +12069,11 @@
         "min_minutes":  30,
         "sid":  83,
         "photos":  [
-
+                       {
+                           "file":  "photos/pa-rosemont-skating-in-the-park-1.jpg",
+                           "credit":  "Time Out Chicago",
+                           "page_url":  "https://www.timeout.com/chicago/sports-and-fitness/ice-skating-at-rosemonts-parkway-bank-park"
+                       }
                    ]
     },
     {
@@ -19209,7 +19217,7 @@
                        {
                            "file":  "photos/pc-annoyance-theatre-1.jpg",
                            "credit":  "The Annoyance website",
-                           "page_url":  "https://theannoyance.com/visit"
+                           "page_url":  "https://theannoyance.com/rentals"
                        }
                    ]
     },
@@ -19448,8 +19456,8 @@
         "photos":  [
                        {
                            "file":  "photos/pc-zanies-chicago-1.jpg",
-                           "credit":  "Enjoy Illinois (Illinois Office of Tourism) listing photo",
-                           "page_url":  "https://enjoyillinois.com/explore/listing/zanies-comedy-club-chicago"
+                           "credit":  "InsideHook",
+                           "page_url":  "https://www.insidehook.com/culture/best-comedy-chicago"
                        }
                    ]
     },
@@ -23615,8 +23623,8 @@
         "photos":  [
                        {
                            "file":  "photos/pd-davis-theater-1.jpg",
-                           "credit":  "w_lemay / Wikimedia Commons, CC BY-SA 2.0",
-                           "page_url":  "https://commons.wikimedia.org/wiki/File:Davis_Theater,_Lincoln_Avenue,_Lincoln_Square,_Chicago,_IL_-_52523514278.jpg"
+                           "credit":  "Cinema Treasures (2016 reopening post)",
+                           "page_url":  "https://cinematreasures.org/blog/2016/12/16/chicago-il-historic-lincoln-square-theater-reveals-5-million-makeover"
                        }
                    ]
     },
@@ -24799,8 +24807,8 @@
         "photos":  [
                        {
                            "file":  "photos/pd-lincoln-lodge-comedy-1.jpg",
-                           "credit":  "The Lincoln Lodge website (thelincolnlodge.com)",
-                           "page_url":  "https://www.thelincolnlodge.com/"
+                           "credit":  "InsideHook",
+                           "page_url":  "https://www.insidehook.com/culture/best-comedy-chicago"
                        }
                    ]
     },
@@ -27412,7 +27420,11 @@
         "taste_checked":  "2026-11-13",
         "sid":  191,
         "photos":  [
-
+                       {
+                           "file":  "photos/pr-peninsula-spa-chicago-1.jpg",
+                           "credit":  "The Peninsula Chicago, via Choose Chicago",
+                           "page_url":  "https://www.choosechicago.com/listing/the-peninsula-chicago/"
+                       }
                    ]
     },
     {
@@ -34021,8 +34033,8 @@
         "photos":  [
                        {
                            "file":  "photos/ps-swedish-american-museum-1.jpg",
-                           "credit":  "Zagalejo / Wikimedia Commons, Public domain",
-                           "page_url":  "https://commons.wikimedia.org/wiki/File:Swedish_American_Museum.JPG"
+                           "credit":  "Swedish American Museum website",
+                           "page_url":  "https://www.swedishamericanmuseum.org/childrens-museum-photos"
                        }
                    ]
     },
@@ -40214,7 +40226,11 @@
                      ],
         "sid":  297,
         "photos":  [
-
+                       {
+                           "file":  "photos/ev-metra-holiday-trains-2026-1.jpg",
+                           "credit":  "Blackhawk Railway Historical Society website",
+                           "page_url":  "https://www.blackhawkrailwayhistoricalsociety.org/midwest-santa-trains.html"
+                       }
                    ]
     },
     {
@@ -49261,7 +49277,11 @@
                      ],
         "sid":  344,
         "photos":  [
-
+                       {
+                           "file":  "photos/ps-busse-woods-1.jpg",
+                           "credit":  "Bohao Zhao / Wikimedia Commons, CC BY 3.0",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Busse_Woods_Bicycle_Trail_-_panoramio.jpg"
+                       }
                    ]
     },
     {
@@ -49378,7 +49398,11 @@
                      ],
         "sid":  345,
         "photos":  [
-
+                       {
+                           "file":  "photos/ps-skokie-lagoons-1.jpg",
+                           "credit":  "Ironandwire / Wikimedia Commons, CC BY-SA 4.0",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Lagoon_Kayak.jpg"
+                       }
                    ]
     },
     {
@@ -49493,7 +49517,11 @@
                      ],
         "sid":  346,
         "photos":  [
-
+                       {
+                           "file":  "photos/ps-swallow-cliff-woods-1.jpg",
+                           "credit":  "Nature in Chicagoland blog (natureinchicago.com)",
+                           "page_url":  "https://natureinchicago.com/2025/01/27/swallow-cliff-woods-exercise-and-go-sledding-on-a-100-foot-bluff/"
+                       }
                    ]
     },
     {
@@ -50191,7 +50219,11 @@
                      ],
         "sid":  353,
         "photos":  [
-
+                       {
+                           "file":  "photos/pf-city-cruises-signature-dinner-lake-michigan-1.jpg",
+                           "credit":  "City Cruises, via Navy Pier website",
+                           "page_url":  "https://www.navypier.com/pier-locations/city-cruises/"
+                       }
                    ]
     },
     {
@@ -53099,8 +53131,8 @@
         "photos":  [
                        {
                            "file":  "photos/cm-blue-chicago-1.jpg",
-                           "credit":  "Choose Chicago",
-                           "page_url":  "https://www.choosechicago.com/listing/blue-chicago/"
+                           "credit":  "The City Lane (thecitylane.com), 2017",
+                           "page_url":  "https://thecitylane.com/blue-chicago-river-north/"
                        }
                    ]
     },
@@ -53801,7 +53833,11 @@
         "taste_checked":  "2026-11-14",
         "sid":  386,
         "photos":  [
-
+                       {
+                           "file":  "photos/cm-chicago-archery-wood-dale-1.jpg",
+                           "credit":  "Chicago Archery website",
+                           "page_url":  "https://chicagoarchery.com/"
+                       }
                    ]
     },
     {
