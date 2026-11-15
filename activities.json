@@ -4063,11 +4063,6 @@
                             "https://theaterofthemindchicago.com/",
                             "https://www.axios.com/local/chicago/2025/10/28/chicago-theater-of-the-mind-david-byrne-goodman"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://my.goodmantheatre.org/events"
-                     },
         "closed_dates":  [
 
                          ],
@@ -4104,7 +4099,6 @@
                                  "source":  "https://www.goodmantheatre.org/show/theater-of-the-mind/"
                              }
                          ],
-        "hours_note":  "Several performances most days; times are on the Goodman calendar (my.goodmantheatre.org/events).",
         "season":  {
                        "open_from":  "2026-03-11",
                        "open_to":  "2027-01-10",
@@ -4133,6 +4127,12 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "hours_note":  "Hours not posted: check before going. Several performances on most days through January 10; pick a time when booking. Ages 10+, under 17 with an adult.",
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://my.goodmantheatre.org/events"
+                     },
         "sid":  26,
         "photos":  [
                        {
@@ -4167,18 +4167,11 @@
         "price_level":  "$$$",
         "duration_minutes":  null,
         "hours":  null,
-        "hours_note":  "Mostly 19:00/19:30 evenings and 14:00 matinees; exact schedule on my.goodmantheatre.org/events. Box office open daily 12:00-17:00.",
         "season":  {
                        "open_from":  "2026-11-13",
                        "open_to":  "2026-12-31",
                        "note":  ""
                    },
-        "event_dates":  [
-                            {
-                                "start":  "2026-11-13",
-                                "end":  "2026-12-31"
-                            }
-                        ],
         "booking":  "required",
         "age_note":  "Children under 5 not permitted",
         "phone":  "312-443-3800",
@@ -4188,11 +4181,6 @@
                             "https://my.goodmantheatre.org/events",
                             "https://www.broadwayworld.com/article/Cast-Set-for-A-CHRISTMAS-CAROL-at-Goodman-Theatre-20261013"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://my.goodmantheatre.org/events"
-                     },
         "closed_dates":  [
 
                          ],
@@ -4240,6 +4228,90 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "hours_note":  "Most shows at 7 or 7:30 PM, plus 2 PM matinees; no shows on Thanksgiving. Start times are listed through Dec 6; see the Goodman calendar for later December shows. Box office open daily noon-5 PM by phone, Tue-Sun in person.",
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://my.goodmantheatre.org/events"
+                     },
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-14T14:00"
+                            },
+                            {
+                                "start":  "2026-11-14T19:30"
+                            },
+                            {
+                                "start":  "2026-11-15T14:00"
+                            },
+                            {
+                                "start":  "2026-11-18T19:00"
+                            },
+                            {
+                                "start":  "2026-11-19T19:00"
+                            },
+                            {
+                                "start":  "2026-11-20T19:30"
+                            },
+                            {
+                                "start":  "2026-11-21T14:00"
+                            },
+                            {
+                                "start":  "2026-11-21T19:30"
+                            },
+                            {
+                                "start":  "2026-11-22T14:00"
+                            },
+                            {
+                                "start":  "2026-11-23T19:00"
+                            },
+                            {
+                                "start":  "2026-11-25T14:00"
+                            },
+                            {
+                                "start":  "2026-11-25T19:00"
+                            },
+                            {
+                                "start":  "2026-11-27T14:00"
+                            },
+                            {
+                                "start":  "2026-11-27T19:30"
+                            },
+                            {
+                                "start":  "2026-11-28T14:00"
+                            },
+                            {
+                                "start":  "2026-11-28T19:30"
+                            },
+                            {
+                                "start":  "2026-11-29T14:00"
+                            },
+                            {
+                                "start":  "2026-12-02T19:00"
+                            },
+                            {
+                                "start":  "2026-12-03T19:00"
+                            },
+                            {
+                                "start":  "2026-12-04T19:30"
+                            },
+                            {
+                                "start":  "2026-12-05T14:00"
+                            },
+                            {
+                                "start":  "2026-12-05T19:30"
+                            },
+                            {
+                                "start":  "2026-12-06T14:00"
+                            },
+                            {
+                                "start":  "2026-12-06T19:00"
+                            },
+                            {
+                                "start":  "2026-12-07",
+                                "end":  "2026-12-31"
+                            }
+                        ],
         "sid":  27,
         "photos":  [
                        {
@@ -5133,11 +5205,6 @@
                             "https://www.choosechicago.com/chicago-restaurant-week",
                             "https://www.choosechicago.com/partners/crw"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://www.choosechicago.com/chicago-restaurant-week"
-                     },
         "closed_dates":  [
 
                          ],
@@ -5173,7 +5240,6 @@
                          ],
         "price_note":  "Prix fixe: brunch/lunch $30, dinner $45 or $60",
         "description":  "Chicago Restaurant Week: 17 days of fixed-price brunch, lunch and dinner menus at restaurants across the city and suburbs, a good excuse to try a place that\u0027s usually pricey. The 2026 edition had more than 550 restaurants.",
-        "hours_note":  "Varies by restaurant. The 2027 restaurant list has not been published yet.",
         "energy":  "chill",
         "vibe":  "mixed",
         "taste_checked":  "2026-11-13",
@@ -5184,6 +5250,12 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "hours_note":  "Hours not posted: check before going. Times vary by restaurant; the 2027 restaurant list comes out later in 2026.",
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.choosechicago.com/chicago-restaurant-week"
+                     },
         "sid":  35,
         "photos":  [
                        {
@@ -10955,18 +11027,12 @@
         "price_level":  "$$",
         "duration_minutes":  120,
         "hours":  null,
-        "hours_note":  "Closed for the season.",
         "booking":  "recommended",
         "phone":  "312-965-0035",
         "website":  "https://urbankayaks.com/",
         "source_urls":  [
                             "https://urbankayaks.com/"
                         ],
-        "verified":  {
-                         "status":  "closed",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://urbankayaks.com/"
-                     },
         "closed_dates":  [
 
                          ],
@@ -11027,6 +11093,12 @@
                         "snow_friendly":  false,
                         "rain_ok":  false
                     },
+        "hours_note":  "Hours not posted: check before going. Closed for the 2026 season; reopens around St. Patrick\u0027s Day, then fully in May 2027.",
+        "verified":  {
+                         "status":  "closed",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://urbankayaks.com/"
+                     },
         "sid":  78,
         "photos":  [
                        {
@@ -13281,7 +13353,6 @@
         "price_level":  "$$",
         "price_note":  "Adult $17.50, child (2-11) $13.50, infants free, + $1 Navy Pier facility fee; 3% card surcharge in person",
         "duration_minutes":  45,
-        "hours":  null,
         "booking":  "walk-in",
         "age_note":  "all ages",
         "phone":  "",
@@ -13293,11 +13364,6 @@
         "closed_dates":  [
 
                          ],
-        "verified":  {
-                         "status":  "closed",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://www.butterflyhousechicago.com/"
-                     },
         "last_entry_before_close_min":  30,
         "hook":  "Walk among live butterflies on Navy Pier",
         "good_for":  [
@@ -13332,7 +13398,6 @@
                                  "source":  "https://www.butterflyhousechicago.com/"
                              }
                          ],
-        "hours_note":  "Closed for the season. In-season hours: Fri-Sat 9am-6:30pm, Sun-Thu 10am-6:30pm, last admission 6pm; weather permitting.",
         "season":  {
                        "open_from":  null,
                        "open_to":  "2026-10-31",
@@ -13354,6 +13419,56 @@
                         "snow_friendly":  false,
                         "rain_ok":  false
                     },
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "10:00",
+                                      "18:30"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "10:00",
+                                      "18:30"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "10:00",
+                                      "18:30"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "10:00",
+                                      "18:30"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "09:00",
+                                      "18:30"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "09:00",
+                                      "18:30"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "10:00",
+                                      "18:30"
+                                  ]
+                              ]
+                  },
+        "hours_note":  "Closed for the season; back in 2027. In season: Fri-Sat 9 AM-6:30 PM, Sun-Thu 10 AM-6:30 PM, last entry 6 PM, weather permitting.",
+        "verified":  {
+                         "status":  "closed",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.butterflyhousechicago.com/"
+                     },
         "sid":  89,
         "photos":  [
                        {
@@ -39279,11 +39394,6 @@
         "duration_minutes":  45,
         "min_minutes":  30,
         "hours":  null,
-        "season":  {
-                       "open_from":  "2027-05-01",
-                       "open_to":  null,
-                       "note":  "Closed for the season; reopens May 1, 2027. The forest preserve around it is open."
-                   },
         "closed_dates":  [
 
                          ],
@@ -39304,12 +39414,6 @@
                            "Fabyan Villa Museum next door",
                            "The forest preserve stays open year-round"
                        ],
-        "hours_note":  "Open on set afternoons from May to October; the garden can be seen over a low fence when closed.",
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-13",
-                         "evidence_url":  "https://ppfv.org/fabyan-japanese-garden"
-                     },
         "moods":  [
                       "outdoorsy",
                       "quiet",
@@ -39330,6 +39434,17 @@
                                          ],
                         "idea":  "Idea: cross the arched bridges, then walk along the Fox River past Fabyan Villa."
                     },
+        "hours_note":  "Hours not posted: check before going. Closed for the season; reopens May 1, 2027. Free. The forest preserve around it stays open.",
+        "season":  {
+                       "open_from":  "2027-05-01",
+                       "open_to":  null,
+                       "note":  "Closed for the season; reopens May 1, 2027."
+                   },
+        "verified":  {
+                         "status":  "closed",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://ppfv.org/fabyan-japanese-garden"
+                     },
         "sid":  317,
         "photos":  [
                        {
@@ -39635,12 +39750,6 @@
         "duration_minutes":  240,
         "min_minutes":  150,
         "hours":  null,
-        "hours_note":  "Corn maze season ran Sept 12-Nov 1, 2026. Tulips bloom in April-May and sunflowers in September.",
-        "season":  {
-                       "open_from":  null,
-                       "open_to":  "2026-11-01",
-                       "note":  "Corn maze closed for 2026; the 2027 dates are not posted yet. The Christmas tree farm opens the day after Thanksgiving."
-                   },
         "closed_dates":  [
 
                          ],
@@ -39660,11 +39769,6 @@
                          "family"
                      ],
         "price_level":  "",
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-13",
-                         "evidence_url":  "https://richardsonadventurefarm.com/"
-                     },
         "moods":  [
                       "outdoorsy",
                       "festive"
@@ -39677,6 +39781,17 @@
                         "snow_friendly":  false,
                         "rain_ok":  false
                     },
+        "hours_note":  "Hours not posted: check before going. The corn maze season ran Sept 12-Nov 1, 2026; 2027 dates are not out yet.",
+        "season":  {
+                       "open_from":  "2026-09-12",
+                       "open_to":  "2026-11-01",
+                       "note":  "Corn maze season ran Sept 12-Nov 1, 2026. 2027 dates not announced yet."
+                   },
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://richardsonadventurefarm.com/"
+                     },
         "sid":  320,
         "photos":  [
                        {
@@ -41319,7 +41434,6 @@
         "duration_minutes":  90,
         "min_minutes":  90,
         "hours":  null,
-        "hours_note":  "Book a time slot online, up to 10 days ahead. Harry Caray\u0027s Tavern is open 11 AM-8 PM Sunday-Thursday and 11 AM-10 PM Friday-Saturday.",
         "season":  {
                        "open_from":  "2026-11-16",
                        "open_to":  "2026-12-31",
@@ -41346,11 +41460,6 @@
                             "https://www.harrycarays.com/lakefront-lodge.html",
                             "https://www.harrycarays.com/harry-carays-tavern-navy-pier.html"
                         ],
-        "verified":  {
-                         "status":  "conflicting",
-                         "checked_on":  "2026-11-13",
-                         "evidence_url":  "https://www.harrycarays.com/lakefront-lodge.html"
-                     },
         "moods":  [
                       "festive",
                       "cozy",
@@ -41378,6 +41487,12 @@
                         "snow_friendly":  true,
                         "rain_ok":  false
                     },
+        "hours_note":  "Hours not posted: check before going. Book a time slot online, up to 10 days ahead.",
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.harrycarays.com/lakefront-lodge.html"
+                     },
         "sid":  295,
         "photos":  [
                        {
@@ -44672,13 +44787,6 @@
                             "https://www.choosechicago.com/events-and-shows/festivals-guide/"
                         ],
         "booking_url":  null,
-        "hours_note":  "Dyeing time and parade start for 2027 are \u0027TBD\u0027.",
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-13",
-                         "evidence_url":  "https://www.chicagostpatricksdayparade.org/",
-                         "source":  "https://www.chicagostpatricksdayparade.org/"
-                     },
         "energy":  "easy",
         "vibe":  "lively",
         "daypart":  [
@@ -44690,6 +44798,12 @@
                         "snow_friendly":  false,
                         "rain_ok":  false
                     },
+        "hours_note":  "Hours not posted: check before going. River dyeing and parade start times for Saturday, March 13, 2027 are not announced yet.",
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.chicagostpatricksdayparade.org/"
+                     },
         "sid":  268,
         "photos":  [
                        {
@@ -52428,7 +52542,6 @@
         "duration_minutes":  210,
         "min_minutes":  150,
         "hours":  null,
-        "hours_note":  "Concert evenings in summer; times vary by show.",
         "season":  {
                        "open_from":  null,
                        "open_to":  "2026-09-23",
@@ -52443,31 +52556,6 @@
                             "https://www.ravinia.org/",
                             "https://www.ravinia.org/events"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.ravinia.org/",
-                         "evidence":  [
-                                          {
-                                              "url":  "https://www.ravinia.org/",
-                                              "quote":  "Thanks for a Great Summer!",
-                                              "source":  "official",
-                                              "checked_on":  "2026-11-14"
-                                          },
-                                          {
-                                              "url":  "https://www.ravinia.org/",
-                                              "quote":  "The Summer 2027 season will be announced on March 11.",
-                                              "source":  "official",
-                                              "checked_on":  "2026-11-14"
-                                          },
-                                          {
-                                              "url":  "https://www.timeout.com/chicago/news/ravinia-festival-2026-full-lineup-schedule-and-ticket-info-031226",
-                                              "quote":  "summer season runs from June 3 through September 23",
-                                              "source":  "press, Time Out Chicago, 2026-03-12",
-                                              "checked_on":  "2026-11-14"
-                                          }
-                                      ]
-                     },
         "moods":  [
                       "chill",
                       "romantic",
@@ -52480,6 +52568,12 @@
                          "friends",
                          "family"
                      ],
+        "hours_note":  "Hours not posted: check before going. Summer concerts are over for 2026; the 2027 season is announced March 11. Winter concerts run Dec 2-6 in Bennett Gordon Hall.",
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.ravinia.org/"
+                     },
         "sid":  408,
         "photos":  [
                        {
@@ -57548,7 +57642,6 @@
         "duration_minutes":  60,
         "min_minutes":  60,
         "hours":  null,
-        "hours_note":  "Book a 1-hour slot online. Uncovered rooftop: sessions are cancelled in bad weather.",
         "season":  {
                        "open_from":  "2026-11-20",
                        "open_to":  "2027-03-31",
@@ -57578,16 +57671,17 @@
         "vibe":  "mixed",
         "hook":  "Curl on a hotel rooftop next to your own firepit",
         "taste_checked":  "2026-11-14",
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.opentable.com/booking/experiences-availability?rid=6650\u0026restref=6650\u0026experienceId=854257"
-                     },
         "weather":  {
                         "wind_sensitive":  true,
                         "snow_friendly":  true,
                         "rain_ok":  false
                     },
+        "hours_note":  "Hours not posted: check before going. Book a 1-hour slot online.",
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.thegwenchicago.com/activities/winter-curling/"
+                     },
         "sid":  390,
         "photos":  [
                        {

@@ -1765,6 +1765,55 @@ svg.gi{width:20px;height:20px;flex:none}
 .fr-open{display:inline-flex;align-items:center;gap:10px}
 .fp-noty{color:var(--ink-3)}
 .wy-nei{display:block;margin:8px auto calc(10px + var(--sab,0px));min-height:44px;padding:0 24px;border:1px solid var(--rule-strong);border-radius:999px;background:var(--paper-3);color:var(--ink);font:600 15px/1 var(--f-body);cursor:pointer;flex:none}
+/* v5.20 weather (design/2026-11-14-weather-spec.md) */
+:root, [data-skin="night"]{--wx-rain:rgba(170,190,255,.45);--wx-snow:rgba(255,255,255,.9);--wx-ring:transparent}
+[data-skin="sorbet"]{--wx-rain:rgba(40,60,120,.38);--wx-snow:rgba(255,255,255,.95);--wx-ring:rgba(33,27,44,.25)}
+:root[data-theme="dark"][data-skin="sorbet"], :root[data-theme="dark"] [data-skin="sorbet"]{--wx-rain:rgba(190,200,255,.42);--wx-snow:rgba(255,255,255,.9);--wx-ring:transparent}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"])[data-skin="sorbet"], :root:not([data-theme="light"]) [data-skin="sorbet"]{--wx-rain:rgba(190,200,255,.42);--wx-snow:rgba(255,255,255,.9);--wx-ring:transparent} }
+.wxi{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wx-chip{flex:none;display:inline-flex;align-items:center;gap:6px;height:34px;min-width:64px;max-width:132px;padding:0 12px 0 8px;margin-top:4px;border-radius:999px;background:var(--paper-2);border:1px solid var(--rule);color:var(--ink);font:650 15px/1 var(--f-body);font-variant-numeric:tabular-nums;white-space:nowrap;cursor:pointer;animation:wxIn .15s ease-out}
+.wx-chip .wxi{color:var(--ink-2)}
+.wx-chip span{font:600 13px/1 var(--f-body);color:var(--ink-2)}
+.wx-chip.muted b{font:600 13px/1 var(--f-body);color:var(--ink-2)}
+.wx-chip.dim{opacity:.6}
+@keyframes wxIn{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion: reduce){ .wx-chip{animation:none} }
+.c3-why.wx{display:flex;align-items:center;gap:5px;font-weight:600;color:rgb(255 255 255 / .92);white-space:nowrap;overflow:hidden}
+.c3-why.wx span{overflow:hidden;text-overflow:ellipsis}
+.c3-why.wx .wxi{width:12px;height:12px;stroke-width:2}
+.c3-hook.c3-idea{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.c3-idea b,.dt-idea b{font-weight:700}
+.wxw{margin:2px 0 0;font:500 13px/1.3 var(--f-body);color:var(--soon)}
+.dt-idea{display:flex;gap:6px;align-items:flex-start;margin:8px 0 0;font:500 15px/1.4 var(--f-body);color:var(--ink)}
+.dt-idea .wxi{width:18px;height:18px;margin-top:1px;color:var(--ink-2)}
+.dt-ttd{margin:4px 0 0;font:500 13.5px/1.35 var(--f-body);color:var(--ink-2)}
+.wx-now{display:flex;align-items:center;gap:12px}
+.wx-now .wxi.big{width:40px;height:40px;color:var(--ink-2)}
+.wx-now > b{font:600 40px/1 var(--f-display);font-variant-numeric:tabular-nums}
+.wx-cond{margin:0;font:600 17px/1.2 var(--f-body)}
+.wx-det{margin:2px 0 0;font:500 13.5px/1.3 var(--f-body);color:var(--ink-2)}
+.wx-hours{display:flex;gap:4px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;margin:14px 0 8px;padding:0 0 4px;list-style:none}
+.wx-hours li{flex:none;width:52px;height:76px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:6px 0;border-radius:12px;background:var(--paper-2);scroll-snap-align:start;font:500 12px/1 var(--f-body);color:var(--ink-2)}
+.wx-hours b{color:var(--ink);font:650 14px/1 var(--f-body)}
+.wx-hours small{font:600 11px/1 var(--f-body);color:var(--ink-2)}
+.wx-days button{display:flex;align-items:center;gap:10px;width:100%;min-height:48px;padding:0 4px;border:0;border-bottom:1px solid var(--rule);background:none;color:var(--ink);font:500 15px/1 var(--f-body);text-align:left;cursor:pointer}
+.wx-days .d{width:70px;font-weight:600}
+.wx-days .pp{width:44px;color:var(--ink-2);font-size:13px}
+.wx-days .t{margin-left:auto;font-variant-numeric:tabular-nums}
+.wx-sw{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:52px;padding:0;border:0;background:none;color:var(--ink);font:500 15px/1.2 var(--f-body);text-align:left;cursor:pointer}
+.wx-sw i{position:relative;flex:none;width:44px;height:26px;border-radius:13px;background:var(--rule-strong);transition:background .15s}
+.wx-sw i::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .15s}
+.wx-sw[aria-checked="true"] i{background:var(--open)}
+.wx-sw[aria-checked="true"] i::after{transform:translateX(18px)}
+.wx-foot{margin:14px 0 0;font:500 12.5px/1.4 var(--f-body);color:var(--ink-2)}
+.wx-foot a,.endnote .wx-attr{color:inherit}
+.wx-off{margin:0 0 12px;font:500 15px/1.4 var(--f-body)}
+.wx-off.small{font-size:13px;color:var(--ink-2)}
+.chip.wxc{flex-direction:column;justify-content:center;gap:3px;min-height:52px;padding-top:4px;padding-bottom:4px}
+.wxd{display:flex;align-items:center;gap:3px;font:600 12px/1 var(--f-body);color:var(--ink-2)}
+.wxd .wxi{width:14px;height:14px}
+.wxfx{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:4}
+.wxfx.fog{background:var(--paper);opacity:.08}
 </style>
 <meta name="claude:viewport-fit-sides" content="cover">
 
@@ -1944,8 +1993,8 @@ svg.gi{width:20px;height:20px;flex:none}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.19 (2026-11-14)';   // v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
-var VERSION_PREV = 'v5.17 (2026-11-14)';   // v5.17 part A2: 12 swipes + 23 would-you-rather, Result extras (A1: fun types, Result, Adjust, avatar)
+var VERSION = 'v5.20 (2026-11-14)';   // v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
+var VERSION_PREV = 'v5.19 (2026-11-14)';   // v5.19: Blend with a friend, friends' stars + one-line reviews
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var FEEDBACK_EMAIL = 'localfinds.app@gmail.com';   // v5.16: "Send feedback" in the account sheet (a mailto draft; never sent by the app). Separate from CONTACT_EMAIL.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
@@ -2899,12 +2948,24 @@ function relIn(seg){ var out = [], re = /(\d+|one|an?|two|half\s+an?)\s*(minutes
   }
   return out;
 }
+function leNegated(before, after, sen){ // pure: true when the sentence says the last entry is NOT known: "Last entry not posted", "Last entry and holiday hours
+  // not posted", "Last admission not stated", "No separate ... last-entry time or holiday closures are posted", "no posted last entry". A sentence that
+  // also gives a time or "N min before close" is never negated ("Select dates close 21:30 (last entry 19:45); which dates is not posted").
+  var a = String(after || '').replace(/^\s*[:(\-–—]?\s*/, '');
+  if (/^(?:times?\s+|hours?\s+|info(?:rmation)?\s+|details?\s+)?(?:is\s+|are\s+|was\s+|has\s+|have\s+)?(?:not|n['’]t|never|un(?:known|posted|listed|stated|confirmed|published|announced)|tba|tbd|to\s+be\s+(?:announced|confirmed))\b/i.test(a)) return true;
+  if (/^(?:and|or|&)\s+[^.;]{0,40}?(?:\b(?:is|are)\s+)?(?:not|n['’]t)\s+(?:yet\s+)?(?:posted|listed|stated|given|known|published)\b/i.test(a)) return true;   // "Last entry and holiday hours not posted"
+  if (/\b(?:no|without(?:\s+an?)?)\s+(?:posted\s+|listed\s+|published\s+|stated\s+|official\s+)?$/i.test(String(before || ''))) return true;
+  var s = String(sen || '');
+  if (timesIn(s).length || relIn(s).length) return false;
+  return /\b(?:not|n['’]t)\s+(?:yet\s+)?(?:posted|listed|stated|given|known|published|announced|available)\b|\bun(?:known|posted|listed|stated)\b|\bTB[AD]\b/i.test(s) || /^\s*no\b[^.]*\b(?:is|are)\s+(?:posted|listed|stated)\b/i.test(s);
+}
 function parseLastEntry(text){ // -> null | {days:{mon:[rule]}, def:[rule], dated:{'12-24':[rule]}, datedIso:{}, datedHol:{xmasEve:[rule]}, any, bare}
   if (typeof text !== 'string' || !LE_KEY_RE.test(text)) return null;
   var res = {days:{}, def:[], dated:{}, datedIso:{}, datedHol:{}, any:false, bare:false};
   sentencesOf(text).forEach(function(sen){
     var m = LE_KEY_RE.exec(sen); if (!m) return;
     var before = sen.slice(0, m.index), after = sen.slice(m.index + m[0].length), rules = [], i;
+    if (leNegated(before, after, sen)) return;   // v5.20 (tester, MSI): "Last entry not posted" says there is NO known last entry: never a rule, never "bare"
     if ((/\(\s*$/.test(before) && /^\s*(?:times?)?\s*\)/.test(after)) || (/\bclos\w*\s+times?\b/i.test(before) && /^\s*(?:times?)?\b/i.test(after) && !timesIn(after).length)) {
       rules.push({target:'def', r:{rel:0}});   // "11 am-10 pm (last seating)", "the closing times are last seating times"
     } else {
@@ -3936,7 +3997,7 @@ function rankFits(a, b){ // best-pick rule (spec §4.1): trust, whole visit befo
   // v5.12 (taste spec v2 §6b): "never" tags and date-mode misery rank last (never hidden), No car puts suburbs last, then travel BANDS with taste inside each band.
   // With an empty profile every taste key is 0 and band-then-minutes is the same order as minutes alone, so the order is exactly v5.11's (self-test T1).
   var st = tasteNow();
-  return isNever(a.item, st) - isNever(b.item, st) || noCarLast(a, st) - noCarLast(b, st) || miseryOf(a, st) - miseryOf(b, st) ||
+  return isNever(a.item, st) - isNever(b.item, st) || noCarLast(a, st) - noCarLast(b, st) || miseryOf(a, st) - miseryOf(b, st) || wxLast(a) - wxLast(b) ||   // v5.20: a strong bad weather fit sinks to the end (never hidden); 0 for all when weather is off
     trustRank(a) - trustRank(b) || ((a.fit && a.fit.short) ? 1 : 0) - ((b.fit && b.fit.short) ? 1 : 0) ||
     (a.lim === 'now' ? 0 : 1) - (b.lim === 'now' ? 0 : 1) || travBand(a) - travBand(b) || kidsFirst(b, st) - kidsFirst(a, st) || tasteScore(b, st) - tasteScore(a, st) ||
     a.trav.min - b.trav.min || (a.dist === null ? 1e9 : a.dist) - (b.dist === null ? 1e9 : b.dist);
@@ -4288,8 +4349,10 @@ function threePool(vm, todayKey, checkins){ // everything that could be one of t
   function popBand(c){ return !c.__popOk ? 2 : c.__pop >= POP_STAR ? 0 : 1; }   // v5.7: well-known places first, then popular, then the rest
   pool.forEach(function(c){
     c.__ts = ton ? tasteScore(c, tst) : 0;
+    var wv = wxOf(c), wb = wv <= -2 ? 1 : 0;   // v5.20 (weather spec 2.3, re-rank only): a strong bad fit goes to the end of the pool, so it leaves the three while 3+ others fit; -score sorts after trust.
     c.__r = ton ? [c.__tier, isNever(c.item, tst) + miseryOf(c, tst), c.__popOk ? 0 : 1, trustRank(c), -c.__ts, c.__pop >= POP_STAR ? 0 : 1, (c.anyDay && c.fit && c.fit.short) ? 1 : 0, firstPhoto(c.item) ? 0 : 1, band(c), strHash(String(c.item.id) + '|' + todayKey)]   // v5.12: trust before taste; the "star" split after taste
       : [c.__tier, popBand(c), 0, trustRank(c), (c.anyDay && c.fit && c.fit.short) ? 1 : 0, firstPhoto(c.item) ? 0 : 1, band(c), strHash(String(c.item.id) + '|' + todayKey)];   // v5.6: "Any time" prefers a whole visit over a quick stop; never "opens soonest"
+    if (wxActive()) { c.__r.unshift(wb); c.__r.splice(5, 0, -wv); }   // v5.20: only while weather is on, so with weather off the keys are exactly v5.19's (taste T1 reads them)
   });
   pool.sort(function(a, b){ for (var i = 0; i < a.__r.length; i++) if (a.__r[i] !== b.__r[i]) return a.__r[i] - b.__r[i]; return 0; });
   if (pool.length < 3) pool = pool.concat(threeFill(vm, todayKey, checkins, s, any, pool));   // v5.10 (owner's iPhone, 1:38 am: one card only)
@@ -6052,6 +6115,7 @@ function rowHTML(c, opt){
   if (ck && !opt.been && !opt.fbeen) meta.push('<span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>');
   if (!opt.fbeen) { var fat = friendAvgText(friendRatingFor(it)); if (fat) meta.push('<span class="fr-avg">' + esc(fat) + '</span>'); }   // v5.19 friends' average
   h += '<p class="meta">' + meta.join(' · ') + '</p>';
+  var wxw = wxWarnFor(c); if (wxw) h += '<p class="wxw">' + esc(wxw) + '</p>';   // v5.20: only a bad weather fit gets a quiet line
   if (it.award_note) h += '<p class="award">' + esc(it.award_note) + '</p>';   // v5.10: "TERPECA 2026 finalist · Best of Morty 2025"
   if (opt.book || c.bookTime) { var bl = bookingLink(it) || safeUrl(it.website); if (bl) h += '<div class="bookon" data-stop="1"><a class="mini-btn" href="' + esc(bl) + '" target="_blank" rel="noopener">' + esc(opt.book ? 'Book online' : c.bookTime.btn) + glyphSvg('i-ext') + '</a></div>'; }
   if (opt.note) { var fn = fitNote(c); if (fn && fn.warn) h += '<p class="fit warn">' + esc(fn.t) + '</p>'; }
@@ -6760,6 +6824,7 @@ function cardLeaveHTML(c){ var l = leaveBy(c), ref = c.anyDay && c.anyT ? c.anyT
 function cardHTML(c){
   var it = c.item, g = c.genre || genreOf(it), ph = firstPhoto(it), sv = isSaved(it.id), ck = checkinOf(it.id), hook = hookOf(it), facts = factsLine(c);
   var tst = tasteNow(), why = tasteWhy(c, tst), lean = tasteLean(c, tst), ini = function(w){ return w === 'a' ? tasteInitial(TASTE) : tasteInitial(TASTE_GUEST); };   // v5.12
+  var wxi = wxIdeaFor(c), wxr = wxReasonFor(c);   // v5.20
   var whoB = lean ? '<span class="tk-lean" aria-label="Leans to ' + esc(lean === 'ab' ? 'both of you' : ini(lean)) + '">' + esc(lean === 'ab' ? ini('a') + ini('b') : ini(lean)) + '</span>' : '';
   return '<li class="card3" data-id="' + esc(it.id) + '" tabindex="0" aria-label="' + esc(it.name + '. ' + facts) + '" style="--c:' + genreColor(g) + '">' +
     '<div class="cover">' + kindSvg(g) + '</div>' +
@@ -6768,7 +6833,8 @@ function cardHTML(c){
     (ck ? '<span class="been-mark">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' : '') + dealBadgeHTML(c, 'c3-deal' + (ck ? ' low' : '')) +
     '<div class="c3-btns"><button class="c3-btn" type="button" data-share="' + esc(it.id) + '" aria-label="Share ' + esc(it.name) + '">' + glyphSvg('i-share') + '</button>' +
     '<button class="c3-btn" type="button" data-save="' + esc(it.id) + '" aria-pressed="' + sv + '" aria-label="' + (sv ? 'Saved: ' : 'Save: ') + esc(it.name) + '">' + glyphSvg('i-bookmark') + '</button></div>' +
-    '<div class="c3-text"><h3>' + esc(it.name) + '</h3>' + (hook ? '<p class="c3-hook">' + esc(hook) + '</p>' : '') + '<p class="c3-facts"><i class="dot ' + esc(c.d.tone) + '"></i>' + esc(facts) + '</p>' + cardLeaveHTML(c) + friendAvgLine(it, 'c3-fr') + (why ? '<p class="c3-why">' + esc(why) + '</p>' : '') + '</div>' + whoB + '</li>';
+    '<div class="c3-text"><h3>' + esc(it.name) + '</h3>' + (wxi ? '<p class="c3-hook c3-idea">' + wxIdeaHTML(wxi) + '</p>' : hook ? '<p class="c3-hook">' + esc(hook) + '</p>' : '') + '<p class="c3-facts"><i class="dot ' + esc(c.d.tone) + '"></i>' + esc(facts) + '</p>' + cardLeaveHTML(c) + friendAvgLine(it, 'c3-fr') +
+    (wxr ? '<p class="c3-why wx">' + wxSvg(wxIcon(WX.cond.code, WX.cond.night ? 0 : 1, WX.cond.gust)) + '<span>' + esc(wxr) + '</span></p>' : why ? '<p class="c3-why">' + esc(why) + '</p>' : '') + '</div>' + whoB + '</li>';   // v5.20: the weather idea replaces the hook when it fits; one reason line at most (weather wins only when it moved the pick)
 }
 function threeKey(){ return [selCode(curSel()), S.when, S.pickAt, S.loc ? r1(S.loc.lat * 1000) + ',' + r1(S.loc.lng * 1000) : '', S.budgetOn ? S.budget : 'any', JSON.stringify(S.f), DATA_LOADED ? 1 : 0, 't' + TASTE_REV].join('|'); }   // v5.12: a taste change re-picks
 function updateThree(vm, more){ // keeps the same three on screen until she asks for more, or the place / time / filters change, or one of them closes
@@ -6828,7 +6894,7 @@ function renderHome(res, vm, picks){
   var p = res.p, who = S.f.who, lab = locName(S.loc), acc = locRoughHint(S.loc), h = '', ttl = homeTitle(res);   // v5.11: "near Lincoln Park"; only a rough reading says so
   h += '<div class="hm-brandrow">' + brandHTML(24, 16) + homeIconsHTML(Acct.state, acctName(), Acct.user, acctType()) + '</div>';   // v5.15: row 1 = the logo + the icon buttons; the title gets the full width below
   h += '<div class="hm-top"><div><h1 class="hm-title">' + esc(ttl) + '</h1>' +
-    '<button class="hm-sub" type="button" data-act="loc" aria-label="Where: near ' + esc(lab) + (acc ? '. ' + esc(acc) : '') + '. Change"><span>' + (UI.today ? homeWhenBit(ttl) : UI.anyDay ? esc(fmtDayDate(UI.anyDay, cparts(nowMs()).key)) + ' · any time · ' : UI.planning ? esc(fmtTime(p.min)) + ' · ' : '') + 'near ' + esc(lab) + (acc ? ' <small class="acc rough">' + esc(acc) + '</small>' : '') + '</span>' + glyphSvg('i-chev') + '</button></div></div>';   // v5.12 account button: moved up into the brand row in v5.15
+    '<button class="hm-sub" type="button" data-act="loc" aria-label="Where: near ' + esc(lab) + (acc ? '. ' + esc(acc) : '') + '. Change"><span>' + (UI.today ? homeWhenBit(ttl) : UI.anyDay ? esc(fmtDayDate(UI.anyDay, cparts(nowMs()).key)) + ' · any time · ' : UI.planning ? esc(fmtTime(p.min)) + ' · ' : '') + 'near ' + esc(lab) + (acc ? ' <small class="acc rough">' + esc(acc) + '</small>' : '') + '</span>' + glyphSvg('i-chev') + '</button></div>' + wxChipHTML() + '</div>';   // v5.20: the weather chip at the right end of the title row   // v5.12 account button: moved up into the brand row in v5.15
   h += '<div class="hm-ctl" role="group" aria-label="Who is coming">' + [['date', 'Date'], ['friends', 'Friends'], ['solo', 'Solo']].map(function(x){ return '<button class="qchip" type="button" data-who="' + x[0] + '" aria-pressed="' + !!who[x[0]] + '">' + x[1] + '</button>'; }).join('') + '</div>';
   var picked = S.when === 'pick' || S.when === 'weekend';
   h += '<div class="hm-ctl" role="group" aria-label="When">' + '<button class="qchip" type="button" data-when="now" aria-pressed="' + (S.when === 'now') + '">Now</button><button class="qchip" type="button" data-when="today" aria-pressed="' + (S.when === 'today') + '">Today</button>' +
@@ -6863,7 +6929,7 @@ function renderHome(res, vm, picks){
     h += tasteCardHTML();
     h += guidesHTML();   // v5.10 #86
     h += radarHTML(radarList(res.all.concat(res.beyond || []), cparts(nowMs())));   // v5.10 #26
-    h += '<p class="endnote">Travel times are rough. <button class="linkbtn" type="button" data-act="tip">Send a tip</button> · <button class="linkbtn" type="button" data-act="about">About</button></p>';
+    h += '<p class="endnote">Travel times are rough. <button class="linkbtn" type="button" data-act="tip">Send a tip</button> · <button class="linkbtn" type="button" data-act="about">About</button>' + (wxDataOk() ? ' · ' + WX_ATTR_HTML : '') + '</p>';   // v5.20: Open-Meteo attribution whenever its data is on screen
   }
   if (h === UI.homeHTML) return;   // nothing changed: leave the photos alone
   UI.homeHTML = h;
@@ -6875,6 +6941,7 @@ function refresh(){
   Platform.store.set('cff.budget.v1', S.budget); Platform.store.set('cff.budgetOn.v1', !!S.budgetOn);
   Platform.store.set('cff.who.v1', Object.keys(S.f.who).filter(function(k){ return S.f.who[k]; }));
   var T = evalTime(), ctx = ctxNow();
+  wxEnsure({after:wxAfter}); wxPrepare();   // v5.20: fetch only when the cache is stale (website, with a location); then this refresh's weather window
   var res = DATA_LOADED ? runPipeline(DATA, T, ctx, S.f) : {T:T, p:cparts(T), all:[], groups:{fits:[], tight:[], over:[], later:[], unknown:[], season:[], closed:[], upcoming:[]}, leaving:[], weekend:[], count:0, endingSoon:0};
   UI.gsel = normSel(curSel());
   var vm = buildView(res, S.f, UI.gsel, UI.sub);
@@ -6899,6 +6966,7 @@ function refresh(){
   if (!isWide() && !Sheet.drag) applySheet(Sheet.state, false);
   if (UI.detailId) { var c = findComputed(UI.detailId); if (c) renderDetail(c, true); }
   if (GA.open) gaRender(true);   // v5.18: statuses and saves stay live in an open guide
+  wxFxSync();   // v5.20: rain / snow over the map (only while the map is seen)
   if (UI.draft && !$('pFilters').hidden && DATA_LOADED && !UI.draftReady) { UI.draftReady = true; renderFilters(); }   // the sheet was opened before the list loaded
 }
 function findItem(id){ for (var i = 0; i < DATA.length; i++) if (DATA[i].id === id) return DATA[i]; return null; }
@@ -6922,7 +6990,7 @@ function surprisePool(){
   return list.filter(function(c){ return surpriseVeto.indexOf(c.item.id) < 0; });
 }
 function pickSurprise(pool, rnd){ // weighted toward limited things that end soon
-  var w = pool.map(function(c){ var ev = c.st.ev; return c.lim === 'now' ? (ev && ev.lastKey && !ev.endUnconfirmed && dayDiff(c.st.p.key, ev.lastKey) <= 14 ? 3 : 2) : 1; });
+  var w = pool.map(function(c){ var ev = c.st.ev, b = c.lim === 'now' ? (ev && ev.lastKey && !ev.endUnconfirmed && dayDiff(c.st.p.key, ev.lastKey) <= 14 ? 3 : 2) : 1; return wxOf(c) <= -2 ? b * 0.25 : b; });   // v5.20: a bad weather fit is less likely, never removed
   var tot = w.reduce(function(a, b){ return a + b; }, 0), r = (rnd === undefined ? Math.random() : rnd) * tot;
   for (var i = 0; i < pool.length; i++) { r -= w[i]; if (r < 0) return pool[i]; }
   return pool[pool.length - 1] || null;
@@ -8811,6 +8879,7 @@ function renderDetail(c, keepScroll){
   h += '<h1 class="dt-title' + (String(it.name).length > 40 ? ' long' : '') + '" id="dtTitle">' + esc(it.name) + '</h1>';
   var hook = hookOf(it);
   if (hook) h += '<p class="dt-hook">' + esc(hook) + '</p>';
+  h += wxDetailHTML(c);   // v5.20: the item's own idea + things to do there, as written in the data
   // v5.18 (owner 2026-11-14): "I've been here" near the top, under the name; after a tap: optional thumbs + when (day, month, or "don't remember")
   var ck = checkinOf(it.id);
   h += '<div class="dt-acts top">' + (ck ? '' : '<button class="mini-btn been-go" type="button" data-been="add">' + glyphSvg('i-check') + 'I’ve been here</button>') +
@@ -8829,6 +8898,7 @@ function renderDetail(c, keepScroll){
   if (pel && pel.extra) h += '<p class="subline">' + esc(pel.extra) + '</p>';
   var lby = leaveBy(c); if (lby) h += '<p class="leaveby">' + esc(lby.t) + '</p>';   // v5.10 #33
   var eb = eventBadge(st); if (eb) h += '<p class="warnline">' + esc(eb) + '</p>';
+  var dww = wxWarnFor(c); if (dww) h += '<p class="wxw">' + esc(dww) + '</p>';   // v5.20
   if (st.conflicting) h += '<p class="warnline">Sources disagree on hours · call first</p>';
   if (holidayName(p.key) && st.key !== 'maybe' && !closedSet(it)[p.key]) h += '<p class="warnline">' + esc(holidayName(p.key)) + ': holiday hours vary, so call first.</p>';
   var ls = leaveSentence(c); if (ls) h += '<p class="aside">' + esc(ls) + '</p>';
@@ -9311,7 +9381,7 @@ function smallRadius(){ $('pSmallBody').innerHTML = chipsGroup(RADII.map(functio
 var DAY_PARTS = [[600, 'Morning'], [840, 'Afternoon'], [1140, 'Evening'], [1320, 'Late']];
 function smallWhen(){ // v4: Now / Tonight, or pick a day (next 8 days) and a part of the day, or an exact time
   var p = cparts(nowMs()), d = parseDT(S.pickAt), on = S.when === 'pick' && d, selKey = on ? d.key : '', selMin = on && d.min !== null ? d.min : -1, days = '';   // v5.6: -1 = Any time
-  for (var i = 0; i < 8; i++) { var k = addDays(p.key, i); days += '<button class="chip" type="button" data-day="' + k + '" aria-pressed="' + (k === selKey) + '">' + (i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : DOW_SHORT[wdOfKey(k)] + ' ' + (+k.slice(8))) + '</button>'; }
+  for (var i = 0; i < 8; i++) { var k = addDays(p.key, i), wdb = wxDayBit(k); days += '<button class="chip' + (wdb ? ' wxc' : '') + '" type="button" data-day="' + k + '" aria-pressed="' + (k === selKey) + '">' + (i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : DOW_SHORT[wdOfKey(k)] + ' ' + (+k.slice(8))) + wdb + '</button>'; }   // v5.20: the forecast high under each day
   $('pSmallBody').innerHTML = '<div class="seg">' + [['now', 'Now'], ['today', 'Today']].map(function(x){ return '<button type="button" data-f="when:' + x[0] + '" aria-pressed="' + (S.when === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>' +
     '<span class="flabel">Or pick a day</span><div class="chips-w" style="display:flex;flex-wrap:wrap;gap:8px">' + days + '</div>' +
     '<div class="seg" style="margin-top:12px">' + [[-1, 'Any time']].concat(DAY_PARTS).map(function(x){ return '<button type="button" data-part="' + x[0] + '" aria-pressed="' + (on && selMin === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>' +
@@ -9355,6 +9425,7 @@ function renderAbout(){
   h += '<h3>Account</h3>' + acctCardHTML(Acct.state, {about:true}) + (Acct.state === 'off' ? '' : '<p class="small"><button class="linkbtn" type="button" data-acct="privacy">What we store and how to delete it</button></p>');   // v5.11
   h += '<h3>Tips</h3><p>Saw something fun on Instagram or anywhere? <button class="linkbtn" type="button" data-act="tip">Send a tip</button>. Each tip is read as a lead and checked at the organizer\'s own site before it goes in the app.</p>';
   h += '<h3>Where you are</h3><p>This version can\'t read your phone\'s location inside claude.ai, so you pick a spot or tap the map. Neighborhood, landmark and L-stop points are approximate (typed from general knowledge, needs check). Community areas come from City data. Distances are straight-line (as the crow flies); travel times use rough rules: walking 20 min per mile and CTA about 10 min plus 4 min per mile, both on 1.3 times the straight-line distance. Driving: 8 min to park, plus 4 min per straight-line mile for the first 3 miles, 2.2 min per mile up to 10 miles and 1.15 min per mile after that, with no rush-hour traffic. With "Walk + CTA" picked, places more than ' + CTA_MAX_MI + ' miles away show the drive time and say so (check Metra).</p>';
+  h += wxAboutHTML();   // v5.20
   h += '<h3>Map data</h3><p>Community areas and CTA \'L\' lines: City of Chicago Data Portal (datasets igwz-8jzy and xbyr-jnvx), simplified. The river line and the land outside the city are hand-drawn approximations.</p>';
   h += '<blockquote>"This site provides applications using data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one\'s own risk."<br>Source: <a href="https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html" target="_blank" rel="noopener">City of Chicago data terms of use</a></blockquote>';
   h += '<h3>Photo credits</h3>' + (photos.length ? '<ul class="credits">' + photos.map(function(it){ var ph = firstPhoto(it), pu = safeUrl(ph.page_url); return '<li>' + esc(it.name) + ': ' + (pu ? '<a href="' + esc(pu) + '" target="_blank" rel="noopener">' + esc(ph.credit ? photoCredit(ph) : domainOf(pu)) + '</a>' : esc(photoCredit(ph))) + '</li>'; }).join('') + '</ul>' : '<p>No photos are bundled yet. Items show drawn category art instead.</p>');
@@ -10654,6 +10725,7 @@ function bindUI(){
 function onHomeClick(e){
   var t = e.target;
   if (t.closest('[data-share]')) return;   // handled by the page-wide Share handler
+  if (t.closest('[data-wxopen]')) { wxOpenSheet(); return; }   // v5.20 weather chip
   var sv = t.closest('[data-save]'); if (sv) { toggleSave(sv.getAttribute('data-save')); return; }
   var w = t.closest('[data-who]');
   if (w) { var k = w.getAttribute('data-who'), was = !!S.f.who[k]; ['date', 'friends', 'solo'].forEach(function(x){ delete S.f.who[x]; }); if (!was) S.f.who[k] = true; refresh(); return; }
@@ -10751,7 +10823,8 @@ function northOf(mi){ return 41.88 + mi / (3958.8 * Math.PI / 180); }
 function runSelfTest(){
   var keepPlanST = UI.planning, keepAtST = UI.planAt, keepAnyST = UI.anyDay; UI.planning = false; UI.planAt = null; UI.anyDay = '';   // v5.3: the checks expect "now" wording even if the app is in planning mode
   TASTE_SUSPEND++; TASTE_REV++;   // v5.12: the checks run with an empty taste profile, whatever is saved on this phone
-  try { return runSelfTest0(); } finally { UI.planning = keepPlanST; UI.planAt = keepAtST; UI.anyDay = keepAnyST; TASTE_SUSPEND--; TASTE_REV++; }
+  WX.testOff++;   // v5.20: and with no weather (the weather block turns it on for its own made-up forecasts)
+  try { return runSelfTest0(); } finally { UI.planning = keepPlanST; UI.planAt = keepAtST; UI.anyDay = keepAnyST; TASTE_SUSPEND--; TASTE_REV++; WX.testOff--; }
 }
 function runSelfTest0(){
   var R = [];
@@ -12327,7 +12400,141 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.19 (2026-11-14)');
+    eq('version', VERSION, 'v5.20 (2026-11-14)');
+    eq('previous version', VERSION_PREV, 'v5.19 (2026-11-14)');
+  });
+
+  /* ---------- v5.20 fix (live v5.19 tester, MEDIUM): "Last entry not posted" must never make a last-entry time ---------- */
+  block('v5.20 last entry: "not posted" is not a rule', function(){
+    function has(t){ var r = parseLastEntry(t); return !!(r && (r.any || r.bare)); }
+    eq('LE1 "Last entry not posted." makes no rule', has('9:30-5:30 most days. Closed Thanksgiving (Nov 26). Last entry not posted.'), false);
+    eq('LE2 "Last entry and holiday hours not posted." makes no rule', has('Mon-Thu 10 am-10 pm. Last entry and holiday hours not posted; call to confirm holidays.'), false);
+    eq('LE3 "Last admission not stated." makes no rule', has('Last admission not stated. Closes on major holidays.'), false);
+    eq('LE4 "No ... last-entry time or holiday closures are posted." makes no rule', has('No separate sauna or restaurant hours, last-entry time or holiday closures are posted.'), false);
+    eq('LE5 "December holiday hours not posted yet; last entry not posted." makes no rule', has('Closed Thanksgiving Day. December holiday hours not posted yet; last entry not posted.'), false);
+    var r30 = parseLastEntry('Last entry 30 min before close.');
+    eq('LE6 "last entry 30 min before close" is still a rule (30 min)', r30 && r30.any && r30.def[0] && r30.def[0].rel, 30);
+    var rLs = parseLastEntry('Most evenings; last entry 20:45. Select dates close 21:30 (last entry 19:45); which dates is not posted.');
+    eq('LE7 a sentence with a time and "not posted" elsewhere keeps its time', !!(rLs && rLs.any), true);
+    var rB = parseLastEntry('There is a last entry, ask at the door.');
+    eq('LE8 a last entry with no time is still "bare" (call first)', !!(rB && rB.bare && !rB.any), true);
+    var msi = fx({name:'MSI-like', category:'art-museum', hours:allDays(['09:30', '17:30']), hours_note:'9:30-5:30 most days. Closed Thanksgiving (Nov 26). Last entry not posted.'});
+    var s1 = stx(msi, '2026-11-20', '17:19');
+    eq('LE9 MSI-like at 5:19 pm: open, no invented last entry', [s1.open, !!s1.lastEntryAt, /Last entry|Entry may have closed|last-entry/i.test(s1.d.text + ' ' + (s1.d.sub || ''))].join(), 'true,false,false');
+    var early = fx({name:'MSI-like early', category:'art-museum', hours:allDays(['09:30', '16:00']), hours_note:'Last entry not posted.'});
+    var s2 = stx(early, '2026-11-20', '15:10');
+    eq('LE10 early-close day at 3:10 pm (closes 4): still open, not "maybe"', [s2.open, s2.key === 'maybe', !!s2.entryPassed].join(), 'true,false,false');
+    var rel = fx({name:'Rel', category:'art-museum', hours:allDays(['09:30', '17:30']), hours_note:'Last entry 30 min before close.'});
+    var s3 = stx(rel, '2026-11-20', '16:50');
+    eq('LE11 "30 min before close": last entry 5 pm, "Last entry in 10 min"', [s3.lastEntryAt === at('2026-11-20', '17:00'), /^Last entry in 10 min/.test(s3.d.text)].join(), 'true,true');
+  });
+
+  /* ---------- v5.20 weather (made-up forecasts and items; no network, no real storage) ---------- */
+  block('v5.20 weather: pure logic', function(){
+    var keepWX = wxKeep();
+    try {
+      WX.testOff = 0; WX.fixture = ''; WX.rankPref = true;
+      var key = '2026-11-14', tues = '2026-11-17';
+      function g(v){ return function(x){ x.gust = v; }; }
+      function fe(v){ return function(x){ x.feels = v; x.temp = v; }; }
+      function co(v, pr){ return function(x){ x.code = v; if (pr !== undefined) x.prec = pr; }; }
+      function cond(kind, hhmm, over, mode, k){ var N = wxFixture(kind, key, over); return wxCond(wxWindow(N, {mode:mode || 'hour', key:k || key, min:hhmm === null ? null : hm(hhmm || '13:00')})); }
+      function it(id, io, w, o){ return ext(ext({id:'wx-' + id, name:'Avery Test ' + id, indoor_outdoor:io, weather:w, tags:[]}, {}), o || {}); }
+      var A = it('museum', 'indoor', {rain_ok:true}), B = it('park', 'outdoor', {rain_ok:false, things_to_do:['picnic'], idea:'Idea: picnic by the pond'}), C = it('rink', 'outdoor', {rain_ok:false, snow_friendly:true});
+      var D = it('kayak', 'outdoor', {rain_ok:false, wind_sensitive:true, things_to_do:['kayak']}), E = it('beach', 'outdoor', {rain_ok:false, things_to_do:['swim']}), F = it('trip', 'outdoor', {rain_ok:false}, {tags:['day-trip']});
+      var G = it('zoo', 'both', {rain_ok:true}), H = {id:'wx-h', name:'Avery Test no weather', indoor_outdoor:'outdoor'}, K = it('hike', 'outdoor', {rain_ok:false, things_to_do:['hike']});
+      var ALL = [A, B, C, D, E, F, G, H, K];
+      // WX2 thresholds
+      eq('WX2 gusts 25 not windy / 26 windy / 41 gale', [cond('grey', '13:00', g(25)).windy, cond('grey', '13:00', g(26)).windy, cond('grey', '13:00', g(41)).galeWindy].join(), 'false,true,true');
+      eq('WX2 feels 10 not very cold / 9 very cold', [cond('grey', '13:00', fe(10)).veryCold, cond('grey', '13:00', fe(9)).veryCold].join(), 'false,true');
+      eq('WX2 feels 90 not hot / 91 hot', [cond('grey', '13:00', fe(90)).hot, cond('grey', '13:00', fe(91)).hot].join(), 'false,true');
+      var c61 = cond('grey', '13:00', co(61, 0.03)), c65 = cond('grey', '13:00', co(65, 0.2)), c95 = cond('grey', '13:00', co(95, 0.3));
+      eq('WX2 code 61 = rain (not heavy), 65 = heavy rain, 95 = storm', [c61.rain, c61.heavyRain, c65.heavyRain, c95.storm].join(), 'true,false,true,true');
+      eq('WX2 snowfall 0.4 in an hour = heavy snow', cond('grey', '13:00', function(x){ x.code = 73; x.snow = 0.4; x.feels = 25; }).heavySnow, true);
+      eq('WX2 a snowy hour with melted precipitation is snow, not rain', [cond('snow').snow, cond('snow').rain].join(), 'true,false');
+      eq('WX2 a plain grey 50° day: every item 0', ALL.map(function(x){ return wxScore(x, cond('grey')); }).join(), '0,0,0,0,0,0,0,0,0');
+      // WX3 rain
+      eq('WX3 light rain: museum +1, park -2, zoo (both, rain ok) 0, no weather 0', [A, B, G, H].map(function(x){ return wxScore(x, c61); }).join(), '1,-2,0,0');
+      eq('WX3 heavy rain: museum +2, park -3', [wxScore(A, c65), wxScore(B, c65)].join(), '2,-3');
+      var kinds = ['rain', 'storm', 'snow', 'heavysnow', 'wind', 'hot', 'nice', 'grey'], clampOk = true, wordsOk = true;
+      kinds.forEach(function(k){ ['07:00', '13:00', '19:00', '23:00'].forEach(function(t){ var cc = cond(k, t); ALL.forEach(function(x){ var s = wxScore(x, cc, {trav:70}); if (!(s >= -3 && s <= 3) || Math.round(s) !== s) clampOk = false; var r = wxReason(x, cc, s, {trav:20, today:key}) + wxWarn(x, cc); if (/undefined|NaN|null/.test(r)) wordsOk = false; }); }); });
+      ok('WX3 every score is a whole number in -3..+3 (8 weathers x 4 times x 9 items)', clampOk, '');
+      ok('WX13 no reason or warning line says undefined / NaN / null', wordsOk, '');
+      // WX7 light snow
+      var cs = cond('snow', '13:00');
+      eq('WX7 light snow 25°: rink +2, museum 0; rink line "Snowing: perfect for this"', [wxScore(C, cs), wxScore(A, cs), wxReason(C, cs, wxScore(C, cs), {today:key})].join(), '2,0,Snowing: perfect for this');
+      // WX8 heavy snow
+      var ch = cond('heavysnow', '13:00');
+      eq('WX8 heavy snow: rink -2, day trip -3 (clamped), museum +1', [wxScore(C, ch), wxScore(F, ch, {trav:70}), wxScore(A, ch)].join(), '-2,-3,1');
+      // WX9 wind
+      var cw = cond('wind', '13:00');
+      eq('WX9 gusts 32: kayak -2 with "Windy: gusts 32 mph", museum 0', [wxScore(D, cw), wxWarn(D, cw), wxScore(A, cw)].join(), '-2,Windy: gusts 32 mph,0');
+      // WX10 hot
+      eq('WX10 hot at 1 pm: beach +2, hike -2; hike at 7 pm +1', [wxScore(E, cond('hot', '13:00')), wxScore(K, cond('hot', '13:00')), wxScore(K, cond('hot', '19:00'))].join(), '2,-2,1');
+      eq('WX10 beach line restates the forecast', wxReason(E, cond('hot', '13:00'), 2, {today:key}), 'Cool off: it’s 95°');
+      // WX11 nice + idea
+      var cn = cond('nice', '13:00');
+      eq('WX11 nice 72° at 1 pm: park +3 (outdoor +2, idea +1), idea fits, no reason line', [wxScore(B, cn), wxIdeaFits(B, cn), wxReason(B, cn, 3, {today:key})].join(), '3,true,');
+      eq('WX11 the idea is shown exactly as written ("Idea:" bold only)', wxIdeaHTML(B.weather.idea).replace(/<[^>]+>/g, ''), 'Idea: picnic by the pond');
+      eq('WX11 picnic idea does not fit at 9 pm', wxIdeaFits(B, cond('nice', '21:00')), false);
+      // WX12 ideas only from the table and only with weather.idea
+      eq('WX12 an unknown word never triggers an idea', wxIdeaFits(it('x', 'outdoor', {things_to_do:['juggling'], idea:'Idea: juggle'}), cn), false);
+      eq('WX12 no weather.idea = no idea line', wxIdeaFits(it('y', 'outdoor', {things_to_do:['picnic']}), cn), false);
+      eq('WX12 items without a weather object: score 0 and no idea in every weather', kinds.map(function(k){ return wxScore(H, cond(k)) + (wxIdeaFits(H, cond(k)) ? 'i' : ''); }).join(''), '00000000');
+      eq('WX12 unknown indoor_outdoor makes no indoor claim in rain', wxScore(it('z', undefined, {rain_ok:true}), c65), 0);
+      // WX16 picked days
+      var N = wxFixture('rain', key, co(65, 0.2));
+      eq('WX16 a day 9 days out is outside the forecast (no window)', wxWindow(N, {mode:'day', key:addDays(key, 9), min:null}), null);
+      var ct = wxCond(wxWindow(N, {mode:'day', key:tues, min:null}));
+      eq('WX16 picked Tue with heavy rain: museum line "Tue looks rainy: indoors" (Chicago weekday)', wxReason(A, ct, wxScore(A, ct), {today:key}), 'Tue looks rainy: indoors');
+      var cr = cond('grey', '13:00', function(x){ if (x.h >= 15) { x.code = 63; x.prec = 0.08; } });
+      eq('WX16 rain later in the window: "Indoors: rain from 3 pm"', wxReason(A, ct.storm ? null : cr, 2, {today:key}), 'Indoors: rain from 3 pm');
+      // holidays without posted hours (Thanksgiving 2026-11-26)
+      var thx = wxCond(wxWindow(wxFixture('nice', '2026-11-26'), {mode:'day', key:'2026-11-26', min:null}));
+      eq('WX holiday: Thanksgiving without posted hours: no score, no idea', [wxScore(B, thx, {holidayUnknown:wxHolidayUnknown(B, '2026-11-26')}), wxIdeaFits(B, thx, {holidayUnknown:wxHolidayUnknown(B, '2026-11-26')})].join(), '0,false');
+      var Bh = ext(B, {date_hours:{'2026-11-26':[['09:00', '17:00']]}});
+      eq('WX holiday: with hours posted for that date it counts again', wxScore(Bh, thx, {holidayUnknown:wxHolidayUnknown(Bh, '2026-11-26')}), 3);
+      // WX15 privacy
+      var u = wxUrl(41.9123, -87.6544), names = u.split('?')[1].split('&').map(function(kv){ return kv.split('=')[0]; }).join();
+      ok('WX15 only a rounded point is sent: latitude=41.90&longitude=-87.65', u.indexOf('latitude=41.90&longitude=-87.65&') > 0 && u.indexOf('41.912') < 0, u.slice(0, 90));
+      eq('WX15 the URL has only forecast fields', names, 'latitude,longitude,current,hourly,daily,temperature_unit,wind_speed_unit,precipitation_unit,timezone,forecast_days,past_days');
+      eq('WX15 the Loop fallback is not a location (nothing is sent)', wxLocOf(ext(LOOP, {})), null);
+      ok('WX15 a GPS reading or a picked spot is a location', !!wxLocOf({lat:41.9, lng:-87.6, src:'gps'}) && !!wxLocOf({lat:41.9, lng:-87.6, src:'picked'}), '');
+      // parsing
+      eq('WXP malformed: null, {}, missing daily, unequal arrays, bad time -> null', [wxParse(null), wxParse({}), wxParse({hourly:{time:['2026-11-14T13:00'], temperature_2m:[40], weather_code:[3]}}), wxParse({hourly:{time:['2026-11-14T13:00', '2026-11-14T14:00'], temperature_2m:[40], weather_code:[3, 3]}, daily:{time:['2026-11-14']}}), wxParse({hourly:{time:['x'], temperature_2m:[40], weather_code:[3]}, daily:{time:['2026-11-14']}})].join(), ',,,,');
+      var pj = wxParse(wxSampleJSON());
+      ok('WXP a real-shaped answer parses (hours, days, current)', !!pj && pj.hours.length === 48 && pj.days.length === 2 && pj.cur && pj.cur.temp === 41 && pj.days[1].sunset === 990, show(pj && pj.days[1]));
+      var pc = wxParse(ext(wxSampleJSON(), {hourly_units:{temperature_2m:'°C', wind_gusts_10m:'km/h'}}));
+      eq('WXP an answer in °C / km/h is converted (5°C = 41°F, 40 km/h = 25 mph)', pc ? [Math.round(pc.hours[0].temp), Math.round(pc.hours[0].gust)].join() : '', '41,25');
+      // state: never shows weather it doesn't have
+      WX.d = null; WX.state = 'fail'; WX.inflight = false; WX.cond = null;
+      eq('WX14 failed with no data: weather is off for ranking (all 0)', wxOf({item:B, trav:{min:10}}), 0);
+      WX.d = pj; WX.at = Date.now() - 2 * 3600000; WX.k = '41.90,-87.65';
+      var keepLoc = S.loc; S.loc = {lat:41.9123, lng:-87.6544, src:'gps'};
+      try {
+        eq('WX14 data 2 h old: still used, chip dimmed', [wxDataOk(), Date.now() - WX.at > WX_DIM_MS].join(), 'true,true');
+        WX.at = Date.now() - 7 * 3600000;
+        eq('WX14 data 7 h old: not used', wxDataOk(), false);
+        WX.at = Date.now(); S.loc = {lat:42.3, lng:-87.9, src:'picked'};
+        eq('WX14 another area (over 0.1° away): the old forecast is not used', wxDataOk(), false);
+        S.loc = ext(LOOP, {});
+        eq('WX no location set: no weather shown', wxDataOk(), false);
+        WX.state = 'fail'; WX.d = null;
+        var m1 = (function(){ S.loc = {lat:41.9, lng:-87.65, src:'gps'}; return wxChipModel(); })();
+        eq('WX5.5 failed: the chip says "Unavailable" (no spinner)', m1 && m1.text, 'Unavailable');
+        WX.state = 'off'; eq('WX5.5 claude.ai copy: no chip at all', wxChipModel(), null);
+      } finally { S.loc = keepLoc; }
+      // WX1 / WX4 on the real list: see wxRealChecks (runs once the list has loaded)
+      // WX17 map effect
+      eq('WX17 map effect kinds: drizzle, rain, heavy rain, light snow, heavy snow, fog, clear', [{code:51}, {code:63}, {code:65}, {code:71}, {code:75}, {code:45}, {code:1}].map(wxFxKindOf).join(), 'rain1,rain2,rain3,snow1,snow3,fog,');
+      WX.fixture = 'rain'; WX.d = wxFixture('rain', cparts(nowMs()).key); WX.fxPref = false;
+      eq('WX17 "Rain and snow on the map" off: no effect', wxFxKind(), '');
+      // WX18 attribution
+      WX.fxPref = true;
+      ok('WX18 the weather sheet names Open-Meteo with a link', /href="https:\/\/open-meteo\.com\/"[^>]*>Weather data by Open-Meteo\.com</.test(wxSheetHTML()), '');
+      ok('WX18 About names Open-Meteo and CC BY 4.0', /Weather data by Open-Meteo\.com/.test(wxAboutHTML()) && /CC BY 4\.0/.test(wxAboutHTML()), '');
+      ok('WX the sheet says nothing is hidden', /Nothing is hidden/.test(wxSheetHTML()), '');
+    } finally { wxRestore(keepWX); WX.rev++; }
   });
 
   /* ---------- v4 checks (2026-11-12): the three picks, search, check-ins, hash links, share, calendar, plain words ---------- */
@@ -13561,6 +13768,7 @@ function runSelfTestAsync(){ // checks that need promises or the map files
   var flaky = 0, flakyDb = {collection:function(){ return {add:function(){ flaky++; return flaky === 1 ? Promise.reject({code:'unavailable'}) : Promise.resolve({id:'t2'}); }}; }};
   var bad = {writable:true};
   return Promise.all([
+    wxSelfTestAsync(ok, eq),   // v5.20: weather fetch failures, malformed JSON, timeout, cache (fake fetch, fake storage; nothing sent)
     Platform.tips.sendWith(goodDb, tip, {writable:true}).then(function(r){
       eq('tip with the db: saved to the shared box', r.where, 'db');
       eq('tip goes to collection "tips"', adds[0] && adds[0].p, 'tips');
@@ -13635,7 +13843,8 @@ function runSelfTestAsync(){ // checks that need promises or the map files
       ok('real data: a poll link without the vote server opens as a plain list (3 places, no vote buttons)', pb.querySelectorAll('.pl-card').length === 3 && !pb.querySelector('[data-poll="vote"]') && /Tap one to see it/.test(pb.textContent), pb.textContent.slice(0, 120));
       PL.cur = {code:'0123456789ab', sids:sids3, own:false}; renderPoll();
       ok('real data: a server poll off the website says voting works on the website (' + (pollServerOk() ? 'website' : 'here') + ')', pollServerOk() || (/Voting works on the website/.test(pb.textContent) && !pb.querySelector('[data-poll="vote"]')), pb.textContent.slice(0, 120));
-    } finally { PL.cur = keepPL.cur; PL.res = keepPL.res; PL.err = keepPL.err; PL.mine = keepPL.mine; pb.innerHTML = keepH; }    try { tasteRealChecks(R, res, ok, eq); } catch (e) { ok('real data: v5.12 taste checks crashed', false, e && e.message ? e.message + ' ' + (e.stack || '').split('\n')[1] : String(e)); }
+    } finally { PL.cur = keepPL.cur; PL.res = keepPL.res; PL.err = keepPL.err; PL.mine = keepPL.mine; pb.innerHTML = keepH; }    try { wxRealChecks(ok, eq); } catch (e) { ok('real data: v5.20 weather checks crashed', false, e && e.message ? e.message : String(e)); }
+    try { tasteRealChecks(R, res, ok, eq); } catch (e) { ok('real data: v5.12 taste checks crashed', false, e && e.message ? e.message + ' ' + (e.stack || '').split('\n')[1] : String(e)); }
     try { typeRealChecks(R, ok, eq); } catch (e) { ok('real data: v5.17 type checks crashed', false, e && e.message ? e.message : String(e)); }
     // v5.16b real data: Opening soon on Home
     try {
@@ -13759,6 +13968,35 @@ function typeRealChecks(R, ok, eq){ // v5.17 real-data checks (run with the othe
       info('v5.17a2 sim profile active / lively / curious / odd (90% in line): ' + (hty ? hty.name + ' (' + hty.code + ')' + (hty.side ? ', runner-up ' + TYPES[hty.side - 1].name : '') : 'no type') + '; m = ' + ['e', 'v', 'p', 'w'].map(function(d){ return d + ' ' + hv.st.m[d].toFixed(2); }).join(', '));
       info('real data: probe pools: bar ' + rp.bar.length + ', Weird ' + rp.weird.length + '; probe recipe gave ' + (pb / pd).toFixed(1) + ' bar + ' + (pw / pd).toFixed(1) + ' Weird probes per deck (live recipe: ' + probes + ' bar probes in 50 decks)');
   })();
+}
+function wxRealChecks(ok, eq){ // v5.20 WX1 / WX4 / WX5 on the real list: weather only re-ranks, and neutral weather changes nothing
+  var keep = wxKeep(), F = appDefaultFilters(), day = '2026-11-14';
+  try {
+    var res = runPipeline(DATA, fromChicago(day, 840), {lat:41.8819, lng:-87.6278, budget:'any', mode:'car'}, ext(F, {mode:'car'}));
+    var vm = buildView(res, F, '', ''), base = res.all.slice();
+    function cnd(kind){ return wxCond(wxWindow(wxFixture(kind, day), {mode:'hour', key:day, min:840})); }
+    function ids(l){ return l.map(function(c){ return c.item.id; }).join(); }
+    WX.fixture = ''; WX.testOff = 1; WX.rev++;
+    var o1 = ids(base.slice().sort(rankFits)), t1 = ids(threePool(vm, day, []));
+    WX.testOff = 0; WX.rankPref = true; WX.cond = cnd('grey'); WX.rev++;
+    eq('real data WX1 a neutral grey day: list order identical to no weather (Sat 2 pm, the Loop, drive)', ids(base.slice().sort(rankFits)) === o1, true);
+    var pg = threePool(vm, day, []), zero = {}, nz = 0; pg.forEach(function(c){ if (wxOf(c) === 0) zero[c.item.id] = 1; else nz++; });
+    var keep0 = function(s){ return s.split(',').filter(function(id){ return zero[id]; }).join(); };
+    eq('real data WX1 a grey 50° day: items scored 0 keep their exact three-pick order (' + nz + ' move only because a dry-weather idea of theirs fits)', keep0(ids(pg)) === keep0(t1), true);
+    WX.cond = cnd('rain'); WX.cond.heavyRain = true; WX.rankPref = false; WX.rev++;
+    eq('real data WX1 "Use weather in picks" off in heavy rain: order identical', ids(base.slice().sort(rankFits)) === o1, true);
+    WX.rankPref = true; WX.rev++;
+    var o4 = ids(base.slice().sort(rankFits)), p4 = threePool(vm, day, []), nBad = 0, firstBad = -1;
+    p4.forEach(function(c, i){ if (wxOf(c) <= -2) { nBad++; if (firstBad < 0) firstBad = i; } });
+    eq('real data WX4 heavy rain only re-ranks: the same items in the list, nothing hidden', o4.split(',').sort().join() === o1.split(',').sort().join(), true);
+    eq('real data WX4/5 heavy rain: the three-pick pool keeps every item (' + p4.length + ')', p4.length, t1 ? t1.split(',').length : 0);
+    ok('real data WX4 heavy rain: ' + nBad + ' bad fits, all after the others in the pool', nBad === 0 || p4.slice(firstBad).every(function(c){ return wxOf(c) <= -2 || c.__fill; }), 'first bad at ' + firstBad);
+    var picks = pickThree(p4, {}).picks;
+    ok('real data WX5 heavy rain: Home still has 3 picks, none a bad fit while others fit (' + picks.map(function(c){ return c.item.id + ' ' + wxOf(c); }).join(', ') + ')', picks.length === Math.min(3, p4.length) && (p4.length - nBad < 3 || picks.every(function(c){ return wxOf(c) > -2; })), '');
+    var lines = 0, badW = '';
+    base.forEach(function(c){ var w = wxWarnFor(c), r = wxReasonFor(c), i = wxIdeaFor(c); if (w || r || i) lines++; if (/undefined|NaN|null/.test(w + r + i)) badW = c.item.id; if (i && i !== c.item.weather.idea) badW = c.item.id; });
+    ok('real data WX13 heavy rain lines (' + lines + ') never say undefined/NaN and ideas match the data exactly', !badW, badW);
+  } finally { wxRestore(keep); WX.rev++; }
 }
 function tasteRealChecks(R, resMon, ok, eq){ // v5.12 real-data taste checks (spec §9: T1-T13)
   function info(n){ R.push({ok:true, info:'', name:n, note:true}); }
@@ -13926,6 +14164,8 @@ function readHash(){
   if (wt.saved || wt.fr || wt.key || wt.wl || wt.detail || wt.view) { wt.panel = /panel=saved/.test(hsh) && !wt.wl; UI.wlTest = wt; if (DATA_LOADED) setTimeout(wlTestHooks, 0); }
   if (mapEl) tasteHook(hsh);   // v5.12: #taste=deck|profile|check|reveal|hard|guest, #tastedemo=1, #tastetest=1
   // v5.9 testing hooks (this visit only, nothing saved): #skin=night|sorbet #mode=auto|light|dark #mapstyle=standard|themed #panel=theme #view=map
+  var wxh = /(?:^#|&)wx=(rain|storm|snow|heavysnow|wind|hot|nice|grey|fail)\b/.exec(hsh); if (wxh) wxSetFixture(wxh[1]);   // v5.20 testing hook: made-up weather (the sheet says "Test weather"); nothing is fetched
+  if (/(?:^#|&)wxsheet=1/.test(hsh) && mapEl) (function w(n){ if (DATA_LOADED || n > 60) wxOpenSheet(); else setTimeout(function(){ w(n + 1); }, 200); })(0);   // v5.20 screenshot hook
   var skm = /(?:^#|&)skin=(night|sorbet)/.exec(hsh); if (skm) setSkin(skm[1], true);
   var thm = /(?:^#|&)mode=(auto|light|dark)/.exec(hsh); if (thm) setTheme(thm[1], true);
   var msm = /(?:^#|&)mapstyle=(standard|themed)/.exec(hsh); if (msm) setMapMode(msm[1], true);
@@ -14075,6 +14315,557 @@ function loadGeo(){
   });
 }
 
+/* ================= weather (v5.20) =================
+   Spec: design/2026-11-14-weather-spec.md. Forecast from Open-Meteo (no key; free for non-commercial use; data CC BY 4.0, so the
+   "Weather data by Open-Meteo.com" link shows wherever its data does). Website only: the claude.ai copy never fetches. Only a point
+   rounded to a 0.05 degree grid (about 5 km) is sent, and nothing at all until a location is set (GPS, a picked spot or an address).
+   10 s timeout, 30 min cache under offgrid.wx.v1, one try per minute after a failure. A failure, offline or bad data = no weather and
+   the app works as before. Weather only RE-RANKS (it never hides anything), and every line restates the forecast numbers or the
+   item's own weather fields (indoor_outdoor, weather.rain_ok / snow_friendly / wind_sensitive / things_to_do / idea). Items without
+   a weather object are neutral. On a holiday whose hours aren't posted for an item, weather says nothing about that item. */
+var WX_KEY = 'offgrid.wx.v1', WX_RANK_KEY = 'offgrid.wx.rank', WX_FX_KEY = 'offgrid.wx.fx';
+var WX_FRESH_MS = 1800000, WX_DIM_MS = 3600000, WX_OLD_MS = 21600000, WX_TIMEOUT_MS = 10000, WX_RETRY_MS = 60000;
+// First-version thresholds (spec 2.1): design choices, unverified, tune after she uses it. One place so a tweak is one line.
+var WX_T = {gust:25, gale:40, cold:10, hot:90, rainIn:0.02, heavyRainIn:0.15, snowIn:0.05, heavySnowIn:0.4, heavySnowDay:3, rainProb:60, niceProb:30, niceLo:60, niceHi:85, niceGust:20, calmGust:15, lightSnowFeels:15, freshSnowIn:1, freshSnowMax:36};
+var WX = {d:null, at:0, k:'', state:'idle', inflight:false, lastFail:0, err:'', fixture:'', rev:1, cond:null, win:null, fetchN:0, testOff:0, rankPref:true, fxPref:true};
+var WX_ATTR = 'Weather data by Open-Meteo.com', WX_ATTR_HTML = '<a class="wx-attr" href="https://open-meteo.com/" target="_blank" rel="noopener">Weather data by Open-Meteo.com</a>';
+var WX_ICONS = {
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/>',
+  moon:'<path d="M19.5 14.5A8 8 0 1 1 9.5 4.5a6.5 6.5 0 0 0 10 10z"/>',
+  cloud:'<path d="M7 18.5h10a4 4 0 0 0 .4-8A6 6 0 0 0 6 11a3.75 3.75 0 0 0 1 7.5z"/>',
+  rain:'<path d="M7 14.5h10a4 4 0 0 0 .4-8A6 6 0 0 0 6 7a3.75 3.75 0 0 0 1 7.5z"/><path d="M9 17.5l-1 3M13 17.5l-1 3M17 17.5l-1 3"/>',
+  snow:'<path d="M7 14.5h10a4 4 0 0 0 .4-8A6 6 0 0 0 6 7a3.75 3.75 0 0 0 1 7.5z"/><path d="M8.5 18.5h.01M12.5 20.5h.01M16.5 18.5h.01" stroke-width="2.6"/>',
+  storm:'<path d="M7 14.5h10a4 4 0 0 0 .4-8A6 6 0 0 0 6 7a3.75 3.75 0 0 0 1 7.5z"/><path d="M12.5 15l-2 3.5h3l-2 3.5"/>',
+  wind:'<path d="M3 9h11a3 3 0 1 0-3-3M3 13h15a3 3 0 1 1-3 3M3 17h7"/>',
+  fog:'<path d="M4 9h16M4 13h16M6 17h12"/>'
+};
+function wxSvg(name, cls){ return '<svg class="' + (cls || 'wxi') + '" viewBox="0 0 24 24" aria-hidden="true">' + (WX_ICONS[name] || WX_ICONS.cloud) + '</svg>'; }
+function wxMerge(a, b){ var o = {}, k; for (k in a) if (Object.prototype.hasOwnProperty.call(a, k)) o[k] = a[k]; if (b) for (k in b) if (Object.prototype.hasOwnProperty.call(b, k)) o[k] = b[k]; return o; }
+function wxHostOk(){ return cloudHost(); }   // the website only (never the claude.ai copy, never inside a frame)
+function wxLocOf(loc){ return loc && loc.src && loc.src !== 'default' && isNum(loc.lat) && isNum(loc.lng) ? loc : null; }   // the Loop fallback is not "a location set"
+function wxR(v){ return (Math.round(v * 20) / 20).toFixed(2); }
+function wxCell(lat, lng){ return wxR(lat) + ',' + wxR(lng); }
+function wxNear(a, b){ if (!a || !b) return false; var x = String(a).split(','), y = String(b).split(','); return Math.abs(x[0] - y[0]) <= 0.1001 && Math.abs(x[1] - y[1]) <= 0.1001; }
+function wxUrl(lat, lng){
+  return 'https://api.open-meteo.com/v1/forecast?latitude=' + wxR(lat) + '&longitude=' + wxR(lng) +
+    '&current=temperature_2m,apparent_temperature,precipitation,snowfall,weather_code,wind_gusts_10m,wind_direction_10m,is_day' +
+    '&hourly=temperature_2m,apparent_temperature,precipitation_probability,precipitation,snowfall,weather_code,wind_gusts_10m,is_day' +
+    '&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum,precipitation_probability_max,snowfall_sum,wind_gusts_10m_max,sunrise,sunset' +
+    '&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=America%2FChicago&forecast_days=8&past_days=1';
+}
+/* pure: Open-Meteo JSON -> {v:1, hours:[{key,h,temp,feels,prob,prec,snow,code,gust,day}], days:[{key,code,hi,lo,fhi,flo,prec,prob,snow,gust,sunrise,sunset}], cur}
+   or null when the shape is wrong. Units are read from *_units and converted to F / mph / inch if the API ever answers in others. */
+function wxParse(j){
+  try {
+    if (!j || typeof j !== 'object' || !j.hourly || !j.daily || typeof j.hourly !== 'object' || typeof j.daily !== 'object') return null;
+    var H = j.hourly, D = j.daily, hu = j.hourly_units || {}, du = j.daily_units || {}, cu = j.current_units || {};
+    if (!Array.isArray(H.time) || !H.time.length || H.time.length > 1000) return null;
+    if (!Array.isArray(H.temperature_2m) || H.temperature_2m.length !== H.time.length || !Array.isArray(H.weather_code) || H.weather_code.length !== H.time.length) return null;
+    if (!Array.isArray(D.time) || !D.time.length) return null;
+    function cv(kind, u){ u = String(u || '');
+      if (kind === 't') return /C/.test(u) ? function(v){ return v * 9 / 5 + 32; } : null;
+      if (kind === 'w') return /km/.test(u) ? function(v){ return v * 0.621371; } : /m\/s/.test(u) ? function(v){ return v * 2.23694; } : /kn/.test(u) ? function(v){ return v * 1.15078; } : null;
+      return /^mm/.test(u) ? function(v){ return v / 25.4; } : /^cm/.test(u) ? function(v){ return v / 2.54; } : null; }
+    function num(arr, i, f){ var v = Array.isArray(arr) ? arr[i] : null; if (typeof v !== 'number' || !isFinite(v)) return null; return f ? f(v) : v; }
+    function mins(s){ var m = /T(\d{2}):(\d{2})/.exec(String(s || '')); return m ? +m[1] * 60 + +m[2] : null; }
+    var fT = cv('t', hu.temperature_2m), fF = cv('t', hu.apparent_temperature), fP = cv('p', hu.precipitation), fS = cv('p', hu.snowfall), fW = cv('w', hu.wind_gusts_10m);
+    var hours = [], i, m;
+    for (i = 0; i < H.time.length; i++) {
+      m = /^(\d{4}-\d{2}-\d{2})T(\d{2}):/.exec(String(H.time[i] || '')); if (!m) return null;
+      hours.push({key:m[1], h:+m[2], temp:num(H.temperature_2m, i, fT), feels:num(H.apparent_temperature, i, fF), prob:num(H.precipitation_probability, i), prec:num(H.precipitation, i, fP), snow:num(H.snowfall, i, fS), code:num(H.weather_code, i), gust:num(H.wind_gusts_10m, i, fW), day:num(H.is_day, i)});
+    }
+    if (!hours.some(function(x){ return x.temp !== null && x.code !== null; })) return null;
+    var gT = cv('t', du.temperature_2m_max), gF = cv('t', du.apparent_temperature_max), gP = cv('p', du.precipitation_sum), gS = cv('p', du.snowfall_sum), gW = cv('w', du.wind_gusts_10m_max), days = [];
+    for (i = 0; i < D.time.length; i++) {
+      if (!isKey(String(D.time[i] || ''))) return null;
+      days.push({key:String(D.time[i]), code:num(D.weather_code, i), hi:num(D.temperature_2m_max, i, gT), lo:num(D.temperature_2m_min, i, gT), fhi:num(D.apparent_temperature_max, i, gF), flo:num(D.apparent_temperature_min, i, gF), prec:num(D.precipitation_sum, i, gP), prob:num(D.precipitation_probability_max, i), snow:num(D.snowfall_sum, i, gS), gust:num(D.wind_gusts_10m_max, i, gW), sunrise:Array.isArray(D.sunrise) ? mins(D.sunrise[i]) : null, sunset:Array.isArray(D.sunset) ? mins(D.sunset[i]) : null});
+    }
+    var cur = null, C = j.current;
+    if (C && typeof C === 'object') {
+      var ct = /^(\d{4}-\d{2}-\d{2})T(\d{2}):/.exec(String(C.time || ''));
+      var one = function(k, f){ var v = C[k]; return typeof v === 'number' && isFinite(v) ? (f ? f(v) : v) : null; };
+      cur = {key:ct ? ct[1] : '', h:ct ? +ct[2] : null, temp:one('temperature_2m', cv('t', cu.temperature_2m)), feels:one('apparent_temperature', cv('t', cu.apparent_temperature)), prec:one('precipitation', cv('p', cu.precipitation)), snow:one('snowfall', cv('p', cu.snowfall)), code:one('weather_code'), gust:one('wind_gusts_10m', cv('w', cu.wind_gusts_10m)), dir:one('wind_direction_10m'), day:one('is_day')};
+    }
+    return {v:1, hours:hours, days:days, cur:cur};
+  } catch (e) { return null; }
+}
+function wxValid(N){ return !!N && N.v === 1 && Array.isArray(N.hours) && N.hours.length > 0 && Array.isArray(N.days); }
+/* pure: the hours she'd be there. q = {mode:'now'|'hour'|'today'|'day', key, min}. Now / a picked hour = that hour + the next 2 (now: the
+   current reading replaces hour 0); Today = now until 11 pm; a picked day "Any time" = 10 am to 8 pm. null = outside the forecast. */
+function wxWindow(N, q){
+  if (!wxValid(N) || !q || !isKey(q.key)) return null;
+  var out = [], hh = isNum(q.min) ? Math.floor(q.min / 60) : 0, i;
+  if (q.mode === 'day') N.hours.forEach(function(x){ if (x.key === q.key && x.h >= 10 && x.h <= 20) out.push(x); });
+  else if (q.mode === 'today') N.hours.forEach(function(x){ if (x.key === q.key && x.h >= Math.min(hh, 23) && x.h <= 23) out.push(x); });
+  else { for (i = 0; i < N.hours.length; i++) if (N.hours[i].key === q.key && N.hours[i].h === hh) { out = N.hours.slice(i, i + 3); break; } }
+  if (!out.length) return null;
+  // the current reading only stands in for its own hour (an older cached one never does)
+  if (q.mode === 'now' && N.cur && N.cur.key === q.key && N.cur.h === hh) { var h0 = wxMerge(out[0], {}); ['temp', 'feels', 'prec', 'snow', 'code', 'gust', 'day'].forEach(function(k){ if (N.cur[k] !== null && N.cur[k] !== undefined) h0[k] = N.cur[k]; }); out = [h0].concat(out.slice(1)); }
+  var day = null, prev = null;
+  for (i = 0; i < N.days.length; i++) if (N.days[i].key === q.key) { day = N.days[i]; prev = i > 0 ? N.days[i - 1] : null; break; }
+  return {mode:q.mode, key:q.key, min:isNum(q.min) ? q.min : null, hours:out, day:day, prev:prev, dir:N.cur && q.mode === 'now' && isNum(N.cur.dir) ? N.cur.dir : 270};
+}
+function wxIsRainCode(c){ return (c >= 51 && c <= 67) || (c >= 80 && c <= 82); }
+function wxIsSnowCode(c){ return (c >= 71 && c <= 77) || c === 85 || c === 86; }
+function wxSev(code, gust){ return code >= 95 ? 6 : (code === 65 || code === 67 || code === 82) ? 5 : wxIsSnowCode(code) ? 4 : wxIsRainCode(code) ? 3 : (isNum(gust) && gust > WX_T.gust) ? 2 : (code === 45 || code === 48) ? 1 : 0; }
+function wxIcon(code, isDay, gust){ if (code >= 95) return 'storm'; if (wxIsSnowCode(code)) return 'snow'; if (wxIsRainCode(code)) return 'rain'; if (code === 45 || code === 48) return 'fog'; if (isNum(gust) && gust > WX_T.gust) return 'wind'; if (code === 0 || code === 1) return isDay === 0 ? 'moon' : 'sun'; return 'cloud'; }
+function wxCodeText(c){ // WMO weather codes as Open-Meteo documents them
+  if (!isNum(c)) return 'Weather'; if (c === 0) return 'Clear'; if (c === 1) return 'Mostly clear'; if (c === 2) return 'Partly cloudy'; if (c === 3) return 'Cloudy'; if (c === 45 || c === 48) return 'Fog';
+  if (c >= 51 && c <= 55) return 'Drizzle'; if (c === 56 || c === 57) return 'Freezing drizzle'; if (c === 61) return 'Light rain'; if (c === 63) return 'Rain'; if (c === 65) return 'Heavy rain'; if (c === 66 || c === 67) return 'Freezing rain';
+  if (c === 71) return 'Light snow'; if (c === 73) return 'Snow'; if (c === 75) return 'Heavy snow'; if (c === 77) return 'Snow grains'; if (c === 80 || c === 81) return 'Rain showers'; if (c === 82) return 'Heavy showers'; if (c === 85 || c === 86) return 'Snow showers';
+  if (c === 95) return 'Thunderstorm'; if (c >= 96) return 'Thunderstorm, hail'; return 'Weather';
+}
+/* pure: the named conditions of a window (spec 2.1 table; thresholds in WX_T) */
+function wxCond(W){
+  if (!W || !W.hours || !W.hours.length) return null;
+  var T = WX_T, h0 = W.hours[0], c = {mode:W.mode, key:W.key, min:W.min, storm:false, rain:false, heavyRain:false, snow:false, heavySnow:false, lightSnow:false, veryCold:false, windy:false, galeWindy:false, hot:false, nice:false, freshSnow:false, snow2:false, fog:false, dry:true, rainNow:false, rainFrom:null, clear2:true, clear1:true, night:false, sunsetIn:false};
+  var gust = 0, flo = null, fhi = null, probN = 0, probMax = 0, probFrom = null, upTo3 = true;
+  W.hours.forEach(function(x, i){
+    var code = isNum(x.code) ? x.code : -1, sc = wxIsSnowCode(code) || (isNum(x.snow) && x.snow >= T.snowIn), wet = false;
+    if (code === 95 || code === 96 || code === 99) { c.storm = true; wet = true; }
+    if (wxIsRainCode(code) || (!sc && isNum(x.prec) && x.prec >= T.rainIn)) wet = true;   // precipitation includes melted snow, so a snowy hour isn't "rain"
+    if (code === 63 || code === 65 || code === 67 || code === 81 || code === 82 || (!sc && isNum(x.prec) && x.prec >= T.heavyRainIn)) { c.heavyRain = true; wet = true; }
+    if (sc) c.snow = true;
+    if (code === 75 || code === 86 || (isNum(x.snow) && x.snow >= T.heavySnowIn)) c.heavySnow = true;
+    if (isNum(x.prob)) { if (x.prob >= T.rainProb) { probN++; if (probFrom === null) probFrom = x.h; } if (x.prob > probMax) probMax = x.prob; }
+    if (wet) { c.rain = true; if (c.rainFrom === null) c.rainFrom = x.h; if (i === 0) c.rainNow = true; }
+    if (code === 45 || code === 48) c.fog = true;
+    if (!(code >= 0 && code <= 3)) upTo3 = false;
+    if (!(code >= 0 && code <= 2)) c.clear2 = false;
+    if (!(code >= 0 && code <= 1)) c.clear1 = false;
+    if (x.day === 0) c.night = true;
+    if (isNum(x.gust) && x.gust > gust) gust = x.gust;
+    if (isNum(x.feels)) { flo = flo === null ? x.feels : Math.min(flo, x.feels); fhi = fhi === null ? x.feels : Math.max(fhi, x.feels); }
+  });
+  if (probN >= 2 && !c.snow && !c.rain) { c.rain = true; c.rainFrom = probFrom; }
+  if (c.storm || c.heavyRain) c.rain = true;
+  var day = W.day, prev = W.prev;
+  if (day && isNum(day.snow) && day.snow >= T.heavySnowDay) c.heavySnow = true;
+  if (c.heavySnow) c.snow = true;
+  if (flo === null && isNum(h0.temp)) flo = fhi = h0.temp;
+  c.gust = Math.round(gust); c.feelsLo = flo === null ? null : Math.round(flo); c.feelsHi = fhi === null ? null : Math.round(fhi); c.temp = isNum(h0.temp) ? Math.round(h0.temp) : null;
+  c.veryCold = flo !== null && flo < T.cold;
+  c.windy = gust > T.gust; c.galeWindy = gust > T.gale;
+  c.hot = fhi !== null && fhi > T.hot;
+  c.lightSnow = c.snow && !c.heavySnow && flo !== null && flo >= T.lightSnowFeels;
+  c.dry = !c.rain && !c.snow;
+  if (!c.dry) { c.clear2 = false; c.clear1 = false; }
+  c.nice = c.dry && !c.veryCold && !c.windy && !c.hot && upTo3 && probMax < T.niceProb && flo !== null && flo >= T.niceLo && fhi <= T.niceHi && gust < T.niceGust;
+  var ps = (prev && isNum(prev.snow) ? prev.snow : 0) + (day && isNum(day.snow) ? day.snow : 0);
+  c.freshSnow = ps >= T.freshSnowIn && !!day && isNum(day.hi) && day.hi <= T.freshSnowMax;
+  c.snow2 = ps >= 2;
+  c.startMin = (W.mode === 'now' || W.mode === 'today' || W.mode === 'hour') && isNum(W.min) ? W.min : W.hours[0].h * 60;
+  c.endMin = W.hours[W.hours.length - 1].h * 60 + 59;
+  if (day && isNum(day.sunset)) c.sunsetIn = day.sunset - 90 <= c.endMin && day.sunset >= c.startMin;
+  c.hourMin = W.mode === 'day' ? null : c.startMin;
+  c.month = +String(W.key).slice(5, 7); c.wd = wdOfKey(W.key);
+  c.code = isNum(h0.code) ? h0.code : null; c.dir = isNum(W.dir) ? W.dir : null;
+  return c;
+}
+function wxWords(w){ return w && Array.isArray(w.things_to_do) ? w.things_to_do.map(function(t){ return String(t || '').trim().toLowerCase(); }) : []; }
+function wxHas(list, words){ for (var i = 0; i < words.length; i++) if (list.indexOf(words[i]) >= 0) return true; return false; }
+var WX_WALK = ['bike', 'run', 'walk', 'hike', 'river walk', 'lagoon walk', 'beach walk', 'nature walk', 'garden walk', 'garden stroll', 'gardens', 'arboretum', 'statue hunt', 'audio tour', 'stair climb'];
+function wxWordFits(t, c, item){ // spec 3.1; a word not listed never triggers an idea
+  if (t === 'picnic') return c.nice && c.startMin < 1140 && c.endMin > 660;
+  if (WX_WALK.indexOf(t) >= 0) return c.nice || (c.dry && isNum(c.feelsLo) && c.feelsLo >= 45 && c.feelsHi <= 85 && c.gust < 25);
+  if (t === 'skyline view') return c.clear2 && c.dry;
+  if (t === 'sunset') return c.clear2 && c.dry && c.sunsetIn;
+  if (t === 'stargazing') return c.clear1 && c.dry && c.night;
+  if (t === 'sledding') return c.freshSnow || (c.snow && isNum(c.feelsLo) && c.feelsLo >= 15);
+  if (t === 'cross-country skiing' || t === 'ice fishing') return c.freshSnow || c.snow2;
+  if (t === 'ice skating' || t === 'christmas tree' || t === 'light show') return (c.dry || c.lightSnow) && isNum(c.feelsLo) && c.feelsLo >= 15;
+  if (t === 'winter waves') return c.windy && !c.galeWindy && c.dry && (c.month >= 11 || c.month <= 3);
+  if (t === 'beach' || t === 'swim') return c.hot || (c.dry && isNum(c.feelsHi) && c.feelsHi >= 80);
+  if (t === 'kayak' || t === 'boating') return c.nice && c.gust < 15;
+  if (t === 'kite') return c.dry && c.gust >= 10 && c.gust <= 25;
+  if (['bird watching', 'eagle watching', 'elk viewing', 'fishing', 'zoo', 'waterfalls'].indexOf(t) >= 0) return c.dry && c.gust < 20;
+  if (t === 'leaf walk' || t === 'cherry blossoms') { var se = item && item.season; return c.dry && !!se && isKey(se.open_from) && isKey(se.open_to) && se.open_from <= c.key && c.key <= se.open_to; }   // only the item's own season dates, no month guessing
+  if (t === 'mini golf' || t === 'climbing' || t === 'skate park') return c.dry;
+  if (t === 'sauna') return true;
+  return false;
+}
+function wxIdeaFits(item, c, o){
+  var w = item && item.weather; if (!c || !w || typeof w.idea !== 'string' || !w.idea.trim()) return false;
+  if (o && o.holidayUnknown) return false;
+  return wxWords(w).some(function(t){ return wxWordFits(t, c, item); });
+}
+function wxHolidayUnknown(item, key){ // a holiday whose hours aren't posted for this item: weather says nothing about it that day
+  if (!item || !isKey(key) || !holidayName(key)) return false;
+  var dh = item.date_hours; return !(dh && typeof dh === 'object' && dh[key]);
+}
+/* pure: -3..+3 (spec 2.2). Unknown indoor_outdoor or no weather object = no claim either way. */
+function wxScore(item, c, o){
+  if (!item || !c) return 0;
+  var w = item.weather; if (!w || typeof w !== 'object') return 0;
+  o = o || {}; if (o.holidayUnknown) return 0;
+  var io = item.indoor_outdoor, ind = io === 'indoor', out = io === 'outdoor', both = io === 'both', ttd = wxWords(w), s = 0, tr = isNum(o.trav) ? o.trav : null;
+  var rainNo = w.rain_ok === false, wind = w.wind_sensitive === true, snowF = w.snow_friendly === true;
+  if (c.storm) { if (ind) s += 2; if (rainNo) s -= 3; if (wind) s -= 3; }
+  else if (c.heavyRain) { if (ind) s += 2; if (rainNo) s -= 3; }
+  else if (c.rain) { if (ind) s += 1; if (rainNo) s -= 2; }
+  if (c.lightSnow && !c.windy) { if (snowF) s += 2; else if (out) s -= 1; }
+  if (c.heavySnow || c.veryCold) {
+    if (ind) s += 1;
+    if (out || both) s -= 2;
+    if ((tr !== null && tr > 45) || hasTag(item, 'day-trip')) s -= 2; else if (tr !== null && tr > 30) s -= 1;
+  }
+  if (c.galeWindy) { if (wind) s -= 3; } else if (c.windy) { if (wind) s -= 2; }
+  if (c.hot) {
+    if (wxHas(ttd, ['swim', 'beach', 'beach walk'])) s += 2;
+    if (ind) s += 1;
+    if (isNum(c.hourMin) && c.hourMin >= 660 && c.hourMin <= 960 && out && wxHas(ttd, ['hike', 'run', 'bike', 'stair climb'])) s -= 2;
+    if (isNum(c.hourMin) && c.hourMin >= 1080 && out) s += 1;
+  }
+  if (c.nice) { if (out) s += 2; else if (both) s += 1; if (c.gust < WX_T.calmGust && wind) s += 1; }
+  if (wxIdeaFits(item, c, o)) s += 1;
+  return Math.max(-3, Math.min(3, s));
+}
+/* pure: the one reason line on a Home card (spec 2.4), only for a boost of 2+, and never when the idea line already says it */
+function wxReason(item, c, s, o){
+  if (!item || !c || !(s >= 2)) return '';
+  o = o || {};
+  var w = item.weather || {}, io = item.indoor_outdoor, ttd = wxWords(w), todayKey = isKey(o.today) ? o.today : cparts(nowMs()).key;
+  if (wxIdeaFits(item, c, o)) return '';
+  var other = c.key !== todayKey;
+  if (c.storm && io === 'indoor') return 'Indoors, storms on the way';
+  if (c.rain && io === 'indoor') return other ? DOW_SHORT[c.wd] + ' looks rainy: indoors' : c.rainNow ? 'Indoors, because it’s raining' : c.rainFrom !== null ? 'Indoors: rain from ' + fmtTime(c.rainFrom * 60) : 'Indoors: rain likely';
+  if (c.lightSnow && w.snow_friendly === true) return 'Snowing: perfect for this';
+  if ((c.heavySnow || c.veryCold) && io === 'indoor' && isNum(o.trav) && o.trav <= 30 && isNum(c.feelsLo)) return 'Close and warm: feels like ' + c.feelsLo + '°';
+  if (c.hot && wxHas(ttd, ['swim', 'beach', 'beach walk']) && isNum(c.feelsHi)) return 'Cool off: it’s ' + c.feelsHi + '°';
+  if (c.hot && io === 'outdoor' && isNum(c.hourMin) && c.hourMin >= 1080) return 'Cooler by evening';
+  if (c.nice && (io === 'outdoor' || io === 'both') && isNum(c.temp)) return 'Nice out: ' + c.temp + '° and ' + (c.clear2 ? (c.night ? 'clear' : 'sunny') : 'dry');
+  return '';
+}
+/* pure: the quiet warning in lists and the detail screen, only for a bad fit (score -2 or worse) */
+function wxWarn(item, c){
+  if (!item || !c) return '';
+  var w = item.weather || {}, io = item.indoor_outdoor;
+  if (c.rain && w.rain_ok === false) return (io === 'indoor' ? '' : 'Outdoors · ') + (c.storm ? 'storms' : 'rain') + (c.mode === 'day' ? ' likely' : c.rainNow ? ' now' : c.rainFrom !== null ? ' from ' + fmtTime(c.rainFrom * 60) : ' likely');
+  if (c.windy && w.wind_sensitive === true) return 'Windy: gusts ' + c.gust + ' mph';
+  if (c.veryCold && isNum(c.feelsLo)) return 'Very cold: feels ' + c.feelsLo + '°';
+  if (c.heavySnow) return 'Heavy snow';
+  return '';
+}
+function wxWord(c){ return !c ? '' : c.rain ? 'Rain' : c.snow ? 'Snow' : c.windy ? 'Windy' : c.hot ? 'Hot' : ''; }
+function wxIdeaHTML(s){ var m = /^(Idea:)([\s\S]*)$/.exec(String(s)); return m ? '<b>' + esc(m[1]) + '</b>' + esc(m[2]) : esc(s); }   // the text as written; only "Idea:" is bold
+/* ---- state (impure) ---- */
+function wxRankOn(){ return WX.rankPref !== false; }
+function wxDataOk(){
+  if (WX.testOff) return false;
+  if (WX.fixture) return !!WX.d;
+  if (!WX.d || Date.now() - WX.at > WX_OLD_MS) return false;
+  var L = wxLocOf(S.loc); return !!L && wxNear(WX.k, wxCell(L.lat, L.lng));
+}
+function wxActive(){ return !WX.testOff && !!WX.cond && wxRankOn(); }
+function wxOf(c){
+  if (!c || !c.item || !wxActive()) return 0;
+  if (c.__wxRev === WX.rev) return c.__wx;
+  c.__wx = wxScore(c.item, WX.cond, {trav:c.trav && isNum(c.trav.min) ? c.trav.min : null, holidayUnknown:wxHolidayUnknown(c.item, WX.cond.key)});
+  c.__wxRev = WX.rev; return c.__wx;
+}
+function wxLast(c){ return wxOf(c) <= -2 ? 1 : 0; }
+function wxIdeaFor(c){ if (!wxActive() || !c || !c.item) return ''; var w = c.item.weather; return w && wxIdeaFits(c.item, WX.cond, {holidayUnknown:wxHolidayUnknown(c.item, WX.cond.key)}) ? w.idea : ''; }
+function wxReasonFor(c){ if (!wxActive() || !c || !c.item) return ''; var s = wxOf(c); return s >= 2 ? wxReason(c.item, WX.cond, s, {trav:c.trav && isNum(c.trav.min) ? c.trav.min : null}) : ''; }
+function wxWarnFor(c){ if (!wxActive() || !c || !c.item) return ''; return wxOf(c) <= -2 ? wxWarn(c.item, WX.cond) : ''; }
+function wxQuery(){
+  var now = cparts(nowMs());
+  if (UI.today) return {mode:'today', key:now.key, min:now.min};
+  if (UI.anyDay) return {mode:'day', key:UI.anyDay, min:null};
+  if (UI.planning && isNum(UI.planAt)) { var q = cparts(UI.planAt); return {mode:'hour', key:q.key, min:q.min}; }
+  return {mode:'now', key:now.key, min:now.min};
+}
+function wxPrepare(){ // once per refresh: the window for the chosen When, and its conditions
+  WX.rev++;
+  if (WX.fixture && WX.fixture !== 'fail') { var tp = cparts(nowMs()), tk = tp.key + 'T' + Math.floor(tp.min / 60); if (!WX.d || WX.fxKey !== tk) { WX.d = wxFixture(WX.fixture, tp.key); WX.fxKey = tk; WX.at = Date.now(); WX.state = 'ok'; } }
+  var q = wxQuery();
+  WX.win = wxDataOk() ? wxWindow(WX.d, q) : null;
+  WX.cond = WX.win ? wxCond(WX.win) : null;
+}
+function wxAfter(){ try { refresh(); if (!$('pSmall').hidden && smallRender === wxSheet) wxSheet(); } catch (e) {} }
+function wxGet(f, url, ms){ // fetch with a hard timeout; resolves with the JSON or rejects (never hangs)
+  return new Promise(function(resolve, reject){
+    var ac = null, done = false;
+    try { ac = typeof AbortController === 'function' ? new AbortController() : null; } catch (e) { ac = null; }
+    var tm = setTimeout(function(){ if (done) return; done = true; try { if (ac) ac.abort(); } catch (e) {} reject(new Error('timeout')); }, ms);
+    var init0 = {credentials:'omit', referrerPolicy:'no-referrer', cache:'no-store'}; if (ac) init0.signal = ac.signal;
+    Promise.resolve().then(function(){ return f(url, init0); }).then(function(r){ if (!r || !r.ok) throw new Error('HTTP ' + (r ? r.status : '?')); return r.json(); })
+      .then(function(j){ if (done) return; done = true; clearTimeout(tm); resolve(j); }, function(e){ if (done) return; done = true; clearTimeout(tm); reject(e || new Error('failed')); });
+  });
+}
+/* Get the forecast if needed. Returns a word right away ('fixture' | 'off' | 'noloc' | 'fresh' | 'inflight' | 'offline' | 'wait' | 'nofetch')
+   or a promise of 'ok' / 'fail'. o (tests): {host, loc, online, fetch, store, now, timeout, force, after}. */
+function wxEnsure(o){
+  o = o || {};
+  if (WX.fixture) return 'fixture';
+  var host = o.host !== undefined ? o.host : wxHostOk();
+  if (!host) { WX.state = 'off'; return 'off'; }
+  var L = wxLocOf(o.loc !== undefined ? o.loc : S.loc);
+  if (!L) { WX.state = 'noloc'; return 'noloc'; }   // nothing is sent until a location is set
+  var store = o.store || Platform.store, now = isNum(o.now) ? o.now : Date.now(), k = wxCell(L.lat, L.lng);
+  if (WX.d && !wxNear(WX.k, k)) { WX.d = null; WX.at = 0; WX.k = ''; }   // another area: the old forecast isn't shown
+  if (!WX.d) { var cc = store.get(WX_KEY, null); if (cc && typeof cc === 'object' && wxNear(cc.k, k) && isNum(cc.at) && now - cc.at < WX_OLD_MS && now >= cc.at - 60000 && wxValid(cc.d)) { WX.d = cc.d; WX.at = cc.at; WX.k = cc.k; } }
+  if (WX.d && now - WX.at < WX_FRESH_MS) { WX.state = 'ok'; return 'fresh'; }
+  if (WX.inflight) return 'inflight';
+  var online = o.online !== undefined ? o.online : !(navigator && navigator.onLine === false);
+  if (!online) { WX.err = 'offline'; WX.state = WX.d ? 'ok' : 'fail'; return 'offline'; }
+  if (!o.force && WX.lastFail && now - WX.lastFail < WX_RETRY_MS) return 'wait';
+  var f = o.fetch || (window.fetch ? function(u, i){ return window.fetch(u, i); } : null);
+  if (!f) { WX.state = WX.d ? 'ok' : 'fail'; WX.err = 'no fetch'; return 'nofetch'; }
+  WX.inflight = true; WX.fetchN++; if (!WX.d) WX.state = 'loading';
+  return wxGet(f, wxUrl(L.lat, L.lng), o.timeout || WX_TIMEOUT_MS).then(function(j){
+    var N = wxParse(j); if (!N) throw new Error('bad data');
+    WX.d = N; WX.at = isNum(o.now) ? o.now : Date.now(); WX.k = k; WX.state = 'ok'; WX.err = ''; WX.inflight = false; WX.lastFail = 0;
+    store.set(WX_KEY, {k:k, at:WX.at, d:N});
+    if (o.after) o.after();
+    return 'ok';
+  }, function(e){ throw e; })['catch'](function(e){
+    WX.inflight = false; WX.lastFail = isNum(o.now) ? o.now : Date.now(); WX.err = String(e && e.message || e || 'failed').slice(0, 80);
+    WX.state = WX.d ? 'ok' : 'fail';
+    if (o.after) o.after();
+    return 'fail';
+  });
+}
+/* made-up forecasts for the self-test and the #wx= testing hook (never fetched). over(hour) may change each hour. */
+function wxFixture(kind, key0, over){
+  var P = {rain:{code:63, prec:0.08, prob:90, temp:48, feels:43, gust:18}, storm:{code:95, prec:0.3, prob:95, temp:70, feels:70, gust:35}, snow:{code:71, prec:0.01, snow:0.1, prob:70, temp:28, feels:25, gust:10},
+    heavysnow:{code:75, prec:0.05, snow:0.6, prob:95, temp:18, feels:8, gust:20}, wind:{code:3, gust:32, temp:45, feels:38, prob:10}, hot:{code:0, temp:93, feels:95, gust:8, prob:5},
+    nice:{code:1, temp:72, feels:72, gust:8, prob:5}, grey:{code:3, temp:50, feels:47, gust:10, prob:10}}[kind] || {code:3, temp:50, feels:47, gust:10, prob:10};
+  var hours = [], days = [], start = addDays(key0, -1);
+  for (var d = 0; d < 9; d++) {
+    var k = addDays(start, d), dh = [];
+    for (var h = 0; h < 24; h++) { var x = {key:k, h:h, temp:P.temp, feels:P.feels, prob:P.prob || 0, prec:P.prec || 0, snow:P.snow || 0, code:P.code, gust:P.gust, day:h >= 7 && h <= 16 ? 1 : 0}; if (over) over(x); hours.push(x); dh.push(x); }
+    var mx = function(f){ return dh.reduce(function(a, x){ return Math.max(a, x[f]); }, -1e9); }, mn = function(f){ return dh.reduce(function(a, x){ return Math.min(a, x[f]); }, 1e9); }, sm = function(f){ return Math.round(dh.reduce(function(a, x){ return a + x[f]; }, 0) * 100) / 100; };
+    days.push({key:k, code:dh.reduce(function(a, x){ return wxSev(x.code, x.gust) > wxSev(a, 0) ? x.code : a; }, dh[12].code), hi:mx('temp'), lo:mn('temp'), fhi:mx('feels'), flo:mn('feels'), prec:sm('prec'), prob:mx('prob'), snow:sm('snow'), gust:mx('gust'), sunrise:400, sunset:990});
+  }
+  var cp = cparts(nowMs()), ch = null;
+  hours.forEach(function(x){ if (x.key === cp.key && x.h === Math.floor(cp.min / 60)) ch = x; });
+  var cur = ch ? {key:ch.key, h:ch.h, temp:ch.temp, feels:ch.feels, prec:ch.prec, snow:ch.snow, code:ch.code, gust:ch.gust, dir:270, day:ch.day} : null;
+  return {v:1, hours:hours, days:days, cur:cur, test:kind};
+}
+function wxSampleJSON(){ // a made-up answer in Open-Meteo's real shape (2 days), for the self-test
+  var t = [], T = [], F = [], P = [], R = [], Sn = [], C = [], G = [], Dy = [];
+  ['2026-11-14', '2026-11-15'].forEach(function(k){ for (var h = 0; h < 24; h++) { t.push(k + 'T' + pad(h) + ':00'); T.push(5); F.push(2); P.push(10); R.push(0); Sn.push(0); C.push(3); G.push(40); Dy.push(h >= 7 && h <= 16 ? 1 : 0); } });
+  return {latitude:41.9, longitude:-87.65, timezone:'America/Chicago',
+    current_units:{temperature_2m:'°F', apparent_temperature:'°F', precipitation:'inch', snowfall:'inch', wind_gusts_10m:'mp/h'},
+    current:{time:'2026-11-14T13:45', interval:900, temperature_2m:41, apparent_temperature:35, precipitation:0, snowfall:0, weather_code:3, wind_gusts_10m:18, wind_direction_10m:270, is_day:1},
+    hourly_units:{temperature_2m:'°F', apparent_temperature:'°F', precipitation_probability:'%', precipitation:'inch', snowfall:'inch', wind_gusts_10m:'mp/h'},
+    hourly:{time:t, temperature_2m:T, apparent_temperature:F, precipitation_probability:P, precipitation:R, snowfall:Sn, weather_code:C, wind_gusts_10m:G, is_day:Dy},
+    daily_units:{temperature_2m_max:'°F', precipitation_sum:'inch', snowfall_sum:'inch', wind_gusts_10m_max:'mp/h'},
+    daily:{time:['2026-11-14', '2026-11-15'], weather_code:[3, 3], temperature_2m_max:[45, 44], temperature_2m_min:[33, 32], apparent_temperature_max:[40, 39], apparent_temperature_min:[28, 27], precipitation_sum:[0, 0], precipitation_probability_max:[10, 10], snowfall_sum:[0, 0], wind_gusts_10m_max:[20, 22], sunrise:['2026-11-14T06:37', '2026-11-15T06:38'], sunset:['2026-11-14T16:31', '2026-11-15T16:30']}};
+}
+function wxSelfTestAsync(ok, eq){ // fetch failures, offline, malformed JSON, timeout, no location, cache; fake fetch + fake storage, nothing sent
+  var keep = wxKeep(), mem = {}, store = {get:function(k, d){ return Object.prototype.hasOwnProperty.call(mem, k) ? JSON.parse(mem[k]) : d; }, set:function(k, v){ mem[k] = JSON.stringify(v); return true; }};
+  var loc = {lat:41.9123, lng:-87.6544, src:'gps'}, calls = [], t0 = Date.now();
+  function reset(){ WX.d = null; WX.at = 0; WX.k = ''; WX.inflight = false; WX.lastFail = 0; WX.state = 'idle'; WX.fixture = ''; WX.err = ''; }
+  function run(f, o){ reset(); return Promise.resolve(wxEnsure(wxMerge({host:true, online:true, loc:loc, store:store, fetch:f, timeout:400, now:t0}, o || {}))); }
+  function counting(resp){ return function(u, init){ calls.push({u:u, init:init}); return resp(); }; }
+  var good = counting(function(){ return Promise.resolve({ok:true, status:200, json:function(){ return Promise.resolve(wxSampleJSON()); }}); });
+  return run(counting(function(){ return Promise.reject(new TypeError('Failed to fetch')); })).then(function(r){
+    eq('WXA network error: "fail", no data, the app carries on', [r, WX.state, !!WX.d, WX.inflight].join(), 'fail,fail,false,false');
+    return run(counting(function(){ return Promise.resolve({ok:false, status:500, json:function(){ return Promise.resolve({}); }}); }));
+  }).then(function(r){
+    eq('WXA HTTP 500: "fail"', [r, WX.state].join(), 'fail,fail');
+    return run(counting(function(){ return Promise.resolve({ok:true, status:200, json:function(){ return Promise.reject(new SyntaxError('Unexpected token <')); }}); }));
+  }).then(function(r){
+    eq('WXA malformed JSON: "fail"', [r, WX.state].join(), 'fail,fail');
+    return run(counting(function(){ return Promise.resolve({ok:true, status:200, json:function(){ return Promise.resolve({error:true, reason:'x'}); }}); }));
+  }).then(function(r){
+    eq('WXA valid JSON in the wrong shape: "fail" (bad data)', [r, WX.err].join(), 'fail,bad data');
+    return run(counting(function(){ return new Promise(function(){}); }), {timeout:300});
+  }).then(function(r){
+    eq('WXA no answer: gives up at the timeout (no endless spinner)', [r, WX.err, WX.inflight].join(), 'fail,timeout,false');
+    var n0 = calls.length, r1 = wxEnsure({host:true, online:false, loc:loc, store:{get:function(k, d){ return d; }, set:function(){}}, fetch:good, now:t0});
+    eq('WXA offline with no cache: no fetch, "fail"', [r1, WX.state, calls.length - n0].join(), 'offline,fail,0');
+    reset(); var r2 = wxEnsure({host:true, online:true, loc:ext(LOOP, {}), store:store, fetch:good, now:t0});
+    eq('WXA no location set: nothing is sent', [r2, calls.length - n0].join(), 'noloc,0');
+    reset(); var r3 = wxEnsure({host:false, online:true, loc:loc, store:store, fetch:good, now:t0});
+    eq('WXA claude.ai copy: never fetches', [r3, calls.length - n0].join(), 'off,0');
+    calls.length = 0; mem = {};
+    return run(good);
+  }).then(function(r){
+    var c0 = calls[0] || {u:'', init:{}};
+    eq('WXA a good answer: "ok", one fetch, data kept', [r, WX.state, calls.length, !!WX.d].join(), 'ok,ok,1,true');
+    ok('WXA the request: rounded point, no cookies, no referrer', c0.u.indexOf('latitude=41.90&longitude=-87.65') > 0 && c0.init.credentials === 'omit' && c0.init.referrerPolicy === 'no-referrer', c0.u.slice(0, 80));
+    var cached = store.get(WX_KEY, null);
+    ok('WXA cached under offgrid.wx.v1 with the rounded cell', !!cached && cached.k === '41.90,-87.65' && cached.at === t0 && wxValid(cached.d), JSON.stringify(cached && cached.k));
+    var r2 = wxEnsure({host:true, online:true, loc:loc, store:store, fetch:good, now:t0 + 10 * 60000});
+    eq('WXA 10 min later: from the cache, no new fetch', [r2, calls.length].join(), 'fresh,1');
+    WX.d = null; var r3 = wxEnsure({host:true, online:true, loc:loc, store:store, fetch:good, now:t0 + 20 * 60000});
+    eq('WXA a reload 20 min later reads the stored cache, no fetch', [r3, calls.length].join(), 'fresh,1');
+    return Promise.resolve(wxEnsure({host:true, online:true, loc:loc, store:store, fetch:good, now:t0 + 31 * 60000}));
+  }).then(function(r){
+    eq('WXA after 30 min it asks again', [r, calls.length].join(), 'ok,2');
+    var fl = counting(function(){ return Promise.reject(new Error('down')); });
+    return Promise.resolve(wxEnsure({host:true, online:true, loc:loc, store:store, fetch:fl, now:t0 + 70 * 60000}));
+  }).then(function(r){
+    eq('WXA a failed refresh keeps the older forecast (shown dimmed)', [r, WX.state, !!WX.d].join(), 'fail,ok,true');
+    var r2 = wxEnsure({host:true, online:true, loc:loc, store:store, fetch:good, now:t0 + 70 * 60000 + 5000});
+    eq('WXA after a failure it waits a minute before trying again', r2, 'wait');
+  }).then(function(){ wxRestore(keep); WX.rev++; }, function(e){ wxRestore(keep); WX.rev++; ok('WXA weather fetch checks: crashed', false, e && e.message ? e.message : String(e)); });
+}
+function wxSetFixture(kind){ WX.fixture = kind; WX.d = null; WX.fxKey = ''; if (kind === 'fail') { WX.state = 'fail'; WX.err = 'test'; } if (mapEl && UI) { try { refresh(); } catch (e) {} } }
+function wxKeep(){ return wxMerge(WX, {}); }
+function wxRestore(k){ for (var p in k) if (Object.prototype.hasOwnProperty.call(k, p)) WX[p] = k[p]; }
+/* ---- chip, sheet, About ---- */
+function wxChipModel(){
+  if (WX.testOff) return null;
+  if (!WX.fixture && WX.state === 'off') return null;   // the claude.ai copy: no weather at all
+  if (!WX.fixture && !wxLocOf(S.loc)) return {icon:'cloud', text:'Set area', muted:true, aria:'Weather: pick your area to see it'};
+  if (!wxDataOk()) {
+    if (WX.inflight || WX.state === 'loading' || WX.state === 'idle') return {icon:'cloud', text:'…', muted:true, aria:'Weather: loading'};   // bounded by the 10 s timeout
+    return {icon:'cloud', text:'Unavailable', muted:true, fail:true, aria:'Weather unavailable. Picks aren’t using it. Open for details'};
+  }
+  var W = WX.win, c = WX.cond; if (!W || !c) return null;   // the picked time is outside the forecast
+  var h0 = W.hours[0], t, ic;
+  if (W.mode === 'now' || W.mode === 'hour') { t = c.temp; ic = wxIcon(h0.code, h0.day, h0.gust); }
+  else {
+    var wh = W.hours.reduce(function(a, x){ return wxSev(x.code, x.gust) > wxSev(a.code, a.gust) ? x : a; }, W.hours[0]);
+    ic = W.mode === 'day' && W.day && isNum(W.day.code) ? wxIcon(W.day.code, 1, W.day.gust) : wxIcon(wh.code, 1, wh.gust);
+    t = W.day && isNum(W.day.hi) ? Math.round(W.day.hi) : c.temp;
+  }
+  if (!isNum(t)) return null;
+  return {icon:ic, text:t + '°', word:wxActive() ? wxWord(c) : '', dim:!WX.fixture && Date.now() - WX.at > WX_DIM_MS, aria:'Weather: ' + t + ' degrees, ' + wxCodeText(W.mode === 'day' && W.day ? W.day.code : h0.code).toLowerCase() + '. Open the forecast'};
+}
+function wxChipHTML(){
+  var m = wxChipModel(); if (!m) return '';
+  return '<button class="wx-chip' + (m.dim ? ' dim' : '') + (m.muted ? ' muted' : '') + ' wx-' + m.icon + '" type="button" data-wxopen="1" aria-label="' + esc(m.aria) + '">' + wxSvg(m.icon) + '<b>' + esc(m.text) + '</b>' + (m.word ? '<span>' + esc(m.word) + '</span>' : '') + '</button>';
+}
+function wxDayBit(k){
+  if (!wxDataOk()) return '';
+  var d = null; WX.d.days.forEach(function(x){ if (x.key === k) d = x; });
+  return d && isNum(d.hi) ? '<small class="wxd">' + wxSvg(wxIcon(d.code, 1, d.gust)) + Math.round(d.hi) + '°</small>' : '';
+}
+function wxOpenSheet(){ openSmall('Weather near ' + locName(S.loc), wxSheet); }
+function wxSheet(){ var b = $('pSmallBody'); if (b) b.innerHTML = wxSheetHTML(); }
+function wxSheetHTML(){
+  var h = '', foot = '<p class="wx-foot">' + WX_ATTR_HTML + (WX.fixture ? ' · Test weather (made up)' : WX.at ? ' · Updated ' + esc(fmtClock(WX.at)) : '') + '</p>';
+  if (!WX.fixture && WX.state === 'off') return '<p class="wx-off">Weather shows on the website version only.</p>';
+  if (!WX.fixture && !wxLocOf(S.loc)) return '<p class="wx-off">Weather needs your area. Nothing is sent until you pick one.</p><button class="btn-primary" type="button" data-wx="loc" style="width:100%">Pick my area</button>';
+  if (!wxDataOk()) return '<p class="wx-off">' + (WX.inflight ? 'Loading the weather…' : 'Weather unavailable. Picks aren’t using it; everything else works.') + '</p>' + (WX.inflight ? '' : '<button class="mini-btn" type="button" data-wx="retry">Try again</button>') + '<p class="wx-foot">' + WX_ATTR_HTML + '</p>';
+  var N = WX.d, p = cparts(nowMs()), W = wxWindow(N, {mode:'now', key:p.key, min:p.min});
+  if (!WX.fixture && Date.now() - WX.at > WX_DIM_MS) h += '<p class="wx-off small">Offline: weather from ' + esc(fmtClock(WX.at)) + '</p>';
+  if (W) {
+    var x = W.hours[0], det = [];
+    if (isNum(x.feels)) det.push('Feels ' + Math.round(x.feels) + '°');
+    if (isNum(x.gust)) det.push('gusts ' + Math.round(x.gust) + ' mph');
+    h += '<div class="wx-now">' + wxSvg(wxIcon(x.code, x.day, x.gust), 'wxi big') + '<b>' + (isNum(x.temp) ? Math.round(x.temp) + '°' : '') + '</b><div><p class="wx-cond">' + esc(wxCodeText(x.code)) + '</p><p class="wx-det">' + esc(det.join(' · ')) + '</p></div></div>';
+    var i0 = -1; for (var i = 0; i < N.hours.length; i++) if (N.hours[i].key === p.key && N.hours[i].h === Math.floor(p.min / 60)) { i0 = i; break; }
+    if (i0 >= 0) h += '<ul class="wx-hours" aria-label="Next 12 hours">' + N.hours.slice(i0, i0 + 12).map(function(y, j){ return '<li><span>' + (j === 0 ? 'Now' : esc(fmtTime(y.h * 60).replace(':00', ''))) + '</span>' + wxSvg(wxIcon(y.code, y.day, y.gust)) + (isNum(y.prob) && y.prob >= 50 ? '<small>' + Math.round(y.prob) + '%</small>' : '') + '<b>' + (isNum(y.temp) ? Math.round(y.temp) + '°' : '') + '</b></li>'; }).join('') + '</ul>';
+  }
+  var dd = N.days.filter(function(d){ return d.key >= p.key; }).slice(0, 8);
+  if (dd.length) h += '<div class="wx-days">' + dd.map(function(d, j){ return '<button type="button" data-wx="day:' + d.key + '" aria-label="Show ' + esc(j === 0 ? 'today' : DOW_SHORT[wdOfKey(d.key)]) + ', any time"><span class="d">' + (j === 0 ? 'Today' : esc(DOW_SHORT[wdOfKey(d.key)] + ' ' + (+d.key.slice(8)))) + '</span>' + wxSvg(wxIcon(d.code, 1, d.gust)) + '<span class="pp">' + (isNum(d.prob) && d.prob >= 30 ? Math.round(d.prob) + '%' : '') + '</span><span class="t">' + (isNum(d.hi) ? Math.round(d.hi) + '°' : '') + ' / ' + (isNum(d.lo) ? Math.round(d.lo) + '°' : '') + '</span></button>'; }).join('') + '</div>';
+  h += '<button class="wx-sw" type="button" role="switch" aria-checked="' + wxRankOn() + '" data-wx="rank">Use weather in picks<i></i></button>';
+  h += '<button class="wx-sw" type="button" role="switch" aria-checked="' + !!WX.fxPref + '" data-wx="fx">Rain and snow on the map<i></i></button>';
+  h += '<p class="hint">Weather only changes the order. Nothing is hidden.</p>';
+  return h + foot;
+}
+function wxDetailHTML(c){ // the item's own idea and "things to do there", exactly as written in the data
+  var w = c && c.item && c.item.weather; if (!w || typeof w !== 'object') return '';
+  var h = '', fits = !!wxIdeaFor(c);
+  if (typeof w.idea === 'string' && w.idea.trim()) h += '<p class="dt-idea' + (fits ? ' fits' : '') + '">' + (fits ? wxSvg(wxIcon(WX.cond.code, WX.cond.night ? 0 : 1, WX.cond.gust)) : '') + '<span>' + wxIdeaHTML(w.idea) + '</span></p>';
+  if (Array.isArray(w.things_to_do) && w.things_to_do.length) h += '<p class="dt-ttd">Things to do there: ' + w.things_to_do.map(function(t){ return esc(String(t)); }).join(' · ') + '</p>';
+  return h;
+}
+function wxAboutHTML(){
+  return '<h3>Weather</h3><p>' + WX_ATTR_HTML + ' (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>). We round it and turn it into simple labels. Only a rounded point (about 5 km) is sent, and only once you set a location; nothing else. It only changes the order of picks, never hides anything. On the website version only.' +
+    (WX.state === 'fail' && !WX.fixture ? ' Weather didn’t load this time, so picks aren’t using it.' : '') + '</p>';
+}
+/* ---- rain and snow over the map (spec 4) ---- */
+var WXFX = {cv:null, cx:null, raf:0, parts:[], kind:'', last:0, frames:0, gaps:0, still:false, touch:0, w:0, h:0, slant:0, t:0};
+function wxFxKindOf(x){
+  if (!x) return ''; var code = isNum(x.code) ? x.code : -1, sn = isNum(x.snow) ? x.snow : 0, pr = isNum(x.prec) ? x.prec : 0;
+  if (code >= 95) return 'rain3';
+  if (code === 75 || code === 86 || sn >= WX_T.heavySnowIn) return 'snow3';
+  if (code === 73 || code === 85 || sn >= 0.1) return 'snow2';
+  if (wxIsSnowCode(code) || sn >= WX_T.snowIn) return 'snow1';
+  if (code === 65 || code === 67 || code === 82 || pr >= WX_T.heavyRainIn) return 'rain3';
+  if (code === 63 || code === 81 || pr >= 0.06) return 'rain2';
+  if (wxIsRainCode(code) || pr >= WX_T.rainIn) return 'rain1';
+  if (code === 45 || code === 48) return 'fog';
+  return '';
+}
+function wxFxKind(){
+  if (!WX.fxPref || !wxDataOk() || S.when !== 'now' || UI.planning) return '';   // only for Now: the map is "where things are", not a forecast
+  if (!WX.fixture && Date.now() - WX.at > WX_DIM_MS) return '';
+  var p = cparts(nowMs()), W = wxWindow(WX.d, {mode:'now', key:p.key, min:p.min});
+  if (W) WXFX.slant = (isNum(W.dir) ? -Math.sin(W.dir * Math.PI / 180) : 0) * Math.tan(Math.min(18, (isNum(W.hours[0].gust) ? W.hours[0].gust : 0) / 40 * 18) * Math.PI / 180);
+  return W ? wxFxKindOf(W.hours[0]) : '';
+}
+function wxMapSeen(){ return document.visibilityState !== 'hidden' && !!mapEl && (isWide() || UI.view === 'map'); }
+function wxFxStop(remove){ if (WXFX.raf) { cancelAnimationFrame(WXFX.raf); WXFX.raf = 0; } if (remove && WXFX.cv) { if (WXFX.cv.parentNode) WXFX.cv.parentNode.removeChild(WXFX.cv); WXFX.cv = null; WXFX.cx = null; WXFX.kind = ''; } }
+function wxFxSync(){
+  try {
+    var k = wxFxKind();
+    if (!k || !mapEl) { wxFxStop(true); return; }   // off = no canvas at all
+    if (!WXFX.cv) { var cv = document.createElement('canvas'); cv.id = 'wxfx'; cv.setAttribute('aria-hidden', 'true'); mapEl.insertBefore(cv, $('pins')); WXFX.cv = cv; WXFX.cx = cv.getContext ? cv.getContext('2d') : null; }
+    WXFX.cv.className = 'wxfx' + (k === 'fog' ? ' fog' : '');
+    var w = mapEl.clientWidth, h = mapEl.clientHeight, dpr = Math.min(2, window.devicePixelRatio || 1);
+    if (w !== WXFX.w || h !== WXFX.h || k !== WXFX.kind) { WXFX.w = w; WXFX.h = h; WXFX.cv.width = Math.max(1, Math.round(w * dpr)); WXFX.cv.height = Math.max(1, Math.round(h * dpr)); if (WXFX.cx) WXFX.cx.setTransform(dpr, 0, 0, dpr, 0, 0); WXFX.kind = k; wxFxSeed(); }
+    if (k === 'fog' || !WXFX.cx) { wxFxStop(false); if (WXFX.cx) WXFX.cx.clearRect(0, 0, w, h); return; }
+    if (!wxMapSeen()) { wxFxStop(false); return; }
+    if (reduceMotion() || WXFX.still) { wxFxStop(false); wxFxDraw(0, 0.5); return; }   // one still frame, no animation
+    if (!WXFX.raf) { WXFX.last = 0; WXFX.raf = requestAnimationFrame(wxFxTick); }
+  } catch (e) { wxFxStop(true); }
+}
+function wxFxSeed(){
+  var base = {rain1:70, rain2:130, rain3:200, snow1:45, snow2:90, snow3:150}[WXFX.kind] || 0, n = Math.min(260, Math.round(base * WXFX.w * WXFX.h / (390 * 844)));
+  if ((navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || (navigator.deviceMemory && navigator.deviceMemory <= 4)) n = Math.round(n / 2);   // low-power phones start at half
+  var snow = /^snow/.test(WXFX.kind), lv = +String(WXFX.kind).slice(-1) || 1, P = [];
+  for (var i = 0; i < n; i++) P.push(snow ? {x:Math.random() * WXFX.w, y:Math.random() * WXFX.h, r:(lv === 3 ? 2 : 1.5) + Math.random() * (lv === 1 ? 1 : lv === 2 ? 1.5 : 1.5), v:[0, 30, 40, 60][lv] + Math.random() * [0, 30, 40, 40][lv], ph:Math.random() * 6.28}
+    : {x:Math.random() * WXFX.w, y:Math.random() * WXFX.h, l:[0, 9, 12, 14][lv] + Math.random() * [0, 5, 6, 8][lv], v:[0, 900, 1100, 1300][lv] + Math.random() * [0, 200, 300, 300][lv]});
+  WXFX.parts = P; WXFX.frames = 0; WXFX.gaps = 0;
+}
+function wxFxDraw(dt, frac){
+  var cx = WXFX.cx; if (!cx) return;
+  var w = WXFX.w, h = WXFX.h, P = WXFX.parts, n = Math.round(P.length * (frac || 1)), cs = getComputedStyle(document.documentElement), snow = /^snow/.test(WXFX.kind), lv = +String(WXFX.kind).slice(-1) || 1;
+  cx.clearRect(0, 0, w, h);
+  WXFX.t += dt;
+  if (snow) {
+    cx.fillStyle = cs.getPropertyValue('--wx-snow').trim() || 'rgba(255,255,255,.9)';
+    var ring = cs.getPropertyValue('--wx-ring').trim(); if (ring && ring !== 'transparent') { cx.strokeStyle = ring; cx.lineWidth = 1; }
+    for (var i = 0; i < n; i++) { var p = P[i]; p.y += p.v * dt; p.x += (WXFX.slant * p.v + Math.cos(WXFX.t * 1.5 + p.ph) * 10) * dt; if (p.y > h + 4) { p.y = -4; p.x = Math.random() * w; } if (p.x > w + 4) p.x = -4; else if (p.x < -4) p.x = w + 4;
+      cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, 6.2832); cx.fill(); if (ring && ring !== 'transparent') cx.stroke(); }
+  } else {
+    cx.strokeStyle = cs.getPropertyValue('--wx-rain').trim() || 'rgba(170,190,255,.45)'; cx.lineWidth = [1, 1, 1.2, 1.4][lv]; cx.lineCap = 'round'; cx.beginPath();
+    for (var j = 0; j < n; j++) { var q = P[j]; q.y += q.v * dt; q.x += WXFX.slant * q.v * dt; if (q.y > h + 20) { q.y = -20; q.x = Math.random() * w; } if (q.x > w + 20) q.x = -20; else if (q.x < -20) q.x = w + 20;
+      cx.moveTo(q.x, q.y); cx.lineTo(q.x + WXFX.slant * q.l, q.y + q.l); }
+    cx.stroke();
+  }
+}
+function wxFxTick(ts){
+  WXFX.raf = 0;
+  if (!WXFX.cv || !wxMapSeen() || !WX.fxPref) return;
+  var idle = Date.now() - WXFX.touch > 12000, cap = idle ? 50 : 33;   // 30 fps; 20 fps after 12 s without a touch
+  if (WXFX.last && ts - WXFX.last < cap) { WXFX.raf = requestAnimationFrame(wxFxTick); return; }
+  var dt = WXFX.last ? Math.min(0.1, (ts - WXFX.last) / 1000) : 0.016;
+  if (WXFX.last) { WXFX.frames++; WXFX.gaps += ts - WXFX.last; }
+  WXFX.last = ts;
+  var t0 = (window.performance && performance.now) ? performance.now() : 0;
+  wxFxDraw(dt, idle ? 0.4 : 1);
+  var spent = (window.performance && performance.now) ? performance.now() - t0 : 0;
+  if (WXFX.frames === 60 && (WXFX.gaps / 60 > 80 || spent > 8)) { WXFX.still = true; wxFxDraw(0, 0.5); return; }   // a slow phone (or Low Power Mode): a still frame for the rest of the visit
+  WXFX.raf = requestAnimationFrame(wxFxTick);
+}
+function wxBind(){
+  var fxp = Platform.store.get(WX_FX_KEY, '1'), rkp = Platform.store.get(WX_RANK_KEY, '1');
+  WX.fxPref = fxp !== '0'; WX.rankPref = rkp !== '0';
+  var b = $('pSmallBody');
+  if (b) b.addEventListener('click', function(e){
+    var t = e.target && e.target.closest ? e.target.closest('[data-wx]') : null; if (!t) return;
+    var v = t.getAttribute('data-wx');
+    if (v === 'retry') { WX.lastFail = 0; wxEnsure({force:true, after:wxAfter}); wxSheet(); }
+    else if (v === 'loc') { closePanel('pSmall'); openLocation(false); }
+    else if (v === 'rank') { WX.rankPref = !wxRankOn(); Platform.store.set(WX_RANK_KEY, WX.rankPref ? '1' : '0'); refresh(); wxSheet(); }
+    else if (v === 'fx') { WX.fxPref = !WX.fxPref; Platform.store.set(WX_FX_KEY, WX.fxPref ? '1' : '0'); wxFxSync(); wxSheet(); }
+    else if (v.indexOf('day:') === 0 && isKey(v.slice(4))) { closePanel('pSmall'); pickDay(v.slice(4), -1); }
+  });
+  var touch = function(){ WXFX.touch = Date.now(); if (WXFX.cv && !WXFX.raf && !WXFX.still && !reduceMotion()) wxFxSync(); };
+  if (mapEl) { mapEl.addEventListener('pointerdown', touch, {passive:true}); mapEl.addEventListener('wheel', touch, {passive:true}); }
+  WXFX.touch = Date.now();
+  document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'visible') wxEnsure({after:wxAfter}); wxFxSync(); });
+  window.addEventListener('online', function(){ WX.lastFail = 0; wxEnsure({after:wxAfter}); });
+}
+
 /* ================= init ================= */
 function init(){
   mapEl = $('map'); svgEl = $('mapsvg'); pinsEl = $('pins'); ringEl = $('ring');
@@ -14128,12 +14919,15 @@ function init(){
   setTimeout(function(){ Platform.tips.db(); }, 1500);   // light up the shared tip box after first paint; never blocks it
   gisWatch();   // v5.14: Google's sign-in button replaces ours on the website once one is on screen
   popInit();   // v5.14: the welcome sign-in and taste-test pop-ups (they only start a timer; anything a link opens below comes first)
+  wxBind();   // v5.20 weather sheet, map touches, coming back to the tab
   readHash();
   if (!/^#w_/.test(location.hash || '') && $('pFriend').hidden) { var inc = sessGet(INCOMING_KEY); if (inc && /^#w_/.test(inc)) wlOpen(inc, 'stored'); }   // v5.8 I6: a list that was open (not kept) when the page reloaded
 }
 
 window.__cff = {
   version: VERSION, appName: APP_NAME,
+  wxParse: wxParse, wxWindow: wxWindow, wxCond: wxCond, wxScore: wxScore, wxIdeaFits: wxIdeaFits, wxReason: wxReason, wxWarn: wxWarn, wxUrl: wxUrl, wxLocOf: wxLocOf, wxFixture: wxFixture, wxEnsure: wxEnsure, wxFxKindOf: wxFxKindOf, WX_T: WX_T,   // v5.20
+  wxState: function(){ return {state:WX.state, at:WX.at, k:WX.k, fixture:WX.fixture, inflight:WX.inflight, err:WX.err, fetchN:WX.fetchN, rank:wxRankOn(), fx:WX.fxPref, cond:WX.cond, hasData:!!WX.d}; },
   guides: function(){ return {loaded:GA.loaded, src:ext(GA.src, {}), ids:GA.all.map(function(g){ return g.id; }), open:GA.open}; }, gaResolve: gaResolve, gaResolveId: gaResolveId, gaPriceText: gaPriceText, gaHop: gaHop, gaMerge: gaMerge, gaWindow: gaWindow, gaLinkKind: gaLinkKind, openArticle: openArticle, closeArticle: closeArticle,   // v5.18
   beenPrecPatch: beenPrecPatch, oneSource: oneSource, friendBeenMonths: friendBeenMonths, coupleStatus: coupleStatus,   // v5.18
   blendMatch: blendMatch, blendTypeSim: blendTypeSim, blendSections: blendSections, blendShareText: blendShareText, typeShareFileName: typeShareFileName, blendShareFileName: blendShareFileName, deckNameFor: deckNameFor,   // v5.19
