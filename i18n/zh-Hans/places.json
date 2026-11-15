@@ -113,7 +113,7 @@
                                            "hash":  "1BB6A315449BA332"
                                        },
     "ev-chicago-christmas-tree-lighting-2026":  {
-                                                    "hook":  "晚 6 点点亮圣诞树，随后放烟花",
+                                                    "hook":  "点亮圣诞树，随后放烟花",
                                                     "description":  "芝加哥第 113 届官方圣诞树点灯仪式在 Millennium Park（千禧公园）举行：先在 Chicago Cultural Center 旁 Washington Street 的主舞台举行仪式，接着点亮圣诞树，然后放烟花，公园各处设有大屏幕。据 WTTW 报道，今年的圣诞树是一棵近 50 英尺高的挪威云杉。",
                                                     "highlights":  [
                                                                        "2026 年 11 月 20 日（周五）18:00，Millennium Park；约 18:30 点灯，随后放烟花",
@@ -122,7 +122,7 @@
                                                                        "近 50 英尺的挪威云杉，来自 Kane County 的一户人家",
                                                                        "免费公共活动"
                                                                    ],
-                                                    "hash":  "8D0012738AC3DFD2"
+                                                    "hash":  "380761FD5A5996F9"
                                                 },
     "ev-magnificent-mile-lights-festival-2026":  {
                                                      "hook":  "傍晚 Michigan Ave 大游行，之后放烟花",
@@ -462,7 +462,7 @@
                                 "hash":  "AEFF806DDF781E05"
                             },
     "pa-round1-north-riverside":  {
-                                      "hook":  "日式街机、保龄球和 KTV 包间，营业到凌晨 1 点",
+                                      "hook":  "日式街机、保龄球和 KTV 包间",
                                       "description":  "离市区最近的 Round1（日本娱乐连锁）：大型街机厅（很多日本音游、抓娃娃和奖品游戏），加上保龄球、台球和 KTV 包间，都在一个屋檐下。一群人可以轮流玩不同项目，也是深夜的好去处。",
                                       "highlights":  [
                                                          "街机、保龄球、台球和 KTV 包间一站搞定",
@@ -470,17 +470,17 @@
                                                          "按局付费；无入场费",
                                                          "位于 North Riverside Park Mall 内，从 Loop（市中心）往西约 30 分钟"
                                                      ],
-                                      "hash":  "ED6A88CE94827D03"
+                                      "hash":  "0FE31671CEC081A6"
                                   },
     "pa-round1-gurnee-mills":  {
-                                   "hook":  "街机、保龄球和 KTV，营业到凌晨 2 点",
+                                   "hook":  "街机、保龄球和 KTV",
                                    "description":  "Round1 位于北郊 Gurnee Mills 商场内的门店，有街机、日式抓娃娃机、保龄球、台球、乒乓球、KTV 包间和儿童游乐区。离市中心约 40 英里，人已经在北边时去最合适。",
                                    "highlights":  [
                                                       "街机、保龄球、台球、乒乓球、KTV、儿童游乐区",
                                                       "每天上午 10 点至凌晨 2 点",
                                                       "位于 Gurnee Mills 内，在市中心以北约 40 英里"
                                                   ],
-                                   "hash":  "3D80330B32DBEC13"
+                                   "hash":  "3B18F26387F1AB57"
                                },
     "pa-emporium-wicker-park":  {
                                     "hook":  "复古街机和弹珠台，代币 25 美分一枚",
@@ -966,7 +966,7 @@
                             "hash":  "7F2870DE11B9C360"
                         },
     "pc-art-institute-of-chicago":  {
-                                        "hook":  "顶级艺术博物馆，周四开放到晚 8 点",
+                                        "hook":  "顶级艺术博物馆",
                                         "description":  "全美最好的艺术博物馆之一，位于 Michigan Avenue，紧邻 Millennium Park（千禧公园）。每天都有导览，特展“Mary Cassatt: After Impressionism”正在展出。",
                                         "highlights":  [
                                                            "周四晚上开放到 8 点——轻松的约会夜",
@@ -976,7 +976,7 @@
                                                            "伊利诺伊州居民免费：每月第三个周四下午 5-8 点；2026 年 12 月 2-18 日的工作日",
                                                            "Mary Cassatt 特展至 1 月 3 日（+$7）"
                                                        ],
-                                        "hash":  "FFA7474177DFCB9B"
+                                        "hash":  "71E0AE707120FF60"
                                     },
     "pc-chicago-cultural-center":  {
                                        "hook":  "免费地标建筑，有 Tiffany 彩色玻璃穹顶",
@@ -991,7 +991,7 @@
                                        "hash":  "F69618233F72E36D"
                                    },
     "pc-mca-chicago":  {
-                           "hook":  "当代艺术，周二开放到晚 9 点",
+                           "hook":  "当代艺术",
                            "description":  "芝加哥的当代艺术博物馆，在 Streeterville、Michigan Avenue 以东一个街区，馆内有自己的餐厅 Marisol 和商店。",
                            "highlights":  [
                                               "伊利诺伊州居民周二下午 5-9 点免费",
@@ -1001,7 +1001,7 @@
                                               "18 岁及以下永远免费",
                                               "馆内有 Marisol 餐厅"
                                           ],
-                           "hash":  "E45AA7FA1D02AE9D"
+                           "hash":  "33893EFA4E43ED17"
                        },
     "pc-national-museum-of-mexican-art":  {
                                               "hook":  "Pilsen 永久免费的墨西哥艺术博物馆",
@@ -1409,7 +1409,7 @@
                                "hash":  "C1550E0EA168953B"
                            },
     "pc-kingston-mines":  {
-                              "hook":  "两个蓝调舞台轮番演出到凌晨 4 点",
+                              "hook":  "两个蓝调舞台轮番演出",
                               "description":  "Lincoln Park 的一家深夜蓝调夜店（自称世界闻名），两个舞台整晚轮流演出，音乐几乎不停。开场是一段早场原声演出，之后 North Stage 和 Main Stage 交替演到很晚。",
                               "highlights":  [
                                                  "蓝调俱乐部：两个舞台轮流演出",
@@ -1418,7 +1418,7 @@
                                                  "入场费周四 $15，周五至周六 $20；仅限 21+",
                                                  "门口有学生/老人/生日优惠"
                                              ],
-                              "hash":  "C2B82018FED80F14"
+                              "hash":  "48730388CCA4F175"
                           },
     "pd-music-box-theatre":  {
                                  "hook":  "1929 年的电影宫殿，天花板是闪烁的夜空",
@@ -1633,7 +1633,7 @@
                                              "hash":  "443B83DAF38C92AA"
                                          },
     "pd-redhead-piano-bar":  {
-                                 "hook":  "昏暗的钢琴酒吧，现场音乐到凌晨 4 点",
+                                 "hook":  "昏暗的钢琴酒吧，有现场音乐",
                                  "description":  "River North 一家经典、灯光昏暗的钢琴酒吧，每周七晚都有现场音乐，打烊出了名地晚。比起吵闹的夜店，这里温馨，可以围着钢琴一起唱，很适合作为约会夜的收尾。",
                                  "highlights":  [
                                                     "每周 7 晚现场钢琴",
@@ -1641,7 +1641,7 @@
                                                     "欢乐时光周一至周四晚 7-10 点",
                                                     "感恩节、12 月 24 日和 12 月 25 日休息"
                                                 ],
-                                 "hash":  "06980A7985A358AA"
+                                 "hash":  "1FAC87AF342A78FE"
                              },
     "pd-reckless-records-wicker-park":  {
                                             "hook":  "在一箱箱新旧黑胶里淘宝",
@@ -2165,7 +2165,7 @@
                                 "hash":  "1632DFA7C3838F85"
                             },
     "ps-driehaus-museum":  {
-                               "hook":  "镀金时代豪宅，周三下午 4-7 点随心付",
+                               "hook":  "镀金时代豪宅",
                                "description":  "Michigan Avenue 以西的一座镀金时代豪宅，从 50 E. Erie 的气派台阶走进去，参观修复后的奢华房间和当前展览。用 app 可以自助收听逐个房间的语音导览。",
                                "highlights":  [
                                                   "随心付（Pay What You Wish）：每周三下午 4-7 点（下午 6 点停止入场）",
@@ -2174,10 +2174,10 @@
                                                   "免费自助语音导览 app",
                                                   "只收银行卡；无需预约"
                                               ],
-                               "hash":  "14FDCE7D76335CC1"
+                               "hash":  "3E2F8CEEB5E651C8"
                            },
     "ps-mocp":  {
-                    "hook":  "免费摄影博物馆，周四开放到晚 8 点",
+                    "hook":  "免费摄影博物馆",
                     "description":  "一座摄影博物馆，位于 Grant Park 对面 600 S. Michigan Avenue 的 Columbia College Chicago 1 楼和 2 楼，轮换展览，30-45 分钟就能逛完。离 Wabash Arts Corridor 的壁画步行不远。",
                     "highlights":  [
                                        "永远免费",
@@ -2186,7 +2186,7 @@
                                        "临街入口，电梯可达 2 楼",
                                        "靠近 Harrison 红线站"
                                    ],
-                    "hash":  "4BF15F1955EC30F4"
+                    "hash":  "7F83953634607CD4"
                 },
     "ps-navy-pier":  {
                          "hook":  "免费室内闲逛，走到尽头看开阔湖景",
@@ -2523,7 +2523,7 @@
                                  "hash":  "CE4AAB926F4C8113"
                              },
     "ps-the-606-trail":  {
-                             "hook":  "旧铁路线上的高架步道，开放到晚 11 点",
+                             "hook":  "旧铁路线上的高架步道",
                              "description":  "一条建在旧铁路线上的高架步道，穿过 Logan Square、Humboldt Park、Bucktown 和 Wicker Park，可以在街道上方散步、跑步和骑车，沿途有艺术装置和一座小天文台。走一段，再下去喝杯咖啡或吃个甜点。",
                              "highlights":  [
                                                 "免费，早 6 点至晚 11 点开放",
@@ -2532,7 +2532,7 @@
                                                 "艺术装置和一座天文台",
                                                 "可从各个坡道随时上下"
                                             ],
-                             "hash":  "F4BE6943E592E2B5"
+                             "hash":  "8F7D85F13256E37C"
                          },
     "ps-national-hellenic-museum":  {
                                         "hook":  "Greektown 的希腊历史与艺术",
@@ -4229,14 +4229,14 @@
                             "hash":  "E03083453088E430"
                         },
     "cm-constellation-chicago":  {
-                                     "hook":  "大胆的爵士和新音乐，门票 $5 起",
+                                     "hook":  "大胆的爵士和新音乐",
                                      "description":  "North Center 一家小型场馆，专注创意爵士、新古典和实验音乐。适合好奇心强、专心聆听的夜晚。",
                                      "highlights":  [
                                                         "爵士、古典和实验音乐演出",
                                                         "门票约 $5-$25",
                                                         "演出通常晚 7:30-8:30 开始"
                                                     ],
-                                     "hash":  "473E4F7BC1D5B569"
+                                     "hash":  "2F5BC93531FCA507"
                                  },
     "cm-chicago-glass-collective-hot-shop":  {
                                                  "hook":  "把熔化的玻璃塑成你自己的镇纸",
@@ -4261,14 +4261,14 @@
                                     "hash":  "F76A09CF8B4B9970"
                                 },
     "cm-zebra-lounge":  {
-                            "hook":  "斑马纹小钢琴酒吧，营业到凌晨 2 或 3 点",
+                            "hook":  "斑马纹小钢琴酒吧",
                             "description":  "Gold Coast 一条小街上的老派迷你钢琴酒吧，满是斑马纹装饰，钢琴师按点歌演奏，全场跟着唱到深夜。钢琴一响，很快就坐满了。",
                             "highlights":  [
                                                "现场钢琴和大合唱",
                                                "每晚营业到很晚",
                                                "房间很小；早点来才有座位"
                                            ],
-                            "hash":  "E89360BE643F5294"
+                            "hash":  "09270D9F22826379"
                         },
     "cm-chicago-archery-wood-dale":  {
                                          "hook":  "在室内射箭场学射箭",
@@ -4486,5 +4486,20 @@
                                                                 "欢迎拴绳宠物"
                                                             ],
                                              "hash":  "C36613096BA03DA3"
-                                         }
+                                         },
+    "ev-richardson-christmas-tree-farm-2026":  {
+                                                   "hook":  "在 75 英亩的农场里亲手挑选并砍下自己的圣诞树",
+                                                   "description":  "一座大型自选自砍圣诞树农场，靠近 Wisconsin 州界，75 英亩的土地上种着 50,000 多棵各种各样的树。沿着树行挑选你的圣诞树，然后到有暖气的谷仓里吃新鲜甜甜圈暖暖身子，再逛逛数百款花环和装饰品。",
+                                                   "highlights":  [
+                                                                      "75 英亩上有 50,000 多棵树",
+                                                                      "可以自己砍，也可以挑选已砍好的树",
+                                                                      "工作人员会帮你抖树、套网，还可以帮忙搬运",
+                                                                      "周末可免费乘坐拖车前往林地",
+                                                                      "有暖气的售卖谷仓，设有洗手间和新鲜甜甜圈",
+                                                                      "免费热巧克力或咖啡",
+                                                                      "花环、松枝花彩、软糖（fudge）和礼品",
+                                                                      "欢迎拴绳的狗狗"
+                                                                  ],
+                                                   "hash":  "9AA27692D6C52E71"
+                                               }
 }

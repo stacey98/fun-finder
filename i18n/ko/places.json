@@ -113,7 +113,7 @@
                                            "hash":  "1BB6A315449BA332"
                                        },
     "ev-chicago-christmas-tree-lighting-2026":  {
-                                                    "hook":  "오후 6시 트리 점등, 이어서 불꽃놀이",
+                                                    "hook":  "트리 점등, 이어서 불꽃놀이",
                                                     "description":  "Millennium Park(밀레니엄 파크)에서 열리는 시카고시의 113번째 공식 크리스마스트리 점등식이에요. Chicago Cultural Center 옆 Washington Street 메인 무대에서 행사가 열리고, 트리에 불이 켜진 뒤 불꽃놀이가 이어지며, 공원 곳곳에 대형 스크린이 설치돼요. WTTW에 따르면 올해 트리는 높이 거의 50피트(약 15m)의 독일가문비나무래요.",
                                                     "highlights":  [
                                                                        "2026년 11월 20일(금) 18:00, Millennium Park; 점등은 18:30쯤, 이어서 불꽃놀이",
@@ -122,7 +122,7 @@
                                                                        "Kane County의 한 가족이 기증한 거의 50피트 높이의 독일가문비나무",
                                                                        "무료 공개 행사"
                                                                    ],
-                                                    "hash":  "8D0012738AC3DFD2"
+                                                    "hash":  "380761FD5A5996F9"
                                                 },
     "ev-magnificent-mile-lights-festival-2026":  {
                                                      "hook":  "저녁엔 Michigan Ave 퍼레이드, 이어서 불꽃놀이",
@@ -462,7 +462,7 @@
                                 "hash":  "AEFF806DDF781E05"
                             },
     "pa-round1-north-riverside":  {
-                                      "hook":  "새벽 1시까지 여는 일본식 오락실, 볼링, 노래방",
+                                      "hook":  "일본식 오락실, 볼링, 노래방",
                                       "description":  "시내에서 가장 가까운 일본 엔터테인먼트 체인 Round1이에요. 대형 오락실(일본 리듬 게임, 인형 뽑기, 경품 게임이 많아요), 볼링, 당구, 프라이빗 노래방이 한 지붕 아래 있어요. 그룹으로 이것저것 돌아가며 즐기기 좋고, 늦은 밤에 가기에도 좋아요.",
                                       "highlights":  [
                                                          "오락실, 볼링, 당구, 프라이빗 노래방이 한곳에",
@@ -470,17 +470,17 @@
                                                          "게임당 결제; 입장료 없음",
                                                          "North Riverside Park Mall 안, 루프(다운타운)에서 서쪽으로 약 30분"
                                                      ],
-                                      "hash":  "ED6A88CE94827D03"
+                                      "hash":  "0FE31671CEC081A6"
                                   },
     "pa-round1-gurnee-mills":  {
-                                   "hook":  "새벽 2시까지 여는 오락실, 볼링, 노래방",
+                                   "hook":  "오락실, 볼링, 노래방",
                                    "description":  "Gurnee Mills 안에 있는 Round1의 북부 교외 매장으로, 오락실, 일본식 인형 뽑기, 볼링, 당구, 탁구, 노래방, 어린이 놀이 공간이 있어요. 다운타운에서 약 40마일 떨어져 있어서 이미 북쪽에 와 있을 때 들르기 좋아요.",
                                    "highlights":  [
                                                       "오락실, 볼링, 당구, 탁구, 노래방, 어린이 놀이 공간",
                                                       "매일 오전 10시~새벽 2시",
                                                       "Gurnee Mills 안, 다운타운에서 북쪽으로 약 40마일"
                                                   ],
-                                   "hash":  "3D80330B32DBEC13"
+                                   "hash":  "3B18F26387F1AB57"
                                },
     "pa-emporium-wicker-park":  {
                                     "hook":  "25센트 토큰으로 즐기는 레트로 오락실과 핀볼",
@@ -966,7 +966,7 @@
                             "hash":  "7F2870DE11B9C360"
                         },
     "pc-art-institute-of-chicago":  {
-                                        "hook":  "목요일엔 오후 8시까지 여는 대표 미술관",
+                                        "hook":  "대표 미술관",
                                         "description":  "미국을 대표하는 미술관 중 하나로, Michigan Avenue의 Millennium Park(밀레니엄 파크) 옆에 있어요. 가이드 투어가 매일 있고, 지금은 특별전 \u0027Mary Cassatt: After Impressionism\u0027이 열리고 있어요.",
                                         "highlights":  [
                                                            "목요일 밤 오후 8시까지 운영 - 편하게 즐기는 데이트 나이트",
@@ -976,7 +976,7 @@
                                                            "일리노이 주민 무료: 매월 셋째 목요일 오후 5-8시; 2026년 12월 2-18일 평일",
                                                            "Mary Cassatt 전시 1월 3일까지(+$7)"
                                                        ],
-                                        "hash":  "FFA7474177DFCB9B"
+                                        "hash":  "71E0AE707120FF60"
                                     },
     "pc-chicago-cultural-center":  {
                                        "hook":  "Tiffany 스테인드글라스 돔이 있는 무료 랜드마크",
@@ -991,7 +991,7 @@
                                        "hash":  "F69618233F72E36D"
                                    },
     "pc-mca-chicago":  {
-                           "hook":  "화요일엔 오후 9시까지 여는 현대 미술관",
+                           "hook":  "현대 미술",
                            "description":  "Streeterville의 Michigan Avenue에서 동쪽으로 한 블록 떨어진 시카고의 현대 미술관으로, 자체 레스토랑 Marisol과 숍이 있어요.",
                            "highlights":  [
                                               "화요일 오후 5-9시 일리노이 주민 무료",
@@ -1001,7 +1001,7 @@
                                               "18세 이하 언제나 무료",
                                               "관내 Marisol 레스토랑"
                                           ],
-                           "hash":  "E45AA7FA1D02AE9D"
+                           "hash":  "33893EFA4E43ED17"
                        },
     "pc-national-museum-of-mexican-art":  {
                                               "hook":  "Pilsen의 언제나 무료인 멕시코 미술관",
@@ -1409,7 +1409,7 @@
                                "hash":  "C1550E0EA168953B"
                            },
     "pc-kingston-mines":  {
-                              "hook":  "새벽 4시까지 번갈아 공연하는 블루스 무대 2개",
+                              "hook":  "번갈아 공연하는 블루스 무대 2개",
                               "description":  "Lincoln Park의 심야 블루스 나이트클럽(스스로 세계적으로 유명하다고 소개해요)으로, 무대 2개가 밤새 번갈아 공연해서 음악이 거의 끊기지 않아요. 초저녁 어쿠스틱 공연으로 시작해 North Stage와 Main Stage가 아주 늦게까지 번갈아 이어져요.",
                               "highlights":  [
                                                  "블루스 클럽: 무대 2개가 번갈아 공연",
@@ -1418,7 +1418,7 @@
                                                  "입장료 목 $15, 금~토 $20; 21세 이상만",
                                                  "학생/시니어/생일 할인은 입구에서"
                                              ],
-                              "hash":  "C2B82018FED80F14"
+                              "hash":  "48730388CCA4F175"
                           },
     "pd-music-box-theatre":  {
                                  "hook":  "반짝이는 밤하늘 천장이 있는 1929년 영화 궁전",
@@ -1633,7 +1633,7 @@
                                              "hash":  "443B83DAF38C92AA"
                                          },
     "pd-redhead-piano-bar":  {
-                                 "hook":  "새벽 4시까지 라이브 음악이 흐르는 어둑한 피아노 바",
+                                 "hook":  "라이브 음악이 흐르는 어둑한 피아노 바",
                                  "description":  "River North의 클래식하고 어둑한 피아노 바로, 일주일 내내 라이브 음악이 있고 늦게까지 여는 걸로 유명해요. 시끄러운 클럽 대신 피아노 옆에서 따라 부르는 아늑한 곳이라 데이트 마무리로 좋아요.",
                                  "highlights":  [
                                                     "주 7일 밤 라이브 피아노",
@@ -1641,7 +1641,7 @@
                                                     "해피 아워 월~목 오후 7-10시",
                                                     "추수감사절, 12월 24일, 12월 25일 휴무"
                                                 ],
-                                 "hash":  "06980A7985A358AA"
+                                 "hash":  "1FAC87AF342A78FE"
                              },
     "pd-reckless-records-wicker-park":  {
                                             "hook":  "새 바이닐과 중고 바이닐 상자 뒤지기",
@@ -2165,7 +2165,7 @@
                                 "hash":  "1632DFA7C3838F85"
                             },
     "ps-driehaus-museum":  {
-                               "hook":  "도금 시대 저택, 수요일 오후 4-7시는 원하는 만큼 내고 입장",
+                               "hook":  "도금 시대 저택",
                                "description":  "Michigan Avenue 바로 서쪽에 있는 도금 시대 저택으로, 50 E. Erie의 웅장한 계단을 올라 들어가 화려하게 복원된 방들과 현재 전시를 둘러봐요. 앱으로 방마다 셀프 오디오 투어를 들을 수 있어요.",
                                "highlights":  [
                                                   "Pay What You Wish: 수요일 오후 4-7시(입장 마감 오후 6시)",
@@ -2174,10 +2174,10 @@
                                                   "무료 셀프 오디오 앱",
                                                   "카드만 가능; 예약 없이 방문 환영"
                                               ],
-                               "hash":  "14FDCE7D76335CC1"
+                               "hash":  "3E2F8CEEB5E651C8"
                            },
     "ps-mocp":  {
-                    "hook":  "목요일엔 오후 8시까지 여는 무료 사진 박물관",
+                    "hook":  "무료 사진 박물관",
                     "description":  "Grant Park 맞은편 600 S. Michigan Avenue에 있는 Columbia College Chicago 건물 1층과 2층의 사진 박물관으로, 전시가 바뀌며 30-45분이면 알차게 둘러볼 수 있어요. Wabash Arts Corridor 벽화까지 조금만 걸으면 돼요.",
                     "highlights":  [
                                        "언제나 무료",
@@ -2186,7 +2186,7 @@
                                        "길 높이 입구, 2층까지 엘리베이터",
                                        "Harrison Red Line 역 근처"
                                    ],
-                    "hash":  "4BF15F1955EC30F4"
+                    "hash":  "7F83953634607CD4"
                 },
     "ps-navy-pier":  {
                          "hook":  "탁 트인 호수 전망까지 무료로 걷는 실내 산책",
@@ -2523,7 +2523,7 @@
                                  "hash":  "CE4AAB926F4C8113"
                              },
     "ps-the-606-trail":  {
-                             "hook":  "오후 11시까지 여는 옛 철길 위 고가 산책로",
+                             "hook":  "옛 철길 위 고가 산책로",
                              "description":  "Logan Square, Humboldt Park, Bucktown, Wicker Park를 지나는 옛 철길 위 고가 산책로로, 거리 위에서 산책, 달리기, 자전거를 즐길 수 있고 중간중간 설치 미술과 작은 천문대도 있어요. 한 구간 걷고 내려와서 커피나 디저트를 즐겨 보세요.",
                              "highlights":  [
                                                 "무료, 오전 6시~오후 11시",
@@ -2532,7 +2532,7 @@
                                                 "설치 미술과 천문대",
                                                 "진입 램프로 자유롭게 오르내리기"
                                             ],
-                             "hash":  "F4BE6943E592E2B5"
+                             "hash":  "8F7D85F13256E37C"
                          },
     "ps-national-hellenic-museum":  {
                                         "hook":  "Greektown에서 만나는 그리스 역사와 예술",
@@ -4229,14 +4229,14 @@
                             "hash":  "E03083453088E430"
                         },
     "cm-constellation-chicago":  {
-                                     "hook":  "실험적인 재즈와 현대 음악, 티켓 $5부터",
+                                     "hook":  "실험적인 재즈와 현대 음악",
                                      "description":  "North Center의 작은 공연장으로, 창의적인 재즈, 현대 클래식, 실험 음악을 다뤄요. 호기심 많고 음악 감상에 집중하는 밤 나들이에 좋아요.",
                                      "highlights":  [
                                                         "재즈, 클래식, 실험 음악 공연",
                                                         "티켓 약 $5-$25",
                                                         "공연은 보통 오후 7:30-8:30 시작"
                                                     ],
-                                     "hash":  "473E4F7BC1D5B569"
+                                     "hash":  "2F5BC93531FCA507"
                                  },
     "cm-chicago-glass-collective-hot-shop":  {
                                                  "hook":  "녹은 유리를 빚어 나만의 문진 만들기",
@@ -4261,14 +4261,14 @@
                                     "hash":  "F76A09CF8B4B9970"
                                 },
     "cm-zebra-lounge":  {
-                            "hook":  "2시나 3시까지 여는 작은 얼룩말 무늬 피아노 바",
+                            "hook":  "작은 얼룩말 무늬 피아노 바",
                             "description":  "Gold Coast 골목에 있는 작고 올드스쿨한 피아노 바로, 얼룩말 무늬로 꾸며져 있어요. 피아니스트가 신청곡을 연주하면 늦은 밤까지 모두 따라 불러요. 피아노가 시작되면 금방 꽉 차요.",
                             "highlights":  [
                                                "라이브 피아노와 다 함께 노래",
                                                "매일 밤 늦게까지 영업",
                                                "아주 작은 공간; 자리를 원하면 일찍 오세요"
                                            ],
-                            "hash":  "E89360BE643F5294"
+                            "hash":  "09270D9F22826379"
                         },
     "cm-chicago-archery-wood-dale":  {
                                          "hook":  "실내 양궁장에서 활 쏘는 법 배우기",
@@ -4486,5 +4486,20 @@
                                                                 "목줄 한 반려동물 환영"
                                                             ],
                                              "hash":  "C36613096BA03DA3"
-                                         }
+                                         },
+    "ev-richardson-christmas-tree-farm-2026":  {
+                                                   "hook":  "75에이커 농장에서 크리스마스트리를 직접 찾아 베어 보세요",
+                                                   "description":  "Wisconsin 주 경계 근처에 있는 대형 크리스마스트리 농장으로, 나무를 직접 골라 벨 수 있습니다. 75에이커에 걸쳐 여러 품종의 나무가 50,000그루 넘게 자랍니다. 나무 사이를 걸으며 마음에 드는 트리를 고른 뒤, 난방이 되는 헛간에서 갓 만든 도넛으로 몸을 녹이고 수백 가지 화환과 장식품을 구경해 보세요.",
+                                                   "highlights":  [
+                                                                      "75에이커에 나무 50,000그루 이상",
+                                                                      "직접 베거나 미리 베어 둔 나무 고르기",
+                                                                      "직원이 나무를 털고 그물로 포장해 주며, 운반도 해 줄 수 있음",
+                                                                      "주말에는 밭까지 무료 왜건 운행",
+                                                                      "화장실과 갓 만든 도넛이 있는 난방 판매 헛간",
+                                                                      "무료 핫초코 또는 커피",
+                                                                      "화환, 가랜드, 퍼지, 선물",
+                                                                      "목줄 한 반려견 환영"
+                                                                  ],
+                                                   "hash":  "9AA27692D6C52E71"
+                                               }
 }
