@@ -842,6 +842,9 @@ p.quiet{margin:0;padding:0 2px 2px;font:500 13.5px/1.4 var(--f-body);color:var(-
 .trust-s .tick.warn{color:var(--soon)}
 .trust-s .sources{font-size:12.5px;color:var(--ink-3);margin-top:4px}
 .dt-bar .btn-sq{background:var(--paper)}
+/* v5.30: a long label (ru Забронировать at 320 px) wraps or shrinks inside its button instead of running under Share */
+.dt-bar .btn-primary .bl{min-width:0;overflow:hidden;text-align:center;line-height:1.12;overflow-wrap:anywhere;hyphens:auto;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.dt-bar .btn-primary>svg{flex:none}.dt-bar .btn-sq{flex-shrink:0}
+@media (max-width:374px){.dt-bar{gap:6px;padding-left:12px;padding-right:12px}.dt-bar .btn-primary{font-size:14px;padding:0 9px;gap:5px}.dt-bar .btn-sq{min-width:52px;padding:0 4px}}
 
 /* ---------- v5: shorter filter sheet, multi-select tiles, home "Only ..." chip ---------- */
 #pFiltersBody .fsec{margin-top:16px}
@@ -2243,9 +2246,9 @@ svg.gi{width:20px;height:20px;flex:none}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.29 (2026-11-15)';   // v5.29: Ask about this place (answers only from the item's data), group size + occasion filters, trip party size. v5.28: the app text in ru / zh-Hans / ko (dates and times via Intl, ~230 new keys, data + guide translation plumbing)
+var VERSION = 'v5.30 (2026-11-15)';   // v5.30: the rest of the text in ru / zh-Hans / ko (phrase table for the location sheet, friends, privacy, poll, Group Blend, taste result, pop-ups, toasts), rarer leave-now sentences, photo credit words, ko times from Intl, the trip page redrawn on a language switch, the action row at 320 px, stricter food answers. v5.29: Ask about this place (answers only from the item's data), group size + occasion filters, trip party size. v5.28: the app text in ru / zh-Hans / ko (dates and times via Intl, ~230 new keys, data + guide translation plumbing)
 //   // v5.27: Generate my itinerary on the trip page (day-by-day plan from the shortlist + group picks: home base start/end, area clusters, hours/events/sunset, either/or, didn't fit, editable, saved with the trip on this device). v5.26: trip mode lite (on this phone only: city + dates + optional group, a home base that every distance starts from while trip mode is on, a shortlist with a status per trip day, vote link with places only, og.trips.v1 max 5). v5.25: Group Blend v1 (2-5 friends, on this phone only: poster + group match, picks tagged "4 of 5", vote link with places only, saved groups og.groups.v1). v5.24: multi-city (Chicago + Oʻahu): city picker, per-city data, map bounds, spots, travel and badges; open-now in the item's city time zone. v5.23: the rest ofthe UI words in ru / zh-Hans / ko (unverified), Visiting Chicago from the data field us_cities (< 3 US cities; visit_override). v5.22: Google rating line on place pages (edge function, page memory only), holiday status from fields only, more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
-var VERSION_PREV = 'v5.28 (2026-11-15)';   // v5.28: the app text in ru / zh-Hans / ko. v5.27: Generate my itinerary. v5.26: trip mode lite. v5.25: Group Blend v1
+var VERSION_PREV = 'v5.29 (2026-11-15)';   // v5.29: Ask about this place, group size + occasions. v5.28: the app text in ru / zh-Hans / ko. v5.27: Generate my itinerary. v5.26: trip mode lite. v5.25: Group Blend v1
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var FEEDBACK_EMAIL = 'localfinds.app@gmail.com';   // v5.16: "Send feedback" in the account sheet (a mailto draft; never sent by the app). Separate from CONTACT_EMAIL.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
@@ -2591,9 +2594,9 @@ function dowLongL(wd, lang){ return locOn(lang) ? keyDateL('2026-11-' + (15 + wd
 function monShortL(m0, lang){ return locOn(lang) ? keyDateL('2026-' + pad(m0 + 1) + '-15', {month:'short'}, lang) || MON_SHORT[m0] : MON_SHORT[m0]; }
 function monLongL(m0, lang){ return locOn(lang) ? keyDateL('2026-' + pad(m0 + 1) + '-15', {month:'long'}, lang) || MON_LONG_10[m0] : MON_LONG_10[m0]; }
 function fmtTime(min, lang){ min = ((Math.round(min) % 1440) + 1440) % 1440;
-  if (locOn(lang)) { var f = dtfL({hour:'numeric', minute:'2-digit', hourCycle:'h23'}, lang); try { if (f) return f.format(new Date(Date.UTC(2000, 0, 1, Math.floor(min / 60), min % 60))); } catch (e) {} return Math.floor(min / 60) + ':' + pad(min % 60); }
+  if (locOn(lang)) { var f = dtfL((isLang(lang) ? lang : LANG) === 'ko' ? {hour:'numeric', minute:'2-digit'} : {hour:'numeric', minute:'2-digit', hourCycle:'h23'}, lang);   /* v5.30: Korean as Intl ko-KR gives it */ try { if (f) return f.format(new Date(Date.UTC(2000, 0, 1, Math.floor(min / 60), min % 60))); } catch (e) {} return Math.floor(min / 60) + ':' + pad(min % 60); }
   if (min === 0) return 'midnight'; if (min === 720) return 'noon'; var h = Math.floor(min / 60), m = min % 60; return (h % 12 || 12) + (m ? ':' + pad(m) : '') + (h < 12 ? ' am' : ' pm'); }
-function fmtEndTime(b){ return b === 1440 ? (locOn() ? '24:00' : 'midnight') : fmtTime(b); }   // a range that ends at midnight
+function fmtEndTime(b){ return b === 1440 ? (locOn() ? i18t('tm.midnight') : 'midnight') : fmtTime(b); }   // v5.30: ko 자정   // a range that ends at midnight
 function fmtClock(ms){ return fmtTime(cparts(ms).min); }
 function fmtDate(key, todayKey){ if (!isKey(key)) return ''; var a = key.split('-'), yr = !todayKey || a[0] !== todayKey.slice(0, 4);
   if (locOn()) { var o = {month:'short', day:'numeric'}; if (yr) o.year = 'numeric'; var t = keyDateL(key, o); if (t) return t; }
@@ -4942,6 +4945,302 @@ var STR29 = {
   'pz.fromGroup':['from your group', 'по вашей группе', '按群组人数', '그룹 인원 기준']
 };
 (function(){ for (var k in STR29) if (Object.prototype.hasOwnProperty.call(STR29, k) && !STR[k]) STR[k] = STR29[k]; })();
+// v5.30: the rest of the app text in ru / zh-Hans / ko. Non-English: written by the developer, unverified, needs native review.
+// Panels whose words are built in many places (the location sheet, friends, privacy, poll, Group Blend, the taste result, pop-ups,
+// toasts) go through one phrase table: a text node or label that equals an English phrase below (or any other STR / GRP_STR
+// English without {placeholders}), or matches a pattern in RX30, is shown in the picked language. English is never changed.
+var STR30K = {
+  // "if you leave now": the rarer holiday / notes / session sentences (leave30)
+  'fit.entryNotesAt':["Its notes say last entry is around {a}, and you'd get there around {b}. Call before you go.", 'По заметкам, последний вход около {a}, а вы приедете около {b}. Позвоните перед выходом.', '备注说最后入场约 {a}，你大约 {b} 到。出发前先打电话。', '메모에 따르면 마지막 입장은 {a}쯤이고, 도착은 {b}쯤이에요. 가기 전에 전화하세요.'],
+  'fit.entryNotes':["It stops letting people in some time before closing, and we don't have that time. Call before you go.", 'Вход закрывается раньше закрытия, но точного времени у нас нет. Позвоните перед выходом.', '它在关门前一段时间停止入场，我们没有具体时间。出发前先打电话。', '문 닫기 전 어느 시점에 입장을 마감하는데, 그 시간 정보가 없어요. 가기 전에 전화하세요.'],
+  'fit.inSession':["This is a timed session and it has already started, so you can't walk in now.", 'Это сеанс по времени, и он уже начался, так что сейчас войти нельзя.', '这是定时场次，已经开始了，现在不能进场。', '시간제 회차이고 이미 시작해서 지금은 들어갈 수 없어요.'],
+  'fit.nextStarts':['The next one starts {x}.', 'Следующий начнётся: {x}.', '下一场 {x} 开始。', '다음 회차는 {x}에 시작해요.'],
+  'fit.mayStopped':['It may have stopped letting people in for today. Call before you go.', 'Возможно, на сегодня вход уже закрыт. Позвоните перед выходом.', '今天可能已经停止入场。出发前先打电话。', '오늘은 입장을 마감했을 수 있어요. 가기 전에 전화하세요.'],
+  'fit.mayNotesLE':['Its notes say last entry is {a}, so it may not let you in now. Call before you go.', 'По заметкам, последний вход в {a}, так что сейчас могут не пустить. Позвоните перед выходом.', '备注说最后入场是 {a}，现在可能进不去。出发前先打电话。', '메모에 따르면 마지막 입장은 {a}이라 지금은 못 들어갈 수 있어요. 가기 전에 전화하세요.'],
+  'fit.holSpNP':["It has special hours today and the times aren't posted. Call before you go.", 'Сегодня особые часы, и время не опубликовано. Позвоните перед выходом.', '今天是特别营业时间，具体时间未公布。出发前先打电话。', '오늘은 특별 영업시간인데 시간이 공개되지 않았어요. 가기 전에 전화하세요.'],
+  'fit.holDiff':['Hours may be different today. Call before you go.', 'Сегодня часы могут отличаться. Позвоните перед выходом.', '今天营业时间可能不同。出发前先打电话。', '오늘은 영업시간이 다를 수 있어요. 가기 전에 전화하세요.'],
+  'fit.hoursTo':['The hours we have are only confirmed through {d}. Call or check their site.', 'Наши часы работы подтверждены только до {d}. Позвоните или проверьте их сайт.', '我们的营业时间只确认到 {d}。请打电话或查看官网。', '저희 영업시간 정보는 {d}까지만 확인됐어요. 전화하거나 사이트를 확인하세요.'],
+  'fit.ticketsTo':['Tickets were on sale through {d}, but no end date was announced, so it may have been extended. Check their site.', 'Билеты продавались до {d}, но дату окончания не объявили, возможно, продлили. Проверьте их сайт.', '门票售至 {d}，但未公布结束日期，可能已延期。请查看官网。', '티켓은 {d}까지 판매됐지만 종료일이 발표되지 않아 연장됐을 수 있어요. 사이트를 확인하세요.'],
+  'fit.seasonStale':["Its season would usually have started again by now, but we don't have this year's dates. Call or check their site.", 'Обычно сезон к этому времени уже начинается, но дат на этот год у нас нет. Позвоните или проверьте их сайт.', '通常这时季节已经重新开始，但我们没有今年的日期。请打电话或查看官网。', '보통 이맘때 시즌이 다시 시작되지만 올해 날짜 정보가 없어요. 전화하거나 사이트를 확인하세요.'],
+  'fit.holNoInfo':['We have no {h} hours for this one, and many places change hours or close today. Call or check their site before you go.', 'У нас нет часов работы на этот день ({h}), а многие места сегодня меняют часы или закрыты. Позвоните или проверьте сайт перед выходом.', '我们没有这里的{h}营业时间，很多地方今天会改时间或关门。出发前请打电话或查看官网。', '여기의 {h} 영업시간 정보가 없고, 오늘은 많은 곳이 시간을 바꾸거나 문을 닫아요. 가기 전에 전화하거나 사이트를 확인하세요.'],
+  'fit.holVenueClosed':["{v}'s listing says it may be closed on {h}, and this is inside it. Call before you go.", 'По данным {v}, там может быть закрыто ({h}), а это место внутри. Позвоните перед выходом.', '{v} 的信息说 {h} 可能关闭，而这里在它里面。出发前先打电话。', '{v} 정보에 따르면 {h}에 문을 닫을 수 있고, 이곳은 그 안에 있어요. 가기 전에 전화하세요.'],
+  'fit.holVenueDiff':["{v}'s hours may be different today, and this is inside it. Call before you go.", 'Сегодня часы {v} могут отличаться, а это место внутри. Позвоните перед выходом.', '{v} 今天的营业时间可能不同，而这里在它里面。出发前先打电话。', '오늘 {v}의 영업시간이 다를 수 있고, 이곳은 그 안에 있어요. 가기 전에 전화하세요.'],
+  'fit.holOwnClosed':['Its own listing says it closes on {h}. Call before you go.', 'По его собственным данным, в этот день закрыто ({h}). Позвоните перед выходом.', '它自己的信息说 {h} 不营业。出发前先打电话。', '자체 정보에 따르면 {h}에 문을 닫아요. 가기 전에 전화하세요.'],
+  'fit.holDiffX':['Hours may be different today ({h}). Call or check their site before you go.', 'Сегодня часы могут отличаться ({h}). Позвоните или проверьте сайт перед выходом.', '今天营业时间可能不同（{h}）。出发前请打电话或查看官网。', '오늘은 영업시간이 다를 수 있어요({h}). 가기 전에 전화하거나 사이트를 확인하세요.'],
+  'fit.holWord':['holiday', 'праздник', '节假日', '공휴일'], 'fit.thisDate':['this date', 'этот день', '这一天', '이날'],
+  // photo credit words
+  'cr.web':['{x} website', 'сайт {x}', '{x} 网站', '{x} 웹사이트'], 'cr.official':['{x} official site', 'официальный сайт {x}', '{x} 官网', '{x} 공식 사이트'],
+  'cr.venueWeb':['venue website', 'сайт заведения', '场馆网站', '장소 웹사이트'], 'cr.photoBy':['photo by {x}', 'фото: {x}', '摄影：{x}', '사진: {x}'], 'cr.via':['via {x}', 'через {x}', '来自 {x}', '출처: {x}'],
+  'cr.website':['website', 'сайт', '网站', '웹사이트'], 'cr.officialW':['official site', 'официальный сайт', '官网', '공식 사이트'],
+  // a range that ends at midnight (ko: Intl gives 오전 12:00, which reads as the start of the day)
+  'tm.midnight':['midnight', '24:00', '24:00', '자정'],
+  // Home's Blend heading and the place page's friends' stars
+  'cp.your':['Your Blend · {x}', 'Ваш Бленд · {x}', '你们的 Blend · {x}', '우리 블렌드 · {x}'], 'frs.from1':['from {n} friend', 'от {n} друга', '来自 {n} 位朋友', '친구 {n}명의 평가'], 'frs.fromN':['from {n} friends', 'от {n} друзей', '来自 {n} 位朋友', '친구 {n}명의 평가'],
+  'tk.hiding':['Hiding {x}', 'Скрыто: {x}', '已隐藏：{x}', '숨김: {x}'], 'tk.change':['Change', 'Изменить', '更改', '바꾸기'], 'tk.hw.over $':['over $', 'дороже $', '超过 $', '$ 초과'], 'tk.hw.$+':['$+', '$+', '$+', '$+'], 'tk.hw.21+':['21+', '21+', '21+', '21+'], 'tk.hw.bars':['bars', 'бары', '酒吧', '바'],
+  'frs.say':['What friends say', 'Что говорят друзья', '朋友怎么说', '친구들의 한마디'], 'frs.stars':['{n} of 5 stars', '{n} из 5 звёзд', '{n}/5 星', '별 5개 중 {n}개']
+};
+(function(){ for (var k in STR30K) if (Object.prototype.hasOwnProperty.call(STR30K, k) && !STR[k]) STR[k] = STR30K[k]; })();
+var STR30 = [
+  // the location sheet
+  ['Where are you right now?', 'Где вы сейчас?', '你现在在哪里？', '지금 어디에 있나요?'],
+  ["This version can't read your phone's location. Pick a spot and we'll remember it on this phone.", 'Эта версия не видит местоположение телефона. Выберите место, и мы запомним его на этом телефоне.', '这个版本无法读取手机位置。选一个地点，我们会在这部手机上记住它。', '이 버전은 휴대폰 위치를 읽을 수 없어요. 장소를 고르면 이 휴대폰에 기억해 둘게요.'],
+  ['Use my location', 'Моё местоположение', '使用我的位置', '내 위치 사용'], ['Finding you...', 'Ищем вас...', '正在定位...', '위치 찾는 중...'], ['Still looking...', 'Всё ещё ищем...', '还在找...', '계속 찾는 중...'],
+  ['Type an address', 'Введите адрес', '输入地址', '주소 입력'], ['Search for a spot', 'Поиск места', '搜索地点', '장소 검색'],
+  ['Neighborhood, L stop or landmark', 'Район, станция L или ориентир', '街区、L 线车站或地标', '동네, L 역 또는 명소'], ['Quick picks', 'Быстрый выбор', '快速选择', '빠른 선택'],
+  ['Or tap the map to drop your pin.', 'Или нажмите на карту, чтобы поставить метку.', '或点地图放下定位点。', '또는 지도를 눌러 핀을 놓으세요.'], ['City', 'Город', '城市', '도시'],
+  ['Address search', 'Поиск адресов', '地址搜索', '주소 검색'], ['contributors', 'участники', '贡献者', '기여자'],
+  ['Found you.', 'Нашли вас.', '找到你了。', '찾았어요.'], ['Rough location. Type your address.', 'Местоположение примерное. Введите адрес.', '位置不太准。请输入地址。', '대략적인 위치예요. 주소를 입력하세요.'],
+  ['Rough location. Pick a spot for a better one.', 'Местоположение примерное. Выберите место, так будет точнее.', '位置不太准。选一个地点会更准。', '대략적인 위치예요. 더 정확하게 하려면 장소를 고르세요.'],
+  ['Location is blocked. Turn it on: Settings > Apps > Safari > Location.', 'Доступ к местоположению закрыт. Включите: Настройки > Приложения > Safari > Геопозиция.', '位置权限被阻止。请打开：设置 > App > Safari > 位置。', '위치 권한이 차단됐어요. 켜는 법: 설정 > 앱 > Safari > 위치.'],
+  ['Location is blocked. Tap the icon left of the address > Permissions > Location.', 'Доступ к местоположению закрыт. Нажмите значок слева от адреса > Разрешения > Местоположение.', '位置权限被阻止。点地址左侧的图标 > 权限 > 位置。', '위치 권한이 차단됐어요. 주소 왼쪽 아이콘 > 권한 > 위치를 누르세요.'],
+  ['Location is blocked. Click the icon left of the address and allow Location.', 'Доступ к местоположению закрыт. Нажмите значок слева от адреса и разрешите доступ.', '位置权限被阻止。点击地址左侧的图标并允许位置。', '위치 권한이 차단됐어요. 주소 왼쪽 아이콘을 클릭하고 위치를 허용하세요.'],
+  ["Couldn't find you. Try again.", 'Не удалось определить местоположение. Попробуйте ещё раз.', '没能找到你的位置。请重试。', '위치를 찾지 못했어요. 다시 시도하세요.'],
+  ["Couldn't find you. Try again. Also check Windows Settings > Privacy > Location.", 'Не удалось определить местоположение. Попробуйте ещё раз. Также проверьте Параметры Windows > Конфиденциальность > Расположение.', '没能找到你的位置。请重试。也请检查 Windows 设置 > 隐私 > 位置。', '위치를 찾지 못했어요. 다시 시도하세요. Windows 설정 > 개인 정보 > 위치도 확인하세요.'],
+  ["Couldn't find you. Try again. Also check System Settings > Privacy > Location Services.", 'Не удалось определить местоположение. Попробуйте ещё раз. Также проверьте Системные настройки > Конфиденциальность > Службы геолокации.', '没能找到你的位置。请重试。也请检查 系统设置 > 隐私 > 定位服务。', '위치를 찾지 못했어요. 다시 시도하세요. 시스템 설정 > 개인 정보 > 위치 서비스도 확인하세요.'],
+  ['Location is on. Tap "Use my location".', 'Местоположение включено. Нажмите «Моё местоположение».', '位置已开启。点“使用我的位置”。', '위치가 켜졌어요. "내 위치 사용"을 누르세요.'],
+  ['Your location', 'Ваше местоположение', '你的位置', '내 위치'], ["Use your location, or pick a spot. We'll remember it.", 'Определите местоположение или выберите место. Мы его запомним.', '使用你的位置，或选一个地点。我们会记住它。', '내 위치를 쓰거나 장소를 고르세요. 기억해 둘게요.'],
+  // the place page's action row
+  ['Copy number, call first', 'Скопировать номер', '复制号码，先打电话', '번호 복사, 먼저 전화'], ['Copy no.', 'Копировать №', '复制号码', '번호 복사'], ['Copy the phone number', 'Скопировать номер телефона', '复制电话号码', '전화번호 복사'],
+  // friends
+  ['Friends', 'Друзья', '朋友', '친구'], ['Offline', 'Нет сети', '离线', '오프라인'],
+  ['Offline. Changes here need a connection.', 'Нет сети. Для изменений нужна сеть.', '离线。修改需要联网。', '오프라인이에요. 변경하려면 연결이 필요해요.'],
+  ['Pick a username first, so friends can find you.', 'Сначала выберите имя пользователя, чтобы друзья могли вас найти.', '先选一个用户名，朋友才能找到你。', '친구가 찾을 수 있게 먼저 사용자 이름을 고르세요.'],
+  ['Pick a username', 'Выбрать имя пользователя', '选择用户名', '사용자 이름 고르기'], ['Not now', 'Не сейчас', '以后再说', '나중에'],
+  ['Add a friend', 'Добавить друга', '添加朋友', '친구 추가'], ['Send an invite link', 'Отправить ссылку-приглашение', '发送邀请链接', '초대 링크 보내기'], ['or', 'или', '或', '또는'],
+  ['Username', 'Имя пользователя', '用户名', '사용자 이름'], ['username', 'имя', '用户名', '사용자 이름'], ['Find', 'Найти', '查找', '찾기'], ['Requests', 'Запросы', '好友请求', '요청'],
+  ['Accept', 'Принять', '接受', '수락'], ['Remove', 'Удалить', '移除', '삭제'], ['Block', 'Заблокировать', '屏蔽', '차단'], ['profile ›', 'профиль ›', '主页 ›', '프로필 ›'],
+  ['No friends yet. Send an invite link, or find someone by username.', 'Друзей пока нет. Отправьте ссылку-приглашение или найдите человека по имени пользователя.', '还没有朋友。发送邀请链接，或用用户名查找。', '아직 친구가 없어요. 초대 링크를 보내거나 사용자 이름으로 찾아보세요.'],
+  ['Waiting', 'Ожидают', '等待中', '대기 중'], ['request sent', 'запрос отправлен', '已发送请求', '요청 보냄'], ['Cancel', 'Отмена', '取消', '취소'], ['Copies', 'Копии списков', '清单副本', '목록 사본'],
+  ['Open', 'Открыть', '打开', '열기'], ['Invites', 'Приглашения', '邀请', '초대'], ['Blocked', 'Заблокированы', '已屏蔽', '차단됨'], ['Unblock', 'Разблокировать', '取消屏蔽', '차단 해제'],
+  ['What friends see', 'Что видят друзья', '朋友能看到什么', '친구에게 보이는 것'], ['Saved places', 'Сохранённые места', '收藏的地点', '저장한 장소'], ["Places I've been", 'Где я был(а)', '我去过的地方', '가 본 곳'],
+  ['Places + stars, never the day', 'Места и звёзды, без даты', '地点和星级，不显示日期', '장소와 별점만, 날짜는 안 보여요'], ['Find me by username', 'Находить меня по имени пользователя', '允许用用户名找到我', '사용자 이름으로 나를 찾기'],
+  ['Nothing is public. Only friends you accept see this.', 'Ничего не публикуется. Это видят только друзья, которых вы приняли.', '不会公开。只有你接受的朋友能看到。', '공개되는 건 없어요. 수락한 친구만 볼 수 있어요.'],
+  ['Privacy', 'Конфиденциальность', '隐私', '개인정보'], ['Try again', 'Ещё раз', '重试', '다시 시도'],
+  // privacy
+  ["Without an account, everything stays on this device: your saves, places you've been, friends' list copies and your spot. Nothing is sent anywhere.", 'Без аккаунта всё остаётся на этом устройстве: сохранения, места, где вы были, копии списков друзей и ваша точка. Ничего никуда не отправляется.', '没有账号时，一切都保存在这台设备上：你的收藏、去过的地方、朋友清单的副本和你的位置。不会发送到任何地方。', '계정이 없으면 모든 것이 이 기기에만 남아요: 저장한 곳, 가 본 곳, 친구 목록 사본, 내 위치. 아무 데도 보내지 않아요.'],
+  ['With an account', 'С аккаунтом', '有账号时', '계정이 있으면'], ['From Google:', 'От Google:', '来自 Google：', 'Google에서:'],
+  ['your email address and name, used only to sign you in. We never see your Google password.', 'адрес почты и имя, только для входа. Пароль Google мы никогда не видим.', '你的邮箱地址和名字，只用于登录。我们看不到你的 Google 密码。', '이메일 주소와 이름, 로그인에만 써요. Google 비밀번호는 절대 볼 수 없어요.'],
+  ['What you add:', 'Что вы добавляете:', '你添加的内容：', '직접 추가한 것:'],
+  ['your username, saved places, places you\'ve been (place, date, stars, an optional one-line review), your character, friends, requests, blocks, invite links and your three "What friends see" switches.', 'имя пользователя, сохранённые места, места, где вы были (место, дата, звёзды, по желанию короткий отзыв), ваш персонаж, друзья, запросы, блокировки, ссылки-приглашения и три переключателя «Что видят друзья».', '用户名、收藏的地点、去过的地方（地点、日期、星级、可选的一句话评价）、你的角色、朋友、请求、屏蔽、邀请链接，以及三个“朋友能看到什么”开关。', '사용자 이름, 저장한 장소, 가 본 곳(장소, 날짜, 별점, 선택 한 줄 리뷰), 내 캐릭터, 친구, 요청, 차단, 초대 링크, "친구에게 보이는 것" 스위치 세 개.'],
+  ['Polls (optional):', 'Опросы (по желанию):', '投票（可选）：', '투표(선택):'],
+  ["the 2-4 places and the votes. No names: a vote is a random code kept in the voter's browser.", 'места (2-4) и голоса. Без имён: голос это случайный код в браузере голосующего.', '2-4 个地点和投票。不记名：每一票是存放在投票者浏览器里的随机代码。', '장소 2-4곳과 투표. 이름 없음: 투표는 투표한 사람의 브라우저에 저장된 무작위 코드예요.'],
+  ['Blend (optional):', 'Бленд (по желанию):', 'Blend（可选）：', '블렌드(선택):'],
+  ['a short list of places picked from your taste, shared with one friend only when you both turn it on. Your swipes and taste stay private.', 'короткий список мест по вашему вкусу; его видит один друг, только когда вы оба его включили. Свайпы и вкус остаются личными.', '根据你的口味挑出的一小串地点，只有你们俩都打开时才与这位朋友共享。你的滑动和口味保持私密。', '내 취향으로 고른 짧은 장소 목록, 둘 다 켰을 때만 그 친구와 공유돼요. 스와이프와 취향은 비공개예요.'],
+  ['Never stored:', 'Никогда не хранится:', '从不保存：', '저장하지 않는 것:'],
+  ['your location, and anything about your phone beyond the sign-in.', 'ваше местоположение и любые данные о телефоне, кроме входа.', '你的位置，以及登录之外关于手机的任何信息。', '내 위치, 로그인 외의 휴대폰 정보.'],
+  ['Where', 'Где', '存放在哪里', '어디에'],
+  ['In a database run by Supabase, in the United States. Off-Grid has no ads and never sells or shares your data.', 'В базе данных Supabase в США. В Off-Grid нет рекламы, и мы никогда не продаём и не передаём ваши данные.', '在美国由 Supabase 运营的数据库中。Off-Grid 没有广告，从不出售或分享你的数据。', '미국에 있는 Supabase 데이터베이스에 있어요. Off-Grid는 광고가 없고 데이터를 팔거나 공유하지 않아요.'],
+  ['Who sees it', 'Кто это видит', '谁能看到', '누가 보나요'],
+  ['Only you. A friend you accept sees your character (one of 12), your saved places (if "Saved places" is on) and the places you\'ve visited with your stars, never the day (if "Places I\'ve been" is on; it starts off). Your one-line reviews show to those friends without your name. Nothing is public, and nobody can browse people. Someone you block can\'t find you, invite you or see anything.', 'Только вы. Друг, которого вы приняли, видит вашего персонажа (один из 12), сохранённые места (если включено «Сохранённые места») и места, где вы были, со звёздами, но без даты (если включено «Где я был(а)»; сначала выключено). Короткие отзывы эти друзья видят без вашего имени. Ничего не публикуется, и людей нельзя просматривать. Тот, кого вы заблокировали, не может вас найти, пригласить или что-то увидеть.', '只有你。你接受的朋友能看到你的角色（12 个之一）、你收藏的地点（如果“收藏的地点”已打开），以及你去过的地方和星级，但不显示日期（如果“我去过的地方”已打开；默认关闭）。你的一句话评价会显示给这些朋友，但不显示你的名字。不会公开，也没人能浏览用户。被你屏蔽的人无法找到你、邀请你或看到任何内容。', '나만 봐요. 수락한 친구는 내 캐릭터(12개 중 하나), 저장한 장소("저장한 장소"가 켜져 있으면), 가 본 곳과 별점을 볼 수 있고 날짜는 보이지 않아요("가 본 곳"이 켜져 있으면; 처음에는 꺼져 있어요). 한 줄 리뷰는 이름 없이 그 친구들에게 보여요. 공개되는 건 없고, 아무도 사람을 둘러볼 수 없어요. 차단한 사람은 나를 찾거나 초대하거나 아무것도 볼 수 없어요.'],
+  ['Delete it', 'Удаление', '删除', '삭제하기'], ['Delete my account', 'Удалить мой аккаунт', '删除我的账号', '내 계정 삭제'],
+  ["removes your account and everything in it right away. Signing out keeps the copy on this device; clearing the browser's site data removes that.", 'сразу удаляет аккаунт и всё, что в нём. При выходе копия остаётся на этом устройстве; её удаляет очистка данных сайта в браузере.', '会立即删除你的账号和其中的所有内容。退出登录会保留这台设备上的副本；清除浏览器的网站数据会删除它。', '를 누르면 계정과 모든 내용이 바로 삭제돼요. 로그아웃하면 이 기기의 사본은 남고, 브라우저의 사이트 데이터를 지우면 삭제돼요.'],
+  ["Sign in, then Saved → Privacy → Delete my account removes your account and everything in it right away. Signing out keeps the copy on this device; clearing the browser's site data removes that.", 'Войдите, затем Сохранённое → Конфиденциальность → Удалить мой аккаунт: аккаунт и всё в нём удалятся сразу. При выходе копия остаётся на этом устройстве; её удаляет очистка данных сайта в браузере.', '登录后，在 收藏 → 隐私 → 删除我的账号 可立即删除账号和其中的所有内容。退出登录会保留这台设备上的副本；清除浏览器的网站数据会删除它。', '로그인한 뒤 저장 → 개인정보 → 내 계정 삭제를 누르면 계정과 모든 내용이 바로 삭제돼요. 로그아웃하면 이 기기의 사본은 남고, 브라우저의 사이트 데이터를 지우면 삭제돼요.'],
+  // poll
+  ['Which one?', 'Что выберем?', '选哪个？', '어디로 갈까요?'], ['Tap one to see it.', 'Нажмите, чтобы посмотреть.', '点一个查看。', '눌러서 보세요.'],
+  ['Voting works on the website.', 'Голосовать можно на сайте.', '投票需要在网站上进行。', '투표는 웹사이트에서 돼요.'], ['This poll ended.', 'Опрос закончился.', '这个投票已结束。', '이 투표는 끝났어요.'],
+  ["Votes didn't load.", 'Голоса не загрузились.', '投票没有加载出来。', '투표를 불러오지 못했어요.'], ['Loading votes...', 'Загружаем голоса...', '正在加载投票...', '투표 불러오는 중...'],
+  ['Voting closed', 'Голосование закрыто', '投票已结束', '투표 마감'], ['No votes yet. Be first.', 'Голосов пока нет. Будьте первыми.', '还没有人投票。来投第一票。', '아직 투표가 없어요. 첫 투표를 해 보세요.'],
+  ['No longer in the guide', 'Больше нет в путеводителе', '已不在指南中', '더 이상 가이드에 없어요'], ['No longer on', 'Больше не проходит', '已结束', '더 이상 진행 안 함'],
+  ['Your pick', 'Ваш выбор', '你的选择', '내 선택'], ['Pick this', 'Выбрать', '选这个', '이거 선택'], ['Send to more friends', 'Отправить ещё друзьям', '发给更多朋友', '친구에게 더 보내기'],
+  ["Couldn't load the list.", 'Не удалось загрузить список.', '无法加载列表。', '목록을 불러오지 못했어요.'], ['Make a poll', 'Создать опрос', '发起投票', '투표 만들기'],
+  ['Friends vote, no account needed', 'Друзья голосуют без аккаунта', '朋友不用账号也能投票', '친구는 계정 없이 투표해요'], ['Get the link', 'Получить ссылку', '获取链接', '링크 받기'],
+  ['Which one should we do? Tap to vote.', 'Что выберем? Нажмите, чтобы проголосовать.', '我们去哪个？点一下投票。', '어디로 갈까요? 눌러서 투표하세요.'],
+  // the taste result
+  ["You're a mix. Mostly", 'Вы смесь. Больше всего', '你是混合型。最像', '여러 유형이 섞였어요. 가장 가까운 건'], ["You're a", 'Вы', '你是', '당신은'],
+  ['Your dials', 'Ваши шкалы', '你的刻度', '내 다이얼'], ['Energy', 'Энергия', '能量', '에너지'], ['Vibe', 'Атмосфера', '氛围', '분위기'], ['Mode', 'Режим', '模式', '모드'], ['Weird', 'Странность', '奇特度', '독특함'],
+  ['Chill', 'Спокойно', '放松', '느긋'], ['Active', 'Активно', '活跃', '활동적'], ['Low-key', 'Тихо', '低调', '차분'], ['Lively', 'Оживлённо', '热闹', '활기'], ['Curious', 'Любопытно', '好奇', '호기심'], ['Playful', 'Игриво', '好玩', '장난기'],
+  ['Less', 'Меньше', '少', '적게'], ['More', 'Больше', '多', '많이'], ['In the middle', 'Посередине', '居中', '중간'],
+  ['Your kind of places', 'Ваши места', '适合你的地方', '나에게 맞는 곳'], ['Does this fit you?', 'Это про вас?', '这像你吗？', '나랑 맞나요?'], ['Yes', 'Да', '是', '네'], ['Kind of', 'Отчасти', '有点', '조금'], ['No', 'Нет', '不是', '아니요'],
+  ['Thanks, that helps.', 'Спасибо, это помогает.', '谢谢，这很有帮助。', '고마워요, 도움이 돼요.'], ['Skip bar-centered stuff', 'Пропускать места вокруг бара', '跳过以酒吧为主的地方', '바 중심인 곳 건너뛰기'],
+  ['Not you? Adjust your sliders ›', 'Не про вас? Подвиньте ползунки ›', '不像你？调一下滑块 ›', '나랑 안 맞나요? 슬라이더를 조정하세요 ›'],
+  ['Your picks get smarter as you save places.', 'Подборка становится точнее, когда вы сохраняете места.', '你收藏得越多，推荐越准。', '장소를 저장할수록 추천이 똑똑해져요.'], ['Compare with a friend', 'Сравнить с другом', '和朋友比一比', '친구와 비교하기'],
+  ['They take their own test, you both turn on Blend, and you get your match and picks for you both.', 'Друг проходит свой тест, вы оба включаете Бленд и получаете совпадение и подборку на двоих.', '朋友做自己的测试，你们都打开 Blend，就能看到契合度和适合你们俩的推荐。', '친구가 테스트를 하고 둘 다 블렌드를 켜면 궁합과 둘을 위한 추천이 나와요.'],
+  ['Done', 'Готово', '完成', '완료'], ['Retake', 'Заново', '重新测试', '다시 하기'], ['Adjust', 'Настроить', '调整', '조정'], ['Share your type', 'Поделиться типом', '分享你的类型', '내 유형 공유'], ['See your result', 'Посмотреть результат', '查看结果', '결과 보기'],
+  // the 12 characters (names, taglines, paragraphs, kinds of places)
+  ['Gallery Owl', 'Галерейная сова', '画廊猫头鹰', '갤러리 부엉이'], ['Board Game Bear', 'Настольный медведь', '桌游熊', '보드게임 곰'], ['Front Row Fox', 'Лиса из первого ряда', '前排狐狸', '앞줄 여우'], ['Karaoke Koala', 'Коала-караоке', '卡拉OK考拉', '노래방 코알라'],
+  ['Lakefront Heron', 'Цапля с набережной', '湖畔苍鹭', '호숫가 왜가리'], ['Boulder Goat', 'Козёл-скалолаз', '攀岩山羊', '볼더링 염소'], ['Block Party Raccoon', 'Енот с уличного праздника', '街区派对浣熊', '동네 파티 너구리'], ['Turbo Squirrel', 'Турбо-белка', '涡轮松鼠', '터보 다람쥐'],
+  ['Oddity Moth', 'Мотылёк-диковинка', '奇物飞蛾', '기묘한 나방'], ['Pop-Up Axolotl', 'Поп-ап аксолотль', '快闪美西螈', '팝업 아홀로틀'], ['Night Walk Possum', 'Ночной опоссум', '夜行负鼠', '밤산책 주머니쥐'], ['Wild Card Goose', 'Гусь-джокер', '鬼牌大鹅', '와일드카드 거위'],
+  ['Slow, deep looks', 'Смотреть медленно и вглубь', '慢慢看，看得深', '천천히, 깊이 보기'], ['Cozy and competitive', 'Уютно и азартно', '舒适又好胜', '아늑하고 승부욕 있게'], ['Front-row laughs', 'Смех в первом ряду', '前排笑声', '앞줄에서 웃기'], ['All-in sing-alongs', 'Петь всем вместе', '全情合唱', '다 같이 떼창'],
+  ['Eyes open outdoors', 'На природе, глаза открыты', '户外，睁大眼睛', '야외에서 눈을 크게'], ['Up and over', 'Вверх и через', '向上，翻过去', '오르고 넘기'], ['Follows the music', 'Идёт за музыкой', '跟着音乐走', '음악을 따라가요'], ['Faster, again', 'Быстрее, ещё раз', '更快，再来', '더 빠르게, 한 번 더'],
+  ['Drawn to strange', 'Тянет к странному', '被奇怪吸引', '이상한 것에 끌려요'], ['Small wonders', 'Маленькие чудеса', '小小奇观', '작은 경이로움'], ['Off the map', 'Вне карты', '地图之外', '지도 밖으로'], ['Yes, then why', 'Сначала «да», потом «зачем»', '先说好，再问为什么', '일단 좋아, 이유는 나중에'],
+  ['You like to wander a room until it gives up its secrets. Gardens under glass, a tiny museum with one perfect case, a candlelit concert where nobody talks. Three things seen properly beat ten in a rush.', 'Вы любите бродить по залу, пока он не раскроет свои секреты. Сады под стеклом, крошечный музей с одной идеальной витриной, концерт при свечах, где никто не болтает. Три вещи, увиденные как следует, лучше десяти на бегу.', '你喜欢在一个展厅里慢慢逛，直到它说出所有秘密。玻璃温室里的花园、只有一个完美展柜的小博物馆、没人说话的烛光音乐会。认真看三样，胜过匆忙看十样。', '방 하나를 비밀이 드러날 때까지 천천히 거닐어요. 유리 온실 속 정원, 완벽한 진열장 하나가 있는 작은 박물관, 아무도 말하지 않는 촛불 콘서트. 제대로 본 세 가지가 서둘러 본 열 가지보다 나아요.'],
+  ['You like to play, but from a comfy chair. Board game cafés, a cat café with an arcade, a pottery wheel and a long chat. You win quietly and gloat a little.', 'Вы любите играть, но сидя в удобном кресле. Кафе с настолками, котокафе с аркадой, гончарный круг и долгий разговор. Вы выигрываете тихо и чуть-чуть хвастаетесь.', '你喜欢玩，但要坐在舒服的椅子上。桌游咖啡馆、带街机的猫咖、拉坯转盘和长长的聊天。你安静地赢，再小小得意一下。', '놀기는 좋아하지만 푹신한 의자에서요. 보드게임 카페, 오락기가 있는 고양이 카페, 물레 체험과 긴 수다. 조용히 이기고 살짝 으스대요.'],
+  ['You like to be in the room where it happens. Improv in Old Town, a late jazz set, a festival lineup nobody has heard of yet. You sit down, but your mind never does.', 'Вам нравится быть там, где всё происходит. Импровизация в Old Town, поздний джазовый сет, фестиваль, о котором ещё никто не слышал. Вы сидите, но мысли никогда.', '你喜欢待在事情发生的现场。Old Town 的即兴喜剧、深夜爵士场、还没人听说过的节日阵容。你坐着，脑子却从不停。', '일이 벌어지는 현장에 있는 걸 좋아해요. Old Town의 즉흥 코미디, 늦은 재즈 공연, 아직 아무도 모르는 페스티벌 라인업. 몸은 앉아 있어도 머리는 쉬지 않아요.'],
+  ["You like a night with your people and a mic. Private karaoke rooms, game-show experiences, drag bingo where the whole room yells. If there's a chorus, you're on it.", 'Вы любите вечер со своими людьми и микрофоном. Отдельные караоке-комнаты, игровые шоу, драг-бинго, где кричит весь зал. Если есть припев, вы его поёте.', '你喜欢和自己人加一支麦克风度过一晚。包厢卡拉OK、游戏节目体验、全场一起喊的变装宾果。只要有副歌，就少不了你。', '내 사람들과 마이크 하나면 되는 밤을 좋아해요. 프라이빗 노래방, 게임쇼 체험, 모두가 소리치는 드래그 빙고. 후렴이 있으면 당신이 불러요.'],
+  ['You like to move and notice. A kayak on the river, a forest preserve trail, a morning bird walk. Fresh air, few people, one great sighting.', 'Вы любите двигаться и замечать. Каяк на реке, тропа в лесном заповеднике, утренняя прогулка за птицами. Свежий воздух, мало людей, одна отличная находка.', '你喜欢边走边看。河上划皮艇、森林保护区的步道、清晨观鸟。新鲜空气，人不多，一次精彩的发现。', '움직이면서 살피는 걸 좋아해요. 강 위의 카약, 숲 보호구역 산책로, 아침 새 관찰. 맑은 공기, 적은 사람, 멋진 발견 하나.'],
+  ['You like a puzzle you solve with your whole body. Bouldering walls, an ice ribbon at dusk, a first try at curling. Fall, laugh, go again.', 'Вам нравятся задачки, которые решаешь всем телом. Стены для боулдеринга, ледовая лента в сумерках, первая попытка в керлинге. Упасть, посмеяться, ещё раз.', '你喜欢用全身去解的谜题。抱石墙、黄昏的冰道、第一次试冰壶。摔倒，大笑，再来。', '온몸으로 푸는 퍼즐을 좋아해요. 볼더링 벽, 해 질 녘 아이스 리본, 처음 해 보는 컬링. 넘어지고, 웃고, 다시 해요.'],
+  ['You like to follow the noise down the street. Salsa socials, holiday markets, a 5K in a Santa suit. You learn a city by joining in.', 'Вы идёте на шум по улице. Сальса-вечеринки, праздничные ярмарки, забег на 5K в костюме Санты. Вы узнаёте город, участвуя.', '你喜欢顺着街上的热闹走。萨尔萨舞会、节日市集、穿圣诞老人装跑 5K。你靠参与来认识一座城市。', '거리의 소리를 따라가는 걸 좋아해요. 살사 모임, 연말 마켓, 산타 옷 입고 달리는 5K. 함께하면서 도시를 알아가요.'],
+  ['You like speed, scores and a little chaos. Go-karts, trampoline parks, laser tag with friends who trash-talk. Rest is for later.', 'Вы любите скорость, очки и немного хаоса. Картинг, батутные парки, лазертаг с друзьями, которые подкалывают. Отдых потом.', '你喜欢速度、比分和一点混乱。卡丁车、蹦床公园、和爱斗嘴的朋友玩激光枪战。休息以后再说。', '속도, 점수, 약간의 혼돈을 좋아해요. 고카트, 트램펄린 파크, 입담 센 친구들과의 레이저 태그. 쉬는 건 나중에요.'],
+  ['You like the places other people walk past. A shop of antlers and oddities, a wall of pinned beetles, a museum of old surgical tools. The weirder the story, the better the afternoon.', 'Вам нравятся места, мимо которых другие проходят. Лавка рогов и диковинок, стена с приколотыми жуками, музей старых хирургических инструментов. Чем страннее история, тем лучше день.', '你喜欢别人路过不看的地方。卖鹿角和怪东西的小店、一整面钉着甲虫的墙、旧手术器械博物馆。故事越怪，下午越好。', '남들이 지나치는 곳을 좋아해요. 뿔과 기묘한 물건을 파는 가게, 핀으로 꽂은 딱정벌레 벽, 옛 수술 도구 박물관. 이야기가 이상할수록 오후가 즐거워요.'],
+  ["You like stepping into another world for an hour. Balloon rooms, illusion museums, a murder-mystery dinner where you're a suspect. Silly is a compliment.", 'Вам нравится на час шагнуть в другой мир. Комнаты из шаров, музеи иллюзий, детективный ужин, где вы подозреваемый. «Глупо» это комплимент.', '你喜欢花一小时走进另一个世界。气球房间、错觉博物馆、你也是嫌疑人的谋杀推理晚宴。“傻气”是夸奖。', '한 시간 동안 다른 세상에 들어가는 걸 좋아해요. 풍선 방, 착시 박물관, 내가 용의자가 되는 머더 미스터리 디너. 엉뚱하다는 건 칭찬이에요.'],
+  ["You like what's under and behind the city. The underground Pedway, a cemetery full of famous names, a ghost tour after dark. Comfy shoes, curious mind.", 'Вам интересно, что под городом и за ним. Подземный Pedway, кладбище, полное известных имён, экскурсия с привидениями после заката. Удобная обувь, любопытный ум.', '你喜欢城市底下和背后的东西。地下的 Pedway、满是名人的墓园、天黑后的鬼故事导览。舒服的鞋，好奇的心。', '도시의 아래와 뒤편에 있는 걸 좋아해요. 지하 Pedway, 유명인이 가득한 묘지, 해 진 뒤의 유령 투어. 편한 신발, 호기심 많은 마음.'],
+  ["You like the plan nobody else would pitch. Rage rooms, indoor skydiving, tactical laser tag in a warehouse. You're the friend with the story on Monday.", 'Вам нравится план, который больше никто бы не предложил. Комнаты гнева, аэротруба, тактический лазертаг на складе. В понедельник историю рассказываете именно вы.', '你喜欢没人会提的计划。发泄屋、室内跳伞、仓库里的战术激光枪战。周一讲故事的总是你。', '아무도 제안하지 않을 계획을 좋아해요. 분노의 방, 실내 스카이다이빙, 창고 속 전술 레이저 태그. 월요일에 썰을 푸는 친구가 바로 당신이에요.'],
+  ['Conservatories', 'Оранжереи', '温室花园', '온실'], ['Small museums', 'Маленькие музеи', '小型博物馆', '작은 박물관'], ['Candlelight concerts', 'Концерты при свечах', '烛光音乐会', '촛불 콘서트'],
+  ['Board game cafés', 'Кафе с настолками', '桌游咖啡馆', '보드게임 카페'], ['Cat cafés', 'Котокафе', '猫咖', '고양이 카페'], ['Pottery and candle classes', 'Гончарные и свечные мастер-классы', '陶艺和蜡烛课', '도자기와 캔들 클래스'],
+  ['Improv and comedy', 'Импровизация и комедия', '即兴和喜剧', '즉흥극과 코미디'], ['Jazz clubs', 'Джаз-клубы', '爵士俱乐部', '재즈 클럽'], ['Theater festivals', 'Театральные фестивали', '戏剧节', '연극 축제'],
+  ['Karaoke rooms', 'Караоке-комнаты', '卡拉OK包厢', '노래방'], ['Game-show nights', 'Вечера игровых шоу', '游戏节目之夜', '게임쇼 나이트'], ['Drag brunch and bingo', 'Драг-бранч и бинго', '变装早午餐和宾果', '드래그 브런치와 빙고'],
+  ['River kayaking', 'Каяки на реке', '河上皮划艇', '강 카약'], ['Forest trails', 'Лесные тропы', '森林步道', '숲길'], ['Bird walks', 'Прогулки за птицами', '观鸟散步', '새 관찰 산책'],
+  ['Climbing gyms', 'Скалодромы', '攀岩馆', '클라이밍장'], ['Ice rinks', 'Катки', '溜冰场', '아이스링크'], ['Learn-to-curl', 'Уроки керлинга', '冰壶体验课', '컬링 배우기'],
+  ['Dance socials', 'Танцевальные вечеринки', '舞会', '댄스 소셜'], ['Holiday markets', 'Праздничные ярмарки', '节日市集', '연말 마켓'], ['Fun runs', 'Забеги для удовольствия', '趣味跑', '펀런'],
+  ['Go-karts', 'Картинг', '卡丁车', '고카트'], ['Trampoline parks', 'Батутные парки', '蹦床公园', '트램펄린 파크'], ['Laser tag and paintball', 'Лазертаг и пейнтбол', '激光枪战和彩弹', '레이저 태그와 페인트볼'],
+  ['Oddity shops', 'Лавки диковинок', '奇物店', '기묘한 물건 가게'], ['Bug exhibits', 'Выставки насекомых', '昆虫展', '곤충 전시'], ['Odd little museums', 'Странные маленькие музеи', '古怪小博物馆', '독특한 작은 박물관'],
+  ['Immersive pop-ups', 'Иммерсивные поп-апы', '沉浸式快闪', '몰입형 팝업'], ['Murder-mystery dinners', 'Детективные ужины', '谋杀推理晚宴', '머더 미스터리 디너'], ['Float pods and sound baths', 'Флоат-капсулы и звуковые ванны', '漂浮舱和声音疗愈', '플로팅 포드와 사운드 배스'],
+  ['Pedway walks', 'Прогулки по Pedway', 'Pedway 漫步', 'Pedway 산책'], ['Cemetery strolls', 'Прогулки по кладбищам', '墓园漫步', '묘지 산책'], ['Ghost tours', 'Экскурсии с привидениями', '鬼故事导览', '유령 투어'],
+  ['Rage rooms and axes', 'Комнаты гнева и топоры', '发泄屋和掷斧', '분노의 방과 도끼 던지기'], ['Indoor skydiving', 'Аэротруба', '室内跳伞', '실내 스카이다이빙'], ['Tactical laser tag', 'Тактический лазертаг', '战术激光枪战', '전술 레이저 태그'],
+  // pop-ups
+  ['Keep your saves on every device.', 'Сохранения на всех ваших устройствах.', '在所有设备上保留你的收藏。', '모든 기기에서 저장한 곳을 유지하세요.'], ['Sign in with Google', 'Войти через Google', '使用 Google 登录', 'Google로 로그인'],
+  ['Welcome to', 'Добро пожаловать в', '欢迎来到', '환영해요:'], ['Start', 'Начать', '开始', '시작'],
+  // toasts (every literal toast in the code; V530-4 checks that none is missing)
+  ["That didn't work. Try again.", 'Не получилось. Попробуйте ещё раз.', '没成功。请重试。', '안 됐어요. 다시 시도하세요.'], ['Blend is off', 'Бленд выключен', 'Blend 已关闭', '블렌드 꺼짐'],
+  ["Blend isn't switched on yet.", 'Бленд ещё не включён.', 'Blend 还没打开。', '블렌드가 아직 켜지지 않았어요.'],
+  ['Calendar file saved. Open it to add the event.', 'Файл календаря сохранён. Откройте его, чтобы добавить событие.', '日历文件已保存。打开它即可添加活动。', '캘린더 파일을 저장했어요. 열어서 일정을 추가하세요.'],
+  ['Link copied', 'Ссылка скопирована', '链接已复制', '링크를 복사했어요'], ['Link copied (as a list: voting needs the website)', 'Ссылка скопирована (как список: для голосования нужен сайт)', '链接已复制（以清单形式：投票需要网站）', '링크를 복사했어요 (목록으로: 투표는 웹사이트에서)'],
+  ['Copied', 'Скопировано', '已复制', '복사했어요'], ['Copied.', 'Скопировано.', '已复制。', '복사했어요.'],
+  ["Couldn't reach the account service. Try again later.", 'Сервис аккаунтов недоступен. Попробуйте позже.', '无法连接账号服务。请稍后再试。', '계정 서비스에 연결하지 못했어요. 나중에 다시 시도하세요.'],
+  ["Couldn't share. Try again.", 'Не удалось поделиться. Попробуйте ещё раз.', '无法分享。请重试。', '공유하지 못했어요. 다시 시도하세요.'], ["Couldn't sign in. Try again.", 'Не удалось войти. Попробуйте ещё раз.', '无法登录。请重试。', '로그인하지 못했어요. 다시 시도하세요.'],
+  ["Couldn't start sign-in. Try again.", 'Не удалось начать вход. Попробуйте ещё раз.', '无法开始登录。请重试。', '로그인을 시작하지 못했어요. 다시 시도하세요.'], ["Couldn't share here", 'Здесь поделиться нельзя', '这里无法分享', '여기서는 공유할 수 없어요'],
+  ['Your Blend is ready', 'Ваш Бленд готов', '你们的 Blend 好了', '블렌드가 준비됐어요'], ["That's a lot of votes. Try later.", 'Слишком много голосов. Попробуйте позже.', '投票太多了。请稍后再试。', '투표가 너무 많아요. 나중에 다시 시도하세요.'],
+  ["Couldn't send your vote. Try again.", 'Не удалось отправить голос. Попробуйте ещё раз.', '无法提交你的投票。请重试。', '투표를 보내지 못했어요. 다시 시도하세요.'], ['Got it. Thanks!', 'Принято. Спасибо!', '收到，谢谢！', '알겠어요. 고마워요!'],
+  ["Kept. It's in Saved.", 'Сохранено. Оно в «Сохранённом».', '已保留，在收藏里。', '보관했어요. 저장에 있어요.'], ["You're offline. It retries when you're back.", 'Нет сети. Повторим, когда связь вернётся.', '你已离线。恢复联网后会重试。', '오프라인이에요. 다시 연결되면 재시도해요.'],
+  ['No Blend to share yet.', 'Пока нечем поделиться: Бленда нет.', '还没有可分享的 Blend。', '아직 공유할 블렌드가 없어요.'], ["Number selected. Use your phone's Copy.", 'Номер выделен. Скопируйте его на телефоне.', '号码已选中。用手机的“复制”。', '번호를 선택했어요. 휴대폰의 복사를 쓰세요.'],
+  ['Removed', 'Удалено', '已移除', '삭제했어요'], ['Saved to your lists', 'Сохранено в ваши списки', '已存入你的清单', '내 목록에 저장했어요'], ["Only for friends you've accepted.", 'Только для принятых друзей.', '仅限你已接受的朋友。', '수락한 친구만 가능해요.'],
+  ['Your account is deleted.', 'Ваш аккаунт удалён.', '你的账号已删除。', '계정이 삭제됐어요.'], ['This link got cut off. Ask for a new one.', 'Ссылка обрезана. Попросите новую.', '这个链接不完整。请要一个新的。', '링크가 잘렸어요. 새 링크를 받으세요.'],
+  ['Review saved', 'Отзыв сохранён', '评价已保存', '리뷰를 저장했어요'], ['Review removed', 'Отзыв удалён', '评价已删除', '리뷰를 삭제했어요'],
+  ['Save 2 places first.', 'Сначала сохраните 2 места.', '请先收藏 2 个地点。', '먼저 장소 2곳을 저장하세요.'], ['Save a place first.', 'Сначала сохраните место.', '请先收藏一个地点。', '먼저 장소를 저장하세요.'], ['Sign in first.', 'Сначала войдите.', '请先登录。', '먼저 로그인하세요.'],
+  ['Signed out. Your lists stay on this phone.', 'Вы вышли. Списки остаются на этом телефоне.', '已退出。你的清单保留在这部手机上。', '로그아웃했어요. 목록은 이 휴대폰에 남아요.'], ["Sign-in didn't finish. Try again.", 'Вход не завершился. Попробуйте ещё раз.', '登录没有完成。请重试。', '로그인이 끝나지 않았어요. 다시 시도하세요.'],
+  ['Sign-in works on the website.', 'Вход работает на сайте.', '登录需要在网站上进行。', '로그인은 웹사이트에서 돼요.'], ['Still loading the list. Try again in a moment.', 'Список ещё загружается. Попробуйте через минуту.', '清单还在加载。请稍后再试。', '목록을 아직 불러오는 중이에요. 잠시 후 다시 시도하세요.'],
+  ['Still loading the list.', 'Список ещё загружается.', '清单还在加载。', '목록을 아직 불러오는 중이에요.'], ['Swipe a few photos first, so it knows your taste.', 'Сначала пролистайте несколько фото, чтобы мы узнали ваш вкус.', '先滑几张照片，让它了解你的口味。', '먼저 사진 몇 장을 넘겨서 취향을 알려 주세요.'],
+  ['Tap a kind of fun above, then "Show the rest" to see what opens later.', 'Выберите вид развлечений выше, затем «Показать остальное», чтобы увидеть, что откроется позже.', '先点上面的一种玩法，再点“显示其余”，看看稍后开门的地方。', '위에서 놀거리 종류를 누른 뒤 "나머지 보기"로 나중에 여는 곳을 보세요.'],
+  ['Test mode: nothing was sent.', 'Тестовый режим: ничего не отправлено.', '测试模式：没有发送任何内容。', '테스트 모드: 아무것도 보내지 않았어요.'], ["Couldn't copy here. Long-press the text to copy it.", 'Здесь не скопировать. Нажмите и удерживайте текст, чтобы скопировать.', '这里无法复制。长按文字来复制。', '여기서는 복사할 수 없어요. 텍스트를 길게 눌러 복사하세요.'],
+  ["That guide isn't here anymore.", 'Этого путеводителя больше нет.', '这份指南已经不在了。', '이 가이드는 더 이상 없어요.'], ['That link points to something that isn’t in the guide any more.', 'Ссылка ведёт на то, чего больше нет в путеводителе.', '这个链接指向的内容已不在指南中。', '이 링크가 가리키는 곳은 더 이상 가이드에 없어요.'],
+  ["That plan isn't here anymore.", 'Этого плана больше нет.', '这个计划已经不在了。', '이 계획은 더 이상 없어요.'], ["That's a lot of invites today. Try tomorrow.", 'Сегодня слишком много приглашений. Попробуйте завтра.', '今天邀请太多了。明天再试。', '오늘 초대가 너무 많아요. 내일 다시 시도하세요.'],
+  ["That's in the lake. Tap on land.", 'Это в озере. Нажмите на сушу.', '那是湖里。请点陆地。', '거긴 호수예요. 육지를 누르세요.'], ["That's your own list.", 'Это ваш собственный список.', '这是你自己的清单。', '내 목록이에요.'],
+  ['Their profile shows after the next sync.', 'Профиль появится после следующей синхронизации.', '下次同步后会显示对方的主页。', '다음 동기화 후 프로필이 보여요.'],
+  ["This browser isn't keeping your list. It'll be lost when you close it.", 'Этот браузер не сохраняет ваш список. Он пропадёт, когда вы его закроете.', '这个浏览器不会保存你的清单。关闭后就会丢失。', '이 브라우저는 목록을 저장하지 않아요. 닫으면 사라져요.'],
+  ["This browser isn't keeping your lists. It'll be gone when you close it.", 'Этот браузер не сохраняет ваши списки. Они пропадут, когда вы его закроете.', '这个浏览器不会保存你的清单。关闭后就会消失。', '이 브라우저는 목록을 저장하지 않아요. 닫으면 사라져요.'],
+  ["This browser isn't keeping your saves. They'll be lost when you close it.", 'Этот браузер не сохраняет ваши сохранения. Они пропадут, когда вы его закроете.', '这个浏览器不会保存你的收藏。关闭后就会丢失。', '이 브라우저는 저장한 곳을 보관하지 않아요. 닫으면 사라져요.'],
+  ['Unblocked', 'Разблокировано', '已取消屏蔽', '차단 해제했어요'], ['Voted', 'Голос принят', '已投票', '투표했어요'], ['You can find it in your account.', 'Это есть в вашем аккаунте.', '可以在你的账号里找到。', '내 계정에서 찾을 수 있어요.'],
+  ['You have a newer copy', 'У вас есть более новая копия', '你有更新的版本', '더 새로운 사본이 있어요'],
+  ["You're already friends.", 'Вы уже друзья.', '你们已经是朋友了。', '이미 친구예요.'], ['Request already sent.', 'Запрос уже отправлен.', '已经发送过请求。', '이미 요청을 보냈어요.'], ['No one with that username.', 'Нет пользователя с таким именем.', '没有这个用户名的人。', '그 사용자 이름은 없어요.'],
+  ["That's you.", 'Это вы.', '那是你自己。', '나예요.'], ["That's a lot of requests today. Try tomorrow.", 'Сегодня слишком много запросов. Попробуйте завтра.', '今天请求太多了。明天再试。', '오늘 요청이 너무 많아요. 내일 다시 시도하세요.'],
+  ['This invite expired. Ask for a new one.', 'Приглашение истекло. Попросите новое.', '这个邀请已过期。请要一个新的。', '초대가 만료됐어요. 새 초대를 받으세요.'], ['This invite was already used.', 'Это приглашение уже использовано.', '这个邀请已被使用。', '이미 사용된 초대예요.'],
+  ["That's your own invite.", 'Это ваше собственное приглашение.', '这是你自己的邀请。', '내 초대예요.'], ["This invite isn't working. Ask for a new one.", 'Приглашение не работает. Попросите новое.', '这个邀请无效。请要一个新的。', '초대가 작동하지 않아요. 새 초대를 받으세요.']
+];
+// patterns: $1.. are copied; a captured part that is itself a phrase is translated too
+var RX30 = [
+  [/^Start at (.+)$/, 'Начать: $1', '从 $1 开始', '$1에서 시작'],
+  [/^You look far from (.+)\. Pick a spot instead\.$/, 'Похоже, вы далеко от этих мест: $1. Лучше выберите точку.', '你好像离 $1 很远。请改选一个地点。', '$1에서 멀리 있는 것 같아요. 대신 장소를 고르세요.'],
+  [/^Offline · last synced (.+)\. Changes here need a connection\.$/, 'Нет сети · последняя синхронизация $1. Для изменений нужна сеть.', '离线 · 上次同步 $1。修改需要联网。', '오프라인 · 마지막 동기화 $1. 변경하려면 연결이 필요해요.'],
+  [/^last synced (.+)$/, 'последняя синхронизация $1', '上次同步 $1', '마지막 동기화 $1'],
+  [/^Open (.+)'s profile$/, 'Открыть профиль: $1', '打开 $1 的主页', '$1 프로필 열기'], [/^Link made (.+)$/, 'Ссылка от $1', '$1 创建的链接', '$1에 만든 링크'], [/^expires (.+)$/, 'истекает $1', '$1 过期', '$1 만료'],
+  [/^1 vote$/, '1 голос', '1 票', '1표'], [/^(\d+) votes$/, 'голосов: $1', '$1 票', '$1표'], [/^See (.+)$/, 'Открыть: $1', '查看 $1', '$1 보기'],
+  [/^Loading (.+)\.\.\.$/, 'Загружаем: $1...', '正在加载 $1...', '$1 불러오는 중...'], [/^Pick (\d+) more$/, 'Выберите ещё $1', '再选 $1 个', '$1개 더 고르세요'],
+  [/^with a streak of (.+)$/, 'с ноткой: $1', '带点「$1」的影子', '$1 기질도 조금'], [/^You passed on (\d+) bar cards$/, 'Вы пропустили карточек с барами: $1', '你跳过了 $1 张酒吧卡片', '바 카드 $1장을 넘겼어요'],
+  [/^Copied (.+)$/, 'Скопировано: $1', '已复制 $1', '$1 복사했어요'], [/^On\. Your Blend shows when (.+) turns it on too\.$/, 'Включено. Бленд появится, когда $1 тоже его включит.', '已开启。等 $1 也打开后就会显示 Blend。', '켜졌어요. $1님도 켜면 블렌드가 보여요.'],
+  [/^(.+)'s list updated$/, 'Список обновлён: $1', '$1 的清单已更新', '$1님의 목록을 업데이트했어요'], [/^(.+)'s taste is in\. Date picks now blend you both\.$/, 'Вкус $1 учтён. Теперь подборка для свидания на вас двоих.', '$1 的口味已加入。约会推荐现在融合你们俩。', '$1님의 취향이 들어왔어요. 이제 데이트 추천이 둘을 섞어요.'],
+  [/^Added (\d+) to Been and your account$/, 'Добавлено в «Был(а)» и в аккаунт: $1', '已添加 $1 个到“去过”和你的账号', '$1곳을 가 본 곳과 계정에 추가했어요'], [/^Added (\d+) to Been on this phone$/, 'Добавлено в «Был(а)» на этом телефоне: $1', '已添加 $1 个到这部手机的“去过”', '$1곳을 이 휴대폰의 가 본 곳에 추가했어요'],
+  [/^You and (.+) are friends$/, 'Вы с $1 теперь друзья', '你和 $1 成为朋友了', '$1님과 친구가 됐어요'], [/^Reload (.+) to open this link\.$/, 'Перезагрузите $1, чтобы открыть эту ссылку.', '请重新加载 $1 再打开这个链接。', '이 링크를 열려면 $1을 새로고침하세요.'],
+  [/^Removed (.+)'s list$/, 'Список удалён: $1', '已移除 $1 的清单', '$1님의 목록을 삭제했어요'], [/^Removed (.+)$/, 'Удалено: $1', '已移除 $1', '$1 삭제했어요'],
+  [/^Shared your newest (\d+)$/, 'Отправлены последние: $1', '已分享最新的 $1 个', '최근 $1곳을 공유했어요'], [/^Couldn't copy here\. It's (.+)$/, 'Здесь не скопировать. Вот: $1', '这里无法复制。内容是 $1', '여기서는 복사할 수 없어요. 내용: $1'],
+  [/^You have (\d+) lists\. Remove one first\.$/, 'У вас уже $1 списков. Сначала удалите один.', '你已有 $1 个清单。请先删除一个。', '목록이 이미 $1개예요. 먼저 하나를 지우세요.'], [/^You're @(.+)$/, 'Вы: @$1', '你是 @$1', '@$1 님이에요'],
+  [/^Request sent to @(.+)$/, 'Запрос отправлен: @$1', '已向 @$1 发送请求', '@$1님에게 요청을 보냈어요']
+];
+var P30 = null;
+function p30Index(){ // English phrase -> [en, ru, zh, ko]: STR30 first, then the other tables' English with no {placeholders}
+  if (P30) return P30;
+  var o = {}, add = function(r){ if (r && typeof r[0] === 'string' && r[0].length > 1 && r[0].indexOf('{') < 0 && r[1] && r[2] && r[3] && !Object.prototype.hasOwnProperty.call(o, r[0])) o[r[0]] = r; };
+  STR30.forEach(add);
+  for (var k in STR) if (Object.prototype.hasOwnProperty.call(STR, k)) add(STR[k]);
+  for (var g in GRP_STR) if (Object.prototype.hasOwnProperty.call(GRP_STR, g)) add(GRP_STR[g]);
+  return (P30 = o);
+}
+function tr30(s, lang){ // pure: one text (a toast, a label, a text node) in the language; anything unknown stays as it is
+  var l = isLang(lang) ? lang : LANG; s = s === null || s === undefined ? '' : String(s);
+  if (l === 'en' || !s) return s;
+  var m = /^(\s*)([\s\S]*?)(\s*)$/.exec(s), t = m[2]; if (!t || !/[A-Za-z]{2}/.test(t)) return s;
+  var ix = LANG_IX[l], P = p30Index(), r = Object.prototype.hasOwnProperty.call(P, t) ? P[t] : null, out = null;
+  if (r && r[ix]) out = r[ix];
+  for (var i = 0; out === null && i < RX30.length; i++) { var x = RX30[i], mm = x[0].exec(t); if (mm) out = x[ix].replace(/\$(\d)/g, function(a, d){ var g = mm[+d] || ''; return Object.prototype.hasOwnProperty.call(P, g) ? P[g][ix] : locTokens(g, l); }); }
+  if (out === null && t.indexOf(' · ') > 0) { var parts = t.split(' · '), ch = parts.map(function(p){ return tr30(p, l); }); if (ch.join(' · ') !== t) out = ch.join(' · '); }
+  if (out === null) { var st = trStatus(t, l); if (st !== t) out = st; }
+  return out === null ? s : m[1] + out + m[3];
+}
+var LOC30_ROOTS = ['pAcct', 'pLoc', 'pFriends', 'pFriend', 'pPrivacy', 'pPoll', 'pGroup', 'pSmall', 'pTrip', 'pSaved', 'pAbout', 'pSurprise', 'pTip', 'pWelcome', 'pTasteInv', 'taste', 'pCluster', 'pTime', 'toast'];
+var LOC30_EN = typeof WeakMap === 'function' ? new WeakMap() : null;   // node -> {en, out}: so a later switch (ru -> zh, or back to English) starts from the English
+function loc30Text(node, lang){
+  var rec = LOC30_EN && LOC30_EN.get(node), cur = node.nodeValue, src = rec && cur === rec.out ? rec.en : cur, w = tr30(src, lang);
+  if (w !== cur) node.nodeValue = w;
+  if (LOC30_EN) { if (w !== src) LOC30_EN.set(node, {en:src, out:w}); else if (rec) LOC30_EN['delete'](node); }
+  return w !== cur ? 1 : 0;
+}
+function loc30Attr(el, a, lang){
+  var v = el.getAttribute(a); if (!v) return 0;
+  var key = 'data-l30-' + a, en = el.getAttribute(key), out = el.getAttribute(key + 'o'), src = en !== null && v === out ? en : v, w = tr30(src, lang);
+  if (w !== v) el.setAttribute(a, w);
+  if (w !== src) { el.setAttribute(key, src); el.setAttribute(key + 'o', w); } else if (en !== null) { el.removeAttribute(key); el.removeAttribute(key + 'o'); }
+  return w !== v ? 1 : 0;
+}
+function loc30(root, lang){ // the panel's English words in the language (or back to English); returns how many changed
+  var l = isLang(lang) ? lang : LANG, n = 0; if (!root || !root.nodeType) return 0;
+  try {
+    var tw = document.createTreeWalker(root, 4, null), x, list = [];
+    while ((x = tw.nextNode())) list.push(x);
+    list.forEach(function(t){ var p = t.parentNode; if (!p || !p.closest || p.closest('script,style,textarea,[data-l30="off"],[lang="en"]:not(html)')) return; n += loc30Text(t, l); });
+    var els = [root].concat([].slice.call(root.querySelectorAll ? root.querySelectorAll('[placeholder],[aria-label],[title]') : []));
+    els.forEach(function(el){ if (!el.getAttribute) return; ['placeholder', 'aria-label', 'title'].forEach(function(a){ n += loc30Attr(el, a, l); }); });
+  } catch (e) {}
+  return n;
+}
+function loc30All(lang){ var n = 0; LOC30_ROOTS.forEach(function(id){ var e = document.getElementById(id); if (e) n += loc30(e, lang); }); return n; }
+function loc30Watch(){ // a panel re-rendered while a language other than English is picked gets its words right away
+  if (loc30Watch.on || typeof MutationObserver === 'undefined') return; loc30Watch.on = true;
+  var sel = LOC30_ROOTS.map(function(id){ return '#' + id; }).join(',');
+  var mo = new MutationObserver(function(ms){
+    if (LANG === 'en') return; var seen = [];
+    ms.forEach(function(m){ var t = m.target, el = t && t.nodeType === 3 ? t.parentNode : t, root = el && el.closest ? el.closest(sel) : null; if (root && seen.indexOf(root) < 0) seen.push(root); });
+    seen.forEach(function(r){ loc30(r); });
+  });
+  LOC30_ROOTS.forEach(function(id){ var e = document.getElementById(id); if (e) mo.observe(e, {childList:true, subtree:true, characterData:true, attributes:true, attributeFilter:['aria-label', 'placeholder', 'title']}); });
+  if (LANG !== 'en') loc30All();
+}
+function relang30(){ // setLang with a panel open: rebuild it in the new language (the trip page too); -> the panels redrawn
+  var did = [], open = function(id){ var e = document.getElementById(id); return e && !e.hidden; }, go = function(id, f){ if (open(id)) { try { f(); did.push(id); } catch (e) {} } };
+  go('pTrip', function(){ renderTrip(); }); go('pGroup', function(){ renderGroup(); }); go('pFriends', function(){ renderFriends(); }); go('pFriend', function(){ renderFriend(); });
+  go('pPrivacy', function(){ renderPrivacy(); }); go('pPoll', function(){ renderPoll(); }); go('pAbout', function(){ renderAbout(); }); go('pSaved', function(){ renderSaved(); });
+  go('taste', function(){ tasteRender(); });
+  if (open('pLoc') && UI.cand) { try { $('locGo').textContent = 'Start at ' + UI.cand.label; did.push('pLoc'); } catch (e) {} }
+  loc30All();
+  return did;
+}
+function creditL(s, lang){ // the photo credit words in the language ("THE CUBE website" -> "сайт THE CUBE"); names stay as they are
+  var l = isLang(lang) ? lang : LANG; s = String(s === null || s === undefined ? '' : s); if (l === 'en' || !s) return s;
+  return s.split(', ').map(function(p){ var m;
+    if (/^venue website$/i.test(p)) return i18t('cr.venueWeb', null, l);
+    if ((m = /^(.+?)\s+official (?:site|website)$/i.exec(p))) return i18t('cr.official', {x:m[1]}, l);
+    if ((m = /^(.+?)\s+website$/i.exec(p))) return i18t('cr.web', {x:m[1]}, l);
+    if ((m = /^photo(?:\s+by|:)\s*(.+)$/i.exec(p))) return i18t('cr.photoBy', {x:m[1]}, l);
+    if ((m = /^via\s+(.+)$/i.exec(p))) return i18t('cr.via', {x:m[1]}, l);
+    return p.replace(/\bofficial (?:site|website)\b/gi, i18t('cr.officialW', null, l)).replace(/\bwebsite\b/gi, i18t('cr.website', null, l));
+  }).join(', ');
+}
+function leave30(c){ // v5.30: the rarer "if you leave now" sentences (notes, sessions, holidays, stale hours) in the picked language; null = not one of these
+  var f = c.fit || {}, st = c.st || {}, at = function(ms){ return fmtClock(ms); };
+  var hol = function(dflt){ if (!st.holiday) return tx(dflt, ''); var id = HOL_BY_NAME[st.holiday]; return id ? holNameL(id) : st.holiday; };
+  if (f.noEntry) return null;
+  if (f.entryNotes && !f.entryBare && f.lastEntryAt) return tx('fit.entryNotesAt', '', {a:at(f.lastEntryAt), b:at(f.arrive)});
+  if (f.entryNotes) return tx('fit.entryNotes', '');
+  if (f.kind === 'dark' || (st.key === 'closed' && st.noEntry)) return null;
+  if (st.inSession) { var nx = st.opensAt ? fmtDayDate(cparts(st.opensAt).key, st.p && st.p.key) + ' ' + fmtClock(st.opensAt) : ''; return tx('fit.inSession', '') + (nx ? ' ' + tx('fit.nextStarts', '', {x:nx}) : ''); }
+  if (st.key === 'maybe' && st.entryPassed) return st.lastEntryBare ? tx('fit.mayStopped', '') : tx('fit.mayNotesLE', '', {a:at(st.lastEntryAt)});
+  if (st.key === 'maybe' && st.holSpecial) return st.holNotPosted ? tx('fit.holSpNP', '') : tx('fit.holDiff', '');
+  if (st.key === 'unknown' && st.hoursExpired) return tx('fit.hoursTo', '', {d:fmtDate(st.validTo, st.p && st.p.key)});
+  if (st.key === 'unknown' && st.checkDates) return tx('fit.ticketsTo', '', {d:fmtDate(st.ev && st.ev.lastKey, st.p && st.p.key)});
+  if (st.key === 'unknown' && st.seasonStale) return tx('fit.seasonStale', '');
+  if (st.key === 'maybe' && st.holNoInfo) return tx('fit.holNoInfo', '', {h:hol('fit.holWord')});
+  if (st.key === 'maybe' && st.holVenue) return st.holClosed ? tx('fit.holVenueClosed', '', {v:st.holVenue, h:hol('fit.thisDate')}) : tx('fit.holVenueDiff', '', {v:st.holVenue});
+  if (st.key === 'maybe') return st.holClosed ? tx('fit.holOwnClosed', '', {h:hol('fit.thisDate')}) : tx('fit.holDiffX', '', {h:hol('fit.holWord')});
+  return null;
+}
 GENRES_SUB_STR();   // the sub-kind names (sub.<English>) are added below, from one table
 function GENRES_SUB_STR(){
   var T = {'Games & arcades':['Игры и аркады', '游戏与街机', '게임과 오락실'], 'Mini golf':['Мини-гольф', '迷你高尔夫', '미니 골프'], 'Racing':['Гонки', '竞速', '레이싱'], 'Escape rooms':['Квесты', '密室逃脱', '방탈출'], 'Get moving':['Подвигаться', '动起来', '몸 움직이기'],
@@ -5169,6 +5468,7 @@ function setLang(code, keep){ // keep = this visit only (test hooks)
   var ab = $('aboutTheme'); if (ab) ab.innerHTML = langPickerHTML() + themePickerHTML();
   if ($('pFilters') && !$('pFilters').hidden) renderFilters();
   refresh();
+  try { relang30(); loc30Watch(); } catch (e) {}   // v5.30: open panels (the trip page too) redrawn in the new language
   return l;
 }
 function langPickerHTML(){ // English first, always; native names
@@ -7979,7 +8279,7 @@ function renderHome(res, vm, picks){
     if (hol) h += '<p class="band">' + esc(hol) + ': holiday hours vary, so call first.</p>';
     if (UI.pickPast) h += '<p class="band info">That time has already passed, so this shows right now.</p>';
     if (picks.length) {
-      var hw = hardHidingWords(); if (hw.length) h += '<p class="band info tk-hiding">Hiding ' + esc(hw.join(', ')) + ' · <button class="linkbtn" type="button" data-act="tasteprof">Change</button></p>';   // v5.12: a hard no is hiding things
+      var hw = hardHidingWords(); if (hw.length) h += '<p class="band info tk-hiding">' + esc(tx('tk.hiding', 'Hiding {x}', {x:hw.map(function(w){ return tx('tk.hw.' + w, w); }).join(', ')})) + ' · <button class="linkbtn" type="button" data-act="tasteprof">' + esc(tx('tk.change', 'Change')) + '</button></p>';   // v5.12: a hard no is hiding things
       h += '<ul class="cards3">' + picks.map(cardHTML).join('') + '</ul>';
       if (UI.threeN > picks.length) h += '<button class="hm-btn" type="button" data-act="more3">' + esc(i18t('home.more3')) + '</button>';
       h += coupleHomeHTML(res);   // v5.13 #45: You + Maya
@@ -9589,7 +9889,7 @@ function coupleHomeHTML(res){ // Home: "Your Blend · Maya 78%", up to 3 tagged 
   var b = blendFor(f); if (!b) return '';
   var cs = blendLive(b.s.blend, 40).filter(function(x){ return ok[x.c.item.id]; }).slice(0, 3);
   if (!cs.length) return '';
-  return '<h3 class="sec-h cp-h"><span>Your Blend · ' + esc(f.name) + '</span><span>' + (b.m ? b.m.pct + '%' : '') + '</span></h3><ul class="cards3 cp-cards">' + cs.map(function(x){ return blendCardHTML(ok[x.c.item.id], x.tag, b, f); }).join('') + '</ul>';
+  return '<h3 class="sec-h cp-h"><span>' + esc(tx('cp.your', 'Your Blend · {x}', {x:f.name})) + '</span><span>' + (b.m ? b.m.pct + '%' : '') + '</span></h3><ul class="cards3 cp-cards">' + cs.map(function(x){ return blendCardHTML(ok[x.c.item.id], x.tag, b, f); }).join('') + '</ul>';
 }
 function cpClick(el){ var a = el.getAttribute('data-cp'), v = el.getAttribute('data-v') || ''; if (a === 'tog') coupleToggle(v); else if (a === 'share') blendShare(v); }
 
@@ -9743,8 +10043,8 @@ function friendAvgText(r){ if (!r || !r.n) return ''; return '★ ' + (Math.roun
 function friendAvgLine(it, cls){ var t = friendAvgText(friendRatingFor(it)); return t ? '<p class="' + cls + '">' + esc(t) + '</p>' : ''; }
 function friendSayHTML(it){ // the place page: the average, then "What friends say" (anonymous quotes)
   var r = friendRatingFor(it); if (!r) return '';
-  var h = '<div class="dt-frr">' + (r.n ? '<p class="dt-frr-h"><span class="stars" aria-hidden="true">★</span> <b>' + esc(friendAvgText(r).slice(2).split(' · ')[0]) + '</b> from ' + r.n + (r.n === 1 ? ' friend' : ' friends') + '</p>' : '');
-  if (r.reviews.length) h += '<p class="frr-lab">What friends say</p><ul class="frr-list">' + r.reviews.slice(0, 6).map(function(x){ return '<li>' + (x.stars ? '<span class="stars" aria-label="' + x.stars + ' of 5 stars">' + starsText(x.stars) + '</span> ' : '') + '<q>' + esc(x.review) + '</q></li>'; }).join('') + '</ul>';
+  var h = '<div class="dt-frr">' + (r.n ? '<p class="dt-frr-h"><span class="stars" aria-hidden="true">★</span> <b>' + esc(friendAvgText(r).slice(2).split(' · ')[0]) + '</b> ' + esc(tx(r.n === 1 ? 'frs.from1' : 'frs.fromN', 'from {n} ' + (r.n === 1 ? 'friend' : 'friends'), {n:r.n})) + '</p>' : '');
+  if (r.reviews.length) h += '<p class="frr-lab">' + esc(tx('frs.say', 'What friends say')) + '</p><ul class="frr-list">' + r.reviews.slice(0, 6).map(function(x){ return '<li>' + (x.stars ? '<span class="stars" aria-label="' + esc(tx('frs.stars', '{n} of 5 stars', {n:x.stars})) + '">' + starsText(x.stars) + '</span> ' : '') + '<q>' + esc(x.review) + '</q></li>'; }).join('') + '</ul>';
   return h + '</div>';
 }
 /* v5.22 Google rating line (Legal Research report 2026-11-14-google-ratings): "★ 4.6 · 1,234 Google reviews · Google Maps".
@@ -9856,7 +10156,7 @@ var GRP_STR = {
   you:['You', 'Вы', '你', '나'],
   and:[' and ', ' и ', ' 和 ', ', '],
   notCounted:['(not counted)', '(не учитывается)', '（不计入）', '(계산 안 됨)'],
-  send:['Send to the group', 'Отправить компании', '发给大家', '그룹에 보내기'],
+  send:['Send to the group', 'Отправить', '发给大家', '그룹에 보내기'],
   save:['Save group', 'Сохранить', '保存群组', '그룹 저장'],
   saved:['Saved', 'Сохранено', '已保存', '저장됨'],
   picks:['Your group\'s picks', 'Выбор для компании', '你们的群组推荐', '그룹 추천'],
@@ -11114,7 +11414,7 @@ function leaveBy(c){
 function leaveSentence(c){ return tenseText(leaveSentence0(c), planCtx(c.st.ms)); }   // v5.3
 function leaveSentence0(c){
   var f = c.fit, st = c.st;
-  if (LANG !== 'en') { var ls28 = leave28(c); if (ls28 !== null) return ls28; }   // v5.28: the sentence in the picked language
+  if (LANG !== 'en') { var ls28 = leave28(c); if (ls28 !== null) return ls28; var ls30 = leave30(c); if (ls30 !== null) return ls30; }   // v5.30: + the rarer sentences   // v5.28: the sentence in the picked language
   var go = UI.planning && !UI.today ? 'Leave at ' + fmtClock(st.ms) : 'Leave now';
   if (f.kind === 'fits' || f.kind === 'tight' || f.kind === 'over') {
     var s = go + ' and you\'d be there around ' + fmtClock(f.arrive) + '. ';
@@ -11248,7 +11548,7 @@ var ASK_RX = {
 };
 var ASK_ORDER = ['time', 'open', 'price', 'kids', 'book', 'park', 'dogs', 'far', 'addr', 'io', 'food', 'access', 'dress'];
 // what the DATA must say before a mention-only topic is answered (English data)
-var ASK_MENTION = {park:/parking|garage|valet|street park|\bparking lot\b/i, dogs:/\bdogs?\b|\bpets?\b|leash|service animals?/i, food:/\bfood\b|\bsnacks?\b|\bdrinks?\b|\bbars?\b|\bmenu\b|restaurant|caf[eé]|byob|concessions?|alcohol|\bbeer\b|\bwine\b|cocktails?/i,
+var ASK_MENTION = {park:/parking|garage|valet|street park|\bparking lot\b/i, dogs:/\bdogs?\b|\bpets?\b|leash|service animals?/i, food:/\bfood\b|\bmenus?\b|\bkitchens?\b|\bsnacks?\b|\bdinners?\b|\beat(s|ing)?\b/i,   /* v5.30 (check of v5.29): only text that talks about food; bar / drinks lines no longer answer */
   access:/wheelchair|accessib|\bstrollers?\b|elevator|\bstairs\b|step-free|\bADA\b/i, dress:/dress code|\bwear\b|attire|closed-toe|\bshoes\b|\bsocks\b/i, transit:/\bL stop\b|\bL\b|\b[Ll]ine\b|[Ss]tation|\b[Bb]us\b|Metra|\bCTA\b/, kids:/\bkids?\b|\bchild|all ages|family|families|\bunder \d+|\bages? \d+/i,
   book:/reserv|\bbook|walk-?ins?|sell out|sold out|tickets? (are )?(required|needed)/i, time:/takes about|about \d+(\.\d+)? (hours?|minutes)|\d+ (to|-) ?\d+ (hours|minutes)|minutes? (long|there)/i, io:/\bindoors?\b|\boutdoors?\b|covered|heated/i};
 var ASK_GTK = {price:/cost|price|how much|\bfree\b/i, kids:/\bage\b|how old|\bkids?\b|child/i, book:/book|reserv|ticket/i, time:/how long/i, io:/indoor|outdoor/i};
@@ -11471,7 +11771,7 @@ function renderDetail(c, keepScroll){
   if (ph) {
     h += '<img src="' + esc(ph.file) + '" alt="' + esc(tx('dt.photoOf', 'Photo of {x}', {x:it.name})) + '" data-fb="1">';
     var pu = safeUrl(ph.page_url);
-    var cr = tx('dt.photo', 'Photo: {x}', {x:esc(photoCredit(ph))});   // v2.2 (M-4): never photos[].note or a checker's remark
+    var cr = tx('dt.photo', 'Photo: {x}', {x:esc(creditL(photoCredit(ph)))});   // v2.2 (M-4): never photos[].note or a checker's remark
     h += pu ? '<a class="photo-credit" href="' + esc(pu) + '" target="_blank" rel="noopener">' + cr + '</a>' : '<span class="photo-credit">' + cr + '</span>';
   }
   h += '</div><div class="dt-body"><span class="grabber"></span>';
@@ -11586,18 +11886,18 @@ function renderDetail(c, keepScroll){
   if (keepScroll) sc.scrollTop = top;
   // the bar under your thumb: main button (Tickets / Reserve when there is a booking link, else Directions) + Share + phone
   var bar = '', primary, book = bookingLink(it), isDir = false;
-  if ((st.key === 'season' || st.key === 'gone' || st.key === 'ended') && web) primary = '<a class="btn-primary off" href="' + esc(web) + '" target="_blank" rel="noopener">' + esc(i18L('dt.web', 'Check their website')) + glyphSvg('i-ext') + '</a>';
-  else if (book) primary = '<a class="btn-primary" href="' + esc(book) + '" target="_blank" rel="noopener">' + bookingWord(it) + glyphSvg('i-ext') + '</a>';
-  else if (c.bookTime && web) primary = '<a class="btn-primary" href="' + esc(web) + '" target="_blank" rel="noopener">' + esc(c.bookTime.btn) + glyphSvg('i-ext') + '</a>';   // v5.10: showtimes / book-a-time venues
+  if ((st.key === 'season' || st.key === 'gone' || st.key === 'ended') && web) primary = '<a class="btn-primary off" href="' + esc(web) + '" target="_blank" rel="noopener"><span class="bl">' + esc(i18L('dt.web', 'Check their website')) + '</span>' + glyphSvg('i-ext') + '</a>';
+  else if (book) primary = '<a class="btn-primary" href="' + esc(book) + '" target="_blank" rel="noopener"><span class="bl">' + bookingWord(it) + '</span>' + glyphSvg('i-ext') + '</a>';
+  else if (c.bookTime && web) primary = '<a class="btn-primary" href="' + esc(web) + '" target="_blank" rel="noopener"><span class="bl">' + esc(c.bookTime.btn) + '</span>' + glyphSvg('i-ext') + '</a>';   // v5.10: showtimes / book-a-time venues
   else if (tr.callFirst && it.phone && (st.key === 'unknown' || st.key === 'maybe' || (st.open && st.minsLeft !== null && st.minsLeft <= 120)))
-    primary = Platform.telOk ? '<a class="btn-primary" href="tel:' + esc(telHref(it.phone)) + '">' + glyphSvg('i-phone') + esc(i18L('dt.callFirst', 'Call first')) + '</a>'
-                             : '<button class="btn-primary" type="button" data-copy="' + esc(it.phone) + '">' + glyphSvg('i-copy') + 'Copy number, call first</button>';
-  else { isDir = true; primary = '<a class="btn-primary" href="' + esc(isIOS ? appleMaps(it) : googleMaps(it)) + '" target="_blank" rel="noopener">' + esc(i18L('dt.directions', 'Directions')) + glyphSvg('i-ext') + '</a>'; }
+    primary = Platform.telOk ? '<a class="btn-primary" href="tel:' + esc(telHref(it.phone)) + '">' + glyphSvg('i-phone') + '<span class="bl">' + esc(i18L('dt.callFirst', 'Call first')) + '</span></a>'
+                             : '<button class="btn-primary" type="button" data-copy="' + esc(it.phone) + '">' + glyphSvg('i-copy') + '<span class="bl">' + esc(tr30('Copy number, call first')) + '</span></button>';
+  else { isDir = true; primary = '<a class="btn-primary" href="' + esc(isIOS ? appleMaps(it) : googleMaps(it)) + '" target="_blank" rel="noopener"><span class="bl">' + esc(i18L('dt.directions', 'Directions')) + '</span>' + glyphSvg('i-ext') + '</a>'; }
   bar += primary;
   bar += '<button class="btn-sq" type="button" data-share="' + esc(it.id) + '" aria-label="' + esc(LANG === 'en' ? 'Share ' + it.name : i18t('a.share', {x:it.name})) + '">' + glyphSvg('i-share') + '<span>' + esc(i18L('dt.share', 'Share')) + '</span></button>';
   if (!isDir) bar += '<a class="btn-sq" href="' + esc(isIOS ? appleMaps(it) : googleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + esc(i18L('dt.go', 'Go')) + '</a>';
   else if (it.phone && Platform.telOk) bar += '<a class="btn-sq" href="tel:' + esc(telHref(it.phone)) + '">' + glyphSvg('i-phone') + esc(i18L('dt.call', 'Call')) + '</a>';
-  else if (it.phone) bar += '<button class="btn-sq" type="button" data-copy="' + esc(it.phone) + '" aria-label="Copy the phone number ' + esc(it.phone) + '">' + glyphSvg('i-phone') + '<span>Copy no.</span></button>';
+  else if (it.phone) bar += '<button class="btn-sq" type="button" data-copy="' + esc(it.phone) + '" aria-label="' + esc(tr30('Copy the phone number') + ' ' + it.phone) + '">' + glyphSvg('i-phone') + '<span>' + esc(tr30('Copy no.')) + '</span></button>';
   $('dtBar').innerHTML = bar;
   var sv = isSaved(it.id), sb = $('dtSave');
   sb.classList.toggle('on', sv); sb.setAttribute('aria-pressed', String(sv)); sb.setAttribute('aria-label', sv ? 'Saved' : 'Save');
@@ -11728,7 +12028,7 @@ function syncScrim(){
   if (need) { sc.hidden = false; void sc.offsetWidth; sc.classList.add('on'); }
   else { sc.classList.remove('on'); setTimeout(function(){ if (!sc.classList.contains('on')) sc.hidden = true; }, 220); }
 }
-function toast(msg, ms){ var t = $('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.tm); toast.tm = setTimeout(function(){ t.hidden = true; }, ms || 3200); }
+function toast(msg, ms){ msg = tr30(msg); var t = $('toast'); t.textContent = msg;   /* v5.30: in the picked language */ t.hidden = false; clearTimeout(toast.tm); toast.tm = setTimeout(function(){ t.hidden = true; }, ms || 3200); }
 
 /* ----- location picker ----- */
 function searchPool(){
@@ -12161,7 +12461,7 @@ function renderAbout(){
   h += wxAboutHTML();   // v5.20
   h += '<h3>Map data</h3><p>Community areas and CTA \'L\' lines: City of Chicago Data Portal (datasets igwz-8jzy and xbyr-jnvx), simplified. The river line and the land outside the city are hand-drawn approximations.</p>';
   h += '<blockquote>"This site provides applications using data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one\'s own risk."<br>Source: <a href="https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html" target="_blank" rel="noopener">City of Chicago data terms of use</a></blockquote>';
-  h += '<h3>Photo credits</h3>' + (photos.length ? '<ul class="credits">' + photos.map(function(it){ var ph = firstPhoto(it), pu = safeUrl(ph.page_url); return '<li>' + esc(it.name) + ': ' + (pu ? '<a href="' + esc(pu) + '" target="_blank" rel="noopener">' + esc(ph.credit ? photoCredit(ph) : domainOf(pu)) + '</a>' : esc(photoCredit(ph))) + '</li>'; }).join('') + '</ul>' : '<p>No photos are bundled yet. Items show drawn category art instead.</p>');
+  h += '<h3>Photo credits</h3>' + (photos.length ? '<ul class="credits">' + photos.map(function(it){ var ph = firstPhoto(it), pu = safeUrl(ph.page_url); return '<li>' + esc(it.name) + ': ' + (pu ? '<a href="' + esc(pu) + '" target="_blank" rel="noopener">' + esc(ph.credit ? creditL(photoCredit(ph)) : domainOf(pu)) + '</a>' : esc(creditL(photoCredit(ph)))) + '</li>'; }).join('') + '</ul>' : '<p>No photos are bundled yet. Items show drawn category art instead.</p>');
   if (CONTACT_EMAIL) h += '<p class="small">Photos belong to their owners. Ask us to remove one: <a href="mailto:' + esc(CONTACT_EMAIL) + '">' + esc(CONTACT_EMAIL) + '</a></p>';
   h += '<h3>Sources</h3><p>Official venue and organizer sites, the Chicago Park District, Choose Chicago and editorial sites as leads. No automated collection from Instagram or Eventbrite. Each item lists its sources.</p>';
   h += '<h3>Theme</h3><div id="aboutTheme">' + langPickerHTML() + themePickerHTML() + '</div>';
@@ -13594,6 +13894,7 @@ function runSelfTest0(){
   block('v5.26 trip mode lite (home base, trip days in the city clock, shortlist, vote link, og.trips.v1, account delete, Chicago unaffected)', function(){ v526SelfTest(ok, eq, info); });
   block('v5.28 translations (Intl dates and times, status rules, every STR key in ru / zh-Hans / ko, data + guide plumbing, taste hook)', function(){ v528SelfTest(ok, eq, info); });
   block('v5.27 Generate my itinerary (events pinned, closed days avoided, sunset, areas, either/or, didn\'t fit, same input = same plan, Chicago too, edits + storage)', function(){ v527SelfTest(ok, eq, info); });
+  block('v5.30 the rest of the text in ru / zh-Hans / ko (phrase table), rarer sentences, photo credits, ko times, food answers, the action row', function(){ v530SelfTest(ok, eq, info); });
   block('v5.29 Ask about this place (data answers, "not in our info", no guessing) + group size and occasion filters + trip party size', function(){ v529SelfTest(ok, eq, info); });
 
   block('time zone', function(){
@@ -15157,8 +15458,8 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.29 (2026-11-15)');
-    eq('previous version', VERSION_PREV, 'v5.28 (2026-11-15)');
+    eq('version', VERSION, 'v5.30 (2026-11-15)');
+    eq('previous version', VERSION_PREV, 'v5.29 (2026-11-15)');
   });
 
   /* ---------- v5.20 fix (live v5.19 tester, MEDIUM): "Last entry not posted" must never make a last-entry time ---------- */
@@ -17292,6 +17593,74 @@ function v528SelfTest(ok, eq, info){ // v5.28 translations: formatters, status r
     eq('V528-7 English deck lines unchanged', deckMinutesLine(DECK_TOTAL), DECK_TOTAL + ' quick answers · about ' + Math.max(1, Math.round(DECK_TOTAL * 3 / 60)) + ' min');
   } finally { LANG = L0; }
 }
+function v530SelfTest(ok, eq, info){ // v5.30: the phrase table (location sheet, friends, privacy, poll, taste result, pop-ups, toasts), rarer sentences, credits, ko times, food answers, the action row
+  var latin = /[A-Za-z]{2,}/, KEEP = /Google|Supabase|Off-Grid|OpenStreetMap|Safari|Windows|Blend|Pedway|Old Town|THE CUBE|The Loop|Loop|Chicago|Oʻahu|Honolulu|Navy Pier|Uber|CTA|5K|App\b|AI\b|OK\b/g;
+  var eng = function(s){ return latin.test(String(s).replace(KEEP, '')); }, Ls = ['ru', 'zh-Hans', 'ko'], L0 = LANG;
+  // V530-1: English is never changed
+  eq('V530-1 English: phrases, toasts, credits and times unchanged', [tr30('Where are you right now?', 'en'), tr30('Link copied', 'en'), creditL('THE CUBE website', 'en'), fmtTime(570, 'en'), fmtEndTime(1440)].join('|'), 'Where are you right now?|Link copied|THE CUBE website|9:30 am|midnight');
+  // V530-2: the table itself
+  var bad = [];
+  STR30.forEach(function(r){ for (var i = 1; i <= 3; i++) { if (typeof r[i] !== 'string' || !r[i].trim()) bad.push(r[0] + '[' + i + '] empty'); else if (!numsKept(r[0], r[i])) bad.push(r[0] + '[' + i + '] numbers'); } });
+  RX30.forEach(function(r){ var g = new RegExp(r[0].source + '|').exec('').length - 1, want = []; for (var j = 1; j <= g; j++) want.push('$' + j); for (var i = 1; i <= 3; i++) { var have = (String(r[i]).match(/\$\d/g) || []).sort().join(); if (have !== want.join()) bad.push(r[0].source + '[' + i + '] ' + have); } });
+  ok('V530-2 phrase table: ' + STR30.length + ' phrases + ' + RX30.length + ' patterns in all 3 languages, numbers and $n kept', !bad.length, bad.slice(0, 8).join(' ; '));
+  function leftovers(root){ var tw = document.createTreeWalker(root, 4, null), x, out = [];
+    while ((x = tw.nextNode())) { var t = x.nodeValue.trim(); if (t && x.parentNode && !(x.parentNode.closest && x.parentNode.closest('[lang="en"]:not(html),script,style,[data-pick],[data-city]')) && eng(t)) out.push(t); }   /* place and city names stay as they are */
+    [].forEach.call(root.querySelectorAll('[placeholder],[aria-label]'), function(e){ ['placeholder', 'aria-label'].forEach(function(a){ var v = e.getAttribute(a); if (v && eng(v)) out.push(a + '=' + v); }); });
+    return out; }
+  // V530-3: the location sheet and every line it can show
+  Ls.forEach(function(l){ var c = $('pLoc').cloneNode(true); loc30(c, l); var lf = leftovers(c); ok('V530-3 ' + l + ' location sheet: no English left', !lf.length, lf.join(' | ')); });
+  var notes = [geoErrorText('blocked', 'iPhone'), geoErrorText('blocked', 'Android'), geoErrorText('blocked', ''), geoErrorText('timeout', 'Windows NT'), geoErrorText('timeout', 'Macintosh'), geoErrorText('timeout', ''), locFixNote(10), locFixNote(5000, true), locFixNote(5000, false), 'Finding you...', 'Still looking...', 'Location is on. Tap "Use my location".', 'Start at The Loop', 'You look far from Chicago and Oʻahu. Pick a spot instead.'];
+  Ls.forEach(function(l){ var b = notes.filter(function(s){ return eng(tr30(s, l).replace(/ and /g, ' ')); }).map(function(s){ return tr30(s, l); }); ok('V530-3 ' + l + ': all ' + notes.length + ' location lines translated', !b.length, b.join(' | ')); });
+  // V530-4: every plain toast in the code (read from this page's own source), plus the ones with a name or a number
+  var src = ''; try { [].forEach.call(document.scripts, function(s){ if (s.textContent.indexOf('function v530SelfTest') >= 0) src = s.textContent; }); } catch (e) {}
+  var lits = {}, rxL = /toast\('((?:[^'\\]|\\.)*)'\s*[,)]/g, mt; while ((mt = rxL.exec(src))) { var v = mt[1].replace(/\\'/g, "'"); if (v.length > 3) lits[v] = 1; }
+  var lk = Object.keys(lits), pat = ["Removed Maya's list", 'You and @maya are friends', 'Added 3 to Been on this phone', 'Copied 312-555-0100', 'Shared your newest 5', "You're @maya", 'Request sent to @maya', '2 votes', 'Voting closed · 3 votes', "Maya's list updated", 'Reload Off-Grid to open this link.', 'Offline · last synced Nov 3'];
+  Ls.forEach(function(l){ var b = lk.filter(function(s){ return eng(tr30(s, l)); }); ok('V530-4 ' + l + ': every one of the ' + lk.length + ' plain toasts in the code is translated', lk.length > 30 && !b.length, b.join(' | '));
+    var b2 = pat.filter(function(s){ return eng(tr30(s, l).replace(/@?maya|Maya/g, '')); }).map(function(s){ return tr30(s, l); }); ok('V530-4 ' + l + ': ' + pat.length + ' toasts with a name or a number translated', !b2.length, b2.join(' | ')); });
+  // V530-5: the taste result words
+  var tyb = []; Ls.forEach(function(l){ TYPES.forEach(function(t){ [t.name, t.tagline, t.para].concat(t.kinds, [t.kinds.join(' · ')]).forEach(function(s){ if (eng(tr30(s, l))) tyb.push(l + ':' + s); }); });
+    ['Energy', 'Vibe', 'Mode', 'Weird', 'Chill', 'Active', 'Low-key', 'Lively', 'Curious', 'Playful', 'Less', 'More', 'In the middle', "You're a mix. Mostly", 'with a streak of Gallery Owl', 'You passed on 4 bar cards'].forEach(function(s){ if (eng(tr30(s, l))) tyb.push(l + ':' + s); }); });
+  ok('V530-5 the 12 characters (name, tagline, paragraph, kinds) and the result words in all 3 languages', !tyb.length, tyb.slice(0, 6).join(' | '));
+  // V530-6: the privacy panel, as rendered
+  try { renderPrivacy(); Ls.forEach(function(l){ var c = $('pPrivacy').cloneNode(true); loc30(c, l); var lf = leftovers(c); ok('V530-6 ' + l + ' privacy panel: no English left', !lf.length, lf.join(' | ')); }); } catch (e) { ok('V530-6 privacy panel', false, String(e)); }
+  // V530-7: the rarer "if you leave now" sentences
+  var ms0 = fromChicago('2026-11-26', 720), P = cparts(ms0);
+  var cases = [{fit:{entryNotes:true, lastEntryAt:ms0, arrive:ms0 + 600000}, st:{}}, {fit:{entryNotes:true, entryBare:true}, st:{}}, {fit:{}, st:{inSession:true, opensAt:ms0 + 86400000, p:P}},
+    {fit:{}, st:{key:'maybe', entryPassed:true, lastEntryBare:true}}, {fit:{}, st:{key:'maybe', entryPassed:true, lastEntryAt:ms0}}, {fit:{}, st:{key:'maybe', holSpecial:true, holNotPosted:true}}, {fit:{}, st:{key:'maybe', holSpecial:true}},
+    {fit:{}, st:{key:'unknown', hoursExpired:true, validTo:'2026-12-31', p:P}}, {fit:{}, st:{key:'unknown', checkDates:true, ev:{lastKey:'2026-11-30'}, p:P}}, {fit:{}, st:{key:'unknown', seasonStale:true}},
+    {fit:{}, st:{key:'maybe', holNoInfo:true, holiday:'Thanksgiving'}}, {fit:{}, st:{key:'maybe', holNoInfo:true}}, {fit:{}, st:{key:'maybe', holVenue:'Navy Pier', holClosed:true, holiday:'Thanksgiving'}}, {fit:{}, st:{key:'maybe', holVenue:'Navy Pier'}},
+    {fit:{}, st:{key:'maybe', holClosed:true, holiday:'Christmas'}}, {fit:{}, st:{key:'maybe'}}];
+  try { Ls.forEach(function(l){ LANG = l; var b = []; cases.forEach(function(c, i){ var s = leave30(c); if (typeof s !== 'string' || !s || eng(s)) b.push(i + ':' + s); }); ok('V530-7 ' + l + ': ' + cases.length + ' rarer leave-now sentences (notes, sessions, holidays, stale hours) translated', !b.length, b.join(' | ')); }); }
+  finally { LANG = L0; }
+  eq('V530-7 not one of these: null (leave28 or the older lines answer)', [leave30({fit:{noEntry:true}, st:{}}), leave30({fit:{kind:'dark'}, st:{}}), leave30({fit:{kind:'fits'}, st:{key:'open'}})].join(','), ',,');
+  // V530-8: photo credit words
+  eq('V530-8 photo credit words in the language, names kept', [creditL('THE CUBE website', 'ru'), creditL('venue website', 'zh-Hans'), creditL('LondonHouse Chicago website, photo: Amy Ulivieri', 'ko'), creditL('Christkindlmarket, photo by True Shot Studios, via Choose Chicago', 'ru'), creditL('Field Museum official site', 'ko')].join(' | '),
+    'сайт THE CUBE | 场馆网站 | LondonHouse Chicago 웹사이트, 사진: Amy Ulivieri | Christkindlmarket, фото: True Shot Studios, через Choose Chicago | Field Museum 공식 사이트');
+  // V530-9: Korean times from Intl (no hard-coded format)
+  var kof = new Intl.DateTimeFormat('ko-KR', {hour:'numeric', minute:'2-digit', timeZone:'UTC'}).format(new Date(Date.UTC(2000, 0, 1, 9, 30))), koEnd = '';
+  try { LANG = 'ko'; koEnd = fmtEndTime(1440); } finally { LANG = L0; }
+  ok('V530-9 ko times come from Intl (' + kof + '), not 09:30; ru and zh stay 24-hour; ko midnight close is 자정', fmtTime(570, 'ko') === kof && !/^0\d:/.test(fmtTime(570, 'ko')) && fmtTime(1290, 'ru') === '21:30' && /21:30/.test(fmtTime(1290, 'zh-Hans')) && trStatus('Opens at 9:30 am', 'ko').indexOf(kof) >= 0 && koEnd === '자정',
+    [fmtTime(570, 'ko'), fmtTime(1290, 'ko'), fmtTime(1290, 'ru'), fmtTime(1290, 'zh-Hans'), trStatus('Opens at 9:30 am', 'ko'), koEnd].join(' | '));
+  // V530-10: the ask box's food answers come only from text about food
+  var fF = function(o){ return ext({id:'fx30-food', name:'Food fixture', kind:'place', category:'games-arcade', tags:[], lat:41.9, lng:-87.65, verified:{status:'verified', checked_on:'2026-11-15'}}, o); };
+  var O30 = {today:'2026-11-20', dist:1, trav:{how:'walk', min:10}, statusNow:'Open now', statusNowEn:'Open now'};
+  var barOnly = askAnswer(fF({description:'A full bar with craft drinks and pinball.', highlights:['Big bar with 40 beers', 'Drink specials nightly']}), 'Do you serve food?', O30);
+  var withMenu = askAnswer(fF({description:'A full bar with pinball.', highlights:['Kitchen serves pizza until 10 pm']}), 'Do you serve food?', O30);
+  ok('V530-10 food: text about a bar or drinks only -> "won\'t guess"; a kitchen line -> answered from it', !barOnly.found && JSON.stringify(barOnly).indexOf('craft drinks') < 0 && withMenu.found && JSON.stringify(withMenu).indexOf('Kitchen serves pizza') >= 0, JSON.stringify(barOnly).slice(0, 240));
+  eq('V530-10 food words: food, menu, kitchen, snacks, dinner, eat (not bar, drinks, beer)', ['Food trucks on weekends', 'See the menu', 'Kitchen open late', 'Snacks for sale', 'Dinner shows', 'Eat at the counter', 'Full bar', 'Craft drinks', 'Beer and wine'].map(function(s){ return ASK_MENTION.food.test(s) ? 1 : 0; }).join(''), '111111000');
+  // V530-11: the place page's action row at 320 px in Russian
+  try { var box = document.createElement('div'); box.style.cssText = 'position:fixed;left:0;top:0;width:320px;height:90px;visibility:hidden;z-index:-1;pointer-events:none'; box.setAttribute('lang', 'ru');
+    box.innerHTML = '<div class="dt-bar"><a class="btn-primary" href="#"><span class="bl">Забронировать</span>' + glyphSvg('i-ext') + '</a><button class="btn-sq" type="button">' + glyphSvg('i-share') + '<span>Поделиться</span></button><a class="btn-sq" href="#">' + glyphSvg('i-map') + 'Маршрут</a></div>';
+    document.body.appendChild(box);
+    var pr = box.querySelector('.btn-primary').getBoundingClientRect(), sq = box.querySelector('.btn-sq').getBoundingClientRect(), lb = box.querySelector('.bl'), ic = box.querySelector('.btn-primary svg').getBoundingClientRect(), lr = lb.getBoundingClientRect();
+    ok('V530-11 320 px action row in ru: "Забронировать" and its arrow stay inside the button, nothing overlaps Share', pr.right <= sq.left + 0.5 && ic.right <= pr.right + 0.5 && lr.right <= pr.right + 0.5 && lb.scrollWidth <= lb.clientWidth + 1, [Math.round(pr.right), Math.round(sq.left), Math.round(ic.right), Math.round(lr.right), lb.scrollWidth, lb.clientWidth].join(','));
+    document.body.removeChild(box); } catch (e) { ok('V530-11 action row', false, String(e)); }
+  // V530-12: a language switch starts from the English (ru -> zh -> en gives the English back)
+  var cl = $('pLoc').cloneNode(true), en0 = cl.textContent; loc30(cl, 'ru'); var ru1 = cl.textContent; loc30(cl, 'zh-Hans'); var zh1 = cl.textContent; loc30(cl, 'en');
+  ok('V530-12 switching ru -> zh -> en re-translates from the English and gives the English back', ru1 !== en0 && /[Ѐ-ӿ]/.test(ru1) && /[一-鿿]/.test(zh1) && !/[Ѐ-ӿ]/.test(zh1) && cl.textContent === en0, '');
+  ok('V530-12 relang30 redraws an open trip page (renderTrip is in its list)', String(relang30).indexOf('renderTrip()') > 0 && String(setLang).indexOf('relang30()') > 0, '');
+  info('V530 note: every ru / zh-Hans / ko string added in v5.30 is the developer\'s own wording, unverified, needs native review');
+}
 function v529SelfTest(ok, eq, info){ // v5.29: Ask about this place + group size / occasions + trip party size (fixtures only, Chicago clock)
   var T0 = '2026-11-20';   // a Friday: Sat = Nov 21, Sun = Nov 22, Mon = Nov 23, Thu = Nov 26
   var O = {today:T0, dist:2.5, trav:{how:'CTA', min:30}, statusNow:'Open now', statusNowEn:'Open now'};
@@ -17599,7 +17968,7 @@ function v522SelfTest(ok, eq){
   var cd = fx({hours:H, closed_dates:['2026-11-17']});
   eq('H4 closed_dates item: closed on Nov 17, open on Nov 18', [S(cd, '2026-11-17', 720), S(cd, '2026-11-18', 720)].join(), 'closed,open');
   // L1: "Closed for <holiday>" in each language
-  eq('T8 "Closed for Thanksgiving" in ru / zh-Hans / ko (status line)', ['ru', 'zh-Hans', 'ko'].map(function(l){ return trStatus('Closed for Thanksgiving · opens tomorrow 9:30 am', l); }).join(' | '), 'Закрыто: День благодарения · откроется завтра 9:30 | 感恩节休息 · 明天 9:30 开门 | 추수감사절 휴무 · 내일 09:30 오픈');   // v5.28: the time in the language
+  eq('T8 "Closed for Thanksgiving" in ru / zh-Hans / ko (status line)', ['ru', 'zh-Hans', 'ko'].map(function(l){ return trStatus('Closed for Thanksgiving · opens tomorrow 9:30 am', l); }).join(' | '), 'Закрыто: День благодарения · откроется завтра 9:30 | 感恩节休息 · 明天 9:30 开门 | 추수감사절 휴무 · 내일 오전 9:30 오픈');   // v5.28: the time in the language
   eq('T8 special-dates labels in Korean / Chinese; English unchanged', [closedDayLabel('2026-12-25', 'ko'), closedDayLabel('2026-11-17', 'zh-Hans'), closedDayLabel('2026-12-25', 'en')].join('|'), '크리스마스 휴무|休息|Closed for Christmas');
   eq('T8 "Closed for the season" is not mistaken for a holiday', trStatus('Closed for the season', 'ru'), 'Закрыто на сезон');
   // M1: more interface words
@@ -17627,7 +17996,7 @@ function v522SelfTest(ok, eq){
     eq('U2 half-translated status lines are now whole (ru)', [trStatus('No more entry today · opens tomorrow noon', 'ru'), trStatus('Last entry was 8 pm; it closes at 10 pm', 'ru'), trStatus('last entry was 5:30 pm; it closes at 6 pm', 'ru'), trStatus('Tickets on sale through Jan 19 · end date not announced', 'ru')].join(' | '),
       'Сегодня вход уже закрыт · откроется завтра 12:00 | Последний вход был в 20:00, закрытие в 22:00 | Последний вход был в 17:30, закрытие в 18:00 | Билеты в продаже до 19 янв. · дата окончания не объявлена');   // v5.28: times and dates in the language
     eq('U2 the same lines in zh-Hans and ko keep 8 pm / 10 pm / Jan 19', [trStatus('Last entry was 8 pm; it closes at 10 pm', 'zh-Hans'), trStatus('Last entry was 8 pm; it closes at 10 pm', 'ko'), trStatus('Tickets on sale through Jan 19 · end date not announced', 'zh-Hans'), trStatus('No more entry today', 'ko')].join(' | '),
-      '最后入场 20:00，22:00 关门 | 마지막 입장 20:00, 22:00 마감 | 门票售至 1月19日 · 结束日期未公布 | 오늘 입장 마감');   // v5.28: times and dates in the language
+      '最后入场 20:00，22:00 关门 | 마지막 입장 오후 8:00, 오후 10:00 마감 | 门票售至 1月19日 · 结束日期未公布 | 오늘 입장 마감');   // v5.28: times and dates in the language
     var keepL = LANG, got = {};
     try {
       ['ru', 'zh-Hans', 'ko'].forEach(function(l){
@@ -18648,6 +19017,7 @@ function init(){
 
 window.__cff = {
   version: VERSION, appName: APP_NAME,
+  m530: {tr30: tr30, loc30: loc30, loc30All: loc30All, relang30: relang30, creditL: creditL, leave30: leave30, STR30: STR30, openLocation: function(){ openLocation(false); }, openFriends: openFriends, openPrivacy: openPrivacy, renderTrip: renderTrip, tripOpenList: tripOpenList, grpOpen: grpOpen, popShow: popShow, openAbout: function(){ renderAbout(); openPanel('pAbout'); }, toast: toast, toastText: function(){ return $('toast').textContent; }, openPanel: openPanel},   // v5.30 (testing only)
   m529: {askAnswer: askAnswer, askTopics: askTopics, askDays: askDays, askRun: askRun, partyFits: partyFits, occasionOk: occasionOk, groupRange: groupRange, tripParty: tripParty},   // v5.29 (testing only)
   m528: {openGuide: openGuide, closeGuide: closeGuide, wxOpenSheet: wxOpenSheet, openAccount: openAccount, tasteStartDeck: tasteStartDeck, closeTaste: closeTaste, closePanel: closePanel, data: function(){ return DATA; }, i18n: function(){ return I18N; }, tx: tx, fmtTime: fmtTime, fmtDate: fmtDate, fmtDayDate: fmtDayDate, locTokens: locTokens, gaLocalize: gaLocalize, placeTextWith: placeTextWith, leave28: leave28, STR: STR, guides: function(){ return GUIDE_BY; }, ui: function(){ return UI; }, acct: function(){ return Acct; }},   // v5.28: the translation-measure hooks (testing only)
   typeTaste: typeTaste, groupMember: groupMember, groupLikes: groupLikes, groupPicks: groupPicks, groupScore: groupScore, groupMembersFrom: groupMembersFrom, groupVoteLink: groupVoteLink, groupsGet: groupsGet, groupsPut: groupsPut, groupsForget: groupsForget, pollGoWith: pollGoWith,   // v5.25 Group Blend
@@ -18793,6 +19163,7 @@ window.__cff = {
 };
 window.funType = function(st){ return funType(st || tasteMine()); };   // the v5.16 hook name (acctType reads funType directly)
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ setTimeout(loc30Watch, 0); }); else setTimeout(loc30Watch, 0);   // v5.30
 })();
 </script>
 

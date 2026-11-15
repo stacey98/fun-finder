@@ -43765,6 +43765,8 @@
                     },
         "us_cities":  15,
         "chain_brand":  "Flight Club",
+        "group_min":  2,
+        "group_max":  12,
         "sid":  253,
         "photos":  [
                        {
@@ -44005,6 +44007,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "group_min":  2,
+        "group_max":  12,
         "sid":  255,
         "photos":  [
                        {
@@ -48468,6 +48472,7 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "group_max":  14,
         "sid":  284,
         "photos":  [
                        {
@@ -52956,6 +52961,7 @@
                          "date",
                          "friends"
                      ],
+        "group_max":  10,
         "sid":  405,
         "photos":  [
                        {
@@ -56841,6 +56847,7 @@
                     },
         "us_cities":  6,
         "chain_brand":  "SPIN",
+        "group_max":  10,
         "sid":  375,
         "photos":  [
                        {
@@ -72324,6 +72331,8 @@
                          "checked_on":  "2026-11-15",
                          "evidence_url":  "https://heartmoon-hawaii.com/"
                      },
+        "group_min":  2,
+        "group_max":  10,
         "sid":  532,
         "photos":  [
 
