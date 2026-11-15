@@ -1755,6 +1755,81 @@ svg.gi{width:20px;height:20px;flex:none}
 .bl-who > span{box-shadow:0 0 0 2px #fff}
 .bl-who > span + span{margin-left:-6px}
 .card3:has(.bl-who) .c3-text{padding-right:64px}
+/* v5.25 Group Blend v1 (design/2026-11-14-groups-spec.md section 0): poster hero, one bright pill, "4 of 5" tags */
+.gp .p-head{gap:8px;padding-left:12px}
+.gp .p-title{flex:1 1 auto;min-width:0;font:var(--display-wt) 22px/1.15 var(--f-display);letter-spacing:var(--display-ls);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-left:8px}
+.gp .p-head .p-close{width:40px;height:40px;border-radius:20px}
+.gp-sub{margin:0 0 8px;font:500 14px/1.35 var(--f-body);color:var(--ink-2)}
+.gp-pick{list-style:none;margin:0;padding:0}
+.gp-row{display:flex;align-items:center;gap:12px;width:100%;min-height:60px;padding:0;border:0;border-bottom:1px solid var(--rule);background:none;color:var(--ink);text-align:left;cursor:pointer;font:inherit}
+.gp-row .ty-av,.gp-row .bl-ini{width:40px;height:40px;flex:none}
+.gp-row .bl-ini{font-size:15px}
+.gp-nm{flex:1 1 auto;min-width:0;font:600 16px/1.25 var(--f-body)}
+.gp-nm small{display:block;margin-top:2px;font:500 13px/1.3 var(--f-body);color:var(--ink-2)}
+.gp-ck{flex:none;width:26px;height:26px;border-radius:50%;box-shadow:inset 0 0 0 2px var(--rule-strong);display:grid;place-items:center;transition:background .12s,box-shadow .12s}
+.gp-ck svg{width:14px;height:14px;opacity:0;color:var(--on-accent);stroke-width:3}
+.gp-row[aria-pressed="true"] .gp-ck{background:var(--accent);box-shadow:none}
+.gp-row[aria-pressed="true"] .gp-ck svg{opacity:1}
+.gp-row.shake{animation:gpShake .12s linear 2}
+@keyframes gpShake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.gp-sk{height:60px;margin:0 0 8px;border-radius:14px;background:var(--paper-2)}
+.gp-go{width:100%;height:52px;border-radius:26px}
+.gp-go[aria-disabled="true"],.gp-vgo[aria-disabled="true"]{opacity:.4}
+.gp-empty{padding:12px 0 8px}
+.gp-empty h3{margin:0;font:var(--display-wt) 20px/1.2 var(--f-display);letter-spacing:var(--display-ls)}
+.gp-empty p{margin:8px 0 0;font:500 16px/1.4 var(--f-body);color:var(--ink)}
+.gp-empty p + p,.gp-empty .gp-why2{font-size:14px;color:var(--ink-2)}
+.gp-empty .btn-primary{width:100%;height:52px;border-radius:26px;margin-top:16px}
+.gp-empty .mini-btn{margin-right:8px}
+.gp-poster{position:relative;height:220px;margin:4px -4px 0;border-radius:24px;overflow:hidden;background:var(--paper-2)}
+.gp-bands{position:absolute;inset:0;display:flex}
+.gp-band{flex:1 1 0;min-width:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px;background:var(--paper-2)}
+.gp-ch{display:block;width:min(72px,calc(100% - 4px));aspect-ratio:1}
+.gp-ch svg{display:block;width:100%;height:100%}
+.gp-ini{display:grid;place-items:center;width:min(48px,calc(100% - 4px));aspect-ratio:1;border-radius:50%;background:var(--paper-3);color:var(--ink);font:650 18px/1 var(--f-body);box-shadow:0 0 0 2px var(--paper)}
+.gp-poster.dark::after{content:"";position:absolute;left:0;right:0;top:0;height:90px;background:linear-gradient(rgba(0,0,0,.4),transparent);pointer-events:none}
+.gp-score{position:absolute;left:20px;top:18px;right:20px;z-index:2;color:#0B0A10}
+.gp-poster.dark .gp-score{color:#fff}
+.gp-score b{display:block;font:var(--display-wt) 56px/1 var(--f-display);letter-spacing:-.02em}
+.gp-score b.ne{font-size:20px;line-height:1.2}
+.gp-score span{display:block;margin-top:4px;font:600 15px/1.2 var(--f-body)}
+.gp-poster.anim .gp-band{animation:gpUp .18s ease-out both}
+.gp-poster.anim .gp-ch,.gp-poster.anim .gp-ini{animation:gpUp .18s ease-out both;animation-delay:calc(80ms + var(--i) * 40ms)}
+@keyframes gpUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.gp-names{margin:12px 0 0;font:500 14px/1.4 var(--f-body);color:var(--ink-2)}
+.gp-names small{font-size:13px;color:var(--ink-3)}
+.gp-acts{display:flex;gap:12px;margin-top:16px}
+.gp-acts > button{flex:1 1 0;min-width:0;height:44px;border-radius:22px;font:650 15px var(--f-body);display:flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;white-space:nowrap;overflow:hidden}
+.gp-acts .i{width:18px;height:18px;flex:none}
+.gp-save{border:1px solid var(--rule-strong);background:none;color:var(--ink);cursor:pointer}
+.gp-save.on .i{fill:currentColor}
+.gp-h{padding:24px 0 2px}
+.gp-cards{margin-top:10px}
+.gp-tag{position:absolute;right:12px;bottom:12px;z-index:4;display:inline-flex;align-items:center;gap:7px;height:28px;padding:0 10px;border-radius:14px;background:rgba(11,10,16,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:#fff;font:700 13px/1 var(--f-body);white-space:nowrap}
+.gp-dots{display:inline-flex;gap:3px}
+.gp-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35)}
+.gp-dots i.on{background:var(--accent)}
+[data-skin="sorbet"] .gp-dots i.on{background:#FF9EC4}
+.gp-tag.all{background:var(--accent);color:var(--on-accent)}
+.gp-tag.all .gp-dots i{background:currentColor;opacity:.85}
+.card3:has(.gp-tag) .c3-text{padding-right:118px}
+.gp-more6{width:100%;height:44px;margin-top:12px;border-radius:22px;border:1px solid var(--rule-strong);background:none;color:var(--ink);font:650 15px var(--f-body);cursor:pointer}
+.gp-fn{margin:24px 0 4px;font:500 12px/1.4 var(--f-body);color:var(--ink-3)}
+.gp-entry{grid-template-columns:60px minmax(0,1fr) 18px}
+.gp-srow{grid-template-columns:minmax(0,1fr) auto 18px}
+.gp-srow small{display:block;font:500 13px/1.3 var(--f-body);color:var(--ink-2)}
+.gp-stack{display:flex;align-items:center}
+.gp-stack > span{width:24px;height:24px;flex:none;box-shadow:0 0 0 2px var(--paper)}
+.gp-stack > span.bl-ini{font-size:10px}
+.gp-stack > span + span{margin-left:-8px}
+.gp-sc{font:var(--display-wt) 18px/1 var(--f-display)}
+.gp-vote .pl-pick{max-height:none}
+.gp-ren input{font:var(--display-wt) 22px/1.2 var(--f-display)}
+.bl-grp{display:block;margin:10px auto 0;font-weight:600;font-size:14px;color:var(--accent-text)}
+@media (min-width:900px){ .gp-poster{height:240px} }
+@media (max-width:359px){ .gp-poster{height:200px} .gp-acts{flex-direction:column} .gp-acts > button{flex:none;width:100%} }
+@media (max-width:399px){ .gp.page #gpClose{display:none} }   /* phone: the page header is Back · title · More (spec 0.5.2); Back, the scrim or the phone's Back closes */
+@media (prefers-reduced-motion:reduce){ .gp-poster.anim .gp-band,.gp-poster.anim .gp-ch,.gp-poster.anim .gp-ini,.gp-row.shake{animation:none} .gp-ck{transition:none} }
 .c3-fr{margin:4px 0 0;font:650 13px var(--f-body);color:#FFD27A}
 .meta .fr-avg{color:var(--soon);font-weight:650}
 .dt-frr{margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--paper-2)}
@@ -2005,6 +2080,7 @@ svg.gi{width:20px;height:20px;flex:none}
   <section id="pFriend" class="panel tall" hidden role="dialog" aria-labelledby="pFriendTitle"><span class="grabber"></span><div class="p-head"><div class="fr-t" id="pFriendT"><h2 class="p-title" id="pFriendTitle" tabindex="-1">A friend's list</h2></div><button class="p-close" type="button" data-close="pFriend" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pFriendBody" style="padding-left:0;padding-right:0"></div><div class="p-foot fr-foot" id="pFriendFoot" hidden><label class="vh" for="fName">Their name</label><input id="fName" type="text" maxlength="24" autocomplete="off" enterkeyhint="done" placeholder="Their name"><button class="btn-primary" id="fKeep" type="button">Keep</button></div></section>
   <section id="pCluster" class="panel" hidden role="dialog" aria-labelledby="pClusterTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pClusterTitle" tabindex="-1">Places here</h2><button class="p-close" type="button" data-close="pCluster" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pClusterBody" style="padding-left:0;padding-right:0;max-height:min(62vh,560px);overflow-y:auto"></div></section>
   <section id="pFriends" class="panel tall" hidden role="dialog" aria-labelledby="pFriendsTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pFriendsTitle" tabindex="-1">Friends</h2><button class="p-close" type="button" data-close="pFriends" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pFriendsBody"></div></section>
+  <section id="pGroup" class="panel tall gp" hidden role="dialog" aria-labelledby="pGroupTitle"><span class="grabber"></span><div class="p-head gp-head"><button class="p-close" id="gpBack" type="button" data-grp="back" aria-label="Back" hidden><svg class="i"><use href="#i-back"/></svg></button><h2 class="p-title" id="pGroupTitle" tabindex="-1">Blend a group</h2><button class="p-close" id="gpMore" type="button" data-grp="menu" aria-label="More" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor" stroke="none"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></g></svg></button><button class="p-close" id="gpClose" type="button" data-close="pGroup" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pGroupBody"></div><div class="p-foot gp-foot" id="gpFoot" hidden></div></section>
   <section id="pPrivacy" class="panel tall" hidden role="dialog" aria-labelledby="pPrivacyTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pPrivacyTitle" tabindex="-1">Privacy</h2><button class="p-close" type="button" data-close="pPrivacy" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body about" id="pPrivacyBody"></div></section>
   <section id="pAbout" class="panel tall" hidden role="dialog" aria-labelledby="pAboutTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pAboutTitle" tabindex="-1">About</h2><button class="p-close" type="button" data-close="pAbout" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body about" id="pAboutBody"></div></section>
   <section id="pTheme" class="panel theme" hidden role="dialog" aria-labelledby="pThemeTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pThemeTitle" tabindex="-1">Theme</h2><button class="p-close" type="button" data-close="pTheme" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pThemeBody"></div></section>
@@ -2026,8 +2102,8 @@ svg.gi{width:20px;height:20px;flex:none}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.24 (2026-11-15)';   // v5.24: multi-city (Chicago + Oʻahu): city picker, per-city data, map bounds, spots, travel and badges; open-now in the item's city time zone. v5.23: the rest ofthe UI words in ru / zh-Hans / ko (unverified), Visiting Chicago from the data field us_cities (< 3 US cities; visit_override). v5.22: Google rating line on place pages (edge function, page memory only), holiday status from fields only, more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
-var VERSION_PREV = 'v5.23 (2026-11-14)';   // v5.23: the rest of the UI words in ru / zh-Hans / ko, Visiting Chicago from us_cities
+var VERSION = 'v5.25 (2026-11-15)';   // v5.25: Group Blend v1 (2-5 friends, on this phone only: poster + group match, picks tagged "4 of 5", vote link with places only, saved groups og.groups.v1). v5.24: multi-city (Chicago + Oʻahu): city picker, per-city data, map bounds, spots, travel and badges; open-now in the item's city time zone. v5.23: the rest ofthe UI words in ru / zh-Hans / ko (unverified), Visiting Chicago from the data field us_cities (< 3 US cities; visit_override). v5.22: Google rating line on place pages (edge function, page memory only), holiday status from fields only, more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
+var VERSION_PREV = 'v5.24 (2026-11-15)';   // v5.24: multi-city (Chicago + Oʻahu)
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var FEEDBACK_EMAIL = 'localfinds.app@gmail.com';   // v5.16: "Send feedback" in the account sheet (a mailto draft; never sent by the app). Separate from CONTACT_EMAIL.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
@@ -8599,7 +8675,7 @@ function acctDelete(){
   acctRpc('delete_my_account').then(function(r){
     closePanel('pSmall');
     var cl = Acct.client;
-    var fin = function(){ Acct.user = null; Acct.state = 'out'; acctForget(); acctRedraw(); toast(r === 'deleted' || r === 'rows_deleted' ? 'Your account is deleted.' : 'That didn\'t work. Try again.'); };
+    var fin = function(){ Acct.user = null; Acct.state = 'out'; if (r === 'deleted' || r === 'rows_deleted') { try { window.localStorage.removeItem(GROUPS_KEY); } catch (e) {} } acctForget(); acctRedraw(); toast(r === 'deleted' || r === 'rows_deleted' ? 'Your account is deleted.' : 'That didn\'t work. Try again.'); };   // v5.25: saved groups (friend ids) go with the account; signing out keeps them
     Promise.resolve(cl ? cl.auth.signOut({scope:'local'}) : null).then(fin, fin);
   }, function(e){ acctFail(e); });
 }
@@ -8677,6 +8753,7 @@ function renderFriends(){
   function sw(k, on, label, sub){ return '<div class="sw-row"><span>' + label + (sub ? '<small>' + sub + '</small>' : '') + '</span><button class="switch" type="button" data-acct="sw" data-v="' + k + '" aria-pressed="' + !!on + '" aria-label="' + esc(label) + '"></button></div>'; }
   function sec(t){ return '<h3 class="fsec-h">' + esc(t) + '</h3>'; }
   if (Acct.offline) h += '<p class="band">' + esc(offlineText(Acct.lastSync)) + '. Changes here need a connection. <button class="linkbtn" type="button" data-acct="retry">Try again</button></p>';
+  if (acctName()) h += grpRowsHTML();   // v5.25 Group Blend: "Blend a group" + saved groups, at the very top
   if (!acctName()) { b.innerHTML = h + '<p class="p-note">Pick a username first, so friends can find you.</p><button class="btn-primary" type="button" data-acct="name" style="width:100%">Pick a username</button><p class="acct-l"><button class="linkbtn" type="button" data-close="pFriends">Not now</button><span aria-hidden="true">·</span><button class="linkbtn" type="button" data-acct="signout">Sign out</button></p>'; return; }   // v5.14: skippable, and Sign out is here too
   h += sec('Add a friend') + '<button class="frrow" type="button" data-acct="invite">' + glyphSvg('i-share') + '<span>Send an invite link</span>' + glyphSvg('i-right', 'i chev') + '</button>' +
     '<p class="fr-or">or</p><div class="frfind"><label class="vh" for="frFind">Username</label><div class="field uname"><span aria-hidden="true">@</span><input id="frFind" type="text" maxlength="21" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" placeholder="username"></div><button class="btn-primary" type="button" data-acct="find">Find</button></div><div id="frFindOut" aria-live="polite"></div>';
@@ -8826,22 +8903,28 @@ function pollToggle(id){
   if (i >= 0) PL.pick.splice(i, 1); else if (PL.pick.length >= POLL_MAX) { toast('4 at most'); return; } else PL.pick.push(id);
   pollPickRender();
 }
+var POLL_TEXT = 'Which one should we do? Tap to vote.';   // v5.25: one place for the share text (places only: no names, characters, counts or scores)
 function pollGo(){
   if (PL.pick.length < POLL_MIN || PL.busy) return;
-  var sids = PL.pick.map(function(id){ return ID_SID[id]; }).filter(Boolean);
+  pollGoWith(PL.pick.map(function(id){ return ID_SID[id]; }).filter(Boolean));
+}
+function pollGoWith(sids){ // v5.25: Saved -> Make a poll and the group page's "Send a vote" share the same path (the link carries place numbers only)
+  sids = pollSids(sids);
+  if (sids.length < POLL_MIN || sids.length > POLL_MAX || PL.busy) return false;
   PL.busy = true;
   var done = function(code){
     PL.busy = false;
     var link = wlBase() + pollEncode(code, sids); UI.lastShareLink = link;
     closePanel('pSmall');
     if (code) pollRemember(code, sids);
-    Platform.share({title:'Which one?', text:'Which one should we do? Tap to vote.', url:link}).then(function(r){ if (r === 'copied') toast(code ? 'Link copied' : 'Link copied (as a list: voting needs the website)'); }, function(){
+    Platform.share({title:'Which one?', text:POLL_TEXT, url:link}).then(function(r){ if (r === 'copied') toast(code ? 'Link copied' : 'Link copied (as a list: voting needs the website)'); }, function(){
       openSmall('Share', function(){ $('pSmallBody').innerHTML = '<p class="p-note">Press and hold the link to copy it.</p><pre class="calbox">' + esc(link) + '</pre>'; });
     });
     pollShow({code:code, sids:sids, own:true});
   };
-  if (!pollServerOk()) { done(''); return; }
+  if (!pollServerOk()) { done(''); return true; }
   pollFetch('rpc/create_poll', {p_sids:sids}).then(function(r){ done(typeof r === 'string' && /^[0-9a-f]{12}$/.test(r) ? r : ''); }, function(){ done(''); });
+  return true;
 }
 /* ----- opening one ----- */
 function pollOpen(raw){
@@ -9101,6 +9184,7 @@ function blendBlockHTML(rec){
     '<p class="bl-sub">' + esc('You' + (tm ? ' · ' + tm.name : '')) + '<br>' + esc(rec.name + (tt ? ' · ' + tt.name : '')) + '</p>';
   if (!tt) h += '<p class="bl-note">' + (Acct.noFunType ? 'Characters show once the server update is live.' : esc(rec.name) + ' hasn\'t taken the character test yet.') + '</p>';
   if (b.m) h += '<button class="mini-btn bl-share" type="button" data-cp="share" data-v="' + esc(rec.uid) + '">' + glyphSvg('i-share') + 'Share our Blend</button>';
+  h += '<button class="linkbtn bl-grp" type="button" data-grp="withf" data-v="' + esc(rec.uid) + '">' + esc(grpT('addMore')) + '</button>';   // v5.25: Group Blend with this friend already ticked
   h += '</div>';
   var any = 0;
   [['both', 'You\'d both love'], ['you', 'Your pick for ' + rec.name], ['them', rec.name + '\'s pick for you']].forEach(function(x){
@@ -9269,6 +9353,377 @@ function coupleDemo(n){
   var maya = LIVE.filter(function(f){ return f.uid === 'd1'; })[0], bf = maya ? blendFor(maya) : null, top1 = bf ? blendLive(bf.s.both.map(function(s){ return {sid:s, tag:'both'}; }), 1)[0] : null;
   if (top1) { var ts = ID_SID[top1.c.item.id]; LIVE.forEach(function(f){ if ((f.uid === 'd1' || f.uid === 'd5') && !f.been.some(function(b){ return b.sid === ts; })) f.been = f.been.concat([{sid:ts, month:'', stars:f.uid === 'd1' ? 5 : 4}]); }); }   // the first "You'd both love" card shows the friends' average
   coupleRedraw();
+}
+/* ================= v5.25 Group Blend v1 (design/2026-11-14-groups-spec.md section 0) =================
+   She picks 2-5 accepted friends; THIS phone shows one group match %, everyone's characters on a poster, and "Your group's picks"
+   tagged "4 of 5". Runs on the device only: no new tables, no invites, nothing written to the server, friends are not told.
+   Inputs are only what Blend already receives: each friend's character (my_friends.fun_type), shared saves (share_saves on) and,
+   where both turned Blend on, their short list + "never" list (couple_share). Nobody's "never" is ever overruled.
+   Anything that leaves the phone (the vote link and its text) carries place numbers only: no names, characters, counts or score.
+   GROUP_FIT and the per-band rotation window are first guesses (unverified with real groups); the score uses Blend's weights. */
+var GROUP_FIT = 0.25, GROUP_MAX_FRIENDS = 5, GROUP_SHOW = 6, GROUP_MAX_SHOW = 24, GROUP_ROT = 12, GROUPS_KEY = 'og.groups.v1', GROUPS_MAX = 8, GROUP_NAME_MAX = 30;
+var GRP = {mode:'pick', pick:[], cur:null, shown:GROUP_SHOW, told:false, picks:[], vlist:[], vote:[], vmore:false, pre:'', anim:false, mem:null};
+// Words: en, ru, zh-Hans, ko. The ru / zh-Hans / ko lines are the developer's own wording, no native review (unverified).
+var GRP_STR = {
+  row:['Blend a group', 'Бленд компании', '群组融合', '그룹 블렌드'],
+  people:['{n} people', 'Человек: {n}', '{n} 人', '{n}명'],
+  pickSub:['Pick 2 to 5 friends.', 'Выберите от 2 до 5 друзей.', '选 2 到 5 位朋友。', '친구를 2~5명 고르세요.'],
+  noTypeOut:['No character yet · won\'t count', 'Персонажа пока нет · не учитывается', '还没有角色 · 不计入', '아직 캐릭터 없음 · 계산 안 됨'],
+  noType:['No character yet', 'Персонажа пока нет', '还没有角色', '아직 캐릭터 없음'],
+  go:['Blend {n} of you', 'Смешать: вас {n}', '融合你们 {n} 人', '{n}명 블렌드하기'],
+  more:['Pick {n} more', 'Выберите ещё {n}', '再选 {n} 个', '{n}개 더 고르세요'],
+  tooMany:['Up to 6, you included', 'До 6 человек, включая вас', '最多 6 人，包括你', '나를 포함해 최대 6명'],
+  match:['group match', 'совпадение компании', '群组契合度', '그룹 궁합'],
+  notEnough:['Not enough yet', 'Пока мало данных', '还不够', '아직 부족해요'],
+  you:['You', 'Вы', '你', '나'],
+  and:[' and ', ' и ', ' 和 ', ', '],
+  notCounted:['(not counted)', '(не учитывается)', '（不计入）', '(계산 안 됨)'],
+  send:['Send to the group', 'Отправить компании', '发给大家', '그룹에 보내기'],
+  save:['Save group', 'Сохранить', '保存群组', '그룹 저장'],
+  saved:['Saved', 'Сохранено', '已保存', '저장됨'],
+  picks:['Your group\'s picks', 'Выбор для компании', '你们的群组推荐', '그룹 추천'],
+  all:['All {m}', 'Все {m}', '全部 {m} 人', '{m}명 모두'],
+  nOfM:['{n} of {m}', '{n} из {m}', '{m} 人中 {n} 人', '{m}명 중 {n}명'],
+  aria:['{n} of {m} of your group would like this', '{n} из {m} в компании понравится', '你们 {m} 人中有 {n} 人会喜欢', '그룹 {m}명 중 {n}명이 좋아할 곳'],
+  foot:['Based on characters, shared saves and Blends. Nothing is sent to your friends.', 'По персонажам, общим сохранениям и Блендам. Друзьям ничего не отправляется.', '根据角色、共享收藏和 Blend。不会发送任何内容给朋友。', '캐릭터, 공유한 저장, 블렌드를 바탕으로 해요. 친구에게는 아무것도 보내지 않아요.'],
+  why1:['{x} hasn\'t taken the character test, so there\'s not enough to blend.', '{x} ещё не проходит тест персонажа, поэтому смешивать пока нечего.', '{x} 还没做角色测试，所以还不够融合。', '{x} 님이 아직 캐릭터 테스트를 하지 않아 블렌드할 수 없어요.'],
+  whyN:['{x} haven\'t taken the character test, so there\'s not enough to blend.', '{x} ещё не прошли тест персонажа, поэтому смешивать пока нечего.', '{x} 还没做角色测试，所以还不够融合。', '{x} 님이 아직 캐릭터 테스트를 하지 않아 블렌드할 수 없어요.'],
+  few:['Not enough friends left in this group to blend.', 'В этой компании осталось слишком мало друзей.', '这个群组剩下的朋友不够融合。', '이 그룹에 남은 친구가 부족해 블렌드할 수 없어요.'],
+  none1:['Nothing fits most of you right now.', 'Сейчас нет ничего, что подошло бы большинству.', '现在没有适合大多数人的。', '지금은 대부분에게 맞는 곳이 없어요.'],
+  none2:['Try again tomorrow; picks change daily.', 'Загляните завтра: подборка меняется каждый день.', '明天再看看，推荐每天都会变。', '내일 다시 보세요. 추천은 매일 바뀌어요.'],
+  gone:['{x} isn\'t in your friends now, so they\'re left out.', '{x} больше нет в ваших друзьях, поэтому не учитывается.', '{x} 已不在你的好友中，所以不计入。', '{x} 님은 이제 친구가 아니어서 빠졌어요.'],
+  goneAny:['A friend', 'Друг', '一位朋友', '친구'],
+  sendT:['Send a vote', 'Голосование', '发起投票', '투표 보내기'],
+  make:['Make vote link', 'Создать ссылку', '生成投票链接', '투표 링크 만들기'],
+  morePicks:['More picks', 'Ещё варианты', '更多推荐', '추천 더 보기'],
+  max4:['4 at most', 'Не больше 4', '最多 4 个', '최대 4개'],
+  noVote:['Not enough picks for a vote yet.', 'Пока мало вариантов для голосования.', '推荐还不够发起投票。', '아직 투표할 추천이 부족해요.'],
+  nameT:['Name this group', 'Название компании', '给群组起名', '그룹 이름'],
+  saveBtn:['Save', 'Сохранить', '保存', '저장'],
+  savedT:['Saved on this phone', 'Сохранено на этом телефоне', '已保存在这部手机上', '이 휴대폰에 저장됨'],
+  forgetQ:['Forget {x}? Your friends aren\'t affected.', 'Забыть «{x}»? Друзей это не затронет.', '忘记“{x}”？不会影响你的朋友。', '{x} 그룹을 지울까요? 친구에게는 영향이 없어요.'],
+  forget:['Forget', 'Забыть', '忘记', '지우기'],
+  forgot:['Group forgotten', 'Компания забыта', '已忘记群组', '그룹을 지웠어요'],
+  cancel:['Cancel', 'Отмена', '取消', '취소'],
+  edit:['Edit people', 'Изменить состав', '修改成员', '멤버 바꾸기'],
+  rename:['Rename', 'Переименовать', '重命名', '이름 바꾸기'],
+  forgetG:['Forget this group', 'Забыть компанию', '忘记这个群组', '이 그룹 지우기'],
+  empty1:['Blend needs 2 friends', 'Для Бленда нужны 2 друга', '融合需要 2 位朋友', '블렌드에는 친구 2명이 필요해요'],
+  empty2:['Add a friend by username or send an invite link.', 'Добавьте друга по имени пользователя или отправьте ссылку-приглашение.', '用用户名添加朋友，或发送邀请链接。', '사용자 이름으로 친구를 추가하거나 초대 링크를 보내세요.'],
+  addF:['Add a friend', 'Добавить друга', '添加朋友', '친구 추가'],
+  err:['Couldn\'t load your friends.', 'Не удалось загрузить друзей.', '无法加载你的朋友。', '친구 목록을 불러오지 못했어요.'],
+  retry:['Try again', 'Ещё раз', '重试', '다시 시도'],
+  yourGroup:['Your group', 'Ваша компания', '你的群组', '내 그룹'],
+  showMore:['Show more', 'Показать ещё', '显示更多', '더 보기'],
+  addMore:['Add more friends', 'Добавить ещё друзей', '再加几位朋友', '친구 더 추가'],
+  back:['Back', 'Назад', '返回', '뒤로'],
+  moreBtn:['More', 'Ещё', '更多', '더보기']
+};
+function grpT(k, v, lang){
+  var e = GRP_STR[k]; if (!e) return String(k);
+  var l = isLang(lang) ? lang : LANG, s = e[LANG_IX[l]] || e[0];
+  if (v) s = s.replace(/\{(\w+)\}/g, function(m, x){ return v[x] !== undefined && v[x] !== null ? String(v[x]) : m; });
+  return s;
+}
+/* ----- pure parts ----- */
+var TYPE_TASTE = {};
+function typeTaste(id){ // a stand-in taste profile from the character's four dials, so fitOf() can score a place for a character (an estimate, not the friend's real taste)
+  id = +id; if (!TYPES[id - 1]) return null;
+  if (TYPE_TASTE[id]) return TYPE_TASTE[id];
+  var d = typeDials(id), m = {e:0.5 * d.E, p:0.5 * d.P, w:d.weird ? 0.5 : -0.2};
+  if (d.V !== null) m.v = 0.5 * d.V;
+  return (TYPE_TASTE[id] = {m:m, conf:{e:0.6, v:0.6, p:0.6, w:0.6}, consistent:{e:true, v:true, p:true, w:true}, more:{}, never:{}, neverIds:{}, use:true, n:1, date:false, fc:{}});
+}
+function groupMember(f, list){ // pure: her ({me:true, type, list:{top, never}, saves}) or a live friend (+ CP.theirs[uid]) -> {key, name, me, type, top, never, saves, src}
+  if (!f) return null;
+  if (f.me) { var l = f.list || {}; return {key:'me', name:'', me:true, type:TYPES[+f.type - 1] ? +f.type : 0, top:cpSids(l.top, 400), never:cpSids(l.never, 400), saves:cpSids(f.saves, 2000), src:'list'}; }
+  var type = TYPES[+f.funType - 1] ? +f.funType : 0, saves = f.shares ? cpSids(f.sids, 2000) : [], has = !!(list && (Array.isArray(list.top) || Array.isArray(list.never)));
+  return {key:String(f.uid || f.key || ''), name:String(f.name || ''), me:false, type:type, top:has ? cpSids(list.top, 400) : [], never:has ? cpSids(list.never, 400) : [], saves:saves,
+    src:has ? 'list' : saves.length >= 3 ? 'saves' : type ? 'type' : null};   // null = not counted (no list, under 3 shared saves, no character)
+}
+function groupSets(mem){ if (!mem._N) { mem._N = blendSetOf(mem.never); mem._L = blendSetOf((mem.top || []).concat(mem.saves || [])); } return mem; }
+function groupLikes(mem, item, sid){ // pure: -1 veto, 1 would like, 0 (in this order)
+  if (!mem) return 0;
+  groupSets(mem);
+  if (mem._N[sid]) return -1;   // 1. their "never" always wins
+  if (mem._L[sid]) return 1;   // 2. on their short list or in their shared saves
+  if (mem.src === 'list') return 0;   // 3. a real list wins over a character guess
+  var st = mem.type ? typeTaste(mem.type) : null;   // 4. a character guess
+  return st && item && fitOf(item, st) >= GROUP_FIT ? 1 : 0;
+}
+function groupCounted(members){ return (members || []).filter(function(x){ return x && x.src; }); }
+function groupSalt(members){ return groupCounted(members).map(function(x){ return x.key; }).sort().join('.'); }
+function groupPicks(members, items, dayKey, salt, o){ // pure: -> [{sid, n, m}] (n = how many would like it, m = counted members)
+  o = o || {};
+  var idSid = o.idSid || ID_SID, keep = o.keep || function(it){ return !(it && it.verified && it.verified.status === 'closed'); };
+  var cm = groupCounted(members), m = cm.length; if (m < 3) return [];
+  var need = Math.max(2, Math.ceil(m / 2)), rows = [];
+  (items || []).forEach(function(it){
+    if (!it) return;
+    var sid = +(idSid[it.id] || it.sid); if (!isNum(sid) || sid < 1 || !keep(it)) return;
+    var n = 0, rk = 0;
+    for (var i = 0; i < m; i++) { var v = groupLikes(cm[i], it, sid); if (v < 0) return; if (v > 0) n++; var ti = cm[i].top.indexOf(sid); if (ti >= 0) rk += 1 / (8 + ti); }   // anyone's "never" drops it
+    if (n >= need) rows.push({sid:sid, n:n, rk:rk});
+  });
+  rows.sort(function(a, b){ return b.n - a.n || b.rk - a.rk || a.sid - b.sid; });
+  var seed = blendDaySeed(dayKey, salt), out = [], i = 0;
+  while (i < rows.length) { var j = i; while (j < rows.length && rows[j].n === rows[i].n) j++; out = out.concat(blendRotate(rows.slice(i, j), seed + rows[i].n, GROUP_ROT)); i = j; }   // refreshes daily inside each "n of m" band
+  return out.map(function(r){ return {sid:r.sid, n:r.n, m:m}; });
+}
+function groupScore(members){ // pure: 1..99 (Blend's match averaged over every pair of counted members; characters alone when a pair has nothing else) | null
+  var cm = groupCounted(members); if (cm.length < 3) return null;
+  var sum = 0, k = 0;
+  for (var i = 0; i < cm.length; i++) for (var j = i + 1; j < cm.length; j++) {
+    var p = blendMatch(cm[i], cm[j]), v = p ? p.pct / 100 : blendTypeSim(cm[i].type, cm[j].type);
+    if (v !== null && isNum(v)) { sum += v; k++; }
+  }
+  return k ? clamp(Math.round(100 * sum / k), 1, 99) : null;
+}
+function groupMembersFrom(me, uids, live, theirs){ // pure: -> {members:[her, ...friends still accepted], gone:[uid]}
+  var by = {}, mem = [me], gone = [], seen = {};
+  (live || []).forEach(function(f){ if (f && f.live && f.uid) by[f.uid] = f; });
+  (uids || []).forEach(function(u){ if (!u || seen[u]) return; seen[u] = 1; var f = by[u]; if (!f) { gone.push(u); return; } mem.push(groupMember(f, theirs && theirs[u])); });
+  return {members:mem, gone:gone};
+}
+function groupVoteLink(code, sids){ return pollEncode(code, pollSids(sids).slice(0, POLL_MAX)); }   // "#poll=<code|0>.<sid>.<sid>": place numbers only
+/* ----- saved groups: this phone only (never synced), og.groups.v1 = [{id, name, uids, at}], newest first, max 8 ----- */
+var GRP_MEMSTORE = (function(){ var m = {}; return {get:function(k, d){ return m.hasOwnProperty(k) ? JSON.parse(m[k]) : d; }, set:function(k, v){ m[k] = JSON.stringify(v); return true; }}; })();
+function grpStore(){ return Acct.demo ? GRP_MEMSTORE : Platform.store; }   // test mode keeps made-up groups in memory only
+function groupOk(g){ return !!g && typeof g.id === 'string' && /^[a-z2-7]{8}$/.test(g.id) && typeof g.name === 'string' && Array.isArray(g.uids); }
+function groupsGet(store){ var l = (store || grpStore()).get(GROUPS_KEY, []); return Array.isArray(l) ? l.filter(groupOk).slice(0, GROUPS_MAX) : []; }
+function groupNewId(rng){ rng = rng || Math.random; var a = 'abcdefghijklmnopqrstuvwxyz234567', s = ''; for (var i = 0; i < 8; i++) s += a.charAt(Math.floor(rng() * 32) % 32); return s; }
+function groupsPut(store, g){ // add or replace (by id), newest first, at most 8 -> the stored group
+  var l = groupsGet(store).filter(function(x){ return x.id !== g.id; });
+  var name = String(g.name || '').replace(/\s+/g, ' ').trim().slice(0, GROUP_NAME_MAX) || 'My group';
+  var rec = {id:groupOk({id:g.id, name:'', uids:[]}) ? g.id : groupNewId(), name:name, uids:(g.uids || []).filter(function(u){ return typeof u === 'string' && u; }).slice(0, GROUP_MAX_FRIENDS), at:g.at || new Date().toISOString()};
+  l.unshift(rec); store.set(GROUPS_KEY, l.slice(0, GROUPS_MAX)); return rec;
+}
+function groupsForget(store, id){ var l = groupsGet(store), k = l.filter(function(x){ return x.id !== id; }); store.set(GROUPS_KEY, k); return k.length !== l.length; }
+function groupFind(store, id){ var l = groupsGet(store); for (var i = 0; i < l.length; i++) if (l[i].id === id) return l[i]; return null; }
+/* ----- on this phone ----- */
+function grpFriends(){ return LIVE.filter(function(f){ return f && f.live && f.uid; }).slice().sort(function(a, b){ return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : a.name.toLowerCase() > b.name.toLowerCase() ? 1 : 0; }); }
+function grpMe(){ return groupMember({me:true, type:blendMyType(), list:coupleMineNow(), saves:savedIds.map(function(id){ return ID_SID[id]; }).filter(Boolean)}); }
+function groupMembersNow(uids){ return groupMembersFrom(grpMe(), uids, LIVE, CP.theirs); }
+function grpIni(name){ return ((wlChars(String(name || '?'))[0]) || '?').toUpperCase(); }
+function grpSaved(){ return GRP.cur && GRP.cur.id ? groupFind(grpStore(), GRP.cur.id) : null; }
+function groupPicksLive(list, max, T, ctx){ // [{sid, n, m}] -> [{c, sid, n, m}]: still on, open now or later today first (keeps the order inside), like blendLive
+  T = T || evalTime(); ctx = ctx || ctxNow(); var out = [];
+  (list || []).forEach(function(x, i){ var it = SID_INDEX[x.sid]; if (!it) return; var c = computeItem(it, T, ctx); if (wlGoneItem(it, c.st) || c.st.key === 'ended') return; out.push({c:c, sid:x.sid, n:x.n, m:x.m, i:i, r:c.st.open || c.st.key === 'later' ? 0 : c.st.key === 'season' ? 2 : 1}); });
+  out.sort(function(a, b){ return a.r - b.r || a.i - b.i; });
+  return out.slice(0, max || GROUP_MAX_SHOW);
+}
+function groupPicksNow(members){ return groupPicksLive(groupPicks(members, DATA, cparts(nowMs()).key, groupSalt(members))); }   // DATA = the city on screen (Chicago or Oʻahu)
+function grpJoin(names){ var a = names.slice(); if (a.length < 2) return a.join(''); var last = a.pop(); return a.join(', ') + grpT('and') + last; }
+function grpLum(hex){ var m = /^#?([0-9a-f]{6})$/i.exec(String(hex || '').trim()); if (!m) return 0; var n = parseInt(m[1], 16); function L(c){ c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); } return 0.2126 * L(n >> 16 & 255) + 0.7152 * L(n >> 8 & 255) + 0.0722 * L(n & 255); }
+function grpPosterDark(mem){ var t = mem[0] && TYPES[mem[0].type - 1], c = t ? t.color : ''; if (!c) { try { c = getComputedStyle(document.documentElement).getPropertyValue('--paper-2'); } catch (e) { c = ''; } } return grpLum(c) < 0.18; }   // white text on a dark first band
+function groupTagHTML(n, m){
+  var d = ''; for (var i = 0; i < m; i++) d += '<i' + (i < n ? ' class="on"' : '') + '></i>';
+  return '<span class="gp-tag' + (n === m ? ' all' : '') + '" role="img" aria-label="' + esc(grpT('aria', {n:n, m:m})) + '"><span class="gp-dots" aria-hidden="true">' + d + '</span>' + esc(n === m ? grpT('all', {m:m}) : grpT('nOfM', {n:n, m:m})) + '</span>';
+}
+function grpPosterHTML(mem, score, anim){
+  var bands = mem.map(function(x, i){ var t = TYPES[x.type - 1]; return '<span class="gp-band" style="--i:' + i + (t ? ';background:' + t.color : '') + '">' + (t ? '<span class="gp-ch">' + typeSvg(x.type) + '</span>' : '<span class="gp-ini">' + esc(x.me ? grpIni(grpT('you')) : grpIni(x.name)) + '</span>') + '</span>'; }).join('');
+  var lab = score !== null ? score + '% ' + grpT('match') : grpT('notEnough');
+  return '<div class="gp-poster' + (grpPosterDark(mem) ? ' dark' : '') + (anim ? ' anim' : '') + '" role="img" aria-label="' + esc(lab) + '"><div class="gp-bands">' + bands + '</div><div class="gp-score" aria-hidden="true">' +
+    (score !== null ? '<b>' + score + '%</b><span>' + esc(grpT('match')) + '</span>' : '<b class="ne">' + esc(grpT('notEnough')) + '</b>') + '</div></div>';
+}
+function grpNamesHTML(mem){
+  var parts = mem.map(function(x){ return esc(x.me ? grpT('you') : x.name) + (x.src ? '' : ' <small>' + esc(grpT('notCounted')) + '</small>'); });
+  if (parts.length < 2) return parts.join('');
+  var last = parts.pop(); return parts.join(', ') + esc(grpT('and')) + last;
+}
+function groupPageHTML(v){ // v = {members, score, picks:[{c, n, m}], shown, saved, anim}
+  var mem = v.members, cm = groupCounted(mem), h = grpPosterHTML(mem, v.score, v.anim);
+  h += '<p class="gp-names">' + grpNamesHTML(mem) + '</p>';
+  h += '<div class="gp-acts">' + (v.picks.length >= POLL_MIN ? '<button class="btn-primary gp-send" type="button" data-grp="send">' + glyphSvg('i-share') + '<span>' + esc(grpT('send')) + '</span></button>' : '') +   // no vote to send without 2 picks
+    '<button class="gp-save' + (v.saved ? ' on' : '') + '" type="button" data-grp="save" aria-pressed="' + !!v.saved + '">' + glyphSvg('i-bookmark') + '<span>' + esc(grpT(v.saved ? 'saved' : 'save')) + '</span></button></div>';
+  if (cm.length < 3) {
+    var nc = mem.filter(function(x){ return !x.me && !x.src; }).map(function(x){ return x.name; });
+    h += '<div class="gp-empty"><p>' + esc(nc.length && mem.length >= 3 ? grpT(nc.length === 1 ? 'why1' : 'whyN', {x:grpJoin(nc)}) : grpT('few')) + '</p><p><button class="mini-btn" type="button" data-grp="edit">' + esc(grpT('edit')) + '</button>' +
+      (v.saved ? '<button class="mini-btn" type="button" data-grp="forget">' + esc(grpT('forgetG')) + '</button>' : '') + '</p></div>';
+  } else if (!v.picks.length) {
+    h += '<div class="gp-empty"><p><b>' + esc(grpT('none1')) + '</b></p><p>' + esc(grpT('none2')) + '</p></div>';
+  } else {
+    var sh = v.picks.slice(0, v.shown || GROUP_SHOW);
+    h += '<h3 class="sec-h gp-h"><span>' + esc(grpT('picks')) + '</span><span>' + v.picks.length + '</span></h3><ul class="cards3 gp-cards">' + sh.map(function(p){ return cardHTML(p.c).replace(/<\/li>$/, groupTagHTML(p.n, p.m) + '</li>'); }).join('') + '</ul>' +
+      (v.picks.length > sh.length ? '<button class="gp-more6" type="button" data-grp="more6">' + esc(grpT('showMore')) + '</button>' : '');
+  }
+  return h + '<p class="gp-fn">' + esc(grpT('foot')) + '</p>';
+}
+function grpPickState(){
+  if (!acctSignedIn() && !Acct.demo) return 'out';
+  var n = grpFriends().length;
+  if (!n && Acct.syncing && !Acct.demo) return 'loading';
+  if (!n && Acct.offline && !Acct.demo) return 'error';
+  return n < 2 ? 'empty' : 'list';
+}
+function grpPickHTML(st){
+  if (st === 'out') return acctCardHTML('out');
+  if (st === 'loading') return '<div aria-busy="true"><div class="gp-sk"></div><div class="gp-sk"></div><div class="gp-sk"></div><div class="gp-sk"></div></div>';
+  if (st === 'error') return '<div class="gp-empty"><p>' + esc(grpT('err')) + '</p><p><button class="mini-btn" type="button" data-grp="retry">' + esc(grpT('retry')) + '</button></p></div>';
+  if (st === 'empty') return '<div class="gp-empty"><h3>' + esc(grpT('empty1')) + '</h3><p class="gp-why2">' + esc(grpT('empty2')) + '</p><button class="btn-primary" type="button" data-grp="add">' + esc(grpT('addF')) + '</button></div>';
+  return '<p class="gp-sub">' + esc(grpT('pickSub')) + '</p><ul class="gp-pick">' + grpFriends().map(function(f){
+    var on = GRP.pick.indexOf(f.uid) >= 0, mem = groupMember(f, CP.theirs[f.uid]), t = TYPES[mem.type - 1];
+    var sub = t ? t.name : mem.src ? grpT('noType') : grpT('noTypeOut');
+    return '<li><button class="gp-row" type="button" data-grp="tog" data-v="' + esc(f.uid) + '" aria-pressed="' + on + '">' + blendAv(mem.type, grpIni(f.name), '') + '<span class="gp-nm">' + esc(f.name) + '<small>' + esc(sub) + '</small></span><i class="gp-ck" aria-hidden="true">' + glyphSvg('i-check') + '</i></button></li>';
+  }).join('') + '</ul>';
+}
+function grpGoHTML(){ var n = GRP.pick.length; return '<button class="btn-primary gp-go" type="button" data-grp="go"' + (n < 2 ? ' aria-disabled="true"' : '') + '>' + esc(n < 2 ? grpT('more', {n:2 - n}) : grpT('go', {n:n + 1})) + '</button>'; }
+function renderGroup(){
+  var b = $('pGroupBody'), foot = $('gpFoot'); if (!b) return;
+  var page = GRP.mode === 'page' && !!GRP.cur, sv = page ? grpSaved() : null;
+  $('gpBack').hidden = !page; $('gpMore').hidden = !page; $('pGroup').classList.toggle('page', page);
+  $('gpBack').setAttribute('aria-label', grpT('back')); $('gpMore').setAttribute('aria-label', grpT('moreBtn'));
+  $('pGroupTitle').textContent = page ? (sv ? sv.name : grpT('yourGroup')) : grpT('row');
+  if (page) {
+    foot.hidden = true; foot.innerHTML = '';
+    if (!DATA_LOADED) { b.innerHTML = '<p class="loading">' + esc(DATA_ERR ? DATA_ERR : 'Loading...') + '</p>'; return; }
+    var r = groupMembersNow(GRP.cur.uids);
+    if (r.gone.length && !GRP.told) { GRP.told = true; var gf = acctFriendBy(r.gone[0]); toast(grpT('gone', {x:gf ? acctFriendName(gf) : grpT('goneAny')})); }   // once per open
+    var cm = groupCounted(r.members);
+    GRP.mem = r.members; GRP.picks = cm.length >= 3 ? groupPicksNow(r.members) : [];
+    b.innerHTML = groupPageHTML({members:r.members, score:groupScore(r.members), picks:GRP.picks, shown:GRP.shown, saved:!!sv, anim:GRP.anim && !reduceMotion()});
+    GRP.anim = false;
+    wireImages(b);
+    return;
+  }
+  var st = grpPickState();
+  b.innerHTML = grpPickHTML(st);
+  foot.hidden = st !== 'list'; foot.innerHTML = st === 'list' ? grpGoHTML() : '';
+}
+function grpOpen(withUid, savedId){ // the friends sheet row, a saved group, or a friend's Blend ("Add more friends")
+  GRP.told = false; GRP.shown = GROUP_SHOW;
+  if (savedId) { var g = groupFind(grpStore(), savedId); if (!g) { toast(grpT('forgot')); return; } GRP.cur = {uids:g.uids.slice(), id:g.id}; GRP.mode = 'page'; GRP.anim = true; GRP.pick = g.uids.slice(); }
+  else { GRP.mode = 'pick'; GRP.cur = null; GRP.pick = withUid ? [withUid] : []; }
+  renderGroup(); openPanel('pGroup');
+  try { $('pGroupBody').scrollTop = 0; } catch (e) {}
+  if (!Acct.demo && acctSignedIn()) { try { Promise.resolve(acctSync('friends')).then(function(){ if (!$('pGroup').hidden && GRP.mode === 'pick') renderGroup(); }, function(){ if (!$('pGroup').hidden && GRP.mode === 'pick') renderGroup(); }); } catch (e) {} }
+}
+function grpToggle(uid, el){
+  var i = GRP.pick.indexOf(uid);
+  if (i >= 0) GRP.pick.splice(i, 1);
+  else if (GRP.pick.length >= GROUP_MAX_FRIENDS) { if (el) { el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); } toast(grpT('tooMany')); return; }
+  else GRP.pick.push(uid);
+  if (el) { el.setAttribute('aria-pressed', String(GRP.pick.indexOf(uid) >= 0)); el.classList.remove('shake'); }
+  $('gpFoot').innerHTML = grpGoHTML();
+}
+function grpGo(){
+  if (GRP.pick.length < 2) return;
+  var id = GRP.cur && GRP.cur.id ? GRP.cur.id : '';
+  GRP.cur = {uids:GRP.pick.slice(), id:id}; GRP.mode = 'page'; GRP.shown = GROUP_SHOW; GRP.told = false; GRP.anim = true;
+  if (id) { var g = groupFind(grpStore(), id); if (g) groupsPut(grpStore(), {id:id, name:g.name, uids:GRP.cur.uids}); }   // Edit people on a saved group updates the saved copy
+  renderGroup(); try { $('pGroupBody').scrollTop = 0; } catch (e) {}
+  if (!$('pFriends').hidden) renderFriends();
+}
+function grpDefaultName(){ var mem = GRP.mem || [], nm = [grpT('you')].concat(mem.filter(function(x){ return !x.me; }).map(function(x){ return x.name; })), s = nm.join(' + '); return s.length > GROUP_NAME_MAX ? s.slice(0, GROUP_NAME_MAX - 1).replace(/[\s+]+$/, '') + '…' : s; }
+function grpSaveAsk(rename){
+  var g = grpSaved(); if (g && !rename) { toast(grpT('savedT')); return; }
+  GRP.pre = rename && g ? g.name : grpDefaultName();
+  openSmall(grpT('nameT'), function(){
+    $('pSmallBody').innerHTML = '<div class="fr-ren gp-ren"><label class="vh" for="gpName">' + esc(grpT('nameT')) + '</label><input id="gpName" type="text" maxlength="' + GROUP_NAME_MAX + '" autocomplete="off" enterkeyhint="done" value="' + esc(GRP.pre) + '"></div>' +
+      '<button class="btn-primary" type="button" data-grp="savego" style="width:100%;margin-top:16px">' + esc(grpT('saveBtn')) + '</button>';
+  });
+}
+function grpSaveGo(){
+  if (!GRP.cur) return;
+  var inp = $('gpName'), name = String(inp ? inp.value : '').replace(/\s+/g, ' ').trim().slice(0, GROUP_NAME_MAX) || GRP.pre;   // empty keeps the prefill
+  var rec = groupsPut(grpStore(), {id:GRP.cur.id || '', name:name, uids:GRP.cur.uids});
+  GRP.cur.id = rec.id;
+  closePanel('pSmall'); renderGroup(); toast(grpT('savedT'));
+  if (!$('pFriends').hidden) renderFriends();
+}
+function grpMenu(){
+  var g = grpSaved();
+  openSmall(g ? g.name : grpT('yourGroup'), function(){
+    $('pSmallBody').innerHTML = '<button class="frrow" type="button" data-grp="edit">' + glyphSvg('i-people') + '<span>' + esc(grpT('edit')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>' +
+      (g ? '<button class="frrow" type="button" data-grp="rename">' + glyphSvg('i-bookmark') + '<span>' + esc(grpT('rename')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button><button class="frrow" type="button" data-grp="forget">' + glyphSvg('i-close') + '<span>' + esc(grpT('forgetG')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>' : '');
+  });
+}
+function grpForgetAsk(){
+  var g = grpSaved(); if (!g) return;
+  openSmall(grpT('forgetG'), function(){
+    $('pSmallBody').innerHTML = '<p class="p-note">' + esc(grpT('forgetQ', {x:g.name})) + '</p><div class="confirm2"><button class="btn-primary danger" type="button" data-grp="forget2">' + esc(grpT('forget')) + '</button><button class="mini-btn" type="button" data-close="pSmall">' + esc(grpT('cancel')) + '</button></div>';
+  });
+}
+function grpForget(){
+  var g = grpSaved(); if (!g) { closePanel('pSmall'); return; }
+  groupsForget(grpStore(), g.id); GRP.cur.id = '';
+  closePanel('pSmall'); renderGroup(); toast(grpT('forgot'));
+  if (!$('pFriends').hidden) renderFriends();
+}
+function grpEdit(){ closePanel('pSmall'); GRP.mode = 'pick'; GRP.pick = GRP.cur ? GRP.cur.uids.filter(function(u){ return grpFriends().some(function(f){ return f.uid === u; }); }) : GRP.pick; renderGroup(); try { $('pGroupBody').scrollTop = 0; } catch (e) {} }
+function grpSendOpen(){
+  var picks = GRP.picks || []; if (picks.length < POLL_MIN) { toast(grpT('noVote')); return; }
+  GRP.vlist = picks.slice(0, 12).map(function(p){ return p.sid; }); GRP.vote = GRP.vlist.slice(0, POLL_MAX); GRP.vmore = false;
+  openSmall(grpT('sendT'), grpSendRender);
+}
+function grpSendRender(){
+  var n = GRP.vote.length, list = GRP.vmore ? GRP.vlist : GRP.vlist.filter(function(s, i){ return i < 4 || GRP.vote.indexOf(s) >= 0; });
+  $('pSmallBody').innerHTML = '<div class="gp-vote"><ul class="pl-pick">' + list.map(function(sid){
+    var it = SID_INDEX[sid]; if (!it) return '';
+    var on = GRP.vote.indexOf(sid) >= 0, ph = firstPhoto(it), g = genreOf(it);
+    return '<li><button type="button" data-grp="vtog" data-v="' + sid + '" aria-pressed="' + on + '" style="--c:' + genreColor(g) + '"><span class="pl-ph">' + kindSvg(g) + (ph ? '<img src="' + esc(ph.file) + '" alt="" loading="lazy" data-fb="1">' : '') + '<i class="pl-ck">' + glyphSvg('i-check') + '</i></span><span class="pl-nm">' + esc(it.name) + '</span></button></li>';
+  }).join('') + '</ul>' + (!GRP.vmore && GRP.vlist.length > list.length ? '<p><button class="linkbtn" type="button" data-grp="vmore">' + esc(grpT('morePicks')) + '</button></p>' : '') +
+    '<button class="btn-primary gp-vgo" type="button" data-grp="vgo" style="width:100%;margin-top:14px"' + (n < POLL_MIN ? ' aria-disabled="true"' : '') + '>' + esc(n < POLL_MIN ? grpT('more', {n:POLL_MIN - n}) : grpT('make')) + '</button></div>';
+  wireImages($('pSmallBody'));
+}
+function grpVoteToggle(sid){
+  sid = +sid; var i = GRP.vote.indexOf(sid);
+  if (i >= 0) GRP.vote.splice(i, 1); else if (GRP.vote.length >= POLL_MAX) { toast(grpT('max4')); return; } else GRP.vote.push(sid);
+  grpSendRender();
+}
+function grpVoteGo(){ if (GRP.vote.length < POLL_MIN) return; var keep = GRP.vlist.filter(function(s){ return GRP.vote.indexOf(s) >= 0; }); pollGoWith(keep); }   // the picks' order, place numbers only
+function grpRowsHTML(){ // the friends sheet: "Blend a group" (2+ accepted friends) and the saved groups
+  var fs = grpFriends(), gs = groupsGet(grpStore()), h = '';
+  function stack(list){ return '<span class="gp-stack" aria-hidden="true">' + list.slice(0, 3).map(function(f){ return blendAv(f.funType, grpIni(f.name), 'xs'); }).join('') + '</span>'; }
+  if (fs.length >= 2) h += '<button class="frrow gp-entry" type="button" data-grp="open">' + stack(fs) + '<span>' + esc(grpT('row')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>';
+  gs.forEach(function(g){
+    var sc = null; try { if (DATA_LOADED) sc = groupScore(groupMembersNow(g.uids).members); } catch (e) { sc = null; }
+    h += '<button class="frrow gp-srow" type="button" data-grp="opensaved" data-v="' + esc(g.id) + '"><span>' + esc(g.name) + '<small>' + esc(grpT('people', {n:g.uids.length + 1})) + '</small></span><b class="gp-sc">' + (sc !== null ? sc + '%' : '') + '</b>' + glyphSvg('i-right', 'i chev') + '</button>';
+  });
+  return h;
+}
+function grpClick(el){
+  var a = el.getAttribute('data-grp'), v = el.getAttribute('data-v') || '';
+  if (el.getAttribute('aria-disabled') === 'true' && a !== 'tog' && a !== 'vtog') return;
+  switch (a) {
+    case 'open': grpOpen('', ''); break;
+    case 'opensaved': grpOpen('', v); break;
+    case 'withf': grpOpen(v, ''); break;
+    case 'tog': grpToggle(v, el); break;
+    case 'go': grpGo(); break;
+    case 'back': GRP.mode = 'pick'; renderGroup(); break;
+    case 'menu': grpMenu(); break;
+    case 'edit': grpEdit(); break;
+    case 'rename': grpSaveAsk(true); break;
+    case 'forget': grpForgetAsk(); break;
+    case 'forget2': grpForget(); break;
+    case 'save': grpSaveAsk(false); break;
+    case 'savego': grpSaveGo(); break;
+    case 'more6': GRP.shown = Math.min(GROUP_MAX_SHOW, GRP.shown + GROUP_SHOW); renderGroup(); break;
+    case 'send': grpSendOpen(); break;
+    case 'vtog': grpVoteToggle(v); break;
+    case 'vmore': GRP.vmore = true; grpSendRender(); break;
+    case 'vgo': grpVoteGo(); break;
+    case 'add': closePanel('pGroup'); openFriends(); setTimeout(function(){ var f = $('frFind'); if (f) try { f.focus(); } catch (e) {} }, 350); break;
+    case 'retry': Acct.failN = 0; acctRetry('retry'); renderGroup(); setTimeout(function(){ if (!$('pGroup').hidden) renderGroup(); }, 1500); break;
+  }
+}
+// Testing hook "#grpdemo=pick|page|send|six|empty|few" (with #acctdemo=1&cpdemo=1): made-up friends Jo, Sam and Lee in memory only. Nothing is sent.
+function groupDemo(mode, n){
+  if (!DATA_LOADED || !Acct.demo || !CP.demo) { if ((n || 0) < 120) setTimeout(function(){ groupDemo(mode, (n || 0) + 1); }, 200); return; }
+  var ph = DATA.filter(function(it){ return ID_SID[it.id] && firstPhoto(it) && !(it.verified && it.verified.status === 'closed'); }).map(function(it){ return ID_SID[it.id]; });
+  var jo = ph.filter(function(s, i){ return i % 3 === 0; }).slice(0, 8);   // Jo's shared saves: places on both Blend lists
+  var add = [{user_id:'g1', username:'jo.test', display_name:'Jo', status:'accepted', share_saves:true, fun_type:6}, {user_id:'g2', username:'sam.test', display_name:'Sam', status:'accepted', share_saves:false, fun_type:11},
+    {user_id:'g3', username:'lee.test', display_name:'Lee', status:'accepted', share_saves:false, fun_type:null}];
+  if (mode === 'empty') LIVE = LIVE.filter(function(f){ return f.uid === 'd1'; });
+  else if (!LIVE.some(function(f){ return f.uid === 'g1'; })) LIVE = LIVE.concat(liveFrom(add, jo.map(function(s){ return {user_id:'g1', sid:s}; }), [], ID_SID));
+  if (mode === 'empty') { grpOpen('', ''); return; }
+  if (mode === 'pick') { grpOpen('d1', ''); GRP.pick = ['d1', 'g1', 'g2']; renderGroup(); return; }
+  grpOpen('', '');
+  GRP.pick = mode === 'six' ? ['d1', 'd5', 'g1', 'g2', 'g3'] : mode === 'few' ? ['g2', 'g3'] : ['d1', 'd5', 'g1', 'g2'];
+  grpGo();
+  if (mode === 'send') setTimeout(grpSendOpen, 400);
+  if (mode === 'sheet') { groupsPut(grpStore(), {name:'Saturday crew', uids:GRP.cur.uids}); closePanel('pGroup'); openFriends(); }   // the friends sheet: "Blend a group" + a saved group (in memory)
 }
 /* ================= detail ================= */
 var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -9666,6 +10121,8 @@ function closeDetail(){
   UI.friendReturn = false; UI.savedReturn = false;
   if (UI.pollReturn && PL.cur) { UI.pollReturn = false; renderPoll(); openPanel('pPoll'); }   // v5.13: Back returns to the poll
   UI.pollReturn = false;
+  if (UI.groupReturn && GRP.mode === 'page') { UI.groupReturn = false; openPanel('pGroup'); }   // v5.25: Back returns to the group page
+  UI.groupReturn = false;
   bkRelease();   // v5.24
 }
 
@@ -11296,7 +11753,13 @@ function bindUI(){
   // v5.8 friends' lists: Share, the friend panel (Keep, rows, Rename, Remove), the paste box
   $('wlShare').addEventListener('click', function(){ if (acctName() && acctSignedIn()) shareAsk(); else shareMyList(); });   // v5.11: signed in, Share asks: invite or just the list
   document.addEventListener('click', function(e){ var ac = e.target.closest ? e.target.closest('[data-acct]') : null; if (ac && !ac.disabled) { e.preventDefault(); acctClick(ac); } });
-  document.addEventListener('click', function(e){ if (!e.target.closest) return; var pb = e.target.closest('[data-poll]'); if (pb) { e.preventDefault(); e.stopPropagation(); pollClick(pb); return; } var cb = e.target.closest('[data-cp]'); if (cb) { e.preventDefault(); e.stopPropagation(); cpClick(cb); } }, true);   // v5.13 poll + couple mode (capture: before the panels' own row handlers)   // v5.11 accounts, friends, privacy, been import
+  document.addEventListener('click', function(e){ if (!e.target.closest) return; var pb = e.target.closest('[data-poll]'); if (pb) { e.preventDefault(); e.stopPropagation(); pollClick(pb); return; } var cb = e.target.closest('[data-cp]'); if (cb) { e.preventDefault(); e.stopPropagation(); cpClick(cb); return; } var gb = e.target.closest('[data-grp]'); if (gb) { e.preventDefault(); e.stopPropagation(); grpClick(gb); } }, true);   // v5.25 Group Blend
+  document.addEventListener('keydown', function(e){ if (e.key === 'Enter' && e.target && e.target.id === 'gpName') { e.preventDefault(); grpSaveGo(); } });
+  $('pGroupBody').addEventListener('click', function(e){   // v5.25: the group page's photo cards (save, open the place; Back returns here)
+    var t = e.target; if (t.closest('[data-share]')) return;
+    var sv = t.closest('[data-save]'); if (sv) { e.stopPropagation(); var sid0 = sv.getAttribute('data-save'); toggleSave(sid0); sv.setAttribute('aria-pressed', String(isSaved(sid0))); return; }
+    var card = t.closest('.card3[data-id]'); if (card) { var id = card.getAttribute('data-id'); closePanel('pGroup'); UI.sel = id; recluster(); openDetail(id); UI.groupReturn = true; }
+  });   // v5.13 poll + couple mode (capture: before the panels' own row handlers)   // v5.11 accounts, friends, privacy, been import
   document.addEventListener('keydown', function(e){ if (e.key !== 'Enter' || !e.target) return; if (e.target.id === 'unameIn') { e.preventDefault(); acctNameSave(); } else if (e.target.id === 'frFind') { e.preventDefault(); acctFind(); } });
   $('pClusterBody').addEventListener('click', function(e){   // v5.11 cluster sheet: a row opens the place; Show N more
     if (e.target.closest('[data-clmore]')) { UI.clusterAll = true; renderClusterList(); return; }
@@ -11546,6 +12009,7 @@ function runSelfTest0(){
   block('v5.21 languages, Only in Chicago, Visiting Chicago, tester fixes', function(){ i18nSelfTest(ok, eq, info); });
   block('v5.22 holiday status from fields only, more UI words, Visiting Chicago without chains, Google line rules', function(){ v522SelfTest(ok, eq); });
   block('v5.24 cities (Chicago + Oʻahu), item time zones, city switch, ticket badge, phone Back', function(){ v524SelfTest(ok, eq, info); });
+  block('v5.25 Group Blend v1 (spec section 0.7 cases 1-8, plus the city)', function(){ v525SelfTest(ok, eq, info); });
 
   block('time zone', function(){
     eq('Chicago noon Jul 4 2026 = 17:00 UTC (CDT)', fromChicago('2026-07-04', 720), Date.UTC(2026, 6, 4, 17, 0));
@@ -13108,8 +13572,8 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.24 (2026-11-15)');
-    eq('previous version', VERSION_PREV, 'v5.23 (2026-11-14)');
+    eq('version', VERSION, 'v5.25 (2026-11-15)');
+    eq('previous version', VERSION_PREV, 'v5.24 (2026-11-15)');
   });
 
   /* ---------- v5.20 fix (live v5.19 tester, MEDIUM): "Last entry not posted" must never make a last-entry time ---------- */
@@ -14914,6 +15378,129 @@ function i18nSelfTest(ok, eq, info){
   ok('T7 "Compare with a friend" signed out: a card that says what it does, that it needs sign-in, nothing shared until a friend accepts, Sign in + Not now', /Compare shows/.test(COMPARE_CARD_HTML) && /sign in/i.test(COMPARE_CARD_HTML) && /Nothing is shared until a friend accepts/.test(COMPARE_CARD_HTML) && /data-cmp="in"[^>]*>Sign in</.test(COMPARE_CARD_HTML) && />Not now</.test(COMPARE_CARD_HTML), '');
 }
 /* v5.24 self-test: cities. The Oʻahu items here are made-up fixtures (real Oʻahu data is not merged yet). */
+function v525SelfTest(ok, eq, info){ // Group Blend v1: design/2026-11-14-groups-spec.md 0.7
+  var realStore = JSON.stringify(Platform.store.get(GROUPS_KEY, null));
+  function mk(o){ return ext({key:'k', name:'N', me:false, type:0, top:[], never:[], saves:[], src:'list'}, o); }
+  function fx(o){ return ext({id:'gx25-' + (++uid), name:'Group fixture', kind:'place', category:'games-arcade', tags:[], lat:41.88, lng:-87.63, indoor_outdoor:'indoor', price_level:'$', booking:'walk-in', hours:null, season:null, verified:{status:'verified', checked_on:'2026-11-10'}}, o); }
+  function srt(l){ return l.map(function(x){ return x.sid; }).sort(function(a, b){ return a - b; }).join(); }
+  var sample = DATA.filter(function(it){ return ID_SID[it.id]; }).slice(0, 60);
+  if (sample.length < 5) sample = [fx({}), fx({category:'nature-outdoors', indoor_outdoor:'outdoor'}), fx({category:'food-drink-experience', tags:['cocktail-bar']}), fx({category:'museum'}), fx({category:'live-music', tags:['concert']})];
+  // 1. typeTaste
+  var bad = [];
+  for (var id = 1; id <= 12; id++) {
+    var st = typeTaste(id); if (!st) { bad.push(id + ':null'); continue; }
+    sample.forEach(function(it){ var f = fitOf(it, st); if (!isNum(f) || f < -1 || f > 1) bad.push(id + ':' + it.id + '=' + f); });
+    if (id >= 9 && st.m.hasOwnProperty('v')) bad.push(id + ':has v'); if (id < 9 && !st.m.hasOwnProperty('v')) bad.push(id + ':no v');
+  }
+  eq('G1 typeTaste for all 12 characters: fitOf is a number in -1..1 on ' + sample.length + ' places; a weird character (9-12) has no Vibe dial', bad.slice(0, 6).join(), '');
+  eq('G1 typeTaste is cached per character; unknown ids give null', [typeTaste(3) === typeTaste(3), typeTaste(0), typeTaste(13)].join(), 'true,,');
+  // 2. groupLikes
+  var it0 = fx({});
+  eq('G2 their "never" beats their own top list (-1)', groupLikes(mk({top:[5, 6], never:[5]}), it0, 5), -1);
+  eq('G2 on the top list -> 1; in shared saves -> 1; neither (list member) -> 0', [groupLikes(mk({top:[5, 6]}), it0, 6), groupLikes(mk({src:'saves', saves:[7, 8, 9]}), it0, 8), groupLikes(mk({top:[5]}), it0, 9)].join(), '1,1,0');
+  var hit = null, miss = null;
+  for (var t = 1; t <= 12; t++) { var tt = typeTaste(t); for (var q = 0; q < sample.length; q++) { var fq = fitOf(sample[q], tt); if (!hit && fq >= GROUP_FIT) hit = {t:t, it:sample[q]}; if (!miss && fq < GROUP_FIT) miss = {t:t, it:sample[q]}; } }
+  if (hit) {
+    eq('G2 a member with a real Blend list never falls back to the character guess (fit ' + fitOf(hit.it, typeTaste(hit.t)).toFixed(2) + ' -> 0)', groupLikes(mk({type:hit.t, top:[1]}), hit.it, 99999), 0);
+    eq('G2 a character-only member likes a place when fitOf >= GROUP_FIT (' + GROUP_FIT + ')', groupLikes(mk({type:hit.t, src:'type'}), hit.it, 99999), 1);
+    eq('G2 ...but a character-only member\'s "never" still wins', groupLikes(mk({type:hit.t, src:'type', never:[99999]}), hit.it, 99999), -1);
+  } else info('G2 no sample place reaches GROUP_FIT for any character (character-guess case not exercised)');
+  if (miss) eq('G2 a character-only member under GROUP_FIT -> 0', groupLikes(mk({type:miss.t, src:'type'}), miss.it, 99999), 0);
+  // 3. groupPicks
+  var items = [], idS = {}; for (var s = 1; s <= 20; s++) { var fi = fx({name:'G' + s}); items.push(fi); idS[fi.id] = s; }
+  var O = {idSid:idS};
+  var a = mk({key:'a', top:[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], never:[11]}), b = mk({key:'b', top:[1, 2, 3, 4, 5, 6, 11, 12]}), c = mk({key:'c', src:'saves', saves:[1, 2, 3, 13]});
+  eq('G3 2 counted members (third not counted) -> no picks', groupPicks([a, b, mk({key:'z', src:null, top:[1]})], items, '2026-11-15', 's', O).length, 0);
+  var r3 = groupPicks([a, b, c], items, '2026-11-15', 's', O);
+  eq('G3 m = 3: picks are places 1-6, every n >= 2, m = 3', srt(r3) + '|' + r3.every(function(x){ return x.n >= 2 && x.m === 3; }), '1,2,3,4,5,6|true');
+  ok('G3 a place on anyone\'s "never" never appears (11 is on b\'s list, in a\'s never)', !r3.some(function(x){ return x.sid === 11; }), srt(r3));
+  ok('G3 order: everyone-likes (n = 3) before n = 2', r3.slice(0, 3).every(function(x){ return x.n === 3; }) && r3.slice(3).every(function(x){ return x.n === 2; }), JSON.stringify(r3));
+  var r5 = groupPicks([a, b, c, mk({key:'d', top:[1, 2, 7, 8]}), mk({key:'e', top:[1, 7, 9]})], items, '2026-11-15', 's', O);
+  eq('G3 m = 5: n >= 3 (places 1, 2, 3, 7), m = 5', srt(r5) + '|' + r5.every(function(x){ return x.n >= 3 && x.m === 5; }), '1,2,3,7|true');
+  var meV = groupMember({me:true, type:2, list:{top:[], never:[1]}, saves:[]});
+  ok('G3 her own "never" is never overruled (place 1 liked by everyone else)', !groupPicks([meV, a, b, c], items, '2026-11-15', 's', O).some(function(x){ return x.sid === 1; }));
+  ok('G3 a place closed for good is left out', !groupPicks([a, b, c], items.map(function(x, i){ return i === 0 ? ext(x, {verified:{status:'closed'}}) : x; }), '2026-11-15', 's', O).some(function(x){ return x.sid === 1; }));
+  var all20 = []; for (s = 1; s <= 20; s++) all20.push(s);
+  var trio = [mk({key:'a', top:all20}), mk({key:'b', top:all20.slice().reverse()}), mk({key:'c', src:'saves', saves:all20})];
+  var k1 = srt0(groupPicks(trio, items, '2026-11-15', 'a.b.c', O)), k1b = srt0(groupPicks(trio, items, '2026-11-15', 'a.b.c', O)), k2 = srt0(groupPicks(trio, items, '2026-11-16', 'a.b.c', O));
+  function srt0(l){ return l.map(function(x){ return x.sid; }).join(); }
+  ok('G3 the same day key gives the same order', k1 === k1b, k1 + ' vs ' + k1b);
+  ok('G3 another day key changes the order (daily refresh)', k1 !== k2 && k1.split(',').sort().join() === k2.split(',').sort().join(), k1 + ' vs ' + k2);
+  // 4. groupScore
+  var t1 = groupMember({uid:'t1', name:'T1', funType:1}), t2 = groupMember({uid:'t2', name:'T2', funType:2}), t9 = groupMember({uid:'t9', name:'T9', funType:9});
+  eq('G4 null with 2 counted members', groupScore([t1, t2]), null);
+  eq('G4 three characters only, by hand: (0.75 + 0.625 + 0.375) / 3 = 58%', groupScore([t1, t2, t9]), 58);
+  var pab = blendMatch(a, b);
+  eq('G4 a pair with lists uses blendMatch; pairs with nothing to compare are left out', groupScore([a, b, c]), pab ? pab.pct : null);
+  ok('G4 the score is 1-99', [groupScore([t1, t2, t9]), groupScore([a, b, c])].every(function(v){ return v === null || (v >= 1 && v <= 99); }));
+  // 5. not counted
+  var x0 = groupMember({uid:'x0', name:'X', funType:0, shares:true, sids:[1, 2]});
+  eq('G5 no character, no list, 2 shared saves -> not counted', x0.src, null);
+  eq('G5 3 shared saves / a character / a Blend list each count', [groupMember({uid:'x1', funType:0, shares:true, sids:[1, 2, 3]}).src, groupMember({uid:'x2', funType:4, shares:false, sids:[1, 2, 3]}).src, groupMember({uid:'x3', funType:0}, {top:[1], never:[]}).src].join(), 'saves,type,list');
+  var r4 = groupPicks([a, b, c, x0], items, '2026-11-15', 's', O);
+  eq('G5 a not-counted member leaves m at 3 and the score unchanged', (r4.length > 0 && r4.every(function(x){ return x.m === 3; })) + '|' + (groupScore([a, b, c, x0]) === groupScore([a, b, c])), 'true|true');
+  // 6. the vote link: places only
+  var rx = /^#poll=([0-9a-f]{12}|0)(\.\d+){2,4}$/, L1 = groupVoteLink('', [12, 40, 7]), L2 = groupVoteLink('0123456789ab', [3, 9]), L3 = groupVoteLink('', [1, 2, 3, 4, 5, 6]);
+  ok('G6 vote links match the poll format (' + L1 + ', ' + L2 + ', ' + L3 + ')', rx.test(L1) && rx.test(L2) && rx.test(L3));
+  var nm6 = ['Maya', 'Jo', 'Sam', 'Lee', 'Jordan', 'You'].concat(TYPES.map(function(x){ return x.name; })), txt = POLL_TEXT + ' ' + L1;
+  eq('G6 the share text + link carry no member name, character name, "n of m" or %', nm6.filter(function(n){ return txt.indexOf(n) >= 0; }).join() + (/%|\d+ of \d+/.test(txt) ? '|count' : ''), '');
+  ok('G6 Saved polls and the group share one path (pollGo -> pollGoWith, text = POLL_TEXT)', /pollGoWith\(/.test(String(pollGo)) && /POLL_TEXT/.test(String(pollGoWith)) && /pollGoWith\(/.test(String(grpVoteGo)));
+  // 7. og.groups.v1 (a stand-in store: her real saved groups are not touched)
+  var ms = (function(){ var m = {}; return {get:function(k, d){ return m.hasOwnProperty(k) ? JSON.parse(m[k]) : d; }, set:function(k, v){ m[k] = JSON.stringify(v); return true; }}; })();
+  var g1 = groupsPut(ms, {name:'Saturday crew', uids:['u1', 'u2']});
+  ok('G7 save: an 8-character id, the name and the friend ids', /^[a-z2-7]{8}$/.test(g1.id) && g1.name === 'Saturday crew' && groupsGet(ms).length === 1 && groupsGet(ms)[0].uids.join() === 'u1,u2', JSON.stringify(groupsGet(ms)));
+  groupsPut(ms, {id:g1.id, name:'Sunday crew', uids:g1.uids});
+  eq('G7 rename keeps one entry', groupsGet(ms).map(function(g){ return g.name; }).join(), 'Sunday crew');
+  eq('G7 names are cut to 30 characters; an empty name gets a default', [groupsPut(ms, {name:'A very long group name that goes on and on', uids:['u1']}).name.length, groupsPut(ms, {name:'  ', uids:['u1']}).name.length > 0].join(), '30,true');
+  for (q = 0; q < 10; q++) groupsPut(ms, {name:'G' + q, uids:['u1']});
+  eq('G7 at most 8 kept, newest first', groupsGet(ms).length + '|' + groupsGet(ms)[0].name, '8|G9');
+  var top0 = groupsGet(ms)[0];
+  eq('G7 forget removes it', groupsForget(ms, top0.id) + '|' + groupsGet(ms).length + '|' + !groupFind(ms, top0.id), 'true|7|true');
+  var me0 = groupMember({me:true, type:2, list:{top:[1], never:[]}, saves:[]}), mf = groupMembersFrom(me0, ['u1', 'u2', 'u3', 'u1'], [{uid:'u1', live:true, name:'A', funType:3}, {uid:'u3', live:true, name:'C', funType:4}, {uid:'u4', live:false, name:'D'}], {});
+  eq('G7 on open, a friend who is no longer accepted is skipped (u2), each friend once', mf.members.length + '|' + mf.gone.join() + '|' + mf.members.map(function(x){ return x.key; }).join(), '3|u2|me,u1,u3');
+  ok('G7 saved groups stay on this phone: not in the account sync, kept on sign-out, cleared on account delete', !/GROUPS_KEY|og\.groups/.test(String(acctSync)) && !/GROUPS_KEY/.test(String(acctForget)) && /GROUPS_KEY/.test(String(acctDelete)));
+  eq('G7 her real saved groups were not touched by these checks', JSON.stringify(Platform.store.get(GROUPS_KEY, null)), realStore);
+  // copy
+  eq('G copy: tags "4 of 5" / "All 5", button, ru (unverified)', [/4 of 5/.test(groupTagHTML(4, 5)), /gp-tag all/.test(groupTagHTML(5, 5)) && /All 5/.test(groupTagHTML(5, 5)), grpT('go', {n:4}), grpT('more', {n:1}), grpT('go', {n:3}, 'ru')].join('|'), 'true|true|Blend 4 of you|Pick 1 more|Смешать: вас 3');
+  var miss4 = []; Object.keys(GRP_STR).forEach(function(k){ if (!Array.isArray(GRP_STR[k]) || GRP_STR[k].length !== 4 || GRP_STR[k].some(function(x){ return !x; })) miss4.push(k); });
+  eq('G copy: every group word has en, ru, zh-Hans and ko', miss4.join(), '');
+  // city: picks come from the city on screen
+  var mix = [fx({}), fx({}), fx({city:'oahu', lat:21.3, lng:-157.85}), fx({city:'oahu', lat:21.6, lng:-158.1})], idM = {}; mix.forEach(function(x, i){ idM[x.id] = 900 + i; });
+  var cityTrio = [mk({key:'a', top:[900, 901, 902, 903]}), mk({key:'b', top:[900, 901, 902, 903]}), mk({key:'c', src:'saves', saves:[900, 901, 902, 903]})];
+  eq('G9 fixtures: Oʻahu items give Oʻahu picks only, Chicago items Chicago only', srt(groupPicks(cityTrio, cityItems(mix, 'oahu'), 'd', 's', {idSid:idM})) + '|' + srt(groupPicks(cityTrio, cityItems(mix, 'chicago'), 'd', 's', {idSid:idM})), '902,903|900,901');
+}
+function v525SelfTestReal(ok, eq, note){ // Group Blend checks on the loaded file (the sync block runs before the data is in)
+  function mk(o){ return ext({key:'k', name:'N', me:false, type:0, top:[], never:[], saves:[], src:'list'}, o); }
+  var sample = DATA.filter(function(it){ return ID_SID[it.id]; }).slice(0, 60);
+  var keepC = CITY.slug, allS = ALL_DATA.map(function(x){ return ID_SID[x.id]; }).filter(Boolean), rr = {};
+  var big = [mk({key:'ca', top:allS}), mk({key:'cb', top:allS}), mk({key:'cc', src:'saves', saves:allS})];
+  try {
+    var pc = groupPicks(big, DATA, '2026-11-15', 'c');
+    rr.chi = pc.length > 0 && pc.every(function(x){ return cityOf(SID_INDEX[x.sid]) === 'chicago'; });
+    setCityCore('oahu');
+    var po = groupPicks(big, DATA, '2026-11-15', 'c'), oN = cityItems(ALL_DATA, 'oahu').filter(function(x){ return ID_SID[x.id] && !(x.verified && x.verified.status === 'closed'); }).length;
+    rr.oahu = po.every(function(x){ return cityOf(SID_INDEX[x.sid]) === 'oahu'; }) && po.length === oN; rr.on = po.length;
+  } finally { if (CITY.slug !== keepC) setCityCore(keepC); }
+  eq('G9 real data: in Chicago every pick is a Chicago place; in Oʻahu every pick is an Oʻahu place (' + rr.on + ' Oʻahu items)', rr.chi + '|' + rr.oahu, 'true|true');
+  eq('G9 back in Chicago after the check', CITY.slug, keepC);
+  // 8. screens: no sideways scroll at this width, 3 and 6 people (the screenshots cover Night / Sorbet)
+  if (document.body && sample.length) {
+    var T0 = evalTime(), cx0 = ctxNow(), pk = sample.slice(0, 8).map(function(x, i){ return {c:computeItem(x, T0, cx0), sid:ID_SID[x.id] || i + 1, n:i % 2 ? 3 : 5, m:5}; });
+    var m3 = [groupMember({me:true, type:2, list:{top:[], never:[]}, saves:[]}), groupMember({uid:'s1', name:'Maya', funType:4}), groupMember({uid:'s2', name:'Jo', funType:6})];
+    var m6 = m3.concat([groupMember({uid:'s3', name:'Sam', funType:11}), groupMember({uid:'s4', name:'Jordan', funType:9}), groupMember({uid:'s5', name:'Lee', funType:0})]);
+    var W = Math.min(window.innerWidth || 390, 480) - 40, host = document.createElement('div'), res = [];
+    host.style.cssText = 'position:absolute;left:-10000px;top:0;visibility:hidden;box-sizing:content-box;padding:0 20px;overflow:auto;width:' + W + 'px';   // like the panel body (20 px side padding)
+    document.body.appendChild(host);
+    try {
+      [m3, m6].forEach(function(mm){
+        host.innerHTML = groupPageHTML({members:mm, score:groupScore(mm), picks:pk, shown:6, saved:false});
+        var bands = host.querySelectorAll('.gp-band'), chOk = [].every.call(host.querySelectorAll('.gp-ch'), function(e){ return e.getBoundingClientRect().width <= e.parentNode.getBoundingClientRect().width + 0.5; });
+        res.push(mm.length + ':' + (host.scrollWidth <= host.clientWidth + 1) + ':' + bands.length + ':' + chOk + ':' + host.querySelectorAll('.gp-tag').length);
+      });
+    } finally { host.parentNode.removeChild(host); }
+    eq('G8 page at ' + W + ' px content width: no sideways scroll, one band per person, characters fit their band, 6 tagged cards (3 and 6 people)', res.join(' '), '3:true:3:true:6 6:true:6:true:6');
+  }
+}
 function v524SelfTest(ok, eq, info){
   function fxc(o){ return ext({id:'fx24-' + (++uid), name:'Fixture', kind:'place', category:'games-arcade', tags:[], lat:41.88, lng:-87.63, indoor_outdoor:'indoor', price_level:'$', booking:'walk-in', hours:null, season:null, verified:{status:'verified', checked_on:'2026-11-10'}}, o); }
   var nineFive = allDays(['09:00', '17:00']);
@@ -15202,6 +15789,7 @@ function i18nSelfTestAsync(ok, eq){
         finally { setCityCore(keep24); cityGeo(); }
         eq('real data C7: the drawn map in Oʻahu: one island area, sea is water, mid-island is land, drawn; back in Chicago ' + GEO.areas.length + ' community areas', g6 + '|' + (GEO.areas.length > 50), '1|Oʻahu|true|false|true|true');
       } else note('C7 drawn-map check skipped (street map on, or the map files did not load)');
+      try { v525SelfTestReal(ok, eq, note); } catch (e25) { ok('v5.25 Group Blend real-data checks: crashed', false, e25 && e25.message ? e25.message : String(e25)); }
       if (!UI.detailId && DATA.length) {
         var pre24 = BK.pushed;   // the self-test's own sheet may already hold the Back step
         openDetail(DATA[0].id);
@@ -15250,6 +15838,7 @@ function readHash(){
   var ivc = inviteCode(hsh); if (ivc) { if (mapEl) inviteOpen(ivc); return; }   // v5.11: a friend invite
   if (/(?:^#|&)acctdemo=1/.test(hsh) && mapEl) acctDemo();
   if (/(?:^#|&)acctsheet=1/.test(hsh) && mapEl) (function w(){ if (!DATA_LOADED) { setTimeout(w, 200); return; } setTimeout(function(){ try { syncAcctButtons(); openAccount(); } catch (e) {} }, 400); })();   // v5.17 screenshot hook: the account sheet (with #acctdemo=1 / #tastedemo=1)
+  var gdm = /(?:^#|&)grpdemo=(pick|page|send|six|empty|few|sheet)\b/.exec(hsh); if (gdm && mapEl) groupDemo(gdm[1], 0);   // v5.25 testing hook (with #acctdemo=1&cpdemo=1): Group Blend with made-up friends, in memory only
   if (/(?:^#|&)cpdemo=1/.test(hsh) && mapEl) coupleDemo(0);   // v5.13 testing hook (with #acctdemo=1): couple mode on with the made-up friend   // v5.11 testing hook: the signed-in screens with made-up friends (in memory, nothing sent)
   if (/(?:^#|&)panel=friends/.test(hsh) && mapEl) setTimeout(function(){ var go = function(){ if (DATA_LOADED && Acct.demo) { if (/(?:^#|&)noname=1/.test(hsh)) { Acct.profile = null; Acct.cachedName = ''; } openFriends(); if (/(?:^#|&)unamepick=1/.test(hsh)) setTimeout(acctAskName, 400); } else setTimeout(go, 200); }; go(); }, 0);   // v5.14 hooks: &noname=1 (signed in, no username), &unamepick=1 (tap "Pick a username")
   if (/(?:^#|&)panel=account/.test(hsh) && mapEl) setTimeout(function(){ var go = function(){ if (DATA_LOADED && (Acct.demo || !/acctdemo/.test(hsh))) { if (/(?:^#|&)noname=1/.test(hsh)) { Acct.profile = null; Acct.cachedName = ''; } openAccount(); if (/(?:^#|&)full=1/.test(hsh)) acctSheetSize('full'); var sc = /(?:^#|&)acscroll=(\d+)/.exec(hsh); if (sc) setTimeout(function(){ $('pAcctBody').scrollTop = +sc[1]; }, 400); } else setTimeout(go, 200); }; go(); }, 0);   // v5.14 hook: the person button's sheet
@@ -16046,6 +16635,8 @@ function init(){
 
 window.__cff = {
   version: VERSION, appName: APP_NAME,
+  typeTaste: typeTaste, groupMember: groupMember, groupLikes: groupLikes, groupPicks: groupPicks, groupScore: groupScore, groupMembersFrom: groupMembersFrom, groupVoteLink: groupVoteLink, groupsGet: groupsGet, groupsPut: groupsPut, groupsForget: groupsForget, pollGoWith: pollGoWith,   // v5.25 Group Blend
+  group: function(){ return {mode:GRP.mode, pick:GRP.pick.slice(), cur:GRP.cur, picks:(GRP.picks || []).map(function(p){ return {sid:p.sid, n:p.n, m:p.m, city:cityOf(p.c.item)}; }), vote:GRP.vote.slice(), saved:groupsGet(grpStore()).length}; }, groupOpen: grpOpen,
   CITIES: CITIES, city: function(){ return {slug:CITY.slug, name:CITY.name, tz:TZ, center:ext(LOOP, {}), n:DATA.length, all:ALL_DATA.length, counts:cityCounts(ALL_DATA), fly:CITY_FLY.phase, picked:!!UI.cityPicked}; },   // v5.24
   setCity: function(s, how){ return setCity(s, how || 'pick'); }, cityOf: cityOf, cityAt: cityAt, nearestCity: nearestCity, inCityBox: inCityBox, cityItems: cityItems, cityCounts: cityCounts, tzOf: tzOf, withTZ: withTZ, fromCityTime: fromCityTime, driveWord: driveWord,
   bkPlan: bkPlan, bkState: function(){ var s = null; try { s = history.state; } catch (e) {} return {pushed:BK.pushed, skip:BK.skip, state:s, len:history.length}; },   // v5.24 phone Back
