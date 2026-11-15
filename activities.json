@@ -267,6 +267,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  2,
+        "chain_brand":  "Balloon Museum",
         "sid":  1,
         "photos":  [
                        {
@@ -4012,6 +4014,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  1,
+        "chain_brand":  "WONDRA",
         "sid":  25,
         "photos":  [
                        {
@@ -5755,6 +5759,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  12,
+        "chain_brand":  "Candlelight (Fever)",
         "sid":  39,
         "photos":  [
                        {
@@ -6055,6 +6061,8 @@
                                                      ]
                      },
         "hours_note":  "Closed Mondays. Closed Thanksgiving Day, Christmas Day and New Year\u0027s Day. Christmas Eve 11 am-5 pm (last game slot 3 pm) and New Year\u0027s Eve noon-10 pm (last game slot 8 pm); the venue says hours may vary on public holidays. Entrance shared with Marshalls at the SE corner of Rush St \u0026 Ontario St.",
+        "us_cities":  1,
+        "chain_brand":  "THE CUBE",
         "sid":  41,
         "photos":  [
                        {
@@ -6196,6 +6204,8 @@
                         "rain_ok":  true
                     },
         "hook":  "Japanese arcade, bowling and karaoke rooms",
+        "us_cities":  60,
+        "chain_brand":  "Round1",
         "sid":  42,
         "photos":  [
                        {
@@ -6334,6 +6344,8 @@
                         "rain_ok":  true
                     },
         "hook":  "Arcade, bowling and karaoke",
+        "us_cities":  60,
+        "chain_brand":  "Round1",
         "sid":  43,
         "photos":  [
                        {
@@ -6483,6 +6495,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  2,
+        "chain_brand":  "Emporium Arcade Bar",
         "sid":  44,
         "photos":  [
                        {
@@ -6637,6 +6651,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  2,
+        "chain_brand":  "Emporium Arcade Bar",
         "sid":  45,
         "photos":  [
                        {
@@ -6786,6 +6802,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  2,
+        "chain_brand":  "Emporium Arcade Bar",
         "sid":  46,
         "photos":  [
                        {
@@ -6935,6 +6953,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  12,
+        "chain_brand":  "Lucky Strike",
         "sid":  47,
         "photos":  [
                        {
@@ -7246,6 +7266,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  6,
+        "chain_brand":  "Pinstripes",
         "sid":  49,
         "photos":  [
                        {
@@ -7391,6 +7413,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  6,
+        "chain_brand":  "Pinstripes",
         "sid":  50,
         "photos":  [
                        {
@@ -7545,6 +7569,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  12,
+        "chain_brand":  "Dave \u0026 Buster\u0027s",
         "sid":  51,
         "photos":  [
                        {
@@ -7679,6 +7705,8 @@
                          "evidence_url":  "https://greatbiggameshow.com/schaumburg/"
                      },
         "hours_note":  "Book a game time online. Posted hours differ between sources, so call 847-834-7062 before you go.",
+        "us_cities":  23,
+        "chain_brand":  "Great Big Game Show",
         "sid":  52,
         "photos":  [
                        {
@@ -7962,6 +7990,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  15,
+        "chain_brand":  "Puttshack",
         "sid":  54,
         "photos":  [
                        {
@@ -8119,6 +8149,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  15,
+        "chain_brand":  "Puttshack",
         "sid":  55,
         "photos":  [
                        {
@@ -8404,6 +8436,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  2,
+        "chain_brand":  "Big Mini Putt Club",
         "sid":  57,
         "photos":  [
                        {
@@ -8536,6 +8570,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  2,
+        "chain_brand":  "Big Mini Putt Club",
         "sid":  58,
         "photos":  [
                        {
@@ -9133,6 +9169,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  11,
+        "chain_brand":  "Topgolf",
         "sid":  62,
         "photos":  [
                        {
@@ -9298,6 +9336,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  11,
+        "chain_brand":  "Topgolf",
         "sid":  63,
         "photos":  [
                        {
@@ -9466,6 +9506,8 @@
                                                      ]
                      },
         "hours_note":  "Closed Thanksgiving Day (Thu Nov 26); open Fri Nov 27, 10 am to midnight. Christmas and New Year hours not posted (call 847-941-9400). No private-event closures posted for Buffalo Grove.",
+        "us_cities":  49,
+        "chain_brand":  "K1 Speed",
         "sid":  64,
         "photos":  [
                        {
@@ -9655,6 +9697,8 @@
                                                      ]
                      },
         "hours_note":  "Private event closure Wed Dec 9, 2026, 1-4pm. Closed Thanksgiving Day (Thu Nov 26). Christmas and New Year hours not posted (call 630-433-3700).",
+        "us_cities":  49,
+        "chain_brand":  "K1 Speed",
         "sid":  65,
         "photos":  [
                        {
@@ -9939,6 +9983,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  53,
+        "chain_brand":  "The Escape Game",
         "sid":  67,
         "photos":  [
                        {
@@ -10085,6 +10131,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  16,
+        "chain_brand":  "PanIQ Escape Room",
         "sid":  70,
         "photos":  [
                        {
@@ -10217,6 +10265,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  9,
+        "chain_brand":  "Bad Axe Throwing",
         "sid":  72,
         "photos":  [
                        {
@@ -10379,6 +10429,8 @@
                     },
         "hook":  "56-foot rope walls plus bouldering, gear to rent and a 15-day trial",
         "description":  "A big climbing gym at the edge of Goose Island with more than 200 rope routes on walls up to 56 feet, a bouldering area, yoga, fitness and saunas. Beginners can rent everything and start with an intro class or a 15-day trial.",
+        "us_cities":  11,
+        "chain_brand":  "Movement (climbing gyms)",
         "sid":  73,
         "photos":  [
                        {
@@ -10546,6 +10598,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  11,
+        "chain_brand":  "Movement (climbing gyms)",
         "sid":  74,
         "photos":  [
                        {
@@ -10687,6 +10741,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  1,
+        "chain_brand":  "SPF Pickleball",
         "sid":  75,
         "photos":  [
                        {
@@ -10870,6 +10926,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  4,
+        "chain_brand":  "Urban Air Adventure Park",
         "sid":  76,
         "photos":  [
                        {
@@ -12931,6 +12989,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  10,
+        "chain_brand":  "Sky Zone",
         "sid":  85,
         "photos":  [
                        {
@@ -13074,6 +13134,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  6,
+        "chain_brand":  "Altitude Trampoline Park",
         "sid":  86,
         "photos":  [
 
@@ -18217,6 +18279,145 @@
                    ]
     },
     {
+        "id":  "pc-eataly-chicago",
+        "name":  "Eataly Chicago",
+        "kind":  "place",
+        "category":  "food-drink-experience",
+        "tags":  [
+                     "cheese",
+                     "date",
+                     "friends",
+                     "class",
+                     "food-hall"
+                 ],
+        "highlights":  [
+                           "Italian food hall: restaurants, market, wine bar",
+                           "Pasta, pizza, baking and wine classes",
+                           "Cheese 101 tastings listed in 2026 (check for new dates)",
+                           "Open 7am-10pm, Fri-Sat to 11pm"
+                       ],
+        "address":  "43 E. Ohio St., Chicago, IL 60611",
+        "neighborhood":  "River North",
+        "lat":  41.8921864,
+        "lng":  -87.6262542,
+        "indoor_outdoor":  "indoor",
+        "price_level":  "$$",
+        "duration_minutes":  90,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "07:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "07:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "07:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "07:00",
+                                      "22:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "07:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "07:00",
+                                      "23:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "07:00",
+                                      "22:00"
+                                  ]
+                              ]
+                  },
+        "season":  null,
+        "booking":  "walk-in",
+        "age_note":  "all ages (classes may vary)",
+        "phone":  "(312) 521-8700",
+        "website":  "https://www.eataly.com/us_en/stores/chicago",
+        "source_urls":  [
+                            "https://www.eataly.com/us_en/stores/chicago",
+                            "https://www.eventbrite.com/e/1982455893945",
+                            "https://dabble.co/chicago/food-and-wine-pairing/classes/cheese-101-with-eataly-chicago"
+                        ],
+        "closed_dates":  [
+
+                         ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-12",
+                         "evidence_url":  "https://www.eataly.com/us_en/stores/chicago"
+                     },
+        "hook":  "Italian food hall with pasta and pizza classes",
+        "moods":  [
+                      "foodie",
+                      "boozy"
+                  ],
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "good_to_know":  [
+                             {
+                                 "q":  "How old do you have to be?",
+                                 "a":  "All ages.",
+                                 "source":  "https://www.eataly.com/us_en/stores/chicago"
+                             },
+                             {
+                                 "q":  "Do I need to book?",
+                                 "a":  "No, you can walk in.",
+                                 "source":  "https://www.eataly.com/us_en/stores/chicago"
+                             },
+                             {
+                                 "q":  "What does it cost?",
+                                 "a":  "Pay as you go; class prices vary.",
+                                 "source":  "https://www.eataly.com/us_en/stores/chicago"
+                             },
+                             {
+                                 "q":  "How long does it take?",
+                                 "a":  "About 1.5 hours.",
+                                 "source":  "https://www.eataly.com/us_en/stores/chicago"
+                             },
+                             {
+                                 "q":  "Is it indoors?",
+                                 "a":  "Yes, it is indoors.",
+                                 "source":  "https://www.eataly.com/us_en/stores/chicago"
+                             }
+                         ],
+        "price_note":  "A la carte; class prices vary",
+        "hours_note":  "Some listings show an 8am opening. Restaurant hours may differ.",
+        "description":  "A big Italian food hall and market in River North with restaurants, counters, a wine bar and a grocery to wander through. Its hands-on and demo classes (pasta, pizza, Italian classics, baking, wine and mixology) make an easy date.",
+        "genre":  "eat-drink",
+        "min_minutes":  60,
+        "us_cities":  9,
+        "chain_brand":  "Eataly",
+        "sid":  114,
+        "photos":  [
+                       {
+                           "file":  "photos/pc-eataly-chicago-1.jpg",
+                           "credit":  "Eataly Chicago website (eataly.com)",
+                           "page_url":  "https://www.eataly.com/"
+                       }
+                   ]
+    },
+    {
         "id":  "pc-mars-cheese-castle",
         "name":  "Mars Cheese Castle (Kenosha, WI)",
         "kind":  "place",
@@ -19407,6 +19608,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  50,
+        "chain_brand":  "Pinot\u0027s Palette",
         "sid":  122,
         "photos":  [
                        {
@@ -19549,6 +19752,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  4,
+        "chain_brand":  "Museum of Ice Cream",
         "sid":  123,
         "photos":  [
                        {
@@ -19847,6 +20052,8 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.secondcity.com/locations"
                      },
+        "us_cities":  2,
+        "chain_brand":  "The Second City",
         "sid":  125,
         "photos":  [
                        {
@@ -19994,6 +20201,8 @@
                           "reason":  "Chicago improv theater since 1981, known for its signature Harold",
                           "src":  "https://ioimprov.com/about"
                       },
+        "us_cities":  1,
+        "chain_brand":  "iO Theater",
         "sid":  126,
         "photos":  [
                        {
@@ -20377,6 +20586,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  2,
+        "chain_brand":  "Zanies",
         "sid":  128,
         "photos":  [
                        {
@@ -21235,6 +21446,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  2,
+        "chain_brand":  "AIRE Ancient Baths",
         "sid":  134,
         "photos":  [
                        {
@@ -22241,6 +22454,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  22,
+        "chain_brand":  "Alamo Drafthouse",
         "sid":  142,
         "photos":  [
                        {
@@ -25143,6 +25358,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  10,
+        "chain_brand":  "Andretti Indoor Karting \u0026 Games",
         "sid":  169,
         "photos":  [
                        {
@@ -27033,6 +27250,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  9,
+        "chain_brand":  "City Winery",
         "sid":  182,
         "photos":  [
                        {
@@ -27231,6 +27450,8 @@
                                                          "2027-01-01"
                                                      ]
                      },
+        "us_cities":  2,
+        "chain_brand":  "King Spa",
         "sid":  183,
         "photos":  [
                        {
@@ -38397,6 +38618,8 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.sixflags.com/greatamerica/park-hours"
                      },
+        "us_cities":  4,
+        "chain_brand":  "Six Flags",
         "sid":  307,
         "photos":  [
                        {
@@ -38569,6 +38792,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  22,
+        "chain_brand":  "Great Wolf Lodge",
         "sid":  308,
         "photos":  [
                        {
@@ -40916,6 +41141,8 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.62escape.com/schaumburg"
                      },
+        "us_cities":  2,
+        "chain_brand":  "60 to Escape (62 Escape)",
         "sid":  288,
         "photos":  [
                        {
@@ -41072,6 +41299,8 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://www.62escape.com/illinois"
                      },
+        "us_cities":  2,
+        "chain_brand":  "60 to Escape (62 Escape)",
         "sid":  289,
         "photos":  [
                        {
@@ -41224,6 +41453,8 @@
                          "checked_on":  "2026-11-14",
                          "evidence_url":  "https://escapefactorchicago.com/reserve-your-escape-room-oak-brook-elmhurst-chicago/"
                      },
+        "us_cities":  1,
+        "chain_brand":  "Escape Factor",
         "sid":  290,
         "photos":  [
                        {
@@ -41372,6 +41603,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  1,
+        "chain_brand":  "Twisted Limits",
         "sid":  291,
         "photos":  [
                        {
@@ -41525,6 +41758,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  1,
+        "chain_brand":  "Mind Trap Escape Rooms",
         "sid":  292,
         "photos":  [
                        {
@@ -43528,6 +43763,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  15,
+        "chain_brand":  "Flight Club",
         "sid":  253,
         "photos":  [
                        {
@@ -43651,6 +43888,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  4,
+        "chain_brand":  "Electric Shuffle",
         "sid":  254,
         "photos":  [
                        {
@@ -44161,6 +44400,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  2,
+        "chain_brand":  "First Ascent",
         "sid":  258,
         "photos":  [
                        {
@@ -44308,6 +44549,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  2,
+        "chain_brand":  "First Ascent",
         "sid":  259,
         "photos":  [
                        {
@@ -44564,6 +44807,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  11,
+        "chain_brand":  "Punch Bowl Social",
         "sid":  261,
         "photos":  [
                        {
@@ -47931,6 +48176,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  10,
+        "chain_brand":  "The Dinner Detective",
         "sid":  281,
         "photos":  [
                        {
@@ -48890,6 +49137,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  9,
+        "chain_brand":  "Medieval Times",
         "sid":  285,
         "photos":  [
                        {
@@ -52844,6 +53093,8 @@
                          "date"
                      ],
         "description":  "A game-show studio in Fulton Market where your group plays as the contestants, with a live host, buzzers and a giant prize wheel running rotating mini-games. It is a location of the chain that also runs the Woodfield Mall studio.",
+        "us_cities":  23,
+        "chain_brand":  "Great Big Game Show",
         "sid":  406,
         "photos":  [
 
@@ -53449,6 +53700,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  10,
+        "chain_brand":  "The Dinner Detective",
         "sid":  350,
         "photos":  [
                        {
@@ -54908,6 +55161,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  4,
+        "chain_brand":  "Museum of Illusions",
         "sid":  361,
         "photos":  [
                        {
@@ -55022,6 +55277,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  3,
+        "chain_brand":  "Snakes \u0026 Lattes",
         "sid":  362,
         "photos":  [
                        {
@@ -55498,6 +55755,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  4,
+        "chain_brand":  "Laugh Factory",
         "sid":  367,
         "photos":  [
 
@@ -56580,6 +56839,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  6,
+        "chain_brand":  "SPIN",
         "sid":  375,
         "photos":  [
                        {
@@ -59425,6 +59686,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  12,
+        "chain_brand":  "Candlelight (Fever)",
         "sid":  398,
         "photos":  [
                        {
@@ -59601,6 +59864,8 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "us_cities":  3,
+        "chain_brand":  "Blue Man Group",
         "sid":  399,
         "photos":  [
                        {
