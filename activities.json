@@ -1889,7 +1889,6 @@
 
                          ],
         "genre":  "shows-nights",
-        "hook":  "Tree lighting at 6pm, then fireworks",
         "moods":  [
                       "festive",
                       "outdoorsy",
@@ -1947,6 +1946,7 @@
                         "snow_friendly":  true,
                         "rain_ok":  false
                     },
+        "hook":  "Tree lighting, then fireworks",
         "sid":  12,
         "photos":  [
                        {
@@ -2921,14 +2921,6 @@
         "source_urls":  [
                             "https://mcachicago.org/whats-on/exhibitions/rashid-johnson-a-poem-for-deep-thinkers/"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://mcachicago.org/whats-on/exhibitions/rashid-johnson-a-poem-for-deep-thinkers/"
-                     },
-        "closed_dates":  [
-
-                         ],
         "hook":  "Nearly 30 years of Rashid Johnson\u0027s work",
         "moods":  [
                       "artsy",
@@ -2956,7 +2948,6 @@
                              }
                          ],
         "price_note":  "Price not posted; see experience.mcachicago.org",
-        "hours_note":  "Tue 10:00-21:00, Wed-Sun 10:00-17:00, closed Mondays. Holiday closures (Thanksgiving, Christmas, New Year\u0027s) not posted; call to confirm.",
         "description":  "The Museum of Contemporary Art\u0027s survey of nearly 30 years of work by Chicago-born artist Rashid Johnson, coming home after its run at the Guggenheim in New York.",
         "energy":  "easy",
         "vibe":  "quiet",
@@ -2967,6 +2958,22 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-12-25",
+                             "2027-01-01"
+                         ],
+        "hours_note":  "Tue 10:00-21:00, Wed-Sun 10:00-17:00, closed Mondays. Closed on Thanksgiving Day, Christmas Day and New Year\u0027s Day.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-12",
+                         "evidence_url":  "https://mcachicago.org/whats-on/exhibitions/rashid-johnson-a-poem-for-deep-thinkers/",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-11-26",
+                                                         "2026-12-25",
+                                                         "2027-01-01"
+                                                     ]
+                     },
         "sid":  18,
         "photos":  [
                        {
@@ -3469,11 +3476,6 @@
                             "https://mortonarb.org/explore/activities/exhibitions/vivid-creatures/",
                             "https://mortonarb.org/news/new-sculpture-exhibition-Vivid-Creatures-opens-May-17"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://mortonarb.org/explore/activities/exhibitions/vivid-creatures/"
-                     },
         "closed_dates":  [
 
                          ],
@@ -3527,6 +3529,11 @@
                         "snow_friendly":  false,
                         "rain_ok":  false
                     },
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://mortonarb.org/explore/activities/exhibitions/vivid-creatures/"
+                     },
         "sid":  22,
         "photos":  [
                        {
@@ -3623,44 +3630,6 @@
                          ],
         "last_entry_before_close_min":  45,
         "genre":  "nature-animals",
-        "date_hours":  {
-                           "2026-11-26":  [
-                                              [
-                                                  "10:00",
-                                                  "17:00"
-                                              ]
-                                          ],
-                           "2026-11-27":  [
-                                              [
-                                                  "10:00",
-                                                  "17:00"
-                                              ]
-                                          ],
-                           "2026-12-24":  [
-                                              [
-                                                  "10:00",
-                                                  "17:00"
-                                              ]
-                                          ],
-                           "2026-12-25":  [
-                                              [
-                                                  "10:00",
-                                                  "17:00"
-                                              ]
-                                          ],
-                           "2026-12-31":  [
-                                              [
-                                                  "10:00",
-                                                  "17:00"
-                                              ]
-                                          ],
-                           "2027-01-01":  [
-                                              [
-                                                  "10:00",
-                                                  "17:00"
-                                              ]
-                                          ]
-                       },
         "hook":  "A holiday flower show inside warm glass rooms",
         "moods":  [
                       "festive",
@@ -3719,6 +3688,19 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "date_hours":  {
+                           "2026-11-26":  "unknown",
+                           "2026-11-27":  [
+                                              [
+                                                  "10:00",
+                                                  "17:00"
+                                              ]
+                                          ],
+                           "2026-12-24":  "unknown",
+                           "2026-12-25":  "unknown",
+                           "2026-12-31":  "unknown",
+                           "2027-01-01":  "unknown"
+                       },
         "sid":  23,
         "photos":  [
                        {
@@ -4193,9 +4175,6 @@
                             "https://my.goodmantheatre.org/events",
                             "https://www.broadwayworld.com/article/Cast-Set-for-A-CHRISTMAS-CAROL-at-Goodman-Theatre-20261013"
                         ],
-        "closed_dates":  [
-
-                         ],
         "hook":  "A Christmas Carol, staged here for over five decades",
         "moods":  [
                       "festive",
@@ -4223,7 +4202,6 @@
                                  "source":  "https://www.goodmantheatre.org/show/a-christmas-carol-2026/"
                              }
                          ],
-        "price_note":  "General prices not posted; accessible performances $50 ($41 + $9 handling); sensory-friendly Dec 27 $30-$50 + $9",
         "description":  "The Goodman Theatre\u0027s yearly A Christmas Carol, staged for over five decades, is one of Chicago\u0027s best-known holiday shows, in the Albert Theatre in the Loop. This year Tim Hopper plays Scrooge in Tom Creamer\u0027s adaptation, directed by Malkia Stampley.",
         "energy":  "chill",
         "vibe":  "mixed",
@@ -4241,11 +4219,6 @@
                         "rain_ok":  true
                     },
         "hours_note":  "Most shows at 7 or 7:30 PM, plus 2 PM matinees; no shows on Thanksgiving. Start times are listed through Dec 6; see the Goodman calendar for later December shows. Box office open daily noon-5 PM by phone, Tue-Sun in person.",
-        "verified":  {
-                         "status":  "unverified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://my.goodmantheatre.org/events"
-                     },
         "event_dates":  [
                             {
                                 "start":  "2026-11-14T14:00"
@@ -4324,6 +4297,18 @@
                                 "end":  "2026-12-31"
                             }
                         ],
+        "price_note":  "No tickets currently listed on the Goodman page (checked Nov 14). Accessible performances $50 ($41 + $9 handling); sensory-friendly Dec 27 $30-$50 + $9.",
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.goodmantheatre.org/show/a-christmas-carol-2026/",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-11-26"
+                                                     ]
+                     },
+        "closed_dates":  [
+                             "2026-11-26"
+                         ],
         "sid":  27,
         "photos":  [
                        {
@@ -5970,14 +5955,6 @@
                             "https://bookthecube.com/faqs/",
                             "https://tickets.bookthecube.com/chicago-booking/"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://bookthecube.com/venue/chicago/"
-                     },
-        "closed_dates":  [
-
-                         ],
         "hook":  "Step inside a glass cube and play the TV game show",
         "good_for":  [
                          "date",
@@ -6017,7 +5994,6 @@
                              }
                          ],
         "age_note":  "Minimum age 9; under 16 must be supervised by an adult",
-        "hours_note":  "Closed Mondays. Holiday hours not posted. Entrance shared with Marshalls at the SE corner of Rush St \u0026 Ontario St.",
         "description":  "The first US version of the British TV game show, turned into a live attraction off Michigan Avenue: you take turns stepping inside glass cubes for short challenges of balance, speed, judgment and memory, picked for you by \u0027THE CUBE\u0027. You play in two teams of two, and there are bars and food counters for eating between rounds.",
         "price_note":  "Adults from $52.50 Tue-Wed, $55.00 Thu/Fri/Sun, $57.50 Sat; young persons $36.75 / $38.50 / $40.25. Final price shown at checkout. If you book as a pair you are matched with another pair on the day.",
         "moods":  [
@@ -6047,6 +6023,38 @@
                           "reason":  "Currently THE CUBE\u0027s only US venue; two others are in the UK",
                           "src":  "https://bookthecube.com/venue/chicago/"
                       },
+        "date_hours":  {
+                           "2026-12-24":  [
+                                              [
+                                                  "11:00",
+                                                  "17:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  [
+                                              [
+                                                  "12:00",
+                                                  "22:00"
+                                              ]
+                                          ]
+                       },
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-12-25",
+                             "2027-01-01"
+                         ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-12",
+                         "evidence_url":  "https://bookthecube.com/venue/chicago/",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-11-26",
+                                                         "2026-12-24",
+                                                         "2026-12-25",
+                                                         "2026-12-31",
+                                                         "2027-01-01"
+                                                     ]
+                     },
+        "hours_note":  "Closed Mondays. Closed Thanksgiving Day, Christmas Day and New Year\u0027s Day. Christmas Eve 11 am-5 pm (last game slot 3 pm) and New Year\u0027s Eve noon-10 pm (last game slot 8 pm); the venue says hours may vary on public holidays. Entrance shared with Marshalls at the SE corner of Rush St \u0026 Ontario St.",
         "sid":  41,
         "photos":  [
                        {
@@ -6129,7 +6137,6 @@
         "closed_dates":  [
 
                          ],
-        "hook":  "Japanese arcade, bowling and karaoke rooms until 1am",
         "good_for":  [
                          "date",
                          "friends"
@@ -6188,6 +6195,7 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "hook":  "Japanese arcade, bowling and karaoke rooms",
         "sid":  42,
         "photos":  [
                        {
@@ -6269,7 +6277,6 @@
         "closed_dates":  [
 
                          ],
-        "hook":  "Arcade, bowling and karaoke open until 2am",
         "good_for":  [
                          "friends",
                          "family"
@@ -6326,6 +6333,7 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "hook":  "Arcade, bowling and karaoke",
         "sid":  43,
         "photos":  [
                        {
@@ -6960,12 +6968,6 @@
         "booking":  "walk-in",
         "phone":  "773-472-5900",
         "website":  "https://www.wavelandbowl.com/",
-        "source_urls":  [
-                            "https://www.wavelandbowl.com/",
-                            "https://www.wavelandbowl.com/hours-location",
-                            "https://wavelandbowl.com/about/pricing/",
-                            "https://wavelandbowl.com/cosmic-bowling/"
-                        ],
         "closed_dates":  [
 
                          ],
@@ -7062,11 +7064,6 @@
                               ]
                   },
         "hours_note":  "Holiday hours can differ. Call 773-472-5900 before a late visit.",
-        "verified":  {
-                         "status":  "unverified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.google.com/maps/search/Waveland+Bowl+3700+N+Western+Ave+Chicago"
-                     },
         "tags":  [
                      "friends",
                      "date",
@@ -7081,6 +7078,17 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "source_urls":  [
+                            "https://wavelandbowl.com/about/pricing/",
+                            "https://www.wavelandbowl.com/",
+                            "https://www.wavelandbowl.com/hours-location",
+                            "https://wavelandbowl.com/cosmic-bowling/"
+                        ],
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://wavelandbowl.com/about/pricing/"
+                     },
         "sid":  48,
         "photos":  [
                        {
@@ -7574,9 +7582,6 @@
         "season":  null,
         "phone":  "847-834-7062",
         "website":  "https://greatbiggameshow.com/schaumburg/",
-        "source_urls":  [
-                            "https://greatbiggameshow.com/schaumburg/"
-                        ],
         "closed_dates":  [
 
                          ],
@@ -7656,13 +7661,7 @@
                                   ]
                               ]
                   },
-        "hours_note":  "Book a game time online. Hours can change, so call 847-834-7062 if unsure.",
         "booking":  "required",
-        "verified":  {
-                         "status":  "conflicting",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.google.com/maps/search/Great+Big+Game+Show+Woodfield+Mall+Schaumburg"
-                     },
         "genre":  "play",
         "age_note":  "Age rules not posted",
         "min_minutes":  60,
@@ -7671,6 +7670,15 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "source_urls":  [
+                            "https://greatbiggameshow.com/schaumburg/"
+                        ],
+        "verified":  {
+                         "status":  "conflicting",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://greatbiggameshow.com/schaumburg/"
+                     },
+        "hours_note":  "Book a game time online. Posted hours differ between sources, so call 847-834-7062 before you go.",
         "sid":  52,
         "photos":  [
                        {
@@ -8739,11 +8747,6 @@
         "source_urls":  [
                             "https://www.chicagoparkdistrict.com/parks-facilities/douglass-park-miniature-golf-course"
                         ],
-        "verified":  {
-                         "status":  "closed",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/douglass-park-miniature-golf-course"
-                     },
         "closed_dates":  [
 
                          ],
@@ -8781,11 +8784,6 @@
                          ],
         "price_note":  "$5 per game; \"Two for Tuesday\" 8am-noon (Tuesdays may be reservation-only).",
         "hours_note":  "In-season hours: Mon-Wed by reservation only, Thu-Fri 11am-4pm, Sat 9am-4pm, Sun closed. Reservations through the North Lawndale Community Coordinating Council.",
-        "season":  {
-                       "open_from":  "2027-05-01",
-                       "open_to":  "2026-10-30",
-                       "note":  "Open May 1 - October 30 annually: closed for the season from Oct 31, 2026 until May 1, 2027. Call the North Lawndale Community Coordinating Council to confirm."
-                   },
         "moods":  [
                       "outdoorsy",
                       "cheap"
@@ -8810,6 +8808,16 @@
                         "rain_ok":  false
                     },
         "description":  "A bird-themed outdoor mini golf course behind the fieldhouse in Douglass Park, run with the Chicago Park District.",
+        "season":  {
+                       "open_from":  "2027-05-01",
+                       "open_to":  "2027-10-30",
+                       "note":  "Open May 1 - October 30 annually; closed for the season until May 1, 2027."
+                   },
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/douglass-park-miniature-golf-course"
+                     },
         "sid":  60,
         "photos":  [
                        {
@@ -9380,14 +9388,6 @@
                             "https://www.k1speed.com/buffalo-grove-location/pricing.html",
                             "https://www.k1speed.com/closures.html"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://www.k1speed.com/buffalo-grove-location.html"
-                     },
-        "closed_dates":  [
-
-                         ],
         "hook":  "Race electric go-karts indoors in timed heats",
         "moods":  [
                       "active",
@@ -9426,7 +9426,6 @@
                              }
                          ],
         "price_note":  "Walk-in prices: 1 race $31, 2 races $57, 3 races $74, Speedpass $74 (2 races + license + T-shirt). Annual license $8.50 required.",
-        "hours_note":  "Thanksgiving, Christmas and New Year hours not posted (call 847-941-9400). No private-event closures posted for Buffalo Grove.",
         "description":  "An indoor track with all-electric go-karts, the first K1 Speed in the Chicago area (open since 2013), where you race short timed heats against other drivers with lap times on a scoreboard. Between races there\u0027s an arcade, pool and air hockey, and the Paddock Lounge upstairs serves food and cocktails with a view of the track.",
         "age_note":  "Junior karts 48 in. minimum height, adult karts 58 in.; adults and juniors race separately; under 18 need a waiver signed by a parent or guardian; junior races stop at 8pm on Friday and Saturday",
         "energy":  "active",
@@ -9447,6 +9446,26 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "date_hours":  {
+                           "2026-11-27":  [
+                                              [
+                                                  "10:00",
+                                                  "24:00"
+                                              ]
+                                          ]
+                       },
+        "closed_dates":  [
+                             "2026-11-26"
+                         ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-12",
+                         "evidence_url":  "https://www.k1speed.com/buffalo-grove-location.html",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-11-26"
+                                                     ]
+                     },
+        "hours_note":  "Closed Thanksgiving Day (Thu Nov 26); open Fri Nov 27, 10 am to midnight. Christmas and New Year hours not posted (call 847-941-9400). No private-event closures posted for Buffalo Grove.",
         "sid":  64,
         "photos":  [
                        {
@@ -9535,26 +9554,6 @@
                             "https://www.k1speed.com/buffalo-grove-location.html",
                             "https://www.k1speed.com/closures.html"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://www.k1speed.com/addison-location.html"
-                     },
-        "closed_dates":  [
-
-                         ],
-        "date_hours":  {
-                           "2026-12-09":  [
-                                              [
-                                                  "12:00",
-                                                  "13:00"
-                                              ],
-                                              [
-                                                  "16:00",
-                                                  "22:00"
-                                              ]
-                                          ]
-                       },
         "hook":  "Indoor electric go-karts with a full bar",
         "moods":  [
                       "active",
@@ -9588,7 +9587,6 @@
                              }
                          ],
         "price_note":  "",
-        "hours_note":  "Private event closure Wed Dec 9, 2026, 1-4pm. Thanksgiving, Christmas and New Year hours not posted (call 630-433-3700).",
         "description":  "K1 Speed\u0027s west-suburban indoor electric karting center, opened in 2013 as the second Chicago-area track, with a full cocktail bar. A good indoor \u0027speed\u0027 option when it is cold out.",
         "age_note":  "Adult kart minimum height 58 inches; Track 1 is usually kept for adult karts",
         "energy":  "active",
@@ -9609,6 +9607,54 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "date_hours":  {
+                           "2026-11-23":  [
+                                              [
+                                                  "10:00",
+                                                  "22:00"
+                                              ]
+                                          ],
+                           "2026-11-24":  [
+                                              [
+                                                  "10:00",
+                                                  "22:00"
+                                              ]
+                                          ],
+                           "2026-11-25":  [
+                                              [
+                                                  "10:00",
+                                                  "22:00"
+                                              ]
+                                          ],
+                           "2026-11-27":  [
+                                              [
+                                                  "10:00",
+                                                  "24:00"
+                                              ]
+                                          ],
+                           "2026-12-09":  [
+                                              [
+                                                  "12:00",
+                                                  "13:00"
+                                              ],
+                                              [
+                                                  "16:00",
+                                                  "22:00"
+                                              ]
+                                          ]
+                       },
+        "closed_dates":  [
+                             "2026-11-26"
+                         ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-12",
+                         "evidence_url":  "https://www.k1speed.com/addison-location.html",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-11-26"
+                                                     ]
+                     },
+        "hours_note":  "Private event closure Wed Dec 9, 2026, 1-4pm. Closed Thanksgiving Day (Thu Nov 26). Christmas and New Year hours not posted (call 630-433-3700).",
         "sid":  65,
         "photos":  [
                        {
@@ -12077,11 +12123,66 @@
                             "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink",
                             "https://www.chicagoparkdistrict.com/holiday-schedule"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink"
-                     },
+        "hook":  "Free skating in Hyde Park if you bring your own skates",
+        "moods":  [
+                      "outdoorsy",
+                      "active",
+                      "cheap"
+                  ],
+        "good_for":  [
+                         "date",
+                         "friends",
+                         "family"
+                     ],
+        "good_to_know":  [
+                             {
+                                 "q":  "How old do you have to be?",
+                                 "a":  "All ages.",
+                                 "source":  "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink"
+                             },
+                             {
+                                 "q":  "Do I need to book?",
+                                 "a":  "Yes, pre-register online; it opens Mondays at noon, about 2 weeks ahead.",
+                                 "source":  "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink"
+                             },
+                             {
+                                 "q":  "What does it cost?",
+                                 "a":  "Free with your own skates; rentals are $7. You must pre-register even for free sessions.",
+                                 "source":  "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink"
+                             },
+                             {
+                                 "q":  "How long does it take?",
+                                 "a":  "About 1 hour.",
+                                 "source":  "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink"
+                             },
+                             {
+                                 "q":  "What should I wear or bring?",
+                                 "a":  "Bring your own skates and it\u0027s free; rentals are $7.",
+                                 "source":  "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink"
+                             },
+                             {
+                                 "q":  "Is it indoors?",
+                                 "a":  "No, it is outdoors.",
+                                 "source":  "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink"
+                             }
+                         ],
+        "season":  {
+                       "open_from":  "2026-11-27",
+                       "open_to":  "2027-02-15",
+                       "note":  "Fri Nov 27, 2026 - Mon Feb 15, 2027, weather permitting."
+                   },
+        "description":  "A Chicago Park District rink on the Midway Plaisance in Hyde Park, next to the University of Chicago. It also hosts themed nights such as a community bonfire, a holiday skate with Santa, glow skates and a Valentine\u0027s skate.",
+        "price_note":  "Open skate free with own skates; rental $7. Pre-registration required even for free sessions. Registration opens on Mondays at noon about two weeks ahead.",
+        "energy":  "active",
+        "vibe":  "mixed",
+        "taste_checked":  "2026-11-13",
+        "genre":  "play",
+        "min_minutes":  30,
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
         "closed_dates":  [
                              "2026-12-25"
                          ],
@@ -12170,12 +12271,7 @@
                                                   "19:00"
                                               ]
                                           ],
-                           "2027-01-01":  [
-                                              [
-                                                  "12:00",
-                                                  "19:00"
-                                              ]
-                                          ],
+                           "2027-01-01":  "unknown",
                            "2027-01-02":  [
                                               [
                                                   "12:00",
@@ -12207,67 +12303,15 @@
                                               ]
                                           ]
                        },
-        "hook":  "Free skating in Hyde Park if you bring your own skates",
-        "moods":  [
-                      "outdoorsy",
-                      "active",
-                      "cheap"
-                  ],
-        "good_for":  [
-                         "date",
-                         "friends",
-                         "family"
-                     ],
-        "good_to_know":  [
-                             {
-                                 "q":  "How old do you have to be?",
-                                 "a":  "All ages.",
-                                 "source":  "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink"
-                             },
-                             {
-                                 "q":  "Do I need to book?",
-                                 "a":  "Yes, pre-register online; it opens Mondays at noon, about 2 weeks ahead.",
-                                 "source":  "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink"
-                             },
-                             {
-                                 "q":  "What does it cost?",
-                                 "a":  "Free with your own skates; rentals are $7. You must pre-register even for free sessions.",
-                                 "source":  "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink"
-                             },
-                             {
-                                 "q":  "How long does it take?",
-                                 "a":  "About 1 hour.",
-                                 "source":  "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink"
-                             },
-                             {
-                                 "q":  "What should I wear or bring?",
-                                 "a":  "Bring your own skates and it\u0027s free; rentals are $7.",
-                                 "source":  "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink"
-                             },
-                             {
-                                 "q":  "Is it indoors?",
-                                 "a":  "No, it is outdoors.",
-                                 "source":  "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink"
-                             }
-                         ],
-        "hours_note":  "Open skate hours in effect Nov 30, 2026 - Feb 15, 2027. Holiday schedule on Nov 27-29, Dec 19-Jan 4, Jan 18 and Feb 15: open skate 12-7pm every day. Closed Christmas Day; shorter hours Christmas Eve (times not posted). Other sessions: Senior Skate Thu 11am-12pm, hockey programs Wed/Sat/Sun mornings or evenings. Pre-register for every session.",
-        "season":  {
-                       "open_from":  "2026-11-27",
-                       "open_to":  "2027-02-15",
-                       "note":  "Fri Nov 27, 2026 - Mon Feb 15, 2027, weather permitting."
-                   },
-        "description":  "A Chicago Park District rink on the Midway Plaisance in Hyde Park, next to the University of Chicago. It also hosts themed nights such as a community bonfire, a holiday skate with Santa, glow skates and a Valentine\u0027s skate.",
-        "price_note":  "Open skate free with own skates; rental $7. Pre-registration required even for free sessions. Registration opens on Mondays at noon about two weeks ahead.",
-        "energy":  "active",
-        "vibe":  "mixed",
-        "taste_checked":  "2026-11-13",
-        "genre":  "play",
-        "min_minutes":  30,
-        "weather":  {
-                        "wind_sensitive":  false,
-                        "snow_friendly":  true,
-                        "rain_ok":  false
-                    },
+        "hours_note":  "Open skate hours in effect Nov 30, 2026 - Feb 15, 2027. Holiday schedule on Nov 27-29, Dec 19-Jan 4, Jan 18 and Feb 15: open skate 12-7pm every day. Closed Christmas Day; shorter hours Christmas Eve (times not posted). Other sessions: Senior Skate Thu 11am-12pm, hockey programs Wed/Sat/Sun mornings or evenings. Pre-register for every session. Open skate is not listed for Fri Jan 1, 2027 on the rink page (hours not posted), so call before going.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-12",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/midway-plaisance-ice-rink",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-12-25"
+                                                     ]
+                     },
         "sid":  82,
         "photos":  [
                        {
@@ -13754,7 +13798,6 @@
                          "checked_on":  "2026-11-12",
                          "evidence_url":  "https://www.artic.edu/visit"
                      },
-        "hook":  "Major art museum, open until 8pm on Thursdays",
         "moods":  [
                       "artsy",
                       "quiet",
@@ -13833,6 +13876,7 @@
                           "kind":  "classic",
                           "reason":  "One of the country\u0027s great art museums"
                       },
+        "hook":  "Major art museum",
         "sid":  91,
         "photos":  [
                        {
@@ -14079,7 +14123,6 @@
                          "checked_on":  "2026-11-12",
                          "evidence_url":  "https://mcachicago.org/visit"
                      },
-        "hook":  "Contemporary art, open until 9pm on Tuesdays",
         "moods":  [
                       "artsy",
                       "quiet"
@@ -14136,6 +14179,7 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "hook":  "Contemporary art",
         "sid":  93,
         "photos":  [
                        {
@@ -16704,44 +16748,6 @@
                          "evidence_url":  "https://www.garfieldconservatory.org/visit/"
                      },
         "last_entry_before_close_min":  45,
-        "date_hours":  {
-                           "2026-11-26":  [
-                                              [
-                                                  "10:00",
-                                                  "17:00"
-                                              ]
-                                          ],
-                           "2026-11-27":  [
-                                              [
-                                                  "10:00",
-                                                  "17:00"
-                                              ]
-                                          ],
-                           "2026-12-24":  [
-                                              [
-                                                  "10:00",
-                                                  "17:00"
-                                              ]
-                                          ],
-                           "2026-12-25":  [
-                                              [
-                                                  "10:00",
-                                                  "17:00"
-                                              ]
-                                          ],
-                           "2026-12-31":  [
-                                              [
-                                                  "10:00",
-                                                  "17:00"
-                                              ]
-                                          ],
-                           "2027-01-01":  [
-                                              [
-                                                  "10:00",
-                                                  "17:00"
-                                              ]
-                                          ]
-                       },
         "hook":  "Tropical plants under glass on a cold day",
         "moods":  [
                       "relaxing",
@@ -16803,6 +16809,19 @@
                           "kind":  "classic",
                           "reason":  "Big glass-domed conservatory of tropical plants"
                       },
+        "date_hours":  {
+                           "2026-11-26":  "unknown",
+                           "2026-11-27":  [
+                                              [
+                                                  "10:00",
+                                                  "17:00"
+                                              ]
+                                          ],
+                           "2026-12-24":  "unknown",
+                           "2026-12-25":  "unknown",
+                           "2026-12-31":  "unknown",
+                           "2027-01-01":  "unknown"
+                       },
         "sid":  106,
         "photos":  [
                        {
@@ -17067,11 +17086,6 @@
         "closed_dates":  [
 
                          ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://www.lpzoo.org/visit/"
-                     },
         "hook":  "A free zoo open every day of the year",
         "moods":  [
                       "outdoorsy",
@@ -17132,6 +17146,50 @@
                           "kind":  "classic",
                           "reason":  "Free zoo open 365 days a year"
                       },
+        "date_hours":  {
+                           "2026-11-26":  [
+                                              [
+                                                  "10:00",
+                                                  "17:00"
+                                              ]
+                                          ],
+                           "2026-12-24":  [
+                                              [
+                                                  "10:00",
+                                                  "17:00"
+                                              ]
+                                          ],
+                           "2026-12-25":  [
+                                              [
+                                                  "10:00",
+                                                  "17:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  [
+                                              [
+                                                  "10:00",
+                                                  "17:00"
+                                              ]
+                                          ],
+                           "2027-01-01":  [
+                                              [
+                                                  "10:00",
+                                                  "17:00"
+                                              ]
+                                          ]
+                       },
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-12",
+                         "evidence_url":  "https://www.lpzoo.org/visit/",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-11-26",
+                                                         "2026-12-24",
+                                                         "2026-12-25",
+                                                         "2026-12-31",
+                                                         "2027-01-01"
+                                                     ]
+                     },
         "sid":  108,
         "photos":  [
                        {
@@ -18373,11 +18431,6 @@
         "closed_dates":  [
 
                          ],
-        "verified":  {
-                         "status":  "closed",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://nhccmuseum.org/"
-                     },
         "genre":  "eat-drink",
         "hook":  "Cheesemaker-led tours of a restored one-kettle factory",
         "moods":  [
@@ -18411,11 +18464,6 @@
                              }
                          ],
         "price_note":  "Admission price not posted",
-        "season":  {
-                       "open_from":  "2027-05-01",
-                       "open_to":  "2026-10-31",
-                       "note":  "Open May 1st through October 31st; 2027 dates not confirmed yet."
-                   },
         "description":  "A cheesemaking history museum in Monroe, Wisconsin, the self-styled \u0027Gateway to Cheese Country\u0027, with tours led by veteran cheesemakers and docents. The campus includes the restored Imobersteg Farmstead Cheese Factory, a one-kettle factory that once made Brick, Swiss and Limburger.",
         "energy":  "easy",
         "vibe":  "quiet",
@@ -18426,6 +18474,16 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "season":  {
+                       "open_from":  "2027-05-01",
+                       "open_to":  "2027-10-31",
+                       "note":  "Open May 1 through October 31 each year. 2027 dates not announced."
+                   },
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://nhccmuseum.org/"
+                     },
         "sid":  116,
         "photos":  [
                        {
@@ -19680,11 +19738,6 @@
         "booking":  "recommended",
         "phone":  "312-337-3992",
         "website":  "https://www.secondcity.com/chicago",
-        "source_urls":  [
-                            "https://www.secondcity.com/chicago",
-                            "https://www.secondcity.com/locations",
-                            "https://www.secondcity.com/"
-                        ],
         "closed_dates":  [
 
                          ],
@@ -19767,11 +19820,6 @@
         "genre":  "shows-nights",
         "age_note":  "13+ unless a show says otherwise; ages 13-17 with an adult. Family shows welcome kids",
         "min_minutes":  120,
-        "verified":  {
-                         "status":  "unverified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.google.com/maps/search/The+Second+City+1616+N+Wells+St+Chicago+IL+60614"
-                     },
         "deal":  {
                      "text":  "25% off select shows, code DEALS2026",
                      "kind":  "discount",
@@ -19789,6 +19837,16 @@
                           "reason":  "Sketch and improv theater founded in Chicago in December 1959",
                           "src":  "https://www.secondcity.com/about"
                       },
+        "source_urls":  [
+                            "https://www.secondcity.com/locations",
+                            "https://www.secondcity.com/chicago",
+                            "https://www.secondcity.com/"
+                        ],
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.secondcity.com/locations"
+                     },
         "sid":  125,
         "photos":  [
                        {
@@ -20856,7 +20914,6 @@
                          "checked_on":  "2026-11-12",
                          "evidence_url":  "https://kingstonmines.com/"
                      },
-        "hook":  "Two blues stages trading sets until 4am",
         "moods":  [
                       "loud",
                       "boozy"
@@ -20914,6 +20971,7 @@
                           "reason":  "Chicago blues center since 1968, two stages trading sets",
                           "src":  "https://kingstonmines.com/"
                       },
+        "hook":  "Two blues stages trading sets",
         "sid":  132,
         "photos":  [
                        {
@@ -23082,11 +23140,6 @@
         "booking":  "required",
         "phone":  "312-243-3100",
         "website":  "https://kaisertiger.com/curling",
-        "source_urls":  [
-                            "https://kaisertiger.com/",
-                            "https://kaisertiger.com/curling",
-                            "https://kaisertiger.com/games"
-                        ],
         "closed_dates":  [
 
                          ],
@@ -23182,11 +23235,6 @@
                                   ]
                               ]
                   },
-        "verified":  {
-                         "status":  "unverified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.google.com/maps/search/Kaiser+Tiger+1415+W+Randolph+St+Chicago"
-                     },
         "genre":  "play",
         "age_note":  "Curling: best for kids 12 and over (heavy stones), no more than one child per adult",
         "weather":  {
@@ -23194,6 +23242,16 @@
                         "snow_friendly":  true,
                         "rain_ok":  false
                     },
+        "source_urls":  [
+                            "https://kaisertiger.com/curling",
+                            "https://kaisertiger.com/",
+                            "https://kaisertiger.com/games"
+                        ],
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://kaisertiger.com/curling"
+                     },
         "sid":  149,
         "photos":  [
                        {
@@ -23377,9 +23435,6 @@
         "age_note":  "Varies by class; 21+ for BYOB and adults-only sessions; kids\u0027 classes separate",
         "phone":  "",
         "website":  "https://www.colorcocktailfactory.com/",
-        "source_urls":  [
-                            "https://www.colorcocktailfactory.com/"
-                        ],
         "closed_dates":  [
 
                          ],
@@ -23474,20 +23529,23 @@
                                   ]
                               ]
                   },
-        "hours_note":  "Every visit is a booked class: pick a date and time online.",
         "booking":  "required",
         "booking_url":  "https://www.colorcocktailfactory.com/",
-        "verified":  {
-                         "status":  "unverified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.google.com/maps/search/Color+Cocktail+Factory+1142+W+18th+St+Chicago"
-                     },
         "genre":  "make-something",
         "weather":  {
                         "wind_sensitive":  false,
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "source_urls":  [
+                            "https://www.colorcocktailfactory.com/"
+                        ],
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.colorcocktailfactory.com/"
+                     },
+        "hours_note":  "Every visit is a booked class. Class times vary; see booking page.",
         "sid":  151,
         "photos":  [
                        {
@@ -23591,7 +23649,6 @@
                                               ]
                                           ]
                        },
-        "hook":  "Dim piano bar with live music until 4am",
         "moods":  [
                       "boozy",
                       "cozy",
@@ -23638,6 +23695,7 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "hook":  "Dim piano bar with live music",
         "sid":  152,
         "photos":  [
                        {
@@ -24827,10 +24885,6 @@
         "age_note":  "Varies by workshop (some family-friendly; wine/cocktail ones are adult)",
         "phone":  "773-657-5507",
         "website":  "https://www.aboveaveragecandlestudio.com/",
-        "source_urls":  [
-                            "https://www.aboveaveragecandlestudio.com/",
-                            "https://www.aboveaveragecandlestudio.com/pick-your-experience"
-                        ],
         "closed_dates":  [
 
                          ],
@@ -24924,17 +24978,21 @@
         "hours_note":  "Every visit is a booked workshop: pick a date and time online.",
         "booking":  "required",
         "booking_url":  "https://www.aboveaveragecandlestudio.com/",
-        "verified":  {
-                         "status":  "unverified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.google.com/maps/search/Above+Average+Candle+Studio+3414+W+Foster+Ave+Chicago"
-                     },
         "genre":  "make-something",
         "weather":  {
                         "wind_sensitive":  false,
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "source_urls":  [
+                            "https://www.aboveaveragecandlestudio.com/pick-your-experience",
+                            "https://www.aboveaveragecandlestudio.com/"
+                        ],
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.aboveaveragecandlestudio.com/pick-your-experience"
+                     },
         "sid":  167,
         "photos":  [
                        {
@@ -25534,9 +25592,6 @@
         "age_note":  "All ages until 9 pm; 21+ after 9 pm; ID after 8 pm",
         "phone":  "773-227-5800",
         "website":  "https://www.drbowl.com/",
-        "source_urls":  [
-                            "https://www.drbowl.com/"
-                        ],
         "closed_dates":  [
 
                          ],
@@ -25626,12 +25681,6 @@
                                   ]
                               ]
                   },
-        "hours_note":  "Last lane entry 11:30 pm Sun-Thu and midnight Fri-Sat; last call 12:30 am. ID after 8 pm, 21+ after 9 pm. Cosmic Bowl Friday and Saturday 7 pm to midnight.",
-        "verified":  {
-                         "status":  "conflicting",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.google.com/maps/search/Diversey+River+Bowl+2211+W+Diversey+Pkwy+Chicago"
-                     },
         "tags":  [
                      "friends",
                      "date",
@@ -25655,6 +25704,15 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "source_urls":  [
+                            "https://www.drbowl.com/"
+                        ],
+        "verified":  {
+                         "status":  "conflicting",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.drbowl.com/"
+                     },
+        "hours_note":  "No entry after 11:30 pm Sun–Thu, midnight Fri–Sat; last call 12:30 am. ID after 8 pm, 21+ after 9 pm. Cosmic Bowl Friday and Saturday 7 pm to midnight.",
         "sid":  175,
         "photos":  [
 
@@ -27103,11 +27161,6 @@
                             "https://chi.kingspa.com/pricing/",
                             "https://chi.kingspa.com/sauna-healing-rooms/"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://chi.kingspa.com/pricing/"
-                     },
         "hook":  "Nine themed sauna rooms, open around the clock",
         "moods":  [
                       "relaxing",
@@ -27166,6 +27219,18 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-12",
+                         "evidence_url":  "https://chi.kingspa.com/pricing/",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-11-26",
+                                                         "2026-12-24",
+                                                         "2026-12-25",
+                                                         "2026-12-31",
+                                                         "2027-01-01"
+                                                     ]
+                     },
         "sid":  183,
         "photos":  [
                        {
@@ -30389,9 +30454,6 @@
                               ]
                   },
         "season":  null,
-        "closed_dates":  [
-
-                         ],
         "date_hours":  {
                            "2026-11-29":  [
                                               [
@@ -30413,11 +30475,6 @@
                             "https://www.yogasoundbath.com/",
                             "https://www.yogasoundbath.com/group-events"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://www.yogasoundbath.com/group-events"
-                     },
         "hook":  "Lie on a mat while crystal bowls and gongs play",
         "moods":  [
                       "relaxing",
@@ -30462,6 +30519,17 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "closed_dates":  [
+                             "2026-11-26"
+                         ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-12",
+                         "evidence_url":  "https://www.yogasoundbath.com/group-events",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-11-26"
+                                                     ]
+                     },
         "sid":  198,
         "photos":  [
                        {
@@ -30539,10 +30607,6 @@
                               ]
                   },
         "season":  null,
-        "closed_dates":  [
-                             "2026-11-26",
-                             "2026-12-25"
-                         ],
         "booking":  "walk-in",
         "age_note":  "all ages",
         "phone":  "312-747-4300",
@@ -30614,6 +30678,10 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-12-25"
+                         ],
         "sid":  199,
         "photos":  [
                        {
@@ -30698,11 +30766,6 @@
         "closed_dates":  [
 
                          ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://www.chicago.gov/city/en/depts/dca/supp_info/millennium_park.html"
-                     },
         "hook":  "Walk under the Bean and see the skyline reflected",
         "moods":  [
                       "outdoorsy",
@@ -30766,6 +30829,50 @@
                           "kind":  "only",
                           "reason":  "The mirrored Bean reflecting Chicago\u0027s skyline"
                       },
+        "date_hours":  {
+                           "2026-11-26":  [
+                                              [
+                                                  "06:00",
+                                                  "23:00"
+                                              ]
+                                          ],
+                           "2026-12-24":  [
+                                              [
+                                                  "06:00",
+                                                  "23:00"
+                                              ]
+                                          ],
+                           "2026-12-25":  [
+                                              [
+                                                  "06:00",
+                                                  "23:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  [
+                                              [
+                                                  "06:00",
+                                                  "23:00"
+                                              ]
+                                          ],
+                           "2027-01-01":  [
+                                              [
+                                                  "06:00",
+                                                  "23:00"
+                                              ]
+                                          ]
+                       },
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-12",
+                         "evidence_url":  "https://www.chicago.gov/city/en/depts/dca/supp_info/millennium_park.html",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-11-26",
+                                                         "2026-12-24",
+                                                         "2026-12-25",
+                                                         "2026-12-31",
+                                                         "2027-01-01"
+                                                     ]
+                     },
         "sid":  200,
         "photos":  [
                        {
@@ -31013,11 +31120,6 @@
         "closed_dates":  [
 
                          ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://www.chicago.gov/city/en/sites/chicagoriverwalk/home.html"
-                     },
         "hook":  "1.25 miles at water level through downtown",
         "moods":  [
                       "outdoorsy",
@@ -31075,6 +31177,50 @@
                           "kind":  "classic",
                           "reason":  "River-level walk through downtown\u0027s canyon of famous architecture"
                       },
+        "date_hours":  {
+                           "2026-11-26":  [
+                                              [
+                                                  "06:00",
+                                                  "23:00"
+                                              ]
+                                          ],
+                           "2026-12-24":  [
+                                              [
+                                                  "06:00",
+                                                  "23:00"
+                                              ]
+                                          ],
+                           "2026-12-25":  [
+                                              [
+                                                  "06:00",
+                                                  "23:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  [
+                                              [
+                                                  "06:00",
+                                                  "23:00"
+                                              ]
+                                          ],
+                           "2027-01-01":  [
+                                              [
+                                                  "06:00",
+                                                  "23:00"
+                                              ]
+                                          ]
+                       },
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-12",
+                         "evidence_url":  "https://www.chicago.gov/city/en/sites/chicagoriverwalk/home.html",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-11-26",
+                                                         "2026-12-24",
+                                                         "2026-12-25",
+                                                         "2026-12-31",
+                                                         "2027-01-01"
+                                                     ]
+                     },
         "sid":  202,
         "photos":  [
                        {
@@ -31147,14 +31293,6 @@
                             "https://artonthemart.com/",
                             "https://artonthemart.com/visit"
                         ],
-        "closed_dates":  [
-
-                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://artonthemart.com/"
-                     },
         "hook":  "Digital art projected across the Merchandise Mart",
         "moods":  [
                       "artsy",
@@ -31223,6 +31361,19 @@
                           "reason":  "One of the world\u0027s largest digital art platforms, on theMART",
                           "src":  "https://artonthemart.com/"
                       },
+        "closed_dates":  [
+                             "2026-12-31",
+                             "2027-01-01"
+                         ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-12",
+                         "evidence_url":  "https://artonthemart.com/",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-12-31",
+                                                         "2027-01-01"
+                                                     ]
+                     },
         "sid":  203,
         "photos":  [
                        {
@@ -31300,15 +31451,6 @@
                               ]
                   },
         "season":  null,
-        "closed_dates":  [
-                             "2026-11-26",
-                             "2026-11-27",
-                             "2026-11-28",
-                             "2026-12-24",
-                             "2026-12-25",
-                             "2026-12-26",
-                             "2026-12-31"
-                         ],
         "booking":  "walk-in",
         "age_note":  "all ages",
         "phone":  "312-943-9090",
@@ -31316,11 +31458,6 @@
         "source_urls":  [
                             "https://www.newberry.org/visit"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://www.newberry.org/visit"
-                     },
         "hook":  "Free galleries of rare books, maps and manuscripts",
         "moods":  [
                       "quiet",
@@ -31370,6 +31507,26 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "closed_dates":  [
+                             "2026-11-26",
+                             "2026-11-27",
+                             "2026-11-28",
+                             "2026-12-24",
+                             "2026-12-25",
+                             "2026-12-26",
+                             "2026-12-31"
+                         ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-12",
+                         "evidence_url":  "https://www.newberry.org/visit",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-11-26",
+                                                         "2026-12-24",
+                                                         "2026-12-25",
+                                                         "2026-12-31"
+                                                     ]
+                     },
         "sid":  204,
         "photos":  [
                        {
@@ -31476,7 +31633,6 @@
                          "evidence_url":  "https://driehausmuseum.org/visit/plan-your-visit"
                      },
         "last_entry_before_close_min":  60,
-        "hook":  "Gilded Age mansion, pay what you wish Wednesdays 4-7pm",
         "moods":  [
                       "fancy",
                       "artsy",
@@ -31544,6 +31700,7 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "hook":  "Gilded Age mansion",
         "sid":  205,
         "photos":  [
                        {
@@ -31634,7 +31791,6 @@
                          "checked_on":  "2026-11-12",
                          "evidence_url":  "https://www.mocp.org/visit/"
                      },
-        "hook":  "Free photography museum, open until 8pm Thursdays",
         "moods":  [
                       "artsy",
                       "quiet",
@@ -31695,6 +31851,7 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "hook":  "Free photography museum",
         "sid":  206,
         "photos":  [
                        {
@@ -32111,11 +32268,6 @@
         "closed_dates":  [
 
                          ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-12",
-                         "evidence_url":  "https://gracelandcemetery.org/kh"
-                     },
         "hook":  "A peaceful walk past the graves of Chicago architects",
         "moods":  [
                       "outdoorsy",
@@ -32171,6 +32323,50 @@
                                          ],
                         "idea":  "Idea: take the self-guided audio tour past the graves of Chicago\u0027s architects."
                     },
+        "date_hours":  {
+                           "2026-11-26":  [
+                                              [
+                                                  "08:00",
+                                                  "16:00"
+                                              ]
+                                          ],
+                           "2026-12-24":  [
+                                              [
+                                                  "08:00",
+                                                  "16:00"
+                                              ]
+                                          ],
+                           "2026-12-25":  [
+                                              [
+                                                  "08:00",
+                                                  "16:00"
+                                              ]
+                                          ],
+                           "2026-12-31":  [
+                                              [
+                                                  "08:00",
+                                                  "16:00"
+                                              ]
+                                          ],
+                           "2027-01-01":  [
+                                              [
+                                                  "08:00",
+                                                  "16:00"
+                                              ]
+                                          ]
+                       },
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-12",
+                         "evidence_url":  "https://gracelandcemetery.org/kh",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-11-26",
+                                                         "2026-12-24",
+                                                         "2026-12-25",
+                                                         "2026-12-31",
+                                                         "2027-01-01"
+                                                     ]
+                     },
         "sid":  209,
         "photos":  [
                        {
@@ -36000,7 +36196,6 @@
                          "checked_on":  "2026-11-12",
                          "evidence_url":  "https://www.chicagoparkdistrict.com/606"
                      },
-        "hook":  "Elevated trail on an old rail line, open until 11pm",
         "good_for":  [
                          "date",
                          "friends"
@@ -36057,6 +36252,7 @@
                           "kind":  "classic",
                           "reason":  "Elevated trail on a former rail line"
                       },
+        "hook":  "Elevated trail on an old rail line",
         "sid":  235,
         "photos":  [
                        {
@@ -37794,12 +37990,6 @@
                               ]
                   },
         "season":  null,
-        "closed_dates":  [
-                             "2026-11-25",
-                             "2026-11-26",
-                             "2026-11-27",
-                             "2026-11-28"
-                         ],
         "booking":  "walk-in",
         "age_note":  "all ages",
         "website":  "https://www.poetryfoundation.org/visit",
@@ -37860,6 +38050,12 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "closed_dates":  [
+                             "2026-11-25",
+                             "2026-11-26",
+                             "2026-11-27",
+                             "2026-11-28"
+                         ],
         "sid":  247,
         "photos":  [
                        {
@@ -38178,17 +38374,11 @@
                        ],
         "price_from":  69,
         "price_note":  "2027 Good Any Day ticket $69, or a 2027 Silver Pass (visits through Labor Day plus parking) for the same $69 until Nov 30. Processing fee up to $9.99 plus tax.",
-        "hours_note":  "Closed for the winter. 2027 opening day not announced yet.",
         "season":  {
                        "open_from":  null,
                        "open_to":  "2026-11-01",
                        "note":  "Closed for the season after Fright Fest. No holiday event at this park in 2026."
                    },
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-13",
-                         "evidence_url":  "https://www.sixflags.com/greatamerica/park-hours"
-                     },
         "moods":  [
                       "loud",
                       "outdoorsy"
@@ -38201,6 +38391,12 @@
                         "snow_friendly":  false,
                         "rain_ok":  false
                     },
+        "hours_note":  "The park is closed for now. 2027 opening day not announced yet.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.sixflags.com/greatamerica/park-hours"
+                     },
         "sid":  307,
         "photos":  [
                        {
@@ -39207,10 +39403,6 @@
         "age_note":  "All ages; Trail 8 is steep sand",
         "phone":  "219-926-1952",
         "website":  "https://www.in.gov/dnr/state-parks/parks-lakes/indiana-dunes-state-park/",
-        "source_urls":  [
-                            "https://www.in.gov/dnr/state-parks/parks-lakes/indiana-dunes-state-park/",
-                            "https://www.in.gov/dnr/state-parks/rates-and-fees/entrance-fees/"
-                        ],
         "good_for":  [
                          "friends",
                          "date"
@@ -39277,11 +39469,6 @@
                               ]
                   },
         "hours_note":  "Nature center 9 am-4 pm daily, closed on major state holidays.",
-        "verified":  {
-                         "status":  "unverified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.google.com/maps/search/Indiana+Dunes+State+Park+1600+N+25+E+Chesterton+IN"
-                     },
         "tags":  [
                      "friends",
                      "date",
@@ -39303,6 +39490,15 @@
                                          ],
                         "idea":  "Idea: take on the 3 Dune Challenge on Trail 8 for big Lake Michigan views."
                     },
+        "source_urls":  [
+                            "https://www.in.gov/dnr/state-parks/parks-lakes/indiana-dunes-state-park/",
+                            "https://www.in.gov/dnr/state-parks/rates-and-fees/entrance-fees/"
+                        ],
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.in.gov/dnr/state-parks/parks-lakes/indiana-dunes-state-park/"
+                     },
         "sid":  315,
         "photos":  [
                        {
@@ -40641,18 +40837,6 @@
                          "friends",
                          "family"
                      ],
-        "source_urls":  [
-                            "https://www.62escape.com/",
-                            "https://www.62escape.com/schaumburg",
-                            "https://www.62escape.com/faq",
-                            "https://morty.app/location/60-to-escape/schaumburg",
-                            "https://morty.app/attraction/51426/lockbuster-video",
-                            "https://morty.app/attraction/38069/cheesies-pizza-party",
-                            "https://morty.app/attraction/38070/magic-heist",
-                            "https://morty.app/attraction/38068/mystery-manor",
-                            "https://roomescapeartist.com/2025/01/22/60-escape-schaumburg-lockbuster-video-review/",
-                            "https://roomescapeartist.com/2023/02/03/chicago-illinois-escape-room-recommendations"
-                        ],
         "name":  "Escape room: 60 to Escape – Schaumburg (Woodfield Mall)",
         "award_note":  "TERPECA 2026 finalist · Best of Morty 2025",
         "moods":  [
@@ -40710,16 +40894,28 @@
         "hours_note":  "Game times change by day; book a slot online. Closed Thanksgiving.",
         "booking":  "required",
         "booking_url":  "https://www.62escape.com/schaumburg#bookexperience",
-        "verified":  {
-                         "status":  "unverified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.google.com/maps/search/60+to+Escape+Woodfield+Mall+Schaumburg"
-                     },
         "weather":  {
                         "wind_sensitive":  false,
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "source_urls":  [
+                            "https://www.62escape.com/schaumburg",
+                            "https://www.62escape.com/",
+                            "https://www.62escape.com/faq",
+                            "https://morty.app/location/60-to-escape/schaumburg",
+                            "https://morty.app/attraction/51426/lockbuster-video",
+                            "https://morty.app/attraction/38069/cheesies-pizza-party",
+                            "https://morty.app/attraction/38070/magic-heist",
+                            "https://morty.app/attraction/38068/mystery-manor",
+                            "https://roomescapeartist.com/2025/01/22/60-escape-schaumburg-lockbuster-video-review/",
+                            "https://roomescapeartist.com/2023/02/03/chicago-illinois-escape-room-recommendations"
+                        ],
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.62escape.com/schaumburg"
+                     },
         "sid":  288,
         "photos":  [
                        {
@@ -40799,16 +40995,6 @@
                          "friends",
                          "family"
                      ],
-        "source_urls":  [
-                            "https://www.62escape.com/",
-                            "https://www.62escape.com/illinois",
-                            "https://www.62escape.com/illinoisgames",
-                            "https://www.62escape.com/faq",
-                            "https://morty.app/location/60-to-escape/gurnee",
-                            "https://morty.app/attraction/4030/hidden-temple",
-                            "https://morty.app/game/4029/mystery-manor",
-                            "https://roomescapeartist.com/2023/02/03/chicago-illinois-escape-room-recommendations"
-                        ],
         "name":  "Escape room: 60 to Escape – Gurnee (Gurnee Mills)",
         "award_note":  "Best of Morty 2025",
         "moods":  [
@@ -40866,16 +41052,26 @@
         "hours_note":  "Game times change by day; book a slot online. Closed Thanksgiving.",
         "booking":  "required",
         "booking_url":  "https://www.62escape.com/illinois#bookexperience",
-        "verified":  {
-                         "status":  "unverified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.google.com/maps/search/60+to+Escape+Gurnee+Mills+6170+W+Grand+Ave+Gurnee"
-                     },
         "weather":  {
                         "wind_sensitive":  false,
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "source_urls":  [
+                            "https://www.62escape.com/illinois",
+                            "https://www.62escape.com/",
+                            "https://www.62escape.com/illinoisgames",
+                            "https://www.62escape.com/faq",
+                            "https://morty.app/location/60-to-escape/gurnee",
+                            "https://morty.app/attraction/4030/hidden-temple",
+                            "https://morty.app/game/4029/mystery-manor",
+                            "https://roomescapeartist.com/2023/02/03/chicago-illinois-escape-room-recommendations"
+                        ],
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.62escape.com/illinois"
+                     },
         "sid":  289,
         "photos":  [
                        {
@@ -40950,17 +41146,6 @@
                          "friends",
                          "family"
                      ],
-        "source_urls":  [
-                            "https://escapefactorchicago.com/",
-                            "https://escapefactorchicago.com/reserve-your-escape-room-oak-brook-elmhurst-chicago/",
-                            "https://morty.app/location/escape-factor/forest-park",
-                            "https://morty.app/game/4215/bonus-fun-time-game-show-challenge",
-                            "https://morty.app/blog/best-of-morty-2023",
-                            "https://www.forestparkreview.com/?p=73054",
-                            "https://www.yahoo.com/lifestyle/articles/rhode-island-one-best-escape-170347554.html",
-                            "https://roomescapeartist.com/2022/07/14/escape-factor-treehouse-raid-fort-knocks-review/",
-                            "https://roomescapeartist.com/2023/02/03/chicago-illinois-escape-room-recommendations"
-                        ],
         "name":  "Escape room: Escape Factor – Forest Park",
         "award_note":  "USA Today 10Best 2025: #3 escape room in the US",
         "moods":  [
@@ -41018,16 +41203,27 @@
         "hours_note":  "Game times change by day; book a slot online. Closed Thanksgiving and Christmas Day.",
         "booking":  "required",
         "booking_url":  "https://escapefactorchicago.com/reserve-your-escape-room-oak-brook-elmhurst-chicago/",
-        "verified":  {
-                         "status":  "unverified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.google.com/maps/search/Escape+Factor+7228+Madison+St+Forest+Park+IL"
-                     },
         "weather":  {
                         "wind_sensitive":  false,
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "source_urls":  [
+                            "https://escapefactorchicago.com/reserve-your-escape-room-oak-brook-elmhurst-chicago/",
+                            "https://escapefactorchicago.com/",
+                            "https://morty.app/location/escape-factor/forest-park",
+                            "https://morty.app/game/4215/bonus-fun-time-game-show-challenge",
+                            "https://morty.app/blog/best-of-morty-2023",
+                            "https://www.forestparkreview.com/?p=73054",
+                            "https://www.yahoo.com/lifestyle/articles/rhode-island-one-best-escape-170347554.html",
+                            "https://roomescapeartist.com/2022/07/14/escape-factor-treehouse-raid-fort-knocks-review/",
+                            "https://roomescapeartist.com/2023/02/03/chicago-illinois-escape-room-recommendations"
+                        ],
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://escapefactorchicago.com/reserve-your-escape-room-oak-brook-elmhurst-chicago/"
+                     },
         "sid":  290,
         "photos":  [
                        {
@@ -41411,9 +41607,47 @@
                        "open_to":  "2027-01-03",
                        "note":  "Holiday pop-up, closed Thanksgiving."
                    },
-        "closed_dates":  [
-                             "2026-11-26"
-                         ],
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-20",
+                                "end":  "2027-01-03"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "booking":  "recommended",
+        "age_note":  "All ages until 8 PM, then 21+ (Dec 12 is 21+ all day for a bar crawl; tables open after 7:30 PM)",
+        "phone":  "833-967-2682",
+        "website":  "https://www.santababybar.com/",
+        "source_urls":  [
+                            "https://www.santababybar.com/"
+                        ],
+        "moods":  [
+                      "festive",
+                      "boozy",
+                      "loud"
+                  ],
+        "energy":  "easy",
+        "vibe":  "lively",
+        "hook":  "A multi-level bar gone over-the-top Christmas",
+        "taste_checked":  "2026-11-13",
+        "good_for":  [
+                         "date",
+                         "friends"
+                     ],
+        "tags":  [
+                     "friends",
+                     "date",
+                     "holiday",
+                     "pop-up",
+                     "limited-time",
+                     "rainy-day",
+                     "bar"
+                 ],
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  false,
+                        "rain_ok":  true
+                    },
         "date_hours":  {
                            "2026-12-21":  [
                                               [
@@ -41447,52 +41681,19 @@
                                           ],
                            "2026-12-31":  "unknown"
                        },
-        "event_dates":  [
-                            {
-                                "start":  "2026-11-20",
-                                "end":  "2027-01-03"
-                            }
-                        ],
-        "end_date_confirmed":  true,
-        "booking":  "recommended",
-        "age_note":  "All ages until 8 PM, then 21+ (Dec 12 is 21+ all day for a bar crawl; tables open after 7:30 PM)",
-        "phone":  "833-967-2682",
-        "website":  "https://www.santababybar.com/",
-        "source_urls":  [
-                            "https://www.santababybar.com/"
-                        ],
+        "closed_dates":  [
+                             "2026-11-26"
+                         ],
         "verified":  {
                          "status":  "verified",
                          "checked_on":  "2026-11-13",
-                         "evidence_url":  "https://www.santababybar.com/"
+                         "evidence_url":  "https://www.santababybar.com/",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-11-26",
+                                                         "2026-12-24",
+                                                         "2026-12-25"
+                                                     ]
                      },
-        "moods":  [
-                      "festive",
-                      "boozy",
-                      "loud"
-                  ],
-        "energy":  "easy",
-        "vibe":  "lively",
-        "hook":  "A multi-level bar gone over-the-top Christmas",
-        "taste_checked":  "2026-11-13",
-        "good_for":  [
-                         "date",
-                         "friends"
-                     ],
-        "tags":  [
-                     "friends",
-                     "date",
-                     "holiday",
-                     "pop-up",
-                     "limited-time",
-                     "rainy-day",
-                     "bar"
-                 ],
-        "weather":  {
-                        "wind_sensitive":  false,
-                        "snow_friendly":  false,
-                        "rain_ok":  true
-                    },
         "sid":  293,
         "photos":  [
                        {
@@ -41920,7 +42121,6 @@
         "price_note":  "$10 per ticket, bought in advance; all sales final",
         "duration_minutes":  240,
         "hours":  null,
-        "hours_note":  "On Dec 12 the Metra Electric holiday train leaves University Park at 11 AM, reaches Millennium Station at 11:58 AM and heads back at 2:15 PM. Other lines and days run on their own timetables.",
         "season":  null,
         "event_dates":  [
                             {
@@ -41949,11 +42149,6 @@
                             "https://metra.com/HolidayTrains",
                             "https://metra.com/document/20261212holidaymedpdf"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-13",
-                         "evidence_url":  "https://metra.com/HolidayTrains"
-                     },
         "min_minutes":  120,
         "moods":  [
                       "festive",
@@ -41971,6 +42166,32 @@
                         "snow_friendly":  true,
                         "rain_ok":  true
                     },
+        "date_hours":  {
+                           "2026-12-12":  [
+                                              [
+                                                  "11:58",
+                                                  "14:15"
+                                              ]
+                                          ],
+                           "2026-12-13":  [
+                                              [
+                                                  "11:58",
+                                                  "14:15"
+                                              ]
+                                          ],
+                           "2026-12-19":  [
+                                              [
+                                                  "11:58",
+                                                  "14:15"
+                                              ]
+                                          ]
+                       },
+        "hours_note":  "On Dec 12, 13 and 19 the Metra Electric holiday train leaves University Park at 11 AM, reaches Millennium Station at 11:58 AM and heads back at 2:15 PM. It skips some stations. The Dec 5 trains run on other lines on their own timetables.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://metra.com/HolidayTrains"
+                     },
         "sid":  297,
         "photos":  [
                        {
@@ -42241,14 +42462,7 @@
         "duration_minutes":  60,
         "min_minutes":  60,
         "hours":  null,
-        "hours_note":  "Shows at 4:30 PM and 7 PM on show dates; pick a time when booking. Doors close when the show starts.",
         "season":  null,
-        "event_dates":  [
-                            {
-                                "start":  "2026-11-15",
-                                "end":  "2027-02-20"
-                            }
-                        ],
         "end_date_confirmed":  true,
         "booking":  "required",
         "age_note":  "12+; under 16 with an adult",
@@ -42258,11 +42472,6 @@
                             "https://feverup.com/m/418301",
                             "https://feverup.com/en/chicago/the-jury-experience"
                         ],
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-13",
-                         "evidence_url":  "https://feverup.com/m/418301"
-                     },
         "moods":  [
                       "nerdy",
                       "artsy"
@@ -42279,6 +42488,29 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-15T19:00"
+                            },
+                            {
+                                "start":  "2027-01-24T16:30"
+                            },
+                            {
+                                "start":  "2027-01-24T19:00"
+                            },
+                            {
+                                "start":  "2027-02-20T16:30"
+                            },
+                            {
+                                "start":  "2027-02-20T19:00"
+                            }
+                        ],
+        "hours_note":  "Three show dates only: Sun Nov 15 (7 PM), Sun Jan 24 and Sat Feb 20 (4:30 PM and 7 PM). Doors open 30 minutes before; no entry once the show starts.",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://feverup.com/m/418301"
+                     },
         "sid":  301,
         "photos":  [
                        {
@@ -43630,9 +43862,6 @@
                        },
         "last_entry_before_close_min":  null,
         "season":  null,
-        "closed_dates":  [
-                             "2026-11-26"
-                         ],
         "booking":  "walk-in",
         "age_note":  "All ages. Laser tag and bumper cars: 42 in. tall (laser tag recommended 7+). Go-karts: 54 in. to drive alone; 36-53 in. can ride with a paying driver 16+.",
         "phone":  "+1 630-953-7860",
@@ -43650,12 +43879,6 @@
         "booking_url":  null,
         "price_note":  "No admission; pay per attraction (tax included): laser tag $9.75, go-karts $9.75, glow mini golf $7.50, bumper cars $6, escape games $10 per guest, laser maze $4.75, VR $7-8 per game, mini bowling $5.50 per game. New FUN Card $3 activation.",
         "hours_note":  "Mon-Thu noon-9 pm, Fri noon-10 pm, Sat 11 am-10 pm, Sun 11 am-9 pm. Go-karts and laser tag open at 3 pm on weekdays (11 am weekends); during Thanksgiving break Nov 23-27 everything opens at noon. Sun Nov 15 opens to the public at 2 pm (private event). Closed Thanksgiving Day. December holiday hours not posted yet; last entry not posted.",
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-13",
-                         "evidence_url":  "https://enchanted.com/",
-                         "source":  "https://enchanted.com/"
-                     },
         "moods":  [
                       "loud",
                       "cheap"
@@ -43669,6 +43892,18 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "closed_dates":  [
+                             "2026-11-26"
+                         ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-13",
+                         "evidence_url":  "https://enchanted.com/",
+                         "source":  "https://enchanted.com/",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-11-26"
+                                                     ]
+                     },
         "sid":  256,
         "photos":  [
                        {
@@ -55671,11 +55906,6 @@
                             "https://events.pokemon.com/EventLocator/",
                             "https://fabtcg.com/en/locator/good-games-chicago"
                         ],
-        "verified":  {
-                         "status":  "unverified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.goodgamesna.com/contact-us/contact-ggchicago/"
-                     },
         "taste_checked":  "2026-11-14",
         "booking_url":  "https://events.ticketleap.com/events/goodgameschicago",
         "energy":  "chill",
@@ -55690,6 +55920,11 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "verified":  {
+                         "status":  "unverified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://events.ticketleap.com/events/goodgameschicago"
+                     },
         "sid":  370,
         "photos":  [
 
@@ -56817,7 +57052,6 @@
                      "jazz",
                      "cheap"
                  ],
-        "hook":  "Adventurous jazz and new music, tickets from $5",
         "description":  "A small North Center venue for creative jazz, new classical and experimental music. Good for a curious, listening-focused night out.",
         "highlights":  [
                            "Jazz, classical and experimental bookings",
@@ -56971,6 +57205,7 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "hook":  "Adventurous jazz and new music",
         "sid":  380,
         "photos":  [
                        {
@@ -57223,7 +57458,6 @@
                      "late-night",
                      "sing-along"
                  ],
-        "hook":  "Tiny zebra-striped piano bar, open till 2 or 3",
         "description":  "A tiny, old-school piano bar on a Gold Coast side street, decorated in zebra stripes, where a pianist plays requests and the room sings along late into the night. It fills up fast once the piano starts.",
         "highlights":  [
                            "Live piano and sing-alongs",
@@ -57310,6 +57544,7 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "hook":  "Tiny zebra-striped piano bar",
         "sid":  385,
         "photos":  [
                        {
@@ -57989,9 +58224,6 @@
                        "open_to":  "2027-02-15",
                        "note":  "Weather permitting."
                    },
-        "closed_dates":  [
-                             "2026-12-25"
-                         ],
         "date_hours":  {
                            "2026-11-27":  [
                                               [
@@ -58130,17 +58362,23 @@
         "vibe":  "mixed",
         "hook":  "Free outdoor skating in a tree-lined North Side park",
         "taste_checked":  "2026-11-14",
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/warren-park-ice-rink"
-                     },
         "hours_valid_to":  "2027-02-15",
         "weather":  {
                         "wind_sensitive":  false,
                         "snow_friendly":  true,
                         "rain_ok":  false
                     },
+        "closed_dates":  [
+                             "2026-12-25"
+                         ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/warren-park-ice-rink",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-12-25"
+                                                     ]
+                     },
         "sid":  391,
         "photos":  [
                        {
@@ -58466,17 +58704,6 @@
                        "open_to":  "2027-02-15",
                        "note":  "Weather permitting."
                    },
-        "closed_dates":  [
-                             "2026-12-25",
-                             "2027-01-20",
-                             "2027-01-21",
-                             "2027-01-27",
-                             "2027-01-28",
-                             "2027-02-03",
-                             "2027-02-04",
-                             "2027-02-10",
-                             "2027-02-11"
-                         ],
         "date_hours":  {
                            "2026-11-27":  [
                                               [
@@ -58611,17 +58838,31 @@
         "vibe":  "mixed",
         "hook":  "Free neighborhood outdoor rink in McKinley Park",
         "taste_checked":  "2026-11-14",
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/mckinley-ice-rink"
-                     },
         "hours_valid_to":  "2027-01-17",
         "weather":  {
                         "wind_sensitive":  false,
                         "snow_friendly":  true,
                         "rain_ok":  false
                     },
+        "closed_dates":  [
+                             "2026-12-25",
+                             "2027-01-20",
+                             "2027-01-21",
+                             "2027-01-27",
+                             "2027-01-28",
+                             "2027-02-03",
+                             "2027-02-04",
+                             "2027-02-10",
+                             "2027-02-11"
+                         ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/mckinley-ice-rink",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-12-25"
+                                                     ]
+                     },
         "sid":  393,
         "photos":  [
 
@@ -58702,17 +58943,6 @@
                        "open_to":  "2027-02-15",
                        "note":  "Weather permitting."
                    },
-        "closed_dates":  [
-                             "2026-12-25",
-                             "2027-01-20",
-                             "2027-01-21",
-                             "2027-01-27",
-                             "2027-01-28",
-                             "2027-02-03",
-                             "2027-02-04",
-                             "2027-02-10",
-                             "2027-02-11"
-                         ],
         "date_hours":  {
                            "2026-11-27":  [
                                               [
@@ -58847,16 +59077,30 @@
         "vibe":  "mixed",
         "hook":  "Free outdoor skating near Midway",
         "taste_checked":  "2026-11-14",
-        "verified":  {
-                         "status":  "verified",
-                         "checked_on":  "2026-11-14",
-                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/wentworth-ice-rink"
-                     },
         "weather":  {
                         "wind_sensitive":  false,
                         "snow_friendly":  true,
                         "rain_ok":  false
                     },
+        "closed_dates":  [
+                             "2026-12-25",
+                             "2027-01-20",
+                             "2027-01-21",
+                             "2027-01-27",
+                             "2027-01-28",
+                             "2027-02-03",
+                             "2027-02-04",
+                             "2027-02-10",
+                             "2027-02-11"
+                         ],
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://www.chicagoparkdistrict.com/parks-facilities/wentworth-ice-rink",
+                         "holiday_hours_confirmed":  [
+                                                         "2026-12-25"
+                                                     ]
+                     },
         "sid":  394,
         "photos":  [
                        {
@@ -59363,6 +59607,148 @@
                            "file":  "photos/ev-blue-man-holiday-surprise-2026-1.jpg",
                            "credit":  "Broadway In Chicago",
                            "page_url":  "https://www.broadwayinchicago.com/?p=35183"
+                       }
+                   ]
+    },
+    {
+        "id":  "ev-richardson-christmas-tree-farm-2026",
+        "name":  "Richardson Christmas Tree Farm (cut your own tree)",
+        "kind":  "event",
+        "category":  "seasonal",
+        "genre":  "nature-animals",
+        "tags":  [
+                     "date",
+                     "friends",
+                     "holiday",
+                     "winter",
+                     "limited-time",
+                     "christmas-tree",
+                     "outdoor",
+                     "day-trip",
+                     "dog-friendly"
+                 ],
+        "hook":  "Hunt down and cut your own Christmas tree on a 75-acre farm",
+        "description":  "A big choose-and-cut Christmas tree farm near the Wisconsin line, with more than 50,000 trees of many kinds spread over 75 acres. Walk the rows to pick your tree, then warm up in the heated barn with fresh donuts and browse hundreds of wreaths and decorations.",
+        "highlights":  [
+                           "50,000+ trees on 75 acres",
+                           "Cut your own or pick a pre-cut tree",
+                           "Staff shake, net and can haul your tree",
+                           "Free wagon ride to the fields on weekends",
+                           "Heated sales barn with restrooms and fresh donuts",
+                           "Free hot chocolate or coffee",
+                           "Wreaths, garland, fudge and gifts",
+                           "Leashed dogs welcome"
+                       ],
+        "address":  "9407 Richardson Rd, Spring Grove, IL 60081",
+        "neighborhood":  "Spring Grove",
+        "lat":  42.4638717,
+        "lng":  -88.2284779,
+        "indoor_outdoor":  "outdoor",
+        "weather":  {
+                        "wind_sensitive":  false,
+                        "snow_friendly":  true,
+                        "rain_ok":  false
+                    },
+        "price_from":  0,
+        "price_level":  "free",
+        "price_note":  "Free entry. Current posted tree prices (no year given, so they may change): cut-your-own $98 plus tax, any size; select field trees from $69; pre-cut trees $98-$350 plus tax. Cash, check or card.",
+        "duration_minutes":  120,
+        "min_minutes":  60,
+        "hours":  {
+                      "mon":  [
+                                  [
+                                      "09:00",
+                                      "18:00"
+                                  ]
+                              ],
+                      "tue":  [
+                                  [
+                                      "09:00",
+                                      "18:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "09:00",
+                                      "18:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "09:00",
+                                      "18:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "09:00",
+                                      "18:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "09:00",
+                                      "18:00"
+                                  ]
+                              ],
+                      "sun":  [
+                                  [
+                                      "09:00",
+                                      "18:00"
+                                  ]
+                              ]
+                  },
+        "season":  {
+                       "open_from":  "2026-11-27",
+                       "open_to":  "2026-12-20",
+                       "note":  "Open the day after Thanksgiving through December 20."
+                   },
+        "event_dates":  [
+                            {
+                                "start":  "2026-11-27",
+                                "end":  "2026-12-20"
+                            }
+                        ],
+        "end_date_confirmed":  true,
+        "hours_valid_to":  "2026-12-20",
+        "closed_dates":  [
+
+                         ],
+        "booking":  "walk-in",
+        "age_note":  "",
+        "phone":  "815-675-9729",
+        "website":  "https://richardsonadventurefarm.com/ChristmasTreeFarm/Home",
+        "source_urls":  [
+                            "https://richardsonadventurefarm.com/ChristmasTreeFarm/Home",
+                            "https://richardsonadventurefarm.com/ChristmasTreeFarm/Hours",
+                            "https://richardsonadventurefarm.com/ChristmasTreeFarm/Pricing",
+                            "https://richardsonadventurefarm.com/ChristmasTreeFarm/Directions",
+                            "https://richardsonadventurefarm.com/"
+                        ],
+        "good_for":  [
+                         "friends",
+                         "date",
+                         "family"
+                     ],
+        "moods":  [
+                      "cozy",
+                      "outdoorsy",
+                      "romantic"
+                  ],
+        "energy":  "easy",
+        "vibe":  "mixed",
+        "verified":  {
+                         "status":  "verified",
+                         "checked_on":  "2026-11-14",
+                         "evidence_url":  "https://richardsonadventurefarm.com/ChristmasTreeFarm/Hours"
+                     },
+        "hours_note":  "The tree fields have no lights, so come before sunset to pick a tree; the pre-cut trees are in a lit area.",
+        "sid":  410,
+        "photos":  [
+                       {
+                           "file":  "photos/ev-richardson-christmas-tree-farm-2026-1.jpg",
+                           "credit":  "Richardson Christmas Tree Farm website",
+                           "page_url":  "https://richardsonadventurefarm.com/ChristmasTreeFarm/Home"
                        }
                    ]
     }
