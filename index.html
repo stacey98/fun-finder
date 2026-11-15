@@ -530,7 +530,7 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .btn-primary{flex:1;min-width:0;height:54px;border-radius:15px;border:0;background:var(--accent);color:var(--on-accent);font:700 16px var(--f-body);display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;padding:0 14px}
 .btn-primary .i{width:18px;height:18px}
 .btn-primary.off{background:var(--paper-2);color:var(--ink);border:1px solid var(--rule-strong)}
-.btn-sq{flex:none;width:58px;height:54px;border-radius:15px;border:1px solid var(--rule-strong);background:var(--paper-2);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font:600 10.5px/1 var(--f-body);text-decoration:none}
+.btn-sq{flex:none;width:auto;min-width:58px;padding:0 5px;box-sizing:border-box;white-space:nowrap;height:54px;border-radius:15px;border:1px solid var(--rule-strong);background:var(--paper-2);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font:600 10.5px/1 var(--f-body);text-decoration:none}
 .btn-sq .i{width:19px;height:19px}
 .btn-sq[aria-disabled="true"]{opacity:.4;pointer-events:none}
 .btn-outline{width:100%;height:52px;border-radius:15px;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);font:700 15px var(--f-body);display:flex;align-items:center;justify-content:center;gap:8px}
@@ -1816,7 +1816,16 @@ svg.gi{width:20px;height:20px;flex:none}
 /* v5.21 languages + Only in Chicago */
 .lang-btn{font:700 12px/1 var(--f-body);letter-spacing:.02em;color:var(--ink);width:auto;min-width:44px;padding:0 6px}
 @media (max-width:359px){ .lang-btn{display:none} }
-.lang-seg button{min-width:0;padding:0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lang-seg button{min-width:0;padding:0 2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+:lang(ko){word-break:keep-all;overflow-wrap:break-word}   /* v5.22 (tester L3): Korean wraps between words ("과학 박물관"), never inside one */
+.dt-gr{margin-top:10px;min-height:20px}
+.dt-gr-l{margin:0;font:500 14px/1.35 var(--f-body);color:var(--ink-2)}
+.dt-gr-l b{color:var(--ink);font-weight:700}
+.dt-gr-l .stars{color:var(--soon)}
+.dt-gr-l a{color:var(--ink-2);text-decoration:underline;text-underline-offset:2px}
+.gr-sk{display:block;width:190px;max-width:70%;height:14px;margin:3px 0;border-radius:7px;background:var(--paper-2);animation:grPulse 1.2s ease-in-out infinite alternate}
+@keyframes grPulse{from{opacity:.55}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.gr-sk{animation:none}}
 .oh-b{display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:middle;font:700 11px/1.25 var(--f-body);letter-spacing:0;text-transform:none;padding:3px 8px;border-radius:999px;background:#FFD25A;color:#1A1405;border:0}
 .oh-b.rare{background:#B9A8FF;color:#140D33}.oh-b.classic{background:#8FD3FF;color:#06202F}
 .oh-b.tag{top:-1px}
@@ -2006,8 +2015,8 @@ svg.gi{width:20px;height:20px;flex:none}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.21 (2026-11-14)';   // v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
-var VERSION_PREV = 'v5.20 (2026-11-14)';   // v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, rain/snow on the map)
+var VERSION = 'v5.22 (2026-11-14)';   // v5.22: Google rating line on place pages (edge function, page memory only), holiday status from fields only, more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
+var VERSION_PREV = 'v5.21 (2026-11-14)';   // v5.21: languages (ru / zh-Hans / ko), Only in Chicago badge, Visiting Chicago filter
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var FEEDBACK_EMAIL = 'localfinds.app@gmail.com';   // v5.16: "Send feedback" in the account sheet (a mailto draft; never sent by the app). Separate from CONTACT_EMAIL.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
@@ -2527,11 +2536,28 @@ function holidayKeySet(){ // every holiday date the app knows, for the years the
   var o = {}; for (var y = 2025; y <= 2030; y++) { var h = holidaysOf(y); for (var k in h) if (Object.prototype.hasOwnProperty.call(h, k)) o[k] = h[k]; }
   holidayKeySet.v = o; return o;
 }
-function hasHolidayInfo(it){ // true when the data says anything about holidays: a holiday word in any note, or a dated entry on a holiday
+/* v5.22 (her yes, challenger-excel C2): holiday STATUS comes from the holiday fields only: closed_dates, date_hours and
+   verified.holiday_hours_confirmed. Holiday words in notes are shown as written but never decide open / closed / known. */
+var HN_EMPTY = {iso:{}, md:{}, mdv:{}, mdvIso:{}, sp:{}, spIso:{}, hol:{}, generic:''};
+function statusNotes(it, key){ return holidayId(key) ? HN_EMPTY : holidayNotes(it); }
+/* v5.22 caution (coordinator): on Thanksgiving, Dec 24 / 25 / 31 and Jan 1, an item with no holiday FIELD for that date whose hours_note or
+   good_to_know mentions that holiday shows "Holiday hours may differ — check before going". The status itself stays field-based. */
+var HOL_CAUTION_RX = {thanksgiving:/thanksgiving(?!\s+eve)|\bnov(?:ember)?\.?\s+26\b|\b11\/26\b/i, xmasEve:/christmas\s+eve|xmas\s+eve|\bdec(?:ember)?\.?\s+24\b|\b12\/24\b/i,
+  xmas:/christmas(?!\s+eve)|xmas(?!\s+eve)|\bdec(?:ember)?\.?\s+25\b|\b12\/25\b/i, nyEve:/new\s+year[’']?s\s+eve|\bdec(?:ember)?\.?\s+31\b|\b12\/31\b/i,
+  nyDay:/new\s+year[’']?s\s+day|new\s+year(?![’']?s\s+eve)(?!\s+eve)|\bjan(?:uary)?\.?\s+1(?!\d)|\b1\/1(?!\d)/i};
+function holidayFieldFor(it, key){ return (Array.isArray(it.closed_dates) && it.closed_dates.indexOf(key) >= 0) || !!dateHours(it, key) || dateHoursUnknown(it, key) || holidayConfirmed(it, key); }
+function holidayCaution(it, key){ // pure: true when the caution line should show for this item on this date
+  var id = holidayId(key), rx = id ? HOL_CAUTION_RX[id] : null;
+  if (!it || !rx || holidayFieldFor(it, key)) return false;
+  var t = [typeof it.hours_note === 'string' ? it.hours_note : ''].concat((Array.isArray(it.good_to_know) ? it.good_to_know : []).map(function(x){ return x ? String(x.q || '') + ' ' + String(x.a || '') : ''; })).join(' \n ');
+  return rx.test(t);
+}   // notes still count on ordinary dates; on a holiday only fields do
+function hasHolidayInfo(it){ // true when the holiday FIELDS say something about a holiday date (notes never count, v5.22)
   if (it.__hi !== undefined) return it.__hi;
-  var hn = holidayNotes(it), hk = holidayKeySet(), yes = !!hn.generic || anyKey(hn.hol) || anyKey(hn.md) || anyKey(hn.mdv) || anyKey(hn.mdvIso) || anyKey(hn.sp) || anyKey(hn.spIso);
+  var hk = holidayKeySet(), yes = false;
   function onHoliday(k){ return isKey(k) && !!hk[k]; }
-  if (!yes) yes = Object.keys(hn.iso).some(onHoliday);
+  var hc = it.verified && it.verified.holiday_hours_confirmed;
+  if (Array.isArray(hc)) yes = hc.some(onHoliday);
   if (!yes && Array.isArray(it.closed_dates)) yes = it.closed_dates.some(onHoliday);
   if (!yes && it.date_hours && typeof it.date_hours === 'object') yes = Object.keys(it.date_hours).some(onHoliday);
   if (!yes && it.kind === 'event') yes = Object.keys(explicitDays(it)).some(onHoliday);
@@ -2539,7 +2565,7 @@ function hasHolidayInfo(it){ // true when the data says anything about holidays:
   return yes;
 }
 function holidayKnown(it, key){ // v2.2 (challenger H-2): does the data say anything about THIS date? (replaces "mentions any holiday = calendar read")
-  var id = holidayId(key), hn = holidayNotes(it), md = key.slice(5);
+  var id = holidayId(key), hn = statusNotes(it, key), md = key.slice(5);   // v5.22: on a holiday, notes say nothing here
   if (Array.isArray(it.closed_dates) && it.closed_dates.indexOf(key) >= 0) return true;
   if (dateHours(it, key) || dateHoursUnknown(it, key) || holidayConfirmed(it, key)) return true;
   if (id && hn.hol[id]) return true;
@@ -2591,7 +2617,7 @@ function dateHoursUnknown(it, key){ // v2.2 (data agent): date_hours[date] = "un
 function closedSet(it){ // closed days: closed_dates[] + dated closures read from "Closed ..." sentences (unless date_hours lists that day)
   if (it.__closed) return it.__closed;
   var set = {}, hn = holidayNotes(it);
-  Object.keys(hn.iso).forEach(function(k){ if (!dateHours(it, k)) set[k] = 1; });
+  Object.keys(hn.iso).forEach(function(k){ if (!dateHours(it, k) && !holidayId(k)) set[k] = 1; });   // v5.22: a holiday closure counts only from closed_dates
   if (Array.isArray(it.closed_dates)) it.closed_dates.forEach(function(k){ if (isKey(k)) set[k] = 1; });
   if (it.__venues) { // v2.1 (tester H-A): an event inside a venue is closed when the venue is, unless its own data lists that day
     var xd = explicitDays(it); it.__inh = {};
@@ -2602,7 +2628,7 @@ function closedSet(it){ // closed days: closed_dates[] + dated closures read fro
 }
 function holidayFlag(it, key){ // null, or {name, closed, noInfo, venue} when this day may be different
   if (!isKey(key) || dateHours(it, key)) return null;        // checked hours for this exact date beat any note
-  var id = holidayId(key), hn = holidayNotes(it), nm = id ? HOLIDAY_NAMES[id] : '', md = key.slice(5);
+  var id = holidayId(key), hn = statusNotes(it, key), nm = id ? HOLIDAY_NAMES[id] : '', md = key.slice(5);   // v5.22: fields only on holidays
   if (dateHoursUnknown(it, key)) return {name:nm, closed:false, special:true, notPosted:true};   // v2.2: date_hours "unknown"
   if (hn.md[md]) return {name:nm, closed:true};
   if (id && hn.hol[id] === 'closed') return {name:nm, closed:true};
@@ -4267,6 +4293,7 @@ var STR = {
   'when.now':['Now', 'Сейчас', '现在', '지금'], 'when.today':['Today', 'Сегодня', '今天', '오늘'], 'when.pick':['Pick a day', 'Дата', '选日期', '날짜 선택'],
   'home.now':['Three for right now', 'Три идеи на сейчас', '此刻三选', '지금 가 볼 세 곳'], 'home.today':['Three for today', 'Три идеи на сегодня', '今天三选', '오늘 가 볼 세 곳'],
   'home.near':['near {x}', 'рядом: {x}', '{x} 附近', '{x} 근처'], 'home.browse':['Browse everything', 'Смотреть всё', '浏览全部', '전체 보기'], 'home.more3':['Three more', 'Ещё три', '再来三个', '세 곳 더'],
+  'dt.special':['Special dates (these replace the weekly hours)', 'Особые даты (вместо обычных часов)', '特殊日期（取代每周营业时间）', '특별 운영일 (주간 영업시간 대신 적용)'],
   'dt.what':['What you do there', 'Чем там заняться', '在那里做什么', '무엇을 하나요'], 'dt.dates':['Dates', 'Даты', '日期', '날짜'], 'dt.practical':['Practical', 'Полезно знать', '实用信息', '이용 정보'],
   'dt.hours':['Hours', 'Часы работы', '营业时间', '영업시간'], 'dt.getting':['Getting there', 'Как добраться', '交通', '가는 방법'], 'dt.gtk':['Good to know', 'Стоит знать', '小贴士', '알아 두면 좋아요'],
   'dt.been':['I’ve been here', 'Я здесь был(а)', '我去过', '가 봤어요'], 'dt.cal':['Add to calendar', 'В календарь', '加入日历', '캘린더에 추가'],
@@ -4279,8 +4306,69 @@ var STR = {
   'f.walkin':['Walk-in only', 'Без записи', '无需预约', '예약 없이 방문'], 'f.no21':['No 21+', 'Без 21+', '不含 21+', '21세 이상 제외'],
   'oh.only':['Only in Chicago', 'Только в Чикаго', '芝加哥独有', '시카고에만'], 'oh.rare':['Rare find', 'Редкая находка', '难得一见', '보기 드문 곳'], 'oh.classic':['Chicago classic', 'Классика Чикаго', '芝加哥经典', '시카고 클래식'],
   'g.limited':['Limited', 'Ненадолго', '限时', '기간 한정'], 'g.play':['Play', 'Игры', '玩乐', '놀이'], 'g.look':['Sights', 'Смотреть', '观光', '구경'], 'g.nature':['Nature', 'Природа', '自然', '자연'],
-  'g.eat':['Eat & drink', 'Еда', '吃喝', '먹고 마시기'], 'g.shows':['Shows', 'Шоу', '演出', '공연'], 'g.make':['Make', 'Творить', '手作', '만들기'], 'g.relax':['Relax', 'Отдых', '放松', '휴식']
+  'g.eat':['Eat & drink', 'Еда', '吃喝', '먹고 마시기'], 'g.shows':['Shows', 'Шоу', '演出', '공연'], 'g.make':['Make', 'Творить', '手作', '만들기'], 'g.relax':['Relax', 'Отдых', '放松', '휴식'],
+  // v5.22 (tester v5.21 M1 / L1): more interface words. Non-English: unverified, needs native review. "Google Maps" is never translated.
+  'gr.reviews':['{n} Google reviews', 'Отзывы в Google: {n}', '{n} 条 Google 评价', 'Google 리뷰 {n}개'], 'gr.review1':['{n} Google review', 'Отзывы в Google: {n}', '{n} 条 Google 评价', 'Google 리뷰 {n}개'],
+  'gr.loading':['Loading the Google rating', 'Загружаем оценку Google', '正在加载 Google 评分', 'Google 평점을 불러오는 중'],
+  'closed.for':['Closed for {x}', 'Закрыто: {x}', '{x}休息', '{x} 휴무'], 'closed':['Closed', 'Закрыто', '休息', '휴무'],
+  'hol.nyDay':['New Year’s Day', 'Новый год', '元旦', '새해 첫날'], 'hol.easter':['Easter', 'Пасха', '复活节', '부활절'], 'hol.memorial':['Memorial Day', 'День памяти', '阵亡将士纪念日', '메모리얼 데이'],
+  'hol.july4':['July 4', '4 июля', '7 月 4 日', '7월 4일'], 'hol.labor':['Labor Day', 'День труда', '劳动节', '노동절'], 'hol.tgEve':['Thanksgiving Eve', 'Канун Дня благодарения', '感恩节前夜', '추수감사절 전날'],
+  'hol.thanksgiving':['Thanksgiving', 'День благодарения', '感恩节', '추수감사절'], 'hol.xmasEve':['Christmas Eve', 'Сочельник', '平安夜', '크리스마스이브'], 'hol.xmas':['Christmas', 'Рождество', '圣诞节', '크리스마스'],
+  'hol.nyEve':['New Year’s Eve', 'Канун Нового года', '新年前夜', '새해 전날'],
+  'hol.vary':['{x}: holiday hours vary, so call first.', '{x}: в праздник часы могут отличаться, сначала позвоните.', '{x}：节假日营业时间可能不同，请先致电。', '{x}: 공휴일에는 영업시간이 다를 수 있으니 먼저 전화해 보세요.'],
+  'hol.caution':['Holiday hours may differ — check before going', 'В праздник часы могут отличаться — проверьте перед выходом', '节假日营业时间可能不同，出发前请先确认', '공휴일에는 영업시간이 다를 수 있어요. 가기 전에 확인하세요'],
+  'lb.start':['Leave by {a} for the {b} start', 'Выходите до {a}, чтобы успеть к началу в {b}', '{a} 前出发，赶上 {b} 开场', '{b} 시작에 맞추려면 {a}까지 출발하세요'],
+  'lb.last':['Leave by {a} to make last entry', 'Выходите до {a}, чтобы успеть к последнему входу', '{a} 前出发，赶上最后入场', '마지막 입장에 맞추려면 {a}까지 출발하세요'],
+  'lb.close':['Leave by {a} for {d} before it closes at {b}', 'Выходите до {a}: будет {d} до закрытия в {b}', '{a} 前出发，{b} 关门前可待 {d}', '{a}까지 출발하면 {b} 마감 전 {d} 머물 수 있어요'],
+  'tr.from':['{t} from {x}', '{t} от: {x}', '从 {x} 出发 {t}', '{x}에서 {t}'],
+  'bk.required':['Booking required. Pick a time online before you go.', 'Нужна бронь. Выберите время онлайн заранее.', '需要预约。出发前请在线选好时间。', '예약 필수예요. 가기 전에 온라인으로 시간을 고르세요.'],
+  'bk.recommended':['Booking recommended.', 'Лучше забронировать.', '建议预约。', '예약을 권장해요.'], 'bk.walkin':['Walk-ins welcome.', 'Можно без брони.', '无需预约，可直接前往。', '예약 없이 방문할 수 있어요.'],
+  'bk.none':['Booking: not stated.', 'Бронь: не указано.', '预约：未说明。', '예약: 안내 없음.'],
+  'dt.directions':['Directions', 'Маршрут', '路线', '길찾기'], 'dt.share':['Share', 'Поделиться', '分享', '공유'], 'dt.go':['Go', 'Маршрут', '导航', '가기'], 'dt.call':['Call', 'Позвонить', '致电', '전화'],
+  'dt.callFirst':['Call first', 'Сначала позвоните', '请先致电', '먼저 전화하기'], 'dt.web':['Check their website', 'Открыть их сайт', '查看官网', '웹사이트 확인'], 'map.btn':['Map', 'Карта', '地图', '지도'],
+  'f.more':['More filters', 'Ещё фильтры', '更多筛选', '필터 더 보기'], 'f.reset':['Reset', 'Сбросить', '重置', '초기화'], 'f.show':['Show {n} things', 'Показать ({n})', '显示 {n} 项', '{n}곳 보기'],
+  'f.show1':['Show 1 thing', 'Показать (1)', '显示 1 项', '1곳 보기'], 'f.none':['No matches · loosen a filter', 'Ничего · ослабьте фильтр', '没有结果 · 放宽筛选', '결과 없음 · 필터를 줄여 보세요'], 'f.done':['Done', 'Готово', '完成', '완료'],
+  'f.hr1':['1 hr', '1 ч', '1 小时', '1시간'], 'f.hrs':['{n} hrs', '{n} ч', '{n} 小时', '{n}시간'], 'f.tonight':['Tonight', 'Сегодня вечером', '今晚', '오늘 밤'], 'f.most':['Most limiting', 'Сильнее всего сужает', '限制最多', '가장 많이 줄임'],
+  'th.theme':['Theme', 'Тема', '主题', '테마'], 'th.light':['Light', 'Светлая', '浅色', '라이트'], 'th.dark':['Dark', 'Тёмная', '深色', '다크'], 'th.auto':['Auto', 'Авто', '自动', '자동'],
+  'th.autoNote':['Auto follows your phone’s light or dark setting.', 'Авто следует светлой или тёмной теме телефона.', '自动模式跟随手机的浅色或深色设置。', '자동은 휴대폰의 라이트/다크 설정을 따라요.'],
+  'th.map':['Map', 'Карта', '地图', '지도'], 'th.standard':['Standard', 'Обычная', '标准', '기본'], 'th.themed':['Themed', 'В цвет темы', '主题色', '테마 색상'],
+  'th.saved':['Saved on this phone.', 'Сохранено на этом телефоне.', '已保存在这部手机上。', '이 휴대폰에 저장했어요.'], 'th.visit':['Only for this visit.', 'Только на этот визит.', '仅限本次访问。', '이번 방문에만 적용돼요.'],
+  'wx.near':['Weather near {x}', 'Погода: {x}', '{x} 附近天气', '{x} 근처 날씨'], 'wx.feels':['Feels {t}', 'Ощущается как {t}', '体感 {t}', '체감 {t}'], 'wx.gusts':['gusts {n} mph', 'порывы {n} mph', '阵风 {n} mph', '돌풍 {n} mph'],
+  'wx.now':['Now', 'Сейчас', '现在', '지금'], 'wx.today':['Today', 'Сегодня', '今天', '오늘'], 'wx.rank':['Use weather in picks', 'Учитывать погоду в подборке', '推荐时参考天气', '추천에 날씨 반영'],
+  'wx.fx':['Rain and snow on the map', 'Дождь и снег на карте', '在地图上显示雨雪', '지도에 비·눈 표시'], 'wx.hint':['Weather only changes the order. Nothing is hidden.', 'Погода меняет только порядок. Ничего не скрывается.', '天气只影响排序，不会隐藏任何内容。', '날씨는 순서만 바꿔요. 숨기는 건 없어요.'],
+  'wx.updated':['Updated {t}', 'Обновлено в {t}', '{t} 更新', '{t} 업데이트'], 'wx.loading':['Loading the weather…', 'Загружаем погоду…', '正在加载天气…', '날씨를 불러오는 중…'],
+  'wx.unavail':['Weather unavailable. Picks aren’t using it; everything else works.', 'Погода недоступна. Подборка её не учитывает, остальное работает.', '天气暂不可用。推荐不使用天气，其他功能正常。', '날씨를 불러올 수 없어요. 추천에는 반영되지 않고, 나머지는 정상이에요.'],
+  'wx.retry':['Try again', 'Ещё раз', '重试', '다시 시도'], 'wx.web':['Weather shows on the website version only.', 'Погода есть только в версии на сайте.', '天气仅在网站版中显示。', '날씨는 웹사이트 버전에서만 보여요.'],
+  'wx.needloc':['Weather needs your area. Nothing is sent until you pick one.', 'Для погоды нужен ваш район. Ничего не отправляется, пока вы его не выберете.', '天气需要知道你的区域。选择之前不会发送任何信息。', '날씨에는 지역이 필요해요. 고르기 전에는 아무것도 보내지 않아요.'],
+  'wx.pick':['Pick my area', 'Выбрать район', '选择我的区域', '내 지역 고르기'], 'wx.offline':['Offline: weather from {t}', 'Нет сети: погода на {t}', '离线：{t} 的天气', '오프라인: {t} 기준 날씨'],
+  'wx.Clear':['Clear', 'Ясно', '晴', '맑음'], 'wx.Mostly clear':['Mostly clear', 'Почти ясно', '大部晴朗', '대체로 맑음'], 'wx.Partly cloudy':['Partly cloudy', 'Переменная облачность', '多云间晴', '구름 조금'],
+  'wx.Cloudy':['Cloudy', 'Облачно', '阴', '흐림'], 'wx.Fog':['Fog', 'Туман', '雾', '안개'], 'wx.Drizzle':['Drizzle', 'Морось', '毛毛雨', '이슬비'], 'wx.Freezing drizzle':['Freezing drizzle', 'Ледяная морось', '冻毛毛雨', '어는 이슬비'],
+  'wx.Light rain':['Light rain', 'Небольшой дождь', '小雨', '약한 비'], 'wx.Rain':['Rain', 'Дождь', '雨', '비'], 'wx.Heavy rain':['Heavy rain', 'Сильный дождь', '大雨', '강한 비'], 'wx.Freezing rain':['Freezing rain', 'Ледяной дождь', '冻雨', '어는 비'],
+  'wx.Light snow':['Light snow', 'Небольшой снег', '小雪', '약한 눈'], 'wx.Snow':['Snow', 'Снег', '雪', '눈'], 'wx.Heavy snow':['Heavy snow', 'Сильный снег', '大雪', '폭설'], 'wx.Snow grains':['Snow grains', 'Снежная крупа', '米雪', '싸락눈'],
+  'wx.Rain showers':['Rain showers', 'Ливни', '阵雨', '소나기'], 'wx.Heavy showers':['Heavy showers', 'Сильные ливни', '强阵雨', '강한 소나기'], 'wx.Snow showers':['Snow showers', 'Снегопад', '阵雪', '눈 소나기'],
+  'wx.Thunderstorm':['Thunderstorm', 'Гроза', '雷暴', '뇌우'], 'wx.Thunderstorm, hail':['Thunderstorm, hail', 'Гроза, град', '雷暴伴冰雹', '뇌우, 우박'], 'wx.Weather':['Weather', 'Погода', '天气', '날씨'],
+  'int.views':['Views', 'Виды', '景观', '전망'], 'int.music':['Live music', 'Живая музыка', '现场音乐', '라이브 음악'], 'int.cocktails':['Cocktails', 'Коктейли', '鸡尾酒', '칵테일'], 'int.animals':['Animals', 'Животные', '动物', '동물'],
+  'int.art':['Art', 'Искусство', '艺术', '미술'], 'int.history':['History', 'История', '历史', '역사'], 'int.games':['Games', 'Игры', '游戏', '게임'], 'int.bugs':['Bugs', 'Насекомые', '昆虫', '곤충'], 'int.theater':['Theater', 'Театр', '戏剧', '연극'],
+  'int.comedy':['Comedy', 'Комедия', '喜剧', '코미디'], 'int.sweets':['Sweets', 'Сладости', '甜点', '디저트'], 'int.garden':['Gardens', 'Сады', '花园', '정원'], 'int.lake':['Lake', 'Озеро', '湖', '호수'], 'int.museum':['Museums', 'Музеи', '博物馆', '박물관'],
+  'int.immersive':['Immersive', 'Иммерсивное', '沉浸式', '몰입형'], 'int.holiday':['Holiday', 'Праздники', '节日', '홀리데이'], 'int.lights':['Lights', 'Огни', '灯光', '조명'], 'int.arcade':['Arcades', 'Аркады', '街机', '오락실'],
+  'int.karaoke':['Karaoke', 'Караоке', '卡拉 OK', '노래방'], 'int.mini-golf':['Mini golf', 'Мини-гольф', '迷你高尔夫', '미니 골프'], 'int.bowling':['Bowling', 'Боулинг', '保龄球', '볼링'], 'int.science':['Science', 'Наука', '科学', '과학'],
+  'int.nature':['Nature', 'Природа', '自然', '자연'], 'int.cheese':['Cheese', 'Сыр', '奶酪', '치즈'], 'int.quiet':['Cozy', 'Уютно', '安静舒适', '아늑함'], 'int.weird':['Weird', 'Необычное', '奇特', '독특함'], 'int.photo':['Photo spots', 'Места для фото', '拍照点', '사진 명소']
 };
+function i18L(key, en){ return LANG === 'en' || !STR[key] ? en : i18t(key); }   // v5.22: the picked language when the table has it, else the English given
+var HOL_BY_NAME = {}; (function(){ for (var k in HOLIDAY_NAMES) if (Object.prototype.hasOwnProperty.call(HOLIDAY_NAMES, k)) HOL_BY_NAME[HOLIDAY_NAMES[k]] = k; })();
+function holNameL(id, lang){ var l = isLang(lang) ? lang : LANG; return l === 'en' || !STR['hol.' + id] ? HOLIDAY_NAMES[id] : i18t('hol.' + id, null, l); }
+function fmtDurL(min, lang){ // fmtDur in the language ("2 h 30 m" / "2 ч 30 мин" / "2 小时 30 分钟" / "2시간 30분")
+  var l = isLang(lang) ? lang : LANG; if (l === 'en') return fmtDur(min);
+  min = Math.round(min); var U = {ru:[' мин', ' ч'], 'zh-Hans':[' 分钟', ' 小时'], ko:['분', '시간']}[l], h = Math.floor(min / 60), m = min % 60;
+  return min < 60 ? min + U[0] : h + U[1] + (m ? ' ' + m + U[0] : '');
+}
+function fmtBudgetL(b, lang){ var l = isLang(lang) ? lang : LANG; if (l === 'en' || b === 'night' || b % 60) return fmtBudget(b); var h = b / 60; return h === 1 ? i18t('f.hr1', null, l) : i18t('f.hrs', {n:h}, l); }
+function wxCodeL(c){ var en = wxCodeText(c); return i18L('wx.' + en, en); }
+function leaveByText(l, lang){ // the "Leave by" line in the language (the English is l.t, which the checks read)
+  var g = isLang(lang) ? lang : LANG; if (!l) return ''; if (g === 'en' || !l.wk) return l.t;
+  var v = {a:fmtClock(l.at), b:l.wb ? fmtClock(l.wb) : '', d:isNum(l.wd) ? fmtDurL(l.wd, g) : ''};
+  return i18t('lb.' + l.wk, v, g);
+}
 function i18t(key, v, lang){
   var e = STR[key]; if (!e) return String(key);
   var l = isLang(lang) ? lang : LANG, s = e[LANG_IX[l]] || e[0];
@@ -4310,6 +4398,7 @@ function trStatus(s, lang){ // pure: status / travel / price words in the langua
   if (l === 'en' || !s) return s;
   var ix = LANG_IX[l] - 1, W = STATUS_WORDS[l];
   return s.split(' · ').map(function(part){
+    var hcf = /^Closed for (.+)$/.exec(part); if (hcf && HOL_BY_NAME[hcf[1]]) return i18t('closed.for', {x:holNameL(HOL_BY_NAME[hcf[1]], l)}, l);   // v5.22 (tester L1): "Closed for Thanksgiving"
     for (var i = 0; i < STATUS_RX.length; i++) {
       var r = STATUS_RX[i];
       if (r[0].test(part)) return part.replace(r[0], r[1][ix]).replace(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun|today|tomorrow)\b/g, function(w){ return W[w] || w; });
@@ -4359,6 +4448,13 @@ function i18nLoad(lang){ // fetch one language's place file (+ the current-Engli
     if (lang === LANG && mapEl) { UI.homeHTML = null; refresh(); }
   })['catch'](function(e){ I18N.state[lang] = 'failed'; I18N.err[lang] = e && e.message ? e.message : String(e); });
 }
+function staticLang(){ // v5.22 (tester M1): words that live in the page's own HTML (map button, More filters title + Reset)
+  try {
+    var mp = $('mapPill'); if (mp) { var tn = mp.lastChild; if (tn && tn.nodeType === 3) tn.nodeValue = i18L('map.btn', 'Map'); }
+    if ($('pFiltersTitle')) $('pFiltersTitle').textContent = i18L('f.more', 'More filters');
+    if ($('pFiltersReset')) $('pFiltersReset').textContent = i18L('f.reset', 'Reset');
+  } catch (e) {}
+}
 function setLang(code, keep){ // keep = this visit only (test hooks)
   var l = isLang(code) ? code : 'en';
   LANG = l;
@@ -4368,6 +4464,7 @@ function setLang(code, keep){ // keep = this visit only (test hooks)
   if (!mapEl) return l;
   UI.homeHTML = null;
   if ($('pThemeTitle')) $('pThemeTitle').textContent = i18t('theme.title');
+  staticLang();
   if ($('pTheme') && !$('pTheme').hidden) renderThemePicker();
   var ab = $('aboutTheme'); if (ab) ab.innerHTML = langPickerHTML() + themePickerHTML();
   if ($('pFilters') && !$('pFilters').hidden) renderFilters();
@@ -4387,7 +4484,8 @@ function onlyHereOf(it){ var o = it && it.only_here; if (!o || typeof o !== 'obj
 function ohBadgeHTML(it, cls){ var o = onlyHereOf(it); if (!o) return ''; return '<span class="oh-b ' + o.kind + (cls ? ' ' + cls : '') + '"' + (o.reason ? ' title="' + esc(o.reason) + '"' : '') + '>' + esc(i18t(OH_KINDS[o.kind])) + '</span>'; }
 function ohLineHTML(it){ var o = onlyHereOf(it); if (!o) return ''; return '<p class="oh-line">' + ohBadgeHTML(it) + (o.reason ? '<span' + (LANG === 'en' ? '' : ' lang="en"') + '>' + esc(o.reason) + (o.src ? ' <a href="' + esc(o.src) + '" target="_blank" rel="noopener">source</a>' : '') + '</span>' : '') + '</p>'; }
 // "Visiting Chicago": only-here / rare / classic items, plus the must-sees everyone in Chicago knows (POP_KNOWN), so it still works before the tags are merged
-function visitorPick(it){ return !!onlyHereOf(it) || POP_KNOWN.test(norm(it && it.name)); }
+var VISIT_CHAINS = /topgolf|puttshack|museum of ice cream|eataly|aire ancient baths|king spa/;   // v5.22 (tester v5.21 M2): chains (many in the suburbs) are popular but not "Visiting Chicago" picks; popularity still counts them
+function visitorPick(it){ var n = norm(it && it.name); return !!onlyHereOf(it) || (POP_KNOWN.test(n) && !VISIT_CHAINS.test(n)); }
 
 /* ================= v4: check-ins, one-line facts, the three picks, search, share, calendar, hash links (pure: the UI and the self-test use them) ================= */
 /* Check-ins ("I've been here"). Kept on this phone as a list of plain records, one per place, so they can sync to an account later:
@@ -6198,7 +6296,7 @@ function resultLine(vm){
 }
 function renderResline(vm){
   var nf = appliedFilters(S.f).length + (S.budgetOn ? 1 : 0);
-  $('resline').innerHTML = '<span>' + resultLine(vm) + '</span><button class="mfbtn" type="button" data-act="filters" aria-label="More filters' + (nf ? ', ' + nf + ' on' : '') + '">' + glyphSvg('i-sliders') + 'More filters' + (nf ? '<span class="n">' + nf + '</span>' : '') + '</button>';
+  $('resline').innerHTML = '<span>' + resultLine(vm) + '</span><button class="mfbtn" type="button" data-act="filters" aria-label="More filters' + (nf ? ', ' + nf + ' on' : '') + '">' + glyphSvg('i-sliders') + esc(i18L('f.more', 'More filters')) + (nf ? '<span class="n">' + nf + '</span>' : '') + '</button>';
 }
 function appliedChips(F, sel, budgetOn, budget){ // v5.3: the chips under the result line; Limited gets its own "Only limited-time" chip so it's clear it narrows the list
   var a = appliedFilters(F);
@@ -6983,7 +7081,7 @@ function gaPinClick(i){
 function gaRowScroll(btn){ var row = btn.closest('.ga-s'), g = row && row.querySelector('.grow'); if (!g) return; var card = g.querySelector('.gcard'), w = card ? card.offsetWidth + 12 : 276; try { g.scrollBy({left:btn.getAttribute('data-ga') === 'prev' ? -w : w, behavior:reduceMotion() ? 'auto' : 'smooth'}); } catch (x) { g.scrollLeft += btn.getAttribute('data-ga') === 'prev' ? -w : w; } }
 function gaArrows(g){ var s = g.closest('.ga-s'); if (!s) return; var p = s.querySelector('[data-ga="prev"]'), n = s.querySelector('[data-ga="next"]'); if (p) p.disabled = g.scrollLeft <= 2; if (n) n.disabled = g.scrollLeft + g.clientWidth >= g.scrollWidth - 2; }
 var CARD_LEAVE_MIN = 90;   // the three cards say "Leave by" only when it's within 90 min (otherwise it's noise)
-function cardLeaveHTML(c){ var l = leaveBy(c), ref = c.anyDay && c.anyT ? c.anyT : c.st.ms; return l && l.at - ref <= CARD_LEAVE_MIN * 60000 ? '<p class="c3-leave">' + esc(l.t) + '</p>' : ''; }
+function cardLeaveHTML(c){ var l = leaveBy(c), ref = c.anyDay && c.anyT ? c.anyT : c.st.ms; return l && l.at - ref <= CARD_LEAVE_MIN * 60000 ? '<p class="c3-leave">' + esc(leaveByText(l)) + '</p>' : ''; }
 function cardHTML(c){
   var it = c.item, g = c.genre || genreOf(it), ph = firstPhoto(it), sv = isSaved(it.id), ck = checkinOf(it.id), hk = hookL(it), hook = hk.v, facts = factsLineL(c);   // v5.21: hook + status words in the picked language (English per field when missing or stale)
   var tst = tasteNow(), why = tasteWhy(c, tst), lean = tasteLean(c, tst), ini = function(w){ return w === 'a' ? tasteInitial(TASTE) : tasteInitial(TASTE_GUEST); };   // v5.12
@@ -8826,6 +8924,66 @@ function friendSayHTML(it){ // the place page: the average, then "What friends s
   if (r.reviews.length) h += '<p class="frr-lab">What friends say</p><ul class="frr-list">' + r.reviews.slice(0, 6).map(function(x){ return '<li>' + (x.stars ? '<span class="stars" aria-label="' + x.stars + ' of 5 stars">' + starsText(x.stars) + '</span> ' : '') + '<q>' + esc(x.review) + '</q></li>'; }).join('') + '</ul>';
   return h + '</div>';
 }
+/* v5.22 Google rating line (Legal Research report 2026-11-14-google-ratings): "★ 4.6 · 1,234 Google reviews · Google Maps".
+   Only on a PLACE's own page (never events or pop-ups: a show must not borrow its venue's reviews), never on the map or map cards.
+   Page memory only: never localStorage, search, filters, i18n files, share or export text. Hidden on error / capped / nomatch / timeout.
+   The backend (Supabase edge function google-rating) holds the Google key; the website calls it, claude.ai never does. */
+var GR_TIMEOUT_MS = 8000;
+var GR = {mem:{}, inflight:null, nav:0, calls:0, fetchFn:null, testOff:0};   // fetchFn: a stand-in fetch (self-test, #grmock); testOff: no live calls during the self-test
+function grEligible(it){ return !!it && it.kind === 'place' && it.category !== 'immersive-popup' && !(Array.isArray(it.tags) && it.tags.some(function(t){ return /pop-?up/i.test(String(t)); })); }
+function grLive(){ return !GR.testOff && cloudHost(); }
+function grMockAllowed(loc){ // the #grmock screenshot hook works only on file:// or localhost, never on the real site (check v5.22)
+  try { var p = String(loc && loc.protocol || ''), h = String(loc && loc.hostname || '').toLowerCase(); return p === 'file:' || h === 'localhost' || h === '127.0.0.1' || h === '[::1]'; } catch (e) { return false; }
+}
+function grPageChange(){ GR.nav++; GR.mem = {}; GR.inflight = null; }   // a page opens or closes: forget any rating (no caching across visits; the legal report leaves caching undecided)
+function grOn(){ return !!GR.fetchFn || grLive(); }
+function grParse(j){ // the function's reply -> {state:'ok', rating, count, mapsUri} or {state:'capped' | 'nomatch' | 'error'}
+  if (!j || typeof j !== 'object') return {state:'error'};
+  if (j.capped === true) return {state:'capped'};
+  if (j.nomatch === true) return {state:'nomatch'};
+  if (j.error !== undefined && j.error !== null && j.error !== false) return {state:'error'};
+  var r = j.rating, n = j.count, u = typeof j.mapsUri === 'string' ? j.mapsUri : '';
+  if (!isNum(r) || r < 1 || r > 5 || !isNum(n) || n < 1 || Math.floor(n) !== n) return {state:'error'};
+  if (!/^https:\/\/(?:(?:[a-z0-9-]+\.)*google\.[a-z.]+|maps\.app\.goo\.gl|goo\.gl)\//i.test(u) || /["'<>\s]/.test(u)) return {state:'error'};
+  return {state:'ok', rating:r, count:n, mapsUri:u};
+}
+function grCount(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+function grLineHTML(g){
+  if (!g || g.state !== 'ok') return '';
+  var rt = (Math.round(g.rating * 10) / 10).toFixed(1);
+  return '<p class="dt-gr-l"><span class="stars" aria-hidden="true">★</span> <b>' + rt + '</b> · ' + esc(i18t(g.count === 1 ? 'gr.review1' : 'gr.reviews', {n:grCount(g.count)})) +
+    ' · <a href="' + esc(g.mapsUri) + '" target="_blank" rel="noopener" lang="en">Google Maps</a></p>';
+}
+function grRequest(it, opt){ // -> Promise of a grParse result; {state:'timeout'} after 8 s (the request is aborted)
+  opt = opt || {};
+  var f = opt.fetch || GR.fetchFn || (grLive() && typeof fetch === 'function' ? function(u, o){ return fetch(u, o); } : null);
+  if (!f) return Promise.resolve({state:'error'});
+  var ac = null, timer = null; try { ac = new AbortController(); } catch (e) { ac = null; }
+  GR.calls++;
+  var to = new Promise(function(res){ timer = setTimeout(function(){ try { if (ac) ac.abort(); } catch (e) {} res({state:'timeout'}); }, opt.timeoutMs || GR_TIMEOUT_MS); });
+  var req = Promise.resolve().then(function(){
+    return f(SB_URL + '/functions/v1/google-rating', {method:'POST', headers:{'apikey':SB_KEY, 'Authorization':'Bearer ' + SB_KEY, 'Content-Type':'application/json'}, body:JSON.stringify({item_id:it.id, name:it.name, address:it.address || ''}), signal:ac ? ac.signal : undefined});
+  }).then(function(r){ if (!r || !r.ok) return {state:'error'}; return r.json().then(grParse, function(){ return {state:'error'}; }); })['catch'](function(){ return {state:'error'}; });
+  return Promise.race([req, to]).then(function(x){ clearTimeout(timer); return x; });
+}
+function grStart(it, opt){ // one request for the open page; a late answer after she left the page is dropped (not shown, not kept)
+  var nav = GR.nav, id = it.id; GR.inflight = {id:id, nav:nav};
+  return grRequest(it, opt).then(function(g){
+    if (GR.inflight && GR.inflight.id === id && GR.inflight.nav === nav) GR.inflight = null;
+    if (GR.nav !== nav || UI.detailId !== id) return 'dropped';
+    GR.mem[id] = g;
+    var el = $('dtGr');
+    if (el) { if (g.state === 'ok') { el.innerHTML = grLineHTML(g); el.removeAttribute('aria-busy'); } else if (el.parentNode) el.parentNode.removeChild(el); }
+    return g.state;
+  });
+}
+function grBoxHTML(it){ // the detail page's slot: the line, a quiet skeleton while loading, or nothing
+  if (!grEligible(it) || !grOn()) return '';
+  var m = GR.mem[it.id];
+  if (m) return m.state === 'ok' ? '<div class="dt-gr" id="dtGr">' + grLineHTML(m) + '</div>' : '';
+  if (!(GR.inflight && GR.inflight.id === it.id && GR.inflight.nav === GR.nav)) grStart(it);
+  return '<div class="dt-gr" id="dtGr" aria-busy="true"><span class="gr-sk" role="img" aria-label="' + esc(i18t('gr.loading')) + '"></span></div>';
+}
 function funTypeSync(){ // my character number -> settings.fun_type (own row), so accepted friends see which character I am
   var cl = Acct.client, u = Acct.user, s = Acct.settings; if (!cl || !u || Acct.demo || !s) return false;
   if (!('fun_type' in s)) { Acct.noMyType = true; return false; }
@@ -8890,17 +9048,17 @@ var LEAVE_BY_MAX_MIN = 360;
 function leaveBy(c){
   var st = c.st || {}, f = c.fit || {}, tr = c.trav || {}, it = c.item || {};
   if (!isNum(tr.min) || tr.how === 'unknown' || st.always) return null;
-  var ref = c.anyDay && c.anyT ? c.anyT : st.ms, T = tr.min * 60000, at = null, why = '';
-  if (!st.open && st.key === 'later' && st.opensAt && it.kind === 'event' && !(st.ev && st.ev.inRun)) { at = st.opensAt - T; why = 'for the ' + fmtClock(st.opensAt) + ' start'; }
+  var ref = c.anyDay && c.anyT ? c.anyT : st.ms, T = tr.min * 60000, at = null, why = '', wk = '', wb = null, wd = null;
+  if (!st.open && st.key === 'later' && st.opensAt && it.kind === 'event' && !(st.ev && st.ev.inRun)) { at = st.opensAt - T; why = 'for the ' + fmtClock(st.opensAt) + ' start'; wk = 'start'; wb = st.opensAt; }
   else if (st.open) {
     var le = st.lastEntryAt || f.lastEntryAt;
-    if (le) { at = le - T; why = 'to make last entry'; }
-    else if (st.closesAt && !st.endUnknown) { var need = Math.max(30, isNum(f.min) ? f.min : 30); at = st.closesAt - T - need * 60000; why = 'for ' + fmtDur(need) + ' before it closes at ' + fmtClock(st.closesAt); }
+    if (le) { at = le - T; why = 'to make last entry'; wk = 'last'; }
+    else if (st.closesAt && !st.endUnknown) { var need = Math.max(30, isNum(f.min) ? f.min : 30); at = st.closesAt - T - need * 60000; why = 'for ' + fmtDur(need) + ' before it closes at ' + fmtClock(st.closesAt); wk = 'close'; wb = st.closesAt; wd = need; }
   }
   if (at === null || !isNum(ref)) return null;
   at = Math.floor(at / 300000) * 300000;   // round down to 5 min
   if (at < ref || at - ref > LEAVE_BY_MAX_MIN * 60000) return null;
-  return {t:'Leave by ' + fmtClock(at) + ' ' + why, at:at, why:why};
+  return {t:'Leave by ' + fmtClock(at) + ' ' + why, at:at, why:why, wk:wk, wb:wb, wd:wd};   // v5.22: wk / wb / wd let leaveByText() say it in the picked language
 }
 function leaveSentence(c){ return tenseText(leaveSentence0(c), planCtx(c.st.ms)); }   // v5.3
 function leaveSentence0(c){
@@ -8961,17 +9119,17 @@ function lastEntryLine(it, p){ // v2.2 (C-1): "Last entry: 60 min before closing
   return '';
 }
 function rangesText(list){ if (!list.length) return 'Closed'; return list.map(function(r){ var s = hm(r && r[0]), e = hm(r && r[1]); if (s === null || e === null) return String(r); return fmtTime(s) + ' – ' + fmtTime(e); }).join(', '); }
-function closedDayLabel(k){ var hn = holidayName(k); return hn ? 'Closed for ' + hn : 'Closed'; }   // v5.21: a closed date that is a US holiday names it (HOLIDAY_NAMES)
+function closedDayLabel(k, lang){ var hn = holidayName(k), l = isLang(lang) ? lang : LANG; if (l !== 'en') return hn ? i18t('closed.for', {x:holNameL(holidayId(k), l)}, l) : i18t('closed', null, l); return hn ? 'Closed for ' + hn : 'Closed'; }   // v5.21: a closed date that is a US holiday names it (HOLIDAY_NAMES); v5.22: in the picked language
 function specialDatesHTML(it, p){ // date_hours and closed_dates in the next 3 weeks
   var rows = [], end = addDays(p.key, 21), seen = {};
   var dh = it.date_hours && typeof it.date_hours === 'object' ? it.date_hours : {};
   Object.keys(dh).forEach(function(k){ if (isKey(k) && k >= p.key && k <= end) { seen[k] = 1; rows.push([k, Array.isArray(dh[k]) ? rangesText(dh[k]) : 'Special hours, times not posted: call first']); } });   // v2.2: "unknown"
-  Object.keys(closedSet(it)).forEach(function(k){ if (k >= p.key && k <= end) rows.push([k, closedDayLabel(k)]); });
+  Object.keys(closedSet(it)).forEach(function(k){ if (k >= p.key && k <= end) rows.push([k, closedDayLabel(k, 'en')]); });
   if (!rows.length) return '';
   rows.sort(function(a, b){ return a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0; });
   var dedup = {}, out = '';
   rows.forEach(function(r){ if (dedup[r[0]]) return; dedup[r[0]] = 1; var isC = /^Closed/.test(r[1]) && closedSet(it)[r[0]]; out += '<tr class="' + (r[0] === p.key ? 'today' : '') + (isC ? ' off' : '') + '"><td>' + esc(fmtDayDate(r[0], p.key)) + '</td><td>' + esc(isC ? closedDayLabel(r[0]) : r[1]) + '</td></tr>'; });
-  return '<p class="small" style="margin:14px 0 4px">Special dates (these replace the weekly hours)</p><table class="hours"><tbody>' + out + '</tbody></table>';
+  return '<p class="small" style="margin:14px 0 4px">' + esc(i18L('dt.special', 'Special dates (these replace the weekly hours)')) + '</p><table class="hours"><tbody>' + out + '</tbody></table>';
 }
 function eventDatesHTML(it, p, T){
   var en = eventEntries(it); if (!en.length) return '';
@@ -9053,21 +9211,23 @@ function renderDetail(c, keepScroll){
     '<button class="mini-btn" type="button" data-cal="1">' + glyphSvg('i-cal') + esc(i18t('dt.cal')) + '</button></div>';
   if (ck) h += beenBoxHTML(ck, todayKey);
   h += friendSayHTML(it);   // v5.19: friends' average + "What friends say" (anonymous)
+  h += grBoxHTML(it);   // v5.22: the Google rating line, places only, on this page only
   // status + price
   var pr = priceShort(it), tsh = travelShort(c), pel = (UI.planning || UI.anyDay) ? planEventLines(it, st, nowMs()) : null;
   if (pel) d = {text:pel.text, tone:pel.tone, sub:''};   // v5.10: "Next:" is relative to today; the planned day gets its own short line
   if (it.award_note) h += '<p class="award dt-award">' + esc(it.award_note) + '</p>';
   h += '<div class="dt-status"><p class="dt-line ' + esc(d.tone) + '"><span class="st"><i class="dot"></i>' + esc(trStatus(d.text)) + '</span>' + (pr ? '<span class="pr">' + esc(trStatus(pr)) + '</span>' : '') + '</p>';
   var sub = [];
-  if (d.sub) sub.push(d.sub.charAt(0).toUpperCase() + d.sub.slice(1));
-  if (tsh) sub.push(tsh + (S.loc ? ' from ' + locWordsNow() : ''));
+  if (d.sub) sub.push(trStatus(d.sub.charAt(0).toUpperCase() + d.sub.slice(1)));
+  if (tsh) sub.push(S.loc ? i18L('tr.from', '{t} from {x}').replace('{t}', trStatus(tsh)).replace('{x}', locWordsNow()) : trStatus(tsh));   // v5.22 (tester M1): "38 min drive from Lake View" in the picked language
   if (sub.length) h += '<p class="subline">' + esc(sub.join(' · ')) + '</p>';
   if (pel && pel.extra) h += '<p class="subline">' + esc(pel.extra) + '</p>';
-  var lby = leaveBy(c); if (lby) h += '<p class="leaveby">' + esc(lby.t) + '</p>';   // v5.10 #33
+  var lby = leaveBy(c); if (lby) h += '<p class="leaveby">' + esc(leaveByText(lby)) + '</p>';   // v5.10 #33
   var eb = eventBadge(st); if (eb) h += '<p class="warnline">' + esc(eb) + '</p>';
   var dww = wxWarnFor(c); if (dww) h += '<p class="wxw">' + esc(dww) + '</p>';   // v5.20
   if (st.conflicting) h += '<p class="warnline">Sources disagree on hours · call first</p>';
-  if (holidayName(p.key) && st.key !== 'maybe' && !closedSet(it)[p.key]) h += '<p class="warnline">' + esc(holidayName(p.key)) + ': holiday hours vary, so call first.</p>';
+  if (holidayCaution(it, p.key)) h += '<p class="warnline hol-caution">' + esc(i18L('hol.caution', 'Holiday hours may differ — check before going')) + '</p>';   // v5.22: a note mentions this holiday but no field covers it
+  else if (holidayName(p.key) && st.key !== 'maybe' && !closedSet(it)[p.key]) h += '<p class="warnline">' + esc(LANG === 'en' ? holidayName(p.key) + ': holiday hours vary, so call first.' : i18t('hol.vary', {x:holNameL(holidayId(p.key))})) + '</p>';
   var ls = leaveSentence(c); if (ls) h += '<p class="aside">' + esc(ls) + '</p>';
   var f = c.fit;
   if (S.budgetOn && (f.kind === 'fits' || f.kind === 'tight' || f.kind === 'over' || f.kind === 'wait')) { // the door-to-door bar only when she set a time budget
@@ -9100,7 +9260,7 @@ function renderDetail(c, keepScroll){
   var facts = [];
   if (it.address) facts.push(['i-pin', it.address + (io ? ' · ' + io : '')]);
   facts.push(['g-ticket', priceTxt]);
-  facts.push(['i-door', it.booking === 'required' ? 'Booking required. Pick a time online before you go.' : it.booking === 'recommended' ? 'Booking recommended.' : it.booking === 'walk-in' ? 'Walk-ins welcome.' : 'Booking: not stated.']);
+  facts.push(['i-door', it.booking === 'required' ? i18L('bk.required', 'Booking required. Pick a time online before you go.') : it.booking === 'recommended' ? i18L('bk.recommended', 'Booking recommended.') : it.booking === 'walk-in' ? i18L('bk.walkin', 'Walk-ins welcome.') : i18L('bk.none', 'Booking: not stated.')]);   // v5.22 (tester M1)
   if (it.age_note) facts.push(['i-age', 'Ages: ' + fmt24Ranges(it.age_note)]);
   h += '<section class="dt-sec"><h2>' + esc(i18t('dt.practical')) + '</h2><ul class="hl">' + facts.map(function(x){ return '<li>' + glyphSvg(x[0]) + '<span>' + esc(x[1]) + '</span></li>'; }).join('') + '</ul>';
   if (it.phone) h += phoneHTML(it.phone, Platform.telOk);
@@ -9140,18 +9300,18 @@ function renderDetail(c, keepScroll){
   wireImages(sc);
   if (keepScroll) sc.scrollTop = top;
   // the bar under your thumb: main button (Tickets / Reserve when there is a booking link, else Directions) + Share + phone
-  var bar = '', primary, book = bookingLink(it);
-  if ((st.key === 'season' || st.key === 'gone' || st.key === 'ended') && web) primary = '<a class="btn-primary off" href="' + esc(web) + '" target="_blank" rel="noopener">Check their website' + glyphSvg('i-ext') + '</a>';
+  var bar = '', primary, book = bookingLink(it), isDir = false;
+  if ((st.key === 'season' || st.key === 'gone' || st.key === 'ended') && web) primary = '<a class="btn-primary off" href="' + esc(web) + '" target="_blank" rel="noopener">' + esc(i18L('dt.web', 'Check their website')) + glyphSvg('i-ext') + '</a>';
   else if (book) primary = '<a class="btn-primary" href="' + esc(book) + '" target="_blank" rel="noopener">' + bookingWord(it) + glyphSvg('i-ext') + '</a>';
   else if (c.bookTime && web) primary = '<a class="btn-primary" href="' + esc(web) + '" target="_blank" rel="noopener">' + esc(c.bookTime.btn) + glyphSvg('i-ext') + '</a>';   // v5.10: showtimes / book-a-time venues
   else if (tr.callFirst && it.phone && (st.key === 'unknown' || st.key === 'maybe' || (st.open && st.minsLeft !== null && st.minsLeft <= 120)))
-    primary = Platform.telOk ? '<a class="btn-primary" href="tel:' + esc(telHref(it.phone)) + '">' + glyphSvg('i-phone') + 'Call first</a>'
+    primary = Platform.telOk ? '<a class="btn-primary" href="tel:' + esc(telHref(it.phone)) + '">' + glyphSvg('i-phone') + esc(i18L('dt.callFirst', 'Call first')) + '</a>'
                              : '<button class="btn-primary" type="button" data-copy="' + esc(it.phone) + '">' + glyphSvg('i-copy') + 'Copy number, call first</button>';
-  else primary = '<a class="btn-primary" href="' + esc(isIOS ? appleMaps(it) : googleMaps(it)) + '" target="_blank" rel="noopener">Directions' + glyphSvg('i-ext') + '</a>';
+  else { isDir = true; primary = '<a class="btn-primary" href="' + esc(isIOS ? appleMaps(it) : googleMaps(it)) + '" target="_blank" rel="noopener">' + esc(i18L('dt.directions', 'Directions')) + glyphSvg('i-ext') + '</a>'; }
   bar += primary;
-  bar += '<button class="btn-sq" type="button" data-share="' + esc(it.id) + '" aria-label="Share ' + esc(it.name) + '">' + glyphSvg('i-share') + '<span>Share</span></button>';
-  if (!/Directions/.test(primary)) bar += '<a class="btn-sq" href="' + esc(isIOS ? appleMaps(it) : googleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + 'Go</a>';
-  else if (it.phone && Platform.telOk) bar += '<a class="btn-sq" href="tel:' + esc(telHref(it.phone)) + '">' + glyphSvg('i-phone') + 'Call</a>';
+  bar += '<button class="btn-sq" type="button" data-share="' + esc(it.id) + '" aria-label="Share ' + esc(it.name) + '">' + glyphSvg('i-share') + '<span>' + esc(i18L('dt.share', 'Share')) + '</span></button>';
+  if (!isDir) bar += '<a class="btn-sq" href="' + esc(isIOS ? appleMaps(it) : googleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + esc(i18L('dt.go', 'Go')) + '</a>';
+  else if (it.phone && Platform.telOk) bar += '<a class="btn-sq" href="tel:' + esc(telHref(it.phone)) + '">' + glyphSvg('i-phone') + esc(i18L('dt.call', 'Call')) + '</a>';
   else if (it.phone) bar += '<button class="btn-sq" type="button" data-copy="' + esc(it.phone) + '" aria-label="Copy the phone number ' + esc(it.phone) + '">' + glyphSvg('i-phone') + '<span>Copy no.</span></button>';
   $('dtBar').innerHTML = bar;
   var sv = isSaved(it.id), sb = $('dtSave');
@@ -9188,7 +9348,7 @@ function setHashFor(id){ // keeps "#<id>" in the address bar while a place is op
 }
 function openDetail(id){
   var c = findComputed(id); if (!c) return;
-  UI.detailId = id;
+  UI.detailId = id; grPageChange();   // v5.22: a new page visit fetches again (a late Google answer for an earlier visit is dropped)
   setHashFor(id);
   renderDetail(c, false);
   var el = $('detail'); el.hidden = false; void el.offsetWidth; el.classList.add('on');
@@ -9197,7 +9357,7 @@ function openDetail(id){
   setTimeout(function(){ try { $('dtClose').focus({preventScroll:true, focusVisible:false}); } catch (e) {} }, 60);   // no ring on open (tester L9); keyboard users still see it when they move
 }
 function closeDetail(){
-  var el = $('detail'), id = UI.detailId; UI.detailId = null;
+  var el = $('detail'), id = UI.detailId; UI.detailId = null; grPageChange();
   setHashFor('');
   el.classList.remove('on'); $('app').classList.remove('dt-open');
   setTimeout(function(){ if (!el.classList.contains('on')) el.hidden = true; }, 330);
@@ -9476,7 +9636,8 @@ function applyDraft(F, code){
 function renderFilters(){
   var F = UI.draft || S.f, body = $('pFiltersBody'), st = body.scrollTop;
   var n = draftCount(F), lim = (DATA_LOADED && n === 0) ? mostLimitingDraft(F) : null;
-  function H(t, key){ return '<h3>' + t + (lim === key ? '<span class="lim">Most limiting</span>' : '') + '</h3>'; }
+  function H(t, key){ return '<h3>' + t + (lim === key ? '<span class="lim">' + esc(i18L('f.most', 'Most limiting')) + '</span>' : '') + '</h3>'; }
+  staticLang();
   function chips(items){ return '<div class="chips-w">' + items.map(function(x){ return '<button class="chip" type="button" data-d="' + esc(x[0]) + '" aria-pressed="' + !!x[2] + '">' + x[1] + '</button>'; }).join('') + '</div>'; }
   function seg(items){ return '<div class="seg">' + items.map(function(x){ return '<button type="button" data-d="' + esc(x[0]) + '" aria-pressed="' + !!x[2] + '">' + x[1] + '</button>'; }).join('') + '</div>'; }
   function sw(code, on, label, sub){ return '<div class="sw-row"><span>' + label + (sub ? '<small>' + sub + '</small>' : '') + '</span><button class="switch" type="button" data-d="' + code + '" aria-pressed="' + !!on + '" aria-label="' + esc(label) + '"></button></div>'; }
@@ -9491,13 +9652,13 @@ function renderFilters(){
   h += '<div class="fsec">' + H(L('f.io'), 'io') + seg([['io:either', L('f.either'), F.io === 'either'], ['io:indoor', L('f.inside'), F.io === 'indoor'], ['io:outdoor', L('f.outside'), F.io === 'outdoor']]) + '</div>';
   h += '<div class="fsec">' + H(L('f.booking'), 'booking') + chips([['walkin', L('f.walkin'), F.walkin], ['hide21', L('f.no21'), F.hide21]]) + '</div>';
   var B = UI.draftB || {on:!!S.budgetOn, val:S.budget};   // the optional "I have N hours" budget, off by default
-  h += '<div class="fsec">' + H(L('f.time'), 'time') + chips([['tb:off', L('f.any'), !B.on]].concat([60, 120, 180].map(function(x){ return ['tb:' + x, esc(fmtBudget(x)), B.on && B.val === x]; })).concat(B.on && [60, 120, 180].indexOf(B.val) < 0 ? [['tb:' + B.val, esc(B.val === 'night' ? 'Tonight' : fmtBudget(B.val)), true]] : [])) + '</div>';
+  h += '<div class="fsec">' + H(L('f.time'), 'time') + chips([['tb:off', L('f.any'), !B.on]].concat([60, 120, 180].map(function(x){ return ['tb:' + x, esc(fmtBudgetL(x)), B.on && B.val === x]; })).concat(B.on && [60, 120, 180].indexOf(B.val) < 0 ? [['tb:' + B.val, esc(B.val === 'night' ? i18L('f.tonight', 'Tonight') : fmtBudgetL(B.val)), true]] : [])) + '</div>';
   var ia = popularInterests(DATA, F, POP_INTERESTS);
-  if (ia.length) h += '<div class="fsec">' + H(L('f.into'), 'interests') + chips(ia.map(function(x){ return ['int:' + x.id, esc(x.label), !!F.interests[x.id]]; })) + '</div>';
+  if (ia.length) h += '<div class="fsec">' + H(L('f.into'), 'interests') + chips(ia.map(function(x){ return ['int:' + x.id, esc(i18L('int.' + x.id, x.label)), !!F.interests[x.id]]; })) + '</div>';
   body.innerHTML = h; body.scrollTop = st;
   var go = $('pFiltersGo');
-  if (!DATA_LOADED) { go.textContent = 'Done'; go.classList.remove('zero'); go.removeAttribute('aria-disabled'); return; }
-  go.textContent = n ? 'Show ' + n + (n === 1 ? ' thing' : ' things') : 'No matches · loosen a filter';
+  if (!DATA_LOADED) { go.textContent = i18L('f.done', 'Done'); go.classList.remove('zero'); go.removeAttribute('aria-disabled'); return; }
+  go.textContent = n ? (n === 1 ? i18L('f.show1', 'Show 1 thing') : i18L('f.show', 'Show {n} things').replace('{n}', n)) : i18L('f.none', 'No matches · loosen a filter');
   go.classList.toggle('zero', !n);
   if (n) go.removeAttribute('aria-disabled'); else go.setAttribute('aria-disabled', 'true');
 }
@@ -9727,12 +9888,13 @@ function setLook(v, keep){ LOOK = normLook(v); if (!keep) THEME_SAVED = Platform
 try { var mqLook = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)'); if (mqLook) { var onMq = function(){ if (LOOK === 'auto') applyLook(); }; if (mqLook.addEventListener) mqLook.addEventListener('change', onMq); else if (mqLook.addListener) mqLook.addListener(onMq); } } catch (e) {}
 function themePickerHTML(){
   var lk = currentLook(), mm = mapMode();
-  var h = '<p class="th-lab" id="thLookLab">Theme</p><div class="seg th-seg" role="group" aria-labelledby="thLookLab">' + [['light', 'Light'], ['dark', 'Dark'], ['auto', 'Auto']].map(function(x){
+  var T = function(k, en){ return esc(i18L(k, en)); };   // v5.22 (tester M1): the Theme panel in the picked language
+  var h = '<p class="th-lab" id="thLookLab">' + T('th.theme', 'Theme') + '</p><div class="seg th-seg" role="group" aria-labelledby="thLookLab">' + [['light', T('th.light', 'Light')], ['dark', T('th.dark', 'Dark')], ['auto', T('th.auto', 'Auto')]].map(function(x){
     return '<button type="button" data-look="' + x[0] + '" aria-pressed="' + (lk === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>';
-  if (lk === 'auto') h += '<p class="th-note">Auto follows your phone’s light or dark setting.</p>';
-  h += '<p class="th-lab" id="thMapLab">Map</p><div class="seg th-seg" role="group" aria-labelledby="thMapLab">' + [['standard', 'Standard'], ['themed', 'Themed']].map(function(x){
+  if (lk === 'auto') h += '<p class="th-note">' + T('th.autoNote', 'Auto follows your phone’s light or dark setting.') + '</p>';
+  h += '<p class="th-lab" id="thMapLab">' + T('th.map', 'Map') + '</p><div class="seg th-seg" role="group" aria-labelledby="thMapLab">' + [['standard', T('th.standard', 'Standard')], ['themed', T('th.themed', 'Themed')]].map(function(x){
     return '<button type="button" data-mapstyle="' + x[0] + '" aria-pressed="' + (mm === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>';
-  h += '<p class="th-foot">' + (Platform.store.ok && THEME_SAVED ? 'Saved on this phone.' : 'Only for this visit.') + '</p>';
+  h += '<p class="th-foot">' + (Platform.store.ok && THEME_SAVED ? T('th.saved', 'Saved on this phone.') : T('th.visit', 'Only for this visit.')) + '</p>';
   return h;
 }
 function renderThemePicker(){ var b = $('pThemeBody'); if (b) b.innerHTML = langPickerHTML() + themePickerHTML(); if ($('pThemeTitle')) $('pThemeTitle').textContent = i18t('theme.title'); }   // v5.21: Language first
@@ -10999,8 +11161,9 @@ function runSelfTest(){
   var keepPlanST = UI.planning, keepAtST = UI.planAt, keepAnyST = UI.anyDay; UI.planning = false; UI.planAt = null; UI.anyDay = '';   // v5.3: the checks expect "now" wording even if the app is in planning mode
   TASTE_SUSPEND++; TASTE_REV++;   // v5.12: the checks run with an empty taste profile, whatever is saved on this phone
   WX.testOff++;   // v5.20: and with no weather (the weather block turns it on for its own made-up forecasts)
+  GR.testOff++;   // v5.22: and never a live Google rating call (the rating checks use a stand-in fetch)
   var keepLangST = LANG; LANG = 'en';   // v5.21: the checks read English words; the language block passes its language explicitly
-  try { return runSelfTest0(); } finally { UI.planning = keepPlanST; UI.planAt = keepAtST; UI.anyDay = keepAnyST; TASTE_SUSPEND--; TASTE_REV++; WX.testOff--; LANG = keepLangST; }
+  try { return runSelfTest0(); } finally { UI.planning = keepPlanST; UI.planAt = keepAtST; UI.anyDay = keepAnyST; TASTE_SUSPEND--; TASTE_REV++; WX.testOff--; GR.testOff--; LANG = keepLangST; }
 }
 function runSelfTest0(){
   var R = [];
@@ -11016,6 +11179,7 @@ function runSelfTest0(){
   var devZone = ''; try { devZone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
   info('Device time zone: ' + (devZone || 'unknown') + '. All checks use America/Chicago (' + (fmtParts ? 'Intl' : 'built-in DST rule') + ').');
   block('v5.21 languages, Only in Chicago, Visiting Chicago, tester fixes', function(){ i18nSelfTest(ok, eq, info); });
+  block('v5.22 holiday status from fields only, more UI words, Visiting Chicago without chains, Google line rules', function(){ v522SelfTest(ok, eq); });
 
   block('time zone', function(){
     eq('Chicago noon Jul 4 2026 = 17:00 UTC (CDT)', fromChicago('2026-07-04', 720), Date.UTC(2026, 6, 4, 17, 0));
@@ -11128,7 +11292,7 @@ function runSelfTest0(){
     eq('Light show before it starts: text', stx(zoo, '2026-11-12', '12:00').d.text, 'Starts Fri, Nov 20, 4:30 pm');
     s = stx(zoo, '2026-11-26', '18:00');
     ok('Light show on a listed closed date (Thanksgiving): not open', !s.open, s.key);
-    eq('Closed dates read from hours_note', [!!closedSet(zoo)['2026-11-26'], !!closedSet(zoo)['2026-12-24'], !!closedSet(zoo)['2026-11-27']].join(), 'true,true,false');
+    eq('v5.22: ', [!!closedSet(zoo)['2026-11-26'], !!closedSet(zoo)['2026-12-24'], !!closedSet(zoo)['2026-11-27']].join(), 'false,false,false');
     ok('Light show Nov 27 6 pm: open', stx(zoo, '2026-11-27', '18:00').open, '');
     eq('Light show Nov 27 3 pm: opens later', stx(zoo, '2026-11-27', '15:00').d.text, 'Opens at 4:30 pm today');
     var bal = fx({kind:'event', hours:null, season:{open_from:'2025-10-30', open_to:null}, event_dates:[{start:'2025-10-30', end:null}]});
@@ -11279,24 +11443,24 @@ function runSelfTest0(){
     var field = fx({category:'art-museum', hours:nine5, hours_note:'Last entry 4pm. Closed Thanksgiving (Nov 26, 2026) and Christmas Day.'});
     var s = stx(field, '2026-11-26', '13:00');
     ok('Field Museum on Thanksgiving 2026 at 1 pm is NOT open', !s.open, s.key + ' / ' + s.d.text);
-    eq('Field Museum on Thanksgiving: text', s.d.text, 'Closed for Thanksgiving · opens tomorrow 9 am');
+    eq('v5.22: ', s.d.text, 'Holiday: hours may differ, call first');
     s = stx(field, '2026-12-25', '12:00');
-    eq('Field Museum on Christmas Day ("Christmas Day" in the note): may be closed, call first', [s.key, s.open, s.d.text].join(' | '), 'maybe | false | May be closed today (Christmas) · call first');
+    eq('v5.22: ', [s.key, s.open, s.d.text].join(' | '), 'maybe | false | Holiday: hours may differ, call first');
     ok('Field Museum Nov 27: open again', stx(field, '2026-11-27', '13:00').open, '');
     ok('Field Museum on Thanksgiving 2027 (holiday name only): not open', !stx(field, '2027-11-25', '13:00').open, '');
     var aic = fx({category:'art-museum', hours:allDays(['11:00', '20:00']), hours_note:"Closed Thanksgiving, Christmas and New Year's Day."});
     eq('Art Institute on Thanksgiving / Christmas Eve / Christmas / Jan 1', [stx(aic, '2026-11-26', '13:00').key, stx(aic, '2026-12-24', '13:00').key, stx(aic, '2026-12-25', '13:00').key, stx(aic, '2027-01-01', '13:00').key].join(), 'maybe,open,maybe,maybe');
     var flw = fx({hours:nine5, hours_note:"Closed Thanksgiving, Christmas Eve, Christmas Day, New Year's Day."});
-    eq('"Christmas Eve" listed: may be closed on Dec 24', stx(flw, '2026-12-24', '12:00').key, 'maybe');
+    eq('v5.22: ', stx(flw, '2026-12-24', '12:00').key, 'open');
     var chm = fx({hours:nine5, hours_note:"Thanksgiving Eve, Christmas Eve, New Year's Eve 9:30am-2:30pm. Closed New Year's Day, Thanksgiving, Christmas."});
     s = stx(chm, '2026-11-25', '12:00');
-    eq('Special hours on Thanksgiving Eve (text only): call first, not open', [s.key, s.d.text].join(' | '), 'maybe | Thanksgiving Eve: hours may differ · call first');
-    eq('Same museum on Thanksgiving: may be closed', stx(chm, '2026-11-26', '12:00').d.text, 'May be closed today (Thanksgiving) · call first');
+    eq('v5.22: ', [s.key, s.d.text].join(' | '), 'open | Open till 5 pm');
+    eq('v5.22: ', stx(chm, '2026-11-26', '12:00').d.text, 'Holiday: hours may differ, call first');
     var mex = fx({hours:nine5, hours_note:"Closed major holidays (New Year's, MLK Day, Memorial Day, Juneteenth, July 4, Labor Day, Indigenous Peoples' Day, Thanksgiving, Christmas)."});
-    eq('"Closed major holidays": Memorial Day 2027, Labor Day 2026, Easter 2027', [stx(mex, '2027-05-31', '12:00').key, stx(mex, '2026-09-07', '12:00').key, stx(mex, '2027-03-28', '12:00').key].join(), 'maybe,maybe,maybe');
+    eq('v5.22: ', [stx(mex, '2027-05-31', '12:00').key, stx(mex, '2026-09-07', '12:00').key, stx(mex, '2027-03-28', '12:00').key].join(), 'open,open,open');
     var r1 = fx({hours:allDays(['10:00', '01:00']), hours_note:'Official page: Sun-Sat 10AM-1AM. Holiday hours may differ.'});
     s = stx(r1, '2026-11-26', '15:00');
-    eq('"Holiday hours may differ" on Thanksgiving: call first', [s.key, s.d.text].join(' | '), 'maybe | Thanksgiving: hours may differ · call first');
+    eq('v5.22: ', [s.key, s.d.text].join(' | '), 'maybe | Holiday: hours may differ, call first');
     ok('Same place on Nov 12: open as usual', stx(r1, '2026-11-12', '15:00').open, '');
     var ua = fx({hours:nine5, hours_note:'Thanksgiving week special hours: 11/23-11/25 10am-8pm, closed 11/26, 11/27 10am-9pm.'});
     eq('"closed 11/26" is read; "11/27 10am-9pm" is not a closure', [stx(ua, '2026-11-26', '12:00').key, !!holidayNotes(ua).md['11-27']].join(), 'maybe,false');
@@ -11307,7 +11471,7 @@ function runSelfTest0(){
     var parade = fx({kind:'event', category:'seasonal', hours_note:'Thanksgiving Day parade.', event_dates:[{start:'2026-11-26T08:00', end:'2026-11-26T11:00'}]});
     ok('An event session dated on Thanksgiving is still "happening now"', stx(parade, '2026-11-26', '09:00').open, '');
     var res = runPipeline([field, r1, fx({hours:nine5, lat:northOf(0.3)})], at('2026-11-26', '13:00'), CTX, defaultFilters());
-    eq('Thanksgiving 1 pm (v2.1 rule): nothing in "fits"; the place with no holiday info is "call first" too', res.groups.fits.length + '|' + res.count + '|' + res.groups.unknown.length, '0|0|2');
+    eq('v5.22: ', res.groups.fits.length + '|' + res.count + '|' + res.groups.unknown.length, '0|0|3');
   });
 
   block('v2 date_hours (checked single-date hours)', function(){
@@ -11461,7 +11625,7 @@ function runSelfTest0(){
     var noteOnly = venueFx({hours_note:'Closed Thanksgiving and Christmas Day.'}), ex2 = exhibitFx({});
     linkVenues([noteOnly, ex2]);
     s = stx(ex2, '2026-11-26', '13:00');
-    eq('venue whose notes say "Closed Thanksgiving": the event says may be closed, per the venue', [s.key, s.d.text, s.d.sub].join(' | '), 'maybe | May be closed today (Thanksgiving) · call first | per Venue Museum\'s hours');
+    eq('v5.22: ', [s.key, s.d.text, s.d.sub].join(' | '), 'maybe | Holiday: hours may differ, call first | no Thanksgiving hours on file');
     var openTg = venueFx({closed_dates:['2026-12-25'], hours_note:'Closed Christmas Day.'}), ex3 = exhibitFx({});
     linkVenues([openTg, ex3]);
     eq('venue whose holiday info names only Christmas: on Thanksgiving both are call first (v2.2 rule, challenger H-2)', stx(ex3, '2026-11-26', '13:00').key, 'maybe');
@@ -11476,13 +11640,13 @@ function runSelfTest0(){
   block('v2.1 holidays: checker notes and places with no holiday info (tester M-B)', function(){
     var c360 = fx({hours:allDays(['09:00', '23:00']), hours_note:'Last entry 10pm.', verified:{status:'verified', checked_on:'2026-11-12', notes:'Daily 9 am - 11 pm. No holiday hours posted - call (888) 875-8439 before Thanksgiving/Christmas.'}});
     var s = stx(c360, '2026-11-26', '13:00');
-    eq('holiday words in verified.notes are read (360 CHICAGO case)', [s.key, s.d.text].join(' | '), 'maybe | Thanksgiving: hours may differ · call first');
+    eq('v5.22: ', [s.key, s.d.text].join(' | '), 'maybe | Holiday: hours may differ, call first');
     var fm = fx({hours:allDays(['07:00', '19:00']), verified:{status:'verified', checked_on:'2026-11-12', notes:'Holiday hours not listed - call 312-575-0306 to confirm.'}});
     eq('"Holiday hours not listed" in verified.notes: call first on Christmas', stx(fm, '2026-12-25', '12:00').key, 'maybe');
     var stat = fx({hours:allDays(['09:00', '17:00']), closed_dates:['2026-11-26'], verified:{status:'verified', checked_on:'2026-11-12', notes:'Page status Closed on 2026-11-12.'}});
     ok('a date in verified.notes ("Closed on 2026-11-12") is NOT read as a closed day', stx(stat, '2026-11-12', '13:00').open, stx(stat, '2026-11-12', '13:00').key);
     var bz = fx({hours:allDays(['10:00', '17:00']), closed_dates:['2026-11-26', '2026-12-25'], hours_note:'Closed Thanksgiving (Nov 26) and Christmas Day (Dec 25). Dec 24 is not a Holiday Magic date and has no posted special hours - call to confirm.'});
-    eq('"Dec 24 ... call to confirm": Dec 24 is call first, Dec 23 open (Brookfield case)', [stx(bz, '2026-12-24', '12:00').key, stx(bz, '2026-12-23', '12:00').key].join(), 'maybe,open');
+    eq('v5.22: ', [stx(bz, '2026-12-24', '12:00').key, stx(bz, '2026-12-23', '12:00').key].join(), 'open,open');
     var plain = fx({hours:allDays(['10:00', '20:00'])});
     s = stx(plain, '2026-11-26', '13:00');
     eq('no holiday info at all, Thanksgiving: amber call first', [s.key, s.d.text, s.d.sub, s.d.tone].join(' | '), 'maybe | Holiday: hours may differ, call first | no Thanksgiving hours on file | soon');
@@ -11497,7 +11661,7 @@ function runSelfTest0(){
     var wedBar = fx({hours:allDays(['16:00', '02:00'])});
     ok('1 am on Thanksgiving, bar open since Wednesday 4 pm: Wednesday\'s hours, still open', stx(wedBar, '2026-11-26', '01:00').open, stx(wedBar, '2026-11-26', '01:00').key);
     eq('...but its Thanksgiving evening is call first', stx(wedBar, '2026-11-26', '18:00').key, 'maybe');
-    eq('hasHolidayInfo: none / notes / closed_dates on a holiday / closed_dates on a normal day', [hasHolidayInfo(fx({})), hasHolidayInfo(fx({hours_note:'Closed Christmas.'})), hasHolidayInfo(fx({closed_dates:['2027-01-01']})), hasHolidayInfo(fx({closed_dates:['2026-11-14']}))].join(), 'false,true,true,false');
+    eq('hasHolidayInfo: none / notes / closed_dates on a holiday / closed_dates on a normal day', [hasHolidayInfo(fx({})), hasHolidayInfo(fx({hours_note:'Closed Christmas.'})), hasHolidayInfo(fx({closed_dates:['2027-01-01']})), hasHolidayInfo(fx({closed_dates:['2026-11-14']}))].join(), 'false,false,true,false');   // v5.22: a note alone no longer counts
   });
 
   block('v2.1 closed for the season vs closed for good (tester H-B)', function(){
@@ -11594,19 +11758,19 @@ function runSelfTest0(){
       hours_note:'Official site. Special hours: Thanksgiving Nov 26 11:00-16:00; Dec 21-23 11:00-21:00; Dec 24 11:00-16:00; Dec 25 closed; Dec 28-30 11:00-21:00; Dec 31 11:00-16:00.',
       season:{open_from:'2026-11-20', open_to:'2026-12-31'}, closed_dates:['2026-12-25'], event_dates:[{start:'2026-11-20T15:00', end:'2026-12-31T16:00'}]});
     var s = stx(wv, '2026-12-24', '19:30');
-    eq('Christkindlmarket Wrigleyville, Christmas Eve 7:30 pm: not "happening now"', [s.key, s.d.text].join(' | '), 'maybe | Christmas Eve: special hours · call first');
-    eq('...Dec 31 5 pm: call first, Dec 21 noon: call first (was "Opens at 3 pm")', [stx(wv, '2026-12-31', '17:00').key, stx(wv, '2026-12-21', '12:00').d.text].join(' | '), 'maybe | Special hours today · call first');
+    eq('v5.22: ', [s.key, s.d.text].join(' | '), 'open | Happening now · till 9 pm');
+    eq('v5.22: ', [stx(wv, '2026-12-31', '17:00').key, stx(wv, '2026-12-21', '12:00').d.text].join(' | '), 'open | Special hours today · call first');
     eq('...a normal Friday (Dec 18) is open as usual', stx(wv, '2026-12-18', '12:00').key, 'open');
-    eq('...and Christmas Eve is never a fit', runPipeline([wv], at('2026-12-24', '19:30'), CTX, defaultFilters()).count, 0);
+    eq('v5.22: ', runPipeline([wv], at('2026-12-24', '19:30'), CTX, defaultFilters()).count, 1);
     var au = fx({kind:'event', category:'seasonal', hours:{mon:[], tue:[], wed:[], thu:[['11:00', '19:00']], fri:[['11:00', '21:00']], sat:[['11:00', '21:00']], sun:[['11:00', '18:00']]},
       hours_note:'Extra open days (normally closed weekdays): Wed Nov 25 11:00-19:00; Mon Dec 21 - Wed Dec 23 11:00-19:00.', season:{open_from:'2026-11-20', open_to:'2026-12-24'}, event_dates:[{start:'2026-11-20T11:00', end:'2026-12-24T16:00'}]});
-    eq('Aurora extra days (Wed Nov 25, Tue Dec 22): call first instead of "Closed today"', [stx(au, '2026-11-25', '12:00').key, stx(au, '2026-12-22', '12:00').key, stx(au, '2026-12-01', '12:00').key].join(), 'maybe,maybe,closed');
+    eq('v5.22: ', [stx(au, '2026-11-25', '12:00').key, stx(au, '2026-12-22', '12:00').key, stx(au, '2026-12-01', '12:00').key].join(), 'closed,maybe,closed');
     var sd = fx({hours:{mon:[['09:00', '20:00']], tue:[['09:00', '20:00']], wed:[['09:00', '20:00']], thu:[['09:00', '20:00']], fri:[['09:00', '20:00']], sat:[['09:00', '21:00']], sun:[['09:00', '20:00']]},
       hours_note:'Thanksgiving: Thu Nov 26 9am-8pm; Fri Nov 27-Sat Nov 28 9am-10pm; Sun Nov 29 9am-8pm.'});
-    eq('Skydeck: notes hours that match the weekly hours count as confirmed (Nov 26 open); Nov 27 differs (call first)', [stx(sd, '2026-11-26', '13:00').key, stx(sd, '2026-11-27', '13:00').key].join(), 'open,maybe');
+    eq('v5.22: ', [stx(sd, '2026-11-26', '13:00').key, stx(sd, '2026-11-27', '13:00').key].join(), 'maybe,maybe');
     eq('K1-style "private event closure" on Dec 9: call first', stx(fx({hours:allDays(['11:00', '22:00']), hours_note:'Dec 9: private event closure 1-4 pm.'}), '2026-12-09', '11:30').key, 'maybe');
     var mw = fx({hours:allDays(['12:00', '19:00']), closed_dates:['2026-12-25'], hours_note:'Holiday schedule on Nov 27-29, Dec 19-Jan 4, Jan 18 and Feb 15: open skate 12-7pm every day. Closed Christmas Day; shorter hours Christmas Eve (times not posted).'});
-    eq('Midway rink: a range that matches the weekly hours does not override "shorter hours Christmas Eve"', [stx(mw, '2026-12-24', '15:00').key, stx(mw, '2026-12-26', '15:00').key].join(), 'maybe,open');
+    eq('v5.22: ', [stx(mw, '2026-12-24', '15:00').key, stx(mw, '2026-12-26', '15:00').key].join(), 'open,open');
     eq('"Jan 5-9 ... call to confirm" (range, M-6): Jan 7 call first', stx(fx({hours:nine5, hours_note:'Cleaning week Jan 5-9, call to confirm.'}), '2027-01-07', '12:00').key, 'maybe');
     var unk = fx({hours:allDays(['12:00', '19:00']), date_hours:{'2026-12-24':'unknown'}});
     s = stx(unk, '2026-12-24', '13:00');
@@ -11626,7 +11790,7 @@ function runSelfTest0(){
     var lh = fx({hours:allDays(['11:00', '24:00']), hours_note:"Official site: open daily 11 am-midnight. New Year's Eve party on the rooftop (hours not given)."});
     eq('LH Rooftop: naming New Year\'s Eve doesn\'t vouch for Thanksgiving or Christmas', [stx(lh, '2026-11-26', '13:00').key, stx(lh, '2026-12-25', '13:00').key, stx(lh, '2026-11-26', '13:00').d.text].join(' | '), 'maybe | maybe | Holiday: hours may differ, call first');
     var ssc = fx({hours:allDays(['07:00', '19:00']), closed_dates:['2026-11-26', '2026-12-25', '2027-01-01'], hours_note:'Park buildings are closed on Thanksgiving, Christmas Day and New Year\'s Day (in closed_dates) and some have reduced hours Dec 24 and Dec 31 (posted the week before): call to confirm (773) 256-0149.'});
-    eq('South Shore "reduced hours Dec 24 ... call to confirm": Dec 24 call first', stx(ssc, '2026-12-24', '12:00').key, 'maybe');
+    eq('v5.22: ', stx(ssc, '2026-12-24', '12:00').key, 'open');
     eq('"closed ... to Dec 1" is still a range (not a closed day)', !!closedSet(fx({hours_note:'Closed for renovation Nov 20 to Dec 1.'}))['2026-11-20'], false);
     var s;
   });
@@ -12577,8 +12741,8 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.21 (2026-11-14)');
-    eq('previous version', VERSION_PREV, 'v5.20 (2026-11-14)');
+    eq('version', VERSION, 'v5.22 (2026-11-14)');
+    eq('previous version', VERSION_PREV, 'v5.21 (2026-11-14)');
   });
 
   /* ---------- v5.20 fix (live v5.19 tester, MEDIUM): "Last entry not posted" must never make a last-entry time ---------- */
@@ -13945,6 +14109,7 @@ function runSelfTestAsync(){ // checks that need promises or the map files
   var flaky = 0, flakyDb = {collection:function(){ return {add:function(){ flaky++; return flaky === 1 ? Promise.reject({code:'unavailable'}) : Promise.resolve({id:'t2'}); }}; }};
   var bad = {writable:true};
   return Promise.all([
+    grSelfTestAsync(ok, eq),   // v5.22: the Google rating line with a stand-in fetch (success, capped, error, nomatch, timeout, events never call); nothing is sent
     i18nSelfTestAsync(ok, eq),   // v5.21: the real i18n files (website builds only; skipped when they can't be fetched)
     wxSelfTestAsync(ok, eq),   // v5.20: weather fetch failures, malformed JSON, timeout, cache (fake fetch, fake storage; nothing sent)
     Platform.tips.sendWith(goodDb, tip, {writable:true}).then(function(r){
@@ -14353,7 +14518,7 @@ function i18nSelfTest(ok, eq, info){
         var F0 = appDefaultFilters();
         box.innerHTML = '<div class="hm-ctl">' + ['who.date', 'who.friends', 'who.solo'].map(function(k){ return '<button class="qchip">' + esc(i18t(k)) + '</button>'; }).join('') + '</div>' +
           '<div class="hm-ctl">' + ['when.now', 'when.today', 'when.pick'].map(function(k){ return '<button class="qchip">' + esc(i18t(k)) + '</button>'; }).join('') + '</div>' +
-          '<div class="p-body">' + langPickerHTML() + '</div>' +
+          '<div class="p-body" style="width:320px;margin:0 -16px;box-sizing:border-box">' + langPickerHTML() + '</div>' +   // v5.22 (tester L2): the sheet spans the whole 320 px screen, so the picker is measured at that width
           '<p>' + ['only', 'rare', 'classic'].map(function(k){ return ohBadgeHTML({only_here:{kind:k}}, 'tag'); }).join(' ') + '</p>' +
           '<div class="fsec fs-visit"><div class="sw-row"><span>' + esc(i18t('f.visit')) + '</span><button class="switch" type="button"></button></div></div>' +
           '<div class="chips-w">' + ['f.free', 'f.sale', 'f.walkin', 'f.no21', 'f.any'].map(function(k){ return '<button class="chip" type="button">' + esc(i18t(k)) + '</button>'; }).join('') + '</div>' +
@@ -14380,6 +14545,96 @@ function i18nSelfTest(ok, eq, info){
   ok('T6 on Thanksgiving a place closed that day reads "Closed for Thanksgiving"', /^Closed for Thanksgiving/.test(describe(sTg, tg).text), describe(sTg, tg).text);
   ok('T6 the special-dates table names the holiday', specialDatesHTML(tg, cparts(fromChicago('2026-11-20', 720))).indexOf('Closed for Thanksgiving') > 0, '');
   ok('T7 "Compare with a friend" signed out: a card that says what it does, that it needs sign-in, nothing shared until a friend accepts, Sign in + Not now', /Compare shows/.test(COMPARE_CARD_HTML) && /sign in/i.test(COMPARE_CARD_HTML) && /Nothing is shared until a friend accepts/.test(COMPARE_CARD_HTML) && /data-cmp="in"[^>]*>Sign in</.test(COMPARE_CARD_HTML) && />Not now</.test(COMPARE_CARD_HTML), '');
+}
+/* v5.22 self-test: holiday status from fields only (her yes), "Closed for <holiday>" + more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. */
+function v522SelfTest(ok, eq){
+  var H = allDays(['10:00', '17:00']);
+  function S(it, key, t){ var st = statusAt(it, fromChicago(key, t)); return st.open ? 'open' : st.key; }
+  // C: a field vs a note naming the same holiday
+  var nTg = fx({hours:H, hours_note:'Closed Thanksgiving Day.'}), fTg = fx({hours:H, closed_dates:['2026-11-26']});
+  eq('H1 Thanksgiving: a note "Closed Thanksgiving" alone is not a fact (call first); closed_dates on the day is closed', [S(nTg, '2026-11-26', 720), S(fTg, '2026-11-26', 720)].join(), 'maybe,closed');
+  ok('H1 the closed_dates place reads "Closed for Thanksgiving"; the note-only place says call first, never "Closed for"', /^Closed for Thanksgiving/.test(describe(statusAt(fTg, fromChicago('2026-11-26', 720)), fTg).text) && !/Closed for/.test(describe(statusAt(nTg, fromChicago('2026-11-26', 720)), nTg).text), describe(statusAt(nTg, fromChicago('2026-11-26', 720)), nTg).text);
+  var nEve = fx({hours:H, hours_note:'Closed Christmas Eve and Christmas Day.'}), fEve = fx({hours:H, closed_dates:['2026-12-24']});
+  eq('H2 Christmas Eve: the note is display-only (weekly hours apply); the closed_dates field closes it', [S(nEve, '2026-12-24', 720), S(fEve, '2026-12-24', 720)].join(), 'open,closed');
+  eq('H2 hasHolidayInfo: a holiday note alone no longer counts; closed_dates / confirmed array on a holiday do', [hasHolidayInfo(fx({hours_note:'Closed on all major holidays.'})), hasHolidayInfo(fx({closed_dates:['2026-11-26']})), hasHolidayInfo(fx({verified:{holiday_hours_confirmed:['2026-11-26']}}))].join(), 'false,true,true');
+  // caution line: a note mentions the holiday, no field covers it -> caution, status unchanged; a field-backed holiday -> no caution
+  var cNote = fx({hours:H, hours_note:'Shorter hours Christmas Eve; call to confirm.'}), cField = fx({hours:H, hours_note:'Shorter hours Christmas Eve; call to confirm.', date_hours:{'2026-12-24':[['10:00', '14:00']]}});
+  var cGtk = fx({hours:H, good_to_know:[{q:'Open on New Year\'s Day?', a:'Usually closed.', source:'https://x.example'}]});
+  eq('H5 caution: note-only Dec 24 shows it with the status kept (open); Thanksgiving note-only too; good_to_know mention on Jan 1; not on an ordinary day', [holidayCaution(cNote, '2026-12-24'), S(cNote, '2026-12-24', 720), holidayCaution(nTg, '2026-11-26'), holidayCaution(cGtk, '2027-01-01'), holidayCaution(cNote, '2026-12-23')].join(), 'true,open,true,true,false');
+  eq('H6 no caution when a field covers the holiday (date_hours / closed_dates / confirmed array), or the note names another holiday', [holidayCaution(cField, '2026-12-24'), holidayCaution(fx({hours:H, hours_note:'Closed Christmas Eve.', closed_dates:['2026-12-24']}), '2026-12-24'), holidayCaution(fx({hours:H, hours_note:'Christmas Eve hours as usual.', verified:{holiday_hours_confirmed:['2026-12-24']}}), '2026-12-24'), holidayCaution(cNote, '2026-12-25')].join(), 'false,false,false,false');
+  eq('H6 the caution words in ru / ko (unverified)', ['ru', 'ko'].map(function(l){ return i18t('hol.caution', null, l); }).join(' | '), 'В праздник часы могут отличаться — проверьте перед выходом | 공휴일에는 영업시간이 다를 수 있어요. 가기 전에 확인하세요');
+  // Thanksgiving: each field
+  var cTg = fx({hours:H, verified:{holiday_hours_confirmed:['2026-11-26']}}), dTg = fx({hours:H, date_hours:{'2026-11-26':[['10:00', '14:00']]}}), uTg = fx({hours:H, date_hours:{'2026-11-26':'unknown'}}), noTg = fx({hours:H});
+  eq('H3 Thanksgiving noon: confirmed regular hours / date_hours 10-2 / date_hours "unknown" / nothing', [S(cTg, '2026-11-26', 720), S(dTg, '2026-11-26', 720), S(uTg, '2026-11-26', 720), S(noTg, '2026-11-26', 720)].join(), 'open,open,maybe,maybe');
+  eq('H3 Thanksgiving 3 pm: date_hours 10-2 is closed by then', S(dTg, '2026-11-26', 900) === 'open' ? 'open' : 'not open', 'not open');
+  // closed_dates on an ordinary day, and a note's dated closure on an ordinary day still counts (only holidays changed)
+  var cd = fx({hours:H, closed_dates:['2026-11-17']});
+  eq('H4 closed_dates item: closed on Nov 17, open on Nov 18', [S(cd, '2026-11-17', 720), S(cd, '2026-11-18', 720)].join(), 'closed,open');
+  // L1: "Closed for <holiday>" in each language
+  eq('T8 "Closed for Thanksgiving" in ru / zh-Hans / ko (status line)', ['ru', 'zh-Hans', 'ko'].map(function(l){ return trStatus('Closed for Thanksgiving · opens tomorrow 9:30 am', l); }).join(' | '), 'Закрыто: День благодарения · откроется завтра 9:30 am | 感恩节休息 · 明天 9:30 am 开门 | 추수감사절 휴무 · 내일 9:30 am 오픈');
+  eq('T8 special-dates labels in Korean / Chinese; English unchanged', [closedDayLabel('2026-12-25', 'ko'), closedDayLabel('2026-11-17', 'zh-Hans'), closedDayLabel('2026-12-25', 'en')].join('|'), '크리스마스 휴무|休息|Closed for Christmas');
+  eq('T8 "Closed for the season" is not mistaken for a holiday', trStatus('Closed for the season', 'ru'), 'Закрыто на сезон');
+  // M1: more interface words
+  var lb = {t:'Leave by 3:55 pm for 1 h before it closes at 5:30 pm', at:fromChicago('2026-11-16', 955), wk:'close', wb:fromChicago('2026-11-16', 1050), wd:60};
+  eq('T9 the "Leave by" card line: English unchanged; Russian keeps both times', leaveByText(lb, 'en') + ' | ' + leaveByText(lb, 'ru'), 'Leave by 3:55 pm for 1 h before it closes at 5:30 pm | Выходите до 3:55 pm: будет 1 ч до закрытия в 5:30 pm');
+  eq('T9 durations and time chips in the language', [fmtDurL(150, 'ru'), fmtDurL(45, 'zh-Hans'), fmtBudgetL(120, 'ko'), fmtBudgetL(60, 'ru'), fmtBudgetL(90, 'ko')].join('|'), '2 ч 30 мин|45 分钟|2시간|1 ч|1½ hrs');
+  var keepL = LANG, th = '', wc = '', bk = '';
+  try { LANG = 'ko'; th = themePickerHTML(); wc = wxCodeL(63); bk = i18L('bk.recommended', 'Booking recommended.'); } finally { LANG = keepL; }
+  ok('T9 Theme panel in Korean (테마 / 라이트 / 다크 / 지도), the weather word and booking line too', /테마/.test(th) && /라이트/.test(th) && /다크/.test(th) && /지도/.test(th) && wc === '비' && bk === '예약을 권장해요.', wc + ' ' + bk);
+  eq('T9 English stays English (i18L falls back to the given words)', [i18L('dt.directions', 'Directions'), i18L('no.such', 'Fallback')].join(), 'Directions,Fallback');
+  // M2: Visiting Chicago without chains
+  eq('V2 Visiting Chicago drops Topgolf / Puttshack / Eataly / Museum of Ice Cream / AIRE / King Spa (still popular), keeps Navy Pier and tagged chains', [visitorPick({name:'Topgolf Schaumburg'}), visitorPick({name:'Puttshack Oak Brook'}), visitorPick({name:'Eataly Chicago'}), visitorPick({name:'Museum of Ice Cream Chicago'}), visitorPick({name:'AIRE Ancient Baths Chicago'}), visitorPick({name:'King Spa & Sauna (Korean jjimjilbang, Niles)'}), visitorPick({name:'Navy Pier'}), visitorPick({name:'Topgolf X', only_here:{kind:'rare', reason:'r'}})].join(), 'false,false,false,false,false,false,true,true');
+  ok('V2 popularity still counts the chains as well known', popularityOf(fx({name:'Topgolf Schaumburg', category:'active'})) > popularityOf(fx({name:'Corner Lanes', category:'active'})), '');
+  // A (sync part): where the Google line may appear
+  eq('GR0 eligible: a place yes; an event, a pop-up category and a pop-up tag no', [grEligible({kind:'place', category:'games-arcade'}), grEligible({kind:'event'}), grEligible({kind:'place', category:'immersive-popup'}), grEligible({kind:'place', tags:['pop-up']})].join(), 'true,false,false,false');
+  eq('GR0 the strings: "Google reviews" translated, "Google Maps" never', ['ru', 'ko'].map(function(l){ return i18t('gr.reviews', {n:'1,234'}, l); }).join(' | ') + ' | ' + grLineHTML({state:'ok', rating:4.6, count:2, mapsUri:'https://maps.google.com/?cid=9'}).indexOf('>Google Maps</a>'), 'Отзывы в Google: 1,234 | Google 리뷰 1,234개 | ' + grLineHTML({state:'ok', rating:4.6, count:2, mapsUri:'https://maps.google.com/?cid=9'}).indexOf('>Google Maps</a>'));
+  ok('GR0 the map, map cards, search, share and export never carry it (no rating fields on items; page memory only)', [shareText, cardLeaveHTML, factsLineL, passFilters].every(function(fn){ return typeof fn === 'function' && !/\bGR\.|grLineHTML|grBoxHTML/.test(String(fn)); }), '');
+}
+function grSelfTestAsync(ok, eq){
+  var keep = {fetchFn:GR.fetchFn, mem:GR.mem, inflight:GR.inflight}, sent = [], restore = function(){ GR.fetchFn = keep.fetchFn; GR.mem = keep.mem; GR.inflight = keep.inflight; GR.testOff--; };
+  GR.testOff++;
+  var place = {id:'fx-gr1', kind:'place', name:'Fixture Lanes', address:'1 Test St, Chicago, IL', category:'games-arcade'};
+  function mock(reply, status){ return function(u, o){ sent.push({u:u, o:o}); var s = status || 200; return Promise.resolve({ok:s < 400, status:s, json:function(){ return Promise.resolve(reply); }}); }; }
+  function hang(u, o){ sent.push({u:u, o:o}); return new Promise(function(res, rej){ if (o && o.signal && o.signal.addEventListener) o.signal.addEventListener('abort', function(){ rej(new Error('aborted')); }); }); }
+  var good = {rating:4.6, count:1234, mapsUri:'https://maps.google.com/?cid=123'};
+  var runs = [grRequest(place, {fetch:mock(good)}), grRequest(place, {fetch:mock({capped:true})}), grRequest(place, {fetch:mock({error:'boom'}, 500)}), grRequest(place, {fetch:mock({error:'quota'})}), grRequest(place, {fetch:mock({nomatch:true})}), grRequest(place, {fetch:hang, timeoutMs:60})];
+  return Promise.all(runs).then(function(r){
+    eq('GR1 success (mocked): state, rating, count, link', [r[0].state, r[0].rating, r[0].count, r[0].mapsUri].join('|'), 'ok|4.6|1234|https://maps.google.com/?cid=123');
+    var line = grLineHTML(r[0]);
+    ok('GR1 the line: "★ 4.6 · 1,234 Google reviews · Google Maps", the attribution linking to mapsUri', /★<\/span> <b>4\.6<\/b> · 1,234 Google reviews · <a href="https:\/\/maps\.google\.com\/\?cid=123"[^>]*>Google Maps<\/a>/.test(line), line);
+    eq('GR2 capped / GR3 error (HTTP 500, and {error}) / GR4 nomatch / GR5 timeout (8 s in the app, 60 ms here)', [r[1].state, r[2].state, r[3].state, r[4].state, r[5].state].join(), 'capped,error,error,nomatch,timeout');
+    eq('GR2-5 none of them draws anything (the line is hidden)', [1, 2, 3, 4, 5].map(function(i){ return grLineHTML(r[i]); }).join(''), '');
+    var s0 = sent[0], b0 = {}; try { b0 = JSON.parse(s0.o.body); } catch (e) {}
+    ok('GR6 the request: POST {SB_URL}/functions/v1/google-rating, apikey + Authorization Bearer (publishable key), JSON body {item_id, name, address}', !!s0 && s0.o.method === 'POST' && s0.u === SB_URL + '/functions/v1/google-rating' && s0.o.headers.apikey === SB_KEY && s0.o.headers.Authorization === 'Bearer ' + SB_KEY && s0.o.headers['Content-Type'] === 'application/json' && b0.item_id === 'fx-gr1' && b0.name === 'Fixture Lanes' && b0.address === '1 Test St, Chicago, IL', s0 ? s0.u : 'no request');
+    ok('GR5 the timeout aborts the request (AbortController)', !!(sent[5] && sent[5].o.signal && sent[5].o.signal.aborted), '');
+    eq('GR7 bad replies are hidden: rating 7, no count, a non-Google link, a quote in the link, not JSON', [grParse({rating:7, count:3, mapsUri:good.mapsUri}), grParse({rating:4.2, mapsUri:good.mapsUri}), grParse({rating:4.2, count:3, mapsUri:'https://evil.example/x'}), grParse({rating:4.2, count:3, mapsUri:'https://maps.google.com/"x'}), grParse('nope')].map(function(x){ return x.state; }).join(), 'error,error,error,error,error');
+    var n0 = sent.length; GR.fetchFn = mock(good); GR.mem = {};
+    var evH = grBoxHTML({id:'fx-gr-ev', kind:'event', name:'A show at Fixture Lanes', address:'1 Test St, Chicago, IL'}), popH = grBoxHTML({id:'fx-gr-pop', kind:'place', category:'immersive-popup', name:'Pop Fixture'});
+    ok('GR8 an event (a show at a venue) and a pop-up never call the function and show nothing', evH === '' && popH === '' && sent.length === n0, 'calls ' + (sent.length - n0));
+    var keepDet = UI.detailId, p1; UI.detailId = 'fx-gr1';
+    try { var sk = grBoxHTML(place); ok('GR9 a place page shows a quiet skeleton while loading', /gr-sk/.test(sk) && /aria-busy="true"/.test(sk) && !!GR.inflight && GR.inflight.id === 'fx-gr1', sk); p1 = grStart(place, {fetch:mock(good)}); GR.nav++; } finally { UI.detailId = keepDet; }
+    return p1.then(function(st){ eq('GR9 she left the page before the answer: it is dropped (not shown, not kept)', st + ',' + !!GR.mem['fx-gr1'], 'dropped,false'); });
+  }).then(function(){
+    // GR11: within one open, one fetch (re-renders reuse it); closing forgets it; the next open fetches again
+    var keepDet = UI.detailId, n1 = 0; GR.fetchFn = function(u, o){ n1++; return mock(good)(u, o); };
+    grPageChange(); UI.detailId = 'fx-gr1';
+    var a = grBoxHTML(place), b = grBoxHTML(place);
+    var pend = GR.inflight ? grRequest(place, {fetch:function(){ return new Promise(function(){}); }, timeoutMs:120}) : Promise.resolve();   // just waits a moment for the stand-in answer
+    return pend.then(function(){
+      var c = grBoxHTML(place), kept = !!GR.mem['fx-gr1'];
+      grPageChange(); var afterClose = Object.keys(GR.mem).length;
+      var d = grBoxHTML(place);
+      UI.detailId = keepDet;
+      eq('GR11 one open: 2 renders while loading = 1 call; after the answer a re-render uses it (still 1); closing forgets it; the next open calls again (2)', [/gr-sk/.test(a) && /gr-sk/.test(b), kept, /Google reviews/.test(c), afterClose, /gr-sk/.test(d)].join() + '|' + n1, 'true,true,true,0,true|1');
+      return grRequest(place, {fetch:function(){ return new Promise(function(){}); }, timeoutMs:120}).then(function(){ eq('GR11 ...and that second open made exactly one more call', n1, 2); });
+    });
+  }).then(function(){
+    eq('GR12 the #grmock hook: never on the real site (https stacey98.github.io), only on file:// or localhost', [grMockAllowed({protocol:'https:', hostname:'stacey98.github.io'}), grMockAllowed({protocol:'https:', hostname:'claude.ai'}), grMockAllowed({protocol:'file:', hostname:''}), grMockAllowed({protocol:'http:', hostname:'localhost'}), grMockAllowed({protocol:'http:', hostname:'127.0.0.1'}), grMockAllowed(null)].join(), 'false,false,true,true,true,false');
+  }).then(function(){
+    var hit = []; try { for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i), v = String(localStorage.getItem(k) || ''); if (/Google reviews|mapsUri|google-rating/.test(v) || /google|rating/i.test(k)) hit.push(k); } } catch (e) {}
+    ok('GR10 nothing about Google ratings in this browser\'s storage', !hit.length, hit.join());
+    restore();
+  }, function(e){ restore(); ok('GR async checks ran', false, e && e.message ? e.message : String(e)); });
 }
 function i18nSelfTestAsync(ok, eq){
   var R = [];
@@ -14515,7 +14770,8 @@ function readHash(){
   var gdm = /(?:^#|&)guide=([a-z0-9-]+)/.exec(hsh); if (gdm && mapEl && GA.open !== gdm[1]) gaDeepLink(gdm[1]);   // v5.18: an article (digits allowed), else the old v5.10 list, else a toast
   if (/(?:^#|&)fprof=1/.test(hsh) && mapEl) { var tryFp = function(n){ if (DATA_LOADED && Acct.demo && LIVE.length) openFriendView(LIVE[0].key); else if (n < 60) setTimeout(function(){ tryFp(n + 1); }, 250); }; tryFp(0); }   // screenshot hook (with #acctdemo=1): the first made-up friend's profile
   var frs = /(?:^#|&)frscroll=(blend|visited|both)/.exec(hsh); if (frs && mapEl) { var tryFs = function(n){ var el = $('pFriendBody') && $('pFriendBody').querySelector(frs[1] === 'blend' ? '.bl-hero' : frs[1] === 'both' ? '.cp-cards' : '.fold'); if (el && !$('pFriend').hidden) { shotScrollTo(el); } else if (n < 80) setTimeout(function(){ tryFs(n + 1); }, 250); }; tryFs(0); }   // v5.19 screenshot hook (with #acctdemo=1&cpdemo=1&fprof=1)
-  var dts = /(?:^#|&)dtscroll=(been|frr)/.exec(hsh); if (dts && mapEl) { var tryDs = function(n){ var el = $('dtScroll') && $('dtScroll').querySelector(dts[1] === 'been' ? '.been-box' : '.dt-frr'); if (el && UI.detailId) { shotScrollTo(el); } else if (n < 80) setTimeout(function(){ tryDs(n + 1); }, 250); }; tryDs(0); }   // v5.19 screenshot hook
+  if (/(?:^#|&)grmock=1(?:&|$)/.test(hsh) && grMockAllowed(location)) GR.fetchFn = function(){ return new Promise(function(res){ setTimeout(function(){ res({ok:true, status:200, json:function(){ return Promise.resolve({rating:4.6, count:1234, mapsUri:'https://maps.google.com/?cid=0'}); }}); }, 300); }); };   // v5.22 screenshot hook: MADE-UP rating, nothing is sent
+  var dts = /(?:^#|&)dtscroll=(been|frr|gr)/.exec(hsh); if (dts && mapEl) { var tryDs = function(n){ var el = $('dtScroll') && $('dtScroll').querySelector(dts[1] === 'been' ? '.been-box' : dts[1] === 'gr' ? '.dt-kicker' : '.dt-frr'); if (el && UI.detailId) { shotScrollTo(el); } else if (n < 80) setTimeout(function(){ tryDs(n + 1); }, 250); }; tryDs(0); }   // v5.19 screenshot hook
   if (/homescroll=blend/.test(hsh) && mapEl) { var tryHb = function(n){ var s = document.querySelector('#homeRoot .cp-h'); if (s) { shotScrollTo(s); } else if (n < 80) setTimeout(function(){ tryHb(n + 1); }, 250); }; tryHb(0); }   // v5.19 screenshot hook
   if (/homescroll=guides/.test(hsh) && mapEl) { var tryHs = function(n){ var s = document.querySelector('#homeRoot .ga-s'), hm = $('home'); if (s && hm) hm.scrollTop = Math.max(0, s.offsetTop - 120); else if (n < 60) setTimeout(function(){ tryHs(n + 1); }, 200); }; tryHs(0); }   // screenshot hook
   var gdx = /gascroll=(\d+)/.exec(hsh); if (gdx && mapEl) { var tryGs = function(n){ var sc = $('gaScroll'); if (GA.open && sc && sc.scrollHeight > 200) sc.scrollTop = +gdx[1] >= 9999 ? sc.scrollHeight : +gdx[1]; else if (n < 60) setTimeout(function(){ tryGs(n + 1); }, 200); }; tryGs(0); }   // screenshot hook: #guide=x&gascroll=900 (9999 = the end)
@@ -15036,28 +15292,29 @@ function wxDayBit(k){
   return d && isNum(d.hi) ? '<small class="wxd">' + wxSvg(wxIcon(d.code, 1, d.gust)) + Math.round(d.hi) + '°</small>' : '';
 }
 function wxNowCell(y, x){ return x ? ext(y, {code:x.code, day:x.day, gust:x.gust, temp:x.temp}) : y; }   // v5.21 (tester v5.20 L4): the "Now" cell shows the big current reading, not the hourly row
-function wxOpenSheet(){ openSmall('Weather near ' + locName(S.loc), wxSheet); }
+function wxOpenSheet(){ openSmall(i18L('wx.near', 'Weather near {x}').replace('{x}', locName(S.loc)), wxSheet); }
 function wxSheet(){ var b = $('pSmallBody'); if (b) b.innerHTML = wxSheetHTML(); }
 function wxSheetHTML(){
-  var h = '', foot = '<p class="wx-foot">' + WX_ATTR_HTML + (WX.fixture ? ' · Test weather (made up)' : WX.at ? ' · Updated ' + esc(fmtClock(WX.at)) : '') + '</p>';
-  if (!WX.fixture && WX.state === 'off') return '<p class="wx-off">Weather shows on the website version only.</p>';
-  if (!WX.fixture && !wxLocOf(S.loc)) return '<p class="wx-off">Weather needs your area. Nothing is sent until you pick one.</p><button class="btn-primary" type="button" data-wx="loc" style="width:100%">Pick my area</button>';
-  if (!wxDataOk()) return '<p class="wx-off">' + (WX.inflight ? 'Loading the weather…' : 'Weather unavailable. Picks aren’t using it; everything else works.') + '</p>' + (WX.inflight ? '' : '<button class="mini-btn" type="button" data-wx="retry">Try again</button>') + '<p class="wx-foot">' + WX_ATTR_HTML + '</p>';
+  var X = function(k, en){ return i18L(k, en); };   // v5.22 (tester M1): the weather sheet in the picked language
+  var h = '', foot = '<p class="wx-foot">' + WX_ATTR_HTML + (WX.fixture ? ' · Test weather (made up)' : WX.at ? ' · ' + esc(X('wx.updated', 'Updated {t}').replace('{t}', fmtClock(WX.at))) : '') + '</p>';
+  if (!WX.fixture && WX.state === 'off') return '<p class="wx-off">' + esc(X('wx.web', 'Weather shows on the website version only.')) + '</p>';
+  if (!WX.fixture && !wxLocOf(S.loc)) return '<p class="wx-off">' + esc(X('wx.needloc', 'Weather needs your area. Nothing is sent until you pick one.')) + '</p><button class="btn-primary" type="button" data-wx="loc" style="width:100%">' + esc(X('wx.pick', 'Pick my area')) + '</button>';
+  if (!wxDataOk()) return '<p class="wx-off">' + esc(WX.inflight ? X('wx.loading', 'Loading the weather…') : X('wx.unavail', 'Weather unavailable. Picks aren’t using it; everything else works.')) + '</p>' + (WX.inflight ? '' : '<button class="mini-btn" type="button" data-wx="retry">' + esc(X('wx.retry', 'Try again')) + '</button>') + '<p class="wx-foot">' + WX_ATTR_HTML + '</p>';
   var N = WX.d, p = cparts(nowMs()), W = wxWindow(N, {mode:'now', key:p.key, min:p.min});
-  if (!WX.fixture && Date.now() - WX.at > WX_DIM_MS) h += '<p class="wx-off small">Offline: weather from ' + esc(fmtClock(WX.at)) + '</p>';
+  if (!WX.fixture && Date.now() - WX.at > WX_DIM_MS) h += '<p class="wx-off small">' + esc(X('wx.offline', 'Offline: weather from {t}').replace('{t}', fmtClock(WX.at))) + '</p>';
   if (W) {
     var x = W.hours[0], det = [];
-    if (isNum(x.feels)) det.push('Feels ' + Math.round(x.feels) + '°');
-    if (isNum(x.gust)) det.push('gusts ' + Math.round(x.gust) + ' mph');
-    h += '<div class="wx-now">' + wxSvg(wxIcon(x.code, x.day, x.gust), 'wxi big') + '<b>' + (isNum(x.temp) ? Math.round(x.temp) + '°' : '') + '</b><div><p class="wx-cond">' + esc(wxCodeText(x.code)) + '</p><p class="wx-det">' + esc(det.join(' · ')) + '</p></div></div>';
+    if (isNum(x.feels)) det.push(X('wx.feels', 'Feels {t}').replace('{t}', Math.round(x.feels) + '°'));
+    if (isNum(x.gust)) det.push(X('wx.gusts', 'gusts {n} mph').replace('{n}', Math.round(x.gust)));
+    h += '<div class="wx-now">' + wxSvg(wxIcon(x.code, x.day, x.gust), 'wxi big') + '<b>' + (isNum(x.temp) ? Math.round(x.temp) + '°' : '') + '</b><div><p class="wx-cond">' + esc(wxCodeL(x.code)) + '</p><p class="wx-det">' + esc(det.join(' · ')) + '</p></div></div>';
     var i0 = -1; for (var i = 0; i < N.hours.length; i++) if (N.hours[i].key === p.key && N.hours[i].h === Math.floor(p.min / 60)) { i0 = i; break; }
-    if (i0 >= 0) h += '<ul class="wx-hours" aria-label="Next 12 hours">' + N.hours.slice(i0, i0 + 12).map(function(y, j){ if (j === 0) y = wxNowCell(y, x); return '<li><span>' + (j === 0 ? 'Now' : esc(fmtTime(y.h * 60).replace(':00', ''))) + '</span>' + wxSvg(wxIcon(y.code, y.day, y.gust)) + (isNum(y.prob) && y.prob >= 50 ? '<small>' + Math.round(y.prob) + '%</small>' : '') + '<b>' + (isNum(y.temp) ? Math.round(y.temp) + '°' : '') + '</b></li>'; }).join('') + '</ul>';
+    if (i0 >= 0) h += '<ul class="wx-hours" aria-label="Next 12 hours">' + N.hours.slice(i0, i0 + 12).map(function(y, j){ if (j === 0) y = wxNowCell(y, x); return '<li><span>' + (j === 0 ? esc(X('wx.now', 'Now')) : esc(fmtTime(y.h * 60).replace(':00', ''))) + '</span>' + wxSvg(wxIcon(y.code, y.day, y.gust)) + (isNum(y.prob) && y.prob >= 50 ? '<small>' + Math.round(y.prob) + '%</small>' : '') + '<b>' + (isNum(y.temp) ? Math.round(y.temp) + '°' : '') + '</b></li>'; }).join('') + '</ul>';
   }
   var dd = N.days.filter(function(d){ return d.key >= p.key; }).slice(0, 8);
-  if (dd.length) h += '<div class="wx-days">' + dd.map(function(d, j){ return '<button type="button" data-wx="day:' + d.key + '" aria-label="Show ' + esc(j === 0 ? 'today' : DOW_SHORT[wdOfKey(d.key)]) + ', any time"><span class="d">' + (j === 0 ? 'Today' : esc(DOW_SHORT[wdOfKey(d.key)] + ' ' + (+d.key.slice(8)))) + '</span>' + wxSvg(wxIcon(d.code, 1, d.gust)) + '<span class="pp">' + (isNum(d.prob) && d.prob >= 30 ? Math.round(d.prob) + '%' : '') + '</span><span class="t">' + (isNum(d.hi) ? Math.round(d.hi) + '°' : '') + ' / ' + (isNum(d.lo) ? Math.round(d.lo) + '°' : '') + '</span></button>'; }).join('') + '</div>';
-  h += '<button class="wx-sw" type="button" role="switch" aria-checked="' + wxRankOn() + '" data-wx="rank">Use weather in picks<i></i></button>';
-  h += '<button class="wx-sw" type="button" role="switch" aria-checked="' + !!WX.fxPref + '" data-wx="fx">Rain and snow on the map<i></i></button>';
-  h += '<p class="hint">Weather only changes the order. Nothing is hidden.</p>';
+  if (dd.length) h += '<div class="wx-days">' + dd.map(function(d, j){ return '<button type="button" data-wx="day:' + d.key + '" aria-label="Show ' + esc(j === 0 ? 'today' : DOW_SHORT[wdOfKey(d.key)]) + ', any time"><span class="d">' + (j === 0 ? esc(X('wx.today', 'Today')) : esc(DOW_SHORT[wdOfKey(d.key)] + ' ' + (+d.key.slice(8)))) + '</span>' + wxSvg(wxIcon(d.code, 1, d.gust)) + '<span class="pp">' + (isNum(d.prob) && d.prob >= 30 ? Math.round(d.prob) + '%' : '') + '</span><span class="t">' + (isNum(d.hi) ? Math.round(d.hi) + '°' : '') + ' / ' + (isNum(d.lo) ? Math.round(d.lo) + '°' : '') + '</span></button>'; }).join('') + '</div>';
+  h += '<button class="wx-sw" type="button" role="switch" aria-checked="' + wxRankOn() + '" data-wx="rank">' + esc(X('wx.rank', 'Use weather in picks')) + '<i></i></button>';
+  h += '<button class="wx-sw" type="button" role="switch" aria-checked="' + !!WX.fxPref + '" data-wx="fx">' + esc(X('wx.fx', 'Rain and snow on the map')) + '<i></i></button>';
+  h += '<p class="hint">' + esc(X('wx.hint', 'Weather only changes the order. Nothing is hidden.')) + '</p>';
   return h + foot;
 }
 function wxDetailHTML(c){ // the item's own idea and "things to do there", exactly as written in the data
@@ -15176,6 +15433,7 @@ function init(){
   LANG = detectLang(navLangNow(), Platform.store.get(LANG_KEY, null));   // v5.21: a saved pick, else ru / zh / ko from the browser, else English
   try { document.documentElement.setAttribute('lang', LANG); } catch (e) {}
   if ($('pThemeTitle')) $('pThemeTitle').textContent = i18t('theme.title');
+  staticLang();
   i18nLoad(LANG);
   // v5.9: the head boot script already set these before first paint; repeat here in case a host dropped it. 'clear' / 'bold' (v1) read as night.
   var de0 = document.documentElement;
@@ -15231,6 +15489,8 @@ function init(){
 
 window.__cff = {
   version: VERSION, appName: APP_NAME,
+  grParse: grParse, grEligible: grEligible, grLineHTML: grLineHTML, grRequest: grRequest, grState: function(){ return {calls:GR.calls, nav:GR.nav, inflight:GR.inflight, mock:!!GR.fetchFn, live:grLive(), ids:Object.keys(GR.mem)}; },   // v5.22 (no ratings stored anywhere but page memory)
+  leaveByText: leaveByText, statusNotes: statusNotes, holidayCaution: holidayCaution, hasHolidayInfo: hasHolidayInfo, i18L: i18L,   // v5.22
   detectLang: detectLang, langFromTag: langFromTag, placeTextWith: placeTextWith, i18nFresh: i18nFresh, numsKept: numsKept, trStatus: trStatus, i18t: i18t, STR: STR, LANGS: LANGS,   // v5.21
   lang: function(){ return {lang:LANG, loaded:Object.keys(I18N.cache), state:ext(I18N.state, {}), err:ext(I18N.err, {}), hash:!!I18N.hash}; }, setLang: function(l, keep){ return setLang(l, keep); },
   onlyHereOf: onlyHereOf, visitorPick: visitorPick, closedDayLabel: closedDayLabel, locGoChoice: locGoChoice, wxNowCell: wxNowCell, fmt24Ranges: fmt24Ranges,

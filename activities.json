@@ -40316,9 +40316,6 @@
                        "open_to":  "2026-12-26",
                        "note":  "Saturdays only, Nov 28-Dec 26."
                    },
-        "closed_dates":  [
-
-                         ],
         "booking":  "required",
         "booking_url":  "https://www.cruiselakegeneva.com/santa-cruise/",
         "age_note":  "21+",
@@ -40360,6 +40357,9 @@
                         "snow_friendly":  false,
                         "rain_ok":  true
                     },
+        "closed_dates":  [
+                             "2026-12-25"
+                         ],
         "sid":  322,
         "photos":  [
                        {
