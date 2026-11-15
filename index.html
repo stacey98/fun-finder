@@ -2246,9 +2246,9 @@ svg.gi{width:20px;height:20px;flex:none}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.30 (2026-11-15)';   // v5.30: the rest of the text in ru / zh-Hans / ko (phrase table for the location sheet, friends, privacy, poll, Group Blend, taste result, pop-ups, toasts), rarer leave-now sentences, photo credit words, ko times from Intl, the trip page redrawn on a language switch, the action row at 320 px, stricter food answers. v5.29: Ask about this place (answers only from the item's data), group size + occasion filters, trip party size. v5.28: the app text in ru / zh-Hans / ko (dates and times via Intl, ~230 new keys, data + guide translation plumbing)
+var VERSION = 'v5.31 (2026-11-15)';   // v5.31: the About panel and the Surprise panel in ru / zh-Hans / ko (A31 string table, unverified). v5.30: the rest of the text in ru / zh-Hans / ko (phrase table for the location sheet, friends, privacy, poll, Group Blend, taste result, pop-ups, toasts), rarer leave-now sentences, photo credit words, ko times from Intl, the trip page redrawn on a language switch, the action row at 320 px, stricter food answers. v5.29: Ask about this place (answers only from the item's data), group size + occasion filters, trip party size. v5.28: the app text in ru / zh-Hans / ko (dates and times via Intl, ~230 new keys, data + guide translation plumbing)
 //   // v5.27: Generate my itinerary on the trip page (day-by-day plan from the shortlist + group picks: home base start/end, area clusters, hours/events/sunset, either/or, didn't fit, editable, saved with the trip on this device). v5.26: trip mode lite (on this phone only: city + dates + optional group, a home base that every distance starts from while trip mode is on, a shortlist with a status per trip day, vote link with places only, og.trips.v1 max 5). v5.25: Group Blend v1 (2-5 friends, on this phone only: poster + group match, picks tagged "4 of 5", vote link with places only, saved groups og.groups.v1). v5.24: multi-city (Chicago + Oʻahu): city picker, per-city data, map bounds, spots, travel and badges; open-now in the item's city time zone. v5.23: the rest ofthe UI words in ru / zh-Hans / ko (unverified), Visiting Chicago from the data field us_cities (< 3 US cities; visit_override). v5.22: Google rating line on place pages (edge function, page memory only), holiday status from fields only, more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
-var VERSION_PREV = 'v5.29 (2026-11-15)';   // v5.29: Ask about this place, group size + occasions. v5.28: the app text in ru / zh-Hans / ko. v5.27: Generate my itinerary. v5.26: trip mode lite. v5.25: Group Blend v1
+var VERSION_PREV = 'v5.30 (2026-11-15)';   // v5.30: the rest of the text in ru / zh-Hans / ko. v5.29: Ask about this place, group size + occasions. v5.28: the app text in ru / zh-Hans / ko. v5.27: Generate my itinerary. v5.26: trip mode lite. v5.25: Group Blend v1
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var FEEDBACK_EMAIL = 'localfinds.app@gmail.com';   // v5.16: "Send feedback" in the account sheet (a mailto draft; never sent by the app). Separate from CONTACT_EMAIL.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
@@ -5207,10 +5207,108 @@ function relang30(){ // setLang with a panel open: rebuild it in the new languag
   var did = [], open = function(id){ var e = document.getElementById(id); return e && !e.hidden; }, go = function(id, f){ if (open(id)) { try { f(); did.push(id); } catch (e) {} } };
   go('pTrip', function(){ renderTrip(); }); go('pGroup', function(){ renderGroup(); }); go('pFriends', function(){ renderFriends(); }); go('pFriend', function(){ renderFriend(); });
   go('pPrivacy', function(){ renderPrivacy(); }); go('pPoll', function(){ renderPoll(); }); go('pAbout', function(){ renderAbout(); }); go('pSaved', function(){ renderSaved(); });
-  go('taste', function(){ tasteRender(); });
+  go('taste', function(){ tasteRender(); }); go('pSurprise', function(){ renderSurprise(); });   // v5.31: + Surprise
   if (open('pLoc') && UI.cand) { try { $('locGo').textContent = 'Start at ' + UI.cand.label; did.push('pLoc'); } catch (e) {} }
   loc30All();
   return did;
+}
+/* v5.31: the About panel and the Surprise panel in ru / zh-Hans / ko. Keyed templates [en, ru, zh-Hans, ko] with {placeholders}; English is the
+   exact text the panels showed before. Non-English: written by the developer, unverified, needs native review. Quoted app labels inside are
+   approximate. {inh} / {not} (VENUE_RULE words) are written out in each translation instead. */
+var A31 = {
+  'ab.intro':['{app} (working name) shows fun things in Chicago that are actually open, how long the trip takes, and how fresh our information is. Hours come from each place\'s own site, and every item shows when they were last checked.', '{app} (рабочее название) показывает, чем заняться в Чикаго из того, что действительно открыто, сколько займёт дорога и насколько свежие у нас данные. Часы работы берутся с сайта каждого места, и у каждого пункта указано, когда его проверяли в последний раз.', '{app}（暂定名）显示芝加哥真正开着的好玩去处、路上要多久，以及我们的信息有多新。营业时间来自每个地方自己的网站，每一项都会显示上次核实的时间。', '{app}(가칭)은 시카고에서 지금 실제로 열려 있는 놀거리, 가는 데 걸리는 시간, 정보가 얼마나 최신인지를 보여 줘요. 영업시간은 각 장소의 공식 사이트에서 가져오고, 모든 항목에 마지막 확인 날짜가 표시돼요.'],
+  'ab.dataH':['Data', 'Данные', '数据', '데이터'],
+  'ab.counts':['{p} places · {e} events · {v} confirmed', 'мест: {p} · событий: {e} · подтверждено: {v}', '{p} 个地点 · {e} 个活动 · {v} 个已确认', '장소 {p}곳 · 이벤트 {e}개 · 확인됨 {v}개'],
+  'ab.newest':[' · newest check {d}', ' · последняя проверка {d}', ' · 最近一次核实 {d}', ' · 최근 확인 {d}'],
+  'ab.dot':['.', '.', '。', '.'],
+  'ab.skip1':[' {n} item skipped (missing name or map point, or a likely duplicate).', ' Пропущено пунктов: {n} (нет названия или точки на карте либо похоже на дубликат).', ' 跳过了 {n} 项（缺少名称或地图位置，或可能重复）。', ' {n}개 항목을 건너뛰었어요(이름이나 지도 위치가 없거나 중복일 가능성).'],
+  'ab.skipN':[' {n} items skipped (missing name or map point, or a likely duplicate).', ' Пропущено пунктов: {n} (нет названия или точки на карте либо похоже на дубликат).', ' 跳过了 {n} 项（缺少名称或地图位置，或可能重复）。', ' {n}개 항목을 건너뛰었어요(이름이나 지도 위치가 없거나 중복일 가능성).'],
+  'ab.loadErr':[' Load error: {e}', ' Ошибка загрузки: {e}', ' 加载错误：{e}', ' 불러오기 오류: {e}'],
+  'ab.fresh':['{pct}% of the list was confirmed in the last 2 weeks.', '{pct}% списка подтверждено за последние 2 недели.', '清单中 {pct}% 的内容在最近 2 周内核实过。', '목록의 {pct}%가 최근 2주 안에 확인됐어요.'],
+  'ab.openH':['How we decide "open"', 'Как мы решаем, что место «открыто»', '我们如何判断“营业中”', '"영업 중"을 판단하는 방법'],
+  'ab.o1':['Closed dates come first (holidays, private events), then season dates: a place closed for the season is never shown as open, whatever its weekly hours say.', 'Сначала идут даты закрытия (праздники, частные мероприятия), затем даты сезона: место, закрытое на сезон, никогда не показывается открытым, что бы ни говорили его обычные часы.', '先看闭馆日期（节假日、私人活动），再看季节日期：季节性关闭的地方绝不会显示为营业，不管它每周的营业时间怎么写。', '먼저 휴무일(공휴일, 비공개 행사)을 보고, 그다음 시즌 날짜를 봐요. 시즌 휴업 중인 곳은 주간 영업시간이 어떻든 절대 영업 중으로 표시되지 않아요.'],
+  'ab.o2':['Then any special hours for that exact date, then the weekly hours, in Chicago time. Hours that run past midnight belong to the day they start.', 'Потом особые часы на эту дату, затем обычные часы по неделе, по чикагскому времени. Часы, которые заходят за полночь, относятся к дню, в который начались.', '然后看该日期的特别营业时间，再看每周营业时间，均按芝加哥时间。跨过午夜的营业时间算在开始的那一天。', '그다음 그 날짜의 특별 영업시간, 그리고 주간 영업시간을 시카고 시간으로 봐요. 자정을 넘기는 영업시간은 시작한 날에 속해요.'],
+  'ab.o3':['On holidays (Thanksgiving, Christmas Eve and Day, New Year\'s Eve and Day, Easter, Memorial Day, July 4, Labor Day), a place whose notes mention holiday closures or holiday hours says "May be closed today, call first" instead of open.', 'В праздники (День благодарения, Сочельник и Рождество, канун Нового года и Новый год, Пасха, День памяти, 4 июля, День труда) место, в заметках которого упоминаются праздничные закрытия или праздничные часы, показывается как «Сегодня может быть закрыто, сначала позвоните», а не как открытое.', '在节假日（感恩节、平安夜和圣诞节、新年前夜和元旦、复活节、阵亡将士纪念日、7 月 4 日、劳动节），备注里提到节假日关闭或节假日营业时间的地方会显示“今天可能不营业，先打电话”，而不是营业中。', '공휴일(추수감사절, 크리스마스이브와 크리스마스, 새해 전날과 새해 첫날, 부활절, 메모리얼 데이, 7월 4일, 노동절)에는 메모에 공휴일 휴무나 공휴일 영업시간이 언급된 곳은 영업 중 대신 "오늘 휴무일 수 있어요, 먼저 전화하세요"로 표시돼요.'],
+  'ab.o4':['On Thanksgiving, Christmas Day and New Year\'s Day, a place with no holiday information at all says "Holiday: hours may differ, call first" and isn\'t suggested. It shows as open only if we have its hours for that exact date, or its regular hours are confirmed for that day. Places open 24 hours are left alone.', 'В День благодарения, Рождество и Новый год место без какой-либо информации о праздниках показывается как «Праздник: часы могут отличаться, сначала позвоните» и не предлагается. Открытым оно показывается, только если у нас есть его часы на эту дату или его обычные часы подтверждены на этот день. Места, открытые 24 часа, не затрагиваются.', '在感恩节、圣诞节和元旦，完全没有节假日信息的地方会显示“节假日：营业时间可能不同，先打电话”，并且不会被推荐。只有当我们有它在该日期的营业时间，或它的常规营业时间已确认适用于那天时，才会显示为营业。24 小时营业的地方不受影响。', '추수감사절, 크리스마스, 새해 첫날에 공휴일 정보가 전혀 없는 곳은 "공휴일: 영업시간이 다를 수 있어요, 먼저 전화하세요"로 표시되고 추천되지 않아요. 그 날짜의 영업시간이 있거나 정규 영업시간이 그날로 확인된 경우에만 영업 중으로 보여요. 24시간 영업하는 곳은 그대로 둬요.'],
+  'ab.o5':['A place marked closed that has a season (or a note like "closed for the season") is closed for the season and listed under "Back in spring", not hidden. Only a place marked closed with no season is "closed for good".', 'Место, отмеченное как закрытое, у которого есть сезон (или заметка вроде «закрыто на сезон»), считается закрытым на сезон и попадает в «Вернётся весной», а не скрывается. «Закрыто навсегда» — только место, отмеченное как закрытое и без сезона.', '标记为关闭但有季节信息（或有“季节性关闭”之类备注）的地方算作季节性关闭，列在“春天回来”下，不会被隐藏。只有标记为关闭且没有季节信息的地方才是“永久关闭”。', '휴업으로 표시됐지만 시즌 정보(또는 "시즌 휴업" 같은 메모)가 있는 곳은 시즌 휴업으로 보고 "봄에 다시"에 넣어요. 숨기지 않아요. 휴업으로 표시되고 시즌 정보가 없는 곳만 "폐업"이에요.'],
+  'ab.o6':['On Thanksgiving, Christmas Day and New Year\'s Day a place counts as known only when our data covers that exact date (a closed date, hours for that date, a confirmation, or a note naming that holiday or date). A note about a different holiday doesn\'t count.', 'В День благодарения, Рождество и Новый год место считается известным, только когда наши данные покрывают именно эту дату (дата закрытия, часы на эту дату, подтверждение или заметка, где назван этот праздник или дата). Заметка о другом празднике не считается.', '在感恩节、圣诞节和元旦，只有当我们的数据覆盖那个确切日期时（闭馆日期、该日期的营业时间、确认记录，或提到该节日或日期的备注），这个地方才算“已知”。关于其他节日的备注不算。', '추수감사절, 크리스마스, 새해 첫날에는 데이터가 바로 그 날짜를 다룰 때만(휴무일, 그 날짜의 영업시간, 확인 기록, 또는 그 공휴일이나 날짜를 언급한 메모) 알려진 곳으로 봐요. 다른 공휴일에 관한 메모는 해당되지 않아요.'],
+  'ab.o7':['Special hours come from the hours we list for exact dates and the closed dates. If a note names today\'s date with different hours and we have no hours for that date, it says "Special hours today, call first" and isn\'t suggested.', 'Особые часы берутся из часов, указанных у нас на конкретные даты, и из дат закрытия. Если в заметке назван сегодняшний день с другими часами, а часов на эту дату у нас нет, место показывается как «Сегодня особые часы, сначала позвоните» и не предлагается.', '特别营业时间来自我们为具体日期列出的营业时间和闭馆日期。如果备注提到今天的日期且时间不同，而我们没有该日期的营业时间，就会显示“今天特别营业时间，先打电话”，并且不会被推荐。', '특별 영업시간은 특정 날짜에 대해 저장된 영업시간과 휴무일에서 가져와요. 메모에 오늘 날짜와 다른 시간이 적혀 있는데 그 날짜의 영업시간이 없으면 "오늘은 특별 영업시간, 먼저 전화하세요"로 표시되고 추천되지 않아요.'],
+  'ab.o8':['Last entry: a place is suggested only if you\'d get there at least {m} minutes before its last entry. When the last-entry time only appears in a note, arriving after it says "call first".', 'Последний вход: место предлагается, только если вы доберётесь туда хотя бы за {m} минут до последнего входа. Если время последнего входа есть только в заметке, приезд позже него показывается как «сначала позвоните».', '最后入场：只有你能在最后入场前至少 {m} 分钟到达，才会推荐这个地方。如果最后入场时间只出现在备注里，晚于它到达就会显示“先打电话”。', '마지막 입장: 마지막 입장 시간보다 최소 {m}분 먼저 도착할 수 있을 때만 추천해요. 마지막 입장 시간이 메모에만 있으면, 그 뒤에 도착할 때 "먼저 전화하세요"로 표시돼요.'],
+  'ab.o9':['Shows and ticketed sessions: once one has started (more than {s} minutes ago) it isn\'t "open"; the app shows the next start time.', 'Шоу и сеансы по билетам: если сеанс уже начался (больше {s} минут назад), он не «открыт»; приложение показывает время следующего начала.', '演出和售票场次：一场开始超过 {s} 分钟后就不算“营业中”，应用会显示下一场的开始时间。', '공연과 티켓 회차: 시작한 지 {s}분이 넘은 회차는 "영업 중"이 아니에요. 앱은 다음 시작 시간을 보여 줘요.'],
+  'ab.o10':['Seasonal places reopen on their season dates (yearly seasons roll over to the next year). If the next season\'s dates aren\'t known by the time it would usually be back, it says "season dates not posted, call first".', 'Сезонные места открываются снова в даты своего сезона (ежегодные сезоны переходят на следующий год). Если даты следующего сезона неизвестны к тому времени, когда место обычно возвращается, показывается «даты сезона не объявлены, сначала позвоните».', '季节性地方会在季节日期重新开放（每年的季节会顺延到下一年）。如果到了通常重开的时候还不知道下个季节的日期，就会显示“季节日期未公布，先打电话”。', '시즌 장소는 시즌 날짜에 다시 열어요(매년 시즌은 다음 해로 이어져요). 보통 다시 열 때가 됐는데 다음 시즌 날짜를 모르면 "시즌 날짜 미공개, 먼저 전화하세요"로 표시돼요.'],
+  'ab.o11':['Hours confirmed only up to a date say "hours not posted yet, call first" after it. An event whose last date is only the last day tickets are on sale says so, and never "Ended" or "Last day".', 'Если часы подтверждены только до какой-то даты, после неё показывается «часы ещё не объявлены, сначала позвоните». Если последняя дата события — это лишь последний день продажи билетов, так и написано, и никогда не пишется «Закончилось» или «Последний день».', '营业时间只确认到某个日期的，过了那天会显示“营业时间尚未公布，先打电话”。如果活动的最后日期只是售票的最后一天，会如实说明，绝不会显示“已结束”或“最后一天”。', '특정 날짜까지만 확인된 영업시간은 그 뒤에 "영업시간 미공개, 먼저 전화하세요"로 표시돼요. 이벤트의 마지막 날짜가 티켓 판매 마지막 날일 뿐이면 그렇게 적고, "종료"나 "마지막 날"로 표시하지 않아요.'],
+  'ab.o12':['Parks, gardens and outdoor art that need daylight aren\'t suggested from {d} minutes after sunset until sunrise.', 'Парки, сады и уличное искусство, которым нужен дневной свет, не предлагаются начиная с {d} минут после заката и до восхода.', '需要日光的公园、花园和户外艺术，从日落后 {d} 分钟到日出期间不会被推荐。', '햇빛이 필요한 공원, 정원, 야외 예술은 해 진 뒤 {d}분부터 해 뜰 때까지 추천하지 않아요.'],
+  'ab.o13':['No hours on file means "hours not confirmed", never "open".', 'Нет часов работы — значит «часы не подтверждены», а не «открыто».', '没有营业时间记录就显示“营业时间未确认”，绝不会显示“营业中”。', '영업시간 정보가 없으면 "영업시간 미확인"이지, 절대 "영업 중"이 아니에요.'],
+  'ab.o14':['Anything not double-checked recently says "call first".', 'Всё, что недавно не перепроверялось, показывается как «сначала позвоните».', '最近没有复核的内容都会显示“先打电话”。', '최근에 다시 확인하지 않은 곳은 모두 "먼저 전화하세요"로 표시돼요.'],
+  'ab.picksH':['The three picks', 'Три предложения', '三个推荐', '세 가지 추천'],
+  'ab.picks':['The first screen shows three things that are open at the time you chose (or open within 15 minutes), about {near} minutes away or less by the way you chose to get around (further only when fewer than three closer ones are open), of three different kinds, with one limited-time thing when one qualifies. Places you marked "I\'ve been here" in the last {days} days are left out. "Three more" doesn\'t repeat until it has shown everything.', 'Первый экран показывает три места, открытых в выбранное вами время (или открывающихся в течение 15 минут), примерно в {near} минутах или ближе тем способом передвижения, который вы выбрали (дальше — только если открыто меньше трёх более близких), трёх разных видов, и одно событие на ограниченное время, если такое есть. Места, которые вы отметили «Я здесь был(а)» за последние {days} дней, не показываются. «Ещё три» не повторяется, пока не покажет всё.', '首屏会显示三个在你选定时间营业（或 15 分钟内开门）的地方，按你选的出行方式大约 {near} 分钟内可到（只有当近处营业的不足三个时才会更远），分属三种不同类型，如有符合条件的限时活动会放一个。你在最近 {days} 天内标记“我去过”的地方不会出现。“再来三个”在全部显示完之前不会重复。', '첫 화면은 고른 시간에 열려 있는(또는 15분 안에 여는) 곳 세 군데를 보여 줘요. 고른 이동 방법으로 약 {near}분 이내이고(가까운 곳 중 열린 곳이 셋보다 적을 때만 더 멀리), 서로 다른 종류 세 가지이며, 조건에 맞는 기간 한정 이벤트가 있으면 하나를 넣어요. 최근 {days}일 안에 "가 봤어요"로 표시한 곳은 빠져요. "세 개 더"는 모두 보여 줄 때까지 반복하지 않아요.'],
+  'ab.budgetH':['"I\'ve only got..."', '«У меня есть только...»', '“我只有……”', '"시간이 이것뿐이라면..."'],
+  'ab.budget':['Off unless you turn it on in More filters. With it on, a place is shown when the trip plus the shortest worthwhile time there is within your time, and it stays open long enough after you arrive (at least 30 minutes). The shortest time comes from our listing when we have it; otherwise it is our rule of thumb: arcades, bars and food stops 30 min, mini golf 40, museums and active places 45, pop-ups 40. Escape rooms, shows, classes, sports and anything you book ahead need their full length.', 'Выключено, пока вы не включите это в «Ещё фильтры». Когда включено, место показывается, если дорога плюс минимальное разумное время там укладываются в ваше время и место остаётся открытым достаточно долго после вашего приезда (хотя бы 30 минут). Минимальное время берётся из нашего описания, если оно есть; иначе это наше правило на глаз: аркады, бары и перекусы 30 мин, мини-гольф 40, музеи и активные места 45, поп-апы 40. Квестам, шоу, занятиям, спорту и всему, что бронируется заранее, нужна полная длительность.', '默认关闭，可在“更多筛选”中打开。打开后，只有路程加上在那里最短值得停留的时间在你的时间内，且你到达后它还会开足够久（至少 30 分钟），才会显示。最短时间有记录时来自我们的条目，否则用我们的经验值：街机、酒吧和小吃 30 分钟，迷你高尔夫 40，博物馆和运动类 45，快闪 40。密室逃脱、演出、课程、体育和任何需要提前预订的都需要完整时长。', '"필터 더 보기"에서 켜기 전에는 꺼져 있어요. 켜면 이동 시간과 그곳에서 보낼 최소한의 시간을 합쳐 내 시간 안에 들어오고, 도착 후에도 충분히(최소 30분) 열려 있는 곳만 보여요. 최소 시간은 항목에 있으면 그 값을, 없으면 경험치를 써요: 오락실, 바, 간단한 먹거리 30분, 미니 골프 40, 박물관과 활동적인 곳 45, 팝업 40. 방탈출, 공연, 수업, 스포츠, 미리 예약하는 곳은 전체 시간이 필요해요.'],
+  'ab.beenH':['Been here', 'Был(а) здесь', '去过', '가 봤어요'],
+  'ab.been':['"I\'ve been here" keeps the place and the date on this phone{acct}. You can change the date or remove it. It never asks for a photo.', '«Я здесь был(а)» сохраняет место и дату на этом телефоне{acct}. Дату можно изменить или удалить отметку. Фото никогда не запрашивается.', '“我去过”会把地点和日期保存在这部手机上{acct}。你可以修改日期或删除。它从不要求照片。', '"가 봤어요"는 장소와 날짜를 이 휴대폰에 저장해요{acct}. 날짜를 바꾸거나 지울 수 있어요. 사진은 절대 요청하지 않아요.'],
+  'ab.beenAcct':[', and in your account if you sign in', ', а если вы вошли, то и в аккаунте', '；如果你登录，也会保存在你的账号里', '(로그인하면 계정에도)'],
+  'ab.tasteH':['Your taste', 'Ваш вкус', '你的口味', '내 취향'],
+  'ab.acctH':['Account', 'Аккаунт', '账号', '계정'],
+  'ab.privacy':['What we store and how to delete it', 'Что мы храним и как это удалить', '我们存储什么，以及如何删除', '저장하는 정보와 삭제 방법'],
+  'ab.offAcct':['Sign-in and friends work on the website ({site}). Here, everything stays on this device.', 'Вход и друзья работают на сайте ({site}). Здесь всё остаётся на этом устройстве.', '登录和好友功能在网站上可用（{site}）。在这里，所有内容都只保存在这台设备上。', '로그인과 친구 기능은 웹사이트({site})에서 돼요. 여기서는 모든 것이 이 기기에만 남아요.'],
+  'ab.tipsH':['Tips', 'Подсказки', '线索', '제보'],
+  'ab.sendTip':['Send a tip', 'Отправить подсказку', '发送线索', '제보하기'],
+  'ab.tips':['Saw something fun on Instagram or anywhere? {btn}. Each tip is read as a lead and checked at the organizer\'s own site before it goes in the app.', 'Увидели что-то интересное в Instagram или где-то ещё? {btn}. Каждую подсказку мы читаем как наводку и проверяем на сайте организатора, прежде чем добавить в приложение.', '在 Instagram 或别处看到好玩的？{btn}。每条线索都只当作参考，在主办方自己的网站上核实后才会加入应用。', 'Instagram이나 다른 곳에서 재미있는 걸 봤나요? {btn}. 제보는 참고로만 보고, 주최 측 공식 사이트에서 확인한 뒤에 앱에 넣어요.'],
+  'ab.whereH':['Where you are', 'Где вы', '你的位置', '내 위치'],
+  'ab.where':['This version can\'t read your phone\'s location inside claude.ai, so you pick a spot or tap the map. Neighborhood, landmark and L-stop points are approximate (typed from general knowledge, needs check). Community areas come from City data. Distances are straight-line (as the crow flies); travel times use rough rules: walking 20 min per mile and CTA about 10 min plus 4 min per mile, both on 1.3 times the straight-line distance. Driving: 8 min to park, plus 4 min per straight-line mile for the first 3 miles, 2.2 min per mile up to 10 miles and 1.15 min per mile after that, with no rush-hour traffic. With "Walk + CTA" picked, places more than {cta} miles away show the drive time and say so (check Metra).', 'Внутри claude.ai эта версия не может узнать местоположение телефона, поэтому вы выбираете точку или нажимаете на карту. Точки районов, достопримечательностей и станций L приблизительные (набраны по общим знаниям, требуют проверки). Районы города взяты из данных города. Расстояния считаются по прямой; время в пути считается по грубым правилам: пешком 20 мин на милю, CTA примерно 10 мин плюс 4 мин на милю, оба от расстояния по прямой, умноженного на 1,3. На машине: 8 мин на парковку плюс 4 мин на милю по прямой для первых 3 миль, 2,2 мин на милю до 10 миль и 1,15 мин на милю дальше, без учёта пробок в час пик. Если выбрано «Пешком + CTA», для мест дальше {cta} миль показывается время на машине, и это указано (проверьте Metra).', '在 claude.ai 里，这个版本无法读取手机位置，所以你需要选一个地点或点地图。社区、地标和 L 线车站的位置是近似的（凭常识输入，需核实）。社区区域来自市政数据。距离是直线距离；路程时间用粗略规则：步行每英里 20 分钟，CTA 约 10 分钟加每英里 4 分钟，都按直线距离的 1.3 倍算。开车：停车 8 分钟，前 3 英里每直线英里 4 分钟，10 英里以内每英里 2.2 分钟，之后每英里 1.15 分钟，不考虑高峰拥堵。选了“步行 + CTA”时，超过 {cta} 英里的地方会显示开车时间并注明（请查 Metra）。', 'claude.ai 안에서는 이 버전이 휴대폰 위치를 읽을 수 없어서, 장소를 고르거나 지도를 누르면 돼요. 동네, 랜드마크, L 역 위치는 대략적이에요(일반 지식으로 입력, 확인 필요). 커뮤니티 지역은 시 데이터에서 가져와요. 거리는 직선거리예요. 이동 시간은 대략적인 규칙을 써요: 도보는 마일당 20분, CTA는 약 10분에 마일당 4분을 더하고, 둘 다 직선거리의 1.3배로 계산해요. 자동차: 주차 8분, 처음 3마일은 직선 마일당 4분, 10마일까지는 마일당 2.2분, 그 이후는 마일당 1.15분이며 출퇴근 정체는 반영하지 않아요. "도보 + CTA"를 고르면 {cta}마일보다 먼 곳은 운전 시간을 보여 주고 그렇다고 알려 줘요(Metra 확인).'],
+  'ab.mapH':['Map data', 'Данные карты', '地图数据', '지도 데이터'],
+  'ab.map':['Community areas and CTA \'L\' lines: City of Chicago Data Portal (datasets igwz-8jzy and xbyr-jnvx), simplified. The river line and the land outside the city are hand-drawn approximations.', 'Районы города и линии CTA «L»: портал данных города Чикаго (наборы igwz-8jzy и xbyr-jnvx), упрощённые. Линия реки и земля за пределами города нарисованы от руки приблизительно.', '社区区域和 CTA “L” 线路：芝加哥市数据门户（数据集 igwz-8jzy 和 xbyr-jnvx），已简化。河流线和市外的陆地是手绘的近似图。', '커뮤니티 지역과 CTA "L" 노선: 시카고시 데이터 포털(데이터셋 igwz-8jzy, xbyr-jnvx), 단순화함. 강 줄기와 시 바깥 땅은 손으로 그린 근사치예요.'],
+  'ab.cityQ':['The City\'s terms, in the original English:', 'Условия города, в оригинале на английском:', '市政府的条款（英文原文）：', '시의 이용 약관(영어 원문):'],
+  'ab.photosH':['Photo credits', 'Авторы фото', '照片来源', '사진 출처'],
+  'ab.noPhotos':['No photos are bundled yet. Items show drawn category art instead.', 'Фото пока не добавлены. Вместо них показаны рисунки категорий.', '还没有附带照片。条目会显示手绘的类别图。', '아직 포함된 사진이 없어요. 대신 카테고리 그림을 보여 줘요.'],
+  'ab.photosOwn':['Photos belong to their owners. Ask us to remove one: {mail}', 'Фото принадлежат их владельцам. Попросите нас убрать фото: {mail}', '照片归其所有者所有。如需删除某张，请联系：{mail}', '사진의 권리는 소유자에게 있어요. 삭제 요청: {mail}'],
+  'ab.srcH':['Sources', 'Источники', '来源', '출처'],
+  'ab.src':['Official venue and organizer sites, the Chicago Park District, Choose Chicago and editorial sites as leads. No automated collection from Instagram or Eventbrite. Each item lists its sources.', 'Официальные сайты мест и организаторов, Chicago Park District, Choose Chicago и редакционные сайты как наводки. Никакого автоматического сбора из Instagram или Eventbrite. У каждого пункта указаны его источники.', '场馆和主办方的官方网站、Chicago Park District、Choose Chicago，以及作为线索的编辑类网站。不从 Instagram 或 Eventbrite 自动采集。每一项都列出了来源。', '장소와 주최 측 공식 사이트, Chicago Park District, Choose Chicago, 그리고 참고용 매체 사이트. Instagram이나 Eventbrite에서 자동 수집하지 않아요. 각 항목에 출처가 나와 있어요.'],
+  'ab.themeH':['Theme', 'Тема', '主题', '테마'],
+  'ab.testH':['For testing', 'Для проверки', '测试用', '테스트용'],
+  'ab.runST':['Run the self-test', 'Запустить самопроверку', '运行自检', '자체 테스트 실행'],
+  'ab.tz':[' · time zone used: {tz}', ' · часовой пояс: {tz}', ' · 使用的时区：{tz}', ' · 사용하는 시간대: {tz}'],
+  'ab.noTz':[' (built-in US DST rule; this browser has no time zone support)', ' (встроенное правило летнего времени США; этот браузер не поддерживает часовые пояса)', '（内置美国夏令时规则；此浏览器不支持时区）', ' (내장 미국 서머타임 규칙; 이 브라우저는 시간대를 지원하지 않아요)'],
+  'ab.title':['About {app}', 'О приложении {app}', '关于 {app}', '{app} 소개'],
+  'ab.asH':['What we assumed', 'Что мы допускаем', '我们的假设', '우리가 가정한 것'],
+  'ab.as1':['An event whose map point is within about {r} m of a place we list is treated as inside that place. So is an event within {nm} m whose name contains the place\'s name (for example "Pokémon Fossil Museum (Field Museum)"), or that names the place as its venue in our data. It takes the place\'s {inh}, unless the event\'s own dates or special hours name that day. It does not take the place\'s {not}.', 'Событие, точка которого на карте находится в пределах примерно {r} м от места из нашего списка, считается проходящим внутри этого места. Так же считается событие в пределах {nm} м, в названии которого есть название места (например, «Pokémon Fossil Museum (Field Museum)»), или для которого это место указано в наших данных как площадка. Оно берёт у места дни закрытия (closed_dates, закрытия на конкретные даты и праздничные закрытия из заметок), если только собственные даты или особые часы события не называют этот день. Оно не берёт у места сезон, обычные часы и «закрыто навсегда».', '地图位置距我们列出的某个地方约 {r} 米以内的活动，算作在那个地方里面举办。{nm} 米以内且名称里含有该地点名称的活动（例如“Pokémon Fossil Museum (Field Museum)”），或在我们的数据里把该地点标为场地的活动，也一样。它会沿用该地点的闭馆日（closed_dates、注明日期的关闭和从备注读取的节假日关闭），除非活动自己的日期或特别营业时间提到了那一天。它不沿用该地点的季节、每周营业时间和“永久关闭”。', '지도 위치가 목록에 있는 장소에서 약 {r}m 이내인 이벤트는 그 장소 안에서 열리는 것으로 봐요. {nm}m 이내이면서 이름에 장소 이름이 들어 있는 이벤트(예: "Pokémon Fossil Museum (Field Museum)")나, 데이터에서 그 장소를 행사장으로 지정한 이벤트도 마찬가지예요. 이벤트 자체의 날짜나 특별 영업시간이 그날을 지정하지 않는 한, 장소의 휴무일(closed_dates, 날짜가 있는 휴무, 메모에서 읽은 공휴일 휴무)을 따라요. 장소의 시즌, 주간 영업시간, "폐업"은 따르지 않아요.'],
+  'ab.as2':['Major holidays for the "no holiday information" rule: {list}.', 'Главные праздники для правила «нет информации о праздниках»: {list}.', '“没有节假日信息”规则所用的主要节日：{list}。', '"공휴일 정보 없음" 규칙에 쓰는 주요 공휴일: {list}.'],
+  'ab.as3':['A note that names a date and says to call or confirm (for example "Dec 24 ... call to confirm") makes that date "call first".', 'Заметка, в которой названа дата и сказано позвонить или уточнить (например, «24 дек. ... позвоните, чтобы уточнить»), делает эту дату «сначала позвоните».', '备注中提到某个日期并说要打电话或确认的（例如“12 月 24 日……请致电确认”），那个日期就会变成“先打电话”。', '날짜를 언급하면서 전화하거나 확인하라는 메모(예: "12월 24일 ... 전화로 확인")가 있으면 그 날짜는 "먼저 전화하세요"가 돼요.'],
+  'ab.as4':['Shortest worthwhile visits and travel speeds are our rules of thumb (see above), not from a source.', 'Минимальное время визита и скорости в пути — наши правила на глаз (см. выше), а не данные из источника.', '最短值得停留时间和出行速度是我们的经验值（见上文），不是来自某个来源。', '최소 방문 시간과 이동 속도는 경험치(위 참고)이고 출처에서 온 값이 아니에요.'],
+  'ab.venueLinks':['Events treated as inside a venue ({n}):', 'События, которые считаются проходящими внутри площадки ({n}):', '算作在场馆内举办的活动（{n}）：', '장소 안에서 열리는 것으로 보는 이벤트({n}):'],
+  'ab.wxH':['Weather', 'Погода', '天气', '날씨'],
+  'ab.wxBy':['Weather data by Open-Meteo.com', 'Данные о погоде: Open-Meteo.com', '天气数据来自 Open-Meteo.com', '날씨 데이터: Open-Meteo.com'],
+  'ab.wx':['{attr} ({cc}). We round it and turn it into simple labels. Only a rounded point (about 5 km) is sent, and only once you set a location; nothing else. It only changes the order of picks, never hides anything. On the website version only.', '{attr} ({cc}). Мы округляем данные и превращаем их в простые метки. Отправляется только округлённая точка (примерно 5 км) и только после того, как вы задали местоположение; больше ничего. Погода меняет только порядок предложений и ничего не скрывает. Только в версии на сайте.', '{attr}（{cc}）。我们会取整并转成简单的标签。只会发送一个取整后的位置（约 5 公里），而且只在你设置位置之后；别的都不发。它只会改变推荐的顺序，从不隐藏任何内容。仅限网站版。', '{attr} ({cc}). 반올림해서 간단한 표시로 바꿔요. 반올림한 지점(약 5km)만, 그것도 위치를 정한 뒤에만 보내요. 다른 건 보내지 않아요. 추천 순서만 바꾸고 아무것도 숨기지 않아요. 웹사이트 버전에서만 돼요.'],
+  'ab.wxFail':[' Weather didn’t load this time, so picks aren’t using it.', ' На этот раз погода не загрузилась, поэтому предложения её не учитывают.', ' 这次天气没有加载，所以推荐没有用到它。', ' 이번에는 날씨를 불러오지 못해서 추천에 쓰지 않았어요.'],
+  // Surprise me (the en of sx.noneO / sx.noneB / sx.makeIt* is only for the table; the English panel keeps its own sentence code)
+  'sx.k':['Next fun departing', 'Ближайшее развлечение отправляется', '下一班乐趣即将出发', '다음 재미 출발'],
+  'sx.none':['No departures', 'Отправлений нет', '没有班次', '출발 없음'],
+  'sx.noneO':['Nothing is open {w}{g}.', 'Ничего не открыто{g} ({w}).', '{w}{g}没有开着的地方。', '{w}{g} 열려 있는 곳이 없어요.'],
+  'sx.noneB':['Nothing open is {d} {w}{g}.', 'Нет открытых мест{g}, которые вы {d} ({w}).', '{w}{g}没有开着且{d}的地方。', '{w}{g} 열려 있고 {d}한 곳이 없어요.'],
+  'sx.inG':[' in {g}', ' в разделе «{g}»', '在「{g}」里', ' {g} 중에'],
+  'sx.now':['right now', 'прямо сейчас', '现在', '지금'], 'sx.today':['today', 'сегодня', '今天', '오늘'], 'sx.laterToday':['later today', 'сегодня позже', '今天晚些时候', '오늘 이따가'],
+  'sx.makeIt1':['Make it {b} ({n} thing)', 'Увеличить до {b} (вариантов: {n})', '改成 {b}（{n} 个）', '{b}(으)로 늘리기 ({n}곳)'],
+  'sx.makeIt':['Make it {b} ({n} things)', 'Увеличить до {b} (вариантов: {n})', '改成 {b}（{n} 个）', '{b}(으)로 늘리기 ({n}곳)'],
+  'sx.night':['the rest of the night', 'конца вечера', '今晚剩下的时间', '오늘 밤 끝까지'],
+  'sx.final':['Okay, final answer:', 'Ладно, окончательный ответ:', '好吧，最终答案：', '좋아요, 최종 답:'],
+  'sx.left1':['Next fun departing · {n} veto left', 'Ближайшее развлечение отправляется · осталось отказов: {n}', '下一班乐趣即将出发 · 还能否决 {n} 次', '다음 재미 출발 · 거절 {n}번 남음'],
+  'sx.leftN':['Next fun departing · {n} vetoes left', 'Ближайшее развлечение отправляется · осталось отказов: {n}', '下一班乐趣即将出发 · 还能否决 {n} 次', '다음 재미 출발 · 거절 {n}번 남음'],
+  'sx.go':['Go. Show me how', 'Поехали. Как добраться', '出发，告诉我怎么去', '가요. 가는 법 보기'],
+  'sx.veto':['Not this one', 'Не это', '不要这个', '이건 말고']
+};
+STR30.push(['Surprise me', 'Удиви меня', '给我个惊喜', '깜짝 추천'], ['Delete my account', 'Удалить аккаунт', '删除我的账号', '계정 삭제'],
+  ['Your lists on every device', 'Ваши списки на всех устройствах', '你的清单，所有设备都能用', '모든 기기에서 내 목록'], ['Sign in to sync your saves and check-ins and add friends. Without it, everything stays on this phone.', 'Войдите, чтобы синхронизировать сохранённое и отметки и добавлять друзей. Без входа всё остаётся на этом телефоне.', '登录后可同步收藏和打卡，并添加好友。不登录的话，所有内容都只留在这部手机上。', '로그인하면 저장한 곳과 체크인을 동기화하고 친구를 추가할 수 있어요. 로그인하지 않으면 모든 것이 이 휴대폰에만 남아요.'],
+  ['Sign in with Google', 'Войти через Google', '用 Google 登录', 'Google로 로그인'], ['Signing in...', 'Входим...', '正在登录...', '로그인 중...'], ['Privacy', 'Конфиденциальность', '隐私', '개인정보'], ['Sign out', 'Выйти', '退出登录', '로그아웃'], ['Pick a username', 'Выберите имя пользователя', '选一个用户名', '사용자 이름 고르기'], ['Signed in', 'Вы вошли', '已登录', '로그인됨']);   // v5.31: static words in these panels (read by tr30 / loc30)
+function a31(key, v){ // v5.31: the About / Surprise text in the picked language ({placeholders} filled; values are already HTML-safe where needed)
+  var r = A31[key]; if (!r) return '';
+  var s = LANG !== 'en' && r[LANG_IX[LANG]] ? r[LANG_IX[LANG]] : r[0];
+  return v ? String(s).replace(/\{(\w+)\}/g, function(m, k){ return v[k] !== undefined && v[k] !== null ? String(v[k]) : m; }) : s;
+}
+function planWhenL(){ // v5.31: planWhen(true) in the picked language (Surprise's "nothing open" line)
+  if (LANG === 'en') return planWhen(true);
+  if (!UI.planning || !isNum(UI.planAt)) return a31('sx.now');
+  if (UI.anyDay) { if (UI.anyDay === cparts(nowMs()).key) return a31(UI.today ? 'sx.today' : 'sx.laterToday'); return tripFmt(UI.anyDay, {weekday:'short'}); }
+  var q = cparts(UI.planAt); return tripFmt(q.key, {weekday:'short'}) + ' ' + fmtTime(q.min);
 }
 function creditL(s, lang){ // the photo credit words in the language ("THE CUBE website" -> "сайт THE CUBE"); names stay as they are
   var l = isLang(lang) ? lang : LANG; s = String(s === null || s === undefined ? '' : s); if (l === 'en' || !s) return s;
@@ -8374,22 +8472,24 @@ function pickSurprise(pool, rnd){ // weighted toward limited things that end soo
 }
 function openSurprise(){ surpriseVeto = []; spinSurprise(); openPanel('pSurprise'); }
 function spinSurprise(){ var pool = surprisePool(); UI.surprise = pool.length ? pickSurprise(pool) : null; renderSurprise(); }
-function renderSurprise(){
-  var c = UI.surprise, left = 3 - surpriseVeto.length, h = '';
-  function flaps(t){ return '<p class="board-name" aria-hidden="true">' + String(t).split(/\s+/).filter(Boolean).slice(0, 12).map(function(w){ return '<span>' + esc(w) + '</span>'; }).join('') + '</p>'; }
+function renderSurprise(){ // v5.31: the words through A31 (English as before); the item's name stays English
+  var c = UI.surprise, left = 3 - surpriseVeto.length, h = '', A = a31, en = LANG === 'en', lenA = en ? '' : ' lang="en"';
+  function flaps(t, nm){ return '<p class="board-name" aria-hidden="true"' + (nm ? lenA : '') + '>' + String(t).split(/\s+/).filter(Boolean).slice(0, 12).map(function(w){ return '<span>' + esc(w) + '</span>'; }).join('') + '</p>'; }
   if (!c) {
-    h += '<p class="board-k">Next fun departing</p>' + flaps('No departures') + '<p class="board-line">Nothing ' + esc(S.budgetOn ? 'open is ' + doableWords() : 'is open') + ' ' + planWhen(true) + (selCode(curSel()) ? ' in ' + esc(genreName(selCode(curSel()))) : '') + '.</p>';
+    var g = selCode(curSel());
+    h += '<p class="board-k">' + A('sx.k') + '</p>' + flaps(A('sx.none')) + '<p class="board-line">' + (en ? 'Nothing ' + esc(S.budgetOn ? 'open is ' + doableWords() : 'is open') + ' ' + planWhen(true) + (g ? ' in ' + esc(genreName(g)) : '') + '.'
+      : A(S.budgetOn ? 'sx.noneB' : 'sx.noneO', {d:esc(doableWordsL()), w:esc(planWhenL()), g:g ? A('sx.inG', {g:esc(genreNameL(g))}) : ''})) + '</p>';
     if (DATA_LOADED && S.budgetOn && S.budget !== 'night') {
       var T = evalTime(), ctx = ctxNow(), i0 = BUDGET_LADDER.indexOf(S.budget);
-      for (var i = Math.max(0, i0 + 1); i < BUDGET_LADDER.length; i++) { var b = BUDGET_LADDER[i]; if (i0 < 0 && b !== 'night' && b <= S.budget) continue; var n = countView(DATA, T, ext(ctx, {budget:b}), S.f, curSel(), UI.sub); if (n > 0) { h += '<div class="board-btns"><button class="go" type="button" data-relax="budget:' + b + '">Make it ' + esc(b === 'night' ? 'the rest of the night' : fmtBudget(b)) + ' (' + n + (n === 1 ? ' thing' : ' things') + ')</button></div>'; break; } }
+      for (var i = Math.max(0, i0 + 1); i < BUDGET_LADDER.length; i++) { var b = BUDGET_LADDER[i]; if (i0 < 0 && b !== 'night' && b <= S.budget) continue; var n = countView(DATA, T, ext(ctx, {budget:b}), S.f, curSel(), UI.sub); if (n > 0) { h += '<div class="board-btns"><button class="go" type="button" data-relax="budget:' + b + '">' + A(n === 1 ? 'sx.makeIt1' : 'sx.makeIt', {b:esc(b === 'night' ? A('sx.night') : en ? fmtBudget(b) : fmtBudgetL(b)), n:n}) + '</button></div>'; break; } }
     }
   } else {
     var f = c.fit || {}, tl = trustLineText(c.item, c.st.p);
-    h += '<p class="board-k">' + (surpriseVeto.length >= 3 ? 'Okay, final answer:' : 'Next fun departing · ' + left + (left === 1 ? ' veto left' : ' vetoes left')) + '</p>';
-    h += flaps(String(c.item.name).replace(/\s*\([^)]*\)\s*$/, '')) + '<p class="vh">' + esc(c.item.name) + '</p>';
-    h += '<p class="board-line">' + esc(c.d.text) + (c.dist !== null ? ' · ' + esc(travelText(c.trav)) : '') + (S.budgetOn ? ' · ' + esc(doableWords()) : '') + '</p>';
-    if (tl) h += '<p class="board-line warn">' + esc(tl) + '</p>';
-    h += '<div class="board-btns"><button class="go" type="button" data-sx="go">Go. Show me how</button>' + (surpriseVeto.length < 3 ? '<button class="no" type="button" data-sx="veto">Not this one</button>' : '') + '</div>';
+    h += '<p class="board-k">' + (surpriseVeto.length >= 3 ? A('sx.final') : A(left === 1 ? 'sx.left1' : 'sx.leftN', {n:left})) + '</p>';
+    h += flaps(String(c.item.name).replace(/\s*\([^)]*\)\s*$/, ''), true) + '<p class="vh"' + lenA + '>' + esc(c.item.name) + '</p>';
+    h += '<p class="board-line">' + esc(en ? c.d.text : tr30(c.d.text)) + (c.dist !== null ? ' · ' + esc(travelText(c.trav)) : '') + (S.budgetOn ? ' · ' + esc(en ? doableWords() : doableWordsL()) : '') + '</p>';
+    if (tl) h += '<p class="board-line warn">' + esc(en ? tl : tr30(tl)) + '</p>';
+    h += '<div class="board-btns"><button class="go" type="button" data-sx="go">' + A('sx.go') + '</button>' + (surpriseVeto.length < 3 ? '<button class="no" type="button" data-sx="veto">' + A('sx.veto') + '</button>' : '') + '</div>';
   }
   $('pSurpriseBody').innerHTML = h;
 }
@@ -9495,7 +9595,7 @@ function beenAddNow(){
 /* ----- what the screens draw ----- */
 function acctCardHTML(state, o){ // the account block on Saved and in About. state: off | out | loading | cached | in
   o = o || {};
-  if (state === 'off') return o.about ? '<p>Sign-in and friends work on the website (' + esc(SITE_URL.replace(/^https:\/\//, '').replace(/\/$/, '')) + '). Here, everything stays on this device.</p>' : '';
+  if (state === 'off') return o.about ? '<p>' + a31('ab.offAcct', {site:esc(SITE_URL.replace(/^https:\/\//, '').replace(/\/$/, ''))}) + '</p>' : '';   // v5.31: in the picked language
   if (state === 'out' || (state === 'loading' && !acctName())) {
     return '<div class="acct"><p class="acct-t">Your lists on every device</p><p class="acct-s">Sign in to sync your saves and check-ins and add friends. Without it, everything stays on this phone.</p>' +
       '<button class="btn-google" type="button" data-acct="signin"' + (state === 'loading' ? ' disabled' : '') + '>' + googleG() + (state === 'loading' ? 'Signing in...' : 'Sign in with Google') + '</button>' +
@@ -12432,42 +12532,46 @@ function pickDay(key, min){ // from the day chips and the parts of the day
 
 /* ----- about ----- */
 var VENUE_LINKS = [];   // filled by linkVenues() when the data loads; listed in About under "What we assumed"
-function assumedHTML(){
-  var h = '<h3>What we assumed</h3><ul>';
-  h += '<li>An event whose map point is within about ' + VENUE_RULE.radiusM + ' m of a place we list is treated as inside that place. So is an event within ' + VENUE_RULE.nameMatchM + ' m whose name contains the place\'s name (for example "Pokémon Fossil Museum (Field Museum)"), or that names the place as its venue in our data. It takes the place\'s ' + esc(VENUE_RULE.inherits) + ', unless the event\'s own dates or special hours name that day. It does not take the place\'s ' + esc(VENUE_RULE.notInherited) + '.</li>';
-  h += '<li>Major holidays for the "no holiday information" rule: ' + Object.keys(MAJOR_HOLIDAYS).map(function(k){ return HOLIDAY_NAMES[k]; }).join(', ') + '.</li>';
-  h += '<li>A note that names a date and says to call or confirm (for example "Dec 24 ... call to confirm") makes that date "call first".</li>';
-  h += '<li>Shortest worthwhile visits and travel speeds are our rules of thumb (see above), not from a source.</li></ul>';
-  if (VENUE_LINKS.length) h += '<p class="small">Events treated as inside a venue (' + VENUE_LINKS.length + '):</p><ul class="credits">' + VENUE_LINKS.map(function(l){ return '<li>' + esc(l.event) + ' → ' + esc(l.venues.join(', ')) + '</li>'; }).join('') + '</ul>';
+function assumedHTML(){ // v5.31: through A31 (English as before); event and venue names stay English
+  var A = a31, en = LANG === 'en';
+  var h = '<h3>' + A('ab.asH') + '</h3><ul>';
+  h += '<li>' + A('ab.as1', {r:VENUE_RULE.radiusM, nm:VENUE_RULE.nameMatchM, inh:esc(VENUE_RULE.inherits), not:esc(VENUE_RULE.notInherited)}) + '</li>';
+  h += '<li>' + A('ab.as2', {list:Object.keys(MAJOR_HOLIDAYS).map(function(k){ return en ? HOLIDAY_NAMES[k] : holNameL(k); }).join(', ')}) + '</li>';
+  h += '<li>' + A('ab.as3') + '</li>';
+  h += '<li>' + A('ab.as4') + '</li></ul>';
+  if (VENUE_LINKS.length) h += '<p class="small">' + A('ab.venueLinks', {n:VENUE_LINKS.length}) + '</p><ul class="credits">' + VENUE_LINKS.map(function(l){ var t = esc(l.event) + ' → ' + esc(l.venues.join(', ')); return '<li>' + (en ? t : '<span lang="en">' + t + '</span>') + '</li>'; }).join('') + '</ul>';
   return h;
 }
-function renderAbout(){
+function renderAbout(){ // v5.31: every line through A31 (English exactly as before, ru / zh-Hans / ko unverified); names, credits and the City's quote stay English
   var nP = 0, nE = 0, nV = 0; DATA.forEach(function(it){ if (it.kind === 'event') nE++; else nP++; if (it.verified && it.verified.status === 'verified') nV++; });
   var newest = newestCheck(), todayKey = cparts(nowMs()).key;
   var photos = DATA.filter(function(it){ return firstPhoto(it); });
-  var h = '<p><b>' + esc(APP_NAME) + '</b> (working name) shows fun things in Chicago that are actually open, how long the trip takes, and how fresh our information is. Hours come from each place\'s own site, and every item shows when they were last checked.</p>';
-  h += '<h3>Data</h3><p>' + nP + ' places \u00b7 ' + nE + ' events \u00b7 ' + nV + ' confirmed' + (newest ? ' \u00b7 newest check ' + fmtDate(newest, todayKey) : '') + '.' + (SKIPPED.length ? ' ' + SKIPPED.length + (SKIPPED.length === 1 ? ' item' : ' items') + ' skipped (missing name or map point, or a likely duplicate).' : '') + (DATA_ERR ? ' Load error: ' + esc(DATA_ERR) : '') + '</p>';
+  var A = a31, en = LANG === 'en', enSpan = function(s){ return en ? s : '<span lang="en">' + s + '</span>'; };
+  var h = '<p>' + A('ab.intro', {app:'<b>' + esc(APP_NAME) + '</b>'}) + '</p>';
+  var dl = A('ab.counts', {p:nP, e:nE, v:nV}) + (newest ? A('ab.newest', {d:fmtDate(newest, todayKey)}) : '');
+  h += '<h3>' + A('ab.dataH') + '</h3><p>' + dl + (/[.。]$/.test(dl) ? '' : A('ab.dot')) + (SKIPPED.length ? A(SKIPPED.length === 1 ? 'ab.skip1' : 'ab.skipN', {n:SKIPPED.length}) : '') + (DATA_ERR ? A('ab.loadErr', {e:esc(DATA_ERR)}) : '') + '</p>';
   var fr = freshness();
-  h += '<p>' + fr.pct + '% of the list was confirmed in the last 2 weeks.</p>';
-  h += '<h3>How we decide "open"</h3><ul><li>Closed dates come first (holidays, private events), then season dates: a place closed for the season is never shown as open, whatever its weekly hours say.</li><li>Then any special hours for that exact date, then the weekly hours, in Chicago time. Hours that run past midnight belong to the day they start.</li><li>On holidays (Thanksgiving, Christmas Eve and Day, New Year\'s Eve and Day, Easter, Memorial Day, July 4, Labor Day), a place whose notes mention holiday closures or holiday hours says "May be closed today, call first" instead of open.</li><li>On Thanksgiving, Christmas Day and New Year\'s Day, a place with no holiday information at all says "Holiday: hours may differ, call first" and isn\'t suggested. It shows as open only if we have its hours for that exact date, or its regular hours are confirmed for that day. Places open 24 hours are left alone.</li><li>A place marked closed that has a season (or a note like "closed for the season") is closed for the season and listed under "Back in spring", not hidden. Only a place marked closed with no season is "closed for good".</li><li>On Thanksgiving, Christmas Day and New Year\'s Day a place counts as known only when our data covers that exact date (a closed date, hours for that date, a confirmation, or a note naming that holiday or date). A note about a different holiday doesn\'t count.</li><li>Special hours come from the hours we list for exact dates and the closed dates. If a note names today\'s date with different hours and we have no hours for that date, it says "Special hours today, call first" and isn\'t suggested.</li><li>Last entry: a place is suggested only if you\'d get there at least ' + LAST_ENTRY_MARGIN_MIN + ' minutes before its last entry. When the last-entry time only appears in a note, arriving after it says "call first".</li><li>Shows and ticketed sessions: once one has started (more than ' + SESSION_GRACE_MIN + ' minutes ago) it isn\'t "open"; the app shows the next start time.</li><li>Seasonal places reopen on their season dates (yearly seasons roll over to the next year). If the next season\'s dates aren\'t known by the time it would usually be back, it says "season dates not posted, call first".</li><li>Hours confirmed only up to a date say "hours not posted yet, call first" after it. An event whose last date is only the last day tickets are on sale says so, and never "Ended" or "Last day".</li><li>Parks, gardens and outdoor art that need daylight aren\'t suggested from ' + DARK_AFTER_SUNSET_MIN + ' minutes after sunset until sunrise.</li><li>No hours on file means "hours not confirmed", never "open".</li><li>Anything not double-checked recently says "call first".</li></ul>';
+  h += '<p>' + A('ab.fresh', {pct:fr.pct}) + '</p>';
+  var ov = {m:LAST_ENTRY_MARGIN_MIN, s:SESSION_GRACE_MIN, d:DARK_AFTER_SUNSET_MIN};
+  h += '<h3>' + A('ab.openH') + '</h3><ul>' + [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map(function(i){ return '<li>' + A('ab.o' + i, ov) + '</li>'; }).join('') + '</ul>';
   h += assumedHTML();
-  h += '<h3>The three picks</h3><p>The first screen shows three things that are open at the time you chose (or open within 15 minutes), about ' + PICK_NEAR_MIN + ' minutes away or less by the way you chose to get around (further only when fewer than three closer ones are open), of three different kinds, with one limited-time thing when one qualifies. Places you marked "I\'ve been here" in the last ' + RECENT_DAYS + ' days are left out. "Three more" doesn\'t repeat until it has shown everything.</p>';
-  h += '<h3>"I\'ve only got..."</h3><p>Off unless you turn it on in More filters. With it on, a place is shown when the trip plus the shortest worthwhile time there is within your time, and it stays open long enough after you arrive (at least 30 minutes). The shortest time comes from our listing when we have it; otherwise it is our rule of thumb: arcades, bars and food stops 30 min, mini golf 40, museums and active places 45, pop-ups 40. Escape rooms, shows, classes, sports and anything you book ahead need their full length.</p>';
-  h += '<h3>Been here</h3><p>"I\'ve been here" keeps the place and the date on this phone' + (cloudHost() ? ', and in your account if you sign in' : '') + '. You can change the date or remove it. It never asks for a photo.</p>';
-  if (Acct.state === 'off') h += '<h3>Your taste</h3>' + acctTasteHTML();   // v5.16b: without accounts (claude.ai copy) About is the account sheet's stand-in
-  h += '<h3>Account</h3>' + acctCardHTML(Acct.state, {about:true}) + (Acct.state === 'off' ? '' : '<p class="small"><button class="linkbtn" type="button" data-acct="privacy">What we store and how to delete it</button></p>');   // v5.11
-  h += '<h3>Tips</h3><p>Saw something fun on Instagram or anywhere? <button class="linkbtn" type="button" data-act="tip">Send a tip</button>. Each tip is read as a lead and checked at the organizer\'s own site before it goes in the app.</p>';
-  h += '<h3>Where you are</h3><p>This version can\'t read your phone\'s location inside claude.ai, so you pick a spot or tap the map. Neighborhood, landmark and L-stop points are approximate (typed from general knowledge, needs check). Community areas come from City data. Distances are straight-line (as the crow flies); travel times use rough rules: walking 20 min per mile and CTA about 10 min plus 4 min per mile, both on 1.3 times the straight-line distance. Driving: 8 min to park, plus 4 min per straight-line mile for the first 3 miles, 2.2 min per mile up to 10 miles and 1.15 min per mile after that, with no rush-hour traffic. With "Walk + CTA" picked, places more than ' + CTA_MAX_MI + ' miles away show the drive time and say so (check Metra).</p>';
+  h += '<h3>' + A('ab.picksH') + '</h3><p>' + A('ab.picks', {near:PICK_NEAR_MIN, days:RECENT_DAYS}) + '</p>';
+  h += '<h3>' + A('ab.budgetH') + '</h3><p>' + A('ab.budget') + '</p>';
+  h += '<h3>' + A('ab.beenH') + '</h3><p>' + A('ab.been', {acct:cloudHost() ? A('ab.beenAcct') : ''}) + '</p>';
+  if (Acct.state === 'off') h += '<h3>' + A('ab.tasteH') + '</h3>' + acctTasteHTML();   // v5.16b: without accounts (claude.ai copy) About is the account sheet's stand-in
+  h += '<h3>' + A('ab.acctH') + '</h3>' + acctCardHTML(Acct.state, {about:true}) + (Acct.state === 'off' ? '' : '<p class="small"><button class="linkbtn" type="button" data-acct="privacy">' + A('ab.privacy') + '</button></p>');   // v5.11
+  h += '<h3>' + A('ab.tipsH') + '</h3><p>' + A('ab.tips', {btn:'<button class="linkbtn" type="button" data-act="tip">' + A('ab.sendTip') + '</button>'}) + '</p>';
+  h += '<h3>' + A('ab.whereH') + '</h3><p>' + A('ab.where', {cta:CTA_MAX_MI}) + '</p>';
   h += wxAboutHTML();   // v5.20
-  h += '<h3>Map data</h3><p>Community areas and CTA \'L\' lines: City of Chicago Data Portal (datasets igwz-8jzy and xbyr-jnvx), simplified. The river line and the land outside the city are hand-drawn approximations.</p>';
-  h += '<blockquote>"This site provides applications using data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one\'s own risk."<br>Source: <a href="https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html" target="_blank" rel="noopener">City of Chicago data terms of use</a></blockquote>';
-  h += '<h3>Photo credits</h3>' + (photos.length ? '<ul class="credits">' + photos.map(function(it){ var ph = firstPhoto(it), pu = safeUrl(ph.page_url); return '<li>' + esc(it.name) + ': ' + (pu ? '<a href="' + esc(pu) + '" target="_blank" rel="noopener">' + esc(ph.credit ? creditL(photoCredit(ph)) : domainOf(pu)) + '</a>' : esc(creditL(photoCredit(ph)))) + '</li>'; }).join('') + '</ul>' : '<p>No photos are bundled yet. Items show drawn category art instead.</p>');
-  if (CONTACT_EMAIL) h += '<p class="small">Photos belong to their owners. Ask us to remove one: <a href="mailto:' + esc(CONTACT_EMAIL) + '">' + esc(CONTACT_EMAIL) + '</a></p>';
-  h += '<h3>Sources</h3><p>Official venue and organizer sites, the Chicago Park District, Choose Chicago and editorial sites as leads. No automated collection from Instagram or Eventbrite. Each item lists its sources.</p>';
-  h += '<h3>Theme</h3><div id="aboutTheme">' + langPickerHTML() + themePickerHTML() + '</div>';
-  h += '<h3>For testing</h3><p><button class="mini-btn" type="button" data-act="selftest">Run the self-test</button></p><p>' + esc(VERSION) + ' \u00b7 time zone used: ' + TZ + (fmtParts ? '' : ' (built-in US DST rule; this browser has no time zone support)') + '</p>';
+  h += '<h3>' + A('ab.mapH') + '</h3><p>' + A('ab.map') + '</p>' + (en ? '' : '<p class="small">' + A('ab.cityQ') + '</p>');
+  h += '<blockquote' + (en ? '' : ' lang="en"') + '>"This site provides applications using data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one\'s own risk."<br>Source: <a href="https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html" target="_blank" rel="noopener">City of Chicago data terms of use</a></blockquote>';   // the City's required wording stays in English (v5.31)
+  h += '<h3>' + A('ab.photosH') + '</h3>' + (photos.length ? '<ul class="credits">' + photos.map(function(it){ var ph = firstPhoto(it), pu = safeUrl(ph.page_url); return '<li>' + enSpan(esc(it.name)) + ': ' + (pu ? '<a href="' + esc(pu) + '" target="_blank" rel="noopener">' + esc(ph.credit ? creditL(photoCredit(ph)) : domainOf(pu)) + '</a>' : esc(creditL(photoCredit(ph)))) + '</li>'; }).join('') + '</ul>' : '<p>' + A('ab.noPhotos') + '</p>');
+  if (CONTACT_EMAIL) h += '<p class="small">' + A('ab.photosOwn', {mail:'<a href="mailto:' + esc(CONTACT_EMAIL) + '">' + esc(CONTACT_EMAIL) + '</a>'}) + '</p>';
+  h += '<h3>' + A('ab.srcH') + '</h3><p>' + A('ab.src') + '</p>';
+  h += '<h3>' + A('ab.themeH') + '</h3><div id="aboutTheme">' + langPickerHTML() + themePickerHTML() + '</div>';
+  h += '<h3>' + A('ab.testH') + '</h3><p><button class="mini-btn" type="button" data-act="selftest">' + A('ab.runST') + '</button></p><p>' + esc(VERSION) + A('ab.tz', {tz:TZ}) + (fmtParts ? '' : A('ab.noTz')) + '</p>';
   $('pAboutBody').innerHTML = h;
-  $('pAboutTitle').textContent = 'About ' + APP_NAME;
+  $('pAboutTitle').textContent = A('ab.title', {app:APP_NAME});
 }
 /* ----- send a tip (v2) ----- */
 function normalizeTipUrl(s){
@@ -13895,6 +13999,7 @@ function runSelfTest0(){
   block('v5.28 translations (Intl dates and times, status rules, every STR key in ru / zh-Hans / ko, data + guide plumbing, taste hook)', function(){ v528SelfTest(ok, eq, info); });
   block('v5.27 Generate my itinerary (events pinned, closed days avoided, sunset, areas, either/or, didn\'t fit, same input = same plan, Chicago too, edits + storage)', function(){ v527SelfTest(ok, eq, info); });
   block('v5.30 the rest of the text in ru / zh-Hans / ko (phrase table), rarer sentences, photo credits, ko times, food answers, the action row', function(){ v530SelfTest(ok, eq, info); });
+  block('v5.31 the About and Surprise panels in ru / zh-Hans / ko (A31 table), English unchanged', function(){ v531SelfTest(ok, eq, info); });
   block('v5.29 Ask about this place (data answers, "not in our info", no guessing) + group size and occasion filters + trip party size', function(){ v529SelfTest(ok, eq, info); });
 
   block('time zone', function(){
@@ -15458,8 +15563,8 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.30 (2026-11-15)');
-    eq('previous version', VERSION_PREV, 'v5.29 (2026-11-15)');
+    eq('version', VERSION, 'v5.31 (2026-11-15)');
+    eq('previous version', VERSION_PREV, 'v5.30 (2026-11-15)');
   });
 
   /* ---------- v5.20 fix (live v5.19 tester, MEDIUM): "Last entry not posted" must never make a last-entry time ---------- */
@@ -17593,6 +17698,49 @@ function v528SelfTest(ok, eq, info){ // v5.28 translations: formatters, status r
     eq('V528-7 English deck lines unchanged', deckMinutesLine(DECK_TOTAL), DECK_TOTAL + ' quick answers · about ' + Math.max(1, Math.round(DECK_TOTAL * 3 / 60)) + ' min');
   } finally { LANG = L0; }
 }
+function v531SelfTest(ok, eq, info){ // v5.31: the About and Surprise panels in ru / zh-Hans / ko (A31); the English unchanged
+  var Ls = ['ru', 'zh-Hans', 'ko'], L0 = LANG, bad = [], nK = 0, OPT = ['{inh}', '{not}'];
+  var KEEP = /Off-Grid|claude\.ai|CTA|Metra|Instagram|TikTok|Eventbrite|Chicago Park District|Choose Chicago|Chicago|igwz-8jzy|xbyr-jnvx|Open-Meteo\.com|Open-Meteo|CC BY 4\.0|Pokémon Fossil Museum|Field Museum|closed_dates|Google|English|Language|off-grid|America\/[A-Za-z_]+|Blend|stacey98|github\.io|fun-finder|km|@[\w.-]+|v\d+\.\d+/g;
+  var eng = function(s){ return /[A-Za-z]{2,}/.test(String(s).replace(KEEP, '')); }, ph = function(s){ return String(s).match(/\{\w+\}/g) || []; };
+  // V531-1: the table: 3 translations each, placeholders and numbers kept, no English words left in them
+  Object.keys(A31).forEach(function(k){ var r = A31[k], pe = ph(r[0]); nK++;
+    for (var i = 1; i <= 3; i++) { var t = r[i];
+      if (typeof t !== 'string' || !t.trim()) { bad.push(k + '[' + i + '] empty'); continue; }
+      ph(t).forEach(function(p){ if (pe.indexOf(p) < 0) bad.push(k + '[' + i + '] extra ' + p); });
+      pe.forEach(function(p){ if (OPT.indexOf(p) < 0 && t.indexOf(p) < 0) bad.push(k + '[' + i + '] lost ' + p); });
+      if (!numsKept(r[0].replace(/\{\w+\}/g, ''), t.replace(/\{\w+\}/g, ''))) bad.push(k + '[' + i + '] numbers');
+      if (eng(t.replace(/<[^>]+>/g, '').replace(/\{\w+\}/g, ''))) bad.push(k + '[' + i + '] English left');
+    } });
+  ok('V531-1 About + Surprise table: ' + nK + ' strings in all 3 languages, {placeholders} and numbers kept, no English words', !bad.length, bad.slice(0, 8).join(' ; '));
+  function leftovers(root){ var tw = document.createTreeWalker(root, 4, null), x, out = [];
+    while ((x = tw.nextNode())) { var t = x.nodeValue.trim(), p = x.parentNode; if (t && p && !(p.closest && p.closest('[lang="en"],script,style')) && eng(t)) out.push(t.slice(0, 60)); }
+    [].forEach.call(root.querySelectorAll('[aria-label],[placeholder]'), function(e){ ['aria-label', 'placeholder'].forEach(function(a){ var v = e.getAttribute(a); if (v && eng(v)) out.push(a + '=' + v); }); });
+    return out; }
+  function aboutIn(l){ LANG = l; try { renderAbout(); } finally { LANG = L0; } var el = $('pAboutBody').cloneNode(true); if (l !== 'en') loc30(el, l);   /* what the panel watcher does next (the account card's own words) */ return {el:el, html:$('pAboutBody').innerHTML, title:$('pAboutTitle').textContent}; }
+  var keepS = UI.surprise, keepV = surpriseVeto.slice(), pool = [];
+  try {
+    // V531-2: English exactly as before
+    var e0 = aboutIn('en'), need = ['<b>' + esc(APP_NAME) + '</b> (working name) shows fun things in Chicago', 'How we decide "open"', 'Last entry: a place is suggested only if you\'d get there at least ' + LAST_ENTRY_MARGIN_MIN + ' minutes before its last entry.', '<li>Anything not double-checked recently says "call first".</li></ul>', '<h3>What we assumed</h3><ul><li>An event whose map point is within about ' + VENUE_RULE.radiusM + ' m', '>Weather data by Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/"', 'more than ' + CTA_MAX_MI + ' miles away show the drive time and say so (check Metra).', ' · time zone used: ' + TZ];
+    var miss = need.filter(function(s){ return e0.html.indexOf(s) < 0; });
+    ok('V531-2 English About unchanged (8 sample lines, title, no lang tags)', !miss.length && e0.title === 'About ' + APP_NAME && e0.html.indexOf('<span lang="en">') < 0 && e0.html.indexOf('<blockquote lang') < 0 && !/\{\w+\}/.test(e0.html), miss.join(' | ') + ' title=' + e0.title);
+    // V531-3: About in each language: no English left outside names, photo credits and the City's quote (all marked lang="en")
+    Ls.forEach(function(l){ var a = aboutIn(l), lf = leftovers(a.el), cr = a.el.querySelectorAll('.credits li').length;
+      ok('V531-3 ' + l + ' About: no English left (' + cr + ' credit / venue lines keep their names)', !lf.length && !eng(a.title) && !/\{\w+\}/.test(a.html), lf.slice(0, 6).join(' | ') + ' title=' + a.title); });
+    // V531-4: Surprise in each language: "no departures", a pick, and the last veto
+    try { pool = surprisePool(); } catch (e2) { pool = []; }
+    if (!pool.length && DATA_LOADED) { try { var rs = runPipeline(DATA, evalTime(), ctxNow(), S.f); var vm1 = buildView(rs, S.f, normSel(curSel()), UI.sub); pool = [].concat(vm1.main || [], vm1.onNow || []).filter(function(c){ return c && c.item && c.d && c.st && c.st.p; }).slice(0, 1); } catch (e4) { pool = []; } }   // the self-test page draws no home, so take a pick from the pipeline
+    var cases = [null].concat(pool.length ? [pool[0]] : []);
+    function surpIn(l, c, veto){ UI.surprise = c; surpriseVeto = veto || []; LANG = l; try { renderSurprise(); } finally { LANG = L0; } return $('pSurpriseBody').cloneNode(true); }
+    var en0 = surpIn('en', null).textContent, en1 = pool.length ? surpIn('en', pool[0]).textContent : 'Next fun departing · 3 vetoes left Go. Show me how';
+    ok('V531-4 English Surprise unchanged', en0.indexOf('Next fun departing') === 0 && en0.indexOf('Nothing ') > 0 && en1.indexOf('Next fun departing · 3 vetoes left') === 0 && en1.indexOf('Go. Show me how') > 0, en0.slice(0, 80) + ' / ' + en1.slice(0, 80));
+    Ls.forEach(function(l){ var lf = [];
+      cases.forEach(function(c){ lf = lf.concat(leftovers(surpIn(l, c))); if (c) lf = lf.concat(leftovers(surpIn(l, c, ['a', 'b', 'c']))); });
+      ok('V531-4 ' + l + ' Surprise: no English left (' + cases.length + ' cases' + (pool.length ? ' + last veto' : '; no pick here') + ')', !lf.length, lf.slice(0, 6).join(' | ')); });
+    // V531-5: the static words and the language switch
+    eq('V531-5 static words + switch', [tr30('Surprise me', 'ru'), Ls.every(function(l){ return !eng(tr30('Delete my account', l)) && !eng(tr30('Surprise me', l)); }), String(relang30).indexOf("go('pSurprise'") > 0, a31('nope')].join('|'), 'Удиви меня|true|true|');
+  } finally { LANG = L0; UI.surprise = keepS; surpriseVeto = keepV; try { renderSurprise(); renderAbout(); } catch (e3) {} }
+  info('V531 note: every ru / zh-Hans / ko string added in v5.31 (About, Surprise) is the developer\'s own wording, unverified, needs native review. The City of Chicago terms quote stays in English on purpose.');
+}
 function v530SelfTest(ok, eq, info){ // v5.30: the phrase table (location sheet, friends, privacy, poll, taste result, pop-ups, toasts), rarer sentences, credits, ko times, food answers, the action row
   var latin = /[A-Za-z]{2,}/, KEEP = /Google|Supabase|Off-Grid|OpenStreetMap|Safari|Windows|Blend|Pedway|Old Town|THE CUBE|The Loop|Loop|Chicago|Oʻahu|Honolulu|Navy Pier|Uber|CTA|5K|App\b|AI\b|OK\b/g;
   var eng = function(s){ return latin.test(String(s).replace(KEEP, '')); }, Ls = ['ru', 'zh-Hans', 'ko'], L0 = LANG;
@@ -18243,6 +18391,7 @@ function readHash(){
   var thm = /(?:^#|&)mode=(auto|light|dark)/.exec(hsh); if (thm) setTheme(thm[1], true);
   var msm = /(?:^#|&)mapstyle=(standard|themed)/.exec(hsh); if (msm) setMapMode(msm[1], true);
   if (/(?:^#|&)panel=theme/.test(hsh) && mapEl) openThemePicker();
+  if (/(?:^#|&)panel=(about|surprise)\b/.test(hsh) && mapEl) { var p31 = /panel=about/.test(hsh) ? 'about' : 'surprise', g31 = function(){ if (DATA_LOADED && UI.lastVm) setTimeout(function(){ if (p31 === 'about') { renderAbout(); openPanel('pAbout'); } else openSurprise(); }, 300); else setTimeout(g31, 200); }; g31(); }   // v5.31 test hooks: #panel=about, #panel=surprise
   var vwm = /(?:^#|&)view=(map|browse)/.exec(hsh); if (vwm && mapEl) setTimeout(function(){ showView(vwm[1]); }, 0);
   var m = /now=(\d{4}-\d{2}-\d{2}T\d{1,2}:\d{2})/.exec(hsh);
   if (m) setNow(m[1]);
@@ -18849,9 +18998,10 @@ function wxDetailHTML(c){ // the item's own idea and "things to do there", exact
   if (Array.isArray(w.things_to_do) && w.things_to_do.length) h += '<p class="dt-ttd">Things to do there: ' + w.things_to_do.map(function(t){ return esc(String(t)); }).join(' · ') + '</p>';
   return h;
 }
-function wxAboutHTML(){
-  return '<h3>Weather</h3><p>' + WX_ATTR_HTML + ' (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>). We round it and turn it into simple labels. Only a rounded point (about 5 km) is sent, and only once you set a location; nothing else. It only changes the order of picks, never hides anything. On the website version only.' +
-    (WX.state === 'fail' && !WX.fixture ? ' Weather didn’t load this time, so picks aren’t using it.' : '') + '</p>';
+function wxAboutHTML(){ // v5.31: through A31 (English as before)
+  var attr = LANG === 'en' ? WX_ATTR_HTML : WX_ATTR_HTML.replace('>Weather data by Open-Meteo.com<', '>' + a31('ab.wxBy') + '<');
+  return '<h3>' + a31('ab.wxH') + '</h3><p>' + a31('ab.wx', {attr:attr, cc:'<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>'}) +
+    (WX.state === 'fail' && !WX.fixture ? a31('ab.wxFail') : '') + '</p>';
 }
 /* ---- rain and snow over the map (spec 4) ---- */
 var WXFX = {cv:null, cx:null, raf:0, parts:[], kind:'', last:0, frames:0, gaps:0, still:false, touch:0, w:0, h:0, slant:0, t:0};
@@ -19017,6 +19167,7 @@ function init(){
 
 window.__cff = {
   version: VERSION, appName: APP_NAME,
+  m531: {a31: a31, A31: A31, planWhenL: planWhenL, renderAbout: renderAbout, renderSurprise: renderSurprise, openSurprise: openSurprise, spinSurprise: spinSurprise, setVeto: function(a){ surpriseVeto = a || []; }, setLang: setLang, loc30: loc30},   // v5.31 (testing only)
   m530: {tr30: tr30, loc30: loc30, loc30All: loc30All, relang30: relang30, creditL: creditL, leave30: leave30, STR30: STR30, openLocation: function(){ openLocation(false); }, openFriends: openFriends, openPrivacy: openPrivacy, renderTrip: renderTrip, tripOpenList: tripOpenList, grpOpen: grpOpen, popShow: popShow, openAbout: function(){ renderAbout(); openPanel('pAbout'); }, toast: toast, toastText: function(){ return $('toast').textContent; }, openPanel: openPanel},   // v5.30 (testing only)
   m529: {askAnswer: askAnswer, askTopics: askTopics, askDays: askDays, askRun: askRun, partyFits: partyFits, occasionOk: occasionOk, groupRange: groupRange, tripParty: tripParty},   // v5.29 (testing only)
   m528: {openGuide: openGuide, closeGuide: closeGuide, wxOpenSheet: wxOpenSheet, openAccount: openAccount, tasteStartDeck: tasteStartDeck, closeTaste: closeTaste, closePanel: closePanel, data: function(){ return DATA; }, i18n: function(){ return I18N; }, tx: tx, fmtTime: fmtTime, fmtDate: fmtDate, fmtDayDate: fmtDayDate, locTokens: locTokens, gaLocalize: gaLocalize, placeTextWith: placeTextWith, leave28: leave28, STR: STR, guides: function(){ return GUIDE_BY; }, ui: function(){ return UI; }, acct: function(){ return Acct; }},   // v5.28: the translation-measure hooks (testing only)
