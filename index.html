@@ -212,7 +212,9 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .ov-pin b{width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--paper);margin-top:-1px}
 
 /* ---------- floating controls: only Saved (and "Back to my pin" after a pan) ---------- */
-.fabs{position:absolute;top:calc(var(--sat) + 9px);right:calc(16px + var(--sar));display:flex;flex-direction:column;gap:10px;z-index:20}
+.fabs{position:absolute;top:calc(var(--sat) + 9px);right:calc(16px + var(--sar));display:flex;flex-direction:column;align-items:flex-end;gap:10px;z-index:20}
+.fab.city-fab{width:auto;min-width:44px;padding:0 14px;font:700 13.5px/1 var(--f-body);white-space:nowrap}   /* v5.24 city picker */
+.city-seg{margin:0 0 10px}.city-seg .chip{min-height:38px;padding:0 16px}.city-seg .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .fab{position:relative;width:44px;height:44px;border-radius:22px;border:0;background:var(--paper);box-shadow:0 2px 10px var(--shadow);display:grid;place-items:center;color:var(--ink);padding:0}
 .fab .count{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--ink);color:var(--paper);font:700 11px/18px var(--f-body)}
 .zoomctl{display:none}
@@ -1052,11 +1054,12 @@ body{background:var(--paper)}
 .strip .stub{border-right:1px solid var(--rule-strong);text-transform:none;letter-spacing:0;font:600 11.5px/1.15 var(--f-body);color:var(--accent-text)}
 /* no ticket notches */
 .strip{-webkit-mask:none;mask:none;border-radius:var(--r-tile);background:var(--paper-3);box-shadow:var(--elev-1),inset 0 0 0 1px var(--rule)}
-/* limited pins: a plain dot with a white ring, top right (the svg stays for tests and screen size, its ticket path is hidden) */
-.tkb{top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;background:var(--g-limited);box-shadow:0 0 0 2px #FFFFFF;filter:none}
-.tkb path{display:none}
-.cluster .tkb{top:-4px;right:-4px}
-.mk-body svg.tkb,.mk.sm .mk-body svg.tkb{width:10px;height:10px}   /* v5.23 (tester desktop #1): ".mk-body svg" (21 px) was beating .tkb, so the red disc covered the kind icon */
+/* limited pins: v5.24 (owner expects a ticket; tester v5.23): a small crisp ticket in the limited colour with a white edge, outside the top-right corner so it never covers the kind icon */
+.tkb{top:-5px;right:-7px;width:13px;height:9.5px;border-radius:0;background:none;box-shadow:none;filter:drop-shadow(0 0.5px 1px rgba(0,0,0,.35))}
+.tkb path{display:inline;fill:var(--g-limited);stroke:#FFFFFF;stroke-width:1.8;stroke-linejoin:round}
+.tkb .perf{fill:none;stroke:#FFFFFF;stroke-width:1.3;stroke-dasharray:1.5 1.5}
+.cluster .tkb{top:-6px;right:-8px}
+.mk-body svg.tkb,.mk.sm .mk-body svg.tkb{width:13px;height:9.5px}   /* v5.23 (tester desktop #1): ".mk-body svg" (21 px) was beating .tkb, so the red disc covered the kind icon */
 /* v5.10: cluster ticket with the limited count; award line; Leave by; radar; mini guides */
 .cluster .ctk{position:absolute;top:-9px;right:-15px;display:inline-flex;align-items:center;gap:1px;height:17px;padding:0 5px 0 3px;border-radius:9px;background:var(--g-limited);color:#FFFFFF;font:700 11px/17px var(--f-body);box-shadow:0 0 0 2px #FFFFFF;pointer-events:none}
 .cluster .ctk svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.2}
@@ -1927,6 +1930,7 @@ svg.gi{width:20px;height:20px;flex:none}
     <p class="tagline">Fun that's open right now.</p>
   </div>
   <div class="fabs">
+    <button id="cityBtn" class="fab city-fab" type="button" aria-label="City: Chicago. Change">Chicago</button>
     <button id="savedBtn" class="fab" type="button" aria-label="Saved"><svg class="i"><use href="#i-bookmark"/></svg><span class="count" id="savedCount" hidden>0</span></button>
     <button id="acctFab" class="fab acct-btn" type="button" data-act="acct" aria-label="Sign in" hidden><svg class="i"><use href="#i-user"/></svg></button>
     <button id="recenterBtn" class="fab" type="button" aria-label="Back to my pin" hidden><svg class="i"><use href="#i-target"/></svg></button>
@@ -1979,6 +1983,7 @@ svg.gi{width:20px;height:20px;flex:none}
     <span class="grabber"></span>
     <div class="p-head"><h2 class="p-title" id="pLocTitle" tabindex="-1">Where are you right now?</h2><button class="p-close" id="pLocClose" type="button" data-close="pLoc" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div>
     <div class="p-body">
+      <div class="picks city-seg" id="citySeg" role="group" aria-label="City"></div>
       <p class="p-note" id="locNote">This version can't read your phone's location. Pick a spot and we'll remember it on this phone.</p>
       <button class="btn-outline" id="gpsBtn" type="button" hidden><svg class="i"><use href="#i-target"/></svg>Use my location</button>
       <div id="addrBox" hidden><div class="field"><svg class="i"><use href="#i-pin"/></svg><label class="vh" for="addrInput">Type an address</label><input id="addrInput" type="search" placeholder="Type an address" autocomplete="street-address" enterkeyhint="search"></div>
@@ -2021,8 +2026,8 @@ svg.gi{width:20px;height:20px;flex:none}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.23 (2026-11-14)';   // v5.23: the rest of the UI words in ru / zh-Hans / ko (unverified), Visiting Chicago from the data field us_cities (< 3 US cities; visit_override). v5.22: Google rating line on place pages (edge function, page memory only), holiday status from fields only, more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
-var VERSION_PREV = 'v5.22 (2026-11-14)';   // v5.22: Google rating line, holiday status from fields, more ru / zh-Hans / ko words, Visiting Chicago without chains
+var VERSION = 'v5.24 (2026-11-15)';   // v5.24: multi-city (Chicago + Oʻahu): city picker, per-city data, map bounds, spots, travel and badges; open-now in the item's city time zone. v5.23: the rest ofthe UI words in ru / zh-Hans / ko (unverified), Visiting Chicago from the data field us_cities (< 3 US cities; visit_override). v5.22: Google rating line on place pages (edge function, page memory only), holiday status from fields only, more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
+var VERSION_PREV = 'v5.23 (2026-11-14)';   // v5.23: the rest of the UI words in ru / zh-Hans / ko, Visiting Chicago from us_cities
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var FEEDBACK_EMAIL = 'localfinds.app@gmail.com';   // v5.16: "Send feedback" in the account sheet (a mailto draft; never sent by the app). Separate from CONTACT_EMAIL.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
@@ -2032,7 +2037,53 @@ var DATA_URL = 'activities.json';
 var GEO_AREAS_URL = 'geo/community-areas.min.geojson';
 var GEO_LINES_URL = 'geo/cta-lines.min.geojson';
 var V11 = false;                      // Surprise me, Send the Plan, reminders: v1.1, kept out of v1
-var LOOP = {lat:41.8819, lng:-87.6278, label:'The Loop', src:'default'};   // State & Madison, approximate
+var LOOP = {lat:41.8819, lng:-87.6278, label:'The Loop', src:'default'};   // State & Madison, approximate. v5.24: the CURRENT city's default center (setCityCore rewrites it in place, so every old LOOP use follows the city)
+
+/* ================= v5.24 cities (data/geo/cities.json; CITY-PLAYBOOK section 3) =================
+   Each item carries `city`; a missing value means "chicago". The app shows ONE city at a time (DATA = that city's items only; Chicago and
+   Oʻahu are never mixed). Open-now uses the ITEM's city time zone (statusAt / describe), whatever the phone's zone. Values from
+   data/geo/cities.json (2026-11-14). "In the city" for Oʻahu is the island box (cities.json islandBbox, padded about 0.04 deg), never a radius:
+   a radius from Waikīkī can't separate Oʻahu from Molokaʻi (reports/2026-11-14-oahu-sources.md). Chicago keeps its 80 mi rule (unchanged).
+   Oʻahu spots: data/geo/oahu-spots.json (OpenStreetMap Nominatim, ODbL, © OpenStreetMap contributors). Oʻahu outline: data/geo/oahu-boundary.geojson (same). */
+var CITIES = [
+  {slug:'chicago', name:'Chicago', timezone:'America/Chicago', std:-6, dst:true, center:{lat:41.8819, lng:-87.6278, label:'The Loop'},
+    maxBounds:[[-89.6, 40.9], [-86.0, 42.9]], minZoom:7, fit:[[42.023, -87.94], [41.644, -87.524]], farMi:80, box:null,
+    viewbox:'-88.4,42.5,-87.4,41.4', transit:true, proj:{lat0:41.88, lng0:-87.94, top:42.03}, water:{lat:41.93, lng:-87.56, name:'Lake Michigan'},
+    credit:'Map data: City of Chicago', spotHint:'Neighborhood, L stop or landmark', picks:['River North', 'The Loop', 'West Loop', 'Wicker Park', 'Lakeview', 'Hyde Park']},
+  {slug:'oahu', name:'Oʻahu', timezone:'Pacific/Honolulu', std:-10, dst:false, center:{lat:21.2794, lng:-157.8286, label:'Waikīkī'},
+    maxBounds:[[-158.65, 21.05], [-157.35, 21.90]], minZoom:7, fit:[[21.712, -158.2806], [21.255, -157.649]], farMi:50, box:[-158.32, 21.215, -157.61, 21.75],
+    viewbox:'-158.32,21.75,-157.60,21.22', transit:false, proj:{lat0:21.48, lng0:-158.35, top:21.76}, water:{lat:21.2, lng:-157.98, name:'Pacific Ocean'},
+    credit:'Island outline © OpenStreetMap contributors', spotHint:'Neighborhood, beach or landmark', picks:['Waikīkī', 'Ala Moana', 'Downtown Honolulu', 'Kailua', 'Haleʻiwa', 'Ko Olina']}
+];
+var CITY_BY = {}; CITIES.forEach(function(c){ CITY_BY[c.slug] = c; });
+var CITY = CITY_BY.chicago, CITY_KEY = 'offgrid.city.v1', ALL_DATA = [];
+// Oʻahu outline (lng, lat pairs, 4 decimals) from data/geo/oahu-boundary.geojson, for the drawn-map fallback
+var OAHU_RING = [-158.2806,21.5744,-158.2485,21.5558,-158.2315,21.5372,-158.2284,21.5207,-158.2309,21.4824,-158.2197,21.4755,-158.2183,21.4676,-158.2131,21.462,-158.2148,21.4597,-158.2036,21.4581,-158.2028,21.4539,-158.1901,21.4459,-158.192,21.4401,-158.1893,21.4404,-158.1797,21.4278,-158.1758,21.4004,-158.159,21.3932,-158.1361,21.3689,-158.1302,21.3557,-158.1229,21.3239,-158.1132,21.3029,-158.1065,21.2964,-158.0863,21.2957,-158.0514,21.3009,-157.9768,21.3168,-157.9706,21.3271,-157.977,21.3232,-157.9721,21.3292,-157.9726,21.3353,-157.9817,21.3482,-157.9921,21.3484,-157.9937,21.3532,-158.0022,21.3519,-158.008,21.357,-158.0208,21.3568,-158.023,21.3612,-158.0214,21.3651,-158.0163,21.3657,-158.0206,21.3736,-158.0173,21.3728,-158.0141,21.3779,-158.013,21.373,-158.0107,21.3771,-158.0123,21.3733,-158.0032,21.3702,-158.0049,21.3671,-158.0001,21.357,-157.9877,21.3621,-157.9883,21.3578,-157.9932,21.3569,-157.9889,21.3515,-157.9809,21.3517,-157.9714,21.3417,-157.9708,21.3527,-157.976,21.361,-157.9749,21.3655,-157.9831,21.366,-157.9913,21.3779,-157.9923,21.3867,-157.9842,21.3884,-157.983,21.3826,-157.9752,21.3782,-157.9761,21.3751,-157.9698,21.3699,-157.9666,21.3761,-157.9693,21.3859,-157.9614,21.388,-157.9415,21.3795,-157.9413,21.3751,-157.9344,21.3767,-157.9401,21.3666,-157.9355,21.364,-157.9324,21.3649,-157.929,21.3695,-157.9253,21.3711,-157.9248,21.3712,-157.9215,21.3705,-157.9191,21.3689,-157.9249,21.3711,-157.9288,21.3694,-157.9312,21.3656,-157.9343,21.3633,-157.9406,21.3659,-157.9454,21.3622,-157.9487,21.3576,-157.9468,21.3552,-157.9406,21.3589,-157.9436,21.3547,-157.94,21.3526,-157.9437,21.3524,-157.9431,21.3499,-157.9504,21.3542,-157.9525,21.3524,-157.9511,21.3553,-157.953,21.3527,-157.9518,21.356,-157.9543,21.3569,-157.9575,21.3521,-157.9678,21.3496,-157.9646,21.3415,-157.9686,21.3314,-157.9636,21.3276,-157.9594,21.3172,-157.9471,21.3163,-157.9462,21.3097,-157.9488,21.3095,-157.9504,21.3038,-157.9069,21.3041,-157.907,21.31,-157.9183,21.3106,-157.9195,21.313,-157.899,21.3275,-157.8994,21.3298,-157.8927,21.3314,-157.895,21.3254,-157.8908,21.3145,-157.8832,21.3171,-157.8825,21.32,-157.8806,21.3168,-157.8792,21.3193,-157.8782,21.3191,-157.8781,21.3139,-157.8698,21.3087,-157.8707,21.3123,-157.8676,21.3104,-157.8658,21.3138,-157.8664,21.3056,-157.8636,21.3034,-157.8698,21.2955,-157.8653,21.296,-157.8669,21.2943,-157.8612,21.2904,-157.8574,21.2944,-157.8558,21.2916,-157.8581,21.2922,-157.8595,21.2908,-157.8473,21.2882,-157.8461,21.2815,-157.8442,21.2845,-157.8258,21.2754,-157.8214,21.2613,-157.8144,21.2559,-157.7961,21.2573,-157.7916,21.255,-157.79,21.2597,-157.7647,21.2751,-157.7556,21.2739,-157.7433,21.2798,-157.7228,21.2813,-157.7189,21.2853,-157.7094,21.2777,-157.7112,21.2609,-157.7006,21.2599,-157.6918,21.2637,-157.6972,21.2682,-157.6955,21.2727,-157.6896,21.2686,-157.6864,21.2758,-157.6507,21.2992,-157.649,21.311,-157.6586,21.3102,-157.6615,21.3158,-157.6677,21.3165,-157.6932,21.3321,-157.7088,21.3599,-157.7058,21.3802,-157.7157,21.3934,-157.7348,21.4012,-157.7412,21.4098,-157.7443,21.4215,-157.7381,21.4258,-157.7366,21.4441,-157.726,21.4492,-157.7228,21.4593,-157.73,21.4602,-157.7426,21.4533,-157.7597,21.4577,-157.7637,21.4599,-157.7632,21.4628,-157.7683,21.4563,-157.7731,21.4573,-157.7783,21.4513,-157.7771,21.4435,-157.7641,21.4382,-157.7622,21.44,-157.7555,21.4346,-157.7642,21.4281,-157.7664,21.4158,-157.7816,21.4111,-157.7904,21.418,-157.7883,21.423,-157.7915,21.4241,-157.7919,21.4285,-157.7987,21.4243,-157.8034,21.4268,-157.8074,21.4428,-157.8122,21.4437,-157.8161,21.4546,-157.8252,21.4534,-157.8327,21.4626,-157.8408,21.4604,-157.8445,21.4705,-157.8421,21.4844,-157.849,21.4867,-157.8472,21.4928,-157.8523,21.5039,-157.8509,21.5074,-157.8354,21.5096,-157.8362,21.5313,-157.8524,21.5566,-157.8644,21.5604,-157.871,21.5559,-157.8763,21.5584,-157.875,21.5729,-157.8847,21.5789,-157.8981,21.6026,-157.9084,21.6083,-157.9128,21.6145,-157.9126,21.6199,-157.921,21.6267,-157.9181,21.6463,-157.9174,21.6474,-157.9129,21.648,-157.9123,21.6485,-157.9221,21.6484,-157.9273,21.6524,-157.9271,21.661,-157.9342,21.6639,-157.9369,21.6686,-157.9329,21.674,-157.9401,21.6776,-157.945,21.6879,-157.9674,21.7095,-157.9841,21.712,-157.9901,21.7049,-157.9996,21.7073,-158.0012,21.7002,-158.0094,21.7007,-158.011,21.696,-158.014,21.6983,-158.033,21.682,-158.0378,21.6811,-158.0403,21.6744,-158.063,21.6554,-158.064,21.6396,-158.0686,21.6378,-158.076,21.626,-158.1073,21.6031,-158.1039,21.6001,-158.1031,21.5958,-158.1059,21.5951,-158.1039,21.5934,-158.107,21.5951,-158.1125,21.5892,-158.1189,21.5894,-158.1162,21.5842,-158.1194,21.5819,-158.1217,21.5849,-158.129,21.5823,-158.1381,21.5841,-158.168,21.5791,-158.2009,21.5828,-158.2192,21.5789,-158.253,21.5796,-158.2806,21.5744];
+var OAHU_SPOTS = [{name:'Waikīkī', lat:21.27936, lng:-157.82857, type:'Neighborhood'}, {name:'Ala Moana', lat:21.29147, lng:-157.84378, type:'Landmark'}, {name:'Kakaʻako', lat:21.29863, lng:-157.85795, type:'Neighborhood'}, {name:'Chinatown', lat:21.3129, lng:-157.8628, type:'Neighborhood'}, {name:'Downtown Honolulu', lat:21.30681, lng:-157.85877, type:'Landmark'}, {name:'Diamond Head', lat:21.26249, lng:-157.80679, type:'Landmark'}, {name:'Kapahulu', lat:21.27928, lng:-157.81283, type:'Neighborhood'}, {name:'Kaimukī', lat:21.27857, lng:-157.80213, type:'Neighborhood'}, {name:'Mānoa', lat:21.30938, lng:-157.81182, type:'Neighborhood'}, {name:'Kāhala', lat:21.27056, lng:-157.78624, type:'Neighborhood'}, {name:'Hawaiʻi Kai', lat:21.28633, lng:-157.71047, type:'Neighborhood'}, {name:'Hanauma Bay', lat:21.26962, lng:-157.69381, type:'Beach or coast'}, {name:'Makapuʻu Point', lat:21.31101, lng:-157.64895, type:'Beach or coast'}, {name:'Waimānalo', lat:21.3453, lng:-157.72142, type:'Neighborhood'}, {name:'Kailua', lat:21.39383, lng:-157.73387, type:'Neighborhood'}, {name:'Kāneʻohe', lat:21.41856, lng:-157.80418, type:'Neighborhood'}, {name:'Kualoa Ranch', lat:21.52083, lng:-157.83726, type:'Landmark'}, {name:'Lāʻie', lat:21.64384, lng:-157.92444, type:'Neighborhood'}, {name:'Sunset Beach', lat:21.67085, lng:-158.04567, type:'Beach or coast'}, {name:'Waimea Bay', lat:21.64137, lng:-158.06684, type:'Beach or coast'}, {name:'Haleʻiwa', lat:21.5936, lng:-158.10447, type:'Neighborhood'}, {name:'Wahiawā', lat:21.50062, lng:-158.01667, type:'Neighborhood'}, {name:'Mililani', lat:21.45083, lng:-158.00958, type:'Neighborhood'}, {name:'Pearl Harbor', lat:21.36748, lng:-157.93845, type:'Neighborhood'}, {name:'ʻAiea', lat:21.38222, lng:-157.93361, type:'Neighborhood'}, {name:'Airport (HNL)', lat:21.32114, lng:-157.91844, type:'Landmark'}, {name:'Kapolei', lat:21.34483, lng:-158.06333, type:'Neighborhood'}, {name:'Ko Olina', lat:21.32816, lng:-158.12199, type:'Beach or coast'}];
+function cityOf(it){ var c = it && typeof it.city === 'string' ? it.city.trim().toLowerCase() : ''; return c || 'chicago'; }   // an unknown slug stays itself, so it never shows in Chicago
+function tzOf(it){ if (!it || typeof it !== 'object') return CITY.timezone; var c = CITY_BY[cityOf(it)]; return c ? c.timezone : CITY.timezone; }
+function inCityBox(lat, lng, c){ c = c || CITY; if (!isNum(lat) || !isNum(lng)) return false; if (c.box) return lng >= c.box[0] && lng <= c.box[2] && lat >= c.box[1] && lat <= c.box[3]; return distMi(lat, lng, c.center.lat, c.center.lng) <= c.farMi; }
+function cityAt(lat, lng){ for (var i = 0; i < CITIES.length; i++) if (inCityBox(lat, lng, CITIES[i])) return CITIES[i].slug; return ''; }
+function nearestCity(lat, lng){ var best = 'chicago', bd = 1e9; if (!isNum(lat) || !isNum(lng)) return best; CITIES.forEach(function(c){ var d = distMi(lat, lng, c.center.lat, c.center.lng); if (d < bd) { bd = d; best = c.slug; } }); return best; }
+function cityItems(all, slug){ return (all || []).filter(function(it){ return cityOf(it) === slug; }); }
+function cityCounts(all){ var o = {}; (all || []).forEach(function(it){ var c = cityOf(it); o[c] = (o[c] || 0) + 1; }); return o; }
+function driveWord(){ return CITY.transit ? 'drive' : 'by car/Uber'; }   // Oʻahu has no CTA: walk + car, and the car line says Uber too
+function citySpots(c){ return c.slug === 'oahu' ? OAHU_SPOTS : SPOTS_CHI; }
+// Applies a city to the pure state (time zone, center, spots, projection, data). No map moves and no screen work: setCity does those.
+function setCityCore(slug){
+  var c = CITY_BY[slug]; if (!c) return false;
+  CITY = c; setTZ(c.timezone); setProj(c.proj);
+  LOOP.lat = c.center.lat; LOOP.lng = c.center.lng; LOOP.label = c.center.label;
+  SPOTS = citySpots(c); QUICK_PICKS = c.picks.slice();
+  SUBURBS_D = c.slug === 'chicago' ? SUBURBS_CHI : ''; RIVER_D = c.slug === 'chicago' ? RIVER_CHI : ''; SUB_RING = null;
+  if (DATA_LOADED || ALL_DATA.length) cityData();
+  return true;
+}
+function cityData(){
+  DATA = cityItems(ALL_DATA, CITY.slug); freshCache = {k:'', n:-1, v:null}; ivCache = {};
+  VENUE_LINKS = linkVenues(DATA);
+  try { TU.pool = null; gaPhotoIndex.m = null; } catch (e) {}
+}
 
 /* ================= Platform adapter (keep claude.ai-specific behaviour here) ================= */
 var Platform = (function(){
@@ -2212,11 +2263,18 @@ var DOW = ['sun','mon','tue','wed','thu','fri','sat'];
 var DOW_SHORT = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 var DOW_LONG = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 var MON_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-var fmtParts = null;
-try {
-  fmtParts = new Intl.DateTimeFormat('en-US', {timeZone:TZ, hourCycle:'h23', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'});
-  if (!fmtParts.formatToParts) fmtParts = null; else fmtParts.formatToParts(new Date(0));
-} catch (e) { fmtParts = null; }
+// v5.24: one formatter per city time zone. TZ is the current city's zone; withTZ(zone, fn) runs fn in another zone (an item's own city).
+// TZ_RULE is the built-in fallback when Intl has no time zones: standard offset + US DST (Chicago) or none (Honolulu, UTC-10 all year).
+var TZ_FMT = {}, TZ_RULE = {std:-6, dst:true};
+function tzFmt(tz){
+  if (Object.prototype.hasOwnProperty.call(TZ_FMT, tz)) return TZ_FMT[tz];
+  var f = null;
+  try { f = new Intl.DateTimeFormat('en-US', {timeZone:tz, hourCycle:'h23', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}); if (!f.formatToParts) f = null; else f.formatToParts(new Date(0)); } catch (e) { f = null; }
+  TZ_FMT[tz] = f; return f;
+}
+var fmtParts = tzFmt(TZ);
+function setTZ(tz){ var c = null; for (var i = 0; i < CITIES.length; i++) if (CITIES[i].timezone === tz) c = CITIES[i]; if (!c) return; TZ = tz; fmtParts = tzFmt(tz); TZ_RULE = {std:c.std, dst:c.dst}; }
+function withTZ(tz, fn){ if (!tz || tz === TZ || !CITIES.some(function(c){ return c.timezone === tz; })) return fn(); var keep = TZ; setTZ(tz); try { return fn(); } finally { setTZ(keep); } }
 function partsIntl(ms){
   var a = fmtParts.formatToParts(new Date(ms)), o = {};
   for (var i = 0; i < a.length; i++) o[a[i].type] = a[i].value;
@@ -2226,12 +2284,13 @@ function partsIntl(ms){
 function nthSunday(y, month0, n){ var first = new Date(Date.UTC(y, month0, 1)).getUTCDay(); return 1 + ((7 - first) % 7) + (n - 1) * 7; }
 function isDstUS(ms){ // US rule since 2007: 2nd Sunday of March 2:00 CST to 1st Sunday of November 2:00 CDT
   var y = new Date(ms).getUTCFullYear();
-  var start = Date.UTC(y, 2, nthSunday(y, 2, 2), 8);
-  var end = Date.UTC(y, 10, nthSunday(y, 10, 1), 7);
+  var s = TZ_RULE.std;   // v5.24: 2 am local standard time (Chicago: 08:00 UTC) to 2 am local daylight time (Chicago: 07:00 UTC)
+  var start = Date.UTC(y, 2, nthSunday(y, 2, 2), 2 - s);
+  var end = Date.UTC(y, 10, nthSunday(y, 10, 1), 1 - s);
   return ms >= start && ms < end;
 }
 function partsRule(ms){
-  var t = new Date(ms + (isDstUS(ms) ? -5 : -6) * 3600000);
+  var t = new Date(ms + (TZ_RULE.std + (TZ_RULE.dst && isDstUS(ms) ? 1 : 0)) * 3600000);
   return {y:t.getUTCFullYear(), m:t.getUTCMonth() + 1, d:t.getUTCDate(), hh:t.getUTCHours(), mm:t.getUTCMinutes()};
 }
 function ymd(y, m, d){ return y + '-' + pad(m) + '-' + pad(d); }
@@ -2244,9 +2303,9 @@ function cparts(ms){
   p.key = ymd(p.y, p.m, p.d); p.min = p.hh * 60 + p.mm; p.wd = wdOfKey(p.key); p.ms = ms;
   return p;
 }
-function fromChicago(key, min){ // Chicago wall-clock (date + minutes) -> epoch ms
+function fromChicago(key, min){ // wall clock of the current city (TZ; Chicago unless withTZ / the city picker says otherwise) (date + minutes) -> epoch ms
   if (min >= 1440 || min < 0) { var dd = Math.floor(min / 1440); key = addDays(key, dd); min -= dd * 1440; }
-  var std = keyToUTC(key) + min * 60000 + 6 * 3600000, guess = std;
+  var std = keyToUTC(key) + min * 60000 - TZ_RULE.std * 3600000, guess = std;
   for (var i = 0; i < 3; i++) {
     var p = cparts(guess);
     var diff = (keyToUTC(key) - keyToUTC(p.key)) / 60000 + (min - p.min);
@@ -2284,8 +2343,9 @@ function holidaysOf(y){
 }
 function holidayId(key){ return isKey(key) ? (holidaysOf(+key.slice(0, 4))[key] || '') : ''; }
 function holidayName(key){ var id = holidayId(key); return id && id !== 'tgEve' ? HOLIDAY_NAMES[id] : ''; }
-function sunTimes(key){ // sunrise equation, Chicago (41.88 N, 87.63 W); good to a few minutes
-  var rad = Math.PI / 180, lat = 41.88, lng = -87.63;
+function fromCityTime(slug, key, min){ var c = CITY_BY[slug] || CITY; return withTZ(c.timezone, function(){ return fromChicago(key, min); }); }   // v5.24
+function sunTimes(key){ // sunrise equation at the current city's center (v5.24; Chicago 41.88 N, 87.63 W before); good to a few minutes
+  var rad = Math.PI / 180, chi = CITY.slug === 'chicago', lat = chi ? 41.88 : CITY.center.lat, lng = chi ? -87.63 : CITY.center.lng;
   var J = keyToUTC(key) / 86400000 + 2440587.5 + 0.5;
   var n = Math.round(J - 2451545.0 + 0.0008);
   var Js = n - lng / 360;
@@ -2318,7 +2378,7 @@ function fmtDur(min){ min = Math.round(min); if (min < 60) return min + ' min'; 
 function fmtMi(mi){ if (mi < 0.1) return 'under 0.1 mi'; return (mi < 10 ? mi.toFixed(1) : String(Math.round(mi))) + ' mi'; }
 function fmtRadius(r){ return r === 0.5 ? '\u00bd mi' : r + ' mi'; }
 function fmtBudget(b){ if (b === 'night') return 'all night'; if (b < 60) return b + ' min'; var h = b / 60; if (h === Math.floor(h)) return h + (h === 1 ? ' hr' : ' hrs'); if (h * 2 === Math.floor(h * 2)) return Math.floor(h) + '\u00bd hrs'; return fmtDur(b); }
-function travelText(tr){ if (!tr || tr.how === 'unknown') return 'travel time unknown'; return 'about ' + tr.min + ' min ' + (tr.how === 'walk' ? 'walk' : tr.how === 'CTA' ? 'by CTA' : 'drive') + (tr.switched ? ' (too far for our CTA estimate: Metra or drive)' : ''); }
+function travelText(tr){ if (!tr || tr.how === 'unknown') return 'travel time unknown'; return 'about ' + tr.min + ' min ' + (tr.how === 'walk' ? 'walk' : tr.how === 'CTA' ? 'by CTA' : driveWord()) + (tr.switched ? ' (too far for our CTA estimate: Metra or drive)' : ''); }
 
 /* ================= open-now logic ================= */
 var ivCache = {}, uid = 0;
@@ -2891,7 +2951,8 @@ function endedStatus(it, base, ev){ // v2.2 (challenger H-4): an event whose las
   if (it.end_date_confirmed === false && ev && ev.lastKey) { ev.endUnconfirmed = true; return ext(base, {key:'unknown', open:false, checkDates:true, ev:ev}); }
   return ext(base, {key:'ended', open:false, ev:ev});
 }
-function statusAt(it, ms){
+function statusAt(it, ms){ return withTZ(tzOf(it), function(){ return statusAt0(it, ms); }); }   // v5.24: in the ITEM's city time zone
+function statusAt0(it, ms){
   var st = statusCore(it, ms);
   st = hoursValidGate(it, st);
   if (st.open) st = sessionGate(it, st);
@@ -3080,7 +3141,8 @@ function entryGate(it, st){
   }
   return ext(st, {key:'maybe', open:false, entryPassed:true, lastEntryAt:le.at, lastEntryBare:!!le.bare, doorCloses:st.closesAt, closesAt:null, minsLeft:null, opensAt:null});
 }
-function describe(st, it){
+function describe(st, it){ return withTZ(tzOf(it), function(){ return describe0(st, it); }); }   // v5.24: words in the item's city time zone
+function describe0(st, it){
   var d = describeCore(st, it);
   if (st.seasonReopened && (st.open || st.key === 'later' || st.key === 'closed')) d = ext(d, {sub:(d.sub ? d.sub + ' · ' : '') + 'season start not confirmed'});   // v5.3: plain words   // v2.2 (H-3)
   return d;
@@ -3153,9 +3215,10 @@ function eventBadge(st){
 }
 
 /* ================= geo, travel ================= */
-var LAT0 = 41.88, KX = Math.cos(LAT0 * Math.PI / 180) * 10800, KY = 10800, UNIT_M = 111195 / 10800; // design spec 2.2 projection; 1 unit ~ 10.3 m
-function proj(lat, lng){ return [(lng + 87.94) * KX, (42.03 - lat) * KY]; }
-function unproj(x, y){ return [42.03 - y / KY, x / KX - 87.94]; }
+var LAT0 = 41.88, PLNG0 = -87.94, PTOP = 42.03, KX = Math.cos(LAT0 * Math.PI / 180) * 10800, KY = 10800, UNIT_M = 111195 / 10800; // design spec 2.2 projection; 1 unit ~ 10.3 m
+function proj(lat, lng){ return [(lng - PLNG0) * KX, (PTOP - lat) * KY]; }   // v5.24: origin per city (Chicago: 42.03 N, 87.94 W, as before)
+function unproj(x, y){ return [PTOP - y / KY, x / KX + PLNG0]; }
+function setProj(p){ LAT0 = p.lat0; PLNG0 = p.lng0; PTOP = p.top; KX = Math.cos(LAT0 * Math.PI / 180) * 10800; }
 function distMi(lat1, lng1, lat2, lng2){
   var R = 3958.8, rad = Math.PI / 180, dLat = (lat2 - lat1) * rad, dLng = (lng2 - lng1) * rad;
   var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * rad) * Math.cos(lat2 * rad) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
@@ -3169,6 +3232,7 @@ var CAR_RULE = {base:8, near:4, nearMi:3, mid:2.2, midMi:10, far:1.15};
 function carMin(mi){ var c = CAR_RULE; return Math.round(c.base + Math.min(mi, c.nearMi) * c.near + clamp(mi - c.nearMi, 0, c.midMi - c.nearMi) * c.mid + Math.max(0, mi - c.midMi) * c.far); }
 var CTA_MAX_MI = 10;   // past this, "Walk + CTA" has no CTA estimate: it shows the drive time and says so (switched:true)
 function travel(mi, mode){
+  if (mode === 'transit' && !CITY.transit) mode = 'car';   // v5.24: no CTA estimate in a city without our transit rule (Oʻahu): walk + car
   var route = mi * 1.3, walk = route * 20;
   if (mode === 'walk') return {min: Math.max(1, Math.round(walk)), how:'walk'};   // v3: More filters > Getting there > Walk only
   if (mode === 'car') return {min: carMin(mi), how:'drive'};
@@ -3241,7 +3305,7 @@ function takeFix(cur, fix){ // should this reading replace the current location?
 var NOMI_URL = 'https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&countrycodes=us&viewbox=-88.4,42.5,-87.4,41.4&q=';
 var NOMI_GAP_MS = 1000, NOMI_DEBOUNCE_MS = 600, NOMI_MIN_CHARS = 3;
 function addrQuery(q){ return String(q || '').replace(/\s+/g, ' ').trim(); }
-function nominatimUrl(q){ return NOMI_URL + encodeURIComponent(addrQuery(q)); }
+function nominatimUrl(q){ return NOMI_URL.replace('viewbox=-88.4,42.5,-87.4,41.4', 'viewbox=' + CITY.viewbox) + encodeURIComponent(addrQuery(q)); }   // v5.24: the current city's search box
 function addrWait(q, how, lastAt, now){ // ms to wait before sending; -1 = don't send (under 3 characters)
   if (addrQuery(q).length < NOMI_MIN_CHARS) return -1;
   var d = how === 'enter' ? 0 : NOMI_DEBOUNCE_MS;
@@ -3263,13 +3327,13 @@ function addrParse(list){ // Nominatim jsonv2 -> [{label, sub, lat, lng}], Chica
   list.forEach(function(r){
     if (!r) return;
     var lat = parseFloat(r.lat), lng = parseFloat(r.lon);
-    if (!isFinite(lat) || !isFinite(lng) || distMi(lat, lng, LOOP.lat, LOOP.lng) > 80) return;
+    if (!isFinite(lat) || !isFinite(lng) || !inCityBox(lat, lng)) return;   // v5.24: inside the current city (Chicago: within 80 mi of the Loop, as before; Oʻahu: the island box)
     var parts = String(r.display_name || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
     var name = String(r.name || '').trim(), num = /^\d+[A-Za-z]?(-\d+[A-Za-z]?)?$/, label, rest;
     if (name && parts[0] === name) { label = name; rest = parts.slice(1); }
     else if (parts.length > 1 && num.test(parts[0])) { label = parts[0] + ' ' + parts[1]; rest = parts.slice(2); }
     else { label = name || parts[0] || 'Address'; rest = parts.slice(1); }
-    rest = rest.filter(function(s){ return !/ County$|^(Illinois|Indiana|Wisconsin|United States)$|^\d{5}(-\d{4})?$/.test(s); });
+    rest = rest.filter(function(s){ return !/ County$|^(Illinois|Indiana|Wisconsin|Hawaii|United States)$|^\d{5}(-\d{4})?$/.test(s); });
     if (rest.length > 1 && num.test(rest[0])) rest = [rest[0] + ' ' + rest[1]].concat(rest.slice(2));
     if (label.length > 48) label = label.slice(0, 46).replace(/\s+\S*$/, '') + '…';
     var sub = rest.slice(0, 2).join(', '), key = label + '|' + sub;
@@ -4433,8 +4497,16 @@ function leaveByText(l, lang){ // the "Leave by" line in the language (the Engli
   var v = {a:fmtClock(l.at), b:l.wb ? fmtClock(l.wb) : '', d:isNum(l.wd) ? fmtDurL(l.wd, g) : ''};
   return i18t('lb.' + l.wk, v, g);
 }
+// v5.24: city words. A key with a "<key>.<city>" twin (oh.only.oahu, f.visit.oahu ...) uses the twin while that city is shown.
+// Oʻahu ru / zh-Hans / ko words: written by the developer, no native review (unverified).
+var CITY_STR = {
+  'oh.only.oahu':['Only on Oʻahu', 'Только на Оаху', '瓦胡岛独有', '오아후에만'], 'oh.classic.oahu':['Oʻahu classic', 'Классика Оаху', '瓦胡岛经典', '오아후 클래식'],
+  'f.visit.oahu':['Visiting Oʻahu', 'Гостям Оаху', '游览瓦胡岛', '오아후 여행'], 'f.visitSub.oahu':['Only-on-Oʻahu places and classic must-sees', 'Только на Оаху и главная классика', '瓦胡岛独有和必去经典', '오아후에만 있는 곳과 꼭 가 볼 명소'],
+  'f.ohere.oahu':['Only on Oʻahu or rare', 'Только на Оаху и редкое', '瓦胡岛独有或罕见', '오아후에만 있거나 보기 드문 곳'], 'f.drive.oahu':['Car/Uber', 'Машина/Uber', '开车/Uber', '자동차/Uber']
+};
 function i18t(key, v, lang){
   var e = STR[key]; if (!e) return String(key);
+  if (CITY.slug !== 'chicago' && CITY_STR[key + '.' + CITY.slug]) e = CITY_STR[key + '.' + CITY.slug];
   var l = isLang(lang) ? lang : LANG, s = e[LANG_IX[l]] || e[0];
   if (v) s = s.replace(/\{(\w+)\}/g, function(m, k){ return v[k] !== undefined && v[k] !== null ? String(v[k]) : m; });
   return s;
@@ -4570,7 +4642,7 @@ function visitorPick(it){
   if (!it) return false;
   if (it.visit_override === true) return true;
   var n = norm(it.name), uc = usCitiesOf(it);
-  return (!!onlyHereOf(it) || POP_KNOWN.test(n)) && !(uc !== null && uc >= VISIT_MAX_CITIES);
+  return (!!onlyHereOf(it) || popKnownFor(it).test(n)) && !(uc !== null && uc >= VISIT_MAX_CITIES);   // v5.24: the must-sees of the item's own city; us_cities rule for every city
 }
 
 /* ================= v4: check-ins, one-line facts, the three picks, search, share, calendar, hash links (pure: the UI and the self-test use them) ================= */
@@ -4629,7 +4701,7 @@ function statusShort0(c){
 function travelShort(c){
   if (c.dist === null || c.dist === undefined) return c.citywide ? 'citywide' : '';
   var tr = c.trav; if (!tr || tr.how === 'unknown') return fmtMi(c.dist);
-  return tr.min + ' min ' + (tr.how === 'walk' ? 'walk' : tr.how === 'CTA' ? 'by CTA' : 'drive');
+  return tr.min + ' min ' + (tr.how === 'walk' ? 'walk' : tr.how === 'CTA' ? 'by CTA' : driveWord());
 }
 function priceShort(it){ return it.price_level === 'free' ? 'Free' : (typeof it.price_level === 'string' ? it.price_level : ''); }
 function factsLine(c){ return [statusShort(c), travelShort(c), priceShort(c.item)].filter(Boolean).join(' \u00b7 '); }
@@ -4650,6 +4722,9 @@ function hookOf(it){ // the data's `hook`, else the first sentence of the descri
 var POP_FLOOR = 55, POP_STAR = 75;   // below the floor: never one of the three unless nothing else fits; at or above "star": shown first
 var POP_CAT = {'seasonal':42, 'immersive-popup':40, 'art-museum':36, 'nature-outdoors':36, 'show-comedy-music':36, 'games-arcade':36, 'food-drink-experience':36,
   'active':36, 'mini-golf':36, 'escape-room':34, 'racing-karting':34, 'sports-watch':36, 'social-events':28, 'classes-workshops':28, 'unique-niche':22};
+// v5.24: Oʻahu must-sees for Visiting Oʻahu and popularity (developer's list of famous names, unverified; only_here tags replace it once merged)
+var POP_KNOWN_OAHU = /diamond head|hanauma|pearl harbor|uss arizona|battleship missouri|waikiki beach|i.?olani palace|bishop museum|dole plantation|polynesian cultural center|kualoa|waimea (bay|valley)|lanikai|ala moana beach|honolulu zoo|waikiki aquarium|makapu.?u|byodo.?in|manoa falls/;
+function popKnownFor(it){ return cityOf(it) === 'oahu' ? POP_KNOWN_OAHU : POP_KNOWN; }
 var POP_KNOWN = /art institute|field museum|shedd|museum of science and industry|griffin museum|lincoln park zoo|brookfield zoo|navy pier|millennium park|cloud gate|the bean|maggie daley|skydeck|willis tower|360 chicago|second city|christkindlmarket|adler planetarium|garfield park conservatory|lincoln park conservatory|botanic garden|morton arboretum|riverwalk|the 606|museum of contemporary art|chicago architecture center|zoolights|lightscape|magnificent mile lights|kingston mines|green mill|music box theatre|chicago cultural center|joffrey|nutcracker|goodman theatre|christmas carol|topgolf|puttshack|museum of ice cream|cindy s rooftop|three dots and a dash|eataly|lakefront trail|northerly island|king spa|aire ancient baths|chicago auto show|thanksgiving parade|tree lighting|winter wonderfest|frank lloyd wright home|robie house|baha i house of worship/;
 var POP_QUIET = /\blibrary\b|cemetery|bookstore|\bbooks\b|apothecary|\brecords\b|button museum|rock shop|pedway|chapel|cathedral|house of worship|antiques|lapidary|broadcast|garden center|visitor center/;
 function popularityOf(it){
@@ -4665,7 +4740,7 @@ function popularityOf(it){
   if (typeof it.hook === 'string' && it.hook.trim()) s += 2;
   s += Math.min(6, (Array.isArray(it.good_to_know) ? it.good_to_know.filter(function(x){ return x && x.q && x.a; }).length : 0)) * 2;
   if (it.kind === 'event') s += 4;
-  var known = POP_KNOWN.test(name);
+  var known = popKnownFor(it).test(name);
   if (known) s += 30;
   else if (POP_QUIET.test(name)) s -= 18;
   return Math.max(0, Math.min(100, s));
@@ -5527,11 +5602,11 @@ function icsFor(ev, stampMs){
   L.push('END:VEVENT', 'END:VCALENDAR');
   return L.join('\r\n') + '\r\n';
 }
-function calText(ev, todayKey){ var q = cparts(ev.start); return ev.title + '\n' + fmtDayDate(q.key, todayKey) + ', ' + fmtTime(q.min) + ' \u2013 ' + fmtClock(ev.end) + ' (Chicago time)' + (ev.where ? '\n' + ev.where : '') + (ev.link ? '\n' + ev.link : ''); }
+function calText(ev, todayKey){ var q = cparts(ev.start); return ev.title + '\n' + fmtDayDate(q.key, todayKey) + ', ' + fmtTime(q.min) + ' \u2013 ' + fmtClock(ev.end) + ' (' + CITY.name + ' time)' +(ev.where ? '\n' + ev.where : '') + (ev.link ? '\n' + ev.link : ''); }
 function gcalLink(ev){ return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(ev.title) + '&dates=' + icsStamp(ev.start) + '/' + icsStamp(ev.end) + (ev.where ? '&location=' + encodeURIComponent(ev.where) : '') + (ev.link ? '&details=' + encodeURIComponent(ev.link) : ''); }
 
 /* ================= spots for "where am I" (approximate points, typed from general knowledge: needs check) ================= */
-var SPOTS = [
+var SPOTS_CHI = [
   ['River North',41.8920,-87.6340,'Neighborhood'],['The Loop',41.8819,-87.6278,'Neighborhood'],['West Loop',41.8830,-87.6490,'Neighborhood'],
   ['Fulton Market',41.8866,-87.6516,'Neighborhood'],['Streeterville',41.8925,-87.6190,'Neighborhood'],['Magnificent Mile',41.8947,-87.6243,'Neighborhood'],
   ['Gold Coast',41.9046,-87.6278,'Neighborhood'],['Old Town',41.9110,-87.6375,'Neighborhood'],['Lincoln Park',41.9215,-87.6480,'Neighborhood'],
@@ -5556,15 +5631,18 @@ var SPOTS = [
   ['Armitage',41.9182,-87.6526,'L stop, Brown, Purple'],['18th (Pink)',41.8578,-87.6694,'L stop, Pink'],["O'Hare (Blue)",41.9775,-87.9043,'L stop, Blue'],
   ['Midway (Orange)',41.7866,-87.7376,'L stop, Orange'],['Davis (Evanston)',42.0478,-87.6836,'L stop, Purple']
 ].map(function(a){ return {name:a[0], lat:a[1], lng:a[2], type:a[3]}; });
+var SPOTS = SPOTS_CHI;   // v5.24: the current city's spots (setCityCore)
 var QUICK_PICKS = ['River North', 'The Loop', 'West Loop', 'Wicker Park', 'Lakeview', 'Hyde Park'];
 
 /* ================= map geometry ================= */
 var GEO = {ready:false, failed:false, areas:[], lines:[]};
 // Land outside the city: approximate hand-made outline (extends the mockup's 19-point polygon north to Kenosha and into Indiana). Same projection units.
-var SUBURBS_D = 'M-20000 -12000 700 -12000 900 -7000 950 -5940 900 -3564 1286 -2916 1648 -1296 1930 -756 2131 -324 2187 0 2211 119 1930 864 2251 2484 3055 3564 3341 3672 3618 3726 3940 3888 4342 4212 5146 4428 7558 4428 12000 3000 12000 20000 -20000 20000Z';
+var SUBURBS_CHI = 'M-20000 -12000 700 -12000 900 -7000 950 -5940 900 -3564 1286 -2916 1648 -1296 1930 -756 2131 -324 2187 0 2211 119 1930 864 2251 2484 3055 3564 3341 3672 3618 3726 3940 3888 4342 4212 5146 4428 7558 4428 12000 3000 12000 20000 -20000 20000Z';
 // Chicago River: hand-traced approximation from the design mockup (no City waterways file yet: needs check)
+var SUBURBS_D = SUBURBS_CHI;   // v5.24: '' in a city without the hand-drawn outline (Oʻahu: everything off the island is water)
 var RIVER_D = 'M2649 1525 2617 1526 2569 1527 2538 1528 2508 1537 2485 1540 2460 1543 2435 1547 2423 1523 2408 1498 2382 1441 2368 1404 2336 1366 2275 1291M2435 1547 2432 1558 2430 1600 2430 1627 2431 1655 2439 1685 2448 1757 2460 1858 2470 1960';
-var FEATURED_LABELS = {'Loop':1, 'Near North Side':1, 'Lincoln Park':1, 'Lake View':1, 'Logan Square':1, 'West Town':1, 'Near West Side':1, 'Hyde Park':1, 'Near South Side':1, 'Uptown':1, 'Lower West Side':1, 'Austin':1, 'Rogers Park':1, 'South Shore':1};
+var RIVER_CHI = RIVER_D;
+var FEATURED_LABELS = {'Oʻahu':1, 'Loop':1,'Near North Side':1, 'Lincoln Park':1, 'Lake View':1, 'Logan Square':1, 'West Town':1, 'Near West Side':1, 'Hyde Park':1, 'Near South Side':1, 'Uptown':1, 'Lower West Side':1, 'Austin':1, 'Rogers Park':1, 'South Shore':1};
 var LINE_ORDER = ['purple', 'blue', 'green', 'pink', 'orange', 'brown', 'yellow', 'red'];
 function polysOf(g){ if (!g) return []; if (g.type === 'Polygon') return [g.coordinates]; if (g.type === 'MultiPolygon') return g.coordinates; return []; }
 function linesOf(g){ if (!g) return []; if (g.type === 'LineString') return [g.coordinates]; if (g.type === 'MultiLineString') return g.coordinates; return []; }
@@ -5609,17 +5687,25 @@ function lineSvg(l, casing){
   return s;
 }
 function drawGeoIntoMap(){
-  $('gSub').innerHTML = '<path class="suburb" d="' + SUBURBS_D + '"/>';
+  $('gSub').innerHTML = SUBURBS_D ? '<path class="suburb" d="' + SUBURBS_D + '"/>' : '';
   $('gHalo').innerHTML = '<path class="halo" fill="none" vector-effect="non-scaling-stroke" d="' + GEO.areas.map(function(a){ return a.d; }).join('') + '"/>';
   $('gAreas').innerHTML = GEO.areas.map(function(a){ return '<path class="t' + (a.num % 4) + '" fill-rule="evenodd" vector-effect="non-scaling-stroke" d="' + a.d + '"/>'; }).join('');
-  $('gRiver').innerHTML = '<path class="river" fill="none" vector-effect="non-scaling-stroke" d="' + RIVER_D + '"/>';
+  $('gRiver').innerHTML = RIVER_D ? '<path class="river" fill="none" vector-effect="non-scaling-stroke" d="' + RIVER_D + '"/>' : '';
   $('gCas').innerHTML = GEO.lines.map(function(l){ return lineSvg(l, true); }).join('');
   $('gLines').innerHTML = GEO.lines.map(function(l){ return lineSvg(l, false); }).join('');
   var lab = GEO.areas.map(function(a){ return '<span class="mlab" data-x="' + r1(a.cx) + '" data-y="' + r1(a.cy) + '" data-f="' + (FEATURED_LABELS[a.name] ? 1 : 0) + '">' + esc(a.name) + '</span>'; }).join('');
-  var lake = proj(41.93, -87.56);
-  lab += '<span class="mlab lake" data-x="' + r1(lake[0]) + '" data-y="' + r1(lake[1]) + '" data-f="2">Lake Michigan</span>';
+  var lake = proj(CITY.water.lat, CITY.water.lng);   // v5.24: Lake Michigan / Pacific Ocean
+  lab += '<span class="mlab lake" data-x="' + r1(lake[0]) + '" data-y="' + r1(lake[1]) + '" data-f="2">' + esc(CITY.water.name) + '</span>';
   $('mlabels').innerHTML = lab;
   labelEls = Array.prototype.slice.call($('mlabels').children).map(function(el){ return {el:el, x:+el.getAttribute('data-x'), y:+el.getAttribute('data-y'), f:+el.getAttribute('data-f'), on:true}; });
+}
+function oahuGJ(){ var ring = []; for (var i = 0; i + 1 < OAHU_RING.length; i += 2) ring.push([OAHU_RING[i], OAHU_RING[i + 1]]); return {type:'FeatureCollection', features:[{type:'Feature', properties:{num:1, name:'Oʻahu'}, geometry:{type:'Polygon', coordinates:[ring]}}]}; }
+function cityGeo(){ // v5.24: the drawn map's land for the current city (Chicago: community areas + CTA lines, once loaded; Oʻahu: the island outline, built in)
+  var keepLines = GEO.linesGJ || (GEO.raw ? GEO.raw.lines : null);
+  if (CITY.slug === 'oahu') { buildGeo(oahuGJ(), null); GEO.linesGJ = keepLines; }
+  else if (GEO.raw) buildGeo(GEO.raw.areas, GEO.raw.lines);
+  else { GEO.areas = []; GEO.lines = []; GEO.ready = false; }
+  if (svgEl) drawGeoIntoMap();
 }
 
 /* ================= map engine: pan / pinch / wheel on our own SVG ================= */
@@ -5772,7 +5858,7 @@ function focusCity(){
   if (!mapHasSize()) return;
   lastFocus.w = MV.W; lastFocus.h = MV.H; lastFocus.done = true;
   var box = $('pLoc').hidden ? mapVisibleBox() : mapVisibleBoxForPanel(), hgt = box.bottom - box.top;
-  var a = proj(42.023, -87.94), b = proj(41.644, -87.524);
+  var a = proj(CITY.fit[0][0], CITY.fit[0][1]), b = proj(CITY.fit[1][0], CITY.fit[1][1]);   // v5.24: the city's box (Chicago 42.023 N 87.94 W to 41.644 N 87.524 W, as before)
   var s = clamp(Math.min(MV.W * 0.95 / (b[0] - a[0]), hgt * 0.95 / (b[1] - a[1])), S_MIN, 1);
   var cx = (a[0] + b[0]) / 2, cy = (a[1] + b[1]) / 2 - ((box.top + hgt / 2) - MV.H / 2) / s;
   setView(cx, cy, s); recluster();
@@ -6000,9 +6086,9 @@ function glStart(){
   mapEl.insertBefore(div, mapEl.firstChild);
   var c = viewToCamera(MV.cx, MV.cy, MV.s);
   GLM.dark = themeIsDark();
-  var map = new window.maplibregl.Map({container:div, style:glStyleUrl(), center:[c.lng, c.lat], zoom:c.zoom, pitch:0, maxPitch:0, minZoom:7, maxZoom:19,
-    attributionControl:false, maxBounds:[[-89.6, 40.9], [-86.0, 42.9]], fadeDuration:120, keyboard:true, cooperativeGestures:false});
-  GLM.map = map;
+  var map = new window.maplibregl.Map({container:div, style:glStyleUrl(), center:[c.lng, c.lat], zoom:c.zoom, pitch:0, maxPitch:0, minZoom:CITY.minZoom, maxZoom:19,
+    attributionControl:false, maxBounds:CITY.maxBounds, fadeDuration:120, keyboard:true, cooperativeGestures:false});
+  GLM.map = map; GLM.citySlug = CITY.slug;   // v5.24: the city whose bounds the map was made with
   map.addControl(new window.maplibregl.AttributionControl({compact:!isWide()}), 'bottom-left');   // v5.23 (tester desktop #7): the full credit line on a laptop (not the small "i")   // the OpenFreeMap tile source carries the OpenFreeMap / OpenMapTiles / OpenStreetMap line
   map.once('idle', function(){ try { var el = div.querySelector('.maplibregl-ctrl-attrib-inner'); if (el && !/openstreetmap/i.test(el.textContent)) el.innerHTML = OFM_ATTRIB; } catch (e) {} });   // safety net if the source ever drops it
   map.on('load', function(){ if (GLM.state === 'loading') glActivate(); });
@@ -6018,8 +6104,9 @@ function glActivate(){
   if (GLM.state !== 'loading' || !GLM.map) return;
   GLM.state = 'on'; GLM.on = true; GLM.why = ''; mapEl.setAttribute('data-engine', 'gl');
   mapEl.classList.add('gl'); $('app').classList.add('gl');
-  mapEl.setAttribute('aria-label', 'Street map of Chicago. Drag to move, pinch or scroll to zoom.');
+  mapEl.setAttribute('aria-label', 'Street map of ' + CITY.name + '. Drag to move, pinch or scroll to zoom.');
   try { GLM.map.resize(); } catch (e) {}
+  if (GLM.citySlug !== CITY.slug) glJumpToCity(GLM.map, CITY);   // v5.24: the city changed while the street map was loading
   glAddExtras();
   glSyncFromMap();
   if (lastFocus) { lastFocus.done = false; refitIfIdle(); }
@@ -6084,6 +6171,36 @@ function glAddExtras(){ // v5.9: prep the positron base (no 3D), then our CTA 'L
     glRing();
   } catch (e) {}
   try { GLM.variant = ''; glPaintVariant(map, mapVariant()); } catch (e) {}
+  glCityLayers(map);
+}
+function glJumpToCity(map, c){ try { map.setMaxBounds(null); map.setMinZoom(0); map.fitBounds([[c.fit[0][1], c.fit[1][0]], [c.fit[1][1], c.fit[0][0]]], {duration:0, maxZoom:12}); map.setMinZoom(c.minZoom); map.setMaxBounds(c.maxBounds); GLM.citySlug = c.slug; } catch (e) {} glCityLayers(map); }
+function glCityLayers(map){ try { if (map && map.getLayer('cff-cta')) map.setLayoutProperty('cff-cta', 'visibility', CITY.transit ? 'visible' : 'none'); } catch (e) {} }   // v5.24: no CTA lines outside Chicago
+/* v5.24 city switch on the street map: drop the old city's bounds and min zoom, fly out to the world, then into the new city's box,
+   then set the new city's bounds. A newer switch cancels an older fly (token). #flyhold=1 (tests/screenshots) stops at the world view. */
+var CITY_FLY = {tok:0, phase:''};
+function flyMark(p){ CITY_FLY.phase = p; try { var m = GLM.map; document.documentElement.setAttribute('data-fly', p + (m ? ' z=' + m.getZoom().toFixed(1) + ' at ' + m.getCenter().lng.toFixed(1) + ',' + m.getCenter().lat.toFixed(1) + ' bounds=' + (m.getMaxBounds() ? 'set' : 'none') + ' minZoom=' + m.getMinZoom() : '')); if (/(?:^|[#&])flydebug=1/.test(location.hash || '')) { var dbg = document.getElementById('flyDbg'); if (!dbg) { dbg = document.createElement('div'); dbg.id = 'flyDbg'; dbg.style.cssText = 'position:fixed;left:8px;bottom:40px;z-index:999;background:#000;color:#fff;font:12px monospace;padding:4px 6px;max-width:90%'; document.body.appendChild(dbg); } dbg.textContent = document.documentElement.getAttribute('data-fly'); } } catch (e) {} }   // for testers: the fly's last step on <html data-fly>
+function glFlyToCity(c, hold){
+  var map = GLM.map; if (!map || !GLM.on) return false;
+  var tok = ++CITY_FLY.tok, quick = reduceMotion();
+  try { map.setMaxBounds(null); map.setMinZoom(0); } catch (e) {}
+  glCityLayers(map);
+  function finish(){
+    if (tok !== CITY_FLY.tok) return;
+    try { map.setMinZoom(c.minZoom); map.setMaxBounds(c.maxBounds); } catch (e) {}
+    GLM.citySlug = c.slug; flyMark('done'); glSyncFromMap(); recluster(); updateRing();
+  }
+  function intoCity(){
+    if (tok !== CITY_FLY.tok) return;
+    if (hold) { flyMark('world'); return; }
+    flyMark('city');
+    var bb = [[c.fit[0][1], c.fit[1][0]], [c.fit[1][1], c.fit[0][0]]];
+    try { map.once('moveend', finish); map.fitBounds(bb, {padding:{top:70, bottom:Math.round(MV.H * 0.3), left:20, right:20}, duration:quick ? 0 : 2200, maxZoom:12}); } catch (e) { finish(); }
+  }
+  flyMark('out');
+  try { map.stop(); } catch (e) {}   // an older camera move ends here, before our moveend listener exists
+  var mid =[(map.getCenter().lng + c.center.lng) / 2, (map.getCenter().lat + c.center.lat) / 2];
+  try { map.once('moveend', intoCity); map.flyTo({center:mid, zoom:1.6, pitch:0, duration:quick ? 0 : 1800, essential:true}); } catch (e) { intoCity(); }
+  return true;
 }
 function glLayerTypes(){ // for tests: the live street map's layers as 'id:type'
   var map = GLM.map; if (!map || !GLM.on) return null;
@@ -6136,7 +6253,7 @@ function clusterHTML(o){ return '<button class="cluster" type="button"' + (isNum
 // v5.23 (tester desktop #4): on a laptop, from street zoom (DESK_ICON_ZOOM) up, every place that was a plain dot gets a small icon pin,
 // one per free 38 px cell (a cell that already has a pick or pin keeps the dot, so picks stay on top and it never gets crowded). Zoomed out = dots, as before.
 var DESK_ICON_ZOOM = 13;
-function deskIconsOn(){ try { return isWide() && !guideMapOn() && isNum(MV.s) && zoomForScale(MV.s, 41.88) >= DESK_ICON_ZOOM; } catch (e) { return false; } }
+function deskIconsOn(){ try { return isWide() && !guideMapOn() && isNum(MV.s) && zoomForScale(MV.s, LAT0) >= DESK_ICON_ZOOM; } catch (e) { return false; } }
 function promoteDots(dots, pins, s, cell){ // pure -> {pins:[new small pins], dots:[dots that stay dots]}
   var taken = {}, out = {pins:[], dots:[]};
   function key(u){ return Math.floor(u[0] * s / cell) + ':' + Math.floor(u[1] * s / cell); }
@@ -7058,7 +7175,7 @@ function gaStatus(it, R){ // live status for now / the picked day / a date-bound
 function gaHop(a, b, mode){ // pure: stop-to-stop time; a walk under 1.2 mi, else her mode (Drive by default)
   if (!isNum(a.lat) || !isNum(b.lat)) return null;
   var mi = distMi(a.lat, a.lng, b.lat, b.lng), t = travel(mi, mi < GA_WALK_MI ? 'walk' : (mode === 'walk' ? 'car' : mode || 'car'));
-  return {min:t.min, how:t.how, text:t.min + ' min ' + (t.how === 'walk' ? 'walk' : t.how === 'CTA' ? 'by CTA' : 'drive')};
+  return {min:t.min, how:t.how, text:t.min + ' min ' + (t.how === 'walk' ? 'walk' : t.how === 'CTA' ? 'by CTA' : driveWord())};
 }
 function gaLabel(i, n){ return i === 0 ? 'Start with' : i === n - 1 ? 'End at' : 'Then'; }
 function gaCover(R){ // -> [file] (1 for a plan / a list with cover_photo_id, up to 3 for a list mosaic)
@@ -9378,7 +9495,7 @@ function renderDetail(c, keepScroll){
   var f = c.fit;
   if (S.budgetOn && (f.kind === 'fits' || f.kind === 'tight' || f.kind === 'over' || f.kind === 'wait')) { // the door-to-door bar only when she set a time budget
     h += ribbonHTML(c, true);
-    var labs = [f.travel + ' min ' + (c.trav.how === 'walk' ? 'walk' : c.trav.how === 'CTA' ? 'by CTA' : c.trav.switched ? 'drive (no CTA estimate)' : 'drive')];
+    var labs = [f.travel + ' min ' + (c.trav.how === 'walk' ? 'walk' : c.trav.how === 'CTA' ? 'by CTA' : c.trav.switched ? 'drive (no CTA estimate)' : driveWord())];
     if (f.wait) labs.push(f.wait + ' min wait');
     labs.push(f.short ? 'quick stop ~' + fmtDur(f.min) : (f.thereKnown ? 'about ' : 'assumed ') + fmtDur(f.there) + ' there');
     if (f.kind === 'fits' || f.kind === 'wait') labs.push(fmtDur(Math.max(0, f.spare)) + ' left');
@@ -9489,13 +9606,47 @@ function setHashFor(id){ // keeps "#<id>" in the address bar while a place is op
     var cur = (location.hash || '').replace(/^#/, '');
     if (cur && !hashItemId('#' + cur)) return;
     if (cur === (id || '')) return;
-    history.replaceState(null, '', location.pathname + location.search + (id ? '#' + id : ''));
+    history.replaceState(history.state, '', location.pathname + location.search + (id ? '#' + id : ''));   // v5.24: keeps the Back-guard mark
   } catch (e) {}
+}
+/* v5.24 (tester v5.23): the phone's Back closes the open place page or sheet first; only Back from home leaves the site.
+   Opening a page or sheet adds one history entry {cffBack:1} (same address). Back pops it: popstate closes the top layer (a sheet first,
+   then the place page) and guards again if something is still open. Closing with the X takes the entry back off, a moment later, and
+   only while it is still the current entry (a guide's own entry on top is left alone). bkPlan is pure (self-test). */
+var BK = {pushed:false, skip:0, tm:0};
+function bkLayerOpen(){ return !!UI.detailId || openStack.length > 0; }
+function bkPlan(s){ // s = {skip, pushed, stack:[panel ids], detail:bool} -> 'skip' | 'none' (the browser goes back: leaves from home) | 'panel:<id>' | 'detail'
+  if (s.skip > 0) return 'skip';
+  if (!s.pushed) return 'none';
+  if (s.stack && s.stack.length) return 'panel:' + s.stack[s.stack.length - 1];
+  if (s.detail) return 'detail';
+  return 'none';
+}
+function bkGuard(){ if (BK.pushed) return; try { history.pushState({cffBack:1}, '', location.href); BK.pushed = true; } catch (e) {} }
+function bkRelease(){
+  if (!BK.pushed) return;
+  clearTimeout(BK.tm);
+  BK.tm = setTimeout(function(){
+    if (!BK.pushed || bkLayerOpen()) return;
+    BK.pushed = false;
+    var mine = false; try { mine = !!(history.state && history.state.cffBack); } catch (e) {}
+    if (mine) { BK.skip++; try { history.back(); } catch (e) { BK.skip--; } }
+  }, 400);
+}
+function bkOnPop(){
+  var plan = bkPlan({skip:BK.skip, pushed:BK.pushed, stack:openStack.slice(), detail:!!UI.detailId});
+  if (plan === 'skip') { BK.skip--; return plan; }
+  if (plan === 'none') { BK.pushed = false; return plan; }
+  BK.pushed = false; clearTimeout(BK.tm);
+  if (plan === 'detail') closeDetail(); else closePanel(plan.slice(6));
+  if (bkLayerOpen()) bkGuard();
+  return plan;
 }
 function openDetail(id){
   var c = findComputed(id); if (!c) return;
   if (!UI.detailId) UI.listScroll = scrollSnap(false);   // v5.23: where the list was (a page opened from a page keeps the first spot)
   UI.detailId = id; grPageChange();   // v5.22: a new page visit fetches again (a late Google answer for an earlier visit is dropped)
+  bkGuard();   // v5.24: Back closes this page (before the address gets #id, so Back also restores the old address)
   setHashFor(id);
   renderDetail(c, false);
   var el = $('detail'); el.hidden = false; void el.offsetWidth; el.classList.add('on');
@@ -9515,6 +9666,7 @@ function closeDetail(){
   UI.friendReturn = false; UI.savedReturn = false;
   if (UI.pollReturn && PL.cur) { UI.pollReturn = false; renderPoll(); openPanel('pPoll'); }   // v5.13: Back returns to the poll
   UI.pollReturn = false;
+  bkRelease();   // v5.24
 }
 
 /* ================= panels ================= */
@@ -9528,6 +9680,7 @@ function openPanel(id, modal){
   el.style.zIndex = String(70 + openStack.length);
   el.hidden = false; void el.offsetWidth; el.classList.add('on');
   el.dataset.modal = modal === false ? '0' : '1';
+  if (!(id === 'pLoc' && UI.firstOpen)) bkGuard();   // v5.24: Back closes the sheet (not the first "Where are you" screen: that is home)
   syncScrim();
   var t = el.querySelector('.p-title'); setTimeout(function(){ try { t.focus({preventScroll:true}); } catch (e) {} }, 50);
 }
@@ -9540,6 +9693,7 @@ function closePanel(id){
   if (id === 'pTime' || id === 'pFilters') { UI.showRing = false; updateRing(); if (id === 'pFilters') { UI.draft = null; UI.draftB = null; } }
   if (id === 'pFriend' && !UI.friendHide) wlClosed();
   if (id === 'pWelcome' || id === 'pTasteInv') popClosed(id);   // v5.14
+  bkRelease();   // v5.24 (waits a moment: a sheet that hands over to another keeps the entry)
   if (id === 'pPoll' && !UI.pollReturn) { pollClearHash(); PL.cur = null; if (UI.locAfterPoll) { UI.locAfterPoll = false; if (UI.firstOpen) setTimeout(function(){ if (UI.firstOpen && $('pLoc').hidden) openLocation(true); }, 340); } }   // v5.8 (not when it only steps aside for a place's detail)
   syncScrim();
 }
@@ -9574,8 +9728,64 @@ function setCandidate(lat, lng, label, src){
   if (sp[1] < box.top + 30 || sp[1] > box.bottom - 30 || sp[0] < 20 || sp[0] > MV.W - 20) animateView(u[0], u[1] - ((box.top + box.bottom) / 2 - MV.H / 2) / MV.s, MV.s);
 }
 function mapVisibleBoxForPanel(){ var pl = $('pLoc'); var top = 70, bottom = MV.H; if (!isWide() && !pl.hidden) bottom = Math.max(top + 100, MV.H - pl.offsetHeight); return {top:top, bottom:bottom}; }
+/* ----- v5.24 city picker: the chips at the top of "Where are you right now?" and the city button on the map. ----- */
+function cityChipsHTML(){ return CITIES.map(function(c){ return '<button class="chip city-chip" type="button" data-city="' + esc(c.slug) + '" aria-pressed="' + (c.slug === CITY.slug) + '">' + esc(c.name) + '</button>'; }).join(''); }
+function applyCityUI(){ // words and labels that name the city
+  try {
+    var cb = $('cityBtn'); if (cb) { cb.textContent = CITY.name; cb.setAttribute('aria-label', 'City: ' + CITY.name + '. Change'); }
+    var cs = $('citySeg'); if (cs) cs.innerHTML = cityChipsHTML();
+    Array.prototype.forEach.call(document.querySelectorAll('.credit, .mapcredit'), function(el){ el.textContent = CITY.credit; });
+    if (mapEl) mapEl.setAttribute('aria-label', (GLM.on ? 'Street map of ' : 'Map of ') + CITY.name + '. Drag to move, pinch or scroll to zoom.');
+    var ss = $('spotSearch'); if (ss) ss.setAttribute('placeholder', CITY.spotHint);
+    document.documentElement.setAttribute('data-city', CITY.slug);
+    if (!$('pLoc').hidden) { $('quickPicks').innerHTML = QUICK_PICKS.map(function(n){ return '<button class="chip" type="button" data-pick="' + esc(n) + '" aria-pressed="' + (UI.cand && UI.cand.label === n) + '">' + esc(n) + '</button>'; }).join(''); }
+  } catch (e) {}
+}
+// how: 'pick' (she chose it: remembered, and GPS won't switch it back this visit), 'gps' (her location is in that city), 'boot', 'test'
+function setCity(slug, how){
+  if (!CITY_BY[slug]) return false;
+  if (slug === CITY.slug) { if (how === 'pick') { UI.cityPicked = true; Platform.store.set(CITY_KEY, slug); } return false; }
+  UI.cityLoc = UI.cityLoc || {}; if (S.loc) UI.cityLoc[CITY.slug] = S.loc;
+  setCityCore(slug);
+  if (how === 'pick') { UI.cityPicked = true; Platform.store.set(CITY_KEY, slug); }
+  else if (how === 'gps') Platform.store.set(CITY_KEY, slug);
+  if (!CITY.transit && S.f.mode === 'transit') S.f.mode = 'car';   // no CTA here (not saved: back in Chicago her pick returns)
+  else if (CITY.transit) { var m0 = Platform.store.get('cff.mode.v1', null); if (m0 === 'transit' || m0 === 'walk' || m0 === 'car') S.f.mode = m0; }
+  var kept = UI.cityLoc[slug];
+  S.loc = kept && inCityBox(kept.lat, kept.lng) ? kept : ext(LOOP, {});
+  if (UI.picking) UI.cand = ext(S.loc, {});
+  cityGeo(); worldFromData();
+  applyCityUI();
+  WX.d = null; WX.k = ''; WX.at = 0;   // the forecast belongs to the old city
+  UI.viewKey = ''; UI.detailId = UI.detailId && findItem(UI.detailId) ? UI.detailId : null;
+  if (!mapEl) return true;
+  refresh();
+  if (!GLM.on && GLM.map) glJumpToCity(GLM.map, CITY);   // still loading: its bounds follow now
+  if (!GLM.on || !glFlyToCity(CITY, UI.flyHold)) { if (S.loc.src === 'default') focusCity(); else focusOn(S.loc.lat, S.loc.lng, Math.min(S.f.radius, 3), false); }
+  if (UI.picking) { $('locGo').textContent = 'Start at ' + UI.cand.label; $('spotSearch').value = ''; $('spotResults').innerHTML = ''; try { addrReset(); } catch (e) {} recluster(); }
+  return true;
+}
+function bindCity(){
+  var cb = $('cityBtn'); if (cb) cb.addEventListener('click', function(){ openLocation(false); });
+  var cs = $('citySeg'); if (cs) cs.addEventListener('click', function(e){ var b = e.target.closest('[data-city]'); if (!b) return; setCity(b.getAttribute('data-city'), 'pick'); applyCityUI(); });
+}
+function cityBoot(){ // v5.24: #city= > the city of her remembered spot > her last pick > Chicago. The self-test always starts in Chicago.
+  var h = ''; try { h = location.hash || ''; } catch (e) {}
+  var m = /(?:^|[#&])city=([a-z]+)/.exec(h), slug = 'chicago';
+  if (/^#selftest/.test(h)) slug = 'chicago';
+  else if (m && CITY_BY[m[1]]) { slug = m[1]; UI.cityPicked = true; }
+  else {
+    var loc = Platform.store.get('cff.loc.v1', null), lc = loc && isNum(loc.lat) && isNum(loc.lng) ? cityAt(loc.lat, loc.lng) : '';
+    var st = Platform.store.get(CITY_KEY, null);
+    slug = lc || (CITY_BY[st] ? st : 'chicago');
+  }
+  UI.flyHold = /(?:^|[#&])flyhold=1/.test(h);
+  setCityCore(slug);
+  if (!CITY.transit && S.f.mode === 'transit') S.f.mode = 'car';
+}
 function openLocation(first){
   UI.picking = true; mapEl.classList.add('picking');
+  if ($('citySeg')) $('citySeg').innerHTML = cityChipsHTML();   // v5.24
   UI.cand = S.loc ? ext(S.loc, {}) : ext(LOOP, {});
   $('pLocClose').hidden = !!first;
   $('brand').hidden = !first;
@@ -9603,7 +9813,9 @@ function locateMe(){
   function attempt(o){
     Platform.geo.get(function(lat, lng, acc, t){
       geoBusy = false; UI.geoState = 'granted'; gpsBtnReset();
-      if (distMi(lat, lng, LOOP.lat, LOOP.lng) > 80) { setLocNote('You look far from Chicago. Pick a spot instead.', true); return; }
+      var cc = cityAt(lat, lng);   // v5.24: a tap in another of our cities switches to it; outside every city she picks a spot
+      if (!cc) { setLocNote('You look far from ' + CITIES.map(function(c){ return c.name; }).join(' and ') + '. Pick a spot instead.', true); return; }
+      if (cc !== CITY.slug) setCity(cc, 'gps');
       // v5.5: a tap is a choice made in this session, so it beats everything. A rough reading keeps the panel open with the address box.
       var rough = accRough(acc);
       UI.firstOpen = false; commitLocation({lat:lat, lng:lng, label:'Your location', src:'gps', acc:acc, t:t, fresh:true, explicit:true}, rough);
@@ -9624,7 +9836,7 @@ function startGeoWatch(){
   if (geoWatchId !== null || !S.loc || S.loc.src !== 'gps' || Platform.onClaude || !navigator.geolocation) return;
   if (document.visibilityState === 'hidden') return;
   geoWatchId = Platform.geo.watch(function(lat, lng, acc, t){
-    if (!S.loc || S.loc.src !== 'gps' || distMi(lat, lng, LOOP.lat, LOOP.lng) > 80) return;
+    if (!S.loc || S.loc.src !== 'gps' || !inCityBox(lat, lng)) return;   // v5.24: inside the current city
     var fix = {lat:lat, lng:lng, label:'Your location', src:'gps', acc:isNum(acc) ? Math.round(acc) : null, t:t, fresh:true, explicit:false};
     if (!takeFix(S.loc, fix)) return;                     // v5.5: never an older or much rougher reading
     var moved = distMi(lat, lng, S.loc.lat, S.loc.lng), accWas = accText(S.loc.acc);
@@ -9649,8 +9861,9 @@ function onGeoPermission(state){ // permissions "change" event and the first che
     // v5.5: the quiet check stays low power. A fresh reading now replaces a spot remembered from an earlier visit (owner: the laptop
     // kept saying Lincoln Park), but never a choice made in this session or a newer reading (takeFix).
     Platform.geo.get(function(lat, lng, acc, t){
-      if (distMi(lat, lng, LOOP.lat, LOOP.lng) > 80) return;
+      var cc = cityAt(lat, lng); if (!cc) return;   // v5.24: outside all our cities: nothing changes
       var fix = {lat:lat, lng:lng, label:'Your location', src:'gps', acc:acc, t:t, fresh:true, explicit:false};
+      if (cc !== CITY.slug) { if (UI.cityPicked || geoBusy || (!$('pLoc').hidden && !UI.firstOpen)) return; setCity(cc, 'gps'); }   // the nearest city to her, unless she picked one this visit
       if (geoBusy || !takeFix(S.loc, fix)) return;          // a tap is running, or something better is already set
       if (!$('pLoc').hidden && !UI.firstOpen) return;        // she opened the picker herself: leave it to her
       if (!$('pLoc').hidden && (addrQuery($('spotSearch').value) || addrQuery($('addrInput').value))) return;   // she is typing
@@ -9796,7 +10009,7 @@ function renderFilters(){
   h += '<div class="fsec fs-visit">' + sw('visit', F.visit, L('f.visit'), '') + sw('ohere', F.ohere, L('f.ohere'), '') + '</div>';   // v5.23: Only in Chicago / Rare find   // no helper line (owner: fewer words; the sheet test counts notes)
   // v5.1 (tester L1): Who (Date / Friends / Solo) is on Home, so it is not repeated here. "Time I have" stays: it is the only place to turn it on.
   h += '<div class="fsec">' + H(L('f.price'), 'price') + chips([['price:free', L('f.free'), F.price.free], ['price:$', '$', F.price.$], ['price:$$', '$$', F.price.$$], ['price:$$$', '$$$', F.price.$$$], ['sale', L('f.sale'), F.sale]]) + '</div>';
-  h += '<div class="fsec">' + H(L('f.far'), 'reach') + seg([['mode:car', L('f.drive'), F.mode === 'car'], ['mode:transit', L('f.cta'), F.mode === 'transit'], ['mode:walk', L('f.walk'), F.mode === 'walk']]) +
+  h += '<div class="fsec">' + H(L('f.far'), 'reach') + seg(CITY.transit ? [['mode:car', L('f.drive'), F.mode === 'car'], ['mode:transit', L('f.cta'), F.mode === 'transit'], ['mode:walk', L('f.walk'), F.mode === 'walk']] : [['mode:car', L('f.drive'), F.mode !== 'walk'], ['mode:walk', L('f.walk'), F.mode === 'walk']])   // v5.24: no CTA choice outside Chicago +
     '<div class="chips-w" style="margin-top:8px">' + RADII.map(function(r){ return '<button class="chip" type="button" data-d="radius:' + r + '" aria-pressed="' + (F.radius === r) + '" aria-label="Within ' + esc(fmtRadius(r)) + '">' + (r === APP_RADIUS ? L('f.any') : esc(fmtRadius(r))) + '</button>'; }).join('') + '</div></div>';
   h += '<div class="fsec">' + H(L('f.io'), 'io') + seg([['io:either', L('f.either'), F.io === 'either'], ['io:indoor', L('f.inside'), F.io === 'indoor'], ['io:outdoor', L('f.outside'), F.io === 'outdoor']]) + '</div>';
   h += '<div class="fsec">' + H(L('f.booking'), 'booking') + chips([['walkin', L('f.walkin'), F.walkin], ['hide21', L('f.no21'), F.hide21]]) + '</div>';
@@ -11072,6 +11285,7 @@ function bindUI(){
   $('gaScroll').addEventListener('focusin', function(e){ var li = e.target.closest && e.target.closest('[data-gi]'); if (li && isWide()) gaHot(+li.getAttribute('data-gi')); });
   $('pins').addEventListener('click', function(e){ var p = e.target.closest && e.target.closest('[data-gpin]'); if (p) { e.stopPropagation(); gaPinClick(+p.getAttribute('data-gpin')); } });
   $('gaPill').addEventListener('click', function(){ gaPhoneMap(false); showView(UI.backView === 'browse' ? 'browse' : 'home'); });
+  window.addEventListener('popstate', function(){ bkOnPop(); });   // v5.24 phone Back: closes the top sheet / place page first
   window.addEventListener('popstate', function(){ if (GA.open && !/guide=/.test(location.hash || '')) { GA.pushed = false; closeArticle(true); } });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && GA.open && !UI.detailId && !openStack.length && !(tasteEl() && !tasteEl().hidden)) { e.preventDefault(); closeArticle(false); } });
   document.addEventListener('scroll', function(e){ var g = e.target; if (g && g.classList && g.classList.contains('grow')) gaArrows(g); }, true);
@@ -11313,7 +11527,8 @@ function runSelfTest(){
   WX.testOff++;   // v5.20: and with no weather (the weather block turns it on for its own made-up forecasts)
   GR.testOff++;   // v5.22: and never a live Google rating call (the rating checks use a stand-in fetch)
   var keepLangST = LANG; LANG = 'en';   // v5.21: the checks read English words; the language block passes its language explicitly
-  try { return runSelfTest0(); } finally { UI.planning = keepPlanST; UI.planAt = keepAtST; UI.anyDay = keepAnyST; TASTE_SUSPEND--; TASTE_REV++; WX.testOff--; GR.testOff--; LANG = keepLangST; }
+  var keepCityST = CITY.slug; if (keepCityST !== 'chicago') setCityCore('chicago');   // v5.24: the checks are written for Chicago (the city block switches on its own)
+  try { return runSelfTest0(); } finally { if (CITY.slug !== keepCityST) setCityCore(keepCityST); UI.planning = keepPlanST; UI.planAt = keepAtST; UI.anyDay = keepAnyST; TASTE_SUSPEND--; TASTE_REV++; WX.testOff--; GR.testOff--; LANG = keepLangST; }
 }
 function runSelfTest0(){
   var R = [];
@@ -11330,6 +11545,7 @@ function runSelfTest0(){
   info('Device time zone: ' + (devZone || 'unknown') + '. All checks use America/Chicago (' + (fmtParts ? 'Intl' : 'built-in DST rule') + ').');
   block('v5.21 languages, Only in Chicago, Visiting Chicago, tester fixes', function(){ i18nSelfTest(ok, eq, info); });
   block('v5.22 holiday status from fields only, more UI words, Visiting Chicago without chains, Google line rules', function(){ v522SelfTest(ok, eq); });
+  block('v5.24 cities (Chicago + Oʻahu), item time zones, city switch, ticket badge, phone Back', function(){ v524SelfTest(ok, eq, info); });
 
   block('time zone', function(){
     eq('Chicago noon Jul 4 2026 = 17:00 UTC (CDT)', fromChicago('2026-07-04', 720), Date.UTC(2026, 6, 4, 17, 0));
@@ -12892,8 +13108,8 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.23 (2026-11-14)');
-    eq('previous version', VERSION_PREV, 'v5.22 (2026-11-14)');
+    eq('version', VERSION, 'v5.24 (2026-11-15)');
+    eq('previous version', VERSION_PREV, 'v5.23 (2026-11-14)');
   });
 
   /* ---------- v5.20 fix (live v5.19 tester, MEDIUM): "Last entry not posted" must never make a last-entry time ---------- */
@@ -14697,6 +14913,74 @@ function i18nSelfTest(ok, eq, info){
   ok('T6 the special-dates table names the holiday', specialDatesHTML(tg, cparts(fromChicago('2026-11-20', 720))).indexOf('Closed for Thanksgiving') > 0, '');
   ok('T7 "Compare with a friend" signed out: a card that says what it does, that it needs sign-in, nothing shared until a friend accepts, Sign in + Not now', /Compare shows/.test(COMPARE_CARD_HTML) && /sign in/i.test(COMPARE_CARD_HTML) && /Nothing is shared until a friend accepts/.test(COMPARE_CARD_HTML) && /data-cmp="in"[^>]*>Sign in</.test(COMPARE_CARD_HTML) && />Not now</.test(COMPARE_CARD_HTML), '');
 }
+/* v5.24 self-test: cities. The Oʻahu items here are made-up fixtures (real Oʻahu data is not merged yet). */
+function v524SelfTest(ok, eq, info){
+  function fxc(o){ return ext({id:'fx24-' + (++uid), name:'Fixture', kind:'place', category:'games-arcade', tags:[], lat:41.88, lng:-87.63, indoor_outdoor:'indoor', price_level:'$', booking:'walk-in', hours:null, season:null, verified:{status:'verified', checked_on:'2026-11-10'}}, o); }
+  var nineFive = allDays(['09:00', '17:00']);
+  var chi = fxc({name:'Chicago nine-to-five', hours:nineFive}), hon = fxc({name:'Honolulu nine-to-five', city:'oahu', lat:21.2794, lng:-157.8286, hours:nineFive});
+  eq('C1 two cities (cities.json), Chicago first', CITIES.map(function(c){ return c.slug + ':' + c.timezone; }).join(), 'chicago:America/Chicago,oahu:Pacific/Honolulu');
+  eq('C1 a missing city means chicago; a set one is kept (trimmed, lower case)', [cityOf({}), cityOf({city:'oahu'}), cityOf({city:' OAHU '}), cityOf({city:'tokyo'}), cityOf(null)].join(), 'chicago,oahu,oahu,tokyo,chicago');
+  eq('C1 the checks run in Chicago', CITY.slug + '|' + TZ + '|' + LOOP.label, 'chicago|America/Chicago|The Loop');
+  // per-city counts (fixtures), never mixed
+  var mix = [fxc({}), fxc({}), fxc({city:'chicago'}), fxc({city:'oahu', lat:21.3, lng:-157.85}), fxc({city:'oahu', lat:21.6, lng:-158.1}), fxc({city:'tokyo'})], cc = cityCounts(mix);
+  eq('C2 fixture counts per city: 3 Chicago, 2 Oʻahu, 1 unknown city', [cc.chicago, cc.oahu, cc.tokyo].join(), '3,2,1');
+  eq('C2 the Chicago list has no Oʻahu item, the Oʻahu list no Chicago item, an unknown city is in neither', [cityItems(mix, 'chicago').every(function(it){ return cityOf(it) === 'chicago'; }), cityItems(mix, 'oahu').every(function(it){ return it.city === 'oahu'; }), cityItems(mix, 'chicago').length + cityItems(mix, 'oahu').length].join(), 'true,true,5');
+  // time zones: the ITEM's city clock, whatever the phone or the shown city
+  var T = Date.UTC(2026, 11, 13, 2, 0), T2 = Date.UTC(2026, 11, 12, 18, 0);   // Sat Dec 12 2026 8:00 pm Chicago = 4:00 pm Honolulu; 12:00 pm Chicago = 8:00 am Honolulu
+  eq('C3 the moment reads Sat 8 pm in Chicago', cparts(T).key + ' ' + cparts(T).min, '2026-12-12 1200');
+  var sh = statusAt(hon, T), sc = statusAt(chi, T), dh = describe(sh, hon);
+  ok('C3 a Chicago phone at 8 pm Chicago time sees the Honolulu 9-5 place OPEN (4 pm there)', sh.open === true, JSON.stringify({key:sh.key, open:sh.open}));
+  ok('C3 ...and the Chicago 9-5 place closed', sc.open === false, JSON.stringify({key:sc.key, open:sc.open}));
+  ok('C3 the Honolulu words use Honolulu time (closes at 5 pm / in 60 min)', /5 pm|60 min/.test((dh.text || '') + ' ' + (dh.sub || '')), JSON.stringify(dh));
+  eq('C3 at noon Chicago (8 am Honolulu): Chicago open, Honolulu not yet', [statusAt(chi, T2).open, statusAt(hon, T2).open].join(), 'true,false');
+  eq('C3 the shown city stays on Chicago time after the Honolulu checks', TZ + '|' + cparts(T).min, 'America/Chicago|1200');
+  eq('C3 Honolulu has no DST: noon Jul 4 and noon Dec 4 are both 22:00 UTC', [fromCityTime('oahu', '2026-07-04', 720) === Date.UTC(2026, 6, 4, 22), fromCityTime('oahu', '2026-12-04', 720) === Date.UTC(2026, 11, 4, 22), fromCityTime('chicago', '2026-07-04', 720) === Date.UTC(2026, 6, 4, 17)].join(), 'true,true,true');
+  if (tzFmt('Pacific/Honolulu')) {
+    var bad = withTZ('Pacific/Honolulu', function(){ var n = 0; for (var t = Date.UTC(2026, 0, 1); t < Date.UTC(2027, 0, 1); t += 7 * 3600000 + 13 * 60000) { var a = partsIntl(t), b = partsRule(t); if (a.hh !== b.hh || a.mm !== b.mm || a.d !== b.d) n++; } return n; });
+    eq('C3 Intl and the built-in rule (UTC-10, no DST) agree for Honolulu all through 2026', bad, 0);
+  } else info('Intl has no Pacific/Honolulu here: the built-in UTC-10 rule is used');
+  // city switch (pure state), then back to Chicago
+  var keep = CITY.slug, geoSw = !!GEO.raw, r = {};
+  try {
+    setCityCore('oahu');
+    r.core = [TZ, LOOP.label, SPOTS[0].name, CITY.transit, QUICK_PICKS[0]].join('|');
+    r.travel = travelText(travel(3, 'transit')) + ' / ' + travelText(travel(0.3, 'walk'));
+    r.words = [i18t('oh.only'), i18t('f.visit'), i18t('oh.only', null, 'ru'), i18t('f.drive')].join('|');
+    r.nomi = nominatimUrl('Kalakaua Ave').indexOf('viewbox=-158.32,21.75,-157.60,21.22&q=Kalakaua%20Ave') > 0;
+    r.wx = wxUrl(21.28, -157.83).indexOf('timezone=Pacific%2FHonolulu') > 0;
+    r.box = [inCityBox(21.27936, -157.82857), inCityBox(21.575, -158.28), inCityBox(21.1, -157.30), inCityBox(41.88, -87.63)].join();
+    var pr = unproj.apply(null, proj(21.3, -157.85)); r.proj = Math.abs(pr[0] - 21.3) < 1e-9 && Math.abs(pr[1] + 157.85) < 1e-9;
+    r.visit = [visitorPick({name:'Diamond Head State Monument', city:'oahu'}), visitorPick({name:'Diamond Head State Monument', city:'oahu', us_cities:3}), visitorPick({name:'Navy Pier', city:'oahu'}), visitorPick({name:'Tiny Shave Ice', city:'oahu', only_here:{kind:'only', reason:'r'}, us_cities:1})].join();
+    var ss = cparts(sunTimes('2026-12-12').set); r.sun = ss.min;
+    r.data = DATA.every(function(it){ return cityOf(it) === 'oahu'; }) && DATA.length === cityItems(ALL_DATA, 'oahu').length;
+    if (geoSw) { cityGeo(); var u = proj(21.0, -157.9), v = proj(21.45, -157.98); r.geo = GEO.areas.length + '|' + (GEO.areas[0] && GEO.areas[0].name) + '|' + isLake(u[0], u[1]) + '|' + isLake(v[0], v[1]); }
+  } finally { setCityCore(keep); if (geoSw) cityGeo(); }
+  eq('C4 Oʻahu: Honolulu zone, Waikīkī center and spots, no transit, Oʻahu quick picks', r.core, 'Pacific/Honolulu|Waikīkī|Waikīkī|false|Waikīkī');
+  eq('C4 Oʻahu: Walk + CTA becomes a car estimate labelled by car/Uber; walking stays', r.travel, 'about 20 min by car/Uber / about 8 min walk');
+  eq('C4 Oʻahu badge and filter words (en, ru), drive chip', r.words, 'Only on Oʻahu|Visiting Oʻahu|Только на Оаху|Car/Uber');
+  eq('C4 Oʻahu: address search box and weather time zone', [r.nomi, r.wx].join(), 'true,true');
+  eq('C4 Oʻahu "in the city" is the island box: Waikīkī, Kaʻena Point in; Molokaʻi and Chicago out', r.box, 'true,true,false,false');
+  eq('C4 Oʻahu projection round trip; Visiting Oʻahu uses Oʻahu must-sees + the us_cities rule (Chicago names do not count)', r.proj + '|' + r.visit, 'true|true,false,false,true');
+  ok('C4 Oʻahu sunset on Dec 12 reads about 5:50 pm in Honolulu time (sun at the city center)', r.sun >= 1050 && r.sun <= 1090, String(r.sun));
+  ok('C4 Oʻahu: the list holds Oʻahu items only (' + cityItems(ALL_DATA, 'oahu').length + ' in the loaded file)', r.data === true, String(r.data));
+  if (geoSw) eq('C4 the drawn map: one island area; open sea south is water, the middle of the island is land', r.geo, '1|Oʻahu|true|false'); else info('C4 drawn-map check skipped: the Chicago map files were not loaded yet');
+  eq('C5 back in Chicago: zone, the Loop, CTA, Chicago words and search box', [TZ, LOOP.label, SPOTS === SPOTS_CHI, travelText(travel(3, 'transit')), i18t('oh.only'), nominatimUrl('x').indexOf('viewbox=-88.4,42.5,-87.4,41.4') > 0].join('|'), 'America/Chicago|The Loop|true|about 26 min by CTA|Only in Chicago|true');
+  eq('C5 cityAt / nearestCity', [cityAt(41.88, -87.63), cityAt(21.3, -157.85), cityAt(34.05, -118.25), nearestCity(37.77, -122.42), nearestCity(20.9, -156.4)].join(), 'chicago,oahu,,chicago,oahu');
+  if (DATA_LOADED) {
+    var cnt = cityCounts(ALL_DATA);
+    info('C5 loaded file per city: ' + Object.keys(cnt).map(function(k){ return k + ' ' + cnt[k]; }).join(', '));
+    ok('C5 Chicago unaffected: the list is every Chicago item and nothing else (' + DATA.length + ')', DATA.every(function(it){ return cityOf(it) === 'chicago'; }) && DATA.length === cityItems(ALL_DATA, 'chicago').length, 'mixed');
+  }
+  // ticket badge (owner: limited = a ticket)
+  var host = document.createElement('div'); host.style.cssText = 'position:absolute;left:-999px;top:0'; host.innerHTML = '<div class="mk"><div class="mk-body">' + TICKET_SVG + '</div></div>'; document.body.appendChild(host);
+  try {
+    var sv = host.querySelector('svg.tkb'), pth = sv && sv.querySelector('path'), cs = sv && getComputedStyle(sv), pc = pth && getComputedStyle(pth);
+    eq('T1 the limited badge is a ticket shape (path shown), about 13 x 9.5 px, outside the top-right corner', [!!pth && pc.display !== 'none', cs && cs.width, cs && cs.height, cs && parseFloat(cs.right) < 0 && parseFloat(cs.top) < 0].join(), 'true,13px,9.5px,true');
+  } finally { host.parentNode.removeChild(host); }
+  // phone Back
+  eq('B1 Back plan: a sheet first, then the place page; from home the browser leaves; our own step back is skipped', [bkPlan({pushed:true, stack:['pShare'], detail:true}), bkPlan({pushed:true, stack:[], detail:true}), bkPlan({pushed:false, stack:[], detail:false}), bkPlan({skip:1, pushed:true, stack:[], detail:true})].join(), 'panel:pShare,detail,none,skip');
+  info('B2 (the live Back check) runs with the real-data checks, once the list has loaded');
+}
 /* v5.22 self-test: holiday status from fields only (her yes), "Closed for <holiday>" + more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. */
 function v522SelfTest(ok, eq){
   var H = allDays(['10:00', '17:00']);
@@ -14779,7 +15063,7 @@ function v522SelfTest(ok, eq){
       document.body.appendChild(dh);
       dsz = [].map.call(dh.querySelectorAll('svg'), function(x){ var cs = getComputedStyle(x); return parseFloat(cs.width) + 'x' + parseFloat(cs.height); }).join(' ');
     } finally { if (dh.parentNode) dh.parentNode.removeChild(dh); }
-    eq('D1 pin icon 21 px with a 10 px limited disc; small pin 17 px with a 10 px disc (computed sizes; the disc no longer covers the icon)', dsz, '21x21 10x10 17x17 10x10');
+    eq('D1 pin icon 21 px with a 13 x 9.5 px limited ticket; small pin 17 px with the same ticket (computed sizes; v5.24 ticket instead of the dot, outside the corner)', dsz, '21x21 13x9.5 17x17 13x9.5');
     eq('D2 a wide window leaves the map-only view; a phone keeps it', [JSON.stringify(deskRecoverPlan(true, 'map', false, false)), JSON.stringify(deskRecoverPlan(false, 'map', false, false)), JSON.stringify(deskRecoverPlan(true, 'home', false, false))].join(' '), '{"leaveMap":true,"dropOnb":false} {"leaveMap":false,"dropOnb":false} {"leaveMap":false,"dropOnb":false}');
     eq('D3 the first-visit class is dropped when the "Where are you?" panel is closed, kept while it is open', [deskRecoverPlan(true, 'home', true, false).dropOnb, deskRecoverPlan(true, 'home', true, true).dropOnb].join(), 'true,false');
     var pu = function(id, x, y, extra){ return {c:ext({item:{id:id}, u:[x, y]}, extra || {}), o:{}}; };
@@ -14904,6 +15188,29 @@ function i18nSelfTestAsync(ok, eq){
       eq('IN2 escape rooms / classes / food experiences also come from the category; a tag still works', [matchesInterests({category:'escape-room', tags:[]}, {escape:true}), matchesInterests({category:'classes-workshops'}, {'class':true}), matchesInterests({category:'games-arcade', tags:['karaoke']}, {karaoke:true}), matchesInterests({category:'games-arcade', tags:[]}, {escape:true})].join(), 'true,true,true,false');
       eq('real data U4: every interest chip the filter sheet shows (' + chipIds.length + ') has ru / zh-Hans / ko words ("Walks" was missing)', chipIds.filter(function(id){ return !STR['int.' + id]; }).join(), '');
       note('real data V4: ' + DATA.filter(function(it){ return it.visit_override === true; }).length + ' items carry visit_override (expected 0 for now)');
+      // v5.24 cities on the loaded file (no fixed totals: the counts are printed, the checks are about never mixing)
+      var cnt24 = cityCounts(ALL_DATA);
+      note('real data C6: loaded file per city: ' + Object.keys(cnt24).map(function(k){ return k + ' ' + cnt24[k]; }).join(', '));
+      ok('real data C6: Chicago unaffected: the list is every Chicago item and nothing else (' + DATA.length + ')', CITY.slug === 'chicago' && DATA.length > 0 && DATA.every(function(it){ return cityOf(it) === 'chicago'; }) && DATA.length === cityItems(ALL_DATA, 'chicago').length, CITY.slug);
+      var keep24 = CITY.slug, oa = null, ch = null;
+      try { setCityCore('oahu'); oa = {n:DATA.length, ok:DATA.every(function(it){ return cityOf(it) === 'oahu'; }), pins:runPipeline(DATA, fromChicago('2026-12-12', 720), {lat:LOOP.lat, lng:LOOP.lng, budget:'any', mode:'car'}, ext(appDefaultFilters(), {radius:25})).all.length}; }
+      finally { setCityCore(keep24); ch = DATA.length; }
+      ok('real data C6: Oʻahu list = the file\'s Oʻahu items only (' + oa.n + '; ' + oa.pins + ' in the 25 mi pipeline at noon Dec 12), and Chicago is back to ' + ch, oa.ok && oa.n === cityItems(ALL_DATA, 'oahu').length && ch === cityItems(ALL_DATA, 'chicago').length, JSON.stringify(oa));
+      if (GEO.raw && !GLM.on) {
+        var g6 = '';
+        try { setCityCore('oahu'); cityGeo(); var u6 = proj(21.0, -157.9), v6 = proj(21.45, -157.98); g6 = GEO.areas.length + '|' + (GEO.areas[0] && GEO.areas[0].name) + '|' + isLake(u6[0], u6[1]) + '|' + isLake(v6[0], v6[1]) + '|' + ($('gAreas').innerHTML.indexOf('<path') >= 0); }
+        finally { setCityCore(keep24); cityGeo(); }
+        eq('real data C7: the drawn map in Oʻahu: one island area, sea is water, mid-island is land, drawn; back in Chicago ' + GEO.areas.length + ' community areas', g6 + '|' + (GEO.areas.length > 50), '1|Oʻahu|true|false|true|true');
+      } else note('C7 drawn-map check skipped (street map on, or the map files did not load)');
+      if (!UI.detailId && DATA.length) {
+        var pre24 = BK.pushed;   // the self-test's own sheet may already hold the Back step
+        openDetail(DATA[0].id);
+        var st24 = null; try { st24 = history.state; } catch (e) {}
+        var ks24 = openStack; openStack = [];   // the self-test's own sheet stays put
+        var g24 = BK.pushed && !!(st24 && st24.cffBack), plan24; try { plan24 = bkOnPop(); } finally { openStack = ks24; }
+        eq('B2 opening a place adds a Back step; Back (popstate) closes the place page first', [g24, plan24, UI.detailId === null].join(), 'true,detail,true');
+        if (pre24) BK.pushed = true; else { BK.skip++; try { history.back(); } catch (e) { BK.skip--; } }   // the entry was only popped inside the test: keep it for the open sheet, or take the test's own step off
+      } else note('B2 live Back check skipped (a page is open)');
     });
   });
 }
@@ -14970,6 +15277,9 @@ function readHash(){
   var vwm = /(?:^#|&)view=(map|browse)/.exec(hsh); if (vwm && mapEl) setTimeout(function(){ showView(vwm[1]); }, 0);
   var m = /now=(\d{4}-\d{2}-\d{2}T\d{1,2}:\d{2})/.exec(hsh);
   if (m) setNow(m[1]);
+  // v5.24 testing hook: #flyto=oahu switches city once the map is ready (with #flyhold=1 the street map stops at the world view)
+  var flyM = /(?:^|[#&])flyto=([a-z]+)/.exec(hsh);
+  if (flyM && CITY_BY[flyM[1]] && mapEl) { var flyTry = function(n){ if (GLM.state === 'loading' && n < 60) { setTimeout(function(){ flyTry(n + 1); }, 250); return; } setCity(flyM[1], 'pick'); }; setTimeout(function(){ flyTry(0); }, 300); }
   var lm = /loc=(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/.exec(hsh); // testing hook: #loc=41.892,-87.634
   if (lm && mapEl) { var la = +lm[1], ln = +lm[2]; UI.firstOpen = false; commitLocation({lat:la, lng:ln, label:labelForPoint(la, ln, proj(la, ln)).replace(/^Near /, ''), src:'picked', explicit:true}); }
   // v5.5 testing hooks: #addr=show (the address box inside a test frame; never on claude.ai), #gpsacc=<metres> (as if a tap on
@@ -15077,9 +15387,9 @@ function loadData(){
   DATA_ERR = null; DATA_LOADED = false; renderList(null);
   Platform.fetchJSON(DATA_URL).then(function(raw){
     var n = normalize(raw);
-    DATA = n.items; SKIPPED = n.skipped; DATA_LOADED = true; freshCache = {k:'', n:-1, v:null}; ivCache = {};
-    VENUE_LINKS = linkVenues(DATA);   // v2.1 (tester H-A): events inside venues share the venue's closed days
-    buildSidIndex(DATA);   // v5.8: sid -> place, for friends' list links
+    ALL_DATA = n.items; SKIPPED = n.skipped; DATA_LOADED = true;
+    cityData();   // v5.24: DATA = the current city's items only; venue links (v2.1 tester H-A) inside that city
+    buildSidIndex(ALL_DATA);   // v5.8: sid -> place, for friends' list links (every city)
     worldFromData();
     refresh();
     if (!$('pSaved').hidden) renderSaved();
@@ -15098,14 +15408,16 @@ function acctAfterData(){ if (PL.cur && !$('pPoll').hidden) renderPoll(); if (!$
 function buildSidIndex(items){ SID_INDEX = {}; ID_SID = {}; items.forEach(function(it){ var s = +it.sid; if (isNum(s) && s >= 1 && Math.floor(s) === s && !SID_INDEX[s]) { SID_INDEX[s] = it; ID_SID[it.id] = s; } }); }
 function loadGeo(){
   Promise.all([Platform.fetchJSON(GEO_AREAS_URL), Platform.fetchJSON(GEO_LINES_URL)['catch'](function(){ return null; })]).then(function(r){
+    GEO.raw = {areas:r[0], lines:r[1]};   // v5.24: kept, so a switch back to Chicago rebuilds without a fetch
     buildGeo(r[0], r[1]);
     if (!GEO.ready) throw new Error('no areas');
-    drawGeoIntoMap();
+    if (CITY.slug !== 'chicago') cityGeo(); else drawGeoIntoMap();
     worldFromData();
     requestDraw();
     if (GLM.on) glAddExtras();
   })['catch'](function(){
     if (GLM.on) return;   // v5: the street map doesn't need the drawn-map files
+    if (CITY.slug !== 'chicago') { cityGeo(); return; }   // v5.24: Oʻahu's outline is built in
     GEO.failed = true;
     var n = $('mapNote'); n.textContent = 'Map couldn\'t load. The list works.'; n.hidden = false;
     if (!isWide()) applySheet('full');
@@ -15150,7 +15462,7 @@ function wxUrl(lat, lng){
     '&current=temperature_2m,apparent_temperature,precipitation,snowfall,weather_code,wind_gusts_10m,wind_direction_10m,is_day' +
     '&hourly=temperature_2m,apparent_temperature,precipitation_probability,precipitation,snowfall,weather_code,wind_gusts_10m,is_day' +
     '&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum,precipitation_probability_max,snowfall_sum,wind_gusts_10m_max,sunrise,sunset' +
-    '&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=America%2FChicago&forecast_days=8&past_days=1';
+    '&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=' + encodeURIComponent(CITY.timezone) + '&forecast_days=8&past_days=1';
 }
 /* pure: Open-Meteo JSON -> {v:1, hours:[{key,h,temp,feels,prob,prec,snow,code,gust,day}], days:[{key,code,hi,lo,fhi,flo,prec,prob,snow,gust,sunrise,sunset}], cur}
    or null when the shape is wrong. Units are read from *_units and converted to F / mph / inch if the API ever answers in others. */
@@ -15703,11 +16015,13 @@ function init(){
   acctBoot();   // v5.11: accounts (website only; nothing loads until it's needed)
   wlLoadFriends();   // v5.8 kept friends' lists
   UI.view = 'home'; $('app').setAttribute('data-view', 'home');
+  cityBoot();   // v5.24: which city (before the remembered spot is read, so it is kept only inside that city)
   var loc = Platform.store.get('cff.loc.v1', null);
-  if (loc && isNum(loc.lat) && isNum(loc.lng) && Math.abs(loc.lat - 41.9) < 2 && Math.abs(loc.lng + 87.7) < 3) S.loc = {lat:loc.lat, lng:loc.lng, label:String(loc.label || 'Your pin'), src:loc.src === 'gps' || loc.src === 'address' ? loc.src : 'picked',
+  if (loc && isNum(loc.lat) && isNum(loc.lng) && inCityBox(loc.lat, loc.lng)) S.loc = {lat:loc.lat, lng:loc.lng, label:String(loc.label || 'Your pin'), src:loc.src === 'gps' || loc.src === 'address' ? loc.src : 'picked',
     acc:loc.src === 'gps' && isNum(loc.acc) ? loc.acc : null, t:0, explicit:false, fresh:false};   // v5.5: remembered from an earlier visit (priority 1: a fresh reading beats it)
   else { S.loc = ext(LOOP, {}); UI.firstOpen = true; }
   bindMap(); bindSheet(); bindUI(); bindTaste();
+  bindCity(); applyCityUI();   // v5.24
   measureMap();
   applySheet(isWide() ? 'wide' : 'half', false);
   if (UI.firstOpen) focusCity(); else focusOn(S.loc.lat, S.loc.lng, Math.min(S.f.radius, 3), false);
@@ -15732,6 +16046,9 @@ function init(){
 
 window.__cff = {
   version: VERSION, appName: APP_NAME,
+  CITIES: CITIES, city: function(){ return {slug:CITY.slug, name:CITY.name, tz:TZ, center:ext(LOOP, {}), n:DATA.length, all:ALL_DATA.length, counts:cityCounts(ALL_DATA), fly:CITY_FLY.phase, picked:!!UI.cityPicked}; },   // v5.24
+  setCity: function(s, how){ return setCity(s, how || 'pick'); }, cityOf: cityOf, cityAt: cityAt, nearestCity: nearestCity, inCityBox: inCityBox, cityItems: cityItems, cityCounts: cityCounts, tzOf: tzOf, withTZ: withTZ, fromCityTime: fromCityTime, driveWord: driveWord,
+  bkPlan: bkPlan, bkState: function(){ var s = null; try { s = history.state; } catch (e) {} return {pushed:BK.pushed, skip:BK.skip, state:s, len:history.length}; },   // v5.24 phone Back
   grParse: grParse, grEligible: grEligible, grLineHTML: grLineHTML, grRequest: grRequest, grState: function(){ return {calls:GR.calls, nav:GR.nav, inflight:GR.inflight, mock:!!GR.fetchFn, live:grLive(), ids:Object.keys(GR.mem)}; },   // v5.22 (no ratings stored anywhere but page memory)
   leaveByText: leaveByText, statusNotes: statusNotes, holidayCaution: holidayCaution, hasHolidayInfo: hasHolidayInfo, i18L: i18L,   // v5.22
   detectLang: detectLang, langFromTag: langFromTag, placeTextWith: placeTextWith, i18nFresh: i18nFresh, numsKept: numsKept, trStatus: trStatus, i18t: i18t, STR: STR, LANGS: LANGS,   // v5.21
