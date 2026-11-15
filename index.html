@@ -513,7 +513,7 @@ svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-widt
 .hours td{padding:7px 0;border-bottom:1px solid var(--rule);vertical-align:top}
 .hours td:last-child{text-align:right;padding-left:12px}
 .hours tr.today td{font-weight:700;color:var(--ink)}
-.hours tr.today td:first-child::after{content:"Today";margin-left:8px;font:700 9.5px var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:3px 5px 2px;border-radius:4px;vertical-align:2px}
+.hours tr.today td:first-child::after{content:var(--today-w, "Today");margin-left:8px;font:700 9.5px var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);background:var(--ink);padding:3px 5px 2px;border-radius:4px;vertical-align:2px}
 .hours tr.off td{color:var(--ink-3)}
 .dates{margin:0;padding-left:18px;font:500 14.5px/1.6 var(--f-body);font-variant-numeric:tabular-nums}
 .minimap{position:relative;height:150px;border-radius:16px;overflow:hidden;border:1px solid var(--rule);background-color:var(--lake);background-image:repeating-linear-gradient(180deg,transparent 0 3px,var(--lake-hatch) 3px 4px)}
@@ -2228,8 +2228,9 @@ svg.gi{width:20px;height:20px;flex:none}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.27 (2026-11-15)';   // v5.27: Generate my itinerary on the trip page (day-by-day plan from the shortlist + group picks: home base start/end, area clusters, hours/events/sunset, either/or, didn't fit, editable, saved with the trip on this device). v5.26: trip mode lite (on this phone only: city + dates + optional group, a home base that every distance starts from while trip mode is on, a shortlist with a status per trip day, vote link with places only, og.trips.v1 max 5). v5.25: Group Blend v1 (2-5 friends, on this phone only: poster + group match, picks tagged "4 of 5", vote link with places only, saved groups og.groups.v1). v5.24: multi-city (Chicago + Oʻahu): city picker, per-city data, map bounds, spots, travel and badges; open-now in the item's city time zone. v5.23: the rest ofthe UI words in ru / zh-Hans / ko (unverified), Visiting Chicago from the data field us_cities (< 3 US cities; visit_override). v5.22: Google rating line on place pages (edge function, page memory only), holiday status from fields only, more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
-var VERSION_PREV = 'v5.26 (2026-11-15)';   // v5.26: trip mode lite. v5.25: Group Blend v1
+var VERSION = 'v5.28 (2026-11-15)';   // v5.28: the app text in ru / zh-Hans / ko (dates and times via Intl, ~230 new keys, data + guide translation plumbing)
+//   // v5.27: Generate my itinerary on the trip page (day-by-day plan from the shortlist + group picks: home base start/end, area clusters, hours/events/sunset, either/or, didn't fit, editable, saved with the trip on this device). v5.26: trip mode lite (on this phone only: city + dates + optional group, a home base that every distance starts from while trip mode is on, a shortlist with a status per trip day, vote link with places only, og.trips.v1 max 5). v5.25: Group Blend v1 (2-5 friends, on this phone only: poster + group match, picks tagged "4 of 5", vote link with places only, saved groups og.groups.v1). v5.24: multi-city (Chicago + Oʻahu): city picker, per-city data, map bounds, spots, travel and badges; open-now in the item's city time zone. v5.23: the rest ofthe UI words in ru / zh-Hans / ko (unverified), Visiting Chicago from the data field us_cities (< 3 US cities; visit_override). v5.22: Google rating line on place pages (edge function, page memory only), holiday status from fields only, more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
+var VERSION_PREV = 'v5.27 (2026-11-15)';   // v5.27: Generate my itinerary. v5.26: trip mode lite. v5.25: Group Blend v1
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var FEEDBACK_EMAIL = 'localfinds.app@gmail.com';   // v5.16: "Send feedback" in the account sheet (a mailto draft; never sent by the app). Separate from CONTACT_EMAIL.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
@@ -2563,11 +2564,38 @@ function sunTimes(key, cc){ // sunrise equation at the current city's center (v5
 }
 
 /* ================= formatting ================= */
-function fmtTime(min){ min = ((Math.round(min) % 1440) + 1440) % 1440; if (min === 0) return 'midnight'; if (min === 720) return 'noon'; var h = Math.floor(min / 60), m = min % 60; return (h % 12 || 12) + (m ? ':' + pad(m) : '') + (h < 12 ? ' am' : ' pm'); }
+// v5.28: dates and times in the picked language with Intl.DateTimeFormat (ru-RU, zh-Hans-CN, ko-KR). English output is unchanged
+// (the self-tests read it). Date keys and minutes-of-day are already in the city clock (cparts / withTZ use the city time zone),
+// so they are formatted as wall time in UTC: no second time-zone shift, and DST can't move a day.
+var LOCALE_OF = {ru:'ru-RU', 'zh-Hans':'zh-Hans-CN', ko:'ko-KR'}, DTF_C = {};
+function locOn(lang){ var l = isLang(lang) ? lang : LANG; return l !== 'en' && !!LOCALE_OF[l]; }
+function dtfL(opts, lang){ var l = isLang(lang) ? lang : LANG, k = l + '|' + JSON.stringify(opts); if (!Object.prototype.hasOwnProperty.call(DTF_C, k)) { var o = {timeZone:'UTC'}; for (var x in opts) o[x] = opts[x]; try { DTF_C[k] = new Intl.DateTimeFormat(LOCALE_OF[l] || 'en-US', o); } catch (e) { DTF_C[k] = null; } } return DTF_C[k]; }
+function keyDateL(key, opts, lang){ var a = String(key).split('-'), f = dtfL(opts, lang); try { return f ? f.format(new Date(Date.UTC(+a[0], +a[1] - 1, +a[2] || 1, 12))) : ''; } catch (e) { return ''; } }
+function dowShortL(wd, lang){ return locOn(lang) ? keyDateL('2026-11-' + (15 + wd), {weekday:'short'}, lang) || DOW_SHORT[wd] : DOW_SHORT[wd]; }   // 2026-11-15 is a Sunday
+function dowLongL(wd, lang){ return locOn(lang) ? keyDateL('2026-11-' + (15 + wd), {weekday:'long'}, lang) || DOW_LONG[wd] : DOW_LONG[wd]; }
+function monShortL(m0, lang){ return locOn(lang) ? keyDateL('2026-' + pad(m0 + 1) + '-15', {month:'short'}, lang) || MON_SHORT[m0] : MON_SHORT[m0]; }
+function monLongL(m0, lang){ return locOn(lang) ? keyDateL('2026-' + pad(m0 + 1) + '-15', {month:'long'}, lang) || MON_LONG_10[m0] : MON_LONG_10[m0]; }
+function fmtTime(min, lang){ min = ((Math.round(min) % 1440) + 1440) % 1440;
+  if (locOn(lang)) { var f = dtfL({hour:'numeric', minute:'2-digit', hourCycle:'h23'}, lang); try { if (f) return f.format(new Date(Date.UTC(2000, 0, 1, Math.floor(min / 60), min % 60))); } catch (e) {} return Math.floor(min / 60) + ':' + pad(min % 60); }
+  if (min === 0) return 'midnight'; if (min === 720) return 'noon'; var h = Math.floor(min / 60), m = min % 60; return (h % 12 || 12) + (m ? ':' + pad(m) : '') + (h < 12 ? ' am' : ' pm'); }
+function fmtEndTime(b){ return b === 1440 ? (locOn() ? '24:00' : 'midnight') : fmtTime(b); }   // a range that ends at midnight
 function fmtClock(ms){ return fmtTime(cparts(ms).min); }
-function fmtDate(key, todayKey){ if (!isKey(key)) return ''; var a = key.split('-'); var s = MON_SHORT[+a[1] - 1] + ' ' + (+a[2]); if (!todayKey || a[0] !== todayKey.slice(0, 4)) s += ', ' + a[0]; return s; }
-function fmtMonthDay(key){ var a = key.split('-'); return MON_SHORT[+a[1] - 1] + ' ' + (+a[2]); }
-function fmtDayDate(key, todayKey){ return DOW_SHORT[wdOfKey(key)] + ', ' + fmtDate(key, todayKey); }
+function fmtDate(key, todayKey){ if (!isKey(key)) return ''; var a = key.split('-'), yr = !todayKey || a[0] !== todayKey.slice(0, 4);
+  if (locOn()) { var o = {month:'short', day:'numeric'}; if (yr) o.year = 'numeric'; var t = keyDateL(key, o); if (t) return t; }
+  var s = MON_SHORT[+a[1] - 1] + ' ' + (+a[2]); if (yr) s += ', ' + a[0]; return s; }
+function fmtMonthDay(key){ if (locOn() && isKey(key)) { var t = keyDateL(key, {month:'short', day:'numeric'}); if (t) return t; } var a = key.split('-'); return MON_SHORT[+a[1] - 1] + ' ' + (+a[2]); }
+function fmtDayDate(key, todayKey){
+  if (locOn() && isKey(key)) { var o = {weekday:'short', month:'short', day:'numeric'}; if (!todayKey || key.slice(0, 4) !== todayKey.slice(0, 4)) o.year = 'numeric'; var t = keyDateL(key, o); if (t) return t; }
+  return DOW_SHORT[wdOfKey(key)] + ', ' + fmtDate(key, todayKey); }
+function locTokens(s, lang){ // v5.28: English times and month-days left inside a translated status ("9 am", "noon", "Nov 20") in the language
+  if (!locOn(lang)) return s;
+  return String(s).replace(/\b(1[0-2]|[1-9])(?::([0-5]\d))? ?(am|pm)\b/g, function(m, h, mm, ap){ return fmtTime(((+h % 12) + (ap === 'pm' ? 12 : 0)) * 60 + (+mm || 0), lang); })
+    .replace(/\bnoon\b/g, function(){ return fmtTime(720, lang); }).replace(/\bmidnight\b/g, function(){ return fmtTime(0, lang); })
+    .replace(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2})\b(?:, (\d{4}))?/g, function(m, mo, d, y){ var o = {month:'short', day:'numeric'}; if (y) o.year = 'numeric'; return keyDateL((y || '2026') + '-' + pad(MON_SHORT.indexOf(mo) + 1) + '-' + pad(+d), o, lang) || m; })
+    .replace(/\b(Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday)\b/g, function(w){ return dowLongL(DOW_LONG.indexOf(w), lang); })
+    .replace(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/g, function(w){ return monLongL(MON_LONG_10.indexOf(w), lang); });
+}
+
 function fmtWhen(ms, p, isClose){ // relative clock text from the point of view of p (Chicago parts of "now")
   var q = cparts(ms), dd = dayDiff(p.key, q.key), t = fmtTime(q.min);
   if (dd === 0) return t;
@@ -2577,10 +2605,10 @@ function fmtWhen(ms, p, isClose){ // relative clock text from the point of view 
   return fmtDayDate(q.key, p.key) + ', ' + t;
 }
 function fmtDur(min){ min = Math.round(min); if (min < 60) return min + ' min'; var h = Math.floor(min / 60), m = min % 60; return h + ' h' + (m ? ' ' + m + ' m' : ''); }
-function fmtMi(mi){ if (mi < 0.1) return 'under 0.1 mi'; return (mi < 10 ? mi.toFixed(1) : String(Math.round(mi))) + ' mi'; }
+function fmtMi(mi){ if (mi < 0.1) return tx('u.under', 'under 0.1 mi'); var n = mi < 10 ? mi.toFixed(1) : String(Math.round(mi)); return LANG === 'en' ? n + ' mi' : tx('u.mi', '{n} mi', {n:n}); }
 function fmtRadius(r){ return r === 0.5 ? '\u00bd mi' : r + ' mi'; }
 function fmtBudget(b){ if (b === 'night') return 'all night'; if (b < 60) return b + ' min'; var h = b / 60; if (h === Math.floor(h)) return h + (h === 1 ? ' hr' : ' hrs'); if (h * 2 === Math.floor(h * 2)) return Math.floor(h) + '\u00bd hrs'; return fmtDur(b); }
-function travelText(tr){ if (!tr || tr.how === 'unknown') return 'travel time unknown'; return 'about ' + tr.min + ' min ' + (tr.how === 'walk' ? 'walk' : tr.how === 'CTA' ? 'by CTA' : driveWord()) + (tr.switched ? ' (too far for our CTA estimate: Metra or drive)' : ''); }
+function travelText(tr){ if (!tr || tr.how === 'unknown') return tx('tt.unknown', 'travel time unknown'); if (LANG !== 'en') return tx('tt.about', 'about {t}', {t:trStatus(tr.min + ' min ' + (tr.how === 'walk' ? 'walk' : tr.how === 'CTA' ? 'by CTA' : driveWord()))}) + (tr.switched ? tx('tt.switched', '') : ''); return 'about ' + tr.min + ' min ' + (tr.how === 'walk' ? 'walk' : tr.how === 'CTA' ? 'by CTA' : driveWord()) + (tr.switched ? ' (too far for our CTA estimate: Metra or drive)' : ''); }
 
 /* ================= open-now logic ================= */
 var ivCache = {}, uid = 0;
@@ -3411,7 +3439,7 @@ function eventBadge(st){
   if (!ev || st.key === 'ended') return '';
   if (ev.endUnconfirmed && ev.lastKey) return st.checkDates ? '' : 'Tickets on sale through ' + fmtMonthDay(ev.lastKey) + ' · end date not announced';   // v2.2 (H-4): never "Last day" / "Ends ..."
   if (ev.lastKey && ev.daysLeft === 0) return 'Last day';
-  if (ev.endsSoon) return 'Ends ' + (ev.daysLeft === 1 ? 'tomorrow' : ev.daysLeft < 7 ? DOW_LONG[wdOfKey(ev.lastKey)] : fmtDate(ev.lastKey, st.p.key)) + ' \u00b7 ' + ev.daysLeft + (ev.daysLeft === 1 ? ' day left' : ' days left');
+  if (ev.endsSoon) return 'Ends ' + (ev.daysLeft === 1 ? 'tomorrow' : ev.daysLeft < 7 ? dowLongL(wdOfKey(ev.lastKey)) : fmtDate(ev.lastKey, st.p.key)) + ' \u00b7 ' + ev.daysLeft + (ev.daysLeft === 1 ? ' day left' : ' days left');
   if (ev.phase === 'weekend') return 'This weekend';
   return '';
 }
@@ -3714,7 +3742,7 @@ function dealState(it, key){ // -> null | {text, kind, link, today, next, badge}
   var dd = dayDiff(key, next), when = dd === 0 ? 'today' : dd === 1 ? 'tomorrow' : dd < 7 ? DOW_SHORT[wdOfKey(next)] : fmtMonthDay(next);
   return {text:String(d.text).trim().slice(0, 80), kind:String(d.kind || 'discount'), link:safeUrl(d.link || d.source), today:dd === 0, next:next, badge:(d.kind === 'free' ? 'Free ' : 'Deal ') + when};
 }
-function dealBadgeHTML(c, cls){ return c && c.deal ? '<span class="' + (cls || 'tag deal') + (c.deal.today ? ' on' : '') + '">' + esc(c.deal.badge) + '</span>' : ''; }
+function dealBadgeHTML(c, cls){ return c && c.deal ? '<span class="' + (cls || 'tag deal') + (c.deal.today ? ' on' : '') + '">' + esc(trStatus(c.deal.badge)) + '</span>' : ''; }
 /* ================= categories ================= */
 var CATS = {
   'games-arcade':{label:'Games & arcade', g:'play', glyph:'g-die'},
@@ -4240,11 +4268,11 @@ function seasonGroupTitle(list, p){ // "Back in May" when every reopening is in 
   var ms = {}, n = 0, unknown = false;
   (list || []).forEach(function(c){ var k = seasonOpenKey(c); if (k) { ms[k.slice(0, 7)] = 1; n++; } else unknown = true; });
   var keys = Object.keys(ms);
-  if (n && !unknown && keys.length === 1) return 'Back in ' + MON_LONG_10[+keys[0].slice(5, 7) - 1];
+  if (n && !unknown && keys.length === 1) return 'Back in ' + monLongL(+keys[0].slice(5, 7) - 1);
   return seasonShelfTitle(p);
 }
 var MON_LONG_10 = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-function restLabel(k, p, list){ return {longer:'Needs more than your time', later:UI.planning ? 'Opens later' : 'Opens later today', unknown:'Hours not listed · call first', closed:UI.planning ? 'Closed ' + planWhen(false) : 'Closed now', opening:'Opening soon', dates:'Later dates', season:seasonGroupTitle(list, p) + ' · closed for the season'}[k]; }
+function restLabel(k, p, list){ return {longer:tx('rest.longer', 'Needs more than your time'), later:UI.planning ? tx('rest.later', 'Opens later') : tx('rest.laterToday', 'Opens later today'), unknown:tx('rest.unknown', 'Hours not listed · call first'), closed:UI.planning ? tx('rest.closedW', 'Closed {w}', {w:LANG === 'en' ? planWhen(false) : dayWordsL(planWhen(false))}) : tx('rest.closedNow', 'Closed now'), opening:tx('rest.opening', 'Opening soon'), dates:tx('rest.dates', 'Later dates'), season:tx('rest.season', '{x} · closed for the season', {x:trStatus(seasonGroupTitle(list, p))})}[k]; }
 function restShort(k){ return {longer:'longer', later:'later today', unknown:'hours not listed', closed:'closed', opening:'opening soon', dates:'later dates', season:'closed for the season'}[k]; }
 function bucketOf(c){ // 'fits' | 'tight' | 'rest' (spec §7.2), from the pipeline group
   var g = c.group, f = c.fit || {};
@@ -4300,14 +4328,14 @@ function fewDatesBadge(fd, p){
   if (L.length === 1) return dayDiff(p.key, L[0]) <= 0 ? {t:'Last day', hot:true} : {t:'Last date ' + fmtMonthDay(L[0]), hot:lastHot};
   var wd = wdOfKey(L[0]), same = L.every(function(k){ return wdOfKey(k) === wd; });
   var nx = L[0] === p.key ? 'today' : 'next ' + fmtMonthDay(L[0]);
-  if (same) return {t:L.length + ' ' + DOW_LONG[wd] + 's · ' + nx, hot:false};
+  if (same) return {t:tx('ub.nWd', '{n} {w}s', {n:L.length, w:dowLongL(wd)}) + ' · ' + nx, hot:false};
   if (L.length === 2) return {t:(L[0] === p.key ? 'Today' : fmtMonthDay(L[0])) + ' & ' + fmtMonthDay(L[1]), hot:false};
   return {t:L.length + ' dates · ' + nx, hot:false};
 }
 function untilBadge(c, p){ // ticket badge text (spec §3.8.1); "Tickets through ..." when the end date isn't announced
   var it = c.item, ev = c.st.ev;
   if (it.kind !== 'event' || !ev) return null;
-  if (c.st.checkDates) return {t:'Check dates', hot:false, muted:true};
+  if (c.st.checkDates) return {t:tx('ub.check', 'Check dates'), hot:false, muted:true};
   if (!ev.lastKey) return {t:'No end date listed', hot:false, muted:true};
   if (ev.endUnconfirmed) return {t:'Tickets through ' + fmtMonthDay(ev.lastKey), hot:false, muted:true};
   var fd = fewDates(it, p.key); if (fd) { var fb = fewDatesBadge(fd, p); if (fb) return fb; }
@@ -4315,7 +4343,7 @@ function untilBadge(c, p){ // ticket badge text (spec §3.8.1); "Tickets through
   if (n <= 0) return {t:'Last day', hot:true};
   if (n === 1) return {t:'Ends tomorrow', hot:true};
   if (n <= 6) return {t:'Ends ' + DOW_SHORT[wdOfKey(ev.lastKey)], hot:true};
-  if (n > 300) return {t:'Until ' + MON_SHORT[+a[1] - 1] + ' ' + a[0], hot:false};
+  if (n > 300) return {t:'Until ' + monShortL(+a[1] - 1) + ' ' + a[0], hot:false};
   return {t:'Until ' + fmtMonthDay(ev.lastKey), hot:false};
 }
 function comingGroup(key, p){ var dd = dayDiff(p.key, key); return dd <= 3 ? 'wknd' : dd <= 10 ? 'next' : 'later'; }
@@ -4685,6 +4713,163 @@ var STR = {
   'loc.nearYou':['Near you', 'Рядом с вами', '你附近', '내 주변'], 'when.any':['Any time', 'Любое время', '任意时间', '아무 때나'], 'tag.now':['Fun that’s open right now.', 'Что открыто прямо сейчас.', '此刻营业的好去处。', '지금 열려 있는 즐길 거리.']
 };
 function i18L(key, en){ return LANG === 'en' || !STR[key] ? en : i18t(key); }   // v5.22: the picked language when the table has it, else the English given
+// v5.28: the rest of the interface words (reports/2026-11-15-translation-audit.md section 2). Non-English: written by the developer,
+// unverified, needs native review. Numbers and {placeholders} are identical in all four columns (self-test V528-3 checks it).
+var STR28 = {
+  // dates, units, travel
+  'w.tomorrow':['Tomorrow', 'Завтра', '明天', '내일'], 'u.mi':['{n} mi', '{n} миль', '{n} 英里', '{n}마일'], 'u.under':['under 0.1 mi', 'меньше 0.1 мили', '不到 0.1 英里', '0.1마일 미만'],
+  'tt.about':['about {t}', 'примерно {t}', '约 {t}', '약 {t}'], 'tt.unknown':['travel time unknown', 'время в пути неизвестно', '路程时间未知', '이동 시간 알 수 없음'],
+  'tt.switched':[' (too far for our CTA estimate: Metra or drive)', ' (слишком далеко для оценки CTA: Metra или машина)', '（超出 CTA 估算范围：乘 Metra 或开车）', ' (CTA 추정 범위 밖: Metra 또는 자동차)'],
+  // place page
+  'dt.photo':['Photo: {x}', 'Фото: {x}', '图片：{x}', '사진: {x}'], 'dt.crowB':['{d} as the crow flies', '{d} по прямой', '直线距离 {d}', '직선거리 {d}'],
+  'dt.fromPinX':['from your pin ({x}).', 'от вашей метки ({x}).', '从你的定位点（{x}）算起。', '내 위치({x}) 기준.'], 'dt.fromPin0':['from your pin.', 'от вашей метки.', '从你的定位点算起。', '내 위치 기준.'],
+  'dt.travelL':['About {t}.', 'Примерно {t}.', '约 {t}。', '약 {t}.'], 'dt.rough':['Rough estimate, not a route.', 'Это примерная оценка, а не маршрут.', '粗略估算，并非路线。', '대략적인 추정이며 경로가 아니에요.'],
+  'dt.ctaPast':['We don’t estimate CTA past {n} miles, so this is a drive time: check Metra, or drive.', 'Для CTA дальше {n} миль мы не считаем, поэтому это время на машине: посмотрите Metra или езжайте на машине.', 'CTA 超过 {n} 英里我们不做估算，所以这是开车时间：可查看 Metra 或开车。', 'CTA는 {n}마일 넘게는 추정하지 않아서 이건 차로 가는 시간이에요. Metra를 확인하거나 차로 가세요.'],
+  'dt.website':['Website', 'Сайт', '官网', '웹사이트'], 'dt.copy':['Copy', 'Копировать', '复制', '복사'], 'dt.pin':['Your pin', 'Ваша метка', '你的定位点', '내 위치'],
+  'dt.hoursChecked':['Hours checked {d}', 'Часы проверены {d}', '营业时间已于 {d} 核实', '영업시간 확인: {d}'], 'dt.checked':['Checked {d}', 'Проверено {d}', '已于 {d} 核实', '확인: {d}'],
+  'dt.onSrc':[' on {s}.', ' на {s}.', '，来源：{s}。', ', 출처: {s}.'], 'dt.source':['Source:', 'Источник:', '来源：', '출처:'], 'dt.srcLink':['source', 'источник', '来源', '출처'],
+  'dt.season':['Season: {a} – {b}', 'Сезон: {a} – {b}', '季节：{a} – {b}', '시즌: {a} – {b}'], 'dt.sStart0':['start not stated', 'начало не указано', '开始日期未说明', '시작일 미정'], 'dt.sEnd0':['end not stated', 'конец не указан', '结束日期未说明', '종료일 미정'],
+  'dt.notListed':['not listed', 'не указано', '未列出', '정보 없음'], 'dt.open24':['Open 24 hours', 'Открыто 24 часа', '24 小时营业', '24시간 영업'],
+  'dt.noWeekly':['No regular weekly hours. See the dates and notes below.', 'Обычного расписания на неделю нет. Смотрите даты и примечания ниже.', '没有固定的每周营业时间。请看下面的日期和说明。', '정해진 주간 영업시간이 없어요. 아래 날짜와 안내를 보세요.'],
+  'dt.hoursNC':['Hours not confirmed.', 'Часы работы не подтверждены.', '营业时间未确认。', '영업시간이 확인되지 않았어요.'],
+  'dt.validTo':['These weekly hours are confirmed only through {d}.', 'Эти часы подтверждены только до {d}.', '这些每周营业时间仅确认至 {d}。', '이 주간 영업시간은 {d}까지만 확인됐어요.'],
+  'dt.io.indoor':['indoor', 'в помещении', '室内', '실내'], 'dt.io.outdoor':['outdoor', 'на улице', '室外', '야외'], 'dt.io.both':['indoor and outdoor', 'в помещении и на улице', '室内和室外', '실내와 야외'],
+  'dt.free':['Free.', 'Бесплатно.', '免费。', '무료.'], 'dt.plevel':['Price level {x}. Exact prices not listed.', 'Уровень цен {x}. Точные цены не указаны.', '价格等级 {x}。未列出具体价格。', '가격대 {x}. 정확한 가격은 안내되지 않았어요.'],
+  'dt.noPrice':['Price not listed on their site.', 'Цена на их сайте не указана.', '他们的网站未列出价格。', '웹사이트에 가격이 없어요.'],
+  'dt.disagree':['Sources disagree on hours · call first', 'Источники расходятся в часах · сначала позвоните', '各来源的营业时间不一致 · 请先致电', '출처마다 영업시간이 달라요 · 먼저 전화하세요'],
+  'dt.notConf':['Not confirmed yet.', 'Пока не подтверждено.', '尚未确认。', '아직 확인되지 않았어요.'], 'dt.callFirstS':[' Call first.', ' Сначала позвоните.', ' 请先致电。', ' 먼저 전화하세요.'],
+  'dt.photoOf':['Photo of {x}', 'Фото: {x}', '{x} 的照片', '{x} 사진'], 'dt.tickets':['Tickets', 'Билеты', '门票', '티켓'], 'dt.reserve':['Reserve', 'Забронировать', '预订', '예약'],
+  // the "if you leave now" sentences
+  'fit.thereNow':['Leave now and you’d be there around {a}.', 'Если выйти сейчас, вы будете там около {a}.', '现在出发，大约 {a} 到达。', '지금 출발하면 {a}쯤 도착해요.'],
+  'fit.thereAt':['Leave at {c} and you’d be there around {a}.', 'Если выйти в {c}, вы будете там около {a}.', '{c} 出发，大约 {a} 到达。', '{c}에 출발하면 {a}쯤 도착해요.'],
+  'fit.tightEntry':['Last entry is {a}, so you’d only just make it in.', 'Последний вход в {a}, так что вы едва успеете.', '最后入场时间是 {a}，你会刚好赶上。', '마지막 입장이 {a}라서 겨우 들어갈 수 있어요.'],
+  'fit.tight':['It closes at {a}, so you’d get about {n} min.', 'Закрывается в {a}, так что у вас будет около {n} мин.', '{a} 关门，你大约有 {n} 分钟。', '{a}에 문을 닫아서 {n}분 정도 있을 수 있어요.'],
+  'fit.short':['Keep it quick (about {d}) and you’d be out around {a}{b}.', 'Если не задерживаться (около {d}), выйдете около {a}{b}.', '抓紧时间（约 {d}），大约 {a} 离开{b}。', '짧게 (약 {d}) 보면 {a}쯤 나와요{b}.'],
+  'fit.shortClose':[', before it closes at {a}', ', до закрытия в {a}', '，在 {a} 关门前', ', {a} 마감 전'],
+  'fit.takes':['It takes about {d}, so you’d be out around {a}.', 'Это занимает около {d}, так что выйдете около {a}.', '大约需要 {d}，所以大约 {a} 离开。', '약 {d} 걸려서 {a}쯤 나와요.'],
+  'fit.assumed':['We assumed about 1 h there (length not listed), so you’d be out around {a}.', 'Мы взяли около 1 ч на месте (длительность не указана), так что выйдете около {a}.', '我们按停留约 1 小时估算（未列出时长），所以大约 {a} 离开。', '머무는 시간을 약 1시간으로 잡았어요(시간 미기재). {a}쯤 나와요.'],
+  'fit.wait':['It opens at {a}. Leave around {b} to get there right when it opens.', 'Открывается в {a}. Выходите около {b}, чтобы попасть к открытию.', '{a} 开门。大约 {b} 出发，正好开门时到。', '{a}에 문을 열어요. {b}쯤 출발하면 여는 시간에 맞춰 도착해요.'],
+  'fit.unknown':['We don’t have confirmed hours for this one. Call or check their site before you go.', 'У нас нет подтверждённых часов работы. Позвоните или проверьте их сайт перед выходом.', '我们没有这里经确认的营业时间。出发前请致电或查看官网。', '확인된 영업시간이 없어요. 가기 전에 전화하거나 웹사이트를 확인하세요.'],
+  'fit.no':['It closes before you’d get there with enough time.', 'Закроется раньше, чем вы успеете там побыть.', '等你到达时，已经没有足够的时间了。', '도착해도 충분히 머물기 전에 문을 닫아요.'],
+  'fit.dark':['It’s dark by the time you’d get there, and this one is best in daylight. Sunrise is around {a}.', 'Когда вы доберётесь, уже стемнеет, а сюда лучше днём. Рассвет около {a}.', '你到达时天已经黑了，这里最好白天去。日出大约在 {a}。', '도착할 때쯤이면 어두워요. 여기는 낮에 가는 게 좋아요. 일출은 {a}쯤이에요.'],
+  'rb.wait':['{n} min wait', 'ожидание {n} мин', '等待 {n} 分钟', '{n}분 대기'], 'rb.left':['{d} left', 'останется {d}', '剩余 {d}', '{d} 남음'], 'rb.over':['over by {d}', 'не хватает {d}', '超出 {d}', '{d} 초과'],
+  'rb.closes':['closes after {n} min', 'закроется через {n} мин', '{n} 分钟后关门', '{n}분 후 마감'], 'rb.quick':['quick stop ~{d}', 'коротко ~{d}', '快速停留约 {d}', '잠깐 ~{d}'],
+  'rb.about':['about {d} there', 'около {d} на месте', '在那里约 {d}', '약 {d} 머묾'], 'rb.assumed':['assumed {d} there', 'примерно {d} на месте (оценка)', '假定在那里 {d}', '{d} 머문다고 가정'],
+  // Home and lists
+  'hm.best':['Best {w}', 'Лучшее {w}', '最佳 · {w}', '추천 · {w}'], 'hm.rightNow':['right now', 'прямо сейчас', '此刻', '지금'], 'hm.onePer':['one per kind', 'по одному каждого вида', '每类一个', '종류별 하나'],
+  'hm.only':['the only one', 'единственное', '仅此一个', '하나뿐'], 'hm.see':['See {g}', 'Смотреть: {g}', '查看{g}', '{g} 보기'], 'hm.past':[' · past {r}', ' · дальше {r}', ' · 超过 {r}', ' · {r} 넘음'],
+  'hm.lead':['The best pick of each kind that’s {o} from {x}. Tap a kind above to see all of them.', 'Лучшее каждого вида, что {o}, от: {x}. Нажмите на вид выше, чтобы увидеть всё.', '从{x}出发，每类中{o}的最佳选择。点上方的类别查看全部。', '{x} 기준, 종류별로 {o} 최고의 곳이에요. 위에서 종류를 누르면 모두 볼 수 있어요.'],
+  'hm.openW':['open {w}', 'открыто {w}', '{w}营业', '{w} 영업 중'], 'hm.yourPin':['your pin', 'вашей метки', '你的定位点', '내 위치'], 'hm.far':['Worth the drive', 'Стоит поездки', '值得开车去', '차로 갈 만한 곳'],
+  'end.crow':['Distances are as the crow flies; travel times are rough.', 'Расстояния по прямой; время в пути примерное.', '距离为直线距离；路程时间仅供参考。', '거리는 직선거리이고 이동 시간은 대략이에요.'],
+  'end.newest':[' Newest check {d}.', ' Последняя проверка: {d}.', ' 最近核实：{d}。', ' 최근 확인: {d}.'],
+  'rest.longer':['Needs more than your time', 'Нужно больше времени, чем у вас есть', '所需时间超过你的时间', '시간이 더 필요해요'], 'rest.later':['Opens later', 'Откроется позже', '稍后开门', '나중에 오픈'],
+  'rest.laterToday':['Opens later today', 'Откроется сегодня позже', '今天晚些时候开门', '오늘 늦게 오픈'], 'rest.unknown':['Hours not listed · call first', 'Часы не указаны · сначала позвоните', '未列出营业时间 · 请先致电', '영업시간 미기재 · 먼저 전화하세요'],
+  'rest.closedNow':['Closed now', 'Сейчас закрыто', '现在不营业', '지금은 영업 안 함'], 'rest.closedW':['Closed {w}', 'Закрыто {w}', '{w}不营业', '{w} 영업 안 함'], 'rest.opening':['Opening soon', 'Скоро откроется', '即将开业', '곧 오픈'],
+  'rest.dates':['Later dates', 'Позже', '更晚的日期', '나중 날짜'], 'rest.season':['{x} · closed for the season', '{x} · закрыто на сезон', '{x} · 季节性关闭', '{x} · 시즌 휴무'],
+  'tg.book':['Book ahead', 'Нужна бронь', '需预约', '예약 필요'], 'rw.opensAt':['Opens {t}', 'Откроется в {t}', '{t} 开门', '{t} 오픈'], 'rw.opensIn':['Opens in {d}', 'Откроется через {d}', '{d}后开门', '{d} 후 오픈'],
+  'fr.n1':['{n} friend', '{n} друг', '{n} 位朋友', '친구 {n}명'], 'fr.n':['{n} friends', 'друзей: {n}', '{n} 位朋友', '친구 {n}명'], 'fr.from':['from {n}', 'от {n}', '来自 {n}', '{n}명 기준'],
+  'ub.nWd':['{n} {w}s', '{w}: {n} раза', '{n} 个{w}', '{w} {n}회'], 'ub.next':['next {d}', 'следующий {d}', '下次 {d}', '다음 {d}'], 'ub.nDates':['{n} dates', 'дат: {n}', '{n} 个日期', '{n}개 날짜'],
+  'ub.check':['Check dates', 'Проверьте даты', '请确认日期', '날짜 확인'],
+  // guides (the article chrome; guide text itself is data: i18n/<lang>/guides.json)
+  'gd.title':['Guides', 'Гиды', '指南', '가이드'], 'gd.top':['Top {n}', 'Топ-{n}', '前 {n}', '톱 {n}'], 'gd.stops':['{n} stops', 'Остановок: {n}', '{n} 站', '{n}곳'],
+  'gd.start':['Start with', 'Начните с', '先去', '먼저'], 'gd.then':['Then', 'Потом', '然后', '다음'], 'gd.end':['End at', 'Закончите здесь', '最后', '마지막'], 'gd.skip':['Skip this one', 'Это пропустите', '这站跳过', '이곳은 건너뛰세요'],
+  'gd.see':['See place', 'К месту', '查看地点', '장소 보기'], 'gd.all':['All {n} {w}', 'Все {n}: {w}', '全部 {n} 处 · {w}', '{n}곳 모두 · {w}'], 'gd.some':['{a} of {n} {w}', '{a} из {n}: {w}', '{n} 处中 {a} 处 · {w}', '{n}곳 중 {a}곳 · {w}'],
+  'gd.none':['None {w}', 'Ни одного: {w}', '没有 · {w}', '없음 · {w}'], 'gd.openNow':['open now', 'открыто сейчас', '现在营业', '지금 영업 중'], 'gd.openThen':['open then', 'открыто в это время', '届时营业', '그때 영업 중'],
+  'gd.openOn':['open {d}', 'открыто {d}', '{d}营业', '{d} 영업'], 'gd.saveList':['Save this list', 'Сохранить список', '收藏此清单', '이 목록 저장'], 'gd.savePlan':['Save this plan', 'Сохранить план', '收藏此计划', '이 계획 저장'],
+  'gd.saved':['Saved', 'Сохранено', '已收藏', '저장됨'], 'gd.checked':['Hours checked {d}.', 'Часы проверены {d}.', '营业时间已于 {d} 核实。', '영업시간 확인: {d}.'], 'gd.next':['Next guide', 'Следующий гид', '下一篇指南', '다음 가이드'],
+  'gd.fromEach':['From {p} each', 'От {p} с человека', '每人 {p} 起', '1인 {p}부터'], 'gd.fromGroup':['From {p} per group', 'От {p} за группу', '每组 {p} 起', '그룹당 {p}부터'],
+  'gd.prev':['Previous guides', 'Предыдущие гиды', '上一组指南', '이전 가이드'], 'gd.nextA':['Next guides', 'Следующие гиды', '下一组指南', '다음 가이드'],
+  // account sheet
+  'ac.findChar':['Find your character', 'Узнайте своего персонажа', '找到你的角色', '내 캐릭터 찾기'], 'ac.swipeMore':['Swipe a few more to find your character.', 'Ещё несколько свайпов, и мы найдём вашего персонажа.', '再滑几张就能找到你的角色。', '몇 장만 더 넘기면 캐릭터를 찾을 수 있어요.'],
+  'ac.shifted':['Your character shifted', 'Ваш персонаж изменился', '你的角色变了', '캐릭터가 바뀌었어요'], 'ac.keepIt':['Keep it? Take a look', 'Оставить? Посмотрите', '要保留吗？看看吧', '유지할까요? 확인해 보세요'],
+  'ac.retake':['Retake', 'Пройти заново', '重新测试', '다시 하기'], 'ac.adjust':['Adjust', 'Настроить', '调整', '조정'],
+  'ac.pickFirst':['Pick a username first, then add friends.', 'Сначала выберите имя пользователя, потом добавляйте друзей.', '先选一个用户名，再添加朋友。', '먼저 사용자 이름을 정한 뒤 친구를 추가하세요.'],
+  'ac.blendWith':['Blend with {x}', 'Blend с {x}', '与 {x} 的 Blend', '{x}님과 Blend'], 'ac.and':['{a} and {b}', '{a} и {b}', '{a} 和 {b}', '{a}, {b}'], 'ac.more':[' + {n} more', ' + ещё {n}', ' 等另外 {n} 位', ' 외 {n}명'],
+  'ac.noFriends':['No friends yet', 'Пока нет друзей', '还没有朋友', '아직 친구가 없어요'], 'ac.req1':['{n} request', 'запросов: {n}', '{n} 个请求', '요청 {n}개'], 'ac.reqN':['{n} requests', 'запросов: {n}', '{n} 个请求', '요청 {n}개'],
+  'ac.wants':['@{x} wants to be friends', '@{x} хочет дружить', '@{x} 想加你为好友', '@{x}님이 친구 신청을 했어요'], 'ac.accept':['Accept', 'Принять', '接受', '수락'], 'ac.notNow':['Not now', 'Не сейчас', '以后再说', '나중에'],
+  'ac.addFriend':['+ Add friend', '+ Друг', '+ 添加朋友', '+ 친구 추가'], 'ac.invite':['Invite link', 'Пригласить', '邀请链接', '초대 링크'],
+  'ac.location':['Location', 'Местоположение', '位置', '위치'], 'ac.locHelp':['Shows what’s near you', 'Показывает, что рядом', '显示你附近的内容', '내 주변을 보여 줘요'], 'ac.turnOn':['Turn on', 'Включить', '开启', '켜기'],
+  'ac.friendsSee':['What friends see', 'Что видят друзья', '朋友能看到什么', '친구에게 보이는 것'], 'ac.needsConn':['Needs a connection', 'Нужен интернет', '需要联网', '인터넷 연결이 필요해요'],
+  'ac.mySaves':['My saves', 'Мои сохранения', '我的收藏', '내 저장'], 'ac.mySavesH':['The places you saved', 'Места, которые вы сохранили', '你收藏的地点', '저장한 장소'],
+  'ac.beenSw':['Where I’ve been', 'Где я был(а)', '我去过的地方', '가 본 곳'], 'ac.beenSwH':['Places + stars; reviews without your name', 'Места и звёзды; отзывы без вашего имени', '地点和星级；评价不显示你的名字', '장소와 별점, 리뷰는 이름 없이'],
+  'ac.findMe':['Find me by username', 'Искать меня по имени', '通过用户名找到我', '사용자 이름으로 찾기'], 'ac.findMeH':['People can send you a request', 'Вам смогут отправить запрос', '别人可以向你发送请求', '다른 사람이 요청을 보낼 수 있어요'],
+  'ac.pickName':['Pick a username', 'Выберите имя пользователя', '选择用户名', '사용자 이름 정하기'], 'ac.soFriends':['So friends can find you', 'Чтобы друзья могли вас найти', '方便朋友找到你', '친구가 찾을 수 있도록'],
+  'ac.edit':['Edit', 'Изменить', '编辑', '편집'], 'ac.pick':['Pick', 'Выбрать', '选择', '정하기'],
+  'ac.signInKeep':['Sign in to keep it all', 'Войдите, чтобы всё сохранить', '登录以保存全部内容', '로그인하고 모두 보관하세요'], 'ac.signingIn':['Signing in', 'Входим', '正在登录', '로그인 중'], 'ac.signInG':['Sign in with Google', 'Войти через Google', '使用 Google 登录', 'Google로 로그인'],
+  'ac.why1':['Your saves on every device', 'Сохранения на всех устройствах', '在所有设备上查看收藏', '모든 기기에서 저장 목록 보기'], 'ac.why2':['See what friends want to do', 'Смотрите, куда хотят друзья', '看看朋友想做什么', '친구가 하고 싶은 것 보기'], 'ac.why3':['A Blend with a friend', 'Blend с другом', '和朋友一起 Blend', '친구와 Blend'],
+  'ac.local':['Without it, everything stays on this phone.', 'Без входа всё остаётся на этом телефоне.', '不登录的话，所有内容都只保存在这部手机上。', '로그인하지 않으면 모든 게 이 휴대폰에만 남아요.'],
+  'ac.taste':['Your taste', 'Ваш вкус', '你的口味', '내 취향'], 'ac.friends':['Friends', 'Друзья', '朋友', '친구'], 'ac.savedBeen':['Saved & been', 'Сохранённое и посещённое', '收藏和去过', '저장 및 방문'],
+  'ac.saved':['Saved', 'Сохранено', '已收藏', '저장'], 'ac.savedPhone':['Saved on this phone', 'Сохранено на этом телефоне', '保存在这部手机上', '이 휴대폰에 저장'], 'ac.beenT':['Been', 'Посещено', '去过', '가 봄'], 'ac.beenPhone':['Been on this phone', 'Посещено (этот телефон)', '去过（这部手机）', '가 본 곳 (이 휴대폰)'],
+  'ac.settings':['Settings', 'Настройки', '设置', '설정'], 'ac.privacy':['Privacy', 'Конфиденциальность', '隐私', '개인정보'], 'ac.feedback':['Send feedback', 'Отправить отзыв', '发送反馈', '의견 보내기'],
+  'ac.signOut':['Sign out', 'Выйти', '退出登录', '로그아웃'], 'ac.delete':['Delete account', 'Удалить аккаунт', '删除账号', '계정 삭제'],
+  'ac.lv.On':['On', 'Включено', '已开启', '켜짐'], 'ac.lv.On the website':['On the website', 'На сайте', '在网站版中', '웹사이트에서'], 'ac.lv.Off':['Off', 'Выключено', '已关闭', '꺼짐'], 'ac.lv.Blocked':['Blocked', 'Запрещено', '已阻止', '차단됨'],
+  'sy.syncing':['Syncing', 'Синхронизация', '正在同步', '동기화 중'], 'sy.offline':['Offline', 'Нет сети', '离线', '오프라인'], 'sy.cant':['Can’t sync', 'Нет синхронизации', '无法同步', '동기화할 수 없어요'],
+  'sy.retry':['Tap to retry', 'Повторить', '点按重试', '눌러서 다시 시도'], 'sy.synced':['Synced {t}', 'Синхронизировано: {t}', '已同步 · {t}', '동기화됨 · {t}'], 'sy.not':['Not synced yet', 'Ещё не синхронизировано', '尚未同步', '아직 동기화 안 됨'],
+  'sy.tap':['Tap to sync', 'Синхронизировать', '点按同步', '눌러서 동기화'], 'sy.justNow':['just now', 'только что', '刚刚', '방금'], 'sy.minAgo':['{n} min ago', '{n} мин назад', '{n} 分钟前', '{n}분 전'],
+  // taste test
+  'sw.love':['Love it', 'Обожаю', '超爱', '완전 좋아'], 'sw.yes':['Into it', 'Нравится', '喜欢', '좋아'], 'sw.no':['Nah', 'Не моё', '不太行', '별로'], 'sw.never':['Never', 'Никогда', '绝不', '절대 안 해'],
+  'tk.find':['Find your {a} character', 'Узнайте своего персонажа {a}', '找到你的 {a} 角色', '나의 {a} 캐릭터 찾기'], 'tk.guest':['{n} swipes for {x}', '{n} свайпов для {x}', '为 {x} 滑 {n} 张', '{x}님을 위한 스와이프 {n}번'],
+  'tk.yourGuest':['your guest', 'вашего гостя', '你的客人', '게스트'], 'tk.retake':['{n} swipes to sharpen it', '{n} свайпов, чтобы уточнить', '滑 {n} 张让它更准', '더 정확하게 스와이프 {n}번'], 'tk.mini':['{n} quick swipes', '{n} быстрых свайпов', '{n} 次快速滑动', '빠른 스와이프 {n}번'],
+  'tk.answers':['{n} quick answers · about {m} min', '{n} быстрых ответов · около {m} мин', '{n} 个快速回答 · 约 {m} 分钟', '빠른 답변 {n}개 · 약 {m}분'], 'tk.swipes':['{n} quick swipes · about {m} min', '{n} быстрых свайпов · около {m} мин', '{n} 次快速滑动 · 约 {m} 分钟', '빠른 스와이프 {n}번 · 약 {m}분'],
+  'tk.learns':['It keeps learning from what you save and like.', 'Подборка учится на том, что вы сохраняете и любите.', '它会根据你收藏和喜欢的内容不断学习。', '저장하고 좋아한 것에서 계속 배워요.'], 'tk.drag':['Drag the photo, or tap an icon', 'Тяните фото или нажмите значок', '拖动照片，或点按图标', '사진을 끌거나 아이콘을 누르세요'],
+  'tk.skip':['Skip', 'Пропустить', '跳过', '건너뛰기'], 'tk.dayTrip':[' · Day trip', ' · Поездка на день', ' · 一日游', ' · 당일치기'], 'tk.which':['Which sounds better?', 'Что звучит лучше?', '哪个听起来更好？', '어느 쪽이 더 좋아요?'], 'tk.undo':['Undo (Z)', 'Отменить (Z)', '撤销 (Z)', '되돌리기 (Z)'],
+  // "I've been here" box
+  'bb.been':['Been here', 'Был(а) здесь', '去过', '가 봤어요'], 'bb.beenDot':['Been · {d}', 'Был(а) · {d}', '去过 · {d}', '가 봄 · {d}'], 'bb.remove':['Remove', 'Убрать', '移除', '삭제'],
+  'bb.day':['Day', 'День', '日', '일'], 'bb.month':['Month', 'Месяц', '月', '월'], 'bb.dontRemember':['Don’t remember', 'Не помню', '不记得了', '기억 안 나요'], 'bb.when':['When did you go?', 'Когда вы ходили?', '你什么时候去的？', '언제 갔나요?'],
+  'bb.how':['How was it? (optional)', 'Как было? (необязательно)', '感觉怎么样？（可选）', '어땠나요? (선택)'], 'bb.dayWent':['The day you went', 'День, когда вы ходили', '你去的那天', '간 날'], 'bb.monthWent':['The month you went', 'Месяц, когда вы ходили', '你去的那个月', '간 달'],
+  'bb.line':['One line about it (optional)', 'Пара слов об этом (необязательно)', '一句话说说（可选）', '한 줄 소감 (선택)'],
+  'bb.note':['Friends who you share check-ins with can see your stars and review. Your review shows without your name.', 'Друзья, с которыми вы делитесь посещениями, видят ваши звёзды и отзыв. Отзыв показывается без вашего имени.', '与你共享打卡的朋友可以看到你的星级和评价。评价不显示你的名字。', '방문 기록을 공유하는 친구는 별점과 리뷰를 볼 수 있어요. 리뷰에는 이름이 표시되지 않아요.'],
+  'bb.noteLocal':[' For now your review stays on this phone.', ' Пока отзыв остаётся на этом телефоне.', ' 目前你的评价只保存在这部手机上。', ' 지금은 리뷰가 이 휴대폰에만 저장돼요.'],
+  'bb.star1':['{n} star', '{n} звезда', '{n} 星', '별 {n}개'], 'bb.stars':['{n} stars', '{n} звезды', '{n} 星', '별 {n}개'],
+  // weather
+  'wx.showDay':['Show {d}, any time', 'Показать: {d}, любое время', '显示{d}，任意时间', '{d} 보기, 아무 때나'], 'wx.next12':['Next 12 hours', 'Ближайшие 12 часов', '未来 12 小时', '앞으로 12시간'], 'dt.close':['Close', 'Закрыть', '关闭', '닫기'],
+  'rd.all':['All {n}', 'Все {n}', '全部 {n}', '{n}개 모두'], 'hm.allOpen':['All {g} open ({n})', 'Всё открытое: {g} ({n})', '全部营业的{g}（{n}）', '영업 중인 {g} 전체 ({n})'], 'hm.allOpen0':['Everything open ({n})', 'Всё, что открыто ({n})', '全部营业中（{n}）', '영업 중 전체 ({n})'],
+  'fw.one':['{a} wants this too', '{a} тоже хочет сюда', '{a} 也想去', '{a}님도 가고 싶어 해요'], 'fw.two':['{a} and {b} want this too', '{a} и {b} тоже хотят сюда', '{a} 和 {b} 也想去', '{a}님과 {b}님도 가고 싶어 해요'], 'home.nearW':['near', 'рядом с', '附近', '근처']
+};
+(function(){ for (var k in STR28) if (Object.prototype.hasOwnProperty.call(STR28, k) && !STR[k]) STR[k] = STR28[k]; })();
+GENRES_SUB_STR();   // the sub-kind names (sub.<English>) are added below, from one table
+function GENRES_SUB_STR(){
+  var T = {'Games & arcades':['Игры и аркады', '游戏与街机', '게임과 오락실'], 'Mini golf':['Мини-гольф', '迷你高尔夫', '미니 골프'], 'Racing':['Гонки', '竞速', '레이싱'], 'Escape rooms':['Квесты', '密室逃脱', '방탈출'], 'Get moving':['Подвигаться', '动起来', '몸 움직이기'],
+    'Museums':['Музеи', '博物馆', '박물관'], 'Views':['Виды', '景观', '전망'], 'Art & immersive':['Искусство и иммерсив', '艺术与沉浸式', '미술과 몰입형'], 'Architecture':['Архитектура', '建筑', '건축'], 'Odd & curious':['Странное и любопытное', '奇特有趣', '독특하고 신기한 곳'],
+    'Animals & bugs':['Животные и насекомые', '动物与昆虫', '동물과 곤충'], 'Gardens':['Сады', '花园', '정원'], 'Parks & walks':['Парки и прогулки', '公园与散步', '공원과 산책'],
+    'Treats':['Сладкое', '甜点小吃', '간식'], 'Bars':['Бары', '酒吧', '바'], 'Dinner with a twist':['Необычный ужин', '特色晚餐', '특별한 저녁'], 'Markets':['Рынки и ярмарки', '市集', '마켓'], 'Tea':['Чай', '茶', '차'], 'Cheese':['Сыр', '奶酪', '치즈'],
+    'Comedy':['Комедия', '喜剧', '코미디'], 'Music':['Музыка', '音乐', '음악'], 'Theater':['Театр', '戏剧', '연극'], 'Movies':['Кино', '电影', '영화'], 'Parades & festivals':['Парады и фестивали', '游行与节庆', '퍼레이드와 축제'],
+    'Art & crafts':['Творчество и ремёсла', '艺术与手工', '미술과 공예'], 'Cooking & cocktails':['Кулинария и коктейли', '烹饪与鸡尾酒', '요리와 칵테일'], 'Music & dance':['Музыка и танцы', '音乐与舞蹈', '음악과 춤'],
+    'Baths & saunas':['Бани и сауны', '浴场与桑拿', '목욕탕과 사우나'], 'Quiet spots':['Тихие места', '安静去处', '조용한 곳']};
+  for (var k in T) if (Object.prototype.hasOwnProperty.call(T, k) && !STR['sub.' + k]) STR['sub.' + k] = [k].concat(T[k]);
+}
+function tx(key, en, v){ // v5.28: like i18L, plus {placeholders} filled in every language (English = the given text, exactly as before)
+  var s = LANG === 'en' || !STR[key] ? en : i18t(key);
+  if (v) s = String(s).replace(/\{(\w+)\}/g, function(m, k){ return v[k] !== undefined && v[k] !== null ? String(v[k]) : m; });
+  return s;
+}
+function subNameL(it, g){ var s = subName(it, g); return s ? tx('sub.' + s, s) : ''; }
+function swWordL(k){ return tx('sw.' + k, SW_WORD[k]); }
+function stars28(n){ return tx(n === 1 ? 'bb.star1' : 'bb.stars', n + (n === 1 ? ' star' : ' stars'), {n:n}); }
+function deckHookL(it){ if (LANG !== 'en') { var r = hookL(it); if (r.lang !== 'en' && r.v) return r.v; } return deckHook(it); }   // v5.28 (audit 9): the deck card shows the translated hook
+function getting28(c){ // v5.28: the "Getting there" lines in the picked language (the English lines stay as they were)
+  var t = c.trav || {}, how = t.how === 'walk' ? 'walk' : t.how === 'CTA' ? 'by CTA' : driveWord();
+  return '<span><b>' + esc(tx('dt.crowB', '{d} as the crow flies', {d:fmtMi(c.dist)})) + '</b> ' + esc(S.loc ? tx('dt.fromPinX', 'from your pin ({x}).', {x:locWordsNow()}) : tx('dt.fromPin0', 'from your pin.')) + '</span><span>' +
+    esc((t.how && t.how !== 'unknown' ? tx('dt.travelL', 'About {t}.', {t:trStatus(t.min + ' min ' + how)}) : tx('tt.unknown', 'travel time unknown') + '.') + ' ' + (t.switched ? tx('dt.ctaPast', '', {n:CTA_MAX_MI}) + ' ' : '') + tx('dt.rough', 'Rough estimate, not a route.')) + '</span>';
+}
+function ohReason28(it, o){ var rl = placeText(it, 'only_here.reason'), rv = rl.lang !== 'en' && rl.v ? rl.v : o.reason; return '<span' + (LANG === 'en' ? '' : ' lang="' + (rv === o.reason ? 'en' : LANG) + '"') + '>' + esc(rv) + (o.src ? ' <a href="' + esc(o.src) + '" target="_blank" rel="noopener">' + esc(tx('dt.srcLink', 'source')) + '</a>' : ''); }
+function leave28(c){ // v5.28: the most common "if you leave now" sentences in the picked language; null = use the older lines
+  var f = c.fit || {}, st = c.st || {}, at = function(ms){ return fmtClock(ms); };
+  if (f.kind === 'fits' || f.kind === 'tight' || f.kind === 'over') {
+    var go = UI.planning && !UI.today ? tx('fit.thereAt', '', {c:at(st.ms), a:at(f.arrive)}) : tx('fit.thereNow', '', {a:at(f.arrive)});
+    if (f.kind === 'tight' && f.entryTight) return go + ' ' + tx('fit.tightEntry', '', {a:at(f.lastEntryAt)});
+    if (f.kind === 'tight') return go + ' ' + tx('fit.tight', '', {a:at(f.closesAt), n:f.get});
+    if (f.short) return go + ' ' + tx('fit.short', '', {d:fmtDurL(f.min), a:at(f.arrive + f.min * 60000), b:f.shortBy === 'close' && f.closesAt ? tx('fit.shortClose', '', {a:at(f.closesAt)}) : ''});
+    return go + ' ' + (f.thereKnown ? tx('fit.takes', '', {d:fmtDurL(f.there), a:at(f.arrive + f.there * 60000)}) : tx('fit.assumed', '', {a:at(f.arrive + f.there * 60000)}));
+  }
+  if (f.kind === 'wait') return tx('fit.wait', '', {a:at(f.opensAt), b:at(f.opensAt - f.travel * 60000)});
+  if (f.noEntry || f.entryNotes || st.inSession || (st.key === 'closed' && st.noEntry)) return null;
+  if (f.kind === 'dark') return tx('fit.dark', '', {a:at(f.sunrise)});
+  if (st.key === 'unknown' && !st.hoursExpired && !st.checkDates && !st.seasonStale) return tx('fit.unknown', '');
+  if (st.key === 'season') return '';
+  if (f.kind === 'no' && st.key !== 'maybe' && st.key !== 'unknown') return tx('fit.no', '');
+  return null;
+}
 var HOL_BY_NAME = {}; (function(){ for (var k in HOLIDAY_NAMES) if (Object.prototype.hasOwnProperty.call(HOLIDAY_NAMES, k)) HOL_BY_NAME[HOLIDAY_NAMES[k]] = k; })();
 function holNameL(id, lang){ var l = isLang(lang) ? lang : LANG; return l === 'en' || !STR['hol.' + id] ? HOLIDAY_NAMES[id] : i18t('hol.' + id, null, l); }
 function fmtDurL(min, lang){ // fmtDur in the language ("2 h 30 m" / "2 ч 30 мин" / "2 小时 30 分钟" / "2시간 30분")
@@ -4718,8 +4903,8 @@ var STATUS_RX = [
   [/^Open now$/, ['Открыто сейчас', '营业中', '영업 중']], [/^(?:On|Happening) now$/, ['Идёт сейчас', '正在进行', '진행 중']], [/^Open 24 hours$/, ['Открыто круглосуточно', '24 小时营业', '24시간 영업']],
   [/^Open till (.+)$/, ['Открыто до $1', '营业至 $1', '$1까지 영업']], [/^On till (.+)$/, ['Идёт до $1', '进行至 $1', '$1까지 진행']], [/^till (.+)$/, ['до $1', '至 $1', '$1까지']],
   [/^Closes in (\d+) min$/, ['Закроется через $1 мин', '$1 分钟后关门', '$1분 후 마감']], [/^[Ee]nds in (\d+) min$/, ['Закончится через $1 мин', '$1 分钟后结束', '$1분 후 종료']],
-  [/^Closes (\d.*)$/, ['Закрывается в $1', '$1 关门', '$1 마감']], [/^Ends (\d.*)$/, ['Заканчивается в $1', '$1 结束', '$1 종료']],
-  [/^Opens at (.+) today$/, ['Откроется сегодня в $1', '今天 $1 开门', '오늘 $1 오픈']], [/^[Oo]pens (.+)$/, ['откроется $1', '$1 开门', '$1 오픈']],
+  [/^Closes (\d.*)$/, ['Закрывается в $1', '$1 关门', '$1 마감']], [/^Ends (\d.*)$/, ['Заканчивается в $1', '$1 结束', '$1 종료']], [/^Ends tomorrow$/, ['Заканчивается завтра', '明天结束', '내일 종료']], [/^Ends today$/, ['Заканчивается сегодня', '今天结束', '오늘 종료']], [/^Ends (.+)$/, ['Заканчивается: $1', '$1 结束', '$1 종료']],
+  [/^Opens at (.+) today$/, ['Откроется сегодня в $1', '今天 $1 开门', '오늘 $1 오픈']], [/^[Oo]pens at (.+)$/, ['откроется в $1', '$1 开门', '$1 오픈']], [/^Opens in (.+)$/, ['Откроется через $1', '$1后开门', '$1 후 오픈']], [/^[Oo]pens (.+)$/, ['откроется $1', '$1 开门', '$1 오픈']],
   [/^Closed now$/, ['Сейчас закрыто', '现在不营业', '지금은 영업 안 함']], [/^Closed today$/, ['Сегодня закрыто', '今天不营业', '오늘 휴무']], [/^Closed today \((.+)\)$/, ['Сегодня закрыто ($1)', '今天不营业（$1）', '오늘 휴무($1)']],
   [/^Closed for the season(.*)$/, ['Закрыто на сезон$1', '季节性关闭$1', '시즌 휴무$1']], [/^Closed for good$/, ['Закрыто навсегда', '已永久关闭', '폐업']],
   [/^Hours not confirmed$/, ['Часы не подтверждены', '营业时间未确认', '영업시간 미확인']], [/^hours not confirmed$/, ['часы не подтверждены', '营业时间未确认', '영업시간 미확인']], [/^call first$/, ['сначала позвоните', '请先致电', '먼저 전화해 보세요']],
@@ -4731,6 +4916,18 @@ var STATUS_RX = [
   [/^Tickets on sale through (.+)$/, ['Билеты в продаже до $1', '门票售至 $1', '$1까지 티켓 판매']], [/^end date not announced$/, ['дата окончания не объявлена', '结束日期未公布', '종료일 미정']],
   [/^Last entry (.+)$/, ['Последний вход $1', '最后入场 $1', '마지막 입장 $1']], [/^Open (\d.* – .+)$/, ['Открыто $1', '营业 $1', '영업 $1']],
   [/^(\d+) min walk$/, ['$1 мин пешком', '步行 $1 分钟', '도보 $1분']], [/^(\d+) min drive$/, ['$1 мин на машине', '开车 $1 分钟', '차로 $1분']], [/^(\d+) min by CTA$/, ['$1 мин на CTA', '乘 CTA $1 分钟', 'CTA로 $1분']],
+  [/^1 day left$/, ['остался 1 день', '还剩 1 天', '1일 남음']], [/^(\d+) days left$/, ['осталось дней: $1', '还剩 $1 天', '$1일 남음']],
+  [/^Tickets through (.+)$/, ['Билеты до $1', '门票售至 $1', '$1까지 티켓 판매']], [/^Until (.+)$/, ['До $1', '至 $1', '$1까지']], [/^Last date (.+)$/, ['Последняя дата: $1', '最后日期：$1', '마지막 날짜: $1']],
+  [/^Back in (.+)$/, ['Снова откроется: $1', '$1 重新开放', '$1 재개장']], [/^No end date listed$/, ['Дата окончания не указана', '未列出结束日期', '종료일 미기재']], [/^Check dates$/, ['Проверьте даты', '请确认日期', '날짜 확인']],
+  [/^Deal today$/, ['Скидка сегодня', '今日特惠', '오늘 할인']], [/^Deal (.+)$/, ['Скидка: $1', '特惠：$1', '할인: $1']], [/^Not confirmed yet$/, ['Пока не подтверждено', '尚未确认', '아직 미확인']], [/^Not confirmed$/, ['Не подтверждено', '未确认', '미확인']],
+  [/^Checked today$/, ['Проверено сегодня', '今天已核实', '오늘 확인']], [/^Checked yesterday$/, ['Проверено вчера', '昨天已核实', '어제 확인']], [/^Checked (\d+) days ago$/, ['Проверено $1 дн. назад', '$1 天前已核实', '$1일 전 확인']],
+  [/^Checked (\d+) wks? ago$/, ['Проверено $1 нед. назад', '$1 周前已核实', '$1주 전 확인']], [/^Checked (\d+) weeks? ago$/, ['Проверено $1 нед. назад', '$1 周前已核实', '$1주 전 확인']], [/^Checked (.+)$/, ['Проверено $1', '$1 已核实', '$1 확인']],
+  [/^Holiday: call first$/, ['Праздник: сначала позвоните', '节假日：请先致电', '공휴일: 먼저 전화하세요']], [/^Hours not posted$/, ['Часы не опубликованы', '未公布营业时间', '영업시간 미게시']], [/^Hours not listed$/, ['Часы не указаны', '未列出营业时间', '영업시간 미기재']],
+  [/^From (\$[\d.,]+)$/, ['от $1', '$1 起', '$1부터']], [/^From (\$[\d.,]+) each$/, ['от $1 с человека', '每人 $1 起', '1인 $1부터']], [/^From (\$[\d.,]+) per group$/, ['от $1 за группу', '每组 $1 起', '그룹당 $1부터']],
+  [/^Opening soon$/, ['Скоро откроется', '即将开业', '곧 오픈']], [/^Later dates$/, ['Позже', '更晚的日期', '나중 날짜']], [/^Tomorrow$/, ['Завтра', '明天', '내일']], [/^Today$/, ['Сегодня', '今天', '오늘']], [/^Tonight$/, ['Сегодня вечером', '今晚', '오늘 밤']],
+  [/^On (Mon|Tue|Wed|Thu|Fri|Sat|Sun) till (.+)$/, ['Идёт: $1 до $2', '$1 进行至 $2', '$1 $2까지 진행']], [/^On (Mon|Tue|Wed|Thu|Fri|Sat|Sun)$/, ['Идёт: $1', '$1 进行', '$1 진행']],
+  [/^Open 24 hours (Mon|Tue|Wed|Thu|Fri|Sat|Sun)$/, ['$1: круглосуточно', '$1 24 小时营业', '$1 24시간 영업']], [/^(Mon|Tue|Wed|Thu|Fri|Sat|Sun) (\d.*)$/, ['$1 $2', '$1 $2', '$1 $2']], [/^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)$/, ['$1', '$1', '$1']],
+  [/^(\d.*) (Mon|Tue|Wed|Thu|Fri|Sat|Sun)$/, ['$2 $1', '$2 $1', '$2 $1']], [/^next (.+)$/, ['следующий $1', '下次 $1', '다음 $1']], [/^today$/, ['сегодня', '今天', '오늘']], [/^(\d+) dates$/, ['дат: $1', '$1 个日期', '$1개 날짜']],
   [/^Free$/, ['Бесплатно', '免费', '무료']], [/^citywide$/, ['по всему городу', '全市', '시 전역']]
 ];
 var STATUS_WORDS = {ru:{Mon:'пн', Tue:'вт', Wed:'ср', Thu:'чт', Fri:'пт', Sat:'сб', Sun:'вс', today:'сегодня', tomorrow:'завтра'}, 'zh-Hans':{Mon:'周一', Tue:'周二', Wed:'周三', Thu:'周四', Fri:'周五', Sat:'周六', Sun:'周日', today:'今天', tomorrow:'明天'}, ko:{Mon:'월', Tue:'화', Wed:'수', Thu:'목', Fri:'금', Sat:'토', Sun:'일', today:'오늘', tomorrow:'내일'}};
@@ -4742,7 +4939,7 @@ function trStatus(s, lang){ // pure: status / travel / price words in the langua
     var hcf = /^Closed for (.+)$/.exec(part); if (hcf && HOL_BY_NAME[hcf[1]]) return i18t('closed.for', {x:holNameL(HOL_BY_NAME[hcf[1]], l)}, l);   // v5.22 (tester L1): "Closed for Thanksgiving"
     for (var i = 0; i < STATUS_RX.length; i++) {
       var r = STATUS_RX[i];
-      if (r[0].test(part)) return part.replace(r[0], r[1][ix]).replace(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun|today|tomorrow)\b/g, function(w){ return W[w] || w; });
+      if (r[0].test(part)) return locTokens(part.replace(r[0], r[1][ix]).replace(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun|today|tomorrow)\b/g, function(w){ return W[w] || w; }), l);   // v5.28: + English times / dates left inside
     }
     return part;
   }).join(' · ');
@@ -4750,7 +4947,34 @@ function trStatus(s, lang){ // pure: status / travel / price words in the langua
 // numbers: the same pattern as tools/validate-i18n.ps1 ("$41.20", "13:00", "90", "3,5" -> "3.5")
 function numsOf(s){ var o = {}; (String(s === null || s === undefined ? '' : s).match(/\$?\d+(?:[.,:]\d+)?%?/g) || []).forEach(function(x){ o[x.replace(/,/g, '.')] = 1; }); return o; }
 function numsKept(en, tr){ var a = numsOf(en), b = numsOf(tr); for (var k in a) if (!b[k]) return false; return true; }
-var I18N_FIELD_LETTER = {hook:'h', description:'d', highlights:'l'};
+var I18N_FIELD_LETTER = {hook:'h', description:'d', highlights:'l', price_note:'p', hours_note:'o', age_note:'a', good_to_know:'g', 'season.note':'s', 'only_here.reason':'r'};   // v5.28: + 6 fields (tools/build-site.ps1 writes the same letters)
+// v5.28 data translations, ready for the translators: besides hook / description / highlights, the item translation may carry
+// price_note, hours_note, age_note, good_to_know ([{q, a}], same length and order), season.note and only_here.reason (nested
+// like the data: "season": {"note": ...}, "only_here": {"reason": ...}). Each field falls back to English on its own: stale hash
+// letter, missing, empty, a different count of Q&As, or a number that is not kept.
+var I18N_PATH = {'season.note':['season', 'note'], 'only_here.reason':['only_here', 'reason']};
+function fieldEnOf(it, field){ var p = I18N_PATH[field]; if (!p) return it ? it[field] : undefined; var o = it && it[p[0]]; return o && typeof o === 'object' ? o[p[1]] : undefined; }
+function fieldTrOf(tr, field){ var p = I18N_PATH[field]; if (!p) return tr ? tr[field] : undefined; if (!tr) return undefined; if (typeof tr[field] === 'string') return tr[field]; var o = tr[p[0]]; return o && typeof o === 'object' ? o[p[1]] : undefined; }
+// v5.28 guide translations: i18n/<lang>/guides.json = {"<guide id>": {hash, title, intro, when, theme, steps:[{why, timing}], entries:[{blurb}]}}
+// (steps / entries in the file's order, or a map keyed by activity_id / place_id). Shown only when the hash equals the one
+// tools/build-site.ps1 writes to i18n/guides-hash.json for the current English guide; anything else stays English.
+function gaTrOf(g, lang){ var l = isLang(lang) ? lang : LANG; if (l === 'en' || !g) return null; var c = I18N.cache[l], gm = c && c.guides, hm = I18N.ghash;
+  var t = gm && Object.prototype.hasOwnProperty.call(gm, g.id) ? gm[g.id] : null;
+  if (!t || typeof t !== 'object' || !hm || typeof t.hash !== 'string' || !t.hash || hm[g.id] !== t.hash) return null; return t; }
+function gaTxt(en, tr){ return typeof tr === 'string' && tr.trim() && typeof en === 'string' && numsKept(en.replace(/\{n\}/g, ''), tr.replace(/\{n\}/g, '')) && (en.indexOf('{n}') < 0 || tr.indexOf('{n}') >= 0) ? tr : null; }
+function gaPart(t, list, key, i, id){ var a = t && t[list]; if (!a) return null; var x = Array.isArray(a) ? a[i] : a[id]; return x && typeof x === 'object' ? x[key] : null; }
+function gaLocalize(R, lang){ // pure-ish: R from gaResolve with the guide text in the language where a fresh translation has it
+  var l = isLang(lang) ? lang : LANG, t = gaTrOf(R && R.g, l); if (!t) return R;
+  var g = R.g, tt = gaTxt(g.title, t.title); if (tt) { R.title = gaFillN(tt, R.n); R.tl = l; }
+  var sk = R.fmt === 'list' ? 'theme' : 'when', st = gaTxt(g[sk], t[sk]); if (st) R.sub = st;
+  var it = gaTxt(g.intro, t.intro); if (it) R.intro = it;
+  var src = R.fmt === 'list' ? g.entries : g.steps, idx = {};
+  (Array.isArray(src) ? src : []).forEach(function(e, i){ if (e) idx[R.fmt === 'list' ? e.place_id : e.activity_id] = i; });
+  R.rows.forEach(function(r){ var id = r.it.id, i = idx[id];
+    if (R.fmt === 'list') { var b = gaTxt(r.blurb, gaPart(t, 'entries', 'blurb', i, id)); if (b) r.blurb = b; }
+    else { var w = gaTxt(r.why, gaPart(t, 'steps', 'why', i, id)), tm = gaTxt(r.timing, gaPart(t, 'steps', 'timing', i, id)); if (w) r.why = w; if (tm) r.timing = tm; } });
+  return R;
+}
 function i18nFresh(tr, cur, field){ // pure: tr = the translation entry, cur = the current-English hash for the item ("HASH" or "HASH~hd")
   if (!tr || typeof tr.hash !== 'string' || !tr.hash || typeof cur !== 'string' || !cur) return false;
   var bits = cur.split('~');
@@ -4758,11 +4982,17 @@ function i18nFresh(tr, cur, field){ // pure: tr = the translation entry, cur = t
   return String(bits[1] || '').indexOf(I18N_FIELD_LETTER[field] || '?') < 0;
 }
 function placeTextWith(it, field, lang, trMap, hashMap){ // pure -> {v, lang}: the field in `lang` when it is safe to show, else the English
-  var en = it ? it[field] : undefined, out = {v:en, lang:'en'};
+  var en = fieldEnOf(it, field), out = {v:en, lang:'en'};
   if (!it || !isLang(lang) || lang === 'en' || !I18N_FIELD_LETTER[field]) return out;
   var tr = trMap && Object.prototype.hasOwnProperty.call(trMap, it.id) ? trMap[it.id] : null;
   if (!tr || !i18nFresh(tr, hashMap ? hashMap[it.id] : undefined, field)) return out;
-  var x = tr[field];
+  var x = fieldTrOf(tr, field);
+  if (field === 'good_to_know') { // v5.28: the same Q&As in the same order, every number kept; the source links stay the English ones
+    var eg = Array.isArray(en) ? en.filter(function(q){ return q && q.q && q.a; }) : [];
+    if (!eg.length || !Array.isArray(x) || x.length !== eg.length) return out;
+    for (var j = 0; j < x.length; j++) if (!x[j] || typeof x[j].q !== 'string' || typeof x[j].a !== 'string' || !x[j].q.trim() || !x[j].a.trim() || !numsKept(eg[j].q, x[j].q) || !numsKept(eg[j].a, x[j].a)) return out;
+    return {v:x.map(function(q, k){ return {q:q.q, a:q.a, source:eg[k].source}; }), lang:lang};
+  }
   if (field === 'highlights') {
     var ea = Array.isArray(en) ? en.filter(Boolean).map(String) : [];
     if (!ea.length || !Array.isArray(x) || x.length !== ea.length) return out;
@@ -4790,11 +5020,14 @@ function i18nLoad(lang){ // fetch one language's place file (+ the current-Engli
   I18N.state[lang] = 'loading';
   var hp = I18N.hash || I18N.hashTried ? Promise.resolve(I18N.hash) : Platform.fetchJSON('i18n/en-hash.json')['catch'](function(){ return null; });
   I18N.hashTried = true;
-  Promise.all([Platform.fetchJSON('i18n/' + lang + '/places.json'), hp]).then(function(r){
+  var gp = Platform.fetchJSON('i18n/' + lang + '/guides.json')['catch'](function(){ return null; }), ghp = I18N.ghash || I18N.ghTried ? Promise.resolve(I18N.ghash) : Platform.fetchJSON('i18n/guides-hash.json')['catch'](function(){ return null; });   // v5.28: guide text (optional files)
+  I18N.ghTried = true;
+  Promise.all([Platform.fetchJSON('i18n/' + lang + '/places.json'), hp, gp, ghp]).then(function(r){
     var pl = r[0]; if (!pl || typeof pl !== 'object' || Array.isArray(pl)) throw new Error('not a map of ids');
     if (r[1] && typeof r[1] === 'object' && !Array.isArray(r[1])) I18N.hash = r[1];
-    I18N.cache[lang] = {places:pl, n:Object.keys(pl).length}; I18N.state[lang] = 'ok';
-    if (lang === LANG && mapEl) { UI.homeHTML = null; refresh(); }
+    if (r[3] && typeof r[3] === 'object' && !Array.isArray(r[3])) I18N.ghash = r[3];
+    I18N.cache[lang] = {places:pl, n:Object.keys(pl).length, guides:r[2] && typeof r[2] === 'object' && !Array.isArray(r[2]) ? r[2] : null}; I18N.state[lang] = 'ok';
+    if (lang === LANG && mapEl) { UI.homeHTML = null; refresh(); if (GA.open) gaRender(true); try { if (TU.mode && !TU.busy && !TU.drag) tasteRender(); } catch (e) {} }   // v5.28: an open taste deck picks up the translated hooks
   })['catch'](function(e){ I18N.state[lang] = 'failed'; I18N.err[lang] = e && e.message ? e.message : String(e); });
 }
 function staticLang(){ // v5.22 (tester M1): words that live in the page's own HTML (map button, More filters title + Reset)
@@ -4804,12 +5037,13 @@ function staticLang(){ // v5.22 (tester M1): words that live in the page's own H
     if ($('pFiltersReset')) $('pFiltersReset').textContent = i18L('f.reset', 'Reset');
     var qi = $('q'); if (qi) { qi.setAttribute('placeholder', i18L('q.ph', 'Karaoke, cheese, Pilsen')); var ql = document.querySelector('label[for="q"]'); if (ql) ql.textContent = i18L('q.label', 'Search places and events'); }   // v5.23: search words (the search itself matches English names and tags)
     if ($('qClear')) $('qClear').setAttribute('aria-label', i18L('q.clear', 'Clear the search'));
+    var snr = document.querySelector('#sentence > span:not([id])'); if (snr) snr.textContent = tx('home.nearW', 'near');   // v5.28
   } catch (e) {}
 }
 function setLang(code, keep){ // keep = this visit only (test hooks)
   var l = isLang(code) ? code : 'en';
   LANG = l;
-  try { document.documentElement.setAttribute('lang', l); } catch (e) {}
+  try { document.documentElement.setAttribute('lang', l); document.documentElement.style.setProperty('--today-w', JSON.stringify(tx('wx.today', 'Today'))); } catch (e) {}   // v5.28: the hours table's Today tag
   if (!keep) Platform.store.set(LANG_KEY, l);
   i18nLoad(l);
   if (!mapEl) return l;
@@ -4833,7 +5067,7 @@ function langPickerHTML(){ // English first, always; native names
 var OH_KINDS = {only:'oh.only', rare:'oh.rare', classic:'oh.classic'};
 function onlyHereOf(it){ var o = it && it.only_here; if (!o || typeof o !== 'object' || !Object.prototype.hasOwnProperty.call(OH_KINDS, o.kind)) return null; return {kind:o.kind, reason:typeof o.reason === 'string' ? o.reason.trim() : '', src:safeUrl(o.src)}; }
 function ohBadgeHTML(it, cls){ var o = onlyHereOf(it); if (!o) return ''; return '<span class="oh-b ' + o.kind + (cls ? ' ' + cls : '') + '"' + (o.reason ? ' title="' + esc(o.reason) + '"' : '') + '>' + esc(i18t(OH_KINDS[o.kind])) + '</span>'; }
-function ohLineHTML(it){ var o = onlyHereOf(it); if (!o) return ''; return '<p class="oh-line">' + ohBadgeHTML(it) + (o.reason ? '<span' + (LANG === 'en' ? '' : ' lang="en"') + '>' + esc(o.reason) + (o.src ? ' <a href="' + esc(o.src) + '" target="_blank" rel="noopener">source</a>' : '') + '</span>' : '') + '</p>'; }
+function ohLineHTML(it){ var o = onlyHereOf(it); if (!o) return ''; return '<p class="oh-line">' + ohBadgeHTML(it) + (o.reason ? ohReason28(it, o) + '</span>' : '') + '</p>'; }
 // "Visiting Chicago": only-here / rare / classic items, plus the must-sees everyone in Chicago knows (POP_KNOWN), so it still works before the tags are merged
 // v5.23 (her rule, TEAM-RULES "Visiting Chicago"): a brand in 3+ US cities is out, from the data field us_cities (Chicago counts as one); popularity still counts chains.
 // visit_override: true forces an item in (off by default; no item has it yet). An item without us_cities is not treated as a chain.
@@ -4883,7 +5117,7 @@ function withCheckin(list, id, patch, nowIso){ // a new list with this place add
 }
 function withoutCheckin(list, id){ return list.filter(function(x){ return x.id !== id; }); }
 function beenRecently(id, todayKey, list){ var ck = checkinOf(id, list); return !!ck && isKey(ck.date) && dayDiff(ck.date, todayKey) <= RECENT_DAYS; }   // within the last 30 days (a future date counts too); no date = not recent
-function beenLabel(ck, todayKey){ return !isKey(ck.date) ? 'Been here' : 'Been \u00b7 ' + (ck.prec === 'month' ? monthText(ck.date.slice(0, 7), todayKey) : fmtDate(ck.date, todayKey)); }
+function beenLabel(ck, todayKey){ return !isKey(ck.date) ? tx('bb.been', 'Been here') : tx('bb.beenDot', 'Been \u00b7 {d}', {d:ck.prec === 'month' ? monthText(ck.date.slice(0, 7), todayKey) : fmtDate(ck.date, todayKey)}); }
 
 /* One line of facts: "Open till 10 pm · 12 min walk · $$" */
 function statusShort(c){ if (c.dayText) return c.d.text; return tenseText(statusShort0(c), planCtx(c.st.ms)); }   // v5.3: "On then" for a picked time
@@ -6685,7 +6919,7 @@ function renderHeader(res){
   if (UI.anyDay && !UI.today) k = 'Planning for ' + fmtDayDate(UI.anyDay, cparts(nowMs()).key) + ' · any time';   // v5.6
   else if (UI.planning && !UI.today) k = 'Planning for ' + fmtDayDate(p.key, cparts(nowMs()).key) + ' · ' + fmtTime(p.min);
   else {   // v5.9: Today shows the normal day line (not planning ahead)
-    k = DOW_LONG[p.wd] + ' · ' + fmtTime(p.min);
+    k = dowLongL(p.wd) + ' · ' + fmtTime(p.min);
     var sun = sunTimes(p.key);
     k += (res.T < sun.rise || res.T > sun.set) ? ' · dark out' : ' · light till ' + fmtClock(sun.set);
   }
@@ -6771,15 +7005,15 @@ function firstPhoto(it){ var a = Array.isArray(it.photos) ? it.photos : []; for 
 function thumbHTML(c, o){
   o = o || {};
   var it = c.item, g = c.genre || genreOf(it);
-  if (o.date && isKey(o.date)) { var dd = dayDiff(c.st.p.key, o.date); return '<div class="thumb date"><small>' + (dd > 10 ? MON_SHORT[+o.date.slice(5, 7) - 1] : DOW_SHORT[wdOfKey(o.date)]) + '</small><b>' + (+o.date.slice(8)) + '</b></div>'; }
+  if (o.date && isKey(o.date)) { var dd = dayDiff(c.st.p.key, o.date); return '<div class="thumb date"><small>' + (dd > 10 ? monShortL(+o.date.slice(5, 7) - 1) : dowShortL(wdOfKey(o.date))) + '</small><b>' + (+o.date.slice(8)) + '</b></div>'; }
   if (o.hollow) return '<div class="thumb hollow">' + kindSvg(g) + '</div>';
   var ph = firstPhoto(it);
   return '<div class="thumb">' + kindSvg(g) + (ph ? '<img src="' + esc(ph.file) + '" alt="" loading="lazy" data-fb="1">' : '') + '</div>';
 }
 function shortHood(h){ h = String(h || ''); return h.length > 34 ? h.split(/[\/(,]/)[0].trim() : h; }
 function phoneHTML(ph, telOk){ // number as selectable text + Copy; a tel: link only outside claude.ai / frames (Platform.telOk, tester M5)
-  var h = '<div class="callrow" data-stop="1"><span class="phone-num">' + esc(ph) + '</span><button class="mini-btn" type="button" data-copy="' + esc(ph) + '">' + glyphSvg('i-copy') + '<span>Copy</span></button>';
-  if (telOk) h += '<a class="mini-btn" href="tel:' + esc(telHref(ph)) + '">' + glyphSvg('i-phone') + '<span>Call</span></a>';
+  var h = '<div class="callrow" data-stop="1"><span class="phone-num">' + esc(ph) + '</span><button class="mini-btn" type="button" data-copy="' + esc(ph) + '">' + glyphSvg('i-copy') + '<span>' + esc(tx('dt.copy', 'Copy')) + '</span></button>';
+  if (telOk) h += '<a class="mini-btn" href="tel:' + esc(telHref(ph)) + '">' + glyphSvg('i-phone') + '<span>' + esc(i18L('dt.call', 'Call')) + '</span></a>';
   return h + '</div>';
 }
 function ribbonSentence(c){ var f = c.fit; var s = f.travel + ' minutes getting there, ' + f.there + ' minutes there' + (f.short ? ' (a quick stop)' : ''); if (f.wait) s += ', ' + f.wait + ' minutes waiting for it to open'; if (f.kind === 'fits' || f.kind === 'wait') s += ', ' + f.spare + ' minutes spare'; else if (f.kind === 'over') s += ', over by ' + f.over + ' minutes'; else if (f.kind === 'tight') s += ', but it closes after ' + f.get + ' minutes'; return s + ' (time you have: ' + fmtBudget(S.budget) + ').'; }
@@ -6800,19 +7034,19 @@ function ribbonHTML(c, big){ // door-to-door bar: on the detail screen only in v
 function trustLineText(it, p){ // rows show one amber line only for items that aren't fresh (layout spec 3.8)
   var tr = trustOf(it, p.key);
   if (tr.level === 'conflict') return 'Sources disagree · call first';
-  if (tr.level === 'unverified') return UI.quietTrust ? '' : 'Not confirmed yet';
+  if (tr.level === 'unverified') return UI.quietTrust ? '' : trStatus('Not confirmed yet');
   if (tr.level === 'stale') return 'Checked ' + fmtMonthDay(tr.checked) + ' · call first';
   if (tr.callFirst) return tr.short || 'Call first';
   return '';
 }
-function badgeHTML(b){ return b ? '<span class="until' + (b.hot ? ' hot' : '') + (b.muted ? ' muted' : '') + '">' + esc(b.t) + '</span>' : ''; }
+function badgeHTML(b){ return b ? '<span class="until' + (b.hot ? ' hot' : '') + (b.muted ? ' muted' : '') + '">' + esc(trStatus(b.t)) + '</span>' : ''; }
 function rowHTML(c, opt){
   opt = opt || {};
   var it = c.item, st = c.st, d = c.d, p = st.p, g = c.genre || genreOf(it), f = c.fit || {};
   var hollow = !!opt.hollow || st.key === 'season';
   var tags = '';
   if (is21(it)) tags += '<span class="tag">21+</span>';
-  if (it.booking === 'required') tags += '<span class="tag book">Book ahead</span>';
+  if (it.booking === 'required') tags += '<span class="tag book">' + esc(tx('tg.book', 'Book ahead')) + '</span>';
   tags += ohBadgeHTML(it, 'tag');   // v5.21 Only in Chicago / Rare find / Chicago classic
   tags += dealBadgeHTML(c);   // v5.13
   var lim = c.lim || limitedPhase(c, p);
@@ -6823,7 +7057,7 @@ function rowHTML(c, opt){
   else if (opt.kright) right = '<span>' + esc(opt.kright) + '</span>';
   var kick = (opt.kicker || right) ? '<p class="rk"><span>' + esc(opt.kicker || '') + '</span>' + (right || '<span></span>') + '</p>' : '';
   var h = '<p class="status ' + d.tone + '"><span class="st-t"><i class="dot"></i>' + esc(trStatus(d.text)) + (d.sub ? ' · ' + esc(trStatus(d.sub)) : '') + '</span></p>';   // v5.23: the sub line too
-  if (c.bucket === 'fits' && !st.open && st.opensAt && !c.anyDay) h += '<p class="evb">' + (UI.planning ? 'Opens ' + esc(fmtClock(st.opensAt)) : 'Opens in ' + esc(fmtDur(Math.max(1, Math.round((st.opensAt - st.ms) / 60000))))) + '</p>';
+  if (c.bucket === 'fits' && !st.open && st.opensAt && !c.anyDay) h += '<p class="evb">' + (UI.planning ? esc(tx('rw.opensAt', 'Opens {t}', {t:fmtClock(st.opensAt)})) : esc(tx('rw.opensIn', 'Opens in {d}', {d:fmtDurL(Math.max(1, Math.round((st.opensAt - st.ms) / 60000)))}))) + '</p>';
   var meta = [], ck = checkinOf(it.id), tsh = travelShort(c), prs = priceShort(it);   // v4: one plain line: where · how far · price (· Been)
   if (opt.fbeen) h = '<p class="meta"><span class="been">' + esc(opt.fbeen) + '</span>' + (opt.fstars ? ' · <span class="stars" aria-label="' + opt.fstars + ' of 5 stars">' + starsText(opt.fstars) + '</span>' : '') + '</p>';   // v5.11: a friend's visit; v5.19: "Visited" + their stars
   if (opt.been && ck) h = '<p class="meta"><span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' + (starsOf(ck.rating) ? ' · <span class="stars" aria-label="' + starsOf(ck.rating) + ' of 5 stars">' + starsText(ck.rating) + '</span>' : '') + '</p>';   // v5.18 stars
@@ -6878,7 +7112,7 @@ function bestRemoval(g, sub){ // "Remove Date (+3)": the applied filter whose re
 }
 function endnoteHTML(lead){
   var fr = freshness(), p = cparts(nowMs());
-  return '<p class="endnote">' + (lead ? esc(lead) + ' ' : '') + 'Distances are as the crow flies; travel times are rough.' + (fr.newest ? ' Newest check ' + esc(fmtDate(fr.newest, p.key)) + '.' : '') +
+  return '<p class="endnote">' + (lead ? esc(lead) + ' ' : '') + esc(tx('end.crow', 'Distances are as the crow flies; travel times are rough.')) + (fr.newest ? esc(tx('end.newest', ' Newest check {d}.', {d:fmtDate(fr.newest, p.key)})) : '') +
     ' <button class="linkbtn" type="button" data-act="tip">' + esc(i18L('end.tip', 'Send a tip')) + '</button> · <button class="linkbtn" type="button" data-act="about">' + esc(i18L('end.about', 'About')) + '</button></p>';
 }
 var ALL_CLOSED_MAX_OPEN = 2;   // "Almost everything is closed": nothing fits and at most 2 things are open at all
@@ -6899,17 +7133,17 @@ function homeListHTML(vm, more){
     h += '<div class="empty"><h3>Almost everything is closed ' + (UI.planning ? esc(planWhen(true)) : 'at ' + esc(fmtTime(p.min))) + '.</h3><p>' + esc(body) + '</p><div class="btns">' + btn + '</div></div>';
     return h + farSectionHTML(vm.far) + endnoteHTML('');
   }
-  h += '<h3 class="sec-h"><span>' + 'Best ' + esc(planWhen(true).replace(' at ', ' ')) + '</span><span>one per kind</span></h3><ul class="rows">';
-  vm.picks.forEach(function(pk){ h += rowHTML(pk.c, {kicker:genreName(pk.g) + (subName(pk.c.item, pk.g) ? ' · ' + subName(pk.c.item, pk.g) : ''), seeall: pk.n > 1 ? {g:pk.g, n:pk.n} : null, kright: pk.n > 1 ? '' : 'the only one'}); });
+  h += '<h3 class="sec-h"><span>' + esc(LANG === 'en' ? 'Best ' + planWhen(true).replace(' at ', ' ') : tx('hm.best', '', {w:UI.planning && isNum(UI.planAt) ? dayWordsL(planWhen(false)) : tx('hm.rightNow', '')})) + '</span><span>' + esc(tx('hm.onePer', 'one per kind')) + '</span></h3><ul class="rows">';
+  vm.picks.forEach(function(pk){ h += rowHTML(pk.c, {kicker:genreNameL(pk.g) + (subNameL(pk.c.item, pk.g) ? ' · ' + subNameL(pk.c.item, pk.g) : ''), seeall: pk.n > 1 ? {g:pk.g, n:pk.n} : null, kright: pk.n > 1 ? '' : tx('hm.only', 'the only one')}); });
   vm.empty.forEach(function(g){
     var e = emptyInfo(vm, g, more), btns = e.btns.slice();
-    if (!btns.length) btns.push({attr:'data-tile="' + g + '" data-rest="1"', label:'See ' + genreName(g)});
+    if (!btns.length) btns.push({attr:'data-tile="' + g + '" data-rest="1"', label:tx('hm.see', 'See {g}', {g:genreNameL(g)})});
     h += noneRowHTML(g, e.title, e.body, btns);
   });
   h += '</ul>';
   var onScreen = {}; vm.picks.forEach(function(pk){ onScreen[pk.c.item.id] = 1; });
   h += farSectionHTML(vm.far, onScreen);   // v5.6
-  return h + endnoteHTML('The best pick of each kind that’s ' + openWords() + (S.budgetOn ? ' and ' + doableWords() : '') + ' from ' + (S.loc ? locWordsNow() : 'your pin') + '. Tap a kind above to see all of them.');
+  return h + endnoteHTML(LANG !== 'en' ? tx('hm.lead', '', {o:tx('hm.openW', '', {w:openWhenL()}), x:S.loc ? locWordsNow() : tx('hm.yourPin', '')}) : 'The best pick of each kind that’s ' + openWords() + (S.budgetOn ? ' and ' + doableWords() : '') + ' from ' + (S.loc ? locWordsNow() : 'your pin') + '. Tap a kind above to see all of them.');
 }
 function farShown(list, skip){ // v5.6: up to FAR_SHOW (all of them after "Show N more"), without the ones already on screen
   skip = skip || {}; var l = (list || []).filter(function(c){ return !skip[c.item.id]; });
@@ -6917,8 +7151,8 @@ function farShown(list, skip){ // v5.6: up to FAR_SHOW (all of them after "Show 
 }
 function farSectionHTML(list, skip){
   var f = farShown(list, skip); if (!f.list.length) return '';
-  var h = '<h3 class="sec-h far-h"><span>Worth the drive</span><span>' + f.n + '</span></h3><ul class="rows far">' +
-    f.list.map(function(c){ return rowHTML(c, {kicker:genreShort(c.genre) + (c.beyond ? ' · past ' + fmtRadius(c.beyond) : '')}); }).join('') + '</ul>';
+  var h = '<h3 class="sec-h far-h"><span>' + esc(tx('hm.far', 'Worth the drive')) + '</span><span>' + f.n + '</span></h3><ul class="rows far">' +
+    f.list.map(function(c){ return rowHTML(c, {kicker:genreShortL(c.genre) + (c.beyond ? tx('hm.past', ' · past {r}', {r:fmtRadius(c.beyond)}) : '')}); }).join('') + '</ul>';
   if (f.more) h += '<button class="hm-btn" type="button" data-act="farmore">' + esc(i18L('more.n', 'Show {n} more').replace('{n}', f.more)) + '</button>';
   return h;
 }
@@ -6981,7 +7215,7 @@ function limitedListHTML(vm){
     h += '<h3 class="sec-h"><span>Open ' + esc(planWhen(false)) + '</span><span>ends soonest first</span></h3>';   // v5.1 (tester M1): open now first, running-but-shut apart
     // v5.3: when nothing limited is open, one tap turns Limited off and shows everything open in the picked kinds
     var allN = vm.gs && vm.gs.length ? vm.gs.reduce(function(a, g){ return a + (vm.byGenre[g] || []).length; }, 0) : vm.main.length;
-    var offBtn = allN ? '<div class="btns">' + actBtn({attr:'data-rm="lim"', label:(vm.gs && vm.gs.length ? 'All ' + genreShort(vm.gs.join('+')) : 'Everything') + ' open (' + allN + ')'}) + '</div>' : '';
+    var offBtn = allN ? '<div class="btns">' + actBtn({attr:'data-rm="lim"', label:LANG === 'en' ? (vm.gs && vm.gs.length ? 'All ' + genreShort(vm.gs.join('+')) : 'Everything') + ' open (' + allN + ')' : vm.gs && vm.gs.length ? tx('hm.allOpen', '', {g:genreNameL(vm.gs.join('+')), n:allN}) : tx('hm.allOpen0', '', {n:allN})}) + '</div>' : '';
     if (opn.length) h += '<ul class="rows">' + opn.map(limRow).join('') + '</ul>';
     else if (shut.length) h += '<p class="crow" style="padding-top:8px">Nothing limited' + (vm.gs && vm.gs.length ? ' in ' + esc(genreShort(vm.gs.join('+'))) : '') + ' is open ' + esc(planWhen(true)) + '.</p>' + offBtn;
     else h += '<div class="empty"><h4>Nothing limited' + (vm.gs && vm.gs.length ? ' in ' + esc(genreShort(vm.gs.join('+'))) : '') + ' is on ' + esc(planWhen(true).replace(/^on /, '')) + '.</h4><p>' + (vm.soon.length ? 'The next one starts ' + esc(fmtDayDate(startKeyOf(vm.soon[0]), p.key)) + '.' : 'Nothing new is listed yet.') + '</p>' + offBtn + '</div>';
@@ -7193,7 +7427,7 @@ function radarPick(list){ // photo only; most popular first, then sooner, then n
 }
 function radarLabel(x, todayKey){ // "Tomorrow" · "Friday" · "Fri, Nov 27"; a single-day event with a start time adds " · 7 pm"
   var k = x.key, dd = dayDiff(todayKey, k), wd = wdOfKey(k);
-  var t = dd <= 1 ? 'Tomorrow' : dd <= 6 ? DOW_LONG[wd] : DOW_SHORT[wd] + ', ' + fmtMonthDay(k);
+  var t = dd <= 1 ? tx('w.tomorrow', 'Tomorrow') : dd <= 6 ? dowLongL(wd) : LANG === 'en' ? DOW_SHORT[wd] + ', ' + fmtMonthDay(k) : fmtDayDate(k, k);
   var c = x.c, st = c.st || {}, ev = st.ev;
   if (c.item.kind === 'event' && ev && ev.lastKey === k && isNum(st.opensAt)) { var q = cparts(st.opensAt); if (q.key === k && q.min > 0) t += ' · ' + fmtTime(q.min); }
   return t;
@@ -7202,7 +7436,7 @@ function radarHTML(list){
   if (!list.length) return '';
   var shown = radarPick(list); if (!shown.length) return '';
   var today = cparts(nowMs()).key;
-  return '<section class="hm-sec radar-s"><div class="rs-h"><h2>Opening soon</h2>' + (list.length > RADAR_MAX ? '<button class="rs-all" type="button" data-act="soonall">All ' + list.length + glyphSvg('i-right') + '</button>' : '') + '</div><ul class="radar2">' + shown.map(function(x){
+  return '<section class="hm-sec radar-s"><div class="rs-h"><h2>' + esc(tx('rest.opening', 'Opening soon')) + '</h2>' + (list.length > RADAR_MAX ? '<button class="rs-all" type="button" data-act="soonall">' + esc(tx('rd.all', 'All {n}', {n:list.length})) + glyphSvg('i-right') + '</button>' : '') + '</div><ul class="radar2">' + shown.map(function(x){
     return '<li><button type="button" data-open="' + esc(x.c.item.id) + '" style="--c:' + genreColor(x.c.genre || genreOf(x.c.item)) + '">' + thumbHTML(x.c) + '<span class="tx"><span class="dl">' + esc(radarLabel(x, today)) + '</span><span class="nm">' + esc(shortName(x.c.item)) + '</span></span></button></li>';
   }).join('') + '</ul></section>';
 }
@@ -7210,7 +7444,7 @@ function soonListHTML(){ // "All N ›": every Opening-soon item, by date, the u
   var T = evalTime(), F = ext(appDefaultFilters(), {radius:S.f.radius, mode:S.f.mode}), res = runPipeline(DATA, T, ctxNow(), F), today = cparts(nowMs());
   var list = radarList(res.all.concat(res.beyond || []), today);
   list.forEach(function(x){ annotate(x.c, res.p); });
-  var h = '<div class="guide-h"><h3>Opening soon</h3><button class="mini-btn" type="button" data-guide-x="1" aria-label="Close Opening soon">' + glyphSvg('i-close') + '</button><p>' + list.length + ' coming up in the next ' + RADAR_DAYS + ' days.</p></div>';
+  var h = '<div class="guide-h"><h3>' + esc(tx('rest.opening', 'Opening soon')) + '</h3><button class="mini-btn" type="button" data-guide-x="1" aria-label="Close Opening soon">' + glyphSvg('i-close') + '</button><p>' + list.length + ' coming up in the next ' + RADAR_DAYS + ' days.</p></div>';
   h += list.length ? '<ul class="rows">' + list.map(function(x){ return rowHTML(x.c, {kicker:radarLabel(x, today.key)}); }).join('') + '</ul>' : '<div class="empty"><h4>Nothing opening in the next ' + RADAR_DAYS + ' days.</h4></div>';
   return h + endnoteHTML('');
 }
@@ -7350,7 +7584,7 @@ function gaResolve(g, find){ // -> {g, fmt, rows:[{it, why|blurb, timing, unit, 
     (Array.isArray(g.steps) ? g.steps : []).filter(Boolean).forEach(function(s){ var it = find(s.activity_id); if (it) rows.push({it:it, why:String(s.why || ''), timing:String(s.timing || ''), source:s.source || ''}); });
     if (rows.filter(function(r){ return !(r.it.verified && r.it.verified.status === 'closed'); }).length < GA_PLAN_MIN) return null;
   }
-  return {g:g, fmt:fmt, rows:rows, n:rows.length, title:gaFillN(g.title, rows.length), dates:gaDates(g)};
+  return gaLocalize({g:g, fmt:fmt, rows:rows, n:rows.length, title:gaFillN(g.title, rows.length), dates:gaDates(g)});   // v5.28: the guide text in the picked language when translated
 }
 function gaResolveId(id){ if (id === 'day-plan') return DATA_LOADED && GA.day && GA.day.length >= 2 ? gaResolve(itinGuide(GA.day), function(pid){ var s = ID_SID[pid]; return s ? SID_INDEX[s] : null; }) : null;   // v5.27: a shared trip day (#dayplan=)
   if (!DATA_LOADED || !GA.loaded) return null; for (var i = 0; i < GA.all.length; i++) if (GA.all[i].id === id) return gaResolve(GA.all[i]); return null; }
@@ -7380,7 +7614,7 @@ function gaHop(a, b, mode){ // pure: stop-to-stop time; a walk under 1.2 mi, els
   var mi = distMi(a.lat, a.lng, b.lat, b.lng), t = travel(mi, mi < GA_WALK_MI ? 'walk' : (mode === 'walk' ? 'car' : mode || 'car'));
   return {min:t.min, how:t.how, text:t.min + ' min ' + (t.how === 'walk' ? 'walk' : t.how === 'CTA' ? 'by CTA' : driveWord())};
 }
-function gaLabel(i, n){ return i === 0 ? 'Start with' : i === n - 1 ? 'End at' : 'Then'; }
+function gaLabel(i, n){ return i === 0 ? tx('gd.start', 'Start with') : i === n - 1 ? tx('gd.end', 'End at') : tx('gd.then', 'Then'); }
 function gaCover(R){ // -> [file] (1 for a plan / a list with cover_photo_id, up to 3 for a list mosaic)
   var cid = R.g.cover_photo_id, f = '';
   if (cid) { var pi = gaPhotoIndex(); f = pi[cid] || (findItem(cid) && gaPhotos(findItem(cid))[0]) || ''; }
@@ -7397,15 +7631,15 @@ function gaHomeList(todayKey){ // the Home row: date-bound lists in their window
   dated.sort(function(a, b){ return a.dates[0] < b.dates[0] ? -1 : a.dates[0] > b.dates[0] ? 1 : 0; });
   return dated.concat(rest, late).slice(0, GA_ROW_MAX);
 }
-function gaPill(R){ return R.fmt === 'list' ? GA_IC.list + 'Top ' + R.n : GA_IC.route + R.n + ' stops'; }
-function gaSub(R){ return String((R.fmt === 'list' ? R.g.theme : R.g.when) || ''); }
+function gaPill(R){ return R.fmt === 'list' ? GA_IC.list + esc(tx('gd.top', 'Top {n}', {n:R.n})) : GA_IC.route + esc(tx('gd.stops', '{n} stops', {n:R.n})); }
+function gaSub(R){ return String(R.sub || (R.fmt === 'list' ? R.g.theme : R.g.when) || ''); }
 function gaCoverHTML(R, cls){
   var fs = gaCover(R), g0 = R.rows[0] ? genreOf(R.rows[0].it) : '', mos = R.fmt === 'list' && fs.length === 3 && !R.g.cover_photo_id;
   return '<div class="' + cls + (mos ? ' mosaic' : '') + '" style="--c:' + genreColor(g0) + '"><span class="gfb" aria-hidden="true">' + kindSvg(g0) + '</span>' + (mos ? fs : fs.slice(0, 1)).map(function(f){ return '<img src="' + esc(f) + '" alt="" data-fb="1"' + (cls === 'gcover' ? ' loading="lazy"' : '') + '>'; }).join('') + '</div>';
 }
 function guidesHTML(){ // v5.18: Home "Guides" = a swipeable row of cover cards (Plans: 1 photo + "4 stops"; Lists: 3-photo mosaic + "Top 10")
   var list = gaHomeList(cparts(nowMs()).key); if (!list.length) return '';
-  return '<section class="hm-sec ga-s"><div class="rs-h"><h2>Guides</h2><div class="ga-arrows"><button class="ga-arr" type="button" data-ga="prev" aria-label="Previous guides" disabled>' + GA_IC.prev + '</button><button class="ga-arr" type="button" data-ga="next" aria-label="Next guides">' + GA_IC.chev + '</button></div></div>' +
+  return '<section class="hm-sec ga-s"><div class="rs-h"><h2>' + esc(tx('gd.title', 'Guides')) + '</h2><div class="ga-arrows"><button class="ga-arr" type="button" data-ga="prev" aria-label="' + esc(tx('gd.prev', 'Previous guides')) + '" disabled>' + GA_IC.prev + '</button><button class="ga-arr" type="button" data-ga="next" aria-label="' + esc(tx('gd.nextA', 'Next guides')) + '">' + GA_IC.chev + '</button></div></div>' +
     '<div class="grow" role="list">' + list.map(function(R){
       return '<a class="gcard" role="listitem" href="#guide=' + esc(R.g.id) + '" data-ga-open="' + esc(R.g.id) + '" aria-label="' + esc(R.title + ', ' + gaSub(R) + ', ' + (R.fmt === 'list' ? 'top ' + R.n : R.n + ' stops')) + '">' + gaCoverHTML(R, 'gcover').replace('</div>', '<span class="gpill">' + gaPill(R) + '</span></div>') +
         '<h3>' + esc(R.title) + '</h3><p class="gwhen">' + esc(gaSub(R)) + '</p></a>';
@@ -7423,40 +7657,40 @@ function gaArticleHTML(R){
   var g = R.g, list = R.fmt === 'list', wide = isWide(), sts = R.rows.map(function(r){ return gaStatus(r.it, R); }), cov = gaCover(R), h = '';
   h += '<div class="ga-top"><button class="ga-circ" type="button" data-ga="back" aria-label="Back">' + GA_IC.back + '</button><span class="grp">' + (wide ? '' : '<button class="ga-circ" type="button" data-ga="map" aria-label="Show on the map">' + GA_IC.map + '</button>') + '<button class="ga-circ" type="button" data-ga="share" aria-label="Share this guide">' + GA_IC.share + '</button></span></div>';
   h += gaCoverHTML(R, 'ga-hero');
-  h += '<div class="ga-body">' + (list ? '<span class="ga-kick">Top ' + R.n + '</span>' : '') + '<h1 id="gaTitle" tabindex="-1">' + esc(R.title) + '</h1>';
+  h += '<div class="ga-body">' + (list ? '<span class="ga-kick">' + esc(tx('gd.top', 'Top {n}', {n:R.n})) + '</span>' : '') + '<h1 id="gaTitle" tabindex="-1">' + esc(R.title) + '</h1>';
   var sub = gaSub(R); if (sub) h += '<p class="ga-when">' + (list ? (R.dates.length ? GA_IC.cal : GA_IC.moon) : GA_IC.clock) + esc(sub) + '</p>';
-  if (g.intro) h += '<p class="ga-intro">' + esc(g.intro) + '</p>';
+  if (g.intro) h += '<p class="ga-intro">' + esc(R.intro || g.intro) + '</p>';
   if (list) {
-    var nOpen = sts.filter(function(s){ return s.open; }).length, when = R.dates.length ? 'open ' + fmtDayDate(R.dates[0], cparts(nowMs()).key) : (UI.planning || UI.anyDay ? 'open then' : 'open now');
-    h += '<p class="ga-sum' + (nOpen ? '' : ' none') + '"><i class="dot"></i>' + esc((nOpen === R.n ? 'All ' + R.n : nOpen ? nOpen + ' of ' + R.n : 'None') + ' ' + when) + '</p>';
+    var nOpen = sts.filter(function(s){ return s.open; }).length, when = R.dates.length ? tx('gd.openOn', 'open {d}', {d:fmtDayDate(R.dates[0], cparts(nowMs()).key)}) : (UI.planning || UI.anyDay ? tx('gd.openThen', 'open then') : tx('gd.openNow', 'open now'));
+    h += '<p class="ga-sum' + (nOpen ? '' : ' none') + '"><i class="dot"></i>' + esc(nOpen === R.n ? tx('gd.all', 'All {n} {w}', {n:R.n, w:when}) : nOpen ? tx('gd.some', '{a} of {n} {w}', {a:nOpen, n:R.n, w:when}) : tx('gd.none', 'None {w}', {w:when})) + '</p>';
     h += '<ol class="ga-list">' + R.rows.map(function(r, i){
-      var it = r.it, s = sts[i], ph = gaPhotos(it)[0], sv = isSaved(it.id), nm = shortName(it), meta = [gaNb(it), gaPriceText(it, r.unit)].filter(Boolean);
+      var it = r.it, s = sts[i], ph = gaPhotos(it)[0], sv = isSaved(it.id), nm = shortName(it), meta = [gaNb(it), trStatus(gaPriceText(it, r.unit))].filter(Boolean);
       return '<li class="le' + (s.key === 'season' ? ' sea' : '') + '" data-gi="' + i + '" style="--c:' + genreColor(genreOf(it)) + '"><div class="lph"><span class="gfb" aria-hidden="true">' + kindSvg(genreOf(it)) + '</span>' + (ph ? '<img src="' + esc(ph) + '" alt="' + esc(nm) + '" loading="lazy" data-fb="1">' : '') + '</div>' +
         '<button class="ga-psave" type="button" data-ga-save="' + esc(it.id) + '" aria-pressed="' + sv + '" aria-label="' + (sv ? 'Saved: ' : 'Save ') + esc(nm) + '">' + GA_IC.mark + '</button>' +
         '<a class="le-link" href="#' + esc(it.id) + '" data-ga-place="' + esc(it.id) + '" aria-label="' + (i + 1) + '. ' + esc(nm) + '"><span class="lhead"><span class="rank" aria-hidden="true">' + (i + 1) + '</span><span><span class="lname">' + esc(nm) + '</span>' +
         '<span class="lmeta">' + meta.map(function(m){ return '<span>' + esc(m) + '</span>'; }).join('<span class="sep">·</span>') + (is21(it) ? (meta.length ? '<span class="sep">·</span>' : '') + '<span class="age">21+</span>' : '') + '</span></span></span>' +
-        (r.blurb ? '<span class="blurb">' + esc(r.blurb) + '</span>' : '') + '<span class="lstat"><span class="s ' + esc(s.tone) + '"><i class="dot"></i>' + esc(s.text) + '</span>' + GA_IC.chev + '</span></a></li>';
+        (r.blurb ? '<span class="blurb">' + esc(r.blurb) + '</span>' : '') + '<span class="lstat"><span class="s ' + esc(s.tone) + '"><i class="dot"></i>' + esc(trStatus(s.text)) + '</span>' + GA_IC.chev + '</span></a></li>';
     }).join('') + '</ol>';
   } else {
     var live = R.rows.filter(function(r){ return !(r.it.verified && r.it.verified.status === 'closed'); }).length, k = 0;
     h += '<ol class="ga-steps">' + R.rows.map(function(r, i){
       var it = r.it, s = sts[i], gone = s.key === 'gone', idx = gone ? -1 : k++, ps = gaPhotos(it), ph = ps[0] === cov[0] ? ps[1] : ps[0], nx = R.rows[i + 1], hop = nx ? gaHop(it, nx.it, S.f.mode) : null;
       return '<li class="gst' + (gone ? ' gone' : '') + (nx ? '' : ' last') + '" data-gi="' + i + '" style="--c:' + genreColor(genreOf(it)) + '"><span class="rail"><b>' + (i + 1) + '</b></span><div class="gsc">' +
-        '<p class="glab">' + (gone ? 'Skip this one' : gaLabel(idx, live)) + '</p>' + (ph ? '<div class="gph"><img src="' + esc(ph) + '" alt="' + esc(shortName(it)) + '" loading="lazy" data-fb="1"></div>' : '') +
+        '<p class="glab">' + (gone ? tx('gd.skip', 'Skip this one') : gaLabel(idx, live)) + '</p>' + (ph ? '<div class="gph"><img src="' + esc(ph) + '" alt="' + esc(shortName(it)) + '" loading="lazy" data-fb="1"></div>' : '') +
         '<h3>' + esc(it.name) + (is21(it) ? ' <span class="age">21+</span>' : '') + '</h3>' + (r.why ? '<p class="gwhy">' + esc(r.why) + '</p>' : '') +
-        '<p class="gmeta">' + (r.timing ? '<span class="gtime">' + esc(r.timing) + '</span>' : '') + '<span class="s ' + esc(s.tone) + '"><i class="dot"></i>' + esc(s.text) + '</span></p>' +
-        (gone ? '' : '<button class="ga-see" type="button" data-ga-place="' + esc(it.id) + '">See place' + GA_IC.chev + '</button>') +
-        (hop ? '<p class="ghop">' + (hop.how === 'walk' ? GA_IC.walk : GA_IC.car) + esc(hop.text) + '</p>' : '') + '</div></li>';
+        '<p class="gmeta">' + (r.timing ? '<span class="gtime">' + esc(r.timing) + '</span>' : '') + '<span class="s ' + esc(s.tone) + '"><i class="dot"></i>' + esc(trStatus(s.text)) + '</span></p>' +
+        (gone ? '' : '<button class="ga-see" type="button" data-ga-place="' + esc(it.id) + '">' + esc(tx('gd.see', 'See place')) + GA_IC.chev + '</button>') +
+        (hop ? '<p class="ghop">' + (hop.how === 'walk' ? GA_IC.walk : GA_IC.car) + esc(trStatus(hop.text)) + '</p>' : '') + '</div></li>';
     }).join('') + '</ol>';
   }
   var on = gaIsSaved(g.id), oldest = '';
   R.rows.forEach(function(r){ var d = r.it.verified && (r.it.verified.checked_on || r.it.verified.date); if (isKey(d) && (!oldest || d < oldest)) oldest = d; });
-  if (g.virtual) h += '<div class="ga-end"><div class="rowb"><button class="ga-quiet" type="button" data-ga="share">' + GA_IC.share + 'Share</button></div>';   // v5.27: a shared trip day is not saved as a guide
-  else h += '<div class="ga-end"><div class="rowb"><button class="ga-main' + (on ? ' on' : '') + '" type="button" data-ga="save" aria-pressed="' + on + '">' + (on ? GA_IC.check + 'Saved' : GA_IC.mark + (list ? 'Save this list' : 'Save this plan')) + '</button><button class="ga-quiet" type="button" data-ga="share">' + GA_IC.share + 'Share</button></div>';
-  if (oldest) h += '<p class="ga-trust">Hours checked ' + esc(fmtMonthDay(oldest)) + '.</p>';
+  if (g.virtual) h += '<div class="ga-end"><div class="rowb"><button class="ga-quiet" type="button" data-ga="share">' + GA_IC.share + esc(i18L('dt.share', 'Share')) + '</button></div>';   // v5.27: a shared trip day is not saved as a guide
+  else h += '<div class="ga-end"><div class="rowb"><button class="ga-main' + (on ? ' on' : '') + '" type="button" data-ga="save" aria-pressed="' + on + '">' + (on ? GA_IC.check + esc(tx('gd.saved', 'Saved')) : GA_IC.mark + esc(list ? tx('gd.saveList', 'Save this list') : tx('gd.savePlan', 'Save this plan'))) + '</button><button class="ga-quiet" type="button" data-ga="share">' + GA_IC.share + esc(i18L('dt.share', 'Share')) + '</button></div>';
+  if (oldest) h += '<p class="ga-trust">' + esc(tx('gd.checked', 'Hours checked {d}.', {d:fmtMonthDay(oldest)})) + '</p>';
   var all = gaHomeList(cparts(nowMs()).key), at = -1; all.forEach(function(x, i){ if (x.g.id === g.id) at = i; });
   var nxt = all.length > 1 ? all[(at + 1) % all.length] : null;
-  if (nxt && nxt.g.id !== g.id) h += '<div class="ga-next"><p class="lbl">Next guide</p><button type="button" class="nrow" data-ga-next="' + esc(nxt.g.id) + '">' + gaCoverHTML(nxt, 'ncover') + '<span><b>' + esc(nxt.title) + '</b><span>' + esc(gaSub(nxt)) + '</span></span></button></div>';
+  if (nxt && nxt.g.id !== g.id) h += '<div class="ga-next"><p class="lbl">' + esc(tx('gd.next', 'Next guide')) + '</p><button type="button" class="nrow" data-ga-next="' + esc(nxt.g.id) + '">' + gaCoverHTML(nxt, 'ncover') + '<span><b>' + esc(nxt.title) + '</b><span>' + esc(gaSub(nxt)) + '</span></span></button></div>';
   return h + '</div><div class="ga-pad"></div></div>';
 }
 function gaRender(keep){
@@ -7767,18 +8001,18 @@ function editCheckin(id, patch){ if (!checkinOf(id)) return; CHECKINS = withChec
 function removeCheckin(id){ CHECKINS = withoutCheckin(CHECKINS, id); CK_GONE[id] = new Date().toISOString(); Platform.store.set(CKGONE_KEY, CK_GONE); Acct.dirtyC[id] = 1; afterCheckinChange(); }   // v5.11: remembered as removed, so another device can't bring it back
 function beenBoxHTML(ck, todayKey){ // v5.18: thumbs (optional), then when: a day, a month (Month + Year), or "I don't remember"
   var pr = ck.prec === 'none' ? 'none' : ck.prec === 'month' ? 'month' : 'day', d = isKey(ck.date) ? ck.date : '';
-  var inp = pr === 'day' ? '<label class="vh" for="beenDate">The day you went</label><input id="beenDate" type="date" max="' + esc(todayKey) + '" value="' + esc(d) + '">'
-    : pr === 'month' ? '<label class="vh" for="beenMonth">The month you went</label><input id="beenMonth" type="month" max="' + esc(todayKey.slice(0, 7)) + '" value="' + esc(d.slice(0, 7)) + '">' : '';
-  return '<div class="been-box"><div class="bb-r1"><span class="bb-l">' + glyphSvg('i-check') + 'Been here</span>' +
-    '<span class="bb-stars" role="group" aria-label="How was it? (optional)">' + [1, 2, 3, 4, 5].map(function(n){ var s = starsOf(ck.rating); return '<button class="starbtn' + (n <= s ? ' on' : '') + '" type="button" data-been="s-' + n + '" aria-pressed="' + (n === s) + '" aria-label="' + n + (n === 1 ? ' star' : ' stars') + '">' + (n <= s ? '★' : '☆') + '</button>'; }).join('') + '</span>' +
-    '<button class="linkbtn" type="button" data-been="remove">Remove</button></div>' +
+  var inp = pr === 'day' ? '<label class="vh" for="beenDate">' + esc(tx('bb.dayWent', 'The day you went')) + '</label><input id="beenDate" type="date" max="' + esc(todayKey) + '" value="' + esc(d) + '">'
+    : pr === 'month' ? '<label class="vh" for="beenMonth">' + esc(tx('bb.monthWent', 'The month you went')) + '</label><input id="beenMonth" type="month" max="' + esc(todayKey.slice(0, 7)) + '" value="' + esc(d.slice(0, 7)) + '">' : '';
+  return '<div class="been-box"><div class="bb-r1"><span class="bb-l">' + glyphSvg('i-check') + esc(tx('bb.been', 'Been here')) + '</span>' +
+    '<span class="bb-stars" role="group" aria-label="' + esc(tx('bb.how', 'How was it? (optional)')) + '">' + [1, 2, 3, 4, 5].map(function(n){ var s = starsOf(ck.rating); return '<button class="starbtn' + (n <= s ? ' on' : '') + '" type="button" data-been="s-' + n + '" aria-pressed="' + (n === s) + '" aria-label="' + esc(stars28(n)) + '">' + (n <= s ? '★' : '☆') + '</button>'; }).join('') + '</span>' +
+    '<button class="linkbtn" type="button" data-been="remove">' + esc(tx('bb.remove', 'Remove')) + '</button></div>' +
     beenReviewHTML(ck) +   // v5.19: the optional one-line review, under the stars
-    '<div class="bb-r2"><span class="seg bb-seg" role="group" aria-label="When did you go?">' + [['day', 'Day'], ['month', 'Month'], ['none', 'Don’t remember']].map(function(x){ return '<button type="button" data-been="p-' + x[0] + '" aria-pressed="' + (pr === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</span>' + inp + '</div></div>';
+    '<div class="bb-r2"><span class="seg bb-seg" role="group" aria-label="' + esc(tx('bb.when', 'When did you go?')) + '">' + [['day', tx('bb.day', 'Day')], ['month', tx('bb.month', 'Month')], ['none', tx('bb.dontRemember', 'Don’t remember')]].map(function(x){ return '<button type="button" data-been="p-' + x[0] + '" aria-pressed="' + (pr === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</span>' + inp + '</div></div>';
 }
 function beenReviewHTML(ck){ // v5.19: <= 140 characters; friends see it without your name (friend_reviews in supabase/blend.sql)
-  var note = 'Friends who you share check-ins with can see your stars and review. Your review shows without your name.';
-  if (acctSignedIn() && Acct.noReview) note += ' For now your review stays on this phone.';
-  return '<div class="bb-r3"><label class="vh" for="beenReview">One line about it (optional)</label><input id="beenReview" type="text" maxlength="' + REVIEW_MAX + '" enterkeyhint="done" autocomplete="off" placeholder="One line about it (optional)" value="' + esc(ck.review || '') + '"><p class="bb-note">' + esc(note) + '</p></div>';
+  var note = tx('bb.note', 'Friends who you share check-ins with can see your stars and review. Your review shows without your name.');
+  if (acctSignedIn() && Acct.noReview) note += tx('bb.noteLocal', ' For now your review stays on this phone.');
+  return '<div class="bb-r3"><label class="vh" for="beenReview">' + esc(tx('bb.line', 'One line about it (optional)')) + '</label><input id="beenReview" type="text" maxlength="' + REVIEW_MAX + '" enterkeyhint="done" autocomplete="off" placeholder="' + esc(tx('bb.line', 'One line about it (optional)')) + '" value="' + esc(ck.review || '') + '"><p class="bb-note">' + esc(note) + '</p></div>';
 }
 function beenPrecPatch(ck, prec, todayKey){ // pure: switching how exact the visit date is -> the patch for editCheckin
   var d = ck && isKey(ck.date) ? ck.date : todayKey;
@@ -7922,8 +8156,8 @@ function wlInitials(friends){ // key -> "M"; two friends with the same first let
 }
 function wlWantsText(fs){
   var n = fs.length; if (!n) return '';
-  if (n === 1) return fs[0].name + ' wants this too';
-  if (n === 2) return fs[0].name + ' and ' + fs[1].name + ' want this too';
+  if (n === 1) return tx('fw.one', '{a} wants this too', {a:fs[0].name});
+  if (n === 2) return tx('fw.two', '{a} and {b} want this too', {a:fs[0].name, b:fs[1].name});
   return fs[0].name + ', ' + fs[1].name + ' +' + (n - 2) + ' want this too';
 }
 function wlRank(c){ return c.st.open ? 0 : c.st.key === 'later' ? 1 : c.st.key === 'season' ? 2 : 3; }   // the same order as Saved: open, later today, out of season, the rest
@@ -8199,7 +8433,7 @@ function chicagoDayOf(iso){ var t = tsOf(iso); return t ? cparts(t).key : ''; }
 function offlineText(lastIso){ var k = chicagoDayOf(lastIso); return 'Offline' + (k ? ' · last synced ' + fmtMonthDay(k) : ''); }
 /* ----- pure: month only (what friends see of a check-in) ----- */
 function monthOnly(dateKey){ return isKey(dateKey) ? dateKey.slice(0, 7) : (/^\d{4}-\d{2}$/.test(String(dateKey || '')) ? String(dateKey) : ''); }
-function monthText(ym, todayKey){ var m = /^(\d{4})-(\d{2})/.exec(String(ym || '')); if (!m || +m[2] < 1 || +m[2] > 12) return ''; var s = MON_SHORT[+m[2] - 1]; if (!todayKey || String(todayKey).slice(0, 4) !== m[1]) s += ' ' + m[1]; return s; }
+function monthText(ym, todayKey){ var m = /^(\d{4})-(\d{2})/.exec(String(ym || '')); if (!m || +m[2] < 1 || +m[2] > 12) return ''; var s = monShortL(+m[2] - 1); if (!todayKey || String(todayKey).slice(0, 4) !== m[1]) s += ' ' + m[1]; return s; }
 function friendBeenLabel(ym, todayKey){ var t = monthText(monthOnly(ym), todayKey); return t ? 'Been · ' + t : ''; }
 /* ----- pure: merging this phone with the account (last edit wins per item) ----- */
 function metaWith(meta, id, on, iso){ var o = ext(meta || {}, {}); o[id] = {on:!!on, at:String(iso || '')}; return o; }
@@ -8596,17 +8830,17 @@ function syncState(now){ // -> 'running' | 'fail' | 'ok' | 'never'. "running" on
 function syncAgoText(iso, now){
   var t = tsOf(iso); if (!t) return '';
   var s = Math.max(0, Math.round(((now || Date.now()) - t) / 1000));
-  if (s < 60) return 'just now';
-  if (s < 3600) return Math.floor(s / 60) + ' min ago';
+  if (s < 60) return tx('sy.justNow', 'just now');
+  if (s < 3600) return tx('sy.minAgo', '{n} min ago', {n:Math.floor(s / 60)});
   var a = cparts(t), b = cparts(now || Date.now());
   return a.key === b.key ? fmtTime(a.min) : fmtMonthDay(a.key);
 }
 function syncLineModel(now, online){ // pure-ish -> {st, text, tap} ; tap = the underlined action ('' = none)
   var st = syncState(now), off = online === false || (online === undefined && typeof navigator !== 'undefined' && navigator.onLine === false);
-  if (st === 'running') return {st:st, text:'Syncing', tap:''};
-  if (st === 'fail') return {st:st, text:off ? 'Offline' : 'Can\'t sync', tap:'Tap to retry'};
-  if (st === 'ok') return {st:st, text:'Synced ' + syncAgoText(Acct.lastSync, now), tap:''};
-  return {st:st, text:'Not synced yet', tap:'Tap to sync'};
+  if (st === 'running') return {st:st, text:tx('sy.syncing', 'Syncing'), tap:''};
+  if (st === 'fail') return {st:st, text:off ? tx('sy.offline', 'Offline') : LANG === 'en' ? 'Can\'t sync' : tx('sy.cant', ''), tap:tx('sy.retry', 'Tap to retry')};
+  if (st === 'ok') return {st:st, text:tx('sy.synced', 'Synced {t}', {t:syncAgoText(Acct.lastSync, now)}), tap:''};
+  return {st:st, text:tx('sy.not', 'Not synced yet'), tap:tx('sy.tap', 'Tap to sync')};
 }
 function syncLineHTML(now, online){
   var m = syncLineModel(now, online), inner = '<span class="dot" aria-hidden="true"></span>' + esc(m.text) + (m.tap ? ' · <u>' + esc(m.tap) + '</u>' : '');
@@ -9390,7 +9624,7 @@ function friendRatingFor(it){ // -> {n, avg, reviews:[{stars, review}]} | null
   if (!sv && !rv.length) return null;
   return {n:sv ? sv.n : 0, avg:sv ? sv.avg : 0, reviews:rv};
 }
-function friendAvgText(r){ if (!r || !r.n) return ''; return '★ ' + (Math.round(r.avg * 10) / 10).toFixed(1).replace(/\.0$/, '') + ' · ' + r.n + (r.n === 1 ? ' friend' : ' friends'); }   // "★ 4.3 · 3 friends"; never a name
+function friendAvgText(r){ if (!r || !r.n) return ''; return '★ ' + (Math.round(r.avg * 10) / 10).toFixed(1).replace(/\.0$/, '') + ' · ' + tx(r.n === 1 ? 'fr.n1' : 'fr.n', r.n + (r.n === 1 ? ' friend' : ' friends'), {n:r.n}); }   // "★ 4.3 · 3 friends"; never a name
 function friendAvgLine(it, cls){ var t = friendAvgText(friendRatingFor(it)); return t ? '<p class="' + cls + '">' + esc(t) + '</p>' : ''; }
 function friendSayHTML(it){ // the place page: the average, then "What friends say" (anonymous quotes)
   var r = friendRatingFor(it); if (!r) return '';
@@ -10708,7 +10942,7 @@ function fmt24Ranges(s){
   return String(s === null || s === undefined ? '' : s).replace(/\b([01]?\d|2[0-4]):([0-5]\d)\s*(?:-|–|—|to)\s*([01]?\d|2[0-4]):([0-5]\d)\b(?!\s*(?:am|pm|a\.m|p\.m))/gi, function(m, h1, m1, h2, m2){
     var a = +h1 * 60 + +m1, b = +h2 * 60 + +m2; if (a > 1440 || b > 1440) return m;
     if (b < a && +h1 <= 12 && +h2 >= 1 && +h2 <= 12) b += 720;   // v5.21 (tester v5.20 M1): "9:30-5:30" / "12:00-4:00" are 12-hour times: the end is pm
-    return fmtTime(a) + ' – ' + (b === 1440 ? 'midnight' : fmtTime(b));
+    return fmtTime(a) + ' – ' + fmtEndTime(b);
   });
 }
 function hlIcon(t){
@@ -10753,6 +10987,7 @@ function leaveBy(c){
 function leaveSentence(c){ return tenseText(leaveSentence0(c), planCtx(c.st.ms)); }   // v5.3
 function leaveSentence0(c){
   var f = c.fit, st = c.st;
+  if (LANG !== 'en') { var ls28 = leave28(c); if (ls28 !== null) return ls28; }   // v5.28: the sentence in the picked language
   var go = UI.planning && !UI.today ? 'Leave at ' + fmtClock(st.ms) : 'Leave now';
   if (f.kind === 'fits' || f.kind === 'tight' || f.kind === 'over') {
     var s = go + ' and you\'d be there around ' + fmtClock(f.arrive) + '. ';
@@ -10784,15 +11019,15 @@ function leaveSentence0(c){
   return '';
 }
 function hoursTableHTML(it, p){
-  if (!it.hours) return (it.date_hours && typeof it.date_hours === 'object' && Object.keys(it.date_hours).length) || it.hours_note || (Array.isArray(it.event_dates) && it.event_dates.length) ? '<p>No regular weekly hours. See the dates and notes below.</p>' : '<p>Hours not confirmed.</p>';   // v5.21 (tester v5.20 L3): MSI has dated hours, so not "not confirmed" next to "checked"
+  if (!it.hours) return (it.date_hours && typeof it.date_hours === 'object' && Object.keys(it.date_hours).length) || it.hours_note || (Array.isArray(it.event_dates) && it.event_dates.length) ? '<p>' + esc(tx('dt.noWeekly', 'No regular weekly hours. See the dates and notes below.')) + '</p>' : '<p>' + esc(tx('dt.hoursNC', 'Hours not confirmed.')) + '</p>';   // v5.21 (tester v5.20 L3): MSI has dated hours, so not "not confirmed" next to "checked"
   var rows = '';
   [1, 2, 3, 4, 5, 6, 0].forEach(function(wd){
     var list = it.hours[DOW[wd]], txt;
-    if (!Array.isArray(list)) txt = 'not listed';
-    else if (!list.length) txt = 'Closed';
-    else txt = list.map(function(r){ var s = hm(r && r[0]), e = hm(r && r[1]); if (s === null || e === null) return String(r); if (s === 0 && (e === 1440 || e === 0)) return 'Open 24 hours'; return fmtTime(s) + ' \u2013 ' + fmtTime(e); }).join(', ');
+    if (!Array.isArray(list)) txt = tx('dt.notListed', 'not listed');
+    else if (!list.length) txt = tx('closed', 'Closed');
+    else txt = list.map(function(r){ var s = hm(r && r[0]), e = hm(r && r[1]); if (s === null || e === null) return String(r); if (s === 0 && (e === 1440 || e === 0)) return tx('dt.open24', 'Open 24 hours'); return fmtTime(s) + ' \u2013 ' + fmtEndTime(e); }).join(', ');
     var cls = (wd === p.wd ? 'today' : '') + (Array.isArray(list) && !list.length ? ' off' : '');
-    rows += '<tr class="' + cls.trim() + '"><td>' + DOW_LONG[wd] + '</td><td>' + esc(txt) + '</td></tr>';
+    rows += '<tr class="' + cls.trim() + '"><td>' + esc(dowLongL(wd)) + '</td><td>' + esc(txt) + '</td></tr>';
   });
   return '<table class="hours"><tbody>' + rows + '</tbody></table>';
 }
@@ -10810,7 +11045,7 @@ function lastEntryLine(it, p){ // v2.2 (C-1): "Last entry: 60 min before closing
   if (r2 && r2.bare) return 'There is a last-entry time, but we don\'t have it. Call if you\'re cutting it close.';
   return '';
 }
-function rangesText(list){ if (!list.length) return 'Closed'; return list.map(function(r){ var s = hm(r && r[0]), e = hm(r && r[1]); if (s === null || e === null) return String(r); return fmtTime(s) + ' – ' + fmtTime(e); }).join(', '); }
+function rangesText(list){ if (!list.length) return tx('closed', 'Closed'); return list.map(function(r){ var s = hm(r && r[0]), e = hm(r && r[1]); if (s === null || e === null) return String(r); return fmtTime(s) + ' – ' + fmtEndTime(e); }).join(', '); }
 function closedDayLabel(k, lang){ var hn = holidayName(k), l = isLang(lang) ? lang : LANG; if (l !== 'en') return hn ? i18t('closed.for', {x:holNameL(holidayId(k), l)}, l) : i18t('closed', null, l); return hn ? 'Closed for ' + hn : 'Closed'; }   // v5.21: a closed date that is a US holiday names it (HOLIDAY_NAMES); v5.22: in the picked language
 function specialDatesHTML(it, p){ // date_hours and closed_dates in the next 3 weeks
   var rows = [], end = addDays(p.key, 21), seen = {};
@@ -10855,20 +11090,20 @@ function miniMapHTML(c){
   out += '<path class="walk" vector-effect="non-scaling-stroke" d="M' + r1(a[0]) + ' ' + r1(a[1]) + 'L' + r1(b[0]) + ' ' + r1(b[1]) + '"/>';
   out += '<circle class="pt" vector-effect="non-scaling-stroke" cx="' + r1(a[0]) + '" cy="' + r1(a[1]) + '" r="' + r1(5 / k) + '" style="fill:var(--you)"/>';
   out += '<circle class="pt" vector-effect="non-scaling-stroke" cx="' + r1(b[0]) + '" cy="' + r1(b[1]) + '" r="' + r1(6 / k) + '" style="fill:' + genreColor(genreOf(c.item)) + '"/>';
-  out += '<text class="mm-label" x="' + r1(a[0] - 8 / k) + '" y="' + r1(a[1] + 14 / k) + '" font-size="' + fs.toFixed(2) + '" stroke-width="' + sw.toFixed(2) + '" text-anchor="end">Your pin</text>';
+  out += '<text class="mm-label" x="' + r1(a[0] - 8 / k) + '" y="' + r1(a[1] + 14 / k) + '" font-size="' + fs.toFixed(2) + '" stroke-width="' + sw.toFixed(2) + '" text-anchor="end">' + esc(tx('dt.pin', 'Your pin')) + '</text>';
   out += '<text class="mm-label" x="' + r1(b[0] + 9 / k) + '" y="' + r1(b[1] - 7 / k) + '" font-size="' + fs.toFixed(2) + '" stroke-width="' + sw.toFixed(2) + '">' + esc(c.item.name.length > 26 ? c.item.name.slice(0, 24) + '...' : c.item.name) + '</text>';
   return '<div class="minimap">' + out + '</svg></div>';
 }
 function bookingLink(it){ // v4: a real booking or ticket link in the data, else the website when booking is required
   return safeUrl(it.booking_url) || safeUrl(it.ticket_url) || (it.booking === 'required' ? safeUrl(it.website) : '');
 }
-function bookingWord(it){ return (it.kind === 'event' || it.category === 'show-comedy-music' || it.category === 'sports-watch') ? 'Tickets' : 'Reserve'; }
+function bookingWord(it){ return (it.kind === 'event' || it.category === 'show-comedy-music' || it.category === 'sports-watch') ? tx('dt.tickets', 'Tickets') : tx('dt.reserve', 'Reserve'); }
 function goodToKnowHTML(it){ // "Good to know": tap a question to open its answer. No AI runs; the answers come with the data.
-  var list = (Array.isArray(it.good_to_know) ? it.good_to_know : []).filter(function(x){ return x && x.q && x.a; });
+  var list = (Array.isArray(it.good_to_know) ? it.good_to_know : []).filter(function(x){ return x && x.q && x.a; }), gtl = placeText(it, 'good_to_know'); if (gtl.lang !== 'en') list = gtl.v;   // v5.28: good_to_know translation
   if (!list.length) return '';
   return '<section class="dt-sec gtk"><h2>' + esc(i18t('dt.gtk')) + '</h2>' + list.map(function(x){
     var src = safeUrl(x.source);
-    return '<details><summary>' + esc(x.q) + '</summary><p>' + esc(x.a) + '</p>' + (src ? '<p class="src">Source: <a href="' + esc(src) + '" target="_blank" rel="noopener">' + esc(domainOf(src)) + '</a></p>' : '') + '</details>';
+    return '<details><summary>' + esc(x.q) + '</summary><p>' + esc(x.a) + '</p>' + (src ? '<p class="src">' + esc(tx('dt.source', 'Source:')) + ' <a href="' + esc(src) + '" target="_blank" rel="noopener">' + esc(domainOf(src)) + '</a></p>' : '') + '</details>';
   }).join('') + '</section>';
 }
 function oneSource(it, tr){ // pure-ish: the single source link a place shows (v5.18)
@@ -10883,9 +11118,9 @@ function renderDetail(c, keepScroll){
   var ph = firstPhoto(it), h = '<div class="dt-photo">';
   h += '<div class="cover"><svg aria-hidden="true"><use href="#' + genreGlyph(gid) + '"/></svg><svg class="c2" aria-hidden="true"><use href="#star6"/></svg></div>';
   if (ph) {
-    h += '<img src="' + esc(ph.file) + '" alt="Photo of ' + esc(it.name) + '" data-fb="1">';
+    h += '<img src="' + esc(ph.file) + '" alt="' + esc(tx('dt.photoOf', 'Photo of {x}', {x:it.name})) + '" data-fb="1">';
     var pu = safeUrl(ph.page_url);
-    var cr = 'Photo: ' + esc(photoCredit(ph));   // v2.2 (M-4): never photos[].note or a checker's remark
+    var cr = tx('dt.photo', 'Photo: {x}', {x:esc(photoCredit(ph))});   // v2.2 (M-4): never photos[].note or a checker's remark
     h += pu ? '<a class="photo-credit" href="' + esc(pu) + '" target="_blank" rel="noopener">' + cr + '</a>' : '<span class="photo-credit">' + cr + '</span>';
   }
   h += '</div><div class="dt-body"><span class="grabber"></span>';
@@ -10917,7 +11152,7 @@ function renderDetail(c, keepScroll){
   var lby = leaveBy(c); if (lby) h += '<p class="leaveby">' + esc(leaveByText(lby)) + '</p>';   // v5.10 #33
   var eb = eventBadge(st); if (eb) h += '<p class="warnline">' + esc(trStatus(eb)) + '</p>';   // v5.23: "Tickets on sale through ... · end date not announced" in the picked language
   var dww = wxWarnFor(c); if (dww) h += '<p class="wxw">' + esc(dww) + '</p>';   // v5.20
-  if (st.conflicting) h += '<p class="warnline">Sources disagree on hours · call first</p>';
+  if (st.conflicting) h += '<p class="warnline">' + esc(tx('dt.disagree', 'Sources disagree on hours · call first')) + '</p>';
   if (holidayCaution(it, p.key)) h += '<p class="warnline hol-caution">' + esc(i18L('hol.caution', 'Holiday hours may differ — check before going')) + '</p>';   // v5.22: a note mentions this holiday but no field covers it
   else if (holidayName(p.key) && st.key !== 'maybe' && !closedSet(it)[p.key]) h += '<p class="warnline">' + esc(LANG === 'en' ? holidayName(p.key) + ': holiday hours vary, so call first.' : i18t('hol.vary', {x:holNameL(holidayId(p.key))})) + '</p>';
   var ls = leaveSentence(c); if (ls) h += '<p class="aside">' + esc(ls) + '</p>';
@@ -10947,39 +11182,41 @@ function renderDetail(c, keepScroll){
   }
   if (it.kind === 'event') h += '<section class="dt-sec"><h2>' + esc(i18t('dt.dates')) + '</h2>' + eventDatesHTML(it, cparts(nowMs()), nowMs()) + '</section>';   // v5.10: every date from today (real now), never from the planned time
   // practical facts
-  var io = it.indoor_outdoor === 'both' ? 'indoor and outdoor' : (it.indoor_outdoor || '');
-  var priceTxt = it.price_note ? fmt24Ranges(it.price_note) : (it.price_level === 'free' ? 'Free.' : it.price_level ? 'Price level ' + it.price_level + '. Exact prices not listed.' : 'Price not listed on their site.');
+  var io = it.indoor_outdoor ? tx('dt.io.' + it.indoor_outdoor, it.indoor_outdoor === 'both' ? 'indoor and outdoor' : it.indoor_outdoor) : '';
+  var pnl = placeText(it, 'price_note'), priceTxt = it.price_note ? (pnl.lang !== 'en' ? pnl.v : fmt24Ranges(it.price_note)) : (it.price_level === 'free' ? tx('dt.free', 'Free.') : it.price_level ? tx('dt.plevel', 'Price level {x}. Exact prices not listed.', {x:it.price_level}) : tx('dt.noPrice', 'Price not listed on their site.'));   // v5.28: price_note translation
   var facts = [];
   if (it.address) facts.push(['i-pin', it.address + (io ? ' · ' + io : '')]);
   facts.push(['g-ticket', priceTxt]);
   facts.push(['i-door', it.booking === 'required' ? i18L('bk.required', 'Booking required. Pick a time online before you go.') : it.booking === 'recommended' ? i18L('bk.recommended', 'Booking recommended.') : it.booking === 'walk-in' ? i18L('bk.walkin', 'Walk-ins welcome.') : i18L('bk.none', 'Booking: not stated.')]);   // v5.22 (tester M1)
-  if (it.age_note) facts.push(['i-age', i18L('dt.ages', 'Ages: {x}').replace('{x}', function(){ return fmt24Ranges(it.age_note); })]);   // v5.23: the label in the picked language; the note is data (English)
+  if (it.age_note) { var anl = placeText(it, 'age_note'); facts.push(['i-age', i18L('dt.ages', 'Ages: {x}').replace('{x}', function(){ return anl.lang !== 'en' ? anl.v : fmt24Ranges(it.age_note); })]); }   // v5.23: the label in the picked language; the note is data (English)
   h += '<section class="dt-sec"><h2>' + esc(i18t('dt.practical')) + '</h2><ul class="hl">' + facts.map(function(x){ return '<li>' + glyphSvg(x[0]) + '<span>' + esc(x[1]) + '</span></li>'; }).join('') + '</ul>';
   if (it.phone) h += phoneHTML(it.phone, Platform.telOk);
   else if (web) { var npw = i18L('dt.noPhone', 'No phone listed. Check {w}.').split('{w}'); h += '<p class="small" style="margin-top:10px">' + esc(npw[0]) + '<a href="' + esc(web) + '" target="_blank" rel="noopener">' + esc(i18L('dt.theirWeb', 'their website')) + '</a>' + esc(npw[1] || '') + '</p>'; }   // v5.23
   // hours
   h += '<h3>' + esc(i18t('dt.hours')) + '</h3>';
   var sn = it.season;
-  if (sn && (isKey(sn.open_from) || isKey(sn.open_to))) h += '<p class="small" style="margin-bottom:8px">Season: ' + (isKey(sn.open_from) ? fmtDate(sn.open_from, '0000') : 'start not stated') + ' – ' + (isKey(sn.open_to) ? fmtDate(sn.open_to, '0000') : 'end not stated') + (sn.note ? '. ' + esc(fmt24Ranges(sn.note)) : '') + '</p>';
-  else if (sn && sn.note) h += '<p class="small" style="margin-bottom:8px">' + esc(sn.note) + '</p>';
+  var snl = placeText(it, 'season.note'), snT = snl.lang !== 'en' ? snl.v : (sn && sn.note ? fmt24Ranges(sn.note) : '');   // v5.28: season.note translation
+  if (sn && (isKey(sn.open_from) || isKey(sn.open_to))) h += '<p class="small" style="margin-bottom:8px">' + esc(tx('dt.season', 'Season: {a} – {b}', {a:isKey(sn.open_from) ? fmtDate(sn.open_from, '0000') : tx('dt.sStart0', 'start not stated'), b:isKey(sn.open_to) ? fmtDate(sn.open_to, '0000') : tx('dt.sEnd0', 'end not stated')})) + (sn.note ? '. ' + esc(snT) : '') + '</p>';
+  else if (sn && sn.note) h += '<p class="small" style="margin-bottom:8px">' + esc(snl.lang !== 'en' ? snl.v : sn.note) + '</p>';
   h += hoursTableHTML(it, p);
   var lel = lastEntryLine(it, p); if (lel) h += '<p class="small" style="margin-top:8px">' + esc(lel) + '</p>';   // v2.2 (C-1)
-  var hvt = hoursValidTo(it); if (hvt) h += '<p class="small" style="margin-top:8px">These weekly hours are confirmed only through ' + esc(fmtDate(hvt.key, p.key)) + '.</p>';   // v2.2 (M-1)
+  var hvt = hoursValidTo(it); if (hvt) h += '<p class="small" style="margin-top:8px">' + esc(tx('dt.validTo', 'These weekly hours are confirmed only through {d}.', {d:fmtDate(hvt.key, p.key)})) + '</p>';   // v2.2 (M-1)
   h += specialDatesHTML(it, p);
-  if (it.hours_note) h += '<p class="small" style="margin-top:8px">' + esc(fmt24Ranges(it.hours_note)) + '</p>';
+  if (it.hours_note) { var hnl = placeText(it, 'hours_note'); h += '<p class="small" style="margin-top:8px"' + (hnl.lang !== 'en' ? langAttr(hnl) : '') + '>' + esc(hnl.lang !== 'en' ? hnl.v : fmt24Ranges(it.hours_note)) + '</p>'; }
   // getting there
   h += '<h3>' + esc(i18t('dt.getting')) + '</h3>' + miniMapHTML(c) + '<div class="getting">';
-  if (c.dist !== null) h += '<span><b>' + fmtMi(c.dist) + ' as the crow flies</b> from your pin' + (S.loc ? ' (' + esc(locWordsNow()) + ')' : '') + '.</span><span>' + esc(travelText(c.trav).replace(/^about/, 'About').replace(/ \(too far for our CTA estimate: Metra or drive\)$/, '')) + '. ' + (c.trav.switched ? 'We don\'t estimate CTA past ' + CTA_MAX_MI + ' miles, so this is a drive time: check Metra, or drive. ' : '') + 'Rough estimate, not a route.</span>';
-  h += '</div><div class="linkrow"><a class="mini-btn" href="' + esc(appleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + 'Apple Maps</a><a class="mini-btn" href="' + esc(googleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + 'Google Maps</a>' + (web ? '<a class="mini-btn" href="' + esc(web) + '" target="_blank" rel="noopener">' + glyphSvg('i-globe') + 'Website</a>' : '') + '</div></section>';
+  if (c.dist !== null) h += LANG !== 'en' ? getting28(c) : '<span><b>' + fmtMi(c.dist) + ' as the crow flies</b> from your pin' + (S.loc ? ' (' + esc(locWordsNow()) + ')' : '') + '.</span><span>' + esc(travelText(c.trav).replace(/^about/, 'About').replace(/ \(too far for our CTA estimate: Metra or drive\)$/, '')) + '. ' + (c.trav.switched ? 'We don\'t estimate CTA past ' + CTA_MAX_MI + ' miles, so this is a drive time: check Metra, or drive. ' : '') + 'Rough estimate, not a route.</span>';
+  h += '</div><div class="linkrow"><a class="mini-btn" href="' + esc(appleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + 'Apple Maps</a><a class="mini-btn" href="' + esc(googleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + 'Google Maps</a>' + (web ? '<a class="mini-btn" href="' + esc(web) + '" target="_blank" rel="noopener">' + glyphSvg('i-globe') + esc(tx('dt.website', 'Website')) + '</a>' : '') + '</div></section>';
   // good to know (only when the data has it)
   h += goodToKnowHTML(it);
   // trust and sources, small
   var srcLink = tr.src ? '<a href="' + esc(tr.src) + '" target="_blank" rel="noopener">' + esc(domainOf(tr.src)) + '</a>' : 'a source we didn\'t record';
   var ckTxt = tr.checked ? esc(fmtDate(tr.checked, todayKey)) : 'an unknown date';
   h += '<section class="trust-s" aria-label="How we know">';
-  if (tr.status === 'verified') h += '<p><span class="tick">✓ ' + (it.hours ? 'Hours checked ' : 'Checked ') + ckTxt + '</span> on ' + srcLink + '.</p>';
+  if (tr.status === 'verified') h += LANG !== 'en' ? '<p><span class="tick">✓ ' + esc(tx(it.hours ? 'dt.hoursChecked' : 'dt.checked', '', {d:tr.checked ? fmtDate(tr.checked, todayKey) : '?'})) + '</span>' + tx('dt.onSrc', '', {s:srcLink}) + '</p>' : '<p><span class="tick">✓ ' + (it.hours ? 'Hours checked ' : 'Checked ') + ckTxt + '</span> on ' + srcLink + '.</p>';
   else if (tr.status === 'conflicting') h += '<p><span class="tick warn">Sources disagree on the hours.</span> See ' + srcLink + ' and call before you go. Last checked ' + ckTxt + '.</p>';
   else if (tr.status === 'closed') h += '<p>Marked closed for good, per ' + srcLink + '. Last checked ' + ckTxt + '.</p>';
+  else if (LANG !== 'en') h += '<p><span class="tick warn">' + esc(tx('dt.notConf', '')) + '</span>' + (tr.src ? tx('dt.onSrc', '', {s:srcLink}) : '') + esc(tx('dt.callFirstS', '')) + '</p>';
   else h += '<p><span class="tick warn">Not confirmed yet.</span> Found ' + ckTxt + (tr.src ? ' on ' + srcLink : '') + '. Call first.</p>';
   // public release: never shows verified.notes, checked_by, found_via or photos[].note; only the status, the checked date and the evidence link
   // v5.18 (owner 2026-11-14): ONE source link, the best evidence (the checked page, else the official site, else the first source); none twice
@@ -11026,7 +11263,7 @@ function addToCalendar(id){
     openSmall('Add to calendar', function(){
       var t = calText(ev, cparts(nowMs()).key);
       $('pSmallBody').innerHTML = '<p class="p-note">A page inside Claude can’t hand your phone a calendar file. Copy these details into a new event, or open Google Calendar with them filled in.</p><pre class="calbox">' + esc(t) + '</pre>' +
-        '<div class="linkrow"><button class="mini-btn" type="button" data-copy="' + esc(t) + '">' + glyphSvg('i-copy') + '<span>Copy</span></button><a class="mini-btn" href="' + esc(gcalLink(ev)) + '" target="_blank" rel="noopener">' + glyphSvg('i-cal') + 'Google Calendar</a></div>';
+        '<div class="linkrow"><button class="mini-btn" type="button" data-copy="' + esc(t) + '">' + glyphSvg('i-copy') + '<span>' + esc(tx('dt.copy', 'Copy')) + '</span></button><a class="mini-btn" href="' + esc(gcalLink(ev)) + '" target="_blank" rel="noopener">' + glyphSvg('i-cal') + 'Google Calendar</a></div>';
     });
   });
 }
@@ -11516,7 +11753,7 @@ function smallCompare(){ var b = $('pSmallBody'); b.innerHTML = COMPARE_CARD_HTM
 var DAY_PARTS = [[600, 'Morning'], [840, 'Afternoon'], [1140, 'Evening'], [1320, 'Late']];
 function smallWhen(){ // v4: Now / Tonight, or pick a day (next 8 days) and a part of the day, or an exact time
   var p = cparts(nowMs()), d = parseDT(S.pickAt), on = S.when === 'pick' && d, selKey = on ? d.key : '', selMin = on && d.min !== null ? d.min : -1, days = '';   // v5.6: -1 = Any time
-  for (var i = 0; i < 8; i++) { var k = addDays(p.key, i), wdb = wxDayBit(k); days += '<button class="chip' + (wdb ? ' wxc' : '') + '" type="button" data-day="' + k + '" aria-pressed="' + (k === selKey) + '">' + (i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : DOW_SHORT[wdOfKey(k)] + ' ' + (+k.slice(8))) + wdb + '</button>'; }   // v5.20: the forecast high under each day
+  for (var i = 0; i < 8; i++) { var k = addDays(p.key, i), wdb = wxDayBit(k); days += '<button class="chip' + (wdb ? ' wxc' : '') + '" type="button" data-day="' + k + '" aria-pressed="' + (k === selKey) + '">' + (i === 0 ? tx('when.today', 'Today') : i === 1 ? tx('w.tomorrow', 'Tomorrow') : dowShortL(wdOfKey(k)) + ' ' + (+k.slice(8))) + wdb + '</button>'; }   // v5.20: the forecast high under each day
   $('pSmallBody').innerHTML = '<div class="seg">' + [['now', 'Now'], ['today', 'Today']].map(function(x){ return '<button type="button" data-f="when:' + x[0] + '" aria-pressed="' + (S.when === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>' +
     '<span class="flabel">Or pick a day</span><div class="chips-w" style="display:flex;flex-wrap:wrap;gap:8px">' + days + '</div>' +
     '<div class="seg" style="margin-top:12px">' + [[-1, 'Any time']].concat(DAY_PARTS).map(function(x){ return '<button type="button" data-part="' + x[0] + '" aria-pressed="' + (on && selMin === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>' +
@@ -11622,7 +11859,7 @@ function submitTip(){
       var kept = Platform.store.set('cff.tips.v1', list);
       msg.className = 'tipmsg warn';
       msg.innerHTML = (r && r.code === 'quota_exceeded' ? 'The shared tip box is full. ' : '') + 'Saved on this phone only' + (kept ? '.' : ', and this browser may not keep it.') +
-        '<br><button class="mini-btn" type="button" data-copy="' + esc(tipText(tip)) + '">' + glyphSvg('i-copy') + '<span>Copy</span></button>';
+        '<br><button class="mini-btn" type="button" data-copy="' + esc(tipText(tip)) + '">' + glyphSvg('i-copy') + '<span>' + esc(tx('dt.copy', 'Copy')) + '</span></button>';
       renderLocalTips();
     }
     urlEl.value = ''; noteEl.value = '';
@@ -11800,43 +12037,43 @@ function acctLocModel(){ // the Location row: {val, btn}
 }
 function acctTasteHTML(){ // "Your taste": done -> words + Retake / Adjust; never done -> "Take the taste test"
   var done = !!(TASTE && tasteCardCount(TASTE) > 0), ty = acctType();
-  if (!done) return '<button class="as-row" type="button" data-acct="taste-start"><span class="as-ico">' + glyphSvg('i-heart') + '</span><span><b>Find your character</b><small>' + esc(deckMinutesLine(DECK_TOTAL)) + '</small></span>' + glyphSvg('i-right', 'i chev') + '</button>';
+  if (!done) return '<button class="as-row" type="button" data-acct="taste-start"><span class="as-ico">' + glyphSvg('i-heart') + '</span><span><b>' + esc(tx('ac.findChar', 'Find your character')) + '</b><small>' + esc(deckMinutesLine(DECK_TOTAL)) + '</small></span>' + glyphSvg('i-right', 'i chev') + '</button>';
   var w = ty ? [] : traitWords(tasteMine(), 4), h = '<div class="as-card">';   // v5.17: with a type, the type (never trait words)
   if (ty) h += '<button class="as-tt" type="button" data-acct="taste-open" style="--type:' + esc(ty.color) + '">' + typeAvatarHTML(ty.id, 'sm') + '<span class="t"><b>' + esc(ty.name) + '</b><small>' + esc(ty.tagline) + '</small></span></button>';
   h += ty ? '' : w.length ? '<ul class="as-chips" aria-label="Your taste">' + w.map(function(x){ x = String(x); return '<li>' + esc(x.charAt(0).toUpperCase() + x.slice(1)) + '</li>'; }).join('') + '</ul>'
-    : '<p class="as-lock">Swipe a few more to find your character.</p>';
-  if (ty && typeShift()) h += '<button class="as-row as-shift" type="button" data-acct="taste-open"><span class="as-ico">' + glyphSvg('i-heart') + '</span><span><b>Your character shifted</b><small>Keep it? Take a look</small></span>' + glyphSvg('i-right', 'i chev') + '</button>';   // v5.17a2
-  h += '<div class="as-acts"><button class="as-pill" type="button" data-acct="taste-retake">Retake</button><button class="as-pill" type="button" data-acct="taste-open">Adjust</button></div></div>';
+    : '<p class="as-lock">' + esc(tx('ac.swipeMore', 'Swipe a few more to find your character.')) + '</p>';
+  if (ty && typeShift()) h += '<button class="as-row as-shift" type="button" data-acct="taste-open"><span class="as-ico">' + glyphSvg('i-heart') + '</span><span><b>' + esc(tx('ac.shifted', 'Your character shifted')) + '</b><small>' + esc(tx('ac.keepIt', 'Keep it? Take a look')) + '</small></span>' + glyphSvg('i-right', 'i chev') + '</button>';   // v5.17a2
+  h += '<div class="as-acts"><button class="as-pill" type="button" data-acct="taste-retake">' + esc(tx('ac.retake', 'Retake')) + '</button><button class="as-pill" type="button" data-acct="taste-open">' + esc(tx('ac.adjust', 'Adjust')) + '</button></div></div>';
   return h;
 }
 function acctFriendsHTML(){
-  if (!acctName()) return '<div class="as-card"><p class="as-lock">Pick a username first, then add friends.</p></div>';
+  if (!acctName()) return '<div class="as-card"><p class="as-lock">' + esc(tx('ac.pickFirst', 'Pick a username first, then add friends.')) + '</p></div>';
   var acc = (Acct.friends || []).filter(function(f){ return f.status === 'accepted'; }), inc = acctIncoming(), n = acc.length;
   var ini = function(f){ return (wlChars(acctFriendName(f).replace(/^@/, ''))[0] || '?').toUpperCase(); };
   var names = acc.slice(0, 3).map(function(f){ return acctFriendName(f); }), sub = '';
   var cpa = []; try { cpa = coupleActive(); } catch (e) {}
-  if (cpa.length) sub = 'Blend with ' + cpa[0].name;
-  else if (names.length) sub = names.length === 1 ? names[0] : names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1] + (n > 3 ? ' + ' + (n - 3) + ' more' : '');
+  if (cpa.length) sub = tx('ac.blendWith', 'Blend with {x}', {x:cpa[0].name});
+  else if (names.length) sub = names.length === 1 ? names[0] : tx('ac.and', '{a} and {b}', {a:names.slice(0, -1).join(', '), b:names[names.length - 1]}) + (n > 3 ? tx('ac.more', ' + {n} more', {n:n - 3}) : '');
   var h = '<div class="as-card"><button class="as-frt" type="button" data-acct="friends">' + (n ? '<span class="as-stack" aria-hidden="true">' + acc.slice(0, 3).map(function(f){ var t = f.fun_type && TYPES[f.fun_type - 1]; return t ? '<span class="as-ty" style="--type:' + t.color + '">' + typeSvg(f.fun_type, true) + '</span>' : '<span>' + esc(ini(f)) + '</span>'; }).join('') + '</span>' : '') +
-    '<span class="t"><b>' + (n ? n + (n === 1 ? ' friend' : ' friends') : 'No friends yet') + '</b>' + (inc.length ? '<span class="as-badge" aria-label="' + inc.length + (inc.length === 1 ? ' request' : ' requests') + '">' + inc.length + '</span>' : '') +
+    '<span class="t"><b>' + esc(n ? tx(n === 1 ? 'fr.n1' : 'fr.n', n + (n === 1 ? ' friend' : ' friends'), {n:n}) : tx('ac.noFriends', 'No friends yet')) + '</b>' + (inc.length ? '<span class="as-badge" aria-label="' + esc(tx(inc.length === 1 ? 'ac.req1' : 'ac.reqN', inc.length + (inc.length === 1 ? ' request' : ' requests'), {n:inc.length})) + '">' + inc.length + '</span>' : '') +
     (sub ? '<span class="as-frs">' + esc(sub) + '</span>' : '') + '</span>' + glyphSvg('i-right', 'i chev') + '</button>';
   inc.slice(0, 2).forEach(function(f){
-    h += '<div class="as-req"><span class="t">@' + esc(f.username) + ' wants to be friends</span><button class="as-pill solid" type="button" data-acct="accept" data-v="' + esc(f.user_id) + '">Accept</button><button class="linkbtn" type="button" data-acct="notnow" data-v="' + esc(f.user_id) + '">Not now</button></div>';
+    h += '<div class="as-req"><span class="t">' + tx('ac.wants', '@{x} wants to be friends', {x:esc(f.username)}) + '</span><button class="as-pill solid" type="button" data-acct="accept" data-v="' + esc(f.user_id) + '">' + esc(tx('ac.accept', 'Accept')) + '</button><button class="linkbtn" type="button" data-acct="notnow" data-v="' + esc(f.user_id) + '">' + esc(tx('ac.notNow', 'Not now')) + '</button></div>';
   });
-  return h + '<div class="as-acts"><button class="as-pill" type="button" data-acct="friends">+ Add friend</button><button class="as-pill" type="button" data-acct="invite">' + glyphSvg('i-share') + 'Invite link</button></div></div>';
+  return h + '<div class="as-acts"><button class="as-pill" type="button" data-acct="friends">' + esc(tx('ac.addFriend', '+ Add friend')) + '</button><button class="as-pill" type="button" data-acct="invite">' + glyphSvg('i-share') + esc(tx('ac.invite', 'Invite link')) + '</button></div></div>';
 }
 function acctSettingsHTML(){
   var lk = currentLook(), mm = mapMode(), lm = acctLocModel();
   function seg(attr, cur, opts, lab){ return '<div class="as-seg" role="group" aria-label="' + lab + '">' + opts.map(function(x){ return '<button type="button" ' + attr + '="' + x[0] + '" aria-pressed="' + (cur === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</div>'; }
-  return '<div class="as-card as-set"><div class="as-lab"><span>Theme</span>' + seg('data-look', lk, [['light', 'Light'], ['dark', 'Dark'], ['auto', 'Auto']], 'Theme') + '</div>' +
-    '<div class="as-lab"><span>Map</span>' + seg('data-mapstyle', mm, [['standard', 'Standard'], ['themed', 'Themed']], 'Map') + '</div>' +
-    '<div class="as-lab"><span>Location<small class="as-help">Shows what\'s near you</small></span>' + (lm.btn ? '<button class="as-pill" type="button" data-acct="loc-on">Turn on</button>' : '<span class="as-val">' + esc(lm.val) + '</span>') + '</div></div>';
+  return '<div class="as-card as-set"><div class="as-lab"><span>' + esc(i18L('th.theme', 'Theme')) + '</span>' + seg('data-look', lk, [['light', esc(i18L('th.light', 'Light'))], ['dark', esc(i18L('th.dark', 'Dark'))], ['auto', esc(i18L('th.auto', 'Auto'))]], esc(i18L('th.theme', 'Theme'))) + '</div>' +
+    '<div class="as-lab"><span>' + esc(i18L('th.map', 'Map')) + '</span>' + seg('data-mapstyle', mm, [['standard', esc(i18L('th.standard', 'Standard'))], ['themed', esc(i18L('th.themed', 'Themed'))]], esc(i18L('th.map', 'Map'))) + '</div>' +
+    '<div class="as-lab"><span>' + esc(tx('ac.location', 'Location')) + '<small class="as-help">' + tx('ac.locHelp', 'Shows what\'s near you') + '</small></span>' + (lm.btn ? '<button class="as-pill" type="button" data-acct="loc-on">' + esc(tx('ac.turnOn', 'Turn on')) + '</button>' : '<span class="as-val">' + esc(tx('ac.lv.' + lm.val, lm.val)) + '</span>') + '</div></div>';
 }
 function acctShareHTML(){ // "What friends see": the three existing settings, in plain words
   var st = Acct.settings || {}, off = !!Acct.offline || (typeof navigator !== 'undefined' && navigator.onLine === false);
   function sw(k, on, label, help){ return '<div class="as-lab"><span>' + esc(label) + '<small class="as-help">' + esc(help) + '</small></span><button class="as-sw" type="button" data-acct="sw" data-v="' + k + '" aria-pressed="' + !!on + '" aria-label="' + esc(label) + '"' + (off ? ' disabled' : '') + '></button></div>'; }
-  return '<section class="as-sec"><h3>What friends see' + (off ? '<small>Needs a connection</small>' : '') + '</h3><div class="as-card as-set">' +
-    sw('share_saves', st.share_saves !== false, 'My saves', 'The places you saved') + sw('share_checkins', !!st.share_checkins, 'Where I\'ve been', 'Places + stars; reviews without your name') + sw('find_by_username', st.find_by_username !== false, 'Find me by username', 'People can send you a request') + '</div></section>';
+  return '<section class="as-sec"><h3>' + esc(tx('ac.friendsSee', 'What friends see')) + (off ? '<small>' + esc(tx('ac.needsConn', 'Needs a connection')) + '</small>' : '') + '</h3><div class="as-card as-set">' +
+    sw('share_saves', st.share_saves !== false, tx('ac.mySaves', 'My saves'), tx('ac.mySavesH', 'The places you saved')) + sw('share_checkins', !!st.share_checkins, LANG === 'en' ? 'Where I\'ve been' : tx('ac.beenSw', ''), tx('ac.beenSwH', 'Places + stars; reviews without your name')) + sw('find_by_username', st.find_by_username !== false, tx('ac.findMe', 'Find me by username'), tx('ac.findMeH', 'People can send you a request')) + '</div></section>';
 }
 function acctSheetHTML(state){ // state: in | cached | out | loading (| demo via Acct.demo). Pure apart from reading app state.
   var signed = state === 'in' || state === 'cached' || !!Acct.demo, nm = acctName(), ty = acctType(), h = '';
@@ -11844,28 +12081,28 @@ function acctSheetHTML(state){ // state: in | cached | out | loading (| demo via
   if (signed) {
     var letter = nm ? nm.charAt(0).toUpperCase() : (acctLetter(Acct.user, nm) || '');
     if (!av) av = '<span class="as-av" aria-hidden="true">' + (letter ? esc(letter) : glyphSvg('i-user')) + '</span>';
-    h += '<div class="as-h">' + av + '<div><h2 class="p-title as-nm" id="pAcctTitle" tabindex="-1">' + (nm ? '@' + esc(nm) : 'Pick a username') + '</h2>' +
-      (nm ? (ty ? '<p class="as-ty">' + esc(ty.name) + '</p>' : '') : '<p class="as-ty">So friends can find you</p>') + '</div>' +
-      (nm ? '<button class="as-pill" type="button" data-acct="name">Edit</button>' : '<button class="as-pill solid" type="button" data-acct="name">Pick</button>') + syncLineHTML() + '</div>';
+    h += '<div class="as-h">' + av + '<div><h2 class="p-title as-nm" id="pAcctTitle" tabindex="-1">' + (nm ? '@' + esc(nm) : esc(tx('ac.pickName', 'Pick a username'))) + '</h2>' +
+      (nm ? (ty ? '<p class="as-ty">' + esc(ty.name) + '</p>' : '') : '<p class="as-ty">' + esc(tx('ac.soFriends', 'So friends can find you')) + '</p>') + '</div>' +
+      (nm ? '<button class="as-pill" type="button" data-acct="name">' + esc(tx('ac.edit', 'Edit')) + '</button>' : '<button class="as-pill solid" type="button" data-acct="name">' + esc(tx('ac.pick', 'Pick')) + '</button>') + syncLineHTML() + '</div>';
   } else {
     if (!av) av = '<span class="as-av" aria-hidden="true">' + glyphSvg('i-user') + '</span>';
     var busy = state === 'loading';
-    h += '<div class="as-h out">' + av + '<div><h2 class="p-title as-nm" id="pAcctTitle" tabindex="-1">Sign in to keep it all</h2>' + (ty ? '<p class="as-ty">' + esc(ty.name) + '</p>' : '') + '</div></div>';
-    h += '<div class="as-gbtn"><button class="btn-google" type="button" data-acct="signin"' + (busy ? ' disabled' : '') + '>' + googleG() + (busy ? 'Signing in' : 'Sign in with Google') + '</button></div>' +
-      '<ul class="as-why">' + ['Your saves on every device', 'See what friends want to do', 'A Blend with a friend'].map(function(t){ return '<li>' + glyphSvg('i-check') + esc(t) + '</li>'; }).join('') + '</ul>' +
-      '<p class="as-local">Without it, everything stays on this phone.</p>';
+    h += '<div class="as-h out">' + av + '<div><h2 class="p-title as-nm" id="pAcctTitle" tabindex="-1">' + esc(tx('ac.signInKeep', 'Sign in to keep it all')) + '</h2>' + (ty ? '<p class="as-ty">' + esc(ty.name) + '</p>' : '') + '</div></div>';
+    h += '<div class="as-gbtn"><button class="btn-google" type="button" data-acct="signin"' + (busy ? ' disabled' : '') + '>' + googleG() + esc(busy ? tx('ac.signingIn', 'Signing in') : tx('ac.signInG', 'Sign in with Google')) + '</button></div>' +
+      '<ul class="as-why">' + [tx('ac.why1', 'Your saves on every device'), tx('ac.why2', 'See what friends want to do'), tx('ac.why3', 'A Blend with a friend')].map(function(t){ return '<li>' + glyphSvg('i-check') + esc(t) + '</li>'; }).join('') + '</ul>' +
+      '<p class="as-local">' + esc(tx('ac.local', 'Without it, everything stays on this phone.')) + '</p>';
   }
-  h += '<section class="as-sec"><h3>Your taste</h3>' + acctTasteHTML() + '</section>';
-  if (signed) h += '<section class="as-sec"><h3>Friends</h3>' + acctFriendsHTML() + '</section>';
+  h += '<section class="as-sec"><h3>' + esc(tx('ac.taste', 'Your taste')) + '</h3>' + acctTasteHTML() + '</section>';
+  if (signed) h += '<section class="as-sec"><h3>' + esc(tx('ac.friends', 'Friends')) + '</h3>' + acctFriendsHTML() + '</section>';
   var nS = savedIds.length, nB = CHECKINS.length;
-  h += '<section class="as-sec"><h3>Saved &amp; been</h3><div class="as-tiles"><button class="as-card as-tile" type="button" data-acct="lists-saved"><span class="n">' + nS + '</span><span class="l">' + (signed ? 'Saved' : 'Saved on this phone') + '</span></button>' +
-    '<button class="as-card as-tile" type="button" data-acct="lists-been"><span class="n">' + nB + '</span><span class="l">' + (signed ? 'Been' : 'Been on this phone') + '</span></button></div></section>';
+  h += '<section class="as-sec"><h3>' + esc(tx('ac.savedBeen', 'Saved & been')) + '</h3><div class="as-tiles"><button class="as-card as-tile" type="button" data-acct="lists-saved"><span class="n">' + nS + '</span><span class="l">' + esc(signed ? tx('ac.saved', 'Saved') : tx('ac.savedPhone', 'Saved on this phone')) + '</span></button>' +
+    '<button class="as-card as-tile" type="button" data-acct="lists-been"><span class="n">' + nB + '</span><span class="l">' + esc(signed ? tx('ac.beenT', 'Been') : tx('ac.beenPhone', 'Been on this phone')) + '</span></button></div></section>';
   h += '<section class="as-sec"><h3>' + esc(tripT('trips')) + '</h3>' + tripAcctHTML() + '</section>';   // v5.26: trips (this phone only)
-  h += '<section class="as-sec"><h3>Settings</h3>' + acctSettingsHTML() + '</section>';
+  h += '<section class="as-sec"><h3>' + esc(tx('ac.settings', 'Settings')) + '</h3>' + acctSettingsHTML() + '</section>';
   if (signed && nm) h += acctShareHTML();
-  h += '<div class="as-links"><button class="as-row" type="button" data-acct="privacy">' + glyphSvg('i-info', 'i l') + '<b>Privacy</b>' + glyphSvg('i-right', 'i chev') + '</button>' +
-    '<a class="as-row" href="' + esc(feedbackHref()) + '" target="_blank" rel="noopener">' + glyphSvg('i-send', 'i l') + '<b>Send feedback</b>' + glyphSvg('i-right', 'i chev') + '</a></div>';
-  if (signed) h += '<button class="as-out" type="button" data-acct="signout">Sign out</button><button class="as-del" type="button" data-acct="delete">Delete account</button>';
+  h += '<div class="as-links"><button class="as-row" type="button" data-acct="privacy">' + glyphSvg('i-info', 'i l') + '<b>' + esc(tx('ac.privacy', 'Privacy')) + '</b>' + glyphSvg('i-right', 'i chev') + '</button>' +
+    '<a class="as-row" href="' + esc(feedbackHref()) + '" target="_blank" rel="noopener">' + glyphSvg('i-send', 'i l') + '<b>' + esc(tx('ac.feedback', 'Send feedback')) + '</b>' + glyphSvg('i-right', 'i chev') + '</a></div>';
+  if (signed) h += '<button class="as-out" type="button" data-acct="signout">' + esc(tx('ac.signOut', 'Sign out')) + '</button><button class="as-del" type="button" data-acct="delete">' + esc(tx('ac.delete', 'Delete account')) + '</button>';
   h += '<p class="as-foot">' + brandHTML(0, 13) + '<span>' + esc(String(VERSION).split(' ')[0]) + '</span></p>';
   return h;
 }
@@ -11963,7 +12200,7 @@ function welcomeHTML(){ return '<p class="pop-s">Keep your saves on every device
 function tasteInvHTML(pics){
   pics = pics || [];
   return (pics.length === 3 ? '<div class="pop-pics" aria-hidden="true">' + pics.map(function(f){ return '<img src="' + esc(f) + '" alt="" data-fb="1" loading="eager">'; }).join('') + '</div>' : '') +
-    '<p class="pop-s"><b>' + esc(deckIntroLine({cfg:{name:'main', max:DECK_TOTAL}})) + '</b> · ' + esc(deckMinutesLine(DECK_TOTAL)) + '</p><p class="pop-s2">It keeps learning from what you save and like.</p><button class="btn-primary" type="button" data-pop="taste">Start</button><button class="linkbtn pop-not" type="button" data-pop="not">Not now</button>';
+    '<p class="pop-s"><b>' + esc(deckIntroLine({cfg:{name:'main', max:DECK_TOTAL}})) + '</b> · ' + esc(deckMinutesLine(DECK_TOTAL)) + '</p><p class="pop-s2">' + esc(tx('tk.learns', 'It keeps learning from what you save and like.')) + '</p><button class="btn-primary" type="button" data-pop="taste">Start</button><button class="linkbtn pop-not" type="button" data-pop="not">Not now</button>';
 }
 function popShow(which){
   POPS.cur = which; POPS.shown[which] = true; POPS.log.push(which);
@@ -12054,8 +12291,8 @@ function swThresholds(W, H){ return {x:Math.max(96, Math.min(140, (W || 0) * 0.3
 function swDir(dx, dy){ if (Math.abs(dy) > Math.abs(dx) * 1.2) return dy < 0 ? 'love' : 'never'; return dx >= 0 ? 'yes' : 'no'; }   // vertical must clearly win (1.2x)
 function deckTotal(D){ return D && D.cfg ? D.cfg.max : DECK_TOTAL; }
 function deckIntroLine(D, who){ var n = deckTotal(D), nm = D && D.cfg ? D.cfg.name : 'main';
-  return nm === 'guest' ? n + ' swipes for ' + ((TASTE_GUEST && TASTE_GUEST.name) || 'your guest') : nm === 'retake' ? n + ' swipes to sharpen it' : nm === 'mini' ? n + ' quick swipes' : 'Find your ' + APP_NAME + ' character'; }   // v5.17 (owner): quick and fun
-function deckMinutesLine(n){ return n + ' quick ' + (n === DECK_TOTAL ? 'answers' : 'swipes') + ' · about ' + Math.max(1, Math.round(n * 3 / 60)) + ' min'; }   // about 3 s an answer, rounded, never more than the truth. v5.17a2: the main deck is swipes + WYR = "answers"
+  return nm === 'guest' ? tx('tk.guest', '{n} swipes for {x}', {n:n, x:(TASTE_GUEST && TASTE_GUEST.name) || tx('tk.yourGuest', 'your guest')}) : nm === 'retake' ? tx('tk.retake', '{n} swipes to sharpen it', {n:n}) : nm === 'mini' ? tx('tk.mini', '{n} quick swipes', {n:n}) : tx('tk.find', 'Find your {a} character', {a:APP_NAME}); }   // v5.17 (owner): quick and fun
+function deckMinutesLine(n){ return tx(n === DECK_TOTAL ? 'tk.answers' : 'tk.swipes', '{n} quick ' + (n === DECK_TOTAL ? 'answers' : 'swipes') + ' · about {m} min', {n:n, m:Math.max(1, Math.round(n * 3 / 60))}); }   // about 3 s an answer, rounded, never more than the truth. v5.17a2: the main deck is swipes + WYR = "answers"
 /* ----- v5.17a2 "would you rather" screen (design/2026-11-14-wyr-questions.md §4): two photo halves, stacked on a phone, side by side from 900 px ----- */
 function wyrSides(c){ return c.aFirst ? ['a', 'b'] : ['b', 'a']; }   // [first (top / left), second]
 function wyrKey(key, c){ // arrow keys: Left / Up = the first half, Right = the second, Down = Neither (v5.18); S = skip (spec §4 keyboard)
@@ -12069,8 +12306,8 @@ function wyrKey(key, c){ // arrow keys: Left / Up = the first half, Right = the 
 function wyrScreenHTML(D, c){
   var n = D.log.length, tot = Math.max(deckTotal(D), n + 1), q = c.q, sd = wyrSides(c);
   function half(k){ var s = q[k]; return '<button class="wy-half" type="button" data-tk-wyr="' + k + '" aria-label="' + esc(s.cap) + '"><span class="wy-ph"><img src="' + esc(s.img) + '" alt="" draggable="false" style="object-position:' + esc(s.pos || '50% 50%') + '"></span><span class="wy-cap">' + esc(s.cap) + '</span></button>'; }
-  return '<div class="wy" data-q="' + esc(q.q) + '"><header class="wy-top"><button class="sw-ic" type="button" data-tk="undo" aria-label="Undo (Z)"' + (n ? '' : ' disabled') + '>' + glyphSvg('i-undo') + '</button>' +
-    '<p class="wy-count" id="swCount">' + (n + 1) + ' <span>/ ' + tot + '</span></p><button class="wy-skip" type="button" data-tk="wyrskip">Skip</button>' +
+  return '<div class="wy" data-q="' + esc(q.q) + '"><header class="wy-top"><button class="sw-ic" type="button" data-tk="undo" aria-label="' + esc(tx('tk.undo', 'Undo (Z)')) + '"' + (n ? '' : ' disabled') + '>' + glyphSvg('i-undo') + '</button>' +
+    '<p class="wy-count" id="swCount">' + (n + 1) + ' <span>/ ' + tot + '</span></p><button class="wy-skip" type="button" data-tk="wyrskip">' + esc(tx('tk.skip', 'Skip')) + '</button>' +
     '<button class="sw-ic" type="button" data-tk="skip" aria-label="Close">' + glyphSvg('i-close') + '</button></header>' +
     '<div class="wy-stage" role="group" aria-label="Pick one">' + half(sd[0]) + half(sd[1]) + '<span class="wy-or" aria-hidden="true">or</span></div>' +
     '<button class="wy-nei" type="button" data-tk="wyrneither">Neither</button>' +   // v5.18 (owner): no vote on this question
@@ -12107,15 +12344,15 @@ function wyrPick(k){ // k = 'a' | 'b' | 'skip': the tapped half grows a little w
 function deckRailHTML(){
   return '<div class="sw-rail" role="group" aria-label="Answers">' + SW_ORDER.map(function(a){
     var dir = a === 'love' ? 'up' : a === 'yes' ? 'right' : a === 'no' ? 'left' : 'down';
-    return '<button type="button" data-tk-ans="' + a + '" aria-label="' + SW_WORD[a] + ' (' + dir + ')"><span class="lbl" data-key="' + SW_KEYCAP[a] + '">' + SW_WORD[a] + '</span><span class="dot">' + glyphSvg(SW_ICON[a]) + '</span></button>';
+    return '<button type="button" data-tk-ans="' + a + '" aria-label="' + swWordL(a) + ' (' + dir + ')"><span class="lbl" data-key="' + SW_KEYCAP[a] + '">' + swWordL(a) + '</span><span class="dot">' + glyphSvg(SW_ICON[a]) + '</span></button>';
   }).join('') + '</div>';
 }
 function deckButtonsHTML(){ return deckRailHTML(); }   // kept name (v5.12 self-test hook): the answers are now the quiet rail on the photo
 function deckCardHTML(c){
   var it = c.it, g = genreOf(it);
-  return '<div class="sw-card" role="group" aria-roledescription="swipe card" aria-label="' + esc(tkShortName(it) + (deckHook(it) ? '. ' + deckHook(it) : '')) + '" style="--c:' + genreColor(g) + '">' +
+  return '<div class="sw-card" role="group" aria-roledescription="swipe card" aria-label="' + esc(tkShortName(it) + (deckHookL(it) ? '. ' + deckHookL(it) : '')) + '" style="--c:' + genreColor(g) + '">' +
     '<div class="tk-ph">' + tkPhoto(it) + '</div><div class="sw-wash"></div><div class="sw-scrim-b"></div>' +
-    '<div class="sw-meta"><span class="sw-kind">' + kindSvg(g) + esc(genreShort(g)) + (isFarItem(it) ? '<b class="sw-far"> · Day trip</b>' : '') + '</span><h2 class="sw-name">' + esc(tkShortName(it)) + '</h2>' + (deckHook(it) ? '<p class="sw-hook">' + esc(deckHook(it)) + '</p>' : '') + '</div></div>';
+    '<div class="sw-meta"><span class="sw-kind">' + kindSvg(g) + esc(genreShortL(g)) + (isFarItem(it) ? '<b class="sw-far">' + esc(tx('tk.dayTrip', ' · Day trip')) + '</b>' : '') + '</span><h2 class="sw-name">' + esc(tkShortName(it)) + '</h2>' + (deckHookL(it) ? '<p class="sw-hook">' + esc(deckHookL(it)) + '</p>' : '') + '</div></div>';
 }
 function deckScreenHTML(){
   var D = TU.D; if (!D) return profileHTML();
@@ -12129,9 +12366,9 @@ function deckScreenHTML(){
     '<div class="sw-under" aria-hidden="true"><b>' + Math.min(n + 2, tot) + '</b></div>' + deckCardHTML(c) +
     '<div class="sw-word" aria-hidden="true"><div class="base">' + word + '</div><div class="fill">' + word + '</div></div>' +
     '<div class="sw-scrim-t"></div>' +
-    (intro ? '<p class="sw-intro">' + esc(deckIntroLine(D)) + (D.cfg.name === 'main' ? '<small>' + esc(deckMinutesLine(tot)) + '</small><small>It keeps learning from what you save and like.</small>' : '') + '<small>Drag the photo, or tap an icon</small></p>' : '') +
-    '<header class="sw-top"><div class="sw-row"><button class="sw-ic" type="button" data-tk="undo" aria-label="Undo (Z)"' + (n ? '' : ' disabled') + '>' + glyphSvg('i-undo') + '</button>' +
-    '<p class="sw-count" id="swCount">' + (n + 1) + ' <span>/ ' + tot + '</span></p><button class="sw-skip" type="button" data-tk="skip">Skip</button></div>' +
+    (intro ? '<p class="sw-intro">' + esc(deckIntroLine(D)) + (D.cfg.name === 'main' ? '<small>' + esc(deckMinutesLine(tot)) + '</small><small>' + esc(tx('tk.learns', 'It keeps learning from what you save and like.')) + '</small>' : '') + '<small>' + esc(tx('tk.drag', 'Drag the photo, or tap an icon')) + '</small></p>' : '') +
+    '<header class="sw-top"><div class="sw-row"><button class="sw-ic" type="button" data-tk="undo" aria-label="' + esc(tx('tk.undo', 'Undo (Z)')) + '"' + (n ? '' : ' disabled') + '>' + glyphSvg('i-undo') + '</button>' +
+    '<p class="sw-count" id="swCount">' + (n + 1) + ' <span>/ ' + tot + '</span></p><button class="sw-skip" type="button" data-tk="skip">' + esc(tx('tk.skip', 'Skip')) + '</button></div>' +
     '<div class="sw-bar" aria-hidden="true">' + bar + '</div></header>' +
     deckRailHTML() + '<div class="sw-finger" aria-hidden="true"></div><div class="sw-toast" aria-hidden="true"></div></div>' +
     '<p class="sw-kbd" aria-hidden="true"><kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> <kbd>↓</kbd> to answer · <kbd>Z</kbd> undo</p></div>';
@@ -12149,7 +12386,7 @@ function swPaint(E, dx, dy){ // the drag feedback: card follows, word pill fills
     S.cur = a;
     E.word.setAttribute('data-a', a); E.wash.setAttribute('data-a', a);
     Array.prototype.forEach.call(E.word.querySelectorAll('.ico'), function(n){ n.innerHTML = glyphSvg(SW_ICON[a]); });
-    Array.prototype.forEach.call(E.word.querySelectorAll('.txt'), function(n){ n.textContent = SW_WORD[a]; });
+    Array.prototype.forEach.call(E.word.querySelectorAll('.txt'), function(n){ n.textContent = swWordL(a); });
   }
   E.word.style.opacity = show;
   E.word.style.transform = 'translate(-50%,-50%) scale(' + (0.7 + 0.3 * Math.min(1, show + f * 0.5)).toFixed(3) + ')';
@@ -12200,7 +12437,7 @@ function swCommit(ans, fx, fy){ // fly off, then keep the answer (same bookkeepi
   }, rm ? 200 : 260);
 }
 function tkAnswer(ans){ // a rail tap or an arrow key: the card plays a short version of the gesture (tapping teaches the swipe), then flies
-  var D = TU.D; if (!D || TU.busy || TU.mode !== 'deck' || SW_WORD[ans] === undefined) return;
+  var D = TU.D; if (!D || TU.busy || TU.mode !== 'deck' || swWordL(ans) === undefined) return;
   try { Platform.store.set(SW_HINT_KEY, true); } catch (e) {}
   var E = swEls(); if (!E || !E.card) { swCommit(ans, 0, 0); return; }
   swStopHint();
@@ -12434,7 +12671,7 @@ function typeShare(){ // the phone's share sheet with the picture when it takes 
 function pairsScreenHTML(){
   var pr = TU.pairs && TU.pairs[TU.pi]; if (!pr) { TU.mode = 'hard'; return hardScreenHTML(); }
   function one(it, k){ return '<button class="tk-pc" type="button" data-tk-pick="' + k + '" style="--c:' + genreColor(genreOf(it)) + '"><span class="tk-ph">' + tkPhoto(it) + '</span><span class="tk-scrim"></span><span class="tk-text"><b><span class="tk-kind" aria-hidden="true">' + kindSvg(genreOf(it)) + '</span>' + esc(tkShortName(it)) + '</b><span>' + esc(deckHook(it)) + '</span></span></button>'; }
-  return '<div class="tk-top"><span></span><p class="tk-ttl">' + (TU.pi === 0 ? 'Which sounds better?' : '&nbsp;') + '</p><button class="tk-skip" type="button" data-tk="pairsdone">Skip</button></div>' +
+  return '<div class="tk-top"><span></span><p class="tk-ttl">' + (TU.pi === 0 ? esc(tx('tk.which', 'Which sounds better?')) : '&nbsp;') + '</p><button class="tk-skip" type="button" data-tk="pairsdone">' + esc(tx('tk.skip', 'Skip')) + '</button></div>' +
     '<div class="tk-pairs">' + one(pr.a, 'a') + one(pr.b, 'b') + '</div><div class="tk-row2"><button class="btn-2" type="button" data-tk-pick="both">Both</button><button class="btn-2" type="button" data-tk-pick="none">Neither</button></div>';
 }
 function seg(name, opts, cur){ return '<div class="seg tk-seg" role="group">' + opts.map(function(o){ return '<button type="button" data-tk-hard="' + name + ':' + o[0] + '" aria-pressed="' + (String(cur) === String(o[0])) + '">' + esc(o[1]) + '</button>'; }).join('') + '</div>'; }
@@ -12992,6 +13229,7 @@ function runSelfTest0(){
   block('v5.24 cities (Chicago + Oʻahu), item time zones, city switch, ticket badge, phone Back', function(){ v524SelfTest(ok, eq, info); });
   block('v5.25 Group Blend v1 (spec section 0.7 cases 1-8, plus the city)', function(){ v525SelfTest(ok, eq, info); });
   block('v5.26 trip mode lite (home base, trip days in the city clock, shortlist, vote link, og.trips.v1, account delete, Chicago unaffected)', function(){ v526SelfTest(ok, eq, info); });
+  block('v5.28 translations (Intl dates and times, status rules, every STR key in ru / zh-Hans / ko, data + guide plumbing, taste hook)', function(){ v528SelfTest(ok, eq, info); });
   block('v5.27 Generate my itinerary (events pinned, closed days avoided, sunset, areas, either/or, didn\'t fit, same input = same plan, Chicago too, edits + storage)', function(){ v527SelfTest(ok, eq, info); });
 
   block('time zone', function(){
@@ -14555,8 +14793,8 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.27 (2026-11-15)');
-    eq('previous version', VERSION_PREV, 'v5.26 (2026-11-15)');
+    eq('version', VERSION, 'v5.28 (2026-11-15)');
+    eq('previous version', VERSION_PREV, 'v5.27 (2026-11-15)');
   });
 
   /* ---------- v5.20 fix (live v5.19 tester, MEDIUM): "Last entry not posted" must never make a last-entry time ---------- */
@@ -16304,7 +16542,7 @@ function i18nSelfTest(ok, eq, info){
   eq('L4 "$12" written as "12 $" falls back to English (the number must be the same text)', pt('highlights', 'zh-Hans', {'fx-l1':{highlights:['约 2 小时', '每人 12 $'], hash:'AAAA'}}, {'fx-l1':'AAAA'}), 'en');
   eq('L4 the numbers test matches tools/validate-i18n.ps1 ("3,5" = "3.5"; extra numbers like a month are fine)', [numsKept('Adults $41.20, 13:00-20:00', 'Взрослые $41.20, 13:00-20:00'), numsKept('3.5 hours', '3,5 часа'), numsKept('Nov 20', '11 月 20 日'), numsKept('90 minutes', '약 9분')].join(), 'true,true,true,false');
   var samples = ['Closes in 25 min', 'Open till 5:30 pm', 'Opens at 10 am today', 'Closed today · opens Sat 9 am', 'Closed for the season (May 1 – Oct 30)', '12 min walk', '35 min drive', '8 min by CTA', 'Last entry 4:15 pm', 'Open 10 am – 4 pm Wed', 'Hours not confirmed · call first'], badN = [];
-  ['ru', 'zh-Hans', 'ko'].forEach(function(l){ samples.forEach(function(s){ var o = trStatus(s, l); if (!numsKept(s, o) || o === s) badN.push(l + ': ' + s + ' -> ' + o); }); });
+  ['ru', 'zh-Hans', 'ko'].forEach(function(l){ samples.forEach(function(s){ var o = trStatus(s, l); if (!numsKept(locTokens(s, l), o) || o === s) badN.push(l + ': ' + s + ' -> ' + o); /* v5.28: times are in the language (5:30 pm -> 17:30), so the numbers are compared with that */ }); });
   ok('L4 status words: all ' + samples.length * 3 + ' samples translated in ru / zh-Hans / ko with every number kept', !badN.length, badN.slice(0, 3).join(' | '));
   eq('L4 English status words are untouched; an unknown part stays English', trStatus('Closes in 25 min', 'en') + ' | ' + trStatus('Weird thing · call first', 'ko'), 'Closes in 25 min | Weird thing · 먼저 전화해 보세요');
   eq('L4 UI strings: {x} is filled, an unknown key shows the key, not "undefined"', i18t('home.near', {x:'Pilsen'}, 'zh-Hans') + ' | ' + i18t('no.such.key', null, 'ru'), 'Pilsen 附近 | no.such.key');
@@ -16610,6 +16848,86 @@ function itTestInHours(r, list, city){ // every stop (and option) sits inside on
   return bad;
 }
 function itTestOverlap(r){ var bad = ''; r.days.forEach(function(d){ for (var i = 1; i < d.stops.length; i++) if (!bad && d.stops[i].s < d.stops[i - 1].e) bad = d.key + ' ' + d.stops[i - 1].sid + '/' + d.stops[i].sid; }); return bad; }
+function v528SelfTest(ok, eq, info){ // v5.28 translations: formatters, status rules, every STR key in 4 languages, data + guide plumbing
+  // V528-1: English output is exactly as before
+  eq('V528-1 English times unchanged', [fmtTime(540), fmtTime(720), fmtTime(0), fmtTime(870), fmtEndTime(1440)].join('|'), '9 am|noon|midnight|2:30 pm|midnight');
+  eq('V528-1 English dates unchanged', [fmtDate('2026-11-20', '2026-01-01'), fmtDate('2027-01-19', '2026-11-15'), fmtMonthDay('2026-11-20'), fmtDayDate('2026-11-20', '2026-01-01'), dowShortL(1), dowLongL(5), monShortL(10), monLongL(4)].join('|'), 'Nov 20|Jan 19, 2027|Nov 20|Fri, Nov 20|Mon|Friday|Nov|May');
+  eq('V528-1 English units and travel unchanged', [fmtMi(2.44), fmtMi(0.05), travelText({min:9, how:'walk'}), trStatus('Opens at 9 am')].join('|'), '2.4 mi|under 0.1 mi|about 9 min walk|Opens at 9 am');
+  var L0 = LANG, has = function(rx, s){ return rx.test(String(s)); }, latin = /[A-Za-z]{2,}/;
+  try {
+    // V528-2: the same formatters in ru / zh-Hans / ko (Intl.DateTimeFormat, city wall clock)
+    LANG = 'ru';
+    var ru = [fmtTime(540), fmtTime(1290), fmtDate('2026-11-20', '2026-01-01'), fmtDayDate('2026-03-08', '2026-01-01'), dowShortL(1), dowLongL(0), monLongL(10), fmtEndTime(1440)];
+    ok('V528-2 ru times are 24-hour digits (9:00, 21:30)', has(/^0?9:00$/, ru[0]) && has(/^21:30$/, ru[1]), ru.join(' | '));
+    ok('V528-2 ru dates: "20 нояб.", Sunday Mar 8 (DST day) is "вс", weekday names', has(/20/, ru[2]) && has(/нояб/, ru[2]) && has(/^вс/, ru[3]) && ru[4] === 'пн' && has(/воскресенье/, ru[5]) && has(/ноябрь/, ru[6]) && ru[7] === '24:00', ru.join(' | '));
+    ok('V528-2 ru: the fall-back DST day (Nov 1, 2026) is still a Sunday', has(/^вс/, fmtDayDate('2026-11-01', '2026-01-01')), fmtDayDate('2026-11-01', '2026-01-01'));
+    LANG = 'zh-Hans'; var zh = [fmtTime(540), fmtDate('2026-11-20', '2026-01-01'), dowShortL(5), fmtDayDate('2026-11-20', '2026-01-01')];
+    ok('V528-2 zh dates: 11月20日, 周五', has(/9:00/, zh[0]) && has(/11月20日/, zh[1]) && has(/周五/, zh[2]) && has(/周五/, zh[3]) && !latin.test(zh.join('')), zh.join(' | '));
+    LANG = 'ko'; var ko = [fmtTime(540), fmtDate('2026-11-20', '2026-01-01'), dowShortL(5), fmtDayDate('2026-11-20', '2026-01-01')];
+    ok('V528-2 ko dates: 11월 20일, 금', has(/9:00/, ko[0]) && has(/11월 20일/, ko[1]) && has(/금/, ko[2]) && has(/금/, ko[3]) && !latin.test(ko.join('')), ko.join(' | '));
+    // status rules: "Opens at 9 am" is not half-translated any more; badges, drive lines and prices
+    var cases = ['Opens at 9 am', 'Opens at noon today', 'Ends Sun', 'Ends tomorrow · 1 day left', 'Tickets through Jan 19', 'Until Jan 10', '2 days left', 'Last date Nov 20', 'Back in May', 'Closes 10 pm', 'This weekend · Sat 5 pm', 'On Mon till 6 pm', 'No end date listed', 'Deal today', 'Checked Nov 12 · call first', 'Not confirmed yet', 'Hours not posted · call first', '18 min drive', 'Opening soon', 'Last day'];
+    ['ru', 'zh-Hans', 'ko'].forEach(function(l){
+      var bad = cases.filter(function(s){ return latin.test(trStatus(s, l)); }).map(function(s){ return s + ' -> ' + trStatus(s, l); });
+      ok('V528-2 ' + l + ': ' + cases.length + ' status / badge lines have no English words left', !bad.length, bad.join(' ; '));
+      eq('V528-2 ' + l + ': "From $20" keeps the number', trStatus('From $20', l).indexOf('$20') >= 0 && !latin.test(trStatus('From $20', l)), true);
+    });
+    eq('V528-2 ru "Opens at 9 am" (was "откроется at 9 am")', trStatus('Opens at 9 am', 'ru'), 'откроется в 9:00');
+    LANG = 'ru'; var tt = travelText({min:23, how:'car'});
+    ok('V528-2 ru drive line: "примерно 23 мин ..." with no English', has(/23/, tt) && !latin.test(tt.replace(/Uber|CTA/g, '')), tt);
+    var fw = leave28({fit:{kind:'wait', opensAt:Date.UTC(2026, 10, 20, 18, 0), travel:18}, st:{p:cparts(nowMs()), ms:nowMs()}});
+    ok('V528-2 ru "It opens at … Leave around …" sentence translated', /Открывается в/.test(fw) && !latin.test(fw), fw);
+    LANG = L0;
+    // V528-3: every STR key exists in all 3 languages, with the same {placeholders} and the same numbers
+    var miss = [], ph = [], nums = [], n = 0;
+    var sig = function(s){ return (String(s).match(/\{\w+\}/g) || []).sort().join(','); }, dig = function(s){ return (String(s).replace(/\{\w+\}/g, '').match(/\d+/g) || []).sort().join(','); };
+    for (var k in STR) if (Object.prototype.hasOwnProperty.call(STR, k)) {
+      n++; var e = STR[k];
+      for (var i = 1; i <= 3; i++) {
+        if (!e || typeof e[i] !== 'string' || !e[i].trim()) { miss.push(k + '[' + i + ']'); continue; }
+        if (sig(e[i]) !== sig(e[0])) ph.push(k + '[' + i + ']');
+        if (!numsKept(String(e[0]).replace(/\{\w+\}/g, ''), String(e[i]).replace(/\{\w+\}/g, ''))) nums.push(k + '[' + i + ']');   // every number in the English is kept (a month number like 7 月 4 日 may be added)
+      }
+    }
+    ok('V528-3 all ' + n + ' STR keys have ru, zh-Hans and ko', !miss.length, miss.slice(0, 20).join(', '));
+    ok('V528-3 placeholders are the same in every language', !ph.length, ph.slice(0, 20).join(', '));
+    ok('V528-3 numbers are the same in every language', !nums.length, nums.slice(0, 20).join(', '));
+    ok('V528-3 the v5.28 keys are in the table (' + Object.keys(STR28).length + ' new + ' + Object.keys(STR).filter(function(x){ return /^sub\./.test(x); }).length + ' sub-kind names)', Object.keys(STR28).every(function(x){ return !!STR[x]; }), '');
+    // V528-4: the new data fields, each with its own English fallback
+    var it = {id:'fx-528', hook:'h', price_note:'Adults $20, kids $10', hours_note:'Last entry 5 pm', age_note:'All ages', good_to_know:[{q:'Parking?', a:'Lot for $5'}, {q:'Food?', a:'Snacks'}], season:{open_from:'2026-05-01', note:'Closes in bad weather'}, only_here:{kind:'only', reason:'The only one in the US'}};
+    var tr = {hash:'H1', price_note:'Взрослые $20, дети $10', hours_note:'Последний вход 5 pm', age_note:'Любой возраст', good_to_know:[{q:'Парковка?', a:'Стоянка за $5'}, {q:'Еда?', a:'Перекус'}], season:{note:'Закрыто в плохую погоду'}, only_here:{reason:'Единственное в США'}};
+    var pt = function(f, t, h){ return placeTextWith(it, f, 'ru', {'fx-528':t}, {'fx-528':h || 'H1'}); };
+    eq('V528-4 price / hours / age / season.note / only_here.reason come through', ['price_note', 'hours_note', 'age_note', 'season.note', 'only_here.reason'].map(function(f){ return pt(f, tr).lang; }).join(','), 'ru,ru,ru,ru,ru');
+    eq('V528-4 good_to_know: both Q&As translated, sources kept', JSON.stringify(pt('good_to_know', tr).v.map(function(x){ return x.q; })), '["Парковка?","Еда?"]');
+    eq('V528-4 a stale letter only drops that field (p = price_note)', [pt('price_note', tr, 'H1~p').lang, pt('age_note', tr, 'H1~p').lang].join(','), 'en,ru');
+    eq('V528-4 a lost number, a short Q&A list or a wrong hash fall back to English', [pt('price_note', {hash:'H1', price_note:'Взрослые $25'}).lang, pt('good_to_know', {hash:'H1', good_to_know:[{q:'Парковка?', a:'Стоянка за $5'}]}).lang, pt('hours_note', tr, 'H2').lang].join(','), 'en,en,en');
+    // V528-5: guide translations (hash must match guides-hash.json)
+    var c0 = I18N.cache.ru, gh0 = I18N.ghash;
+    try {
+      var g = {id:'fx-guide', title:'{n} date ideas', intro:'Two stops, $20 each', when:'Any night', format:'plan', steps:[{activity_id:'a1', why:'Warm up', timing:'7 pm'}, {activity_id:'a2', why:'Then dessert'}]};
+      I18N.cache.ru = {places:{}, n:0, guides:{'fx-guide':{hash:'G1', title:'{n} идеи для свидания', intro:'Две остановки, $20 каждая', when:'Любой вечер', steps:[{why:'Разогрейтесь', timing:'19:00'}, {why:'Потом десерт'}]}}}; I18N.ghash = {'fx-guide':'G1'};
+      var mk = function(){ return {g:g, fmt:'plan', rows:[{it:{id:'a1'}, why:'Warm up', timing:'7 pm'}, {it:{id:'a2'}, why:'Then dessert', timing:''}], n:2, title:'2 date ideas', dates:[]}; };
+      var R1 = gaLocalize(mk(), 'ru');
+      eq('V528-5 a fresh guide translation: title (with {n}), intro, when, each step', [R1.title, R1.intro, R1.sub, R1.rows[0].why, R1.rows[1].why].join('|'), '2 идеи для свидания|Две остановки, $20 каждая|Любой вечер|Разогрейтесь|Потом десерт');
+      eq('V528-5 the step time "7 pm" -> "19:00" is refused (number check), English kept', R1.rows[0].timing, '7 pm');
+      I18N.ghash = {'fx-guide':'G2'}; var R2 = gaLocalize(mk(), 'ru');
+      eq('V528-5 a changed English guide (hash differs) stays English', [R2.title, R2.rows[0].why].join('|'), '2 date ideas|Warm up');
+      eq('V528-5 English is never touched', gaLocalize(mk(), 'en').title, '2 date ideas');
+      // V528-6: the taste deck shows the translated hook
+      var h0 = I18N.hash; I18N.hash = {'fx-528':'H1'}; I18N.cache.ru = {places:{'fx-528':{hash:'H1', hook:'Фокусы прямо за столиком'}}, n:1};
+      LANG = 'ru'; var dh = deckHookL({id:'fx-528', hook:'Close-up magic at your table'}); LANG = L0; I18N.hash = h0;
+      eq('V528-6 taste card hook in the picked language', dh, 'Фокусы прямо за столиком');
+    } finally { I18N.cache.ru = c0; I18N.ghash = gh0; }
+    // V528-7: rendered screens
+    LANG = 'ru';
+    var acc = acctSheetHTML('out'), bb = beenBoxHTML({id:'x', date:'2026-11-02', prec:'month', rating:4}, '2026-11-15');
+    ok('V528-7 ru account sheet (signed out): no English labels', acc.indexOf('Sign in with Google') < 0 && acc.indexOf('Войти через Google') >= 0 && acc.indexOf('Settings') < 0 && acc.indexOf('Delete account') < 0, acc.replace(/<[^>]+>/g, ' ').slice(0, 300));
+    ok('V528-7 ru "I\'ve been here" box: Day / Month / Don\'t remember, Remove, the note', /Не помню/.test(bb) && /Убрать/.test(bb) && !/Remove|Don’t remember|One line/.test(bb), bb.replace(/<[^>]+>/g, ' ').slice(0, 300));
+    ok('V528-7 ru deck lines: answers + minutes', /быстрых ответов · около \d+ мин/.test(deckMinutesLine(DECK_TOTAL)) && /быстрых свайпов/.test(deckMinutesLine(5)), deckMinutesLine(DECK_TOTAL));
+    LANG = L0;
+    eq('V528-7 English deck lines unchanged', deckMinutesLine(DECK_TOTAL), DECK_TOTAL + ' quick answers · about ' + Math.max(1, Math.round(DECK_TOTAL * 3 / 60)) + ' min');
+  } finally { LANG = L0; }
+}
 function v527SelfTest(ok, eq, info){ // Generate my itinerary: fixtures only (the run is on a Chicago clock; Oʻahu fixtures read Honolulu time)
   var oahu = CITY_BY.oahu, chi = CITY_BY.chicago, home = {lat:21.2800, lng:-157.8320, label:'Test hotel', home:true}, n = 0;
   function fx(o){ return ext({id:'fx27-' + (++uid), name:'Itinerary fixture', kind:'place', category:'games-arcade', tags:[], city:'oahu', lat:21.2810, lng:-157.8300, indoor_outdoor:'indoor', price_level:'$', booking:'walk-in', hours:allDays(['09:00', '17:00']), season:null, duration_minutes:90, verified:{status:'verified', checked_on:'2026-11-15'}}, o); }
@@ -16834,7 +17152,7 @@ function v522SelfTest(ok, eq){
   var cd = fx({hours:H, closed_dates:['2026-11-17']});
   eq('H4 closed_dates item: closed on Nov 17, open on Nov 18', [S(cd, '2026-11-17', 720), S(cd, '2026-11-18', 720)].join(), 'closed,open');
   // L1: "Closed for <holiday>" in each language
-  eq('T8 "Closed for Thanksgiving" in ru / zh-Hans / ko (status line)', ['ru', 'zh-Hans', 'ko'].map(function(l){ return trStatus('Closed for Thanksgiving · opens tomorrow 9:30 am', l); }).join(' | '), 'Закрыто: День благодарения · откроется завтра 9:30 am | 感恩节休息 · 明天 9:30 am 开门 | 추수감사절 휴무 · 내일 9:30 am 오픈');
+  eq('T8 "Closed for Thanksgiving" in ru / zh-Hans / ko (status line)', ['ru', 'zh-Hans', 'ko'].map(function(l){ return trStatus('Closed for Thanksgiving · opens tomorrow 9:30 am', l); }).join(' | '), 'Закрыто: День благодарения · откроется завтра 9:30 | 感恩节休息 · 明天 9:30 开门 | 추수감사절 휴무 · 내일 09:30 오픈');   // v5.28: the time in the language
   eq('T8 special-dates labels in Korean / Chinese; English unchanged', [closedDayLabel('2026-12-25', 'ko'), closedDayLabel('2026-11-17', 'zh-Hans'), closedDayLabel('2026-12-25', 'en')].join('|'), '크리스마스 휴무|休息|Closed for Christmas');
   eq('T8 "Closed for the season" is not mistaken for a holiday', trStatus('Closed for the season', 'ru'), 'Закрыто на сезон');
   // M1: more interface words
@@ -16860,9 +17178,9 @@ function v522SelfTest(ok, eq){
     STATUS_RX.forEach(function(r, ri){ var g = new RegExp(r[0].source + '|').exec('').length - 1; r[1].forEach(function(t, ti){ for (var j = 1; j <= g; j++) if (t.indexOf('$' + j) < 0) rxBad.push(ri + '/' + ti + '/$' + j); }); });
     eq('U1 every status rule copies each captured time / count ($1, $2) in all three languages', rxBad.join(), '');
     eq('U2 half-translated status lines are now whole (ru)', [trStatus('No more entry today · opens tomorrow noon', 'ru'), trStatus('Last entry was 8 pm; it closes at 10 pm', 'ru'), trStatus('last entry was 5:30 pm; it closes at 6 pm', 'ru'), trStatus('Tickets on sale through Jan 19 · end date not announced', 'ru')].join(' | '),
-      'Сегодня вход уже закрыт · откроется завтра noon | Последний вход был в 8 pm, закрытие в 10 pm | Последний вход был в 5:30 pm, закрытие в 6 pm | Билеты в продаже до Jan 19 · дата окончания не объявлена');
+      'Сегодня вход уже закрыт · откроется завтра 12:00 | Последний вход был в 20:00, закрытие в 22:00 | Последний вход был в 17:30, закрытие в 18:00 | Билеты в продаже до 19 янв. · дата окончания не объявлена');   // v5.28: times and dates in the language
     eq('U2 the same lines in zh-Hans and ko keep 8 pm / 10 pm / Jan 19', [trStatus('Last entry was 8 pm; it closes at 10 pm', 'zh-Hans'), trStatus('Last entry was 8 pm; it closes at 10 pm', 'ko'), trStatus('Tickets on sale through Jan 19 · end date not announced', 'zh-Hans'), trStatus('No more entry today', 'ko')].join(' | '),
-      '最后入场 8 pm，10 pm 关门 | 마지막 입장 8 pm, 10 pm 마감 | 门票售至 Jan 19 · 结束日期未公布 | 오늘 입장 마감');
+      '最后入场 20:00，22:00 关门 | 마지막 입장 20:00, 22:00 마감 | 门票售至 1月19日 · 结束日期未公布 | 오늘 입장 마감');   // v5.28: times and dates in the language
     var keepL = LANG, got = {};
     try {
       ['ru', 'zh-Hans', 'ko'].forEach(function(l){
@@ -17103,6 +17421,7 @@ function readHash(){
   var wxh = /(?:^#|&)wx=(rain|storm|snow|heavysnow|wind|hot|nice|grey|fail)\b/.exec(hsh); if (wxh) wxSetFixture(wxh[1]);   // v5.20 testing hook: made-up weather (the sheet says "Test weather"); nothing is fetched
   if (/(?:^#|&)wxsheet=1/.test(hsh) && mapEl) (function w(n){ if (DATA_LOADED || n > 60) wxOpenSheet(); else setTimeout(function(){ w(n + 1); }, 200); })(0);   // v5.20 screenshot hook
   var lgm = /(?:^#|&)lang=(en|ru|zh-Hans|ko)\b/.exec(hsh); if (lgm) setLang(lgm[1], true);   // v5.21 testing hook (this visit only, not saved)
+  var opm = /(?:^#|&)open=([A-Za-z0-9_.-]{2,80})/.exec(hsh); if (opm && mapEl) (function w(n){ if (DATA_LOADED) setTimeout(function(){ try { openDetail(opm[1]); } catch (e) {} }, 400); else if (n < 100) setTimeout(function(){ w(n + 1); }, 200); })(0);   // v5.28 screenshot hook: #...&open=<id> opens that place after the other hooks (lang, now, loc)
   var skm = /(?:^#|&)skin=(night|sorbet)/.exec(hsh); if (skm) setSkin(skm[1], true);
   var thm = /(?:^#|&)mode=(auto|light|dark)/.exec(hsh); if (thm) setTheme(thm[1], true);
   var msm = /(?:^#|&)mapstyle=(standard|themed)/.exec(hsh); if (msm) setMapMode(msm[1], true);
@@ -17700,7 +18019,7 @@ function wxSheetHTML(){
     if (i0 >= 0) h += '<ul class="wx-hours" aria-label="Next 12 hours">' + N.hours.slice(i0, i0 + 12).map(function(y, j){ if (j === 0) y = wxNowCell(y, x); return '<li><span>' + (j === 0 ? esc(X('wx.now', 'Now')) : esc(fmtTime(y.h * 60).replace(':00', ''))) + '</span>' + wxSvg(wxIcon(y.code, y.day, y.gust)) + (isNum(y.prob) && y.prob >= 50 ? '<small>' + Math.round(y.prob) + '%</small>' : '') + '<b>' + (isNum(y.temp) ? Math.round(y.temp) + '°' : '') + '</b></li>'; }).join('') + '</ul>';
   }
   var dd = N.days.filter(function(d){ return d.key >= p.key; }).slice(0, 8);
-  if (dd.length) h += '<div class="wx-days">' + dd.map(function(d, j){ return '<button type="button" data-wx="day:' + d.key + '" aria-label="Show ' + esc(j === 0 ? 'today' : DOW_SHORT[wdOfKey(d.key)]) + ', any time"><span class="d">' + (j === 0 ? esc(X('wx.today', 'Today')) : esc(DOW_SHORT[wdOfKey(d.key)] + ' ' + (+d.key.slice(8)))) + '</span>' + wxSvg(wxIcon(d.code, 1, d.gust)) + '<span class="pp">' + (isNum(d.prob) && d.prob >= 30 ? Math.round(d.prob) + '%' : '') + '</span><span class="t">' + (isNum(d.hi) ? Math.round(d.hi) + '°' : '') + ' / ' + (isNum(d.lo) ? Math.round(d.lo) + '°' : '') + '</span></button>'; }).join('') + '</div>';
+  if (dd.length) h += '<div class="wx-days">' + dd.map(function(d, j){ return '<button type="button" data-wx="day:' + d.key + '" aria-label="' + esc(tx('wx.showDay', 'Show {d}, any time', {d:j === 0 ? (LANG === 'en' ? 'today' : i18t('when.today')) : dowShortL(wdOfKey(d.key))})) + '"><span class="d">' + (j === 0 ? esc(X('wx.today', 'Today')) : esc(dowShortL(wdOfKey(d.key)) + ' ' + (+d.key.slice(8)))) + '</span>' + wxSvg(wxIcon(d.code, 1, d.gust)) + '<span class="pp">' + (isNum(d.prob) && d.prob >= 30 ? Math.round(d.prob) + '%' : '') + '</span><span class="t">' + (isNum(d.hi) ? Math.round(d.hi) + '°' : '') + ' / ' + (isNum(d.lo) ? Math.round(d.lo) + '°' : '') + '</span></button>'; }).join('') + '</div>';
   h += '<button class="wx-sw" type="button" role="switch" aria-checked="' + wxRankOn() + '" data-wx="rank">' + esc(X('wx.rank', 'Use weather in picks')) + '<i></i></button>';
   h += '<button class="wx-sw" type="button" role="switch" aria-checked="' + !!WX.fxPref + '" data-wx="fx">' + esc(X('wx.fx', 'Rain and snow on the map')) + '<i></i></button>';
   h += '<p class="hint">' + esc(X('wx.hint', 'Weather only changes the order. Nothing is hidden.')) + '</p>';
@@ -17881,6 +18200,7 @@ function init(){
 
 window.__cff = {
   version: VERSION, appName: APP_NAME,
+  m528: {openGuide: openGuide, closeGuide: closeGuide, wxOpenSheet: wxOpenSheet, openAccount: openAccount, tasteStartDeck: tasteStartDeck, closeTaste: closeTaste, closePanel: closePanel, data: function(){ return DATA; }, i18n: function(){ return I18N; }, tx: tx, fmtTime: fmtTime, fmtDate: fmtDate, fmtDayDate: fmtDayDate, locTokens: locTokens, gaLocalize: gaLocalize, placeTextWith: placeTextWith, leave28: leave28, STR: STR, guides: function(){ return GUIDE_BY; }, ui: function(){ return UI; }, acct: function(){ return Acct; }},   // v5.28: the translation-measure hooks (testing only)
   typeTaste: typeTaste, groupMember: groupMember, groupLikes: groupLikes, groupPicks: groupPicks, groupScore: groupScore, groupMembersFrom: groupMembersFrom, groupVoteLink: groupVoteLink, groupsGet: groupsGet, groupsPut: groupsPut, groupsForget: groupsForget, pollGoWith: pollGoWith,   // v5.25 Group Blend
   group: function(){ return {mode:GRP.mode, pick:GRP.pick.slice(), cur:GRP.cur, picks:(GRP.picks || []).map(function(p){ return {sid:p.sid, n:p.n, m:p.m, city:cityOf(p.c.item)}; }), vote:GRP.vote.slice(), saved:groupsGet(grpStore()).length}; }, groupOpen: grpOpen,
   CITIES: CITIES, city: function(){ return {slug:CITY.slug, name:CITY.name, tz:TZ, center:ext(LOOP, {}), n:DATA.length, all:ALL_DATA.length, counts:cityCounts(ALL_DATA), fly:CITY_FLY.phase, picked:!!UI.cityPicked}; },   // v5.24
