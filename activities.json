@@ -69795,38 +69795,6 @@
         "price_level":  "$$",
         "duration_minutes":  60,
         "min_minutes":  60,
-        "hours":  {
-                      "tue":  [
-                                  [
-                                      "09:00",
-                                      "16:00"
-                                  ]
-                              ],
-                      "wed":  [
-                                  [
-                                      "09:00",
-                                      "16:00"
-                                  ]
-                              ],
-                      "thu":  [
-                                  [
-                                      "09:00",
-                                      "16:00"
-                                  ]
-                              ],
-                      "fri":  [
-                                  [
-                                      "09:00",
-                                      "16:00"
-                                  ]
-                              ],
-                      "sat":  [
-                                  [
-                                      "09:00",
-                                      "16:00"
-                                  ]
-                              ]
-                  },
         "hours_note":  "Closed Sundays and Mondays. Audio tours: Tue, Fri and Sat 9:00-15:30, Wed 13:00-15:00, Thu 13:00-14:00. Docent tours: Wed and Thu 9:00-12:30, Sat 15:00 and 15:30. 2027 holiday closures not posted yet.",
         "last_entry_before_close_min":  null,
         "closed_dates":  [
@@ -69882,6 +69850,44 @@
                           "reason":  "Palace of the Hawaiian Kingdom\u0027s last monarchs, in downtown Honolulu",
                           "src":  "https://www.iolanipalace.org/"
                       },
+        "hours":  {
+                      "tue":  [
+                                  [
+                                      "09:00",
+                                      "16:00"
+                                  ]
+                              ],
+                      "wed":  [
+                                  [
+                                      "09:00",
+                                      "16:00"
+                                  ]
+                              ],
+                      "thu":  [
+                                  [
+                                      "09:00",
+                                      "16:00"
+                                  ]
+                              ],
+                      "fri":  [
+                                  [
+                                      "09:00",
+                                      "16:00"
+                                  ]
+                              ],
+                      "sat":  [
+                                  [
+                                      "09:00",
+                                      "16:00"
+                                  ]
+                              ],
+                      "sun":  [
+
+                              ],
+                      "mon":  [
+
+                              ]
+                  },
         "sid":  507,
         "photos":  [
 
