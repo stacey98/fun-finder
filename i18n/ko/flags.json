@@ -1,0 +1,17 @@
+[
+    {
+        "id":  "pa-great-wolf-lodge-illinois-day-pass",
+        "field":  "hook",
+        "reason":  "Source says \u002784 degrees\u0027 with no unit; rendered as 84도(화씨) because plain 84도 reads as Celsius in Korean - confirm Fahrenheit."
+    },
+    {
+        "id":  "pa-great-wolf-lodge-illinois-day-pass",
+        "field":  "description",
+        "reason":  "Same \u002784 degrees\u0027 unit assumption (84도(화씨)) in description and highlight."
+    },
+    {
+        "id":  "ev-ravinia-winter-weekend",
+        "field":  "highlights",
+        "reason":  "Concert titles and performer names (Chanukah: Songs of Light, Lessons and Carols for Our Time, Jingle Bell JAM!, etc.) kept in English per glossary; \u0027Lessons and Carols\u0027 in description also kept in English as a service name."
+    }
+]

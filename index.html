@@ -1812,7 +1812,20 @@ svg.gi{width:20px;height:20px;flex:none}
 .chip.wxc{flex-direction:column;justify-content:center;gap:3px;min-height:52px;padding-top:4px;padding-bottom:4px}
 .wxd{display:flex;align-items:center;gap:3px;font:600 12px/1 var(--f-body);color:var(--ink-2)}
 .wxd .wxi{width:14px;height:14px}
-.wxfx{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:4}
+.wxfx{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:2}   /* v5.21 (tester v5.20 L5): under the map dots (z 3) and pins */
+/* v5.21 languages + Only in Chicago */
+.lang-btn{font:700 12px/1 var(--f-body);letter-spacing:.02em;color:var(--ink);width:auto;min-width:44px;padding:0 6px}
+@media (max-width:359px){ .lang-btn{display:none} }
+.lang-seg button{min-width:0;padding:0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.oh-b{display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:middle;font:700 11px/1.25 var(--f-body);letter-spacing:0;text-transform:none;padding:3px 8px;border-radius:999px;background:#FFD25A;color:#1A1405;border:0}
+.oh-b.rare{background:#B9A8FF;color:#140D33}.oh-b.classic{background:#8FD3FF;color:#06202F}
+.oh-b.tag{top:-1px}
+.oh-b.c3{margin-bottom:6px;text-shadow:none}
+.oh-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 8px;margin:8px 0 0;font:500 13.5px/1.35 var(--f-body);color:var(--ink-2)}
+.oh-line .oh-b{flex:none}
+.oh-line span{min-width:0;overflow-wrap:anywhere}
+.fs-visit .sw-row small{display:block;font-weight:500;font-size:12.5px;color:var(--ink-2);margin-top:2px}
+.fs-visit .sw-row > span{min-width:0;overflow-wrap:anywhere}
 .wxfx.fog{background:var(--paper);opacity:.08}
 </style>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -1993,8 +2006,8 @@ svg.gi{width:20px;height:20px;flex:none}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.20 (2026-11-14)';   // v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
-var VERSION_PREV = 'v5.19 (2026-11-14)';   // v5.19: Blend with a friend, friends' stars + one-line reviews
+var VERSION = 'v5.21 (2026-11-14)';   // v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
+var VERSION_PREV = 'v5.20 (2026-11-14)';   // v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, rain/snow on the map)
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var FEEDBACK_EMAIL = 'localfinds.app@gmail.com';   // v5.16: "Send feedback" in the account sheet (a mailto draft; never sent by the app). Separate from CONTACT_EMAIL.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
@@ -3086,7 +3099,7 @@ function describeCore(st, it){
     case 'closed':
       if (st.noEntry) return {text:'No more entry today' + (st.opensAt ? ' \u00b7 opens ' + fmtWhen(st.opensAt, p, false) : ''), tone:'closed', sub:'last entry was ' + fmtClock(st.lastEntryAt) + '; it closes at ' + fmtClock(st.doorCloses)};   // v2.2 (C-1)
       var lead = st.todayHas ? 'Closed now' : 'Closed today';
-      if (!st.todayHas && closedSet(it)[p.key] && holidayName(p.key)) lead = 'Closed today (' + holidayName(p.key) + ')';
+      if (!st.todayHas && closedSet(it)[p.key] && holidayName(p.key)) lead = closedDayLabel(p.key);   // v5.21 (tester v5.19): the holiday's name, "Closed for Thanksgiving"
       var inh = !st.todayHas && it.__inh && it.__inh[p.key] ? 'inside ' + it.__inh[p.key] + ', which is closed today' : undefined;   // v2.1 (tester H-A)
       if (!st.opensAt) return {text:lead, tone:'closed', sub: inh || 'no opening found in the next week'};
       return {text:lead + ' \u00b7 opens ' + fmtWhen(st.opensAt, p, false), tone:'closed', sub:inh};
@@ -3706,7 +3719,7 @@ function migrateMode(stored, migrated){ // pure: the mode to use at start-up, an
   return {mode:stored, migrated:true};                                               // anything she picks after this is kept
 }
 function appDefaultFilters(){ return ext(defaultFilters(), {radius:APP_RADIUS}); }
-function defaultFilters(){ return {openNow:true, fits:true, radius:5, mode:DEFAULT_MODE, who:{}, io:'either', price:{}, walkin:false, sale:false, kind:'all', social:false, hide21:false, showGone:false, notBeen:false, interests:{}, groups:{}, cats:{}, sort:'best'}; }
+function defaultFilters(){ return {openNow:true, fits:true, radius:5, mode:DEFAULT_MODE, who:{}, io:'either', price:{}, walkin:false, sale:false, visit:false, kind:'all', social:false, hide21:false, showGone:false, notBeen:false, interests:{}, groups:{}, cats:{}, sort:'best'}; }
 function computeItem(it, T, ctx){
   var pcx = planCtx(T);   // v5.3: a picked time never says "now" (the wording is part of the cached row)
   var day = ctx.day && isKey(ctx.day) ? ctx.day : '';   // v5.6: "Any time" on a picked day
@@ -3822,6 +3835,7 @@ function passFilters(c, F){
     if (it.price_level || onlyFree) return false;
   }
   if (F.walkin && it.booking !== 'walk-in') return false;
+  if (F.visit && !visitorPick(it)) return false;   // v5.21 "Visiting Chicago"
   if (F.sale && !c.deal) return false;   // v5.13: "On sale" = a deal that is on now or within DEAL_AHEAD_DAYS (dealState)
   if (F.hide21 && is21(it)) return false;
   if (tasteHides(it)) return false;   // v5.12: the taste "hard no's" (Budget, No 21+, Skip bar-centered stuff) are the ONLY taste settings that hide anything
@@ -4130,6 +4144,7 @@ function appliedFilters(F){ // removable chips under the result line (Baymard pa
   if (F.radius !== APP_RADIUS) a.push({code:'radius', label:'Within ' + fmtRadius(F.radius)});
   if (F.walkin) a.push({code:'walkin', label:'Walk-in only'});
   if (F.sale) a.push({code:'sale', label:'On sale'});
+  if (F.visit) a.push({code:'visit', label:i18t('f.visit')});   // v5.21
   if (F.hide21) a.push({code:'hide21', label:'No 21+'});
   if (F.notBeen) a.push({code:'notBeen', label:'Not been yet'});
   for (k in F.interests) if (F.interests[k]) a.push({code:'int:' + k, label:interestLabel(k)});
@@ -4144,7 +4159,7 @@ function removeFilter(F, code){ // returns a new filter object without that one 
   else if (k === 'mode') G.mode = DEFAULT_MODE;
   else if (k === 'radius') G.radius = APP_RADIUS;
   else if (k === 'openNow' || k === 'fits') G[k] = true;
-  else if (k === 'walkin' || k === 'hide21' || k === 'notBeen' || k === 'sale') G[k] = false;
+  else if (k === 'walkin' || k === 'hide21' || k === 'notBeen' || k === 'sale' || k === 'visit') G[k] = false;
   return G;
 }
 
@@ -4222,11 +4237,157 @@ function filterCount(F, when){ // v2: the radius has its own chip and is not cou
   for (k in F.interests) if (F.interests[k]) n++;
   for (k in F.groups) if (F.groups[k]) n++;
   for (k in F.cats) if (F.cats[k]) n++;
-  if (F.io !== 'either') n++; if (F.walkin) n++; if (F.sale) n++; if (F.kind !== 'all') n++; if (F.hide21) n++; if (F.social) n++; if (F.showGone) n++; if (F.notBeen) n++;
+  if (F.io !== 'either') n++; if (F.walkin) n++; if (F.sale) n++; if (F.visit) n++; if (F.kind !== 'all') n++; if (F.hide21) n++; if (F.social) n++; if (F.showGone) n++; if (F.notBeen) n++;
   if (F.mode !== DEFAULT_MODE) n++; if (when && when !== 'now') n++;
   return n;
 }
 function activeFilterCount(){ return filterCount(S.f, S.when); }
+
+/* ================= v5.21 languages: picker, UI strings, place text with per-field English fallback (plans/2026-11-14-languages-idea.md) =================
+   English is the source of truth. The ru / zh-Hans / ko UI strings in STR were written from data/i18n/_glossary.md terms and are
+   UNVERIFIED: THEY NEED NATIVE REVIEW. Place names, addresses, prices, hours tables and notes always stay in English.
+   Place text: i18n/<lang>/places.json ({id: {hook, description, highlights[], hash}}), fetched next to activities.json only when that
+   language is picked. A field shows translated only when (1) it is there, (2) the item's hash equals the current-English hash in
+   i18n/en-hash.json (tools/build-site.ps1 writes it by diffing the frozen source text against today's data: "HASH" when nothing
+   changed, "HASH~hd" when the hook / description / highlights changed), (3) that field's letter is not marked changed, and (4) every
+   number in the English is also in the translation. Anything else: that one field in English. No hash file = English everywhere. */
+var LANGS = [{code:'en', name:'English', short:'EN'}, {code:'ru', name:'Русский', short:'RU'}, {code:'zh-Hans', name:'简体中文', short:'中文'}, {code:'ko', name:'한국어', short:'한국어'}];
+var LANG_IX = {'en':0, 'ru':1, 'zh-Hans':2, 'ko':3}, LANG_KEY = 'offgrid.lang.v1', LANG = 'en';
+var I18N = {cache:{}, hash:null, hashTried:false, state:{}, err:{}};
+function isLang(c){ return typeof c === 'string' && Object.prototype.hasOwnProperty.call(LANG_IX, c); }
+function langFromTag(tag){ var s = String(tag || '').toLowerCase().replace(/_/g, '-'); if (/^ru(-|$)/.test(s)) return 'ru'; if (/^zh(-|$)/.test(s)) return 'zh-Hans'; if (/^ko(-|$)/.test(s)) return 'ko'; return 'en'; }   // any Chinese tag -> Simplified (her decision)
+function detectLang(navLang, saved){ return isLang(saved) ? saved : langFromTag(navLang); }   // pure: a saved pick (English too) beats the browser language
+function navLangNow(){ try { return navigator.language || (navigator.languages && navigator.languages[0]) || ''; } catch (e) { return ''; } }
+// STR: key -> [English, Russian, Chinese (Simplified), Korean]. Non-English: unverified, needs native review.
+var STR = {
+  'lang.title':['Language', 'Язык', '语言', '언어'],
+  'lang.note':['Translations are new and not yet checked by a native speaker. Place names stay in English.', 'Перевод новый и ещё не проверен носителем языка. Названия мест остаются на английском.', '译文是新的，尚未经母语人士审校。地点名称保留英文。', '번역은 새로 추가되어 아직 원어민 검수를 받지 않았어요. 장소 이름은 영어로 표시돼요.'],
+  'theme.title':['Theme & language', 'Тема и язык', '主题和语言', '테마 및 언어'],
+  'who.date':['Date', 'Свидание', '约会', '데이트'], 'who.friends':['Friends', 'Друзья', '朋友', '친구'], 'who.solo':['Solo', 'Одному', '独自', '혼자'],
+  'when.now':['Now', 'Сейчас', '现在', '지금'], 'when.today':['Today', 'Сегодня', '今天', '오늘'], 'when.pick':['Pick a day', 'Дата', '选日期', '날짜 선택'],
+  'home.now':['Three for right now', 'Три идеи на сейчас', '此刻三选', '지금 가 볼 세 곳'], 'home.today':['Three for today', 'Три идеи на сегодня', '今天三选', '오늘 가 볼 세 곳'],
+  'home.near':['near {x}', 'рядом: {x}', '{x} 附近', '{x} 근처'], 'home.browse':['Browse everything', 'Смотреть всё', '浏览全部', '전체 보기'], 'home.more3':['Three more', 'Ещё три', '再来三个', '세 곳 더'],
+  'dt.what':['What you do there', 'Чем там заняться', '在那里做什么', '무엇을 하나요'], 'dt.dates':['Dates', 'Даты', '日期', '날짜'], 'dt.practical':['Practical', 'Полезно знать', '实用信息', '이용 정보'],
+  'dt.hours':['Hours', 'Часы работы', '营业时间', '영업시간'], 'dt.getting':['Getting there', 'Как добраться', '交通', '가는 방법'], 'dt.gtk':['Good to know', 'Стоит знать', '小贴士', '알아 두면 좋아요'],
+  'dt.been':['I’ve been here', 'Я здесь был(а)', '我去过', '가 봤어요'], 'dt.cal':['Add to calendar', 'В календарь', '加入日历', '캘린더에 추가'],
+  'f.visit':['Visiting Chicago', 'Гостям Чикаго', '游览芝加哥', '시카고 여행'], 'f.visitSub':['Only-in-Chicago places and classic must-sees', 'Только в Чикаго и главная классика', '芝加哥独有和必去经典', '시카고에만 있는 곳과 꼭 가 볼 명소'],
+  'f.price':['Price', 'Цена', '价格', '가격'], 'f.far':['How far', 'Как далеко', '距离', '거리'], 'f.io':['Inside or out', 'В помещении или на улице', '室内还是室外', '실내 또는 야외'],
+  'f.booking':['Booking', 'Бронь', '预约', '예약'], 'f.time':['Time I have', 'Сколько у меня времени', '我有多少时间', '가능한 시간'], 'f.into':['Into', 'Интересы', '兴趣', '관심사'],
+  'f.free':['Free', 'Бесплатно', '免费', '무료'], 'f.sale':['On sale', 'Со скидкой', '特惠', '할인 중'], 'f.any':['Any', 'Любое', '不限', '전체'],
+  'f.drive':['Drive', 'На машине', '开车', '자동차'], 'f.cta':['Walk + CTA', 'Пешком + CTA', '步行 + CTA', '도보 + CTA'], 'f.walk':['Walk', 'Пешком', '步行', '도보'],
+  'f.either':['Either', 'Неважно', '都可以', '상관없음'], 'f.inside':['Inside', 'В помещении', '室内', '실내'], 'f.outside':['Outside', 'На улице', '室外', '야외'],
+  'f.walkin':['Walk-in only', 'Без записи', '无需预约', '예약 없이 방문'], 'f.no21':['No 21+', 'Без 21+', '不含 21+', '21세 이상 제외'],
+  'oh.only':['Only in Chicago', 'Только в Чикаго', '芝加哥独有', '시카고에만'], 'oh.rare':['Rare find', 'Редкая находка', '难得一见', '보기 드문 곳'], 'oh.classic':['Chicago classic', 'Классика Чикаго', '芝加哥经典', '시카고 클래식'],
+  'g.limited':['Limited', 'Ненадолго', '限时', '기간 한정'], 'g.play':['Play', 'Игры', '玩乐', '놀이'], 'g.look':['Sights', 'Смотреть', '观光', '구경'], 'g.nature':['Nature', 'Природа', '自然', '자연'],
+  'g.eat':['Eat & drink', 'Еда', '吃喝', '먹고 마시기'], 'g.shows':['Shows', 'Шоу', '演出', '공연'], 'g.make':['Make', 'Творить', '手作', '만들기'], 'g.relax':['Relax', 'Отдых', '放松', '휴식']
+};
+function i18t(key, v, lang){
+  var e = STR[key]; if (!e) return String(key);
+  var l = isLang(lang) ? lang : LANG, s = e[LANG_IX[l]] || e[0];
+  if (v) s = s.replace(/\{(\w+)\}/g, function(m, k){ return v[k] !== undefined && v[k] !== null ? String(v[k]) : m; });
+  return s;
+}
+// Status words: each " · " part is matched on its own; a part with no rule stays English. Times, dates and counts are copied ($1), never retyped.
+var STATUS_RX = [
+  [/^Open now$/, ['Открыто сейчас', '营业中', '영업 중']], [/^(?:On|Happening) now$/, ['Идёт сейчас', '正在进行', '진행 중']], [/^Open 24 hours$/, ['Открыто круглосуточно', '24 小时营业', '24시간 영업']],
+  [/^Open till (.+)$/, ['Открыто до $1', '营业至 $1', '$1까지 영업']], [/^On till (.+)$/, ['Идёт до $1', '进行至 $1', '$1까지 진행']], [/^till (.+)$/, ['до $1', '至 $1', '$1까지']],
+  [/^Closes in (\d+) min$/, ['Закроется через $1 мин', '$1 分钟后关门', '$1분 후 마감']], [/^[Ee]nds in (\d+) min$/, ['Закончится через $1 мин', '$1 分钟后结束', '$1분 후 종료']],
+  [/^Closes (\d.*)$/, ['Закрывается в $1', '$1 关门', '$1 마감']], [/^Ends (\d.*)$/, ['Заканчивается в $1', '$1 结束', '$1 종료']],
+  [/^Opens at (.+) today$/, ['Откроется сегодня в $1', '今天 $1 开门', '오늘 $1 오픈']], [/^[Oo]pens (.+)$/, ['откроется $1', '$1 开门', '$1 오픈']],
+  [/^Closed now$/, ['Сейчас закрыто', '现在不营业', '지금은 영업 안 함']], [/^Closed today$/, ['Сегодня закрыто', '今天不营业', '오늘 휴무']], [/^Closed today \((.+)\)$/, ['Сегодня закрыто ($1)', '今天不营业（$1）', '오늘 휴무($1)']],
+  [/^Closed for the season(.*)$/, ['Закрыто на сезон$1', '季节性关闭$1', '시즌 휴무$1']], [/^Closed for good$/, ['Закрыто навсегда', '已永久关闭', '폐업']],
+  [/^Hours not confirmed$/, ['Часы не подтверждены', '营业时间未确认', '영업시간 미확인']], [/^hours not confirmed$/, ['часы не подтверждены', '营业时间未确认', '영업시간 미확인']], [/^call first$/, ['сначала позвоните', '请先致电', '먼저 전화해 보세요']],
+  [/^Today at (.+)$/, ['Сегодня в $1', '今天 $1', '오늘 $1']], [/^This weekend$/, ['В эти выходные', '本周末', '이번 주말']], [/^Last day$/, ['Последний день', '最后一天', '마지막 날']],
+  [/^Book a time$/, ['Запись на время', '预约时间', '시간 예약']], [/^Showtimes vary$/, ['Время сеансов разное', '场次时间不定', '상영 시간 다양']], [/^see times$/, ['см. расписание', '查看场次', '시간 보기']],
+  [/^Starts (.+)$/, ['Начало: $1', '$1 开始', '$1 시작']], [/^Next: (.+)$/, ['Далее: $1', '下一场：$1', '다음: $1']], [/^Best in daylight$/, ['Лучше днём', '白天去最好', '낮에 가기 좋아요']],
+  [/^Last entry (.+)$/, ['Последний вход $1', '最后入场 $1', '마지막 입장 $1']], [/^Open (\d.* – .+)$/, ['Открыто $1', '营业 $1', '영업 $1']],
+  [/^(\d+) min walk$/, ['$1 мин пешком', '步行 $1 分钟', '도보 $1분']], [/^(\d+) min drive$/, ['$1 мин на машине', '开车 $1 分钟', '차로 $1분']], [/^(\d+) min by CTA$/, ['$1 мин на CTA', '乘 CTA $1 分钟', 'CTA로 $1분']],
+  [/^Free$/, ['Бесплатно', '免费', '무료']], [/^citywide$/, ['по всему городу', '全市', '시 전역']]
+];
+var STATUS_WORDS = {ru:{Mon:'пн', Tue:'вт', Wed:'ср', Thu:'чт', Fri:'пт', Sat:'сб', Sun:'вс', today:'сегодня', tomorrow:'завтра'}, 'zh-Hans':{Mon:'周一', Tue:'周二', Wed:'周三', Thu:'周四', Fri:'周五', Sat:'周六', Sun:'周日', today:'今天', tomorrow:'明天'}, ko:{Mon:'월', Tue:'화', Wed:'수', Thu:'목', Fri:'금', Sat:'토', Sun:'일', today:'오늘', tomorrow:'내일'}};
+function trStatus(s, lang){ // pure: status / travel / price words in the language; unknown parts stay English
+  var l = isLang(lang) ? lang : LANG; s = String(s === null || s === undefined ? '' : s);
+  if (l === 'en' || !s) return s;
+  var ix = LANG_IX[l] - 1, W = STATUS_WORDS[l];
+  return s.split(' · ').map(function(part){
+    for (var i = 0; i < STATUS_RX.length; i++) {
+      var r = STATUS_RX[i];
+      if (r[0].test(part)) return part.replace(r[0], r[1][ix]).replace(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun|today|tomorrow)\b/g, function(w){ return W[w] || w; });
+    }
+    return part;
+  }).join(' · ');
+}
+// numbers: the same pattern as tools/validate-i18n.ps1 ("$41.20", "13:00", "90", "3,5" -> "3.5")
+function numsOf(s){ var o = {}; (String(s === null || s === undefined ? '' : s).match(/\$?\d+(?:[.,:]\d+)?%?/g) || []).forEach(function(x){ o[x.replace(/,/g, '.')] = 1; }); return o; }
+function numsKept(en, tr){ var a = numsOf(en), b = numsOf(tr); for (var k in a) if (!b[k]) return false; return true; }
+var I18N_FIELD_LETTER = {hook:'h', description:'d', highlights:'l'};
+function i18nFresh(tr, cur, field){ // pure: tr = the translation entry, cur = the current-English hash for the item ("HASH" or "HASH~hd")
+  if (!tr || typeof tr.hash !== 'string' || !tr.hash || typeof cur !== 'string' || !cur) return false;
+  var bits = cur.split('~');
+  if (bits[0] !== tr.hash) return false;   // the English changed after this was translated (or a different freeze): stale
+  return String(bits[1] || '').indexOf(I18N_FIELD_LETTER[field] || '?') < 0;
+}
+function placeTextWith(it, field, lang, trMap, hashMap){ // pure -> {v, lang}: the field in `lang` when it is safe to show, else the English
+  var en = it ? it[field] : undefined, out = {v:en, lang:'en'};
+  if (!it || !isLang(lang) || lang === 'en' || !I18N_FIELD_LETTER[field]) return out;
+  var tr = trMap && Object.prototype.hasOwnProperty.call(trMap, it.id) ? trMap[it.id] : null;
+  if (!tr || !i18nFresh(tr, hashMap ? hashMap[it.id] : undefined, field)) return out;
+  var x = tr[field];
+  if (field === 'highlights') {
+    var ea = Array.isArray(en) ? en.filter(Boolean).map(String) : [];
+    if (!ea.length || !Array.isArray(x) || x.length !== ea.length) return out;
+    for (var i = 0; i < x.length; i++) if (typeof x[i] !== 'string' || !x[i].trim() || !numsKept(ea[i], x[i])) return out;
+    return {v:x.slice(), lang:lang};
+  }
+  if (typeof x !== 'string' || !x.trim() || typeof en !== 'string' || !en.trim() || !numsKept(en, x)) return out;
+  return {v:x, lang:lang};
+}
+function placeText(it, field){ var c = I18N.cache[LANG]; return placeTextWith(it, field, LANG, c ? c.places : null, I18N.hash); }
+function hookL(it){ var r = placeText(it, 'hook'); return (r.lang !== 'en' && r.v) ? r : {v:hookOf(it), lang:'en'}; }   // the card / detail hook
+function langAttr(r){ return LANG === 'en' ? '' : ' lang="' + esc(r && r.lang ? r.lang : 'en') + '"'; }   // English text inside a translated screen keeps lang="en"
+function genreShortL(id){ return LANG === 'en' || !STR['g.' + id] ? genreShort(id) : i18t('g.' + id); }
+function factsLineL(c){ return [statusShort(c), travelShort(c), priceShort(c.item)].filter(Boolean).map(function(x){ return trStatus(x); }).join(' · '); }
+function i18nLoad(lang){ // fetch one language's place file (+ the current-English hashes once); a failure just means English place text
+  if (!isLang(lang) || lang === 'en' || I18N.cache[lang] || I18N.state[lang] === 'loading' || I18N.state[lang] === 'failed') return;
+  I18N.state[lang] = 'loading';
+  var hp = I18N.hash || I18N.hashTried ? Promise.resolve(I18N.hash) : Platform.fetchJSON('i18n/en-hash.json')['catch'](function(){ return null; });
+  I18N.hashTried = true;
+  Promise.all([Platform.fetchJSON('i18n/' + lang + '/places.json'), hp]).then(function(r){
+    var pl = r[0]; if (!pl || typeof pl !== 'object' || Array.isArray(pl)) throw new Error('not a map of ids');
+    if (r[1] && typeof r[1] === 'object' && !Array.isArray(r[1])) I18N.hash = r[1];
+    I18N.cache[lang] = {places:pl, n:Object.keys(pl).length}; I18N.state[lang] = 'ok';
+    if (lang === LANG && mapEl) { UI.homeHTML = null; refresh(); }
+  })['catch'](function(e){ I18N.state[lang] = 'failed'; I18N.err[lang] = e && e.message ? e.message : String(e); });
+}
+function setLang(code, keep){ // keep = this visit only (test hooks)
+  var l = isLang(code) ? code : 'en';
+  LANG = l;
+  try { document.documentElement.setAttribute('lang', l); } catch (e) {}
+  if (!keep) Platform.store.set(LANG_KEY, l);
+  i18nLoad(l);
+  if (!mapEl) return l;
+  UI.homeHTML = null;
+  if ($('pThemeTitle')) $('pThemeTitle').textContent = i18t('theme.title');
+  if ($('pTheme') && !$('pTheme').hidden) renderThemePicker();
+  var ab = $('aboutTheme'); if (ab) ab.innerHTML = langPickerHTML() + themePickerHTML();
+  if ($('pFilters') && !$('pFilters').hidden) renderFilters();
+  refresh();
+  return l;
+}
+function langPickerHTML(){ // English first, always; native names
+  var h = '<p class="th-lab" id="thLangLab">' + esc(i18t('lang.title')) + (LANG === 'en' ? '' : ' · Language') + '</p><div class="seg th-seg lang-seg" role="group" aria-labelledby="thLangLab">' + LANGS.map(function(x){
+    return '<button type="button" data-lang="' + x.code + '" lang="' + x.code + '" aria-pressed="' + (LANG === x.code) + '">' + esc(x.name) + '</button>'; }).join('') + '</div>';
+  if (LANG !== 'en') h += '<p class="th-note">' + esc(i18t('lang.note')) + '</p>';
+  return h;
+}
+/* v5.21 "Only in Chicago" (plans/2026-11-14-groups-and-only-here.md §2): only_here = {kind: only | rare | classic, reason, src}. Any other
+   kind, or no only_here at all, shows nothing. The reason is shown as written (English). */
+var OH_KINDS = {only:'oh.only', rare:'oh.rare', classic:'oh.classic'};
+function onlyHereOf(it){ var o = it && it.only_here; if (!o || typeof o !== 'object' || !Object.prototype.hasOwnProperty.call(OH_KINDS, o.kind)) return null; return {kind:o.kind, reason:typeof o.reason === 'string' ? o.reason.trim() : '', src:safeUrl(o.src)}; }
+function ohBadgeHTML(it, cls){ var o = onlyHereOf(it); if (!o) return ''; return '<span class="oh-b ' + o.kind + (cls ? ' ' + cls : '') + '"' + (o.reason ? ' title="' + esc(o.reason) + '"' : '') + '>' + esc(i18t(OH_KINDS[o.kind])) + '</span>'; }
+function ohLineHTML(it){ var o = onlyHereOf(it); if (!o) return ''; return '<p class="oh-line">' + ohBadgeHTML(it) + (o.reason ? '<span' + (LANG === 'en' ? '' : ' lang="en"') + '>' + esc(o.reason) + (o.src ? ' <a href="' + esc(o.src) + '" target="_blank" rel="noopener">source</a>' : '') + '</span>' : '') + '</p>'; }
+// "Visiting Chicago": only-here / rare / classic items, plus the must-sees everyone in Chicago knows (POP_KNOWN), so it still works before the tags are merged
+function visitorPick(it){ return !!onlyHereOf(it) || POP_KNOWN.test(norm(it && it.name)); }
 
 /* ================= v4: check-ins, one-line facts, the three picks, search, share, calendar, hash links (pure: the UI and the self-test use them) ================= */
 /* Check-ins ("I've been here"). Kept on this phone as a list of plain records, one per place, so they can sync to an account later:
@@ -5078,7 +5239,8 @@ function syncAcctButtons(){
 function homeIconsHTML(state, name, user, type){ // v5.17: `type` (acctType()) puts her character on the button, signed in or out
   var acct = '', m = acctBtnModel(state, name, user, type);
   if (m) acct = '<button class="icon-btn acct-btn' + (m.ini || m.type ? ' in' : '') + (m.type ? ' ty' : '') + '" type="button" data-act="acct" aria-label="' + esc(m.label) + '">' + acctBtnInner(m) + '</button>';
-  return '<div class="hm-icons"><button class="icon-btn" type="button" data-act="theme" aria-label="Theme">' + glyphSvg('i-palette') + '</button><button class="icon-btn" type="button" data-act="search" aria-label="Search">' + glyphSvg('i-search') + '</button><button class="icon-btn" type="button" data-act="saved" aria-label="Saved and Been">' + glyphSvg('i-bookmark') + '</button>' + acct + '</div>';
+  var lg = LANGS[LANG_IX[LANG] || 0];   // v5.21: the language button (hidden under 360 px by CSS; the palette opens the same picker)
+  return '<div class="hm-icons"><button class="icon-btn lang-btn" type="button" data-act="theme" aria-label="Language: ' + esc(lg.name) + '" lang="' + lg.code + '">' + esc(lg.short) + '</button><button class="icon-btn" type="button" data-act="theme" aria-label="Theme">' + glyphSvg('i-palette') + '</button><button class="icon-btn" type="button" data-act="search" aria-label="Search">' + glyphSvg('i-search') + '</button><button class="icon-btn" type="button" data-act="saved" aria-label="Saved and Been">' + glyphSvg('i-bookmark') + '</button>' + acct + '</div>';
 }
 function swipeDecision(dx, dy, vx, vy, W, H){ // v5.15 (swipe-v2 §4): past the threshold (30% of the width, 96-140 px; 18% of the height, 110-170 px;
   // 96 / 110 when no size is given), or a flick over 0.5 px/ms across 32 px or more. Up/down only when |dy| > 1.2 x |dx|.
@@ -6010,7 +6172,7 @@ function renderTiles(vm){
     var ltd = 0, num = (!isL && vm.lim) ? (t.lim || 0) : t.n;
     var lab = name + ', ' + num + (isL ? ' limited, ' + openWords() : (vm.lim ? ' limited ' + openWords() : ' ' + openWords() + (S.budgetOn ? ', ' + doableWords() : '')));
     h += '<button class="tile' + (isL ? ' lt' : '') + (num ? '' : ' zero') + (ltd ? ' has-ltd' : '') + '" type="button" data-tile="' + t.id + '" aria-pressed="' + tilePressed(vm, t.id) + '" aria-label="' + esc(lab) + '" title="' + esc(lab) + '" style="--c:' + genreColor(t.id) + '">' +
-      '<span class="top"><span class="gl" data-shape="' + esc(KIND_SHAPE[t.id] || '') + '">' + kindSvg(t.id) + '</span><span class="num">' + num + '</span></span><span class="nm">' + esc(genreShort(t.id)) + '</span>' + (ltd ? '<span class="ltd" aria-hidden="true">' + ltd + '</span>' : '') + '</button>';
+      '<span class="top"><span class="gl" data-shape="' + esc(KIND_SHAPE[t.id] || '') + '">' + kindSvg(t.id) + '</span><span class="num">' + num + '</span></span><span class="nm">' + esc(genreShortL(t.id)) + '</span>' + (ltd ? '<span class="ltd" aria-hidden="true">' + ltd + '</span>' : '') + '</button>';
   });
   el.innerHTML = h;
   el.classList.toggle('has-pick', !!vm.sel);
@@ -6096,6 +6258,7 @@ function rowHTML(c, opt){
   var tags = '';
   if (is21(it)) tags += '<span class="tag">21+</span>';
   if (it.booking === 'required') tags += '<span class="tag book">Book ahead</span>';
+  tags += ohBadgeHTML(it, 'tag');   // v5.21 Only in Chicago / Rare find / Chicago classic
   tags += dealBadgeHTML(c);   // v5.13
   var lim = c.lim || limitedPhase(c, p);
   if (!opt.badge && lim === 'now' && !opt.noBadge) tags += badgeHTML(untilBadge(c, p));
@@ -6104,14 +6267,14 @@ function rowHTML(c, opt){
   else if (opt.seeall) right = '<button class="seeall" type="button" data-tile="' + opt.seeall.g + '" aria-label="See all ' + opt.seeall.n + ' in ' + esc(genreName(opt.seeall.g)) + '">See all ' + opt.seeall.n + glyphSvg('i-right') + '</button>';
   else if (opt.kright) right = '<span>' + esc(opt.kright) + '</span>';
   var kick = (opt.kicker || right) ? '<p class="rk"><span>' + esc(opt.kicker || '') + '</span>' + (right || '<span></span>') + '</p>' : '';
-  var h = '<p class="status ' + d.tone + '"><span class="st-t"><i class="dot"></i>' + esc(d.text) + (d.sub ? ' · ' + esc(d.sub) : '') + '</span></p>';
+  var h = '<p class="status ' + d.tone + '"><span class="st-t"><i class="dot"></i>' + esc(trStatus(d.text)) + (d.sub ? ' · ' + esc(d.sub) : '') + '</span></p>';
   if (c.bucket === 'fits' && !st.open && st.opensAt && !c.anyDay) h += '<p class="evb">' + (UI.planning ? 'Opens ' + esc(fmtClock(st.opensAt)) : 'Opens in ' + esc(fmtDur(Math.max(1, Math.round((st.opensAt - st.ms) / 60000))))) + '</p>';
   var meta = [], ck = checkinOf(it.id), tsh = travelShort(c), prs = priceShort(it);   // v4: one plain line: where · how far · price (· Been)
   if (opt.fbeen) h = '<p class="meta"><span class="been">' + esc(opt.fbeen) + '</span>' + (opt.fstars ? ' · <span class="stars" aria-label="' + opt.fstars + ' of 5 stars">' + starsText(opt.fstars) + '</span>' : '') + '</p>';   // v5.11: a friend's visit; v5.19: "Visited" + their stars
   if (opt.been && ck) h = '<p class="meta"><span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' + (starsOf(ck.rating) ? ' · <span class="stars" aria-label="' + starsOf(ck.rating) + ' of 5 stars">' + starsText(ck.rating) + '</span>' : '') + '</p>';   // v5.18 stars
   if (it.neighborhood) meta.push(esc(shortHood(it.neighborhood)));
-  if (tsh) meta.push(esc(tsh));
-  if (prs) meta.push(esc(prs));
+  if (tsh) meta.push(esc(trStatus(tsh)));
+  if (prs) meta.push(esc(trStatus(prs)));
   if (ck && !opt.been && !opt.fbeen) meta.push('<span class="been">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>');
   if (!opt.fbeen) { var fat = friendAvgText(friendRatingFor(it)); if (fat) meta.push('<span class="fr-avg">' + esc(fat) + '</span>'); }   // v5.19 friends' average
   h += '<p class="meta">' + meta.join(' · ') + '</p>';
@@ -6822,7 +6985,7 @@ function gaArrows(g){ var s = g.closest('.ga-s'); if (!s) return; var p = s.quer
 var CARD_LEAVE_MIN = 90;   // the three cards say "Leave by" only when it's within 90 min (otherwise it's noise)
 function cardLeaveHTML(c){ var l = leaveBy(c), ref = c.anyDay && c.anyT ? c.anyT : c.st.ms; return l && l.at - ref <= CARD_LEAVE_MIN * 60000 ? '<p class="c3-leave">' + esc(l.t) + '</p>' : ''; }
 function cardHTML(c){
-  var it = c.item, g = c.genre || genreOf(it), ph = firstPhoto(it), sv = isSaved(it.id), ck = checkinOf(it.id), hook = hookOf(it), facts = factsLine(c);
+  var it = c.item, g = c.genre || genreOf(it), ph = firstPhoto(it), sv = isSaved(it.id), ck = checkinOf(it.id), hk = hookL(it), hook = hk.v, facts = factsLineL(c);   // v5.21: hook + status words in the picked language (English per field when missing or stale)
   var tst = tasteNow(), why = tasteWhy(c, tst), lean = tasteLean(c, tst), ini = function(w){ return w === 'a' ? tasteInitial(TASTE) : tasteInitial(TASTE_GUEST); };   // v5.12
   var wxi = wxIdeaFor(c), wxr = wxReasonFor(c);   // v5.20
   var whoB = lean ? '<span class="tk-lean" aria-label="Leans to ' + esc(lean === 'ab' ? 'both of you' : ini(lean)) + '">' + esc(lean === 'ab' ? ini('a') + ini('b') : ini(lean)) + '</span>' : '';
@@ -6833,7 +6996,7 @@ function cardHTML(c){
     (ck ? '<span class="been-mark">' + esc(beenLabel(ck, cparts(nowMs()).key)) + '</span>' : '') + dealBadgeHTML(c, 'c3-deal' + (ck ? ' low' : '')) +
     '<div class="c3-btns"><button class="c3-btn" type="button" data-share="' + esc(it.id) + '" aria-label="Share ' + esc(it.name) + '">' + glyphSvg('i-share') + '</button>' +
     '<button class="c3-btn" type="button" data-save="' + esc(it.id) + '" aria-pressed="' + sv + '" aria-label="' + (sv ? 'Saved: ' : 'Save: ') + esc(it.name) + '">' + glyphSvg('i-bookmark') + '</button></div>' +
-    '<div class="c3-text"><h3>' + esc(it.name) + '</h3>' + (wxi ? '<p class="c3-hook c3-idea">' + wxIdeaHTML(wxi) + '</p>' : hook ? '<p class="c3-hook">' + esc(hook) + '</p>' : '') + '<p class="c3-facts"><i class="dot ' + esc(c.d.tone) + '"></i>' + esc(facts) + '</p>' + cardLeaveHTML(c) + friendAvgLine(it, 'c3-fr') +
+    '<div class="c3-text">' + ohBadgeHTML(it, 'c3') + '<h3>' + esc(it.name) + '</h3>' + (wxi ? '<p class="c3-hook c3-idea">' + wxIdeaHTML(wxi) + '</p>' : hook ? '<p class="c3-hook"' + langAttr(hk) + '>' + esc(hook) + '</p>' : '') + '<p class="c3-facts"><i class="dot ' + esc(c.d.tone) + '"></i>' + esc(facts) + '</p>' + cardLeaveHTML(c) + friendAvgLine(it, 'c3-fr') +
     (wxr ? '<p class="c3-why wx">' + wxSvg(wxIcon(WX.cond.code, WX.cond.night ? 0 : 1, WX.cond.gust)) + '<span>' + esc(wxr) + '</span></p>' : why ? '<p class="c3-why">' + esc(why) + '</p>' : '') + '</div>' + whoB + '</li>';   // v5.20: the weather idea replaces the hook when it fits; one reason line at most (weather wins only when it moved the pick)
 }
 function threeKey(){ return [selCode(curSel()), S.when, S.pickAt, S.loc ? r1(S.loc.lat * 1000) + ',' + r1(S.loc.lng * 1000) : '', S.budgetOn ? S.budget : 'any', JSON.stringify(S.f), DATA_LOADED ? 1 : 0, 't' + TASTE_REV].join('|'); }   // v5.12: a taste change re-picks
@@ -6891,14 +7054,15 @@ function locRoughHint(loc){ return loc && loc.src === 'gps' && accRough(loc.acc)
 function homeWhenBit(title){ return UI.today ? (/\btoday\b/i.test(String(title || '')) ? '' : 'today · ') : ''; }   // v5.11: no "today ·" under "Three for today"
 function renderHome(res, vm, picks){
   var root = $('homeRoot'); if (!root) return;
-  var p = res.p, who = S.f.who, lab = locName(S.loc), acc = locRoughHint(S.loc), h = '', ttl = homeTitle(res);   // v5.11: "near Lincoln Park"; only a rough reading says so
+  var p = res.p, who = S.f.who, lab = locName(S.loc), acc = locRoughHint(S.loc), h = '', ttl = homeTitle(res);
+  var ttlL = LANG === 'en' ? ttl : ttl === 'Three for right now' ? i18t('home.now') : ttl === 'Three for today' ? i18t('home.today') : ttl;   // v5.21 (other titles stay English for now)   // v5.11: "near Lincoln Park"; only a rough reading says so
   h += '<div class="hm-brandrow">' + brandHTML(24, 16) + homeIconsHTML(Acct.state, acctName(), Acct.user, acctType()) + '</div>';   // v5.15: row 1 = the logo + the icon buttons; the title gets the full width below
-  h += '<div class="hm-top"><div><h1 class="hm-title">' + esc(ttl) + '</h1>' +
-    '<button class="hm-sub" type="button" data-act="loc" aria-label="Where: near ' + esc(lab) + (acc ? '. ' + esc(acc) : '') + '. Change"><span>' + (UI.today ? homeWhenBit(ttl) : UI.anyDay ? esc(fmtDayDate(UI.anyDay, cparts(nowMs()).key)) + ' · any time · ' : UI.planning ? esc(fmtTime(p.min)) + ' · ' : '') + 'near ' + esc(lab) + (acc ? ' <small class="acc rough">' + esc(acc) + '</small>' : '') + '</span>' + glyphSvg('i-chev') + '</button></div>' + wxChipHTML() + '</div>';   // v5.20: the weather chip at the right end of the title row   // v5.12 account button: moved up into the brand row in v5.15
-  h += '<div class="hm-ctl" role="group" aria-label="Who is coming">' + [['date', 'Date'], ['friends', 'Friends'], ['solo', 'Solo']].map(function(x){ return '<button class="qchip" type="button" data-who="' + x[0] + '" aria-pressed="' + !!who[x[0]] + '">' + x[1] + '</button>'; }).join('') + '</div>';
+  h += '<div class="hm-top"><div><h1 class="hm-title">' + esc(ttlL) + '</h1>' +
+    '<button class="hm-sub" type="button" data-act="loc" aria-label="Where: near ' + esc(lab) + (acc ? '. ' + esc(acc) : '') + '. Change"><span>' + (UI.today ? homeWhenBit(ttl) : UI.anyDay ? esc(fmtDayDate(UI.anyDay, cparts(nowMs()).key)) + ' · any time · ' : UI.planning ? esc(fmtTime(p.min)) + ' · ' : '') + esc(i18t('home.near', {x:lab})) + (acc ? ' <small class="acc rough">' + esc(acc) + '</small>' : '') + '</span>' + glyphSvg('i-chev') + '</button></div>' + wxChipHTML() + '</div>';   // v5.20: the weather chip at the right end of the title row   // v5.12 account button: moved up into the brand row in v5.15
+  h += '<div class="hm-ctl" role="group" aria-label="Who is coming">' + [['date', 'who.date'], ['friends', 'who.friends'], ['solo', 'who.solo']].map(function(x){ return '<button class="qchip" type="button" data-who="' + x[0] + '" aria-pressed="' + !!who[x[0]] + '">' + esc(i18t(x[1])) + '</button>'; }).join('') + '</div>';   // v5.21: words in the picked language
   var picked = S.when === 'pick' || S.when === 'weekend';
-  h += '<div class="hm-ctl" role="group" aria-label="When">' + '<button class="qchip" type="button" data-when="now" aria-pressed="' + (S.when === 'now') + '">Now</button><button class="qchip" type="button" data-when="today" aria-pressed="' + (S.when === 'today') + '">Today</button>' +
-    '<button class="qchip" type="button" data-when="pick" aria-pressed="' + picked + '">' + (picked ? esc(whenLabel()) : 'Pick a day') + '</button></div>';
+  h += '<div class="hm-ctl" role="group" aria-label="When">' + '<button class="qchip" type="button" data-when="now" aria-pressed="' + (S.when === 'now') + '">' + esc(i18t('when.now')) + '</button><button class="qchip" type="button" data-when="today" aria-pressed="' + (S.when === 'today') + '">' + esc(i18t('when.today')) + '</button>' +
+    '<button class="qchip" type="button" data-when="pick" aria-pressed="' + picked + '">' + (picked ? esc(whenLabel()) : esc(i18t('when.pick'))) + '</button></div>';
   var hsel = selCode(curSel());   // v5: the kinds picked in Browse also narrow the three; one chip says so and clears it
   if (hsel) h += '<div class="hm-ctl"><button class="qchip selchip" type="button" data-act="clearsel" aria-pressed="true" aria-label="Only ' + esc(genreShort(hsel)) + '. Show everything">Only ' + esc(genreShort(hsel)) + glyphSvg('i-close') + '</button></div>';
   if (!DATA_LOADED) {
@@ -6910,7 +7074,7 @@ function renderHome(res, vm, picks){
     if (picks.length) {
       var hw = hardHidingWords(); if (hw.length) h += '<p class="band info tk-hiding">Hiding ' + esc(hw.join(', ')) + ' · <button class="linkbtn" type="button" data-act="tasteprof">Change</button></p>';   // v5.12: a hard no is hiding things
       h += '<ul class="cards3">' + picks.map(cardHTML).join('') + '</ul>';
-      if (UI.threeN > picks.length) h += '<button class="hm-btn" type="button" data-act="more3">Three more</button>';
+      if (UI.threeN > picks.length) h += '<button class="hm-btn" type="button" data-act="more3">' + esc(i18t('home.more3')) + '</button>';
       h += coupleHomeHTML(res);   // v5.13 #45: You + Maya
       var few = fewLine(picks.length, p, !!UI.anyDay); if (few) h += '<p class="hm-few">' + esc(few.t) + ' <button class="linkbtn" type="button" data-plan="' + few.plan + '">' + esc(few.btn) + ' ›</button></p>';   // v5.10
     } else {
@@ -6925,7 +7089,7 @@ function renderHome(res, vm, picks){
     }
     // v5.16b (home-guides spec §1-§3): "Your taste ›" left Home (it lives in the account sheet); a taste card shows only if the test was
     // never done; Guides come before Opening soon, which shows 3 photo-first rows; a shorter endnote (the crow-flies line is in About).
-    h += '<button class="hm-btn dark" type="button" data-act="browse">Browse everything' + glyphSvg('i-right') + '</button>';
+    h += '<button class="hm-btn dark" type="button" data-act="browse">' + esc(i18t('home.browse')) + glyphSvg('i-right') + '</button>';
     h += tasteCardHTML();
     h += guidesHTML();   // v5.10 #86
     h += radarHTML(radarList(res.all.concat(res.beyond || []), cparts(nowMs())));   // v5.10 #26
@@ -8695,6 +8859,7 @@ function googleMaps(it){ return 'https://www.google.com/maps/dir/?api=1&destinat
 function fmt24Ranges(s){
   return String(s === null || s === undefined ? '' : s).replace(/\b([01]?\d|2[0-4]):([0-5]\d)\s*(?:-|–|—|to)\s*([01]?\d|2[0-4]):([0-5]\d)\b(?!\s*(?:am|pm|a\.m|p\.m))/gi, function(m, h1, m1, h2, m2){
     var a = +h1 * 60 + +m1, b = +h2 * 60 + +m2; if (a > 1440 || b > 1440) return m;
+    if (b < a && +h1 <= 12 && +h2 >= 1 && +h2 <= 12) b += 720;   // v5.21 (tester v5.20 M1): "9:30-5:30" / "12:00-4:00" are 12-hour times: the end is pm
     return fmtTime(a) + ' – ' + (b === 1440 ? 'midnight' : fmtTime(b));
   });
 }
@@ -8770,7 +8935,7 @@ function leaveSentence0(c){
   return '';
 }
 function hoursTableHTML(it, p){
-  if (!it.hours) return '<p>Hours not confirmed.</p>';
+  if (!it.hours) return (it.date_hours && typeof it.date_hours === 'object' && Object.keys(it.date_hours).length) || it.hours_note || (Array.isArray(it.event_dates) && it.event_dates.length) ? '<p>No regular weekly hours. See the dates and notes below.</p>' : '<p>Hours not confirmed.</p>';   // v5.21 (tester v5.20 L3): MSI has dated hours, so not "not confirmed" next to "checked"
   var rows = '';
   [1, 2, 3, 4, 5, 6, 0].forEach(function(wd){
     var list = it.hours[DOW[wd]], txt;
@@ -8796,15 +8961,16 @@ function lastEntryLine(it, p){ // v2.2 (C-1): "Last entry: 60 min before closing
   return '';
 }
 function rangesText(list){ if (!list.length) return 'Closed'; return list.map(function(r){ var s = hm(r && r[0]), e = hm(r && r[1]); if (s === null || e === null) return String(r); return fmtTime(s) + ' – ' + fmtTime(e); }).join(', '); }
+function closedDayLabel(k){ var hn = holidayName(k); return hn ? 'Closed for ' + hn : 'Closed'; }   // v5.21: a closed date that is a US holiday names it (HOLIDAY_NAMES)
 function specialDatesHTML(it, p){ // date_hours and closed_dates in the next 3 weeks
   var rows = [], end = addDays(p.key, 21), seen = {};
   var dh = it.date_hours && typeof it.date_hours === 'object' ? it.date_hours : {};
   Object.keys(dh).forEach(function(k){ if (isKey(k) && k >= p.key && k <= end) { seen[k] = 1; rows.push([k, Array.isArray(dh[k]) ? rangesText(dh[k]) : 'Special hours, times not posted: call first']); } });   // v2.2: "unknown"
-  Object.keys(closedSet(it)).forEach(function(k){ if (k >= p.key && k <= end) rows.push([k, 'Closed' + (holidayName(k) ? ' (' + holidayName(k) + ')' : '')]); });
+  Object.keys(closedSet(it)).forEach(function(k){ if (k >= p.key && k <= end) rows.push([k, closedDayLabel(k)]); });
   if (!rows.length) return '';
   rows.sort(function(a, b){ return a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0; });
   var dedup = {}, out = '';
-  rows.forEach(function(r){ if (dedup[r[0]]) return; dedup[r[0]] = 1; var isC = /^Closed/.test(r[1]) && closedSet(it)[r[0]]; out += '<tr class="' + (r[0] === p.key ? 'today' : '') + (isC ? ' off' : '') + '"><td>' + esc(fmtDayDate(r[0], p.key)) + '</td><td>' + esc(isC ? 'Closed' + (holidayName(r[0]) ? ' (' + holidayName(r[0]) + ')' : '') : r[1]) + '</td></tr>'; });
+  rows.forEach(function(r){ if (dedup[r[0]]) return; dedup[r[0]] = 1; var isC = /^Closed/.test(r[1]) && closedSet(it)[r[0]]; out += '<tr class="' + (r[0] === p.key ? 'today' : '') + (isC ? ' off' : '') + '"><td>' + esc(fmtDayDate(r[0], p.key)) + '</td><td>' + esc(isC ? closedDayLabel(r[0]) : r[1]) + '</td></tr>'; });
   return '<p class="small" style="margin:14px 0 4px">Special dates (these replace the weekly hours)</p><table class="hours"><tbody>' + out + '</tbody></table>';
 }
 function eventDatesHTML(it, p, T){
@@ -8850,7 +9016,7 @@ function bookingWord(it){ return (it.kind === 'event' || it.category === 'show-c
 function goodToKnowHTML(it){ // "Good to know": tap a question to open its answer. No AI runs; the answers come with the data.
   var list = (Array.isArray(it.good_to_know) ? it.good_to_know : []).filter(function(x){ return x && x.q && x.a; });
   if (!list.length) return '';
-  return '<section class="dt-sec gtk"><h2>Good to know</h2>' + list.map(function(x){
+  return '<section class="dt-sec gtk"><h2>' + esc(i18t('dt.gtk')) + '</h2>' + list.map(function(x){
     var src = safeUrl(x.source);
     return '<details><summary>' + esc(x.q) + '</summary><p>' + esc(x.a) + '</p>' + (src ? '<p class="src">Source: <a href="' + esc(src) + '" target="_blank" rel="noopener">' + esc(domainOf(src)) + '</a></p>' : '') + '</details>';
   }).join('') + '</section>';
@@ -8877,20 +9043,21 @@ function renderDetail(c, keepScroll){
   var lim = limitedPhase(c, p), ub = it.kind === 'event' && lim ? untilBadge(c, fewDates(it, todayKey) ? cparts(nowMs()) : p) : null;   // v5.10: a few-dates badge counts from today, like the Dates list
   h += '<p class="dt-kicker">' + esc(genreName(gid)) + (it.kind === 'event' ? ' · limited time' : '') + (it.neighborhood ? ' · ' + esc(shortHood(it.neighborhood)) : '') + (ub ? ' ' + badgeHTML(ub) : '') + '</p>';
   h += '<h1 class="dt-title' + (String(it.name).length > 40 ? ' long' : '') + '" id="dtTitle">' + esc(it.name) + '</h1>';
-  var hook = hookOf(it);
-  if (hook) h += '<p class="dt-hook">' + esc(hook) + '</p>';
+  var hkl = hookL(it), hook = hkl.v;   // v5.21
+  if (hook) h += '<p class="dt-hook"' + langAttr(hkl) + '>' + esc(hook) + '</p>';
+  h += ohLineHTML(it);   // v5.21 "Only in Chicago" + the reason
   h += wxDetailHTML(c);   // v5.20: the item's own idea + things to do there, as written in the data
   // v5.18 (owner 2026-11-14): "I've been here" near the top, under the name; after a tap: optional thumbs + when (day, month, or "don't remember")
   var ck = checkinOf(it.id);
-  h += '<div class="dt-acts top">' + (ck ? '' : '<button class="mini-btn been-go" type="button" data-been="add">' + glyphSvg('i-check') + 'I’ve been here</button>') +
-    '<button class="mini-btn" type="button" data-cal="1">' + glyphSvg('i-cal') + 'Add to calendar</button></div>';
+  h += '<div class="dt-acts top">' + (ck ? '' : '<button class="mini-btn been-go" type="button" data-been="add">' + glyphSvg('i-check') + esc(i18t('dt.been')) + '</button>') +
+    '<button class="mini-btn" type="button" data-cal="1">' + glyphSvg('i-cal') + esc(i18t('dt.cal')) + '</button></div>';
   if (ck) h += beenBoxHTML(ck, todayKey);
   h += friendSayHTML(it);   // v5.19: friends' average + "What friends say" (anonymous)
   // status + price
   var pr = priceShort(it), tsh = travelShort(c), pel = (UI.planning || UI.anyDay) ? planEventLines(it, st, nowMs()) : null;
   if (pel) d = {text:pel.text, tone:pel.tone, sub:''};   // v5.10: "Next:" is relative to today; the planned day gets its own short line
   if (it.award_note) h += '<p class="award dt-award">' + esc(it.award_note) + '</p>';
-  h += '<div class="dt-status"><p class="dt-line ' + esc(d.tone) + '"><span class="st"><i class="dot"></i>' + esc(d.text) + '</span>' + (pr ? '<span class="pr">' + esc(pr) + '</span>' : '') + '</p>';
+  h += '<div class="dt-status"><p class="dt-line ' + esc(d.tone) + '"><span class="st"><i class="dot"></i>' + esc(trStatus(d.text)) + '</span>' + (pr ? '<span class="pr">' + esc(trStatus(pr)) + '</span>' : '') + '</p>';
   var sub = [];
   if (d.sub) sub.push(d.sub.charAt(0).toUpperCase() + d.sub.slice(1));
   if (tsh) sub.push(tsh + (S.loc ? ' from ' + locWordsNow() : ''));
@@ -8920,12 +9087,13 @@ function renderDetail(c, keepScroll){
   if (fwd.length) h += '<button class="fw" type="button" data-fw="' + esc(fwd[0].key) + '">' + avsHTML(fwd, '', '') + '<span>' + esc(wlWantsText(fwd)) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>';
   // what you do there
   var hi = (Array.isArray(it.highlights) ? it.highlights : []).filter(Boolean).map(String);
+  var dsl = placeText(it, 'description'), hil = placeText(it, 'highlights'), hiT = hil.lang !== 'en' ? hil.v : null;   // v5.21: each field on its own (English when missing, stale or a number differs)
   if (it.description || hi.length) {
-    h += '<section class="dt-sec"><h2>What you do there</h2>' + (it.description ? '<p>' + esc(it.description) + '</p>' : '');
-    if (hi.length) h += '<ul class="hl" style="margin-top:14px">' + hi.map(function(x){ return '<li>' + glyphSvg(hlIcon(x)) + '<span>' + esc(fmt24Ranges(x)) + '</span></li>'; }).join('') + '</ul>';
+    h += '<section class="dt-sec"><h2>' + esc(i18t('dt.what')) + '</h2>' + (it.description ? '<p' + langAttr(dsl) + '>' + esc(dsl.v) + '</p>' : '');
+    if (hi.length) h += '<ul class="hl" style="margin-top:14px"' + langAttr(hil) + '>' + hi.map(function(x, i){ return '<li>' + glyphSvg(hlIcon(x)) + '<span>' + esc(hiT ? hiT[i] : fmt24Ranges(x)) + '</span></li>'; }).join('') + '</ul>';   // the icon follows the English line
     h += '</section>';
   }
-  if (it.kind === 'event') h += '<section class="dt-sec"><h2>Dates</h2>' + eventDatesHTML(it, cparts(nowMs()), nowMs()) + '</section>';   // v5.10: every date from today (real now), never from the planned time
+  if (it.kind === 'event') h += '<section class="dt-sec"><h2>' + esc(i18t('dt.dates')) + '</h2>' + eventDatesHTML(it, cparts(nowMs()), nowMs()) + '</section>';   // v5.10: every date from today (real now), never from the planned time
   // practical facts
   var io = it.indoor_outdoor === 'both' ? 'indoor and outdoor' : (it.indoor_outdoor || '');
   var priceTxt = it.price_note ? fmt24Ranges(it.price_note) : (it.price_level === 'free' ? 'Free.' : it.price_level ? 'Price level ' + it.price_level + '. Exact prices not listed.' : 'Price not listed on their site.');
@@ -8934,11 +9102,11 @@ function renderDetail(c, keepScroll){
   facts.push(['g-ticket', priceTxt]);
   facts.push(['i-door', it.booking === 'required' ? 'Booking required. Pick a time online before you go.' : it.booking === 'recommended' ? 'Booking recommended.' : it.booking === 'walk-in' ? 'Walk-ins welcome.' : 'Booking: not stated.']);
   if (it.age_note) facts.push(['i-age', 'Ages: ' + fmt24Ranges(it.age_note)]);
-  h += '<section class="dt-sec"><h2>Practical</h2><ul class="hl">' + facts.map(function(x){ return '<li>' + glyphSvg(x[0]) + '<span>' + esc(x[1]) + '</span></li>'; }).join('') + '</ul>';
+  h += '<section class="dt-sec"><h2>' + esc(i18t('dt.practical')) + '</h2><ul class="hl">' + facts.map(function(x){ return '<li>' + glyphSvg(x[0]) + '<span>' + esc(x[1]) + '</span></li>'; }).join('') + '</ul>';
   if (it.phone) h += phoneHTML(it.phone, Platform.telOk);
   else if (web) h += '<p class="small" style="margin-top:10px">No phone listed. Check <a href="' + esc(web) + '" target="_blank" rel="noopener">their website</a>.</p>';
   // hours
-  h += '<h3>Hours</h3>';
+  h += '<h3>' + esc(i18t('dt.hours')) + '</h3>';
   var sn = it.season;
   if (sn && (isKey(sn.open_from) || isKey(sn.open_to))) h += '<p class="small" style="margin-bottom:8px">Season: ' + (isKey(sn.open_from) ? fmtDate(sn.open_from, '0000') : 'start not stated') + ' – ' + (isKey(sn.open_to) ? fmtDate(sn.open_to, '0000') : 'end not stated') + (sn.note ? '. ' + esc(fmt24Ranges(sn.note)) : '') + '</p>';
   else if (sn && sn.note) h += '<p class="small" style="margin-bottom:8px">' + esc(sn.note) + '</p>';
@@ -8948,7 +9116,7 @@ function renderDetail(c, keepScroll){
   h += specialDatesHTML(it, p);
   if (it.hours_note) h += '<p class="small" style="margin-top:8px">' + esc(fmt24Ranges(it.hours_note)) + '</p>';
   // getting there
-  h += '<h3>Getting there</h3>' + miniMapHTML(c) + '<div class="getting">';
+  h += '<h3>' + esc(i18t('dt.getting')) + '</h3>' + miniMapHTML(c) + '<div class="getting">';
   if (c.dist !== null) h += '<span><b>' + fmtMi(c.dist) + ' as the crow flies</b> from your pin' + (S.loc ? ' (' + esc(locWordsNow()) + ')' : '') + '.</span><span>' + esc(travelText(c.trav).replace(/^about/, 'About').replace(/ \(too far for our CTA estimate: Metra or drive\)$/, '')) + '. ' + (c.trav.switched ? 'We don\'t estimate CTA past ' + CTA_MAX_MI + ' miles, so this is a drive time: check Metra, or drive. ' : '') + 'Rough estimate, not a route.</span>';
   h += '</div><div class="linkrow"><a class="mini-btn" href="' + esc(appleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + 'Apple Maps</a><a class="mini-btn" href="' + esc(googleMaps(it)) + '" target="_blank" rel="noopener">' + glyphSvg('i-map') + 'Google Maps</a>' + (web ? '<a class="mini-btn" href="' + esc(web) + '" target="_blank" rel="noopener">' + glyphSvg('i-globe') + 'Website</a>' : '') + '</div></section>';
   // good to know (only when the data has it)
@@ -8957,7 +9125,7 @@ function renderDetail(c, keepScroll){
   var srcLink = tr.src ? '<a href="' + esc(tr.src) + '" target="_blank" rel="noopener">' + esc(domainOf(tr.src)) + '</a>' : 'a source we didn\'t record';
   var ckTxt = tr.checked ? esc(fmtDate(tr.checked, todayKey)) : 'an unknown date';
   h += '<section class="trust-s" aria-label="How we know">';
-  if (tr.status === 'verified') h += '<p><span class="tick">✓ Hours checked ' + ckTxt + '</span> on ' + srcLink + '.</p>';
+  if (tr.status === 'verified') h += '<p><span class="tick">✓ ' + (it.hours ? 'Hours checked ' : 'Checked ') + ckTxt + '</span> on ' + srcLink + '.</p>';
   else if (tr.status === 'conflicting') h += '<p><span class="tick warn">Sources disagree on the hours.</span> See ' + srcLink + ' and call before you go. Last checked ' + ckTxt + '.</p>';
   else if (tr.status === 'closed') h += '<p>Marked closed for good, per ' + srcLink + '. Last checked ' + ckTxt + '.</p>';
   else h += '<p><span class="tick warn">Not confirmed yet.</span> Found ' + ckTxt + (tr.src ? ' on ' + srcLink : '') + '. Call first.</p>';
@@ -9301,7 +9469,7 @@ function applyDraft(F, code){
     case 'io': F.io = v; break;
     case 'mode': F.mode = v; break;
     case 'radius': F.radius = +v; break;
-    case 'walkin': case 'hide21': case 'openNow': case 'fits': case 'notBeen': case 'sale': F[k] = !F[k]; break;
+    case 'walkin': case 'hide21': case 'openNow': case 'fits': case 'notBeen': case 'sale': case 'visit': F[k] = !F[k]; break;
   }
   return F;
 }
@@ -9313,17 +9481,19 @@ function renderFilters(){
   function seg(items){ return '<div class="seg">' + items.map(function(x){ return '<button type="button" data-d="' + esc(x[0]) + '" aria-pressed="' + !!x[2] + '">' + x[1] + '</button>'; }).join('') + '</div>'; }
   function sw(code, on, label, sub){ return '<div class="sw-row"><span>' + label + (sub ? '<small>' + sub + '</small>' : '') + '</span><button class="switch" type="button" data-d="' + code + '" aria-pressed="' + !!on + '" aria-label="' + esc(label) + '"></button></div>'; }
   // v5 (owner 2026-11-13: "gigantic number of filters ... a lot of text to read"): only the filters people use, short labels, no helper paragraphs.
-  var h = '';
+  var h = '', L = function(k){ return esc(i18t(k)); };   // v5.21: headings and chip words in the picked language
+  // v5.21 "Visiting Chicago" (only-here / classic places and the must-sees), first: it is a whole way of looking
+  h += '<div class="fsec fs-visit">' + sw('visit', F.visit, L('f.visit'), '') + '</div>';   // no helper line (owner: fewer words; the sheet test counts notes)
   // v5.1 (tester L1): Who (Date / Friends / Solo) is on Home, so it is not repeated here. "Time I have" stays: it is the only place to turn it on.
-  h += '<div class="fsec">' + H('Price', 'price') + chips([['price:free', 'Free', F.price.free], ['price:$', '$', F.price.$], ['price:$$', '$$', F.price.$$], ['price:$$$', '$$$', F.price.$$$], ['sale', 'On sale', F.sale]]) + '</div>';
-  h += '<div class="fsec">' + H('How far', 'reach') + seg([['mode:car', 'Drive', F.mode === 'car'], ['mode:transit', 'Walk + CTA', F.mode === 'transit'], ['mode:walk', 'Walk', F.mode === 'walk']]) +
-    '<div class="chips-w" style="margin-top:8px">' + RADII.map(function(r){ return '<button class="chip" type="button" data-d="radius:' + r + '" aria-pressed="' + (F.radius === r) + '" aria-label="Within ' + esc(fmtRadius(r)) + '">' + (r === APP_RADIUS ? 'Any' : esc(fmtRadius(r))) + '</button>'; }).join('') + '</div></div>';
-  h += '<div class="fsec">' + H('Inside or out', 'io') + seg([['io:either', 'Either', F.io === 'either'], ['io:indoor', 'Inside', F.io === 'indoor'], ['io:outdoor', 'Outside', F.io === 'outdoor']]) + '</div>';
-  h += '<div class="fsec">' + H('Booking', 'booking') + chips([['walkin', 'Walk-in only', F.walkin], ['hide21', 'No 21+', F.hide21]]) + '</div>';
+  h += '<div class="fsec">' + H(L('f.price'), 'price') + chips([['price:free', L('f.free'), F.price.free], ['price:$', '$', F.price.$], ['price:$$', '$$', F.price.$$], ['price:$$$', '$$$', F.price.$$$], ['sale', L('f.sale'), F.sale]]) + '</div>';
+  h += '<div class="fsec">' + H(L('f.far'), 'reach') + seg([['mode:car', L('f.drive'), F.mode === 'car'], ['mode:transit', L('f.cta'), F.mode === 'transit'], ['mode:walk', L('f.walk'), F.mode === 'walk']]) +
+    '<div class="chips-w" style="margin-top:8px">' + RADII.map(function(r){ return '<button class="chip" type="button" data-d="radius:' + r + '" aria-pressed="' + (F.radius === r) + '" aria-label="Within ' + esc(fmtRadius(r)) + '">' + (r === APP_RADIUS ? L('f.any') : esc(fmtRadius(r))) + '</button>'; }).join('') + '</div></div>';
+  h += '<div class="fsec">' + H(L('f.io'), 'io') + seg([['io:either', L('f.either'), F.io === 'either'], ['io:indoor', L('f.inside'), F.io === 'indoor'], ['io:outdoor', L('f.outside'), F.io === 'outdoor']]) + '</div>';
+  h += '<div class="fsec">' + H(L('f.booking'), 'booking') + chips([['walkin', L('f.walkin'), F.walkin], ['hide21', L('f.no21'), F.hide21]]) + '</div>';
   var B = UI.draftB || {on:!!S.budgetOn, val:S.budget};   // the optional "I have N hours" budget, off by default
-  h += '<div class="fsec">' + H('Time I have', 'time') + chips([['tb:off', 'Any', !B.on]].concat([60, 120, 180].map(function(x){ return ['tb:' + x, esc(fmtBudget(x)), B.on && B.val === x]; })).concat(B.on && [60, 120, 180].indexOf(B.val) < 0 ? [['tb:' + B.val, esc(B.val === 'night' ? 'Tonight' : fmtBudget(B.val)), true]] : [])) + '</div>';
+  h += '<div class="fsec">' + H(L('f.time'), 'time') + chips([['tb:off', L('f.any'), !B.on]].concat([60, 120, 180].map(function(x){ return ['tb:' + x, esc(fmtBudget(x)), B.on && B.val === x]; })).concat(B.on && [60, 120, 180].indexOf(B.val) < 0 ? [['tb:' + B.val, esc(B.val === 'night' ? 'Tonight' : fmtBudget(B.val)), true]] : [])) + '</div>';
   var ia = popularInterests(DATA, F, POP_INTERESTS);
-  if (ia.length) h += '<div class="fsec">' + H('Into', 'interests') + chips(ia.map(function(x){ return ['int:' + x.id, esc(x.label), !!F.interests[x.id]]; })) + '</div>';
+  if (ia.length) h += '<div class="fsec">' + H(L('f.into'), 'interests') + chips(ia.map(function(x){ return ['int:' + x.id, esc(x.label), !!F.interests[x.id]]; })) + '</div>';
   body.innerHTML = h; body.scrollTop = st;
   var go = $('pFiltersGo');
   if (!DATA_LOADED) { go.textContent = 'Done'; go.classList.remove('zero'); go.removeAttribute('aria-disabled'); return; }
@@ -9365,6 +9535,7 @@ function applyF(code){ // single filter change (pSmall panels, the "Make it 2 hr
     case 'price': F.price[v] = !F.price[v]; if (!F.price[v]) delete F.price[v]; break;
     case 'walkin': F.walkin = !F.walkin; break;
     case 'sale': F.sale = !F.sale; break;
+    case 'visit': F.visit = !F.visit; break;   // v5.21
     case 'hide21': F.hide21 = !F.hide21; break;
     case 'kind': F.kind = v; break;
     case 'social': F.social = !F.social; break;
@@ -9378,6 +9549,9 @@ function applyF(code){ // single filter change (pSmall panels, the "Make it 2 hr
 var smallRender = null;
 function openSmall(title, fn){ smallRender = fn; $('pSmallTitle').textContent = title; fn(); openPanel('pSmall'); }
 function smallRadius(){ $('pSmallBody').innerHTML = chipsGroup(RADII.map(function(r){ return ['radius:' + r, fmtRadius(r), S.f.radius === r]; })) + '<div style="margin-top:12px">' + chipsGroup([['mode:car', 'Drive', S.f.mode === 'car'], ['mode:transit', 'Walk + CTA', S.f.mode === 'transit'], ['mode:walk', 'Walk only', S.f.mode === 'walk']]) + '</div><p class="hint">Distances are straight-line (as the crow flies). Travel times are rough. With Walk + CTA, places more than ' + CTA_MAX_MI + ' mi away show a drive time (no CTA estimate).</p>'; }
+var COMPARE_CARD_HTML = '<p>Compare shows how your fun type matches a friend’s, and picks you would both like.</p><p>It needs you to sign in. Nothing is shared until a friend accepts your invite.</p>' +
+  '<div class="btns" style="display:flex;gap:8px;margin-top:14px"><button class="btn-primary" type="button" data-cmp="in" style="flex:1">Sign in</button><button class="mini-btn" type="button" data-close="pSmall" style="flex:1;justify-content:center">Not now</button></div>';
+function smallCompare(){ var b = $('pSmallBody'); b.innerHTML = COMPARE_CARD_HTML; var s = b.querySelector('[data-cmp="in"]'); if (s) s.onclick = function(){ closePanel('pSmall'); openFriends(); }; }   // v5.21: "Sign in" continues to the existing sign-in flow
 var DAY_PARTS = [[600, 'Morning'], [840, 'Afternoon'], [1140, 'Evening'], [1320, 'Late']];
 function smallWhen(){ // v4: Now / Tonight, or pick a day (next 8 days) and a part of the day, or an exact time
   var p = cparts(nowMs()), d = parseDT(S.pickAt), on = S.when === 'pick' && d, selKey = on ? d.key : '', selMin = on && d.min !== null ? d.min : -1, days = '';   // v5.6: -1 = Any time
@@ -9431,7 +9605,7 @@ function renderAbout(){
   h += '<h3>Photo credits</h3>' + (photos.length ? '<ul class="credits">' + photos.map(function(it){ var ph = firstPhoto(it), pu = safeUrl(ph.page_url); return '<li>' + esc(it.name) + ': ' + (pu ? '<a href="' + esc(pu) + '" target="_blank" rel="noopener">' + esc(ph.credit ? photoCredit(ph) : domainOf(pu)) + '</a>' : esc(photoCredit(ph))) + '</li>'; }).join('') + '</ul>' : '<p>No photos are bundled yet. Items show drawn category art instead.</p>');
   if (CONTACT_EMAIL) h += '<p class="small">Photos belong to their owners. Ask us to remove one: <a href="mailto:' + esc(CONTACT_EMAIL) + '">' + esc(CONTACT_EMAIL) + '</a></p>';
   h += '<h3>Sources</h3><p>Official venue and organizer sites, the Chicago Park District, Choose Chicago and editorial sites as leads. No automated collection from Instagram or Eventbrite. Each item lists its sources.</p>';
-  h += '<h3>Theme</h3><div id="aboutTheme">' + themePickerHTML() + '</div>';
+  h += '<h3>Theme</h3><div id="aboutTheme">' + langPickerHTML() + themePickerHTML() + '</div>';
   h += '<h3>For testing</h3><p><button class="mini-btn" type="button" data-act="selftest">Run the self-test</button></p><p>' + esc(VERSION) + ' \u00b7 time zone used: ' + TZ + (fmtParts ? '' : ' (built-in US DST rule; this browser has no time zone support)') + '</p>';
   $('pAboutBody').innerHTML = h;
   $('pAboutTitle').textContent = 'About ' + APP_NAME;
@@ -9511,7 +9685,7 @@ function afterThemeChange(){
   var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', themeColorNow());
   applyMapTokens(); glApplyTheme();
   if ($('pTheme') && !$('pTheme').hidden) renderThemePicker();
-  var ab = $('aboutTheme'); if (ab) ab.innerHTML = themePickerHTML();
+  var ab = $('aboutTheme'); if (ab) ab.innerHTML = langPickerHTML() + themePickerHTML();
 }
 function setSkin(v, keep){
   var s = normSkin(v), de = document.documentElement;
@@ -9561,11 +9735,12 @@ function themePickerHTML(){
   h += '<p class="th-foot">' + (Platform.store.ok && THEME_SAVED ? 'Saved on this phone.' : 'Only for this visit.') + '</p>';
   return h;
 }
-function renderThemePicker(){ var b = $('pThemeBody'); if (b) b.innerHTML = themePickerHTML(); }
+function renderThemePicker(){ var b = $('pThemeBody'); if (b) b.innerHTML = langPickerHTML() + themePickerHTML(); if ($('pThemeTitle')) $('pThemeTitle').textContent = i18t('theme.title'); }   // v5.21: Language first
 function openThemePicker(){ renderThemePicker(); openPanel('pTheme'); }
 function themeClick(e){ // shared by the Theme panel and About; true when the click was a theme control
-  var t = e.target.closest('[data-look],[data-setskin],[data-mode],[data-mapstyle]'); if (!t) return false;
-  if (t.hasAttribute('data-look')) setLook(t.getAttribute('data-look'));
+  var t = e.target.closest('[data-look],[data-setskin],[data-mode],[data-mapstyle],[data-lang]'); if (!t) return false;
+  if (t.hasAttribute('data-lang')) setLang(t.getAttribute('data-lang'));   // v5.21
+  else if (t.hasAttribute('data-look')) setLook(t.getAttribute('data-look'));
   else if (t.hasAttribute('data-mode')) { if (t.getAttribute('aria-disabled') === 'true') return true; setTheme(t.getAttribute('data-mode')); }
   else if (t.hasAttribute('data-mapstyle')) setMapMode(t.getAttribute('data-mapstyle'));
   else setSkin(t.getAttribute('data-setskin'));
@@ -10450,7 +10625,7 @@ function tasteClick(e){
   if (a === 'undo') tkUndo();
   else if (a === 'wyrskip') wyrPick('skip');
   else if (a === 'wyrneither') wyrPick('neither');   // v5.18 (owner): "Neither" = no vote on this axis, counts toward n / 35
-  else if (a === 'compare') { closeTaste(); openFriends(); }   // v5.18: Plan together from the Result
+  else if (a === 'compare') { closeTaste(); if (Acct.user) openFriends(); else openSmall('Compare with a friend', smallCompare); }   // v5.18: Plan together from the Result; v5.21 (tester v5.19): signed out, a short card first, never a straight jump to Google
   else if (a.indexOf('fit:') === 0) tasteFitSet(a.slice(4), b);
   else if (a.indexOf('shift:') === 0) typeShiftAnswer(a.slice(6) === 'yes');
   else if (a === 'skip') { var T = tasteTarget(); if (T === TASTE) TASTE.nag.shown = Math.max(TASTE.nag.shown, 1); tasteSave(T);
@@ -10678,7 +10853,7 @@ function bindUI(){
     var sp = e.target.closest('[data-spot],[data-pick]');
     if (sp) { var s = spotByName(sp.getAttribute('data-spot') || sp.getAttribute('data-pick')); if (s) { setCandidate(s.lat, s.lng, s.name, 'picked'); $('spotResults').innerHTML = ''; $('spotSearch').value = ''; } }
   });
-  $('locGo').addEventListener('click', function(){ var c = UI.cand || LOOP; UI.firstOpen = false; commitLocation(ext(c, {explicit:true})); });   // v5.5: a choice made now
+  $('locGo').addEventListener('click', function(){ UI.firstOpen = false; commitLocation(locGoChoice(UI.cand)); });   // v5.5: a choice made now; v5.21: "Start at The Loop" counts as a set location (weather)
   $('gpsBtn').addEventListener('click', function(){ locateMe(); });
   // time
   $('pTimeBody').addEventListener('click', function(e){
@@ -10824,7 +10999,8 @@ function runSelfTest(){
   var keepPlanST = UI.planning, keepAtST = UI.planAt, keepAnyST = UI.anyDay; UI.planning = false; UI.planAt = null; UI.anyDay = '';   // v5.3: the checks expect "now" wording even if the app is in planning mode
   TASTE_SUSPEND++; TASTE_REV++;   // v5.12: the checks run with an empty taste profile, whatever is saved on this phone
   WX.testOff++;   // v5.20: and with no weather (the weather block turns it on for its own made-up forecasts)
-  try { return runSelfTest0(); } finally { UI.planning = keepPlanST; UI.planAt = keepAtST; UI.anyDay = keepAnyST; TASTE_SUSPEND--; TASTE_REV++; WX.testOff--; }
+  var keepLangST = LANG; LANG = 'en';   // v5.21: the checks read English words; the language block passes its language explicitly
+  try { return runSelfTest0(); } finally { UI.planning = keepPlanST; UI.planAt = keepAtST; UI.anyDay = keepAnyST; TASTE_SUSPEND--; TASTE_REV++; WX.testOff--; LANG = keepLangST; }
 }
 function runSelfTest0(){
   var R = [];
@@ -10839,6 +11015,7 @@ function runSelfTest0(){
   var CTX = {lat:41.88, lng:-87.63, budget:120, mode:'transit'};
   var devZone = ''; try { devZone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
   info('Device time zone: ' + (devZone || 'unknown') + '. All checks use America/Chicago (' + (fmtParts ? 'Intl' : 'built-in DST rule') + ').');
+  block('v5.21 languages, Only in Chicago, Visiting Chicago, tester fixes', function(){ i18nSelfTest(ok, eq, info); });
 
   block('time zone', function(){
     eq('Chicago noon Jul 4 2026 = 17:00 UTC (CDT)', fromChicago('2026-07-04', 720), Date.UTC(2026, 6, 4, 17, 0));
@@ -11102,7 +11279,7 @@ function runSelfTest0(){
     var field = fx({category:'art-museum', hours:nine5, hours_note:'Last entry 4pm. Closed Thanksgiving (Nov 26, 2026) and Christmas Day.'});
     var s = stx(field, '2026-11-26', '13:00');
     ok('Field Museum on Thanksgiving 2026 at 1 pm is NOT open', !s.open, s.key + ' / ' + s.d.text);
-    eq('Field Museum on Thanksgiving: text', s.d.text, 'Closed today (Thanksgiving) · opens tomorrow 9 am');
+    eq('Field Museum on Thanksgiving: text', s.d.text, 'Closed for Thanksgiving · opens tomorrow 9 am');
     s = stx(field, '2026-12-25', '12:00');
     eq('Field Museum on Christmas Day ("Christmas Day" in the note): may be closed, call first', [s.key, s.open, s.d.text].join(' | '), 'maybe | false | May be closed today (Christmas) · call first');
     ok('Field Museum Nov 27: open again', stx(field, '2026-11-27', '13:00').open, '');
@@ -11267,7 +11444,7 @@ function runSelfTest0(){
     eq('an exhibit 7 m from the museum is linked to it', links.length + '|' + (links[0] ? links[0].venues.join() : ''), '1|Venue Museum');
     var s = stx(ex, '2026-11-26', '13:00');
     ok('Thanksgiving 1 pm: the exhibit inside the closed museum is NOT "happening now"', !s.open, s.key + ' / ' + s.d.text);
-    eq('...text', s.d.text + ' | ' + s.d.sub, 'Closed today (Thanksgiving) · opens tomorrow 10 am | inside Venue Museum, which is closed today');
+    eq('...text', s.d.text + ' | ' + s.d.sub, 'Closed for Thanksgiving · opens tomorrow 10 am | inside Venue Museum, which is closed today');
     eq('...and it is not a fit', runPipeline([mca, ex], at('2026-11-26', '13:00'), CTX, defaultFilters()).count, 0);
     ok('Nov 27 1 pm: happening again', stx(ex, '2026-11-27', '13:00').open, '');
     eq('Christmas Day: closed too', stx(ex, '2026-12-25', '13:00').key, 'closed');
@@ -12400,8 +12577,8 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.20 (2026-11-14)');
-    eq('previous version', VERSION_PREV, 'v5.19 (2026-11-14)');
+    eq('version', VERSION, 'v5.21 (2026-11-14)');
+    eq('previous version', VERSION_PREV, 'v5.20 (2026-11-14)');
   });
 
   /* ---------- v5.20 fix (live v5.19 tester, MEDIUM): "Last entry not posted" must never make a last-entry time ---------- */
@@ -13768,6 +13945,7 @@ function runSelfTestAsync(){ // checks that need promises or the map files
   var flaky = 0, flakyDb = {collection:function(){ return {add:function(){ flaky++; return flaky === 1 ? Promise.reject({code:'unavailable'}) : Promise.resolve({id:'t2'}); }}; }};
   var bad = {writable:true};
   return Promise.all([
+    i18nSelfTestAsync(ok, eq),   // v5.21: the real i18n files (website builds only; skipped when they can't be fetched)
     wxSelfTestAsync(ok, eq),   // v5.20: weather fetch failures, malformed JSON, timeout, cache (fake fetch, fake storage; nothing sent)
     Platform.tips.sendWith(goodDb, tip, {writable:true}).then(function(r){
       eq('tip with the db: saved to the shared box', r.where, 'db');
@@ -14111,6 +14289,126 @@ function tasteRealChecks(R, resMon, ok, eq){ // v5.12 real-data taste checks (sp
   var why = withSt(pos, function(){ var x = three(scenes[1]); return x.picks.map(function(c){ return tasteWhy(c, pos); }).filter(Boolean); });
   info('real data: "why" lines on the strong profile\'s three: ' + (why.join(' | ') || 'none (no pick scored 2+)'));
 }
+/* v5.21 self-test: languages (auto-detect with mocked browser languages, picker override, per-field fallback incl. a stale hash, numbers
+   unchanged), Only in Chicago (incl. a missing only_here), Visiting Chicago, the 320 px fit of ru / ko labels, and the tester fixes. */
+function i18nSelfTest(ok, eq, info){
+  // auto-detect: the browser's first language, mocked (navigator itself is never changed)
+  eq('L1 auto-detect: ru-RU -> ru', detectLang('ru-RU', null), 'ru');
+  eq('L1 auto-detect: zh-CN -> zh-Hans (Simplified)', detectLang('zh-CN', null), 'zh-Hans');
+  eq('L1 auto-detect: zh-TW -> zh-Hans too (her decision: Simplified)', detectLang('zh-TW', null), 'zh-Hans');
+  eq('L1 auto-detect: ko-KR / ko -> ko', detectLang('ko-KR', null) + ',' + detectLang('ko', null), 'ko,ko');
+  eq('L1 auto-detect: fr-FR -> English', detectLang('fr-FR', null), 'en');
+  eq('L1 auto-detect: en-US -> English; empty -> English; "rus" is not ru', [detectLang('en-US', null), detectLang('', null), detectLang('rus', undefined)].join(), 'en,en,en');
+  // picker override: a saved pick wins over the browser, English included; junk in storage is ignored
+  eq('L2 picker: saved English beats a Russian phone', detectLang('ru-RU', 'en'), 'en');
+  eq('L2 picker: saved Korean beats a French phone', detectLang('fr-FR', 'ko'), 'ko');
+  eq('L2 picker: a bad saved value is ignored', detectLang('ru', 'xx') + ',' + detectLang('zh-CN', 42), 'ru,zh-Hans');
+  var keepL = LANG, ph = '';
+  try { LANG = 'ko'; ph = langPickerHTML(); } finally { LANG = keepL; }
+  var order = (ph.match(/data-lang="([^"]+)"/g) || []).map(function(x){ return x.slice(11, -1); }).join();
+  eq('L2 picker lists English first, then ru, zh-Hans, ko (in Korean too)', order, 'en,ru,zh-Hans,ko');
+  ok('L2 picker: in Korean it marks Korean as picked and keeps "Language" in English beside the Korean word', /data-lang="ko"[^>]*aria-pressed="true"/.test(ph) && /언어 · Language/.test(ph), ph.slice(0, 160));
+  // per-field fallback
+  var it = {id:'fx-l1', name:'Fixture Golf', hook:'Play 18 holes', description:'Open since 1999. $12 per person.', highlights:['About 2 hours', '$12 per person']};
+  var TRM = {'fx-l1':{hook:'Сыграйте 18 лунок', description:'', highlights:['Около 2 часов', '$12 с человека'], hash:'AAAA'}};
+  function pt(f, lang, trm, hm){ var r = placeTextWith(it, f, lang, trm, hm); return r.lang; }
+  eq('L3 fresh hash: hook + highlights in Russian, empty description in English', [pt('hook', 'ru', TRM, {'fx-l1':'AAAA'}), pt('description', 'ru', TRM, {'fx-l1':'AAAA'}), pt('highlights', 'ru', TRM, {'fx-l1':'AAAA'})].join(), 'ru,en,ru');
+  eq('L3 the place name never changes (not a translated field)', placeTextWith(it, 'name', 'ru', TRM, {'fx-l1':'AAAA'}).v, 'Fixture Golf');
+  eq('L3 stale hash (English changed after translating): every field English', [pt('hook', 'ru', TRM, {'fx-l1':'BBBB'}), pt('highlights', 'ru', TRM, {'fx-l1':'BBBB'})].join(), 'en,en');
+  eq('L3 only the description changed ("~d"): hook + highlights stay translated', [pt('hook', 'ru', TRM, {'fx-l1':'AAAA~d'}), pt('highlights', 'ru', TRM, {'fx-l1':'AAAA~d'})].join(), 'ru,ru');
+  eq('L3 the hook changed ("~h"): hook English, highlights translated', [pt('hook', 'ru', TRM, {'fx-l1':'AAAA~h'}), pt('highlights', 'ru', TRM, {'fx-l1':'AAAA~h'})].join(), 'en,ru');
+  eq('L3 no hash file / no entry / no translation file / English picked: English', [pt('hook', 'ru', TRM, null), pt('hook', 'ru', TRM, {}), pt('hook', 'ru', null, {'fx-l1':'AAAA'}), pt('hook', 'en', TRM, {'fx-l1':'AAAA'})].join(), 'en,en,en,en');
+  eq('L3 a translation with no hash is never trusted', pt('hook', 'ko', {'fx-l1':{hook:'18홀 플레이'}}, {'fx-l1':'AAAA'}), 'en');
+  eq('L3 highlights with a different count fall back to English', pt('highlights', 'ru', {'fx-l1':{highlights:['Около 2 часов'], hash:'AAAA'}}, {'fx-l1':'AAAA'}), 'en');
+  // numbers unchanged
+  eq('L4 a translated hook with a changed number (17 for 18) shows the English', pt('hook', 'ru', {'fx-l1':{hook:'Сыграйте 17 лунок', hash:'AAAA'}}, {'fx-l1':'AAAA'}), 'en');
+  eq('L4 "$12" written as "12 $" falls back to English (the number must be the same text)', pt('highlights', 'zh-Hans', {'fx-l1':{highlights:['约 2 小时', '每人 12 $'], hash:'AAAA'}}, {'fx-l1':'AAAA'}), 'en');
+  eq('L4 the numbers test matches tools/validate-i18n.ps1 ("3,5" = "3.5"; extra numbers like a month are fine)', [numsKept('Adults $41.20, 13:00-20:00', 'Взрослые $41.20, 13:00-20:00'), numsKept('3.5 hours', '3,5 часа'), numsKept('Nov 20', '11 月 20 日'), numsKept('90 minutes', '약 9분')].join(), 'true,true,true,false');
+  var samples = ['Closes in 25 min', 'Open till 5:30 pm', 'Opens at 10 am today', 'Closed today · opens Sat 9 am', 'Closed for the season (May 1 – Oct 30)', '12 min walk', '35 min drive', '8 min by CTA', 'Last entry 4:15 pm', 'Open 10 am – 4 pm Wed', 'Hours not confirmed · call first'], badN = [];
+  ['ru', 'zh-Hans', 'ko'].forEach(function(l){ samples.forEach(function(s){ var o = trStatus(s, l); if (!numsKept(s, o) || o === s) badN.push(l + ': ' + s + ' -> ' + o); }); });
+  ok('L4 status words: all ' + samples.length * 3 + ' samples translated in ru / zh-Hans / ko with every number kept', !badN.length, badN.slice(0, 3).join(' | '));
+  eq('L4 English status words are untouched; an unknown part stays English', trStatus('Closes in 25 min', 'en') + ' | ' + trStatus('Weird thing · call first', 'ko'), 'Closes in 25 min | Weird thing · 먼저 전화해 보세요');
+  eq('L4 UI strings: {x} is filled, an unknown key shows the key, not "undefined"', i18t('home.near', {x:'Pilsen'}, 'zh-Hans') + ' | ' + i18t('no.such.key', null, 'ru'), 'Pilsen 附近 | no.such.key');
+  var miss = []; Object.keys(STR).forEach(function(k){ if (STR[k].length !== 4 || STR[k].some(function(x){ return typeof x !== 'string' || !x; })) miss.push(k); });
+  ok('L5 string table: ' + Object.keys(STR).length + ' keys, each with English + ru + zh-Hans + ko (non-English unverified, needs native review)', !miss.length, miss.join());
+  // Only in Chicago
+  eq('O1 kinds only / rare / classic show a badge with the reason', ['only', 'rare', 'classic'].map(function(k){ return onlyHereOf({only_here:{kind:k, reason:'r'}}).kind; }).join(), 'only,rare,classic');
+  eq('O1 missing only_here, an unknown kind, or a string: nothing shown', [onlyHereOf({}), onlyHereOf({only_here:{kind:'unique', reason:'x'}}), onlyHereOf({only_here:'only'}), ohBadgeHTML({name:'x'}), ohLineHTML({name:'x'})].join('|'), '||||');
+  var ohl = ohLineHTML({only_here:{kind:'only', reason:'Founded in Chicago in 1959', src:'https://example.org/about'}});
+  ok('O2 the detail line shows the badge words, the reason and its source link', ohl.indexOf('Only in Chicago') > 0 && ohl.indexOf('Founded in Chicago in 1959') > 0 && ohl.indexOf('https://example.org/about') > 0, ohl);
+  eq('O2 badge words in ru / zh-Hans / ko', ['ru', 'zh-Hans', 'ko'].map(function(l){ return i18t('oh.only', null, l); }).join('|'), 'Только в Чикаго|芝加哥独有|시카고에만');
+  // Visiting Chicago
+  eq('V1 Visiting Chicago keeps tagged items and the must-sees (no tag needed), drops the rest', [visitorPick({name:'Tiny Bar', only_here:{kind:'classic', reason:'r'}}), visitorPick({name:'Navy Pier'}), visitorPick({name:'Corner Bowling'}), visitorPick({name:'Corner Bowling', only_here:{kind:'nope'}})].join(), 'true,true,false,false');
+  var Fv = ext(appDefaultFilters(), {visit:true});
+  eq('V1 it is a removable chip, counts as a filter, and toggles in the sheet', appliedFilters(Fv).map(function(a){ return a.label; }).join() + '|' + removeFilter(Fv, 'visit').visit + '|' + (filterCount(Fv) - filterCount(appDefaultFilters())) + '|' + applyDraft(copyF(appDefaultFilters()), 'visit').visit, 'Visiting Chicago|false|1|true');
+  var cA = computeItem(fx({name:'Corner Bowling'}), fromChicago('2026-11-16', 720), {lat:41.88, lng:-87.63, budget:'any', mode:'car'}), cB = computeItem(fx({name:'Navy Pier Fixture'}), fromChicago('2026-11-16', 720), {lat:41.88, lng:-87.63, budget:'any', mode:'car'});
+  eq('V1 passFilters: off keeps both; on keeps only the must-see', [passFilters(cA, appDefaultFilters()), passFilters(cB, appDefaultFilters()), passFilters(cA, Fv), passFilters(cB, Fv)].join(), 'true,true,false,true');
+  // 320 px: ru and ko labels fit the picker, the badges and the filter chips (measured in a 288 px box = 320 minus the 16 px gutters)
+  var app = $('app'), box = null, keep2 = LANG;
+  if (app && app.getBoundingClientRect) {
+    try {
+      ['ru', 'ko'].forEach(function(l){
+        LANG = l;
+        box = document.createElement('div'); box.setAttribute('aria-hidden', 'true'); box.style.cssText = 'position:absolute;left:-20000px;top:0;width:288px;visibility:hidden;pointer-events:none';
+        var F0 = appDefaultFilters();
+        box.innerHTML = '<div class="hm-ctl">' + ['who.date', 'who.friends', 'who.solo'].map(function(k){ return '<button class="qchip">' + esc(i18t(k)) + '</button>'; }).join('') + '</div>' +
+          '<div class="hm-ctl">' + ['when.now', 'when.today', 'when.pick'].map(function(k){ return '<button class="qchip">' + esc(i18t(k)) + '</button>'; }).join('') + '</div>' +
+          '<div class="p-body">' + langPickerHTML() + '</div>' +
+          '<p>' + ['only', 'rare', 'classic'].map(function(k){ return ohBadgeHTML({only_here:{kind:k}}, 'tag'); }).join(' ') + '</p>' +
+          '<div class="fsec fs-visit"><div class="sw-row"><span>' + esc(i18t('f.visit')) + '</span><button class="switch" type="button"></button></div></div>' +
+          '<div class="chips-w">' + ['f.free', 'f.sale', 'f.walkin', 'f.no21', 'f.any'].map(function(k){ return '<button class="chip" type="button">' + esc(i18t(k)) + '</button>'; }).join('') + '</div>' +
+          '<div class="seg">' + ['f.drive', 'f.cta', 'f.walk'].map(function(k){ return '<button type="button">' + esc(i18t(k)) + '</button>'; }).join('') + '</div>' +
+          '<div class="seg">' + ['f.either', 'f.inside', 'f.outside'].map(function(k){ return '<button type="button">' + esc(i18t(k)) + '</button>'; }).join('') + '</div>';
+        app.appendChild(box);
+        var els = box.querySelectorAll('.qchip, .lang-seg button, .oh-b, .sw-row, .chip, .seg button'), over = [], unm = 0;
+        Array.prototype.forEach.call(els, function(el){ if (!el.clientWidth) { unm++; return; } if (el.scrollWidth > el.clientWidth + 1 || el.getBoundingClientRect().right > box.getBoundingClientRect().right + 1) over.push(el.textContent + ' (' + el.scrollWidth + '>' + el.clientWidth + ')'); });
+        if (unm === els.length) info('L6 ' + l + ': labels could not be measured here (hidden layout)');
+        else ok('L6 ' + l + ' at 320 px: picker, badges and filter chips fit without cutting a word (' + (els.length - unm) + ' measured)', !over.length, over.join(' | '));
+        app.removeChild(box); box = null;
+      });
+    } finally { LANG = keep2; if (box && box.parentNode) box.parentNode.removeChild(box); }
+  }
+  // tester fixes (v5.20 + v5.19 reports)
+  eq('T1 notes "9:30-5:30" read as 9:30 am – 5:30 pm (MSI), not 5:30 am', fmt24Ranges('Daily 9:30-5:30'), 'Daily 9:30 am – 5:30 pm');
+  ok('T1 "12:00-4:00" (Ukrainian Institute) ends at 4 pm', /– 4 pm$/.test(fmt24Ranges('12:00-4:00')) && !/am$/.test(fmt24Ranges('12:00-4:00')), fmt24Ranges('12:00-4:00'));
+  eq('T1 real 24-hour ranges are unchanged: 13:00-20:00 and 22:00-02:00', fmt24Ranges('13:00-20:00') + ' | ' + fmt24Ranges('22:00-02:00'), fmtTime(780) + ' – ' + fmtTime(1200) + ' | ' + fmtTime(1320) + ' – ' + fmtTime(120));
+  ok('T2 "Start at The Loop" counts as a set area for weather (the plain fallback still does not)', !!wxLocOf(locGoChoice(LOOP)) && !wxLocOf(LOOP) && locGoChoice(ext(LOOP, {src:'gps'})).src === 'gps', JSON.stringify(locGoChoice(LOOP)));
+  eq('T3 no weekly hours but dated hours: "No regular weekly hours", never "Hours not confirmed"', /No regular weekly hours/.test(hoursTableHTML({hours:null, date_hours:{'2026-11-20':[['09:30', '17:30']]}}, cparts(fromChicago('2026-11-16', 720)))) + ',' + /Hours not confirmed/.test(hoursTableHTML({hours:null}, cparts(fromChicago('2026-11-16', 720)))), 'true,true');
+  eq('T4 the "Now" cell takes the big current reading', JSON.stringify(wxNowCell({h:9, temp:40, code:3, prob:20}, {temp:43, code:61, day:1, gust:12})), JSON.stringify({h:9, temp:43, code:61, prob:20, day:1, gust:12}));
+  eq('T6 a closed holiday says its name', [closedDayLabel('2026-11-26'), closedDayLabel('2026-12-25'), closedDayLabel('2027-01-01'), closedDayLabel('2026-11-17')].join('|'), 'Closed for Thanksgiving|Closed for Christmas|Closed for New Year\'s Day|Closed');
+  var tg = fx({hours:allDays(['10:00', '17:00']), closed_dates:['2026-11-26']}), sTg = statusAt(tg, fromChicago('2026-11-26', 720));
+  ok('T6 on Thanksgiving a place closed that day reads "Closed for Thanksgiving"', /^Closed for Thanksgiving/.test(describe(sTg, tg).text), describe(sTg, tg).text);
+  ok('T6 the special-dates table names the holiday', specialDatesHTML(tg, cparts(fromChicago('2026-11-20', 720))).indexOf('Closed for Thanksgiving') > 0, '');
+  ok('T7 "Compare with a friend" signed out: a card that says what it does, that it needs sign-in, nothing shared until a friend accepts, Sign in + Not now', /Compare shows/.test(COMPARE_CARD_HTML) && /sign in/i.test(COMPARE_CARD_HTML) && /Nothing is shared until a friend accepts/.test(COMPARE_CARD_HTML) && /data-cmp="in"[^>]*>Sign in</.test(COMPARE_CARD_HTML) && />Not now</.test(COMPARE_CARD_HTML), '');
+}
+function i18nSelfTestAsync(ok, eq){
+  var R = [];
+  function note(n){ ok(n, true); }
+  return Promise.all(['ru', 'zh-Hans', 'ko'].map(function(l){ return Platform.fetchJSON('i18n/' + l + '/places.json')['catch'](function(){ return null; }); }).concat([Platform.fetchJSON('i18n/en-hash.json')['catch'](function(){ return null; })])).then(function(r){
+    if (!r[3]) { note('i18n files not served here (claude.ai or an old build): the real-file language checks are skipped; the app shows English place text'); return; }
+    return waitFor(function(){ return DATA_LOADED || DATA_ERR; }, 8000).then(function(){
+      if (!DATA_LOADED) { note('real data not loaded: language real-file checks skipped'); return; }
+      ['ru', 'zh-Hans', 'ko'].forEach(function(l, i){
+        var trm = r[i]; if (!trm) { ok('real i18n: ' + l + '/places.json loads', false, 'not fetched'); return; }
+        var n = 0, tH = 0, tD = 0, tL = 0, fb = 0, badNum = 0;
+        DATA.forEach(function(it){
+          if (!it.hook && !it.description) return; n++;
+          var h = placeTextWith(it, 'hook', l, trm, r[3]), d = placeTextWith(it, 'description', l, trm, r[3]), hl = placeTextWith(it, 'highlights', l, trm, r[3]);
+          if (h.lang === l) tH++; if (d.lang === l) tD++; if (hl.lang === l) tL++;
+          if ((it.hook && h.lang !== l) || (it.description && d.lang !== l)) fb++;
+          if ((h.lang === l && !numsKept(it.hook, h.v)) || (d.lang === l && !numsKept(it.description, d.v))) badNum++;
+        });
+        ok('real i18n ' + l + ': ' + Object.keys(trm).length + ' entries; of ' + n + ' items, hook translated ' + tH + ', description ' + tD + ', highlights ' + tL + '; ' + fb + ' items show some English (missing / stale / number check)', n > 0 && tD >= n * 0.8, 'fewer than 80% translated: is en-hash.json current?');
+        eq('real i18n ' + l + ': no translated field shown with a changed number', badNum, 0);
+        var one = null; DATA.some(function(it){ if (trm[it.id] && it.hook) { one = it; return true; } return false; });
+        if (one) { var hm2 = {}; hm2[one.id] = 'STALE0000000000'; eq('real i18n ' + l + ': a stale hash on ' + one.id + ' shows its English hook', placeTextWith(one, 'hook', l, trm, hm2).v, one.hook); }
+      });
+      var oh = DATA.filter(function(it){ return it.only_here; }), ohOk = oh.filter(function(it){ return onlyHereOf(it); });
+      note('real data: ' + oh.length + ' items carry only_here, ' + ohOk.length + ' with a kind the app shows (only / rare / classic); items without it show no badge');
+      ok('real data: every only_here the app shows has a reason', ohOk.every(function(it){ return onlyHereOf(it).reason; }), ohOk.filter(function(it){ return !onlyHereOf(it).reason; }).map(function(it){ return it.id; }).slice(0, 5).join());
+    });
+  });
+}
 function showSelfTest(){
   var R = runSelfTest(), runId = (showSelfTest.n = (showSelfTest.n || 0) + 1);
   function paint(all, pending){
@@ -14166,6 +14464,7 @@ function readHash(){
   // v5.9 testing hooks (this visit only, nothing saved): #skin=night|sorbet #mode=auto|light|dark #mapstyle=standard|themed #panel=theme #view=map
   var wxh = /(?:^#|&)wx=(rain|storm|snow|heavysnow|wind|hot|nice|grey|fail)\b/.exec(hsh); if (wxh) wxSetFixture(wxh[1]);   // v5.20 testing hook: made-up weather (the sheet says "Test weather"); nothing is fetched
   if (/(?:^#|&)wxsheet=1/.test(hsh) && mapEl) (function w(n){ if (DATA_LOADED || n > 60) wxOpenSheet(); else setTimeout(function(){ w(n + 1); }, 200); })(0);   // v5.20 screenshot hook
+  var lgm = /(?:^#|&)lang=(en|ru|zh-Hans|ko)\b/.exec(hsh); if (lgm) setLang(lgm[1], true);   // v5.21 testing hook (this visit only, not saved)
   var skm = /(?:^#|&)skin=(night|sorbet)/.exec(hsh); if (skm) setSkin(skm[1], true);
   var thm = /(?:^#|&)mode=(auto|light|dark)/.exec(hsh); if (thm) setTheme(thm[1], true);
   var msm = /(?:^#|&)mapstyle=(standard|themed)/.exec(hsh); if (msm) setMapMode(msm[1], true);
@@ -14342,6 +14641,7 @@ var WX_ICONS = {
 function wxSvg(name, cls){ return '<svg class="' + (cls || 'wxi') + '" viewBox="0 0 24 24" aria-hidden="true">' + (WX_ICONS[name] || WX_ICONS.cloud) + '</svg>'; }
 function wxMerge(a, b){ var o = {}, k; for (k in a) if (Object.prototype.hasOwnProperty.call(a, k)) o[k] = a[k]; if (b) for (k in b) if (Object.prototype.hasOwnProperty.call(b, k)) o[k] = b[k]; return o; }
 function wxHostOk(){ return cloudHost(); }   // the website only (never the claude.ai copy, never inside a frame)
+function locGoChoice(c){ c = c || LOOP; return ext(c, {explicit:true, src:c.src === 'default' || !c.src ? 'picked' : c.src}); }   // v5.21 (tester v5.20 M2): tapping "Start at The Loop" is her choice, not the fallback
 function wxLocOf(loc){ return loc && loc.src && loc.src !== 'default' && isNum(loc.lat) && isNum(loc.lng) ? loc : null; }   // the Loop fallback is not "a location set"
 function wxR(v){ return (Math.round(v * 20) / 20).toFixed(2); }
 function wxCell(lat, lng){ return wxR(lat) + ',' + wxR(lng); }
@@ -14735,6 +15035,7 @@ function wxDayBit(k){
   var d = null; WX.d.days.forEach(function(x){ if (x.key === k) d = x; });
   return d && isNum(d.hi) ? '<small class="wxd">' + wxSvg(wxIcon(d.code, 1, d.gust)) + Math.round(d.hi) + '°</small>' : '';
 }
+function wxNowCell(y, x){ return x ? ext(y, {code:x.code, day:x.day, gust:x.gust, temp:x.temp}) : y; }   // v5.21 (tester v5.20 L4): the "Now" cell shows the big current reading, not the hourly row
 function wxOpenSheet(){ openSmall('Weather near ' + locName(S.loc), wxSheet); }
 function wxSheet(){ var b = $('pSmallBody'); if (b) b.innerHTML = wxSheetHTML(); }
 function wxSheetHTML(){
@@ -14750,7 +15051,7 @@ function wxSheetHTML(){
     if (isNum(x.gust)) det.push('gusts ' + Math.round(x.gust) + ' mph');
     h += '<div class="wx-now">' + wxSvg(wxIcon(x.code, x.day, x.gust), 'wxi big') + '<b>' + (isNum(x.temp) ? Math.round(x.temp) + '°' : '') + '</b><div><p class="wx-cond">' + esc(wxCodeText(x.code)) + '</p><p class="wx-det">' + esc(det.join(' · ')) + '</p></div></div>';
     var i0 = -1; for (var i = 0; i < N.hours.length; i++) if (N.hours[i].key === p.key && N.hours[i].h === Math.floor(p.min / 60)) { i0 = i; break; }
-    if (i0 >= 0) h += '<ul class="wx-hours" aria-label="Next 12 hours">' + N.hours.slice(i0, i0 + 12).map(function(y, j){ return '<li><span>' + (j === 0 ? 'Now' : esc(fmtTime(y.h * 60).replace(':00', ''))) + '</span>' + wxSvg(wxIcon(y.code, y.day, y.gust)) + (isNum(y.prob) && y.prob >= 50 ? '<small>' + Math.round(y.prob) + '%</small>' : '') + '<b>' + (isNum(y.temp) ? Math.round(y.temp) + '°' : '') + '</b></li>'; }).join('') + '</ul>';
+    if (i0 >= 0) h += '<ul class="wx-hours" aria-label="Next 12 hours">' + N.hours.slice(i0, i0 + 12).map(function(y, j){ if (j === 0) y = wxNowCell(y, x); return '<li><span>' + (j === 0 ? 'Now' : esc(fmtTime(y.h * 60).replace(':00', ''))) + '</span>' + wxSvg(wxIcon(y.code, y.day, y.gust)) + (isNum(y.prob) && y.prob >= 50 ? '<small>' + Math.round(y.prob) + '%</small>' : '') + '<b>' + (isNum(y.temp) ? Math.round(y.temp) + '°' : '') + '</b></li>'; }).join('') + '</ul>';
   }
   var dd = N.days.filter(function(d){ return d.key >= p.key; }).slice(0, 8);
   if (dd.length) h += '<div class="wx-days">' + dd.map(function(d, j){ return '<button type="button" data-wx="day:' + d.key + '" aria-label="Show ' + esc(j === 0 ? 'today' : DOW_SHORT[wdOfKey(d.key)]) + ', any time"><span class="d">' + (j === 0 ? 'Today' : esc(DOW_SHORT[wdOfKey(d.key)] + ' ' + (+d.key.slice(8)))) + '</span>' + wxSvg(wxIcon(d.code, 1, d.gust)) + '<span class="pp">' + (isNum(d.prob) && d.prob >= 30 ? Math.round(d.prob) + '%' : '') + '</span><span class="t">' + (isNum(d.hi) ? Math.round(d.hi) + '°' : '') + ' / ' + (isNum(d.lo) ? Math.round(d.lo) + '°' : '') + '</span></button>'; }).join('') + '</div>';
@@ -14872,6 +15173,10 @@ function init(){
   sheetEl = $('sheet'); handleEl = $('sheetHandle'); scrollEl = $('sheetScroll'); listRoot = $('listRoot'); mapPill = $('mapPill');
   $('brandName').textContent = APP_NAME; try { document.title = APP_NAME; } catch (e) {}
   var th = Platform.store.get('cff.theme', 'auto'); if (th === 'light' || th === 'dark') document.documentElement.setAttribute('data-theme', th);
+  LANG = detectLang(navLangNow(), Platform.store.get(LANG_KEY, null));   // v5.21: a saved pick, else ru / zh / ko from the browser, else English
+  try { document.documentElement.setAttribute('lang', LANG); } catch (e) {}
+  if ($('pThemeTitle')) $('pThemeTitle').textContent = i18t('theme.title');
+  i18nLoad(LANG);
   // v5.9: the head boot script already set these before first paint; repeat here in case a host dropped it. 'clear' / 'bold' (v1) read as night.
   var de0 = document.documentElement;
   if (!de0.getAttribute('data-skin')) de0.setAttribute('data-skin', normSkin(Platform.store.get('cff.skin', 'night')));
@@ -14926,6 +15231,9 @@ function init(){
 
 window.__cff = {
   version: VERSION, appName: APP_NAME,
+  detectLang: detectLang, langFromTag: langFromTag, placeTextWith: placeTextWith, i18nFresh: i18nFresh, numsKept: numsKept, trStatus: trStatus, i18t: i18t, STR: STR, LANGS: LANGS,   // v5.21
+  lang: function(){ return {lang:LANG, loaded:Object.keys(I18N.cache), state:ext(I18N.state, {}), err:ext(I18N.err, {}), hash:!!I18N.hash}; }, setLang: function(l, keep){ return setLang(l, keep); },
+  onlyHereOf: onlyHereOf, visitorPick: visitorPick, closedDayLabel: closedDayLabel, locGoChoice: locGoChoice, wxNowCell: wxNowCell, fmt24Ranges: fmt24Ranges,
   wxParse: wxParse, wxWindow: wxWindow, wxCond: wxCond, wxScore: wxScore, wxIdeaFits: wxIdeaFits, wxReason: wxReason, wxWarn: wxWarn, wxUrl: wxUrl, wxLocOf: wxLocOf, wxFixture: wxFixture, wxEnsure: wxEnsure, wxFxKindOf: wxFxKindOf, WX_T: WX_T,   // v5.20
   wxState: function(){ return {state:WX.state, at:WX.at, k:WX.k, fixture:WX.fixture, inflight:WX.inflight, err:WX.err, fetchN:WX.fetchN, rank:wxRankOn(), fx:WX.fxPref, cond:WX.cond, hasData:!!WX.d}; },
   guides: function(){ return {loaded:GA.loaded, src:ext(GA.src, {}), ids:GA.all.map(function(g){ return g.id; }), open:GA.open}; }, gaResolve: gaResolve, gaResolveId: gaResolveId, gaPriceText: gaPriceText, gaHop: gaHop, gaMerge: gaMerge, gaWindow: gaWindow, gaLinkKind: gaLinkKind, openArticle: openArticle, closeArticle: closeArticle,   // v5.18

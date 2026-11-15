@@ -1,0 +1,22 @@
+[
+    {
+        "id":  "pa-great-wolf-lodge-illinois-day-pass",
+        "field":  "description, highlights[0]",
+        "reason":  "Source says \u002784 degrees\u0027 with no unit; added （华氏） so Chinese readers do not read it as Celsius."
+    },
+    {
+        "id":  "ev-zoolights-lincoln-park-zoo",
+        "field":  "description",
+        "reason":  "\u0027about 3 million lights\u0027 written as 约 3 百万 to keep the Arabic numeral the validator expects; more natural Chinese would be 300 万."
+    },
+    {
+        "id":  "ev-ravinia-winter-weekend",
+        "field":  "description",
+        "reason":  "\u0027Lessons and Carols\u0027 kept in English as a program title; \u0027Chanukah night\u0027 rendered as 光明节之夜 (Chinese name for Chanukah)."
+    },
+    {
+        "id":  "ev-ravinia-winter-weekend",
+        "field":  "highlights",
+        "reason":  "Concert titles and performer names kept in English per glossary; \u0027family sing-along\u0027 rendered as 亲子大合唱."
+    }
+]

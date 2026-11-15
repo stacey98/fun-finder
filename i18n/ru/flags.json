@@ -1,0 +1,32 @@
+[
+    {
+        "id":  "pa-the-cube-chicago",
+        "field":  "highlights[7]",
+        "reason":  "\u0027young persons\u0027 price tier has no age range in source; rendered as \u0027молодёжь\u0027 (youth) without inventing ages."
+    },
+    {
+        "id":  "pd-the-violet-hour",
+        "field":  "highlights[0]",
+        "reason":  "\u0027Unmarked-feeling single door\u0027 is vague; rendered as \u0027a single door that seems unmarked\u0027."
+    },
+    {
+        "id":  "pr-chicago-bath-house-red-square",
+        "field":  "description",
+        "reason":  "\u0027platza\u0027 kept as the venue\u0027s term (Latin) with an explanation; a Russian reader may expect \u0027парение вениками\u0027."
+    },
+    {
+        "id":  "pa-round1-north-riverside",
+        "field":  "hook",
+        "reason":  "Times like \u002710am-1am\u0027 / \u00275pm-2am\u0027 rendered as \u002710 утра\u0027/\u00271 ночи\u0027 etc. to keep the numbers identical for the validator (not converted to 24h)."
+    },
+    {
+        "id":  "ev-ravinia-winter-weekend",
+        "field":  "highlights",
+        "reason":  "Concert titles (e.g. \u0027Lessons and Carols for Our Time\u0027, \u0027Jingle Bell JAM!\u0027) and performer names kept in English per glossary; the description\u0027s \u0027Lessons and Carols\u0027 is also kept in English as a program title."
+    },
+    {
+        "id":  "pa-douglass-18-mini-golf",
+        "field":  "description",
+        "reason":  "English change was only a typo fix (stray comma); existing Russian description kept verbatim as it already matches."
+    }
+]
