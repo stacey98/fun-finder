@@ -1830,6 +1830,85 @@ svg.gi{width:20px;height:20px;flex:none}
 @media (max-width:359px){ .gp-poster{height:200px} .gp-acts{flex-direction:column} .gp-acts > button{flex:none;width:100%} }
 @media (max-width:399px){ .gp.page #gpClose{display:none} }   /* phone: the page header is Back · title · More (spec 0.5.2); Back, the scrim or the phone's Back closes */
 @media (prefers-reduced-motion:reduce){ .gp-poster.anim .gp-band,.gp-poster.anim .gp-ch,.gp-poster.anim .gp-ini,.gp-row.shake{animation:none} .gp-ck{transition:none} }
+/* v5.26 trip mode (lite, this phone only): poster with the city and dates, home base card, shortlist with a status per trip day */
+.tp-poster{position:relative;height:210px;margin:4px -4px 0;border-radius:24px;overflow:hidden;color:#fff;background:linear-gradient(170deg,#FF6F61 0%,#FF9A5A 36%,#FFC36B 58%,#47B5C8 100%)}
+.tp-poster[data-city="chicago"]{background:linear-gradient(170deg,#161A44 0%,#34479A 55%,#7FB2FF 100%)}
+.tp-art{position:absolute;inset:0;width:100%;height:100%;display:block}
+.tp-pt{position:absolute;left:20px;top:16px;right:20px;z-index:2;text-shadow:0 1px 10px rgba(0,0,0,.25)}
+.tp-k{display:block;font:700 12px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;opacity:.92}
+.tp-city{display:block;margin-top:8px;font:var(--display-wt) 46px/1 var(--f-display);letter-spacing:-.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tp-dates{display:block;margin-top:8px;font:650 21px/1.15 var(--f-body)}
+.tp-pb{position:absolute;left:16px;right:16px;bottom:14px;z-index:2;display:flex;flex-wrap:wrap;gap:6px}
+.tp-chip{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 11px;border-radius:14px;background:rgba(11,10,16,.42);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font:650 13px/1 var(--f-body);white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.tp-chip .i{width:15px;height:15px}
+.tp-home{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;margin-top:14px;padding:10px 14px;border-radius:18px;border:1px solid var(--rule-strong);background:var(--paper);color:var(--ink);text-align:left;cursor:pointer;font:inherit}
+.tp-home.none{border-style:dashed}
+.tp-hic{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--paper-2)}
+.tp-hic .i{width:20px;height:20px}
+.tp-hl{flex:1 1 auto;min-width:0}
+.tp-hl small{display:block;font:500 12.5px/1.3 var(--f-body);color:var(--ink-2)}
+.tp-hl b{display:block;font:650 16px/1.25 var(--f-body);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tp-home.none .tp-hl b{white-space:normal}
+.tp-edit{flex:none;font:650 13px var(--f-body);color:var(--accent-text)}
+.tp-sl,.tp-gp,.tp-list,.tp-res{list-style:none;margin:0;padding:0}
+.tp-it{padding:12px 0;border-bottom:1px solid var(--rule)}
+.tp-row{display:flex;align-items:center;gap:10px}
+.tp-open{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:12px;padding:0;border:0;background:none;color:var(--ink);text-align:left;cursor:pointer;font:inherit}
+.tp-ph{position:relative;flex:none;width:52px;height:52px;border-radius:12px;overflow:hidden;background:var(--c,var(--paper-2));display:grid;place-items:center;color:#fff}
+.tp-ph svg{width:24px;height:24px}
+.tp-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tp-nm{flex:1 1 auto;min-width:0}
+.tp-nm b{display:block;font:650 15.5px/1.25 var(--f-body);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.tp-nm small{display:block;margin-top:3px;font:500 13px/1.3 var(--f-body);color:var(--ink-2)}
+.tp-x,.tp-plus{flex:none;width:40px;height:40px;border-radius:20px;border:1px solid var(--rule-strong);background:none;color:var(--ink-2);display:grid;place-items:center;cursor:pointer}
+.tp-x .i,.tp-plus .i{width:16px;height:16px}
+.tp-plus{background:var(--accent);border-color:transparent;color:var(--on-accent)}
+.tp-plus .i{stroke-width:3}
+.tp-days{display:grid;gap:4px;margin:10px 0 0;padding:0;list-style:none}
+.tp-d{min-width:0;padding:6px 1px 7px;border-radius:10px;text-align:center;border:1px solid transparent;overflow:hidden}
+.tp-d span{display:block;white-space:nowrap;overflow:hidden;text-overflow:clip}
+.tp-dw{font:600 10.5px/1.2 var(--f-body);color:var(--ink-2)}
+.tp-dn{font:700 15px/1.25 var(--f-body);color:var(--ink)}
+.tp-ds{margin-top:2px;font:700 10.5px/1.2 var(--f-body);letter-spacing:-.01em}
+.tp-d.open{background:rgba(43,182,115,.16)}
+.tp-d.open .tp-ds{color:#1E9E62}
+[data-skin="night"] .tp-d.open .tp-ds,html:not([data-skin]) .tp-d.open .tp-ds{color:#5BE09A}
+.tp-d.event{background:var(--accent)}
+.tp-d.event span{color:var(--on-accent)}
+.tp-d.closed{border-color:var(--rule)}
+.tp-d.closed .tp-ds,.tp-d.closed .tp-dn{color:var(--ink-3)}
+.tp-d.unknown{border:1px dashed var(--rule-strong)}
+.tp-d.unknown .tp-ds{color:var(--ink-2)}
+.tp-d.today{box-shadow:inset 0 0 0 2px var(--ink)}
+.tp-note{margin:10px 0 0;font:500 13px/1.4 var(--f-body);color:var(--ink-2)}
+.tp-lab{margin:18px 0 8px;font:650 14px/1.2 var(--f-body);color:var(--ink)}
+.tp-lab:first-child{margin-top:4px}
+.tp-lab small{font-weight:500;color:var(--ink-3)}
+.tp-seg{display:flex;gap:8px}
+.tp-seg .chip{flex:1 1 0;justify-content:center;min-height:44px}
+.tp-dd{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tp-dd label{display:block;min-width:0}
+.tp-dd small{display:block;margin-bottom:4px;font:500 12.5px var(--f-body);color:var(--ink-2)}
+.tp-dd input,.tp-srch input{box-sizing:border-box;width:100%;min-width:0;height:46px;padding:0 12px;border-radius:12px;border:1px solid var(--rule-strong);background:var(--paper);color:var(--ink);font:600 16px var(--f-body)}
+.tp-err{margin:8px 0 0;font:600 13.5px var(--f-body);color:#D2463C}
+.tp-res li button{display:block;width:100%;min-height:54px;padding:8px 4px;border:0;border-bottom:1px solid var(--rule);background:none;color:var(--ink);text-align:left;cursor:pointer;font:inherit}
+.tp-res b{display:block;font:650 15px/1.3 var(--f-body)}
+.tp-res small{display:block;font:500 13px/1.3 var(--f-body);color:var(--ink-2)}
+.tp-res .tp-rh{padding:14px 4px 4px;font:700 12px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.tp-msg{min-height:0;margin:8px 0 0;font:500 13.5px/1.4 var(--f-body);color:var(--ink-2)}
+.tp-msg.warn{color:#D2463C}
+.tp-attr{margin:10px 0 0;font:500 11.5px var(--f-body);color:var(--ink-3)}
+.tp-list .frrow{grid-template-columns:22px minmax(0,1fr) auto 18px}
+.tp-list small{display:block;font:500 13px/1.3 var(--f-body);color:var(--ink-2)}
+.tp-list .tp-on{font:700 12px var(--f-body);color:var(--accent-text)}
+.tp-bar{display:flex;align-items:center;gap:8px;margin:10px 0 0;padding:6px 6px 6px 14px;min-height:44px;border-radius:22px;background:linear-gradient(100deg,#FF7A59,#FFB25A 55%,#47B5C8);color:#14101A}
+.tp-bar[data-city="chicago"]{background:linear-gradient(100deg,#34479A,#7FB2FF);color:#fff}
+.tp-bar > button{border:0;background:none;color:inherit;cursor:pointer;font:inherit}
+.tp-bar .tp-bgo{flex:1 1 auto;min-width:0;text-align:left;font:700 14px/1.25 var(--f-body);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-height:32px}
+.tp-bar .tp-bx{flex:none;height:32px;padding:0 12px;border-radius:16px;background:rgba(11,10,16,.18);font:700 13px var(--f-body)}
+.dt-acts .tp-add[aria-pressed="true"]{border-color:var(--accent);color:var(--accent-text)}
+@media (max-width:359px){ .tp-poster{height:196px} .tp-city{font-size:40px} .tp-dates{font-size:19px} }
+@media (min-width:900px){ .tp-poster{height:230px} .tp-city{font-size:54px} }
 .c3-fr{margin:4px 0 0;font:650 13px var(--f-body);color:#FFD27A}
 .meta .fr-avg{color:var(--soon);font-weight:650}
 .dt-frr{margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--paper-2)}
@@ -2081,6 +2160,7 @@ svg.gi{width:20px;height:20px;flex:none}
   <section id="pCluster" class="panel" hidden role="dialog" aria-labelledby="pClusterTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pClusterTitle" tabindex="-1">Places here</h2><button class="p-close" type="button" data-close="pCluster" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pClusterBody" style="padding-left:0;padding-right:0;max-height:min(62vh,560px);overflow-y:auto"></div></section>
   <section id="pFriends" class="panel tall" hidden role="dialog" aria-labelledby="pFriendsTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pFriendsTitle" tabindex="-1">Friends</h2><button class="p-close" type="button" data-close="pFriends" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pFriendsBody"></div></section>
   <section id="pGroup" class="panel tall gp" hidden role="dialog" aria-labelledby="pGroupTitle"><span class="grabber"></span><div class="p-head gp-head"><button class="p-close" id="gpBack" type="button" data-grp="back" aria-label="Back" hidden><svg class="i"><use href="#i-back"/></svg></button><h2 class="p-title" id="pGroupTitle" tabindex="-1">Blend a group</h2><button class="p-close" id="gpMore" type="button" data-grp="menu" aria-label="More" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor" stroke="none"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></g></svg></button><button class="p-close" id="gpClose" type="button" data-close="pGroup" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pGroupBody"></div><div class="p-foot gp-foot" id="gpFoot" hidden></div></section>
+  <section id="pTrip" class="panel tall gp tp" hidden role="dialog" aria-labelledby="pTripTitle"><span class="grabber"></span><div class="p-head gp-head"><button class="p-close" id="tpBack" type="button" data-trip="back" aria-label="Back" hidden><svg class="i"><use href="#i-back"/></svg></button><h2 class="p-title" id="pTripTitle" tabindex="-1">Trips</h2><button class="p-close" id="tpMore" type="button" data-trip="menu" aria-label="More" hidden><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor" stroke="none"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></g></svg></button><button class="p-close" id="tpClose" type="button" data-close="pTrip" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pTripBody"></div><div class="p-foot gp-foot" id="tpFoot" hidden></div></section>
   <section id="pPrivacy" class="panel tall" hidden role="dialog" aria-labelledby="pPrivacyTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pPrivacyTitle" tabindex="-1">Privacy</h2><button class="p-close" type="button" data-close="pPrivacy" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body about" id="pPrivacyBody"></div></section>
   <section id="pAbout" class="panel tall" hidden role="dialog" aria-labelledby="pAboutTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pAboutTitle" tabindex="-1">About</h2><button class="p-close" type="button" data-close="pAbout" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body about" id="pAboutBody"></div></section>
   <section id="pTheme" class="panel theme" hidden role="dialog" aria-labelledby="pThemeTitle"><span class="grabber"></span><div class="p-head"><h2 class="p-title" id="pThemeTitle" tabindex="-1">Theme</h2><button class="p-close" type="button" data-close="pTheme" aria-label="Close"><svg class="i"><use href="#i-close"/></svg></button></div><div class="p-body" id="pThemeBody"></div></section>
@@ -2102,8 +2182,8 @@ svg.gi{width:20px;height:20px;flex:none}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.25 (2026-11-15)';   // v5.25: Group Blend v1 (2-5 friends, on this phone only: poster + group match, picks tagged "4 of 5", vote link with places only, saved groups og.groups.v1). v5.24: multi-city (Chicago + Oʻahu): city picker, per-city data, map bounds, spots, travel and badges; open-now in the item's city time zone. v5.23: the rest ofthe UI words in ru / zh-Hans / ko (unverified), Visiting Chicago from the data field us_cities (< 3 US cities; visit_override). v5.22: Google rating line on place pages (edge function, page memory only), holiday status from fields only, more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
-var VERSION_PREV = 'v5.24 (2026-11-15)';   // v5.24: multi-city (Chicago + Oʻahu)
+var VERSION = 'v5.26 (2026-11-15)';   // v5.26: trip mode lite (on this phone only: city + dates + optional group, a home base that every distance starts from while trip mode is on, a shortlist with a status per trip day, vote link with places only, og.trips.v1 max 5). v5.25: Group Blend v1 (2-5 friends, on this phone only: poster + group match, picks tagged "4 of 5", vote link with places only, saved groups og.groups.v1). v5.24: multi-city (Chicago + Oʻahu): city picker, per-city data, map bounds, spots, travel and badges; open-now in the item's city time zone. v5.23: the rest ofthe UI words in ru / zh-Hans / ko (unverified), Visiting Chicago from the data field us_cities (< 3 US cities; visit_override). v5.22: Google rating line on place pages (edge function, page memory only), holiday status from fields only, more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
+var VERSION_PREV = 'v5.25 (2026-11-15)';   // v5.25: Group Blend v1
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var FEEDBACK_EMAIL = 'localfinds.app@gmail.com';   // v5.16: "Send feedback" in the account sheet (a mailto draft; never sent by the app). Separate from CONTACT_EMAIL.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
@@ -3397,13 +3477,13 @@ var ADDR_SAMPLE = [
   {lat:'bad', lon:'-87.6', name:'Broken', display_name:'Broken'}
 ];
 function addrBoxShown(onClaude, inFrame, force){ return !onClaude && (!inFrame || !!force); }
-function addrParse(list){ // Nominatim jsonv2 -> [{label, sub, lat, lng}], Chicago area only (within 80 mi of the Loop)
+function addrParse(list, city){ // Nominatim jsonv2 -> [{label, sub, lat, lng}], Chicago area only (within 80 mi of the Loop). v5.26: city = another city's box (the trip's), else the current one
   if (!Array.isArray(list)) return [];
   var out = [], seen = {};
   list.forEach(function(r){
     if (!r) return;
     var lat = parseFloat(r.lat), lng = parseFloat(r.lon);
-    if (!isFinite(lat) || !isFinite(lng) || !inCityBox(lat, lng)) return;   // v5.24: inside the current city (Chicago: within 80 mi of the Loop, as before; Oʻahu: the island box)
+    if (!isFinite(lat) || !isFinite(lng) || !inCityBox(lat, lng, city || CITY)) return;   // v5.24: inside the current city (Chicago: within 80 mi of the Loop, as before; Oʻahu: the island box)
     var parts = String(r.display_name || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean);
     var name = String(r.name || '').trim(), num = /^\d+[A-Za-z]?(-\d+[A-Za-z]?)?$/, label, rest;
     if (name && parts[0] === name) { label = name; rest = parts.slice(1); }
@@ -7485,7 +7565,8 @@ function renderHome(res, vm, picks){
   var root = $('homeRoot'); if (!root) return;
   var p = res.p, who = S.f.who, lab = locName(S.loc), acc = locRoughHint(S.loc), h = '', ttl = homeTitle(res);
   var ttlL = LANG === 'en' ? ttl : ttl === 'Three for right now' ? i18t('home.now') : ttl === 'Three for today' ? i18t('home.today') : ttl;   // v5.21 (other titles stay English for now)   // v5.11: "near Lincoln Park"; only a rough reading says so
-  h += '<div class="hm-brandrow">' + brandHTML(24, 16) + homeIconsHTML(Acct.state, acctName(), Acct.user, acctType()) + '</div>';   // v5.15: row 1 = the logo + the icon buttons; the title gets the full width below
+  h += '<div class="hm-brandrow">' + brandHTML(24, 16) + homeIconsHTML(Acct.state, acctName(), Acct.user, acctType()) + '</div>';
+  h += tripBarHTML();   // v5.26: trip mode on: "Oʻahu trip · from <home base>" + Exit   // v5.15: row 1 = the logo + the icon buttons; the title gets the full width below
   h += '<div class="hm-top"><div><h1 class="hm-title">' + esc(ttlL) + '</h1>' +
     '<button class="hm-sub" type="button" data-act="loc" aria-label="Where: near ' + esc(lab) + (acc ? '. ' + esc(acc) : '') + '. Change"><span>' + (UI.today ? homeWhenBit(ttl) : UI.anyDay ? esc(fmtDayDate(UI.anyDay, cparts(nowMs()).key)) + ' · any time · ' : UI.planning ? esc(fmtTime(p.min)) + ' · ' : '') + esc(i18t('home.near', {x:lab})) + (acc ? ' <small class="acc rough">' + esc(acc) + '</small>' : '') + '</span>' + glyphSvg('i-chev') + '</button></div>' + wxChipHTML() + '</div>';   // v5.20: the weather chip at the right end of the title row   // v5.12 account button: moved up into the brand row in v5.15
   h += '<div class="hm-ctl" role="group" aria-label="Who is coming">' + [['date', 'who.date'], ['friends', 'who.friends'], ['solo', 'who.solo']].map(function(x){ return '<button class="qchip" type="button" data-who="' + x[0] + '" aria-pressed="' + !!who[x[0]] + '">' + esc(i18t(x[1])) + '</button>'; }).join('') + '</div>';   // v5.21: words in the picked language
@@ -8667,7 +8748,7 @@ function inviteAccept(){
 /* ----- delete my account ----- */
 function acctDeleteAsk(){
   openSmall('Delete your account?', function(){
-    $('pSmallBody').innerHTML = '<p class="p-note">This deletes your username, friends, invites and everything synced to your account, right now. It can\'t be undone. What\'s on this phone stays here.</p>' +
+    $('pSmallBody').innerHTML = '<p class="p-note">This deletes your username, friends, invites and everything synced to your account, right now. It also clears your saved groups and trips from this phone. It can\'t be undone.</p>' +   // v5.26: the old last sentence (everything on the phone is kept) was no longer true
       '<div class="confirm2"><button class="btn-primary danger" type="button" data-acct="delete2">Delete my account</button><button class="mini-btn" type="button" data-close="pSmall">Cancel</button></div>';
   });
 }
@@ -8675,7 +8756,7 @@ function acctDelete(){
   acctRpc('delete_my_account').then(function(r){
     closePanel('pSmall');
     var cl = Acct.client;
-    var fin = function(){ Acct.user = null; Acct.state = 'out'; if (r === 'deleted' || r === 'rows_deleted') { try { window.localStorage.removeItem(GROUPS_KEY); } catch (e) {} } acctForget(); acctRedraw(); toast(r === 'deleted' || r === 'rows_deleted' ? 'Your account is deleted.' : 'That didn\'t work. Try again.'); };   // v5.25: saved groups (friend ids) go with the account; signing out keeps them
+    var fin = function(){ Acct.user = null; Acct.state = 'out'; if (r === 'deleted' || r === 'rows_deleted') acctDeviceClear(function(k){ window.localStorage.removeItem(k); }); acctForget(); acctRedraw(); toast(r === 'deleted' || r === 'rows_deleted' ? 'Your account is deleted.' : 'That didn\'t work. Try again.'); };   // v5.25: saved groups (friend ids) go with the account; signing out keeps them
     Promise.resolve(cl ? cl.auth.signOut({scope:'local'}) : null).then(fin, fin);
   }, function(e){ acctFail(e); });
 }
@@ -9635,6 +9716,7 @@ function grpMenu(){
   var g = grpSaved();
   openSmall(g ? g.name : grpT('yourGroup'), function(){
     $('pSmallBody').innerHTML = '<button class="frrow" type="button" data-grp="edit">' + glyphSvg('i-people') + '<span>' + esc(grpT('edit')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>' +
+      '<button class="frrow" type="button" data-trip="newg" data-v="' + esc(g ? g.id : '') + '">' + glyphSvg('i-cal') + '<span>' + esc(tripT('plan')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>' +   // v5.26
       (g ? '<button class="frrow" type="button" data-grp="rename">' + glyphSvg('i-bookmark') + '<span>' + esc(grpT('rename')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button><button class="frrow" type="button" data-grp="forget">' + glyphSvg('i-close') + '<span>' + esc(grpT('forgetG')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>' : '');
   });
 }
@@ -9711,12 +9793,8 @@ function grpClick(el){
 // Testing hook "#grpdemo=pick|page|send|six|empty|few" (with #acctdemo=1&cpdemo=1): made-up friends Jo, Sam and Lee in memory only. Nothing is sent.
 function groupDemo(mode, n){
   if (!DATA_LOADED || !Acct.demo || !CP.demo) { if ((n || 0) < 120) setTimeout(function(){ groupDemo(mode, (n || 0) + 1); }, 200); return; }
-  var ph = DATA.filter(function(it){ return ID_SID[it.id] && firstPhoto(it) && !(it.verified && it.verified.status === 'closed'); }).map(function(it){ return ID_SID[it.id]; });
-  var jo = ph.filter(function(s, i){ return i % 3 === 0; }).slice(0, 8);   // Jo's shared saves: places on both Blend lists
-  var add = [{user_id:'g1', username:'jo.test', display_name:'Jo', status:'accepted', share_saves:true, fun_type:6}, {user_id:'g2', username:'sam.test', display_name:'Sam', status:'accepted', share_saves:false, fun_type:11},
-    {user_id:'g3', username:'lee.test', display_name:'Lee', status:'accepted', share_saves:false, fun_type:null}];
   if (mode === 'empty') LIVE = LIVE.filter(function(f){ return f.uid === 'd1'; });
-  else if (!LIVE.some(function(f){ return f.uid === 'g1'; })) LIVE = LIVE.concat(liveFrom(add, jo.map(function(s){ return {user_id:'g1', sid:s}; }), [], ID_SID));
+  else grpDemoFriends();
   if (mode === 'empty') { grpOpen('', ''); return; }
   if (mode === 'pick') { grpOpen('d1', ''); GRP.pick = ['d1', 'g1', 'g2']; renderGroup(); return; }
   grpOpen('', '');
@@ -9724,6 +9802,469 @@ function groupDemo(mode, n){
   grpGo();
   if (mode === 'send') setTimeout(grpSendOpen, 400);
   if (mode === 'sheet') { groupsPut(grpStore(), {name:'Saturday crew', uids:GRP.cur.uids}); closePanel('pGroup'); openFriends(); }   // the friends sheet: "Blend a group" + a saved group (in memory)
+}
+function grpDemoFriends(){ // v5.25 test mode: the made-up friends Jo, Sam and Lee (in memory only); v5.26: shared with the trip demo
+  if (LIVE.some(function(f){ return f.uid === 'g1'; })) return;
+  var ph = DATA.filter(function(it){ return ID_SID[it.id] && firstPhoto(it) && !(it.verified && it.verified.status === 'closed'); }).map(function(it){ return ID_SID[it.id]; });
+  var jo = ph.filter(function(s, i){ return i % 3 === 0; }).slice(0, 8);   // Jo's shared saves: places on both Blend lists
+  var add = [{user_id:'g1', username:'jo.test', display_name:'Jo', status:'accepted', share_saves:true, fun_type:6}, {user_id:'g2', username:'sam.test', display_name:'Sam', status:'accepted', share_saves:false, fun_type:11},
+    {user_id:'g3', username:'lee.test', display_name:'Lee', status:'accepted', share_saves:false, fun_type:null}];
+  LIVE = LIVE.concat(liveFrom(add, jo.map(function(s){ return {user_id:'g1', sid:s}; }), [], ID_SID));
+}
+/* ================= v5.26 trip mode, lite (design/2026-11-14-groups-spec.md section 5 + addendum "trip home base") =================
+   On this phone only. A trip = a city (Oʻahu or Chicago), dates (from-to, up to 14 days) and an optional saved Blend group. "Where you're
+   staying" (the app's address search, inside the TRIP city's box) is the home base: while trip mode is on, S.loc IS the home base (src
+   'trip'), so every distance, drive/walk time and "Leave by" line starts there, not at the phone's GPS. The GPS watch only moves a GPS
+   origin, the quiet check skips, saveLoc never stores it; "Use my location", picking a spot or another city ends trip mode (the trip stays).
+   Shortlist = place numbers (sid); each shows its status on each trip day in the trip city's time zone (dayRanges / seasons / closed_dates /
+   event_dates, the same date logic as everywhere). "Send a vote" = the group's vote panel -> pollGoWith(sids): place numbers only.
+   og.trips.v1 (max 5, newest first) + og.trips.on.v1 are never synced; account delete clears them. The itinerary addendum is NOT built here.
+   ru / zh-Hans / ko words: the developer's own, no native review (unverified). */
+var TRIPS_KEY = 'og.trips.v1', TRIP_ON_KEY = 'og.trips.on.v1', TRIPS_MAX = 5, TRIP_DAYS_MAX = 14, TRIP_SL_MAX = 40;
+var TRIP = {on:'', keep:null, mode:'list', cur:'', draft:null, prev:'', err:'', q:'', list:null, res:[], msg:'', warn:false, seq:0, timer:null, cache:{}};
+var TRIP_MEMSTORE = (function(){ var m = {}; return {get:function(k, d){ return m.hasOwnProperty(k) ? JSON.parse(m[k]) : d; }, set:function(k, v){ m[k] = JSON.stringify(v); return true; }}; })();
+function tripStore(){ return UI.tripDemo || Acct.demo ? TRIP_MEMSTORE : Platform.store; }   // test modes keep made-up trips in memory only
+function acctDeviceKeys(){ return [GROUPS_KEY, TRIPS_KEY, TRIP_ON_KEY]; }   // what deleting the account also clears from this phone
+function acctDeviceClear(removeFn){ if (TRIP.on) tripOff(true); var n = 0; acctDeviceKeys().forEach(function(k){ try { removeFn(k); n++; } catch (e) {} }); TRIP.on = ''; TRIP.keep = null; return n; }
+var TRIP_STR = {
+  trips:['Trips', 'Поездки', '行程', '여행'],
+  plan:['Plan a trip', 'Спланировать поездку', '计划行程', '여행 계획하기'],
+  trip:['Trip', 'Поездка', '行程', '여행'],
+  tripOf:['{c} trip', 'Поездка: {c}', '{c}行程', '{c} 여행'],
+  listSub:['Saved on this phone. Up to 5.', 'Хранятся на этом телефоне. До 5.', '保存在这部手机上，最多 5 个。', '이 휴대폰에 저장돼요. 최대 5개.'],
+  cityL:['City', 'Город', '城市', '도시'],
+  datesL:['Dates', 'Даты', '日期', '날짜'],
+  fromL:['From', 'С', '从', '시작'],
+  toL:['To', 'По', '到', '끝'],
+  groupL:['Group', 'Компания', '群组', '그룹'],
+  optional:['optional', 'необязательно', '可选', '선택'],
+  none:['None', 'Нет', '无', '없음'],
+  stay:['Where you\'re staying', 'Где вы живёте', '住处', '숙소'],
+  stayT:['Your stay', 'Где живёте', '住处', '숙소'],
+  stayQ:['Where are you staying?', 'Где вы остановились?', '你住在哪里？', '어디에 묵나요?'],
+  stayWhy:['Distances and drive times start here.', 'Расстояния и время в пути — отсюда.', '距离和车程从这里算起。', '거리와 이동 시간은 여기서부터예요.'],
+  stayHint:['Hotel name or address in {c}.', 'Отель или адрес: {c}.', '{c}的酒店名或地址。', '{c}의 호텔 이름이나 주소.'],
+  ph:['Hotel name or address', 'Отель или адрес', '酒店名或地址', '호텔 이름 또는 주소'],
+  addB:['Add', 'Добавить', '添加', '추가'],
+  change:['Change', 'Изменить', '更改', '변경'],
+  start:['Start the trip', 'Начать поездку', '开始行程', '여행 시작'],
+  saveB:['Save', 'Сохранить', '保存', '저장'],
+  savedT:['Saved on this phone', 'Сохранено на этом телефоне', '已保存在这部手机上', '이 휴대폰에 저장됨'],
+  days:['{n} days', 'Дней: {n}', '{n} 天', '{n}일'],
+  day1:['1 day', '1 день', '1 天', '1일'],
+  slT:['Shortlist', 'Короткий список', '候选清单', '후보 목록'],
+  slEmpty1:['Nothing on the shortlist yet.', 'В списке пока пусто.', '候选清单还是空的。', '아직 후보가 없어요.'],
+  slEmpty2:['Tap "Add to trip" on any place.', 'Нажмите «В поездку» у любого места.', '在任何地点点“加入行程”。', '아무 장소에서나 "여행에 추가"를 누르세요.'],
+  slFull:['This shortlist is full (40).', 'Список заполнен (40).', '候选清单已满（40）。', '후보 목록이 가득 찼어요(40).'],
+  add:['Add to trip', 'В поездку', '加入行程', '여행에 추가'],
+  added:['On your trip', 'В поездке', '已在行程中', '여행에 있음'],
+  addedT:['Added to your {c} trip', 'Добавлено в поездку: {c}', '已加入{c}行程', '{c} 여행에 추가했어요'],
+  removedT:['Removed from the trip', 'Убрано из поездки', '已从行程移除', '여행에서 뺐어요'],
+  rmA:['Remove from trip', 'Убрать из поездки', '从行程移除', '여행에서 빼기'],
+  addPl:['Add places', 'Добавить места', '添加地点', '장소 추가'],
+  foot:['Saved on this phone only. Vote links carry places only.', 'Хранится только на этом телефоне. В ссылке для голосования только места.', '只保存在这部手机上。投票链接只包含地点。', '이 휴대폰에만 저장돼요. 투표 링크에는 장소만 들어가요.'],
+  crow:['Distances from where you\'re staying, as the crow flies; drive times are rough.', 'Расстояния от места проживания, по прямой; время в пути примерное.', '距离从住处按直线计算；车程为估算。', '거리는 숙소에서 직선거리, 이동 시간은 대략이에요.'],
+  crowGps:['Distances from your spot, as the crow flies. Add where you\'re staying to measure from there.', 'Расстояния от вас, по прямой. Добавьте, где живёте, чтобы считать оттуда.', '距离从你的位置按直线计算。添加住处即可从那里计算。', '거리는 내 위치에서 직선거리예요. 숙소를 추가하면 거기서 계산해요.'],
+  from:['from {x}', 'от {x}', '从{x}出发', '{x}에서'],
+  exit:['Exit', 'Выйти', '退出', '나가기'],
+  exitL:['Exit trip mode', 'Выйти из режима поездки', '退出行程模式', '여행 모드 끄기'],
+  offT:['Trip mode off. Distances are from your spot again.', 'Режим поездки выключен. Расстояния снова от вас.', '已退出行程模式。距离重新从你的位置算起。', '여행 모드를 껐어요. 거리는 다시 내 위치 기준이에요.'],
+  onT:['Distances now start at {x}.', 'Расстояния теперь от: {x}.', '距离现在从{x}算起。', '이제 거리는 {x}에서 계산해요.'],
+  active:['On', 'Вкл.', '使用中', '사용 중'],
+  edit:['Edit trip', 'Изменить поездку', '编辑行程', '여행 수정'],
+  del:['Delete trip', 'Удалить поездку', '删除行程', '여행 삭제'],
+  delQ:['Delete the {c} trip ({d})? Only this phone has it.', 'Удалить поездку «{c}» ({d})? Она есть только на этом телефоне.', '删除{c}行程（{d}）？它只保存在这部手机上。', '{c} 여행({d})을 삭제할까요? 이 휴대폰에만 있어요.'],
+  delB:['Delete', 'Удалить', '删除', '삭제'],
+  deleted:['Trip deleted', 'Поездка удалена', '行程已删除', '여행을 삭제했어요'],
+  gone:['That trip isn\'t on this phone anymore.', 'Этой поездки больше нет на телефоне.', '这部手机上已没有这个行程。', '이 휴대폰에 그 여행이 더 이상 없어요.'],
+  full:['Up to 5 trips. Delete one first.', 'Не больше 5 поездок. Сначала удалите одну.', '最多 5 个行程。请先删除一个。', '여행은 최대 5개예요. 먼저 하나를 삭제하세요.'],
+  errOrder:['The end date is before the start.', 'Дата окончания раньше начала.', '结束日期早于开始日期。', '끝나는 날이 시작보다 빨라요.'],
+  errLong:['Up to 14 days.', 'Не больше 14 дней.', '最多 14 天。', '최대 14일이에요.'],
+  errDates:['Pick both dates.', 'Выберите обе даты.', '请选择两个日期。', '두 날짜를 모두 고르세요.'],
+  places:['{n} places', 'Мест: {n}', '{n} 个地点', '장소 {n}곳'],
+  noWeb:['Address search works on the website. Pick an area for now.', 'Поиск адреса работает на сайте. Пока выберите район.', '地址搜索在网站上可用。先选一个区域吧。', '주소 검색은 웹사이트에서 돼요. 지금은 지역을 고르세요.'],
+  noMatch:['No match in {c}. Try the hotel name or street.', 'В {c} ничего не найдено. Попробуйте название отеля или улицу.', '在{c}没有找到。试试酒店名或街道。', '{c}에서 찾지 못했어요. 호텔 이름이나 거리로 해 보세요.'],
+  looking:['Looking…', 'Ищем…', '查找中…', '찾는 중…'],
+  searchErr:['Address search isn\'t working right now. Pick an area below.', 'Поиск адреса сейчас не работает. Выберите район ниже.', '地址搜索暂时不可用。请在下面选一个区域。', '주소 검색이 지금 안 돼요. 아래에서 지역을 고르세요.'],
+  areas:['Areas', 'Районы', '区域', '지역'],
+  dayAria:['Each day of the trip', 'Каждый день поездки', '行程每一天', '여행 날짜별'],
+  closedS:['Closed', 'Закр.', '关门', '휴무'],
+  on:['On', 'Идёт', '有', '진행']
+};
+function tripT(k, v, lang){
+  var e = TRIP_STR[k]; if (!e) return String(k);
+  var l = isLang(lang) ? lang : LANG, s = e[LANG_IX[l]] || e[0];
+  if (v) s = s.replace(/\{(\w+)\}/g, function(m, x){ return v[x] !== undefined && v[x] !== null ? String(v[x]) : m; });
+  return s;
+}
+/* ----- pure parts ----- */
+function tripIdOk(id){ return typeof id === 'string' && /^[a-z2-7]{8}$/.test(id); }
+function tripDatesOk(from, to){ if (!isKey(from) || !isKey(to)) return {ok:false, why:'errDates'}; if (to < from) return {ok:false, why:'errOrder'}; if (dayDiff(from, to) + 1 > TRIP_DAYS_MAX) return {ok:false, why:'errLong'}; return {ok:true, why:''}; }
+function tripHomeOk(h, slug){ return !!h && isNum(h.lat) && isNum(h.lng) && typeof h.label === 'string' && !!h.label.trim() && (!CITY_BY[slug] || inCityBox(h.lat, h.lng, CITY_BY[slug])); }   // inside the trip city's box
+function tripOk(t){ return !!t && tripIdOk(t.id) && !!CITY_BY[t.city] && tripDatesOk(t.from, t.to).ok && Array.isArray(t.sids); }
+function tripsGet(store){ var l = (store || tripStore()).get(TRIPS_KEY, []); return Array.isArray(l) ? l.filter(tripOk).slice(0, TRIPS_MAX) : []; }
+function tripFind(store, id){ var l = tripsGet(store); for (var i = 0; i < l.length; i++) if (l[i].id === id) return l[i]; return null; }
+function tripsPut(store, t){ // add or replace (by id), newest first -> the stored trip, or null (bad city or dates, or a 6th trip: never drops an old one)
+  if (!t || !CITY_BY[t.city] || !tripDatesOk(t.from, t.to).ok) return null;
+  var l = tripsGet(store), had = tripIdOk(t.id) && l.some(function(x){ return x.id === t.id; });
+  if (!had && l.length >= TRIPS_MAX) return null;
+  var h = tripHomeOk(t.home, t.city) ? {label:String(t.home.label).replace(/\s+/g, ' ').trim().slice(0, 60), sub:String(t.home.sub || '').replace(/\s+/g, ' ').trim().slice(0, 80), lat:+t.home.lat, lng:+t.home.lng} : null;
+  var rec = {id:(had || tripIdOk(t.id)) ? t.id : groupNewId(), city:t.city, from:t.from, to:t.to, gid:tripIdOk(t.gid) ? t.gid : '', home:h, sids:pollSids(t.sids || []).slice(0, TRIP_SL_MAX), at:typeof t.at === 'string' && t.at ? t.at : new Date().toISOString()};
+  l = l.filter(function(x){ return x.id !== rec.id; }); l.unshift(rec);
+  store.set(TRIPS_KEY, l.slice(0, TRIPS_MAX)); return rec;
+}
+function tripsForget(store, id){ var l = tripsGet(store), k = l.filter(function(x){ return x.id !== id; }); store.set(TRIPS_KEY, k); if (store.get(TRIP_ON_KEY, '') === id) store.set(TRIP_ON_KEY, ''); return k.length !== l.length; }
+function tripSl(store, id, sid, on){ // the shortlist: add (on true), remove (false) or toggle (undefined) one place -> {ok, on, n, full}
+  var t = tripFind(store, id), s = pollSids([sid])[0];
+  if (!t || !s) return {ok:false, on:false, n:t ? t.sids.length : 0, full:false};
+  var i = t.sids.indexOf(s), want = on === undefined ? i < 0 : !!on;
+  if (want && i < 0) { if (t.sids.length >= TRIP_SL_MAX) return {ok:false, on:false, n:t.sids.length, full:true}; t.sids.push(s); }
+  else if (!want && i >= 0) t.sids.splice(i, 1);
+  var r = tripsPut(store, t); return {ok:!!r, on:want, n:r ? r.sids.length : t.sids.length, full:false};
+}
+function tripDays(t){ var out = []; if (!t || !tripDatesOk(t.from, t.to).ok) return out; for (var i = 0; i <= dayDiff(t.from, t.to); i++) out.push(addDays(t.from, i)); return out; }
+function tripTZ(t){ var c = t && CITY_BY[t.city]; return c ? c.timezone : TZ; }
+function tripTodayKey(t, ms){ return withTZ(tripTZ(t), function(){ return cparts(ms).key; }); }   // "today" on the trip city's clock
+function tripLoc(t){ return t && tripHomeOk(t.home, t.city) ? {lat:t.home.lat, lng:t.home.lng, label:t.home.label, src:'trip', acc:null, t:0, explicit:true, fresh:false} : null; }
+function tripOrigin(t, loc){ return tripLoc(t) || loc; }   // pure: the home base replaces the phone's location
+function tripCtx(t, loc, mode){ var o = tripOrigin(t, loc) || LOOP; return {lat:o.lat, lng:o.lng, budget:'any', mode:mode || 'car'}; }
+function tripVoteSids(t, index){ index = index || SID_INDEX; return t ? pollSids(t.sids).filter(function(s){ return !!index[s]; }) : []; }   // place numbers only
+function tripShort(min){ min = ((Math.round(min) % 1440) + 1440) % 1440; var h = Math.floor(min / 60), m = min % 60; return (h % 12 || 12) + (m ? ':' + pad(m) : '') + (h < 12 ? 'a' : 'p'); }
+function tripDayStatus(it, key, tz){ // -> {k:'open'|'event'|'closed'|'unknown', a, b (two short lines for the day cell), l (the words)}, on the trip city's clock
+  return withTZ(tz || tzOf(it), function(){
+    if (!it || !isKey(key)) return {k:'unknown', a:'?', b:'', l:'Hours not confirmed'};
+    if (it.verified && it.verified.status === 'closed') return {k:'closed', a:tripT('closedS'), b:'', l:'Closed for good'};
+    if (seasonState(it, key).st !== 'in') return {k:'closed', a:tripT('closedS'), b:'', l:'Closed for the season'};
+    if (closedSet(it)[key]) return {k:'closed', a:tripT('closedS'), b:'', l:'Closed that day'};
+    var rs = dayRanges(it, key);
+    if (Array.isArray(it.event_dates) && it.event_dates.length) {
+      var on = null;
+      eventEntries(it).forEach(function(x){ if (!on && (x.type === 'session' ? x.sKey === key : (key >= x.from && key <= (x.to || x.from)))) on = x; });
+      if (!on) return {k:'closed', a:'–', b:'', l:'Not on that day'};
+      if (on.type === 'session') { var sm = cparts(on.s).min, em = on.e && !on.endUnknown ? cparts(on.e).min : null; return {k:'event', a:tripShort(sm), b:em !== null ? tripShort(em) : '', l:'On at ' + fmtTime(sm) + (em !== null ? ' till ' + fmtTime(em) : '')}; }
+      if (rs && rs.length) return {k:'event', a:tripShort(rs[0][0]), b:tripShort(rs[0][1]), l:'On ' + fmtTime(rs[0][0]) + ' – ' + fmtTime(rs[0][1])};
+      if (rs && !rs.length) return {k:'closed', a:tripT('closedS'), b:'', l:'Closed that day'};
+      return {k:'event', a:tripT('on'), b:'', l:'On that day · times not posted'};
+    }
+    if (rs === null) return {k:'unknown', a:'?', b:'', l:'Hours not confirmed'};
+    if (!rs.length) return {k:'closed', a:tripT('closedS'), b:'', l:'Closed that day'};
+    if (rs[0][1] - rs[0][0] >= 1440) return {k:'open', a:'24h', b:'', l:'Open 24 hours'};
+    return {k:'open', a:tripShort(rs[0][0]), b:tripShort(rs[0][1]) + (rs.length > 1 ? '+' : ''), l:'Open ' + rs.map(function(r){ return fmtTime(r[0]) + ' – ' + fmtTime(r[1]); }).join(', ')};
+  });
+}
+var TRIP_LOCALE = {en:'en-US', ru:'ru-RU', 'zh-Hans':'zh-Hans-CN', ko:'ko-KR'};
+function tripFmt(key, o){ try { return new Intl.DateTimeFormat(TRIP_LOCALE[LANG] || 'en-US', ext(o, {timeZone:'UTC'})).format(new Date(keyToUTC(key))); } catch (e) { return o && o.weekday ? DOW_SHORT[wdOfKey(key)] : fmtDate(key, key); } }
+function tripRange(from, to){ var f = tripFmt(from, {month:'short', day:'numeric'}); if (from === to) return f; if (LANG === 'en' && from.slice(0, 7) === to.slice(0, 7)) return f + ' – ' + (+to.slice(8)); return f + ' – ' + tripFmt(to, {month:'short', day:'numeric'}); }
+function tripNorm(s){ s = String(s || '').toLowerCase(); try { s = s.normalize('NFD'); } catch (e) {} return s.replace(/[̀-ͯʻʼ'`]/g, ''); }   // "waikiki" finds Waikīkī
+function tripNomiUrl(q, c){ return NOMI_URL.replace('viewbox=-88.4,42.5,-87.4,41.4', 'viewbox=' + (c || CITY).viewbox) + encodeURIComponent(addrQuery(q)); }   // the location sheet's search, in the TRIP city's box
+// A made-up sample in Nominatim's jsonv2 shape (no real hotel; coordinates approximate), for #tripdemo=home and the self-test only. The last one is outside Oʻahu (dropped).
+var TRIP_ADDR_SAMPLE = [
+  {lat:'21.2836', lon:'-157.8372', name:'Sample Beach Hotel', display_name:'Sample Beach Hotel, Kālia Road, Waikīkī, Honolulu, Honolulu County, Hawaii, 96815, United States'},
+  {lat:'21.2790', lon:'-157.8301', name:'Kalākaua Avenue', display_name:'Kalākaua Avenue, Waikīkī, Honolulu, Honolulu County, Hawaii, 96815, United States'},
+  {lat:'21.2771', lon:'-157.8262', name:'', display_name:'1, Sample Lane, Waikīkī, Honolulu, Honolulu County, Hawaii, 96815, United States'},
+  {lat:'41.8810', lon:'-87.6300', name:'Sample Beach Hotel', display_name:'Sample Beach Hotel, Chicago, Cook County, Illinois, 60603, United States'}
+];
+var TRIP_DEMO_HOME = {label:'Sample Beach Hotel (test)', sub:'Waikīkī', lat:21.2836, lng:-157.8372};
+var TRIP_PLUS = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
+/* ----- trip mode on / off (the home base becomes S.loc) ----- */
+function tripCur(){ return TRIP.on ? tripFind(tripStore(), TRIP.on) : null; }
+function tripGroup(t){ return t && t.gid ? groupFind(grpStore(), t.gid) : null; }
+function tripKeepNow(){ if (!TRIP.keep) TRIP.keep = {city:CITY.slug, loc:S.loc && S.loc.src !== 'trip' && S.loc.src !== 'default' ? S.loc : null}; }
+function tripSetLoc(t){ var h = tripLoc(t); if (!h) return false; tripKeepNow(); S.loc = h; return true; }   // no screen work
+function tripKeptLoc(){
+  var k = TRIP.keep && TRIP.keep.loc; if (k && isNum(k.lat) && inCityBox(k.lat, k.lng)) return k;
+  var l = Platform.store.get('cff.loc.v1', null);
+  if (l && isNum(l.lat) && isNum(l.lng) && inCityBox(l.lat, l.lng)) return {lat:l.lat, lng:l.lng, label:String(l.label || 'Your pin'), src:l.src === 'gps' || l.src === 'address' ? l.src : 'picked', acc:null, t:0, explicit:false, fresh:false};
+  return ext(LOOP, {});
+}
+function tripActivate(id){
+  var t = tripFind(tripStore(), id); if (!t) return null;
+  tripKeepNow();
+  TRIP.on = t.id; tripStore().set(TRIP_ON_KEY, t.id);
+  if (CITY.slug !== t.city) setCity(t.city, 'trip');
+  if (tripSetLoc(t)) { stopGeoWatch(); UI.firstOpen = false; if (mapEl && !$('pLoc').hidden) closePanel('pLoc'); }   // the home base answers "Where are you right now?"
+  else if (S.loc && S.loc.src === 'trip') S.loc = tripKeptLoc();   // the home base was removed
+  UI.sel = null; UI.viewKey = null;
+  if (mapEl) refresh();
+  return t;
+}
+function tripOff(quiet){ // trip mode off: back to her own spot and city (the trip stays saved)
+  if (!TRIP.on) return false;
+  var k = TRIP.keep; TRIP.on = ''; tripStore().set(TRIP_ON_KEY, '');
+  if (k && k.city && k.city !== CITY.slug && CITY_BY[k.city]) setCity(k.city, 'trip');
+  if (!S.loc || S.loc.src === 'trip' || S.loc.src === 'default') S.loc = tripKeptLoc();
+  TRIP.keep = null; UI.sel = null; UI.viewKey = null;
+  if (mapEl) { refresh(); startGeoWatch(); }
+  if (!quiet) toast(tripT('offT'));
+  return true;
+}
+function tripDrop(){ TRIP.on = ''; TRIP.keep = null; try { tripStore().set(TRIP_ON_KEY, ''); } catch (e) {} }   // she chose another spot or city herself (that choice replaces S.loc)
+function tripBoot(){ // a trip left on: its city and home base, before the first screen (never in the self-test or with #city= / #tripdemo=)
+  var h = ''; try { h = location.hash || ''; } catch (e) {}
+  if (/^#selftest/.test(h) || /(?:^#|&)(city|tripdemo)=/.test(h)) return;
+  var id = Platform.store.get(TRIP_ON_KEY, ''), t = tripIdOk(id) ? tripFind(Platform.store, id) : null;
+  if (!t) { if (id) Platform.store.set(TRIP_ON_KEY, ''); return; }
+  tripKeepNow(); TRIP.on = t.id;
+  if (CITY.slug !== t.city) { setCityCore(t.city); if (!CITY.transit && S.f.mode === 'transit') S.f.mode = 'car'; }
+  if (tripSetLoc(t)) UI.firstOpen = false;
+  else if (!S.loc || !inCityBox(S.loc.lat, S.loc.lng)) S.loc = ext(LOOP, {});
+}
+/* ----- screens ----- */
+function tripBarHTML(){ // Home: trip mode is on
+  var t = tripCur(); if (!t) return '';
+  var w = CITY_BY[t.city].name + ' · ' + tripRange(t.from, t.to) + (t.home ? ' · ' + tripT('from', {x:t.home.label}) : '');
+  return '<div class="tp-bar" data-city="' + esc(t.city) + '"><button class="tp-bgo" type="button" data-trip="open" data-v="' + esc(t.id) + '">' + esc(w) + '</button><button class="tp-bx" type="button" data-trip="exit">' + esc(tripT('exit')) + '</button></div>';
+}
+function tripForItem(it){ var c = cityOf(it), cur = tripCur(); if (cur && cur.city === c) return cur; var l = tripsGet(tripStore()).filter(function(t){ return t.city === c; }); return l[0] || null; }   // the trip that's on, else the newest one in that city
+function tripAddBtnHTML(it){
+  var sid = it && ID_SID[it.id]; if (!sid) return '';
+  var t = tripForItem(it), on = !!t && t.sids.indexOf(sid) >= 0;
+  return '<button class="mini-btn tp-add" type="button" data-trip="add" data-v="' + sid + '" aria-pressed="' + on + '">' + glyphSvg(on ? 'i-check' : 'i-cal') + esc(tripT(on ? 'added' : 'add')) + '</button>';
+}
+function tripAcctHTML(){ // the account sheet's Trips rows (signed in or not: trips live on this phone)
+  var h = '<div class="tp-list">';
+  tripsGet(tripStore()).forEach(function(t){
+    h += '<button class="frrow" type="button" data-trip="open" data-v="' + esc(t.id) + '">' + glyphSvg('i-cal') + '<span>' + esc(CITY_BY[t.city].name + ' · ' + tripRange(t.from, t.to)) + '<small>' + esc(tripT('places', {n:t.sids.length}) + (t.home ? ' · ' + t.home.label : '')) + '</small></span><span class="tp-on">' + (TRIP.on === t.id ? esc(tripT('active')) : '') + '</span>' + glyphSvg('i-right', 'i chev') + '</button>';
+  });
+  return h + '<button class="frrow" type="button" data-trip="new">' + glyphSvg('i-pin') + '<span>' + esc(tripT('plan')) + '</span><span></span>' + glyphSvg('i-right', 'i chev') + '</button></div>';
+}
+function tripArtSvg(slug){
+  if (slug === 'oahu') return '<svg class="tp-art" viewBox="0 0 400 210" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><circle cx="322" cy="92" r="42" fill="#FFE7A3" opacity=".85"/><path d="M150 152 L208 106 Q224 97 240 108 L304 152Z" fill="#3B3F5C" opacity=".34"/><path d="M0 150 Q50 136 100 150 T200 150 T300 150 T400 150 V210 H0Z" fill="#2BA3B8" opacity=".55"/><path d="M0 170 Q50 158 100 170 T200 170 T300 170 T400 170 V210 H0Z" fill="#137FA0" opacity=".7"/><path d="M0 190 Q50 179 100 190 T200 190 T300 190 T400 190 V210 H0Z" fill="#0B5A80" opacity=".85"/></svg>';
+  return '<svg class="tp-art" viewBox="0 0 400 210" preserveAspectRatio="xMidYMax slice" aria-hidden="true"><circle cx="330" cy="70" r="26" fill="#E8F0FF" opacity=".5"/><g fill="#0B0E2A" opacity=".72"><rect x="150" y="96" width="22" height="80"/><rect x="176" y="60" width="26" height="116"/><rect x="181" y="44" width="4" height="16"/><rect x="193" y="44" width="4" height="16"/><rect x="206" y="104" width="20" height="72"/><rect x="230" y="84" width="24" height="92"/><rect x="258" y="118" width="18" height="58"/><rect x="280" y="98" width="22" height="78"/><rect x="306" y="128" width="30" height="48"/></g><path d="M0 176 Q50 168 100 176 T200 176 T300 176 T400 176 V210 H0Z" fill="#1E3A8A" opacity=".8"/></svg>';
+}
+function tripPosterHTML(t, g, n){
+  var c = CITY_BY[t.city], rg = tripRange(t.from, t.to);
+  return '<div class="tp-poster" data-city="' + esc(t.city) + '" role="img" aria-label="' + esc(tripT('tripOf', {c:c.name}) + ', ' + rg) + '">' + tripArtSvg(t.city) +
+    '<div class="tp-pt" aria-hidden="true"><span class="tp-k">' + esc(tripT('trip')) + '</span><b class="tp-city">' + esc(c.name) + '</b><span class="tp-dates">' + esc(rg) + '</span></div>' +
+    '<div class="tp-pb" aria-hidden="true"><span class="tp-chip">' + glyphSvg('i-cal') + esc(tripT(n === 1 ? 'day1' : 'days', {n:n})) + '</span>' + (g ? '<span class="tp-chip">' + glyphSvg('i-people') + esc(g.name + ' · ' + (g.uids.length + 1)) + '</span>' : '') + '</div></div>';
+}
+function tripHomeCardHTML(home){
+  return home ? '<button class="tp-home" type="button" data-trip="home"><span class="tp-hic">' + glyphSvg('i-pin') + '</span><span class="tp-hl"><small>' + esc(tripT('stay')) + '</small><b>' + esc(home.label) + '</b>' + (home.sub ? '<small>' + esc(home.sub) + '</small>' : '') + '</span><span class="tp-edit">' + esc(tripT('change')) + '</span></button>' :
+    '<button class="tp-home none" type="button" data-trip="home"><span class="tp-hic">' + glyphSvg('i-pin') + '</span><span class="tp-hl"><b>' + esc(tripT('stayQ')) + '</b><small>' + esc(tripT('stayWhy')) + '</small></span><span class="tp-edit">' + esc(tripT('addB')) + '</span></button>';
+}
+function tripThumbHTML(it){ var ph = firstPhoto(it), g = genreOf(it); return '<span class="tp-ph">' + kindSvg(g) + (ph ? '<img src="' + esc(ph.file) + '" alt="" loading="lazy" data-fb="1">' : '') + '</span>'; }
+function tripDaysHTML(it, days, tz, today){
+  return '<ol class="tp-days" style="grid-template-columns:repeat(' + Math.min(days.length, 7) + ',minmax(0,1fr))" aria-label="' + esc(tripT('dayAria')) + '">' + days.map(function(k){
+    var s = tripDayStatus(it, k, tz), wd = tripFmt(k, {weekday:'short'}), dn = +k.slice(8), lab = wd + ' ' + dn + ': ' + s.l;
+    return '<li class="tp-d ' + s.k + (k === today ? ' today' : '') + '" title="' + esc(lab) + '" aria-label="' + esc(lab) + '"><span class="tp-dw" aria-hidden="true">' + esc(wd) + '</span><span class="tp-dn" aria-hidden="true">' + dn + '</span><span class="tp-ds" aria-hidden="true">' + esc(s.a) + '</span><span class="tp-ds" aria-hidden="true">' + (s.b ? esc(s.b) : '&nbsp;') + '</span></li>';
+  }).join('') + '</ol>';
+}
+function tripGroupPicksHTML(t, g){ // "Your group's picks" for this trip (her phone only), each with a + to add it
+  if (!g) return '';
+  var r = null; try { r = groupMembersNow(g.uids); } catch (e) { r = null; }
+  if (!r || groupCounted(r.members).length < 3) return '';
+  var picks = []; try { picks = groupPicksNow(r.members).filter(function(p){ return t.sids.indexOf(p.sid) < 0 && cityOf(p.c.item) === t.city; }).slice(0, 6); } catch (e) { picks = []; }
+  if (!picks.length) return '';
+  return '<h3 class="sec-h gp-h"><span>' + esc(grpT('picks')) + '</span><span>' + picks.length + '</span></h3><ul class="tp-gp">' + picks.map(function(p){ var it = p.c.item;
+    return '<li class="tp-it" style="--c:' + genreColor(genreOf(it)) + '"><div class="tp-row"><button class="tp-open" type="button" data-trip="openit" data-v="' + p.sid + '">' + tripThumbHTML(it) + '<span class="tp-nm"><b>' + esc(it.name) + '</b><small>' + esc(p.n === p.m ? grpT('all', {m:p.m}) : grpT('nOfM', {n:p.n, m:p.m})) + '</small></span></button><button class="tp-plus" type="button" data-trip="addg" data-v="' + p.sid + '" aria-label="' + esc(tripT('add') + ': ' + it.name) + '">' + TRIP_PLUS + '</button></div></li>';
+  }).join('') + '</ul>';
+}
+function tripPageHTML(t){
+  var g = tripGroup(t), days = tripDays(t), today = tripTodayKey(t, nowMs()), vs = tripVoteSids(t), h = tripPosterHTML(t, g, days.length);
+  h += tripHomeCardHTML(t.home);
+  h += '<div class="gp-acts">' + (vs.length >= POLL_MIN ? '<button class="btn-primary gp-send" type="button" data-trip="vote">' + glyphSvg('i-share') + '<span>' + esc(grpT('sendT')) + '</span></button>' : '') +
+    '<button class="gp-save" type="button" data-trip="browse">' + glyphSvg('i-search') + '<span>' + esc(tripT('addPl')) + '</span></button></div>';
+  var items = t.sids.map(function(s){ return SID_INDEX[s]; }).filter(Boolean);
+  h += '<h3 class="sec-h gp-h"><span>' + esc(tripT('slT')) + '</span><span>' + items.length + '</span></h3>';
+  if (!items.length) h += '<div class="gp-empty"><p><b>' + esc(tripT('slEmpty1')) + '</b></p><p>' + esc(tripT('slEmpty2')) + '</p></div>';
+  else {
+    var ctx = tripCtx(t, S.loc, S.f.mode), T = nowMs(), tz = tripTZ(t);
+    h += '<ul class="tp-sl">' + items.map(function(it){
+      var sid = ID_SID[it.id], cc = computeItem(it, T, ctx), dl = cc.dist !== null ? fmtMi(cc.dist) + ' · ' + travelShort(cc) : cc.citywide ? 'citywide' : '';
+      return '<li class="tp-it" style="--c:' + genreColor(genreOf(it)) + '"><div class="tp-row"><button class="tp-open" type="button" data-trip="openit" data-v="' + sid + '">' + tripThumbHTML(it) + '<span class="tp-nm"><b>' + esc(it.name) + '</b>' + (dl ? '<small>' + esc(dl) + '</small>' : '') + '</span></button>' +
+        '<button class="tp-x" type="button" data-trip="rm" data-v="' + sid + '" aria-label="' + esc(tripT('rmA') + ': ' + it.name) + '">' + glyphSvg('i-close') + '</button></div>' + tripDaysHTML(it, days, tz, today) + '</li>';
+    }).join('') + '</ul><p class="tp-note">' + esc(tripT(t.home ? 'crow' : 'crowGps')) + '</p>';
+  }
+  h += tripGroupPicksHTML(t, g);
+  return h + '<p class="gp-fn">' + esc(tripT('foot')) + '</p>';
+}
+function tripFormHTML(d){
+  if (!d) return '';
+  var gs = groupsGet(grpStore()), h = '<p class="tp-lab">' + esc(tripT('cityL')) + '</p><div class="tp-seg">' + CITIES.map(function(c){ return '<button class="chip" type="button" data-trip="city" data-v="' + esc(c.slug) + '" aria-pressed="' + (d.city === c.slug) + '">' + esc(c.name) + '</button>'; }).join('') + '</div>';
+  h += '<p class="tp-lab">' + esc(tripT('datesL')) + '</p><div class="tp-dd"><label><small>' + esc(tripT('fromL')) + '</small><input id="tpFrom" type="date" value="' + esc(d.from) + '"></label><label><small>' + esc(tripT('toL')) + '</small><input id="tpTo" type="date" value="' + esc(d.to) + '"></label></div>';
+  if (TRIP.err) h += '<p class="tp-err" role="alert">' + esc(TRIP.err) + '</p>';
+  if (gs.length) h += '<p class="tp-lab">' + esc(tripT('groupL')) + ' <small>' + esc(tripT('optional')) + '</small></p><div class="chips-w">' + [{id:'', name:tripT('none')}].concat(gs).map(function(g){ return '<button class="chip" type="button" data-trip="gid" data-v="' + esc(g.id) + '" aria-pressed="' + (d.gid === g.id) + '">' + esc(g.name) + '</button>'; }).join('') + '</div>';
+  return h + '<p class="tp-lab">' + esc(tripT('stay')) + ' <small>' + esc(tripT('optional')) + '</small></p>' + tripHomeCardHTML(d.home);
+}
+function tripHomeCity(){ var d = TRIP.prev === 'page' ? tripFind(tripStore(), TRIP.cur) : TRIP.draft; return (d && CITY_BY[d.city]) || CITY; }
+function tripLocalSpots(c, q){ var n = tripNorm(q).trim(); return citySpots(c).filter(function(s){ return !n || tripNorm(s.name).indexOf(n) >= 0; }).slice(0, n ? 6 : 8).map(function(s){ return {label:s.name, sub:s.type, lat:s.lat, lng:s.lng}; }); }
+function tripHomeResHTML(c){
+  var web = TRIP.list || [], loc = tripLocalSpots(c, TRIP.q), h = '';
+  TRIP.res = web.concat(loc);   // the index the result buttons point at
+  h += web.map(function(r, i){ return '<li><button type="button" data-trip="hpick" data-v="' + i + '"><b>' + esc(r.label) + '</b>' + (r.sub ? '<small>' + esc(r.sub) + '</small>' : '') + '</button></li>'; }).join('');
+  if (web.length) h += '<li class="tp-attr">Search: Nominatim · © OpenStreetMap contributors</li>';   // the attribution the usage policy asks for
+  if (loc.length) h += '<li class="tp-rh">' + esc(tripT('areas')) + '</li>' + loc.map(function(r, i){ return '<li><button type="button" data-trip="hpick" data-v="' + (web.length + i) + '"><b>' + esc(r.label) + '</b><small>' + esc(r.sub) + '</small></button></li>'; }).join('');
+  return h;
+}
+function tripHomeHTML(){
+  var c = tripHomeCity();
+  return '<p class="gp-sub">' + esc(tripT('stayHint', {c:c.name})) + '</p><div class="tp-srch"><label class="vh" for="tpHomeQ">' + esc(tripT('stayQ')) + '</label><input id="tpHomeQ" type="search" autocomplete="off" enterkeyhint="search" placeholder="' + esc(tripT('ph')) + '" value="' + esc(TRIP.q) + '"></div>' +
+    '<p class="tp-msg' + (TRIP.warn ? ' warn' : '') + '" id="tpHomeMsg"' + (TRIP.msg ? '' : ' hidden') + '>' + esc(TRIP.msg) + '</p><ul class="tp-res" id="tpHomeRes">' + tripHomeResHTML(c) + '</ul>';
+}
+function tripWebOk(){ return UI.tripDemo === 'home' || addrShown(); }   // the website only (claude.ai and frames can't fetch); the test hook answers from the sample
+function tripHomeMsg(t, warn){ TRIP.msg = t || ''; TRIP.warn = !!warn; var m = $('tpHomeMsg'); if (!m) return; m.textContent = TRIP.msg; m.hidden = !TRIP.msg; m.classList.toggle('warn', !!warn); }
+function tripHomeList(list){ TRIP.list = list || null; var ul = $('tpHomeRes'); if (ul) ul.innerHTML = tripHomeResHTML(tripHomeCity()); }
+function tripHomeWire(){
+  var inp = $('tpHomeQ'); if (!inp) return;
+  inp.addEventListener('input', function(){ TRIP.q = inp.value; tripHomeSearch('type'); });
+  inp.addEventListener('keydown', function(e){ if (e.key === 'Enter') { e.preventDefault(); TRIP.q = inp.value; tripHomeSearch('enter'); } });
+  if (!tripWebOk() && !TRIP.msg) tripHomeMsg(tripT('noWeb'), false);
+}
+function tripHomeSearch(how){ // the same rules as the location sheet: 3+ characters, 600 ms after typing or on Enter, at most 1 request a second (shared clock), cached
+  var c = tripHomeCity(), q = addrQuery(TRIP.q), key = 'trip|' + c.slug + '|' + q.toLowerCase();
+  clearTimeout(TRIP.timer); TRIP.timer = null; TRIP.seq++;
+  if (!tripWebOk() || q.length < NOMI_MIN_CHARS) { tripHomeList(null); tripHomeMsg(tripWebOk() ? '' : tripT('noWeb'), false); return; }
+  if (TRIP.cache[key]) { tripHomeMsg(TRIP.cache[key].length ? '' : tripT('noMatch', {c:c.name}), false); tripHomeList(TRIP.cache[key]); return; }
+  if (UI.tripDemo === 'home') { var mk = addrParse(TRIP_ADDR_SAMPLE, c); TRIP.cache[key] = mk; tripHomeMsg('', false); tripHomeList(mk); return; }
+  var my = TRIP.seq, w = addrWait(q, how, Addr.lastAt, Date.now());
+  TRIP.timer = setTimeout(function(){ tripHomeSend(q, c, key, my); }, Math.max(0, w));
+}
+function tripHomeSend(q, c, key, my){
+  TRIP.timer = null; if (my !== TRIP.seq) return;
+  var gap = Addr.lastAt + NOMI_GAP_MS - Date.now();
+  if (gap > 0) { TRIP.timer = setTimeout(function(){ tripHomeSend(q, c, key, my); }, gap); return; }
+  if (!window.fetch) { tripHomeMsg(tripT('searchErr'), true); return; }
+  Addr.lastAt = Date.now(); Addr.sent++;
+  var ctl = null, to = null; try { ctl = new AbortController(); to = setTimeout(function(){ try { ctl.abort(); } catch (e) {} }, 8000); } catch (e) { ctl = null; }
+  tripHomeMsg(tripT('looking'), false);
+  var opts = {credentials:'omit'}; if (ctl) opts.signal = ctl.signal;
+  fetch(tripNomiUrl(q, c), opts).then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).then(function(js){
+    clearTimeout(to); var list = addrParse(js, c); TRIP.cache[key] = list;
+    if (my !== TRIP.seq) return;
+    tripHomeMsg(list.length ? '' : tripT('noMatch', {c:c.name}), false); tripHomeList(list);
+  })['catch'](function(){ clearTimeout(to); if (my !== TRIP.seq) return; tripHomeList(null); tripHomeMsg(tripT('searchErr'), true); });
+}
+function tripHomePick(i){
+  var r = (TRIP.res || [])[+i], c = tripHomeCity(); if (!r || !inCityBox(r.lat, r.lng, c)) return;
+  var home = {label:r.label, sub:r.sub || '', lat:r.lat, lng:r.lng};
+  TRIP.q = ''; TRIP.list = null; TRIP.msg = ''; TRIP.seq++; clearTimeout(TRIP.timer); TRIP.timer = null;
+  if (TRIP.prev === 'page') {
+    var t = tripFind(tripStore(), TRIP.cur); if (!t) return;
+    t.home = home; var rec = tripsPut(tripStore(), t);
+    TRIP.mode = 'page'; TRIP.prev = '';
+    if (rec && TRIP.on === rec.id && tripSetLoc(rec)) { stopGeoWatch(); UI.sel = null; UI.viewKey = null; if (mapEl) refresh(); }
+    renderTrip(); tripTop(); toast(tripT('onT', {x:home.label}));
+  } else { if (TRIP.draft) TRIP.draft.home = home; TRIP.mode = TRIP.prev || 'new'; TRIP.prev = ''; renderTrip(); }
+}
+function tripTop(){ try { $('pTripBody').scrollTop = 0; } catch (e) {} }
+function renderTrip(){
+  var b = $('pTripBody'), foot = $('tpFoot'); if (!b) return;
+  var m = TRIP.mode, t = m === 'page' ? tripFind(tripStore(), TRIP.cur) : null;
+  if (m === 'page' && !t) m = TRIP.mode = 'list';
+  if ((m === 'new' || m === 'edit') && !TRIP.draft) m = TRIP.mode = 'list';
+  $('tpBack').hidden = !(m === 'home' || m === 'edit'); $('tpMore').hidden = m !== 'page';
+  $('tpBack').setAttribute('aria-label', grpT('back')); $('tpMore').setAttribute('aria-label', grpT('moreBtn'));
+  $('pTrip').classList.toggle('page', m === 'page');
+  $('pTripTitle').textContent = m === 'page' ? tripT('tripOf', {c:CITY_BY[t.city].name}) : m === 'home' ? tripT('stayT') : m === 'new' ? tripT('plan') : m === 'edit' ? tripT('edit') : tripT('trips');
+  var f = m === 'new' || m === 'edit'; foot.hidden = !f; foot.innerHTML = f ? '<button class="btn-primary gp-go" type="button" data-trip="save">' + esc(tripT(m === 'new' ? 'start' : 'saveB')) + '</button>' : '';
+  if (m === 'list') b.innerHTML = '<p class="gp-sub">' + esc(tripT('listSub')) + '</p>' + tripAcctHTML();
+  else if (f) b.innerHTML = tripFormHTML(TRIP.draft);
+  else if (m === 'home') { b.innerHTML = tripHomeHTML(); tripHomeWire(); }
+  else { b.innerHTML = tripPageHTML(t); wireImages(b); }
+}
+function tripReadForm(){ var d = TRIP.draft; if (!d) return; var a = $('tpFrom'), z = $('tpTo'); if (a) d.from = a.value; if (z) d.to = z.value; }
+function tripNew(o){
+  o = o || {};
+  if (tripsGet(tripStore()).length >= TRIPS_MAX) { toast(tripT('full')); if ($('pTrip').hidden) tripOpenList(); return; }
+  var from = addDays(cparts(nowMs()).key, 1);
+  TRIP.draft = {id:'', city:o.city && CITY_BY[o.city] ? o.city : CITY.slug, from:from, to:addDays(from, 3), gid:tripIdOk(o.gid) ? o.gid : '', home:null, sids:o.pend ? [o.pend] : []};
+  TRIP.mode = 'new'; TRIP.prev = ''; TRIP.err = ''; renderTrip(); openPanel('pTrip'); tripTop();
+}
+function tripEdit(){ var t = tripFind(tripStore(), TRIP.cur); closePanel('pSmall'); if (!t) return; TRIP.draft = ext(t, {sids:t.sids.slice(), home:t.home ? ext(t.home, {}) : null}); TRIP.mode = 'edit'; TRIP.prev = ''; TRIP.err = ''; renderTrip(); tripTop(); }
+function tripSave(){
+  tripReadForm(); var d = TRIP.draft; if (!d) return;
+  var v = tripDatesOk(d.from, d.to); if (!v.ok) { TRIP.err = tripT(v.why); renderTrip(); return; }
+  if (DATA_LOADED) d.sids = d.sids.filter(function(s){ return SID_INDEX[s] && cityOf(SID_INDEX[s]) === d.city; });   // a city change drops places from the other city
+  var isNew = TRIP.mode === 'new', rec = tripsPut(tripStore(), d); if (!rec) { toast(tripT('full')); return; }
+  TRIP.draft = null; TRIP.err = '';
+  tripOpenPage(rec.id); toast(rec.home ? tripT('onT', {x:rec.home.label}) : tripT('savedT'));
+  if (!isNew) try { if (!$('pAcct').hidden) renderAcctSheet(); } catch (e) {}
+}
+function tripOpenPage(id){
+  var t = tripActivate(id); if (!t) { toast(tripT('gone')); return; }
+  TRIP.cur = t.id; TRIP.mode = 'page'; TRIP.prev = '';
+  renderTrip(); openPanel('pTrip'); tripTop();
+}
+function tripOpenList(){ TRIP.mode = 'list'; renderTrip(); openPanel('pTrip'); tripTop(); }
+function tripAddFromPlace(sid, el){
+  var it = SID_INDEX[sid]; if (!it) return;
+  var t = tripForItem(it);
+  if (!t) { tripNew({city:cityOf(it), pend:sid}); return; }
+  var r = tripSl(tripStore(), t.id, sid);
+  if (!r.ok) { toast(r.full ? tripT('slFull') : tripT('gone')); return; }
+  toast(r.on ? tripT('addedT', {c:CITY_BY[t.city].name}) : tripT('removedT'));
+  if (el) { el.setAttribute('aria-pressed', String(r.on)); el.innerHTML = glyphSvg(r.on ? 'i-check' : 'i-cal') + esc(tripT(r.on ? 'added' : 'add')); }
+  if (!$('pTrip').hidden) renderTrip();
+}
+function tripMenu(){
+  var t = tripFind(tripStore(), TRIP.cur); if (!t) return;
+  openSmall(tripT('tripOf', {c:CITY_BY[t.city].name}), function(){
+    $('pSmallBody').innerHTML = '<button class="frrow" type="button" data-trip="edit">' + glyphSvg('g-pencil') + '<span>' + esc(tripT('edit')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>' +
+      (TRIP.on === t.id ? '<button class="frrow" type="button" data-trip="exit2">' + glyphSvg('i-target') + '<span>' + esc(tripT('exitL')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>' : '') +
+      '<button class="frrow" type="button" data-trip="del">' + glyphSvg('i-close') + '<span>' + esc(tripT('del')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>';
+  });
+}
+function tripDelAsk(){
+  var t = tripFind(tripStore(), TRIP.cur); if (!t) return;
+  openSmall(tripT('del'), function(){
+    $('pSmallBody').innerHTML = '<p class="p-note">' + esc(tripT('delQ', {c:CITY_BY[t.city].name, d:tripRange(t.from, t.to)})) + '</p><div class="confirm2"><button class="btn-primary danger" type="button" data-trip="del2">' + esc(tripT('delB')) + '</button><button class="mini-btn" type="button" data-close="pSmall">' + esc(grpT('cancel')) + '</button></div>';
+  });
+}
+function tripDel(){ var id = TRIP.cur; closePanel('pSmall'); if (TRIP.on === id) tripOff(true); tripsForget(tripStore(), id); TRIP.cur = ''; TRIP.mode = 'list'; renderTrip(); toast(tripT('deleted')); }
+function tripSendOpen(){ // the group's "Send a vote" panel with the shortlist: pick 2-4, "Make vote link" -> grpVoteGo -> pollGoWith(sids)
+  var t = tripFind(tripStore(), TRIP.cur), vs = tripVoteSids(t); if (vs.length < POLL_MIN) { toast(grpT('noVote')); return; }
+  GRP.vlist = vs.slice(0, 12); GRP.vote = GRP.vlist.slice(0, POLL_MAX); GRP.vmore = false;
+  openSmall(grpT('sendT'), grpSendRender);
+}
+function tripClick(el){
+  var a = el.getAttribute('data-trip'), v = el.getAttribute('data-v') || '', t0;
+  if (el.getAttribute('aria-disabled') === 'true') return;
+  switch (a) {
+    case 'new': tripNew({}); break;
+    case 'newg': closePanel('pSmall'); tripNew({gid:v, city:CITY.slug}); break;
+    case 'open': tripOpenPage(v); break;
+    case 'exit': tripOff(false); if (!$('pTrip').hidden) { TRIP.mode = 'list'; renderTrip(); } break;
+    case 'exit2': closePanel('pSmall'); tripOff(false); renderTrip(); break;
+    case 'back': if (TRIP.mode === 'home') TRIP.mode = TRIP.prev || 'new'; else if (TRIP.mode === 'edit') { TRIP.mode = 'page'; TRIP.draft = null; } else TRIP.mode = 'list'; TRIP.prev = TRIP.mode === 'home' ? TRIP.prev : ''; renderTrip(); tripTop(); break;
+    case 'menu': tripMenu(); break;
+    case 'edit': tripEdit(); break;
+    case 'del': tripDelAsk(); break;
+    case 'del2': tripDel(); break;
+    case 'city': tripReadForm(); if (TRIP.draft && CITY_BY[v]) { TRIP.draft.city = v; if (TRIP.draft.home && !tripHomeOk(TRIP.draft.home, v)) TRIP.draft.home = null; } renderTrip(); break;
+    case 'gid': tripReadForm(); if (TRIP.draft) TRIP.draft.gid = v; renderTrip(); break;
+    case 'home': if (TRIP.mode === 'new' || TRIP.mode === 'edit') tripReadForm(); TRIP.prev = TRIP.mode; TRIP.mode = 'home'; TRIP.q = ''; TRIP.list = null; TRIP.msg = ''; TRIP.warn = false; renderTrip(); tripTop(); break;
+    case 'hpick': tripHomePick(v); break;
+    case 'save': tripSave(); break;
+    case 'add': tripAddFromPlace(+v, el); break;
+    case 'addg': t0 = tripFind(tripStore(), TRIP.cur); if (t0) { tripSl(tripStore(), t0.id, +v, true); renderTrip(); toast(tripT('addedT', {c:CITY_BY[t0.city].name})); } break;
+    case 'rm': t0 = tripFind(tripStore(), TRIP.cur); if (t0) { tripSl(tripStore(), t0.id, +v, false); renderTrip(); toast(tripT('removedT')); } break;
+    case 'openit': t0 = SID_INDEX[+v]; if (t0 && findItem(t0.id)) { closePanel('pTrip'); UI.sel = t0.id; recluster(); openDetail(t0.id); UI.tripReturn = true; } break;
+    case 'browse': closePanel('pTrip'); toast(tripT('slEmpty2')); break;
+    case 'vote': tripSendOpen(); break;
+  }
+}
+// Testing hook "#tripdemo=list|new|home|page|vote|empty" (best with #city=oahu; add #acctdemo=1&cpdemo=1 for a made-up group): a made-up trip Dec 11-16
+// at a made-up hotel, in memory only (nothing stored on the phone or sent). The shortlist uses real Oʻahu places when the file has them.
+function tripDemo(mode, n){
+  var wantCp = false; try { wantCp = /(?:^#|&)cpdemo=1/.test(location.hash || ''); } catch (e) {}
+  if (!DATA_LOADED || (wantCp && !(Acct.demo && CP.demo))) { if ((n || 0) < 120) setTimeout(function(){ tripDemo(mode, (n || 0) + 1); }, 200); return; }
+  if (CITY.slug !== 'oahu' && ALL_DATA.some(function(it){ return cityOf(it) === 'oahu'; })) setCity('oahu', 'test');
+  var st = tripStore(), gid = '', sids = ['oahu-wk-hilton-friday-fireworks', 'oahu-wk-twas-the-light-on-ice', 'oahu-wk-glow-putt-waikiki', 'oahu-tw-holokai-whale-watch-sail', 'oahu-wk-escape-game-honolulu'].map(function(id){ return ID_SID[id]; }).filter(Boolean);
+  DATA.forEach(function(it){ var s = ID_SID[it.id]; if (sids.length < 6 && s && !it.hours && it.kind !== 'event' && !(it.verified && it.verified.status === 'closed') && sids.indexOf(s) < 0) sids.push(s); });   // one with no posted hours ("?")
+  if (sids.length < 2) DATA.slice(0, 6).forEach(function(it){ var s = ID_SID[it.id]; if (s && sids.indexOf(s) < 0) sids.push(s); });
+  if (Acct.demo && CP.demo) { grpDemoFriends(); gid = groupsPut(grpStore(), {name:'Beach crew', uids:['d1', 'g1', 'g2']}).id; }
+  var base = {city:CITY.slug, from:'2026-12-11', to:'2026-12-16', gid:gid, home:CITY.slug === 'oahu' ? TRIP_DEMO_HOME : null, sids:sids};
+  if (mode === 'list') { tripsPut(st, base); tripsPut(st, {city:'chicago', from:'2027-01-08', to:'2027-01-10', sids:[]}); tripOpenList(); return; }
+  if (mode === 'new' || mode === 'home') {
+    tripNew({city:CITY.slug, gid:gid}); if (!TRIP.draft) return;
+    TRIP.draft.from = base.from; TRIP.draft.to = base.to; renderTrip();
+    if (mode === 'home') { TRIP.prev = 'new'; TRIP.mode = 'home'; TRIP.q = 'Kalakaua'; renderTrip(); tripHomeSearch('enter'); }
+    return;
+  }
+  var rec = tripsPut(st, mode === 'empty' ? ext(base, {home:null, sids:[]}) : base); if (!rec) return;
+  tripOpenPage(rec.id);
+  if (mode === 'vote') setTimeout(tripSendOpen, 400);
+  if (mode === 'place' && sids.length) setTimeout(function(){ var it = SID_INDEX[sids[2] || sids[0]]; if (it && findItem(it.id)) { closePanel('pTrip'); openDetail(it.id); } }, 400);   // a place page that reads "On your trip"
 }
 /* ================= detail ================= */
 var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
@@ -9926,7 +10467,7 @@ function renderDetail(c, keepScroll){
   // v5.18 (owner 2026-11-14): "I've been here" near the top, under the name; after a tap: optional thumbs + when (day, month, or "don't remember")
   var ck = checkinOf(it.id);
   h += '<div class="dt-acts top">' + (ck ? '' : '<button class="mini-btn been-go" type="button" data-been="add">' + glyphSvg('i-check') + esc(i18t('dt.been')) + '</button>') +
-    '<button class="mini-btn" type="button" data-cal="1">' + glyphSvg('i-cal') + esc(i18t('dt.cal')) + '</button></div>';
+    '<button class="mini-btn" type="button" data-cal="1">' + glyphSvg('i-cal') + esc(i18t('dt.cal')) + '</button>' + tripAddBtnHTML(it) + '</div>';   // v5.26 "Add to trip"
   if (ck) h += beenBoxHTML(ck, todayKey);
   h += friendSayHTML(it);   // v5.19: friends' average + "What friends say" (anonymous)
   h += grBoxHTML(it);   // v5.22: the Google rating line, places only, on this page only
@@ -10123,6 +10664,8 @@ function closeDetail(){
   UI.pollReturn = false;
   if (UI.groupReturn && GRP.mode === 'page') { UI.groupReturn = false; openPanel('pGroup'); }   // v5.25: Back returns to the group page
   UI.groupReturn = false;
+  if (UI.tripReturn && TRIP.mode === 'page') { UI.tripReturn = false; renderTrip(); openPanel('pTrip'); }   // v5.26: Back returns to the trip page
+  UI.tripReturn = false;
   bkRelease();   // v5.24
 }
 
@@ -10202,7 +10745,8 @@ function applyCityUI(){ // words and labels that name the city
 function setCity(slug, how){
   if (!CITY_BY[slug]) return false;
   if (slug === CITY.slug) { if (how === 'pick') { UI.cityPicked = true; Platform.store.set(CITY_KEY, slug); } return false; }
-  UI.cityLoc = UI.cityLoc || {}; if (S.loc) UI.cityLoc[CITY.slug] = S.loc;
+  if ((how === 'pick' || how === 'gps') && TRIP.on) tripDrop();   // v5.26: she chose another city herself: trip mode ends (the trip stays saved)
+  UI.cityLoc = UI.cityLoc || {}; if (S.loc && S.loc.src !== 'trip') UI.cityLoc[CITY.slug] = S.loc;   // v5.26: the trip's home base is never remembered as her spot
   setCityCore(slug);
   if (how === 'pick') { UI.cityPicked = true; Platform.store.set(CITY_KEY, slug); }
   else if (how === 'gps') Platform.store.set(CITY_KEY, slug);
@@ -10270,6 +10814,7 @@ function locateMe(){
   function attempt(o){
     Platform.geo.get(function(lat, lng, acc, t){
       geoBusy = false; UI.geoState = 'granted'; gpsBtnReset();
+      if (TRIP.on) tripDrop();   // v5.26: a tap on "Use my location" means her real spot: trip mode ends (the trip stays saved)
       var cc = cityAt(lat, lng);   // v5.24: a tap in another of our cities switches to it; outside every city she picks a spot
       if (!cc) { setLocNote('You look far from ' + CITIES.map(function(c){ return c.name; }).join(' and ') + '. Pick a spot instead.', true); return; }
       if (cc !== CITY.slug) setCity(cc, 'gps');
@@ -10307,7 +10852,7 @@ function startGeoWatch(){
     if (moved >= 0.25) refresh(); else { recluster(); if (GLM.on) glSyncOverlays(); renderHeaderOnly(); }   // small moves only move the blue dot
   }, !!S.loc.explicit);
 }
-function saveLoc(){ if (S.loc) Platform.store.set('cff.loc.v1', {lat:S.loc.lat, lng:S.loc.lng, label:S.loc.label, src:S.loc.src, acc:isNum(S.loc.acc) ? S.loc.acc : null}); }
+function saveLoc(){ if (S.loc && S.loc.src === 'trip') return; if (S.loc) Platform.store.set('cff.loc.v1', {lat:S.loc.lat, lng:S.loc.lng, label:S.loc.label, src:S.loc.src, acc:isNum(S.loc.acc) ? S.loc.acc : null}); }
 function renderHeaderOnly(){ try { if (UI.lastRes) renderHeader(UI.lastRes); } catch (e) {} }
 function stopGeoWatch(){ Platform.geo.unwatch(geoWatchId); geoWatchId = null; }
 function onGeoPermission(state){ // permissions "change" event and the first check
@@ -10318,6 +10863,7 @@ function onGeoPermission(state){ // permissions "change" event and the first che
     // v5.5: the quiet check stays low power. A fresh reading now replaces a spot remembered from an earlier visit (owner: the laptop
     // kept saying Lincoln Park), but never a choice made in this session or a newer reading (takeFix).
     Platform.geo.get(function(lat, lng, acc, t){
+      if (TRIP.on) return;   // v5.26: trip mode on: the quiet reading never replaces the home base or switches the city
       var cc = cityAt(lat, lng); if (!cc) return;   // v5.24: outside all our cities: nothing changes
       var fix = {lat:lat, lng:lng, label:'Your location', src:'gps', acc:acc, t:t, fresh:true, explicit:false};
       if (cc !== CITY.slug) { if (UI.cityPicked || geoBusy || (!$('pLoc').hidden && !UI.firstOpen)) return; setCity(cc, 'gps'); }   // the nearest city to her, unless she picked one this visit
@@ -10331,6 +10877,7 @@ function onGeoPermission(state){ // permissions "change" event and the first che
 function commitLocation(loc, keepOpen){
   // v5.5: acc (metres) and t (time of the reading) for readings; explicit = chosen in this session; fresh = a reading from this session
   var gps = loc.src === 'gps';
+  if (TRIP.on && loc.src !== 'trip') tripDrop();   // v5.26: she picked another spot herself: trip mode ends (the trip stays saved)
   S.loc = {lat:loc.lat, lng:loc.lng, label:String(loc.label || 'Dropped pin'), src:loc.src || 'picked',
     acc:gps && isNum(loc.acc) ? Math.round(loc.acc) : null, t:isNum(loc.t) ? loc.t : Date.now(), explicit:!!loc.explicit, fresh:gps && !!loc.fresh};
   if (!gps) stopGeoWatch();
@@ -10880,6 +11427,7 @@ function acctSheetHTML(state){ // state: in | cached | out | loading (| demo via
   var nS = savedIds.length, nB = CHECKINS.length;
   h += '<section class="as-sec"><h3>Saved &amp; been</h3><div class="as-tiles"><button class="as-card as-tile" type="button" data-acct="lists-saved"><span class="n">' + nS + '</span><span class="l">' + (signed ? 'Saved' : 'Saved on this phone') + '</span></button>' +
     '<button class="as-card as-tile" type="button" data-acct="lists-been"><span class="n">' + nB + '</span><span class="l">' + (signed ? 'Been' : 'Been on this phone') + '</span></button></div></section>';
+  h += '<section class="as-sec"><h3>' + esc(tripT('trips')) + '</h3>' + tripAcctHTML() + '</section>';   // v5.26: trips (this phone only)
   h += '<section class="as-sec"><h3>Settings</h3>' + acctSettingsHTML() + '</section>';
   if (signed && nm) h += acctShareHTML();
   h += '<div class="as-links"><button class="as-row" type="button" data-acct="privacy">' + glyphSvg('i-info', 'i l') + '<b>Privacy</b>' + glyphSvg('i-right', 'i chev') + '</button>' +
@@ -11753,7 +12301,7 @@ function bindUI(){
   // v5.8 friends' lists: Share, the friend panel (Keep, rows, Rename, Remove), the paste box
   $('wlShare').addEventListener('click', function(){ if (acctName() && acctSignedIn()) shareAsk(); else shareMyList(); });   // v5.11: signed in, Share asks: invite or just the list
   document.addEventListener('click', function(e){ var ac = e.target.closest ? e.target.closest('[data-acct]') : null; if (ac && !ac.disabled) { e.preventDefault(); acctClick(ac); } });
-  document.addEventListener('click', function(e){ if (!e.target.closest) return; var pb = e.target.closest('[data-poll]'); if (pb) { e.preventDefault(); e.stopPropagation(); pollClick(pb); return; } var cb = e.target.closest('[data-cp]'); if (cb) { e.preventDefault(); e.stopPropagation(); cpClick(cb); return; } var gb = e.target.closest('[data-grp]'); if (gb) { e.preventDefault(); e.stopPropagation(); grpClick(gb); } }, true);   // v5.25 Group Blend
+  document.addEventListener('click', function(e){ if (!e.target.closest) return; var pb = e.target.closest('[data-poll]'); if (pb) { e.preventDefault(); e.stopPropagation(); pollClick(pb); return; } var cb = e.target.closest('[data-cp]'); if (cb) { e.preventDefault(); e.stopPropagation(); cpClick(cb); return; } var tb = e.target.closest('[data-trip]'); if (tb) { e.preventDefault(); e.stopPropagation(); tripClick(tb); return; } var gb = e.target.closest('[data-grp]'); if (gb) { e.preventDefault(); e.stopPropagation(); grpClick(gb); } }, true);   // v5.25 Group Blend
   document.addEventListener('keydown', function(e){ if (e.key === 'Enter' && e.target && e.target.id === 'gpName') { e.preventDefault(); grpSaveGo(); } });
   $('pGroupBody').addEventListener('click', function(e){   // v5.25: the group page's photo cards (save, open the place; Back returns here)
     var t = e.target; if (t.closest('[data-share]')) return;
@@ -12010,6 +12558,7 @@ function runSelfTest0(){
   block('v5.22 holiday status from fields only, more UI words, Visiting Chicago without chains, Google line rules', function(){ v522SelfTest(ok, eq); });
   block('v5.24 cities (Chicago + Oʻahu), item time zones, city switch, ticket badge, phone Back', function(){ v524SelfTest(ok, eq, info); });
   block('v5.25 Group Blend v1 (spec section 0.7 cases 1-8, plus the city)', function(){ v525SelfTest(ok, eq, info); });
+  block('v5.26 trip mode lite (home base, trip days in the city clock, shortlist, vote link, og.trips.v1, account delete, Chicago unaffected)', function(){ v526SelfTest(ok, eq, info); });
 
   block('time zone', function(){
     eq('Chicago noon Jul 4 2026 = 17:00 UTC (CDT)', fromChicago('2026-07-04', 720), Date.UTC(2026, 6, 4, 17, 0));
@@ -13572,8 +14121,8 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.25 (2026-11-15)');
-    eq('previous version', VERSION_PREV, 'v5.24 (2026-11-15)');
+    eq('version', VERSION, 'v5.26 (2026-11-15)');
+    eq('previous version', VERSION_PREV, 'v5.25 (2026-11-15)');
   });
 
   /* ---------- v5.20 fix (live v5.19 tester, MEDIUM): "Last entry not posted" must never make a last-entry time ---------- */
@@ -15458,7 +16007,7 @@ function v525SelfTest(ok, eq, info){ // Group Blend v1: design/2026-11-14-groups
   eq('G7 forget removes it', groupsForget(ms, top0.id) + '|' + groupsGet(ms).length + '|' + !groupFind(ms, top0.id), 'true|7|true');
   var me0 = groupMember({me:true, type:2, list:{top:[1], never:[]}, saves:[]}), mf = groupMembersFrom(me0, ['u1', 'u2', 'u3', 'u1'], [{uid:'u1', live:true, name:'A', funType:3}, {uid:'u3', live:true, name:'C', funType:4}, {uid:'u4', live:false, name:'D'}], {});
   eq('G7 on open, a friend who is no longer accepted is skipped (u2), each friend once', mf.members.length + '|' + mf.gone.join() + '|' + mf.members.map(function(x){ return x.key; }).join(), '3|u2|me,u1,u3');
-  ok('G7 saved groups stay on this phone: not in the account sync, kept on sign-out, cleared on account delete', !/GROUPS_KEY|og\.groups/.test(String(acctSync)) && !/GROUPS_KEY/.test(String(acctForget)) && /GROUPS_KEY/.test(String(acctDelete)));
+  ok('G7 saved groups stay on this phone: not in the account sync, kept on sign-out, cleared on account delete', !/GROUPS_KEY|og\.groups/.test(String(acctSync)) && !/GROUPS_KEY/.test(String(acctForget)) && /acctDeviceClear\(/.test(String(acctDelete)) && acctDeviceKeys().indexOf(GROUPS_KEY) >= 0);   // v5.26: acctDelete clears the device keys (groups + trips) through acctDeviceClear
   eq('G7 her real saved groups were not touched by these checks', JSON.stringify(Platform.store.get(GROUPS_KEY, null)), realStore);
   // copy
   eq('G copy: tags "4 of 5" / "All 5", button, ru (unverified)', [/4 of 5/.test(groupTagHTML(4, 5)), /gp-tag all/.test(groupTagHTML(5, 5)) && /All 5/.test(groupTagHTML(5, 5)), grpT('go', {n:4}), grpT('more', {n:1}), grpT('go', {n:3}, 'ru')].join('|'), 'true|true|Blend 4 of you|Pick 1 more|Смешать: вас 3');
@@ -15500,6 +16049,122 @@ function v525SelfTestReal(ok, eq, note){ // Group Blend checks on the loaded fil
     } finally { host.parentNode.removeChild(host); }
     eq('G8 page at ' + W + ' px content width: no sideways scroll, one band per person, characters fit their band, 6 tagged cards (3 and 6 people)', res.join(' '), '3:true:3:true:6 6:true:6:true:6');
   }
+}
+function v526SelfTest(ok, eq, info){ // trip mode lite: stand-in stores only (her real trips are never touched)
+  function mem(){ var m = {}; return {get:function(k, d){ return m.hasOwnProperty(k) ? JSON.parse(m[k]) : d; }, set:function(k, v){ m[k] = JSON.stringify(v); return true; }}; }
+  function fx6(o){ return ext({id:'fx26-' + (++uid), name:'Trip fixture', kind:'place', category:'games-arcade', tags:[], city:'oahu', lat:21.2900, lng:-157.8400, indoor_outdoor:'indoor', price_level:'$', booking:'walk-in', hours:null, season:null, verified:{status:'verified', checked_on:'2026-11-15'}}, o); }
+  var realTrips = JSON.stringify(Platform.store.get(TRIPS_KEY, null)), realOn = JSON.stringify(Platform.store.get(TRIP_ON_KEY, null)), q;
+  var nineFive = allDays(['09:00', '17:00']), hst = 'Pacific/Honolulu';
+  var home = {label:'Test hotel', sub:'Waikīkī', lat:21.2800, lng:-157.8320};
+  var trip = {id:'abcdefgh', city:'oahu', from:'2026-12-11', to:'2026-12-16', gid:'', home:home, sids:[]};
+  var gps = {lat:21.3100, lng:-157.8600, label:'Your location', src:'gps', acc:20, t:0, explicit:true, fresh:true};   // downtown Honolulu
+  // 1. the home base replaces GPS
+  var place = fx6({lat:21.2700, lng:-157.8200, hours:nineFive}), T1 = Date.UTC(2026, 11, 12, 22, 0);   // Sat Dec 12, noon in Honolulu
+  var o1 = tripOrigin(trip, gps), c1 = computeItem(place, T1, tripCtx(trip, gps, 'car')), cG = computeItem(place, T1, {lat:gps.lat, lng:gps.lng, budget:'any', mode:'car'});
+  eq('T1 the home base replaces GPS as the origin (src, label, point)', [o1.src, o1.label, o1.lat, o1.lng].join('|'), 'trip|Test hotel|21.28|-157.832');
+  ok('T1 distance and drive time come from the home base, not GPS (' + fmtMi(c1.dist) + ' / ' + c1.trav.min + ' min vs GPS ' + fmtMi(cG.dist) + ' / ' + cG.trav.min + ' min)', Math.abs(c1.dist - distMi(home.lat, home.lng, place.lat, place.lng)) < 1e-9 && Math.abs(c1.dist - cG.dist) > 0.5 && c1.trav.min < cG.trav.min);
+  var lbH = leaveBy(c1), lbG = leaveBy(cG);
+  ok('T1 "Leave by" is worked out from the home base\'s drive time', (!!lbH && !!lbG && JSON.stringify(lbH) !== JSON.stringify(lbG)) || (!lbH && !lbG && /c\.trav/.test(String(leaveBy))), JSON.stringify(lbH) + ' vs ' + JSON.stringify(lbG));
+  eq('T1 no home base yet: GPS stays the origin', tripOrigin(ext(trip, {home:null}), gps) === gps, true);
+  var keepLoc = S.loc, keepOn = TRIP.on, keepK = TRIP.keep, stored = JSON.stringify(Platform.store.get('cff.loc.v1', null)), rt = {};
+  try {
+    S.loc = gps; TRIP.keep = null; TRIP.on = 'abcdefgh';
+    rt.set = tripSetLoc(trip); var cx = ctxNow(); rt.ctx = cx.lat === home.lat && cx.lng === home.lng;
+    saveLoc(); rt.saved = JSON.stringify(Platform.store.get('cff.loc.v1', null)) === stored;
+    rt.keep = !!TRIP.keep && TRIP.keep.loc === gps; rt.name = locName(S.loc) === 'Test hotel';
+  } finally { S.loc = keepLoc; TRIP.on = keepOn; TRIP.keep = keepK; }
+  eq('T1 trip mode on: the app\'s origin (ctxNow) is the home base, saveLoc never stores it, her GPS spot is kept for later, the words name the hotel', [rt.set, rt.ctx, rt.saved, rt.keep, rt.name].join(), 'true,true,true,true,true');
+  ok('T1 GPS can\'t take it back: the watch only moves a GPS origin, the quiet check skips, "Use my location" / another spot / another city end trip mode', /S\.loc\.src !== 'gps'/.test(String(startGeoWatch)) && /TRIP\.on\) return/.test(String(onGeoPermission)) && /tripDrop\(\)/.test(String(locateMe)) && /tripDrop\(\)/.test(String(commitLocation)) && /tripDrop\(\)/.test(String(setCity)) && /src === 'trip'\) return/.test(String(saveLoc)));
+  // 2. each trip day in Honolulu time (the checks run on a Chicago clock)
+  var dd = tripDays(trip), keepTZ = TZ;
+  function ds(it, k, tz){ var s = tripDayStatus(it, k, tz || hst); return s.k + ' ' + s.a + (s.b ? '-' + s.b : ''); }
+  eq('T2 the trip days (Dec 11-16 = 6 days)', dd.length + '|' + dd[0] + '|' + dd[5], '6|2026-12-11|2026-12-16');
+  var hon = fx6({hours:nineFive, closed_dates:['2026-12-13']});
+  eq('T2 a 9-5 place: open every day except its closed date (Sun Dec 13)', dd.map(function(k){ return ds(hon, k); }).join(', '), 'open 9a-5p, open 9a-5p, closed Closed, open 9a-5p, open 9a-5p, open 9a-5p');
+  var sea = fx6({hours:nineFive, season:{open_from:'2026-06-01', open_to:'2026-12-12', note:'Summer season'}});
+  eq('T2 season ends Dec 12: open Fri-Sat, then closed for the season', dd.map(function(k){ return tripDayStatus(sea, k, hst).l; }).join(' | '), 'Open 9 am – 5 pm | Open 9 am – 5 pm | Closed for the season | Closed for the season | Closed for the season | Closed for the season');
+  var lateH = allDays(null); lateH.fri = [['21:00', '23:00']];
+  var late = fx6({hours:lateH});
+  eq('T2 open only Fri 9-11 pm Honolulu time (= 1-3 am Sat in Chicago): Friday open, the rest closed', dd.map(function(k){ return ds(late, k); }).join(', '), 'open 9p-11p, closed Closed, closed Closed, closed Closed, closed Closed, closed Closed');
+  var ev = fx6({kind:'event', name:'HST show', event_dates:[{start:'2026-12-11T19:45'}, {start:'2026-12-14T10:00', end:'2026-12-14T22:00'}]});
+  eq('T2 a timed event: 7:45 pm Fri Dec 11 and 10 am-10 pm Mon Dec 14 Honolulu time, not on the other days', dd.map(function(k){ return ds(ev, k); }).join(', '), 'event 7:45p, closed –, closed –, event 10a-10p, closed –, closed –');
+  var unk = fx6({hours:null});
+  eq('T2 no hours: "Hours not confirmed" every day (never shown as open)', tripDayStatus(unk, dd[1], hst).k + '|' + tripDayStatus(unk, dd[1], hst).l, 'unknown|Hours not confirmed');
+  var Tn = Date.UTC(2026, 11, 12, 7, 0);   // 9 pm Fri Dec 11 in Honolulu = 1 am Sat Dec 12 in Chicago
+  eq('T2 "today" on the trip is the Honolulu date; Chicago reads the next day; the app clock is still Chicago after', [tripTodayKey(trip, Tn), cparts(Tn).key, TZ === keepTZ, TZ].join('|'), '2026-12-11|2026-12-12|true|America/Chicago');
+  var hostD = document.createElement('div'); hostD.innerHTML = tripDaysHTML(hon, dd, hst, '2026-12-12');
+  eq('T2 the day strip: 6 cells, 5 open + 1 closed, Sat 12 marked today, words in aria-label', [hostD.querySelectorAll('.tp-d').length, hostD.querySelectorAll('.tp-d.open').length, hostD.querySelectorAll('.tp-d.closed').length, hostD.querySelectorAll('.tp-d.today').length, (hostD.querySelector('.tp-d.today') || {}).getAttribute ? hostD.querySelector('.tp-d.today').getAttribute('aria-label') : ''].join('|'), '6|5|1|1|' + tripFmt('2026-12-12', {weekday:'short'}) + ' 12: Open 9 am – 5 pm');
+  // 3. shortlist add and remove (a stand-in store)
+  var ms = mem(), r0 = tripsPut(ms, trip);
+  var a1 = tripSl(ms, r0.id, 12, true), a2 = tripSl(ms, r0.id, 40), a3 = tripSl(ms, r0.id, 12, true), a4 = tripSl(ms, r0.id, 'x');
+  eq('T3 add two places (kept in order), adding one again keeps one copy, a bad id is refused', [a1.ok, a1.n, a2.on, a2.n, a3.n, a4.ok, tripFind(ms, r0.id).sids.join('.')].join(), 'true,1,true,2,2,false,12.40');
+  var a5 = tripSl(ms, r0.id, 12), a6 = tripSl(ms, r0.id, 40, false);
+  eq('T3 remove: a toggle takes 12 off, then 40 is removed', [a5.on, a5.n, a6.n, tripFind(ms, r0.id).sids.length].join(), 'false,1,0,0');
+  var big = []; for (q = 1; q <= TRIP_SL_MAX; q++) big.push(q);
+  tripsPut(ms, ext(tripFind(ms, r0.id), {sids:big}));
+  eq('T3 at most 40 places on one shortlist', tripSl(ms, r0.id, 99).full + '|' + tripFind(ms, r0.id).sids.length, 'true|40');
+  // 4. the vote link: place numbers only
+  var idx = {425:1, 426:1, 411:1, 430:1, 412:1}, vt = ext(trip, {sids:[425, 426, 411, 430, 412, 999]}), vs = tripVoteSids(vt, idx), L = groupVoteLink('', vs), L2 = groupVoteLink('0123456789ab', vs.slice(0, 2)), rx = /^#poll=([0-9a-f]{12}|0)(\.\d+){2,4}$/;
+  ok('T4 the vote link is #poll=<code|0>.<sid>... with 2-4 place numbers (' + L + ', ' + L2 + ')', rx.test(L) && rx.test(L2) && L === '#poll=0.425.426.411.430');
+  var leak = [home.label, 'Waik', 'ahu', 'Honolulu', '2026', 'Dec', 'abcdefgh', String(home.lat), 'Beach crew'].filter(function(x){ return (L + ' ' + L2 + ' ' + POLL_TEXT).indexOf(x) >= 0; });
+  eq('T4 the link and the share text carry no hotel, city, dates, trip id or group name', leak.join(), '');
+  ok('T4 "Send a vote" uses the group vote panel, which ends in pollGoWith (one path with Saved and the group page)', /grpSendRender/.test(String(tripSendOpen)) && /pollGoWith\(/.test(String(grpVoteGo)) && /POLL_TEXT/.test(String(pollGoWith)));
+  eq('T4 one place on the list: no vote (2 needed); unknown place numbers are left out', [tripVoteSids(ext(trip, {sids:[425]}), idx).length < POLL_MIN, vs.indexOf(999) < 0].join(), 'true,true');
+  // 5. storage limit (og.trips.v1, max 5)
+  var ms2 = mem();
+  for (q = 0; q < 5; q++) tripsPut(ms2, {city:'oahu', from:'2026-12-1' + q, to:'2026-12-1' + (q + 1), sids:[]});
+  var sixth = tripsPut(ms2, {city:'chicago', from:'2027-01-02', to:'2027-01-04', sids:[]}), l5 = tripsGet(ms2);
+  eq('T5 at most 5 trips: the 6th is refused and no old trip is dropped', [l5.length, sixth === null, TRIPS_KEY, Array.isArray(ms2.get(TRIPS_KEY, null))].join(), '5,true,og.trips.v1,true');
+  var ed = tripsPut(ms2, ext(l5[3], {to:addDays(l5[3].to, 1)}));
+  eq('T5 editing a trip still works when full (it moves to the top)', [!!ed, tripsGet(ms2).length, tripsGet(ms2)[0].id === l5[3].id].join(), 'true,5,true');
+  ms2.set(TRIP_ON_KEY, l5[0].id);
+  eq('T5 delete frees a slot and turns trip mode off if that trip was on', [tripsForget(ms2, l5[0].id), tripsGet(ms2).length, ms2.get(TRIP_ON_KEY, 'x')].join(), 'true,4,');
+  eq('T5 refused: end before start, 15 days, no dates, unknown city', [tripsPut(ms2, {city:'oahu', from:'2026-12-16', to:'2026-12-11'}), tripsPut(ms2, {city:'oahu', from:'2026-12-01', to:'2026-12-15'}), tripsPut(ms2, {city:'oahu', from:'', to:''}), tripsPut(ms2, {city:'tokyo', from:'2026-12-11', to:'2026-12-12'})].join() + '|' + tripsGet(ms2).length, ',,,|4');
+  eq('T5 date words: why each was refused', [tripDatesOk('2026-12-16', '2026-12-11').why, tripDatesOk('2026-12-01', '2026-12-15').why, tripDatesOk('2026-12-01', '2026-12-14').ok].join(), 'errOrder,errLong,true');
+  var hc = tripsPut(ms2, {city:'oahu', from:'2026-12-11', to:'2026-12-16', home:{label:'A Chicago hotel', lat:41.88, lng:-87.63}, sids:[]}), hw = tripsPut(ms2, ext(hc, {home:home}));
+  eq('T5 a home base outside the trip city is dropped; one inside is kept (label, point)', [hc.home === null, hw.home && hw.home.label, hw.home && hw.home.lat].join(), 'true,Test hotel,21.28');
+  ok('T5 trips stay on this phone: not in the account sync or settings', !/TRIPS_KEY|og\.trips/.test(String(acctSync)));
+  // 6. account delete clears trips
+  var removed = [], keepOn6 = TRIP.on; TRIP.on = '';
+  try { acctDeviceClear(function(k){ removed.push(k); }); } finally { TRIP.on = keepOn6; }
+  eq('T6 account delete clears saved groups, trips and "which trip is on" from this phone', removed.join(), 'og.groups.v1,og.trips.v1,og.trips.on.v1');
+  ok('T6 only after the server says deleted; sign-out (acctForget) keeps trips', /deleted[\s\S]*acctDeviceClear\(/.test(String(acctDelete)) && !/TRIPS_KEY|acctDeviceClear/.test(String(acctForget)));
+  var dq = String(acctDeleteAsk);
+  ok('T6 the delete dialog no longer says "What\'s on this phone stays here" and says groups and trips are cleared', dq.indexOf('stays here') < 0 && dq.indexOf('saved groups and trips from this phone') > 0);
+  // 7. Chicago unaffected
+  eq('T7 no trip is on during the checks; Chicago, its clock and the Loop are untouched', [TRIP.on === '', CITY.slug, TZ, LOOP.label, tripCur() === null, tripBarHTML()].join('|'), 'true|chicago|America/Chicago|The Loop|true|');
+  var cxN = ctxNow();
+  eq('T7 with no trip, the origin is still her own spot (tripOrigin(null) and ctxNow = S.loc)', [tripOrigin(null, S.loc) === S.loc, cxN.lat === S.loc.lat && cxN.lng === S.loc.lng, S.loc.src !== 'trip'].join(), 'true,true,true');
+  var chiP = fx6({city:'chicago', lat:41.90, lng:-87.65, hours:nineFive});
+  eq('T7 a Chicago trip day reads on the Chicago clock; the Honolulu checks left the zone alone', ds(chiP, '2026-12-12', 'America/Chicago') + '|' + TZ, 'open 9a-5p|America/Chicago');
+  eq('T7 the Chicago address search box is unchanged; the trip search uses the trip city\'s box', [nominatimUrl('x').indexOf('viewbox=-88.4,42.5,-87.4,41.4') > 0, tripNomiUrl('Kalakaua', CITY_BY.oahu).indexOf('viewbox=-158.32,21.75,-157.60,21.22&q=Kalakaua') > 0].join(), 'true,true');
+  var ps = addrParse(TRIP_ADDR_SAMPLE, CITY_BY.oahu), pc = addrParse(TRIP_ADDR_SAMPLE);
+  eq('T7 hotel search answers are kept inside Oʻahu for the trip (3 of 4 samples) and inside Chicago otherwise (1)', ps.length + '|' + ps[0].label + '|' + pc.length, '3|Sample Beach Hotel|1');
+  // copy
+  var miss = []; Object.keys(TRIP_STR).forEach(function(k){ if (!Array.isArray(TRIP_STR[k]) || TRIP_STR[k].length !== 4 || TRIP_STR[k].some(function(x){ return !x; })) miss.push(k); });
+  eq('T8 every trip word has en, ru, zh-Hans and ko (ru / zh / ko unverified)', miss.join(), '');
+  eq('T8 words', [tripT('days', {n:6}, 'en'), tripT('add', null, 'en'), tripShort(1185), tripShort(0), tripShort(720), tripT('days', {n:6}, 'ru')].join('|'), '6 days|Add to trip|7:45p|12a|12p|Дней: 6');
+  if (LANG === 'en') eq('T8 poster dates', [tripRange('2026-12-11', '2026-12-16'), tripRange('2026-12-30', '2027-01-02'), tripRange('2026-12-11', '2026-12-11')].join(' | '), 'Dec 11 – 16 | Dec 30 – Jan 2 | Dec 11');
+  else info('T8 poster dates skipped (app language ' + LANG + ')');
+  eq('T8 her real trips were not touched by these checks', JSON.stringify(Platform.store.get(TRIPS_KEY, null)) + '|' + JSON.stringify(Platform.store.get(TRIP_ON_KEY, null)), realTrips + '|' + realOn);
+}
+function v526SelfTestReal(ok, eq, note){ // trip mode on the loaded file
+  var hst = 'Pacific/Honolulu', fw = null, oa = cityItems(ALL_DATA, 'oahu').filter(function(it){ return ID_SID[it.id] && !(it.verified && it.verified.status === 'closed'); });
+  ALL_DATA.forEach(function(it){ if (it.id === 'oahu-wk-hilton-friday-fireworks') fw = it; });
+  if (fw) eq('real data T2: Friday fireworks (Hilton Hawaiian Village) on the Dec 11-16 trip: Fri 7:45 pm, not Sat', tripDayStatus(fw, '2026-12-11', hst).k + ' ' + tripDayStatus(fw, '2026-12-11', hst).a + '|' + tripDayStatus(fw, '2026-12-12', hst).k, 'event 7:45p|closed');
+  else note('real data T2: the fireworks item is not in this file (skipped)');
+  eq('real data T7: still in Chicago after the Oʻahu checks', CITY.slug + '|' + TZ, 'chicago|America/Chicago');
+  if (!oa.length) { note('real data T9: no Oʻahu items in this file (page check skipped)'); return; }
+  var t = {id:'abcdefgh', city:'oahu', from:'2026-12-11', to:'2026-12-16', gid:'', home:{label:'Test hotel', sub:'Waikīkī', lat:21.2800, lng:-157.8320}, sids:oa.slice(0, 6).map(function(it){ return ID_SID[it.id]; })};
+  if (document.body) {
+    var W = Math.min(window.innerWidth || 390, 480) - 40, host = document.createElement('div'), r = '';
+    host.style.cssText = 'position:absolute;left:-10000px;top:0;visibility:hidden;box-sizing:content-box;padding:0 20px;overflow:auto;width:' + W + 'px';
+    document.body.appendChild(host);
+    try { host.innerHTML = tripPageHTML(t); r = (host.scrollWidth <= host.clientWidth + 1) + ':' + host.querySelectorAll('.tp-it').length + ':' + host.querySelectorAll('.tp-d').length + ':' + !!host.querySelector('.gp-send') + ':' + (host.textContent.indexOf(tripT('crow')) >= 0 && /\d mi · /.test(host.textContent)); }
+    finally { host.parentNode.removeChild(host); }
+    eq('real data T9: the trip page at ' + W + ' px content width: no sideways scroll, 6 places x 6 days, a vote button, distances + the home-base note', r, 'true:6:36:true:true');
+  }
+  eq('real data T7: Chicago list unchanged by trip checks', DATA.every(function(it){ return cityOf(it) === 'chicago'; }) + '|' + (TRIP.on === ''), 'true|true');
 }
 function v524SelfTest(ok, eq, info){
   function fxc(o){ return ext({id:'fx24-' + (++uid), name:'Fixture', kind:'place', category:'games-arcade', tags:[], lat:41.88, lng:-87.63, indoor_outdoor:'indoor', price_level:'$', booking:'walk-in', hours:null, season:null, verified:{status:'verified', checked_on:'2026-11-10'}}, o); }
@@ -15790,6 +16455,7 @@ function i18nSelfTestAsync(ok, eq){
         eq('real data C7: the drawn map in Oʻahu: one island area, sea is water, mid-island is land, drawn; back in Chicago ' + GEO.areas.length + ' community areas', g6 + '|' + (GEO.areas.length > 50), '1|Oʻahu|true|false|true|true');
       } else note('C7 drawn-map check skipped (street map on, or the map files did not load)');
       try { v525SelfTestReal(ok, eq, note); } catch (e25) { ok('v5.25 Group Blend real-data checks: crashed', false, e25 && e25.message ? e25.message : String(e25)); }
+      try { v526SelfTestReal(ok, eq, note); } catch (e26) { ok('v5.26 trip mode real-data checks: crashed', false, e26 && e26.message ? e26.message : String(e26)); }
       if (!UI.detailId && DATA.length) {
         var pre24 = BK.pushed;   // the self-test's own sheet may already hold the Back step
         openDetail(DATA[0].id);
@@ -15838,6 +16504,7 @@ function readHash(){
   var ivc = inviteCode(hsh); if (ivc) { if (mapEl) inviteOpen(ivc); return; }   // v5.11: a friend invite
   if (/(?:^#|&)acctdemo=1/.test(hsh) && mapEl) acctDemo();
   if (/(?:^#|&)acctsheet=1/.test(hsh) && mapEl) (function w(){ if (!DATA_LOADED) { setTimeout(w, 200); return; } setTimeout(function(){ try { syncAcctButtons(); openAccount(); } catch (e) {} }, 400); })();   // v5.17 screenshot hook: the account sheet (with #acctdemo=1 / #tastedemo=1)
+  var tdm = /(?:^#|&)tripdemo=(list|new|home|page|vote|empty|place)\b/.exec(hsh); if (tdm && mapEl) { UI.tripDemo = tdm[1]; tripDemo(tdm[1], 0); }   // v5.26 testing hook: trip mode with a made-up trip, in memory only (nothing stored or sent)
   var gdm = /(?:^#|&)grpdemo=(pick|page|send|six|empty|few|sheet)\b/.exec(hsh); if (gdm && mapEl) groupDemo(gdm[1], 0);   // v5.25 testing hook (with #acctdemo=1&cpdemo=1): Group Blend with made-up friends, in memory only
   if (/(?:^#|&)cpdemo=1/.test(hsh) && mapEl) coupleDemo(0);   // v5.13 testing hook (with #acctdemo=1): couple mode on with the made-up friend   // v5.11 testing hook: the signed-in screens with made-up friends (in memory, nothing sent)
   if (/(?:^#|&)panel=friends/.test(hsh) && mapEl) setTimeout(function(){ var go = function(){ if (DATA_LOADED && Acct.demo) { if (/(?:^#|&)noname=1/.test(hsh)) { Acct.profile = null; Acct.cachedName = ''; } openFriends(); if (/(?:^#|&)unamepick=1/.test(hsh)) setTimeout(acctAskName, 400); } else setTimeout(go, 200); }; go(); }, 0);   // v5.14 hooks: &noname=1 (signed in, no username), &unamepick=1 (tap "Pick a username")
@@ -16609,6 +17276,7 @@ function init(){
   if (loc && isNum(loc.lat) && isNum(loc.lng) && inCityBox(loc.lat, loc.lng)) S.loc = {lat:loc.lat, lng:loc.lng, label:String(loc.label || 'Your pin'), src:loc.src === 'gps' || loc.src === 'address' ? loc.src : 'picked',
     acc:loc.src === 'gps' && isNum(loc.acc) ? loc.acc : null, t:0, explicit:false, fresh:false};   // v5.5: remembered from an earlier visit (priority 1: a fresh reading beats it)
   else { S.loc = ext(LOOP, {}); UI.firstOpen = true; }
+  tripBoot();   // v5.26: a trip left on (og.trips.on.v1): its city and home base
   bindMap(); bindSheet(); bindUI(); bindTaste();
   bindCity(); applyCityUI();   // v5.24
   measureMap();
@@ -16667,6 +17335,33 @@ window.__cff = {
   setLocation: function(lat, lng, label){ UI.firstOpen = false; commitLocation({lat:lat, lng:lng, label:label || 'Test pin', src:'picked', explicit:true}); },
   // v5.5
   accText: accText, accRough: accRough, locFixNote: locFixNote, locPriority: locPriority, takeFix: takeFix, locAccFor: locAccFor,
+  tripsGet: tripsGet, tripsPut: tripsPut, tripsForget: tripsForget, tripSl: tripSl, tripDays: tripDays, tripDayStatus: tripDayStatus, tripOrigin: tripOrigin, tripCtx: tripCtx, tripVoteSids: tripVoteSids, tripTodayKey: tripTodayKey, tripRange: tripRange,
+  tripActivate: tripActivate, tripOff: tripOff, tripPageHTML: tripPageHTML, tripNomiUrl: tripNomiUrl, acctDeviceKeys: acctDeviceKeys, TRIP: TRIP, TRIPS_KEY: TRIPS_KEY,   // v5.26 trip mode
+  tripFlow: function(){ // v5.26 test helper: the whole on/add/GPS/off flow on a made-up trip in the memory store (her trips untouched) -> what changed at each step
+    var keepDemo = UI.tripDemo, r = {before:{city:CITY.slug, src:S.loc.src, lat:S.loc.lat}};
+    UI.tripDemo = 'probe';
+    try {
+      var rec = tripsPut(tripStore(), {city:'oahu', from:'2026-12-11', to:'2026-12-16', home:{label:'Probe hotel', lat:21.2836, lng:-157.8372}, sids:[]});
+      tripOpenPage(rec.id);
+      r.on = {city:CITY.slug, src:S.loc.src, lat:S.loc.lat, tz:TZ, bar:!!document.querySelector('.tp-bar'), title:$('pTripTitle').textContent};
+      var it = DATA.filter(function(x){ return ID_SID[x.id] && x.hours; })[0];
+      closePanel('pTrip'); openDetail(it.id);
+      var btn = document.querySelector('#detail [data-trip="add"]'), sub = document.querySelector('#detail .subline');
+      r.place = {btn:btn ? btn.textContent : null, sub:sub ? sub.textContent : null};
+      if (btn) btn.click();
+      r.place.after = btn ? btn.textContent : null; r.place.n = tripFind(tripStore(), rec.id).sids.length;
+      closeDetail();
+      var g0 = Platform.geo.get; Platform.geo.get = function(ok){ ok(41.9, -87.65, 20, Date.now()); };
+      try { onGeoPermission('granted'); } finally { Platform.geo.get = g0; }
+      r.quiet = {city:CITY.slug, src:S.loc.src, on:TRIP.on === rec.id};
+      tripOpenPage(rec.id);
+      var b = $('pTripBody'); r.page = {items:b.querySelectorAll('.tp-it').length, days:b.querySelectorAll('.tp-d').length, noSideScroll:b.scrollWidth <= b.clientWidth + 1};
+      tripOff(true); closePanel('pTrip');
+      r.off = {city:CITY.slug, src:S.loc.src, lat:S.loc.lat, on:TRIP.on, tz:TZ, bar:!!document.querySelector('.tp-bar'), stored:Platform.store.get('cff.loc.v1', null)};
+    } finally { UI.tripDemo = keepDemo; }
+    r.realTrips = Platform.store.get(TRIPS_KEY, null);
+    return r;
+  },
   addrQuery: addrQuery, addrWait: addrWait, nominatimUrl: nominatimUrl, addrBoxShown: addrBoxShown, addrParse: addrParse, ADDR_SAMPLE: ADDR_SAMPLE,
   addrState: function(){ return {shown:addrShown(), sent:Addr.sent, lastAt:Addr.lastAt, cached:Object.keys(Addr.cache)}; },
   GEO_TAP_OPTS: GEO_TAP_OPTS, GEO_QUIET_OPTS: GEO_QUIET_OPTS,
