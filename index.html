@@ -2246,9 +2246,9 @@ svg.gi{width:20px;height:20px;flex:none}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.31 (2026-11-15)';   // v5.31: the About panel and the Surprise panel in ru / zh-Hans / ko (A31 string table, unverified). v5.30: the rest of the text in ru / zh-Hans / ko (phrase table for the location sheet, friends, privacy, poll, Group Blend, taste result, pop-ups, toasts), rarer leave-now sentences, photo credit words, ko times from Intl, the trip page redrawn on a language switch, the action row at 320 px, stricter food answers. v5.29: Ask about this place (answers only from the item's data), group size + occasion filters, trip party size. v5.28: the app text in ru / zh-Hans / ko (dates and times via Intl, ~230 new keys, data + guide translation plumbing)
+var VERSION = 'v5.32 (2026-11-15)';   // v5.32: Retake fix - the taste deck is built from Chicago's places wherever the app's city is (in Oahu it ran out after 1 card), a slot that can't be filled never ends the deck, and a Retake keeps the previous result until the new 35 answers are in. v5.31: the About panel and the Surprise panel in ru / zh-Hans / ko (A31 string table, unverified). v5.30: the rest of the text in ru / zh-Hans / ko (phrase table for the location sheet, friends, privacy, poll, Group Blend, taste result, pop-ups, toasts), rarer leave-now sentences, photo credit words, ko times from Intl, the trip page redrawn on a language switch, the action row at 320 px, stricter food answers. v5.29: Ask about this place (answers only from the item's data), group size + occasion filters, trip party size. v5.28: the app text in ru / zh-Hans / ko (dates and times via Intl, ~230 new keys, data + guide translation plumbing)
 //   // v5.27: Generate my itinerary on the trip page (day-by-day plan from the shortlist + group picks: home base start/end, area clusters, hours/events/sunset, either/or, didn't fit, editable, saved with the trip on this device). v5.26: trip mode lite (on this phone only: city + dates + optional group, a home base that every distance starts from while trip mode is on, a shortlist with a status per trip day, vote link with places only, og.trips.v1 max 5). v5.25: Group Blend v1 (2-5 friends, on this phone only: poster + group match, picks tagged "4 of 5", vote link with places only, saved groups og.groups.v1). v5.24: multi-city (Chicago + Oʻahu): city picker, per-city data, map bounds, spots, travel and badges; open-now in the item's city time zone. v5.23: the rest ofthe UI words in ru / zh-Hans / ko (unverified), Visiting Chicago from the data field us_cities (< 3 US cities; visit_override). v5.22: Google rating line on place pages (edge function, page memory only), holiday status from fields only, more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
-var VERSION_PREV = 'v5.30 (2026-11-15)';   // v5.30: the rest of the text in ru / zh-Hans / ko. v5.29: Ask about this place, group size + occasions. v5.28: the app text in ru / zh-Hans / ko. v5.27: Generate my itinerary. v5.26: trip mode lite. v5.25: Group Blend v1
+var VERSION_PREV = 'v5.31 (2026-11-15)';   // v5.31: the About and Surprise panels translated. v5.30: the rest of the text in ru / zh-Hans / ko. v5.29: Ask about this place, group size + occasions. v5.28: the app text in ru / zh-Hans / ko. v5.27: Generate my itinerary. v5.26: trip mode lite. v5.25: Group Blend v1
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
 var FEEDBACK_EMAIL = 'localfinds.app@gmail.com';   // v5.16: "Send feedback" in the account sheet (a mailto draft; never sent by the app). Separate from CONTACT_EMAIL.
 var PUBLIC_URL = '';                // v4: the app's public address, used for share links ("<PUBLIC_URL>#<id>"). Set it when publishing (claude.ai artifact link or the GitHub Pages address). Empty = use the page's own address when it runs as its own page.
@@ -5936,7 +5936,8 @@ function isFarItem(it){ // spec-fixes Fix 1: a long trip, not a taste. A far tag
   if (!it) return false;
   if (NOCAR_TAGS.some(function(t){ return hasTag(it, t); })) return true;
   if (!isNum(it.lat) || !isNum(it.lng)) return false;
-  return travel(distMi(LOOP.lat, LOOP.lng, it.lat, it.lng), 'car').min > FAR_ITEM_MIN;
+  var hc = CITY_BY[cityOf(it)], ctr = hc && hc.center ? hc.center : LOOP;   // v5.32: from the item's own city center (LOOP follows the app's city since v5.24, so in Oahu every Chicago place counted as far)
+  return travel(distMi(ctr.lat, ctr.lng, it.lat, it.lng), 'car').min > FAR_ITEM_MIN;
 }
 function emptyStats(){ return TS_EMPTY || (TS_EMPTY = tasteStats(emptyTaste())); }
 function blendStats(a, b){ // §7 date mode: equal-weight leans, union of interests, nevers and hard no's
@@ -6308,8 +6309,18 @@ function deckNext(D){ // the next card, or null when the deck is done (§3c stop
     var d = order[j], ends = ec(d, 1) < ec(d, -1) ? [1, -1] : ec(d, -1) < ec(d, 1) ? [-1, 1] : (rng() < 0.5 ? [1, -1] : [-1, 1]);
     for (var k = 0; k < 2; k++) { var p = deckPickFrom(deckCandidates(D, d, ends[k]), rng); if (p) return {it:p.it, kind:'dial', dial:d, end:ends[k], x:p.x, clean:p.clean}; }
   }
+  return deckRecipe(D) ? deckFallback(D) : null;   // v5.32: the main deck (and Retake) never ends early because one slot found no photo card
+}
+function deckFallback(D){ // v5.32: a slot nothing could fill -> an interest card, a Weird probe, then any unused would-you-rather; null only when all are used up
+  var c = D.cfg.interest ? deckInterest(D) : null; if (c) return c;
+  c = deckProbe(D, 'weird'); if (c) return c;
+  var used = {}; D.cards.forEach(function(x){ if (x.kind === 'wyr') used[x.q.q] = 1; }); Object.keys(D.badQ || {}).forEach(function(k){ used[k] = 1; });
+  var ax = ['e', 'v', 'p', 'w'];
+  for (var i = 0; i < ax.length; i++) { var q = WYR_QUEUE[ax[i]].filter(function(k){ return !used[k] && wyrQ(k); })[0]; if (q) return {kind:'wyr', q:wyrQ(q), dial:ax[i], aFirst:D.rng() < 0.5, it:null, x:{}}; }
   return null;
 }
+var TASTE_CITY = 'chicago';   // v5.32: the taste deck's places (and every would-you-rather photo) are Chicago's, whatever city the app is showing
+function deckSource(){ var src = cityItems(ALL_DATA && ALL_DATA.length ? ALL_DATA : DATA, TASTE_CITY); return src.length ? src : DATA; }
 function deckFill(D){ // the card on screen now (picks the next one when needed), or null when done
   if (D.cards.length > D.log.length) return D.cards[D.log.length];
   if (D.done) return null;
@@ -12565,7 +12576,7 @@ function renderAbout(){ // v5.31: every line through A31 (English exactly as bef
   h += wxAboutHTML();   // v5.20
   h += '<h3>' + A('ab.mapH') + '</h3><p>' + A('ab.map') + '</p>' + (en ? '' : '<p class="small">' + A('ab.cityQ') + '</p>');
   h += '<blockquote' + (en ? '' : ' lang="en"') + '>"This site provides applications using data that has been modified for use from its original source, www.cityofchicago.org, the official website of the City of Chicago. The City of Chicago makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one\'s own risk."<br>Source: <a href="https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html" target="_blank" rel="noopener">City of Chicago data terms of use</a></blockquote>';   // the City's required wording stays in English (v5.31)
-  h += '<h3>' + A('ab.photosH') + '</h3>' + (photos.length ? '<ul class="credits">' + photos.map(function(it){ var ph = firstPhoto(it), pu = safeUrl(ph.page_url); return '<li>' + enSpan(esc(it.name)) + ': ' + (pu ? '<a href="' + esc(pu) + '" target="_blank" rel="noopener">' + esc(ph.credit ? creditL(photoCredit(ph)) : domainOf(pu)) + '</a>' : esc(creditL(photoCredit(ph)))) + '</li>'; }).join('') + '</ul>' : '<p>' + A('ab.noPhotos') + '</p>');
+  h += '<h3>' + A('ab.photosH') + '</h3>' + (photos.length ? '<ul class="credits">' + photos.map(function(it){ var ph = firstPhoto(it), pu = safeUrl(ph.page_url); return '<li>' + enSpan(esc(it.name)) + ': ' + (pu ? '<a href="' + esc(pu) + '" target="_blank" rel="noopener">' + enSpan(esc(ph.credit ? creditL(photoCredit(ph)) : domainOf(pu))) + '</a>' : enSpan(esc(creditL(photoCredit(ph))))) + '</li>'; }).join('') + '</ul>' : '<p>' + A('ab.noPhotos') + '</p>');
   if (CONTACT_EMAIL) h += '<p class="small">' + A('ab.photosOwn', {mail:'<a href="mailto:' + esc(CONTACT_EMAIL) + '">' + esc(CONTACT_EMAIL) + '</a>'}) + '</p>';
   h += '<h3>' + A('ab.srcH') + '</h3><p>' + A('ab.src') + '</p>';
   h += '<h3>' + A('ab.themeH') + '</h3><div id="aboutTheme">' + langPickerHTML() + themePickerHTML() + '</div>';
@@ -13014,6 +13025,13 @@ function openTaste(mode){
 function closeTaste(){ swStopHint(); clearTimeout(TU.busyTap); TU.busy = false; var el = tasteEl(); el.hidden = true; el.innerHTML = ''; TU.mode = ''; TU.D = null; document.documentElement.classList.remove('tk-open'); tasteChanged(); }
 function tasteTarget(){ return TU.who === 'guest' ? TASTE_GUEST : TASTE; }
 function deckNameFor(name){ return name === 'retake' ? 'main' : name; }   // v5.19: Retake = the same 35-answer deck (swipes + would-you-rather), fresh cards
+function deckKeep(D){ // v5.32: where the answers so far go. A first test (or a guest): into the profile after every answer, as before.
+  var T = tasteTarget(); if (D.retake) return T;   // a Retake: kept in the deck only, so her previous result stays until the new one is finished
+  T.log = D.base.concat(D.log); tasteSave(T); return T;
+}
+function retakeLog(old, fresh){ // v5.32 (pure): a finished Retake's log = the new answers + her saves and thumbs; the old deck answers (cards, tie-break pairs) are replaced
+  return (old || []).filter(function(x){ return x && x.t !== 'card' && x.t !== 'pair'; }).concat(fresh || []);
+}
 function tasteStartDeck(name, dials){
   if (!DATA_LOADED) { toast('Still loading the list. Try again in a moment.'); return; }
   if (!TASTE) tasteLoad();
@@ -13022,11 +13040,11 @@ function tasteStartDeck(name, dials){
   if (name === 'guest') { TASTE_GUEST = emptyTaste(); TASTE_GUEST.name = (TU.guestName || 'Guest').slice(0, 12); }
   var T = tasteTarget(), ex = {};
   if (!retake) T.log.forEach(function(x){ if (x.t === 'card') ex[x.id] = 1; });   // v5.19: a retake may show cards again, so the full 35 always fill
-  var pk = cparts(nowMs()).key;
-  if (!TU.pool || TU.poolKey !== pk + '|' + DATA.length) { TU.pool = deckPool(DATA, nowMs()); TU.poolKey = pk + '|' + DATA.length; }
-  if (name === 'retake' && !dials) { var st = tasteStats(T); dials = DECK_DIALS.filter(function(d){ return !st.consistent[d]; }); if (!dials.length) dials = null; }
+  var pk = cparts(nowMs()).key, src = deckSource();   // v5.32 ROOT CAUSE of "Retake shows 1 question then ends": the pool was built from DATA = the current city only
+  if (!TU.pool || TU.poolKey !== pk + '|' + src.length) { TU.pool = deckPool(src, nowMs()); TU.poolKey = pk + '|' + src.length; }   // (Oahu: 1 photo card, so the deck finished after card 1)
   TU.D = newDeck(TU.pool, name, Math.random, ex, dials);
   TU.D.noBar = !!(T.hard && T.hard.noBar);   // v5.17 Fix 4: no bar probes when she already skips bars
+  TU.D.retake = retake && T === TASTE;   // v5.32: a Retake holds its answers in the deck; her previous result stays until all 35 are in
   TU.D.base = T.log.slice(); TU.saved = {};
   openTaste('deck');
 }
@@ -13101,7 +13119,7 @@ function wyrPick(k){ // k = 'a' | 'b' | 'skip': the tapped half grows a little w
   TU.busy = true;
   var ms = Date.now() - TU.shownAt, rm = reduceMotion(), el = tasteEl(), stg = el && el.querySelector('.wy-stage'), pass = k === 'skip' || k === 'neither';
   if (stg) Array.prototype.forEach.call(stg.querySelectorAll('.wy-half'), function(h){ h.disabled = true; if (!pass) h.classList.add(h.getAttribute('data-tk-wyr') === k ? 'picked' : 'other'); else if (k === 'neither') h.classList.add('other'); });   // one tap only; Neither fades both
-  function next(){ if (TU.D !== D) return; deckAnswer(D, k, ms); var T = tasteTarget(); T.log = D.base.concat(D.log); tasteSave(T); TU.enter = 'in'; tasteRender(); }
+  function next(){ if (TU.D !== D) return; deckAnswer(D, k, ms); deckKeep(D); TU.enter = 'in'; tasteRender(); }
   if (k === 'skip') { next(); return; }
   if (k === 'neither') { TU.busyTap = setTimeout(next, rm ? 120 : 220); return; }
   TU.busyTap = setTimeout(function(){ if (rm && stg) { stg.style.transition = 'opacity .15s linear'; stg.style.opacity = 0; setTimeout(next, 150); } else next(); }, rm ? 200 : 350);
@@ -13194,9 +13212,8 @@ function swCommit(ans, fx, fy){ // fly off, then keep the answer (same bookkeepi
   setTimeout(function(){
     if (TU.D !== D) return;   // closed meanwhile
     deckAnswer(D, ans, ms);
-    var T = tasteTarget(); T.log = D.base.concat(D.log);
+    deckKeep(D);
     if (saves) { TU.saved[c.it.id] = 1; toggleSave(c.it.id, 'deck'); }
-    tasteSave(T);
     TU.enter = 'in'; TU.toastLeft = saves ? 'Saved' : '';
     tasteRender();
   }, rm ? 200 : 260);
@@ -13216,7 +13233,7 @@ function tkUndo(){
   swStopHint();
   var e = deckUndo(D); if (!e) return;
   if (TU.saved[e.id] && isSaved(e.id)) { delete TU.saved[e.id]; toggleSave(e.id, 'deck'); TU.toastLeft = 'Unsaved'; }   // a "Love it" that saved it: unsaved again
-  var T = tasteTarget(); T.log = D.base.concat(D.log); tasteSave(T);
+  deckKeep(D);
   TU.enter = 'undo:' + e.ans;
   tasteRender();
 }
@@ -13311,6 +13328,7 @@ function swRunHint(E){ // §5: once, on card 1: the card shows each move to just
 }
 function deckFinished(){
   var D = TU.D, T = tasteTarget(), name = D.cfg.name;
+  if (D.retake) { T.log = retakeLog(T.log, D.log); D.retake = false; }   // v5.32: the new result replaces the old one only now, with all answers in
   T.done = cparts(nowMs()).key; if (T === TASTE) TASTE.nag.shown = Math.max(TASTE.nag.shown, 2);
   tasteSave(T);
   if (name === 'guest') { TU.who = 'me'; S.f.who = {date:true}; TU.mode = 'profile'; toast((TASTE_GUEST.name || 'Guest') + '\'s taste is in. Date picks now blend you both.'); tasteChanged(); tasteRender(); return; }
@@ -15146,8 +15164,8 @@ function runSelfTest0(){
   block('v5 shorter filter sheet', function(){
     var keep = UI.draft, keepB = UI.draftB; UI.draft = copyF(S.f); UI.draftB = {on:false, val:120};
     renderFilters();
-    var body = $('pFiltersBody'), nBtn = body.querySelectorAll('button').length, nSec = body.querySelectorAll('.fsec').length, nNote = body.querySelectorAll('.note,small,p').length;
-    ok('at most 8 sections and ~45 buttons, no helper sentences (v5.29: + "How many of you?" with 5 sizes and 5 occasions)', nSec <= 8 && nBtn <= 45 && nNote === 0, nSec + ' sections, ' + nBtn + ' buttons, ' + nNote + ' notes');
+    var body = $('pFiltersBody'), nInt = body.querySelectorAll('button[data-d^="int:"]').length, nBtn = body.querySelectorAll('button').length - nInt, nSec = body.querySelectorAll('.fsec').length, nNote = body.querySelectorAll('.note,small,p').length;
+    ok('at most 8 sections and ~45 buttons besides the "Into" chips (at most 30, v5.23), no helper sentences (v5.29: + "How many of you?" with 5 sizes and 5 occasions)', nSec <= 8 && nBtn <= 45 && nInt <= 30 && nNote === 0, nSec + ' sections, ' + nBtn + ' buttons + ' + nInt + ' Into chips, ' + nNote + ' notes');   // v5.32: with the list loaded the 30 interests made it 59 (a FAIL since v5.29 whenever the test ran after loading)
     eq('interests: at most ' + POP_INTERESTS + ' popular ones (+ any picked)', popularInterests(DATA, {interests:{}}, POP_INTERESTS).length <= POP_INTERESTS, true);
     var vw5 = [1, 2, 3, 4, 5].map(function(){ return fx({tags:['views', 'cheese']}); });   // v5.23: the menu needs 5+ items; cheese is not on the menu
     ok('a picked interest outside the menu stays visible (v5.23: menu interests need 5+ items)', popularInterests(vw5, {interests:{bugs:true}}, 1).map(function(x){ return x.id; }).join() === 'views,bugs' && popularInterests(vw5.slice(0, 4), {interests:{}}, 30).length === 0, show(popularInterests(vw5, {interests:{bugs:true}}, 1)));
@@ -15563,8 +15581,8 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.31 (2026-11-15)');
-    eq('previous version', VERSION_PREV, 'v5.30 (2026-11-15)');
+    eq('version', VERSION, 'v5.32 (2026-11-15)');
+    eq('previous version', VERSION_PREV, 'v5.31 (2026-11-15)');
   });
 
   /* ---------- v5.20 fix (live v5.19 tester, MEDIUM): "Last entry not posted" must never make a last-entry time ---------- */
@@ -16866,6 +16884,50 @@ function runSelfTest0(){
       TASTE.mine.e = -1; TASTE_REV++;
       ok('live: Energy to Chill -> the header becomes the Oddity Moth', funType(tasteMine()).id === 9 && /Oddity Moth/.test(typeHeadInner(funType(tasteMine()), true)) && /You're now a/.test(typeHeadInner(funType(tasteMine()), true)), '');
     } finally { TASTE = K.T; TASTE_SUSPEND = K.sus; TASTE_REV++; TU.mode = K.mode; }
+  });
+  block('v5.32 Retake with an existing saved result (fixture in memory, nothing saved; en + ru; the app\'s city set to Oahu like the bug)', function(){
+    if (!DATA_LOADED || !ALL_DATA.length) { info('V532 Retake checks skipped: the list is still loading (run the self-test again once it has loaded)'); return; }
+    var K = {T:TASTE, sus:TASTE_SUSPEND, demo:TASTE_DEMO, D:TU.D, who:TU.who, mode:TU.mode, data:DATA, lang:LANG, loop:ext(LOOP, {})};
+    var hon = CITY_BY.oahu ? CITY_BY.oahu.center : {lat:21.3069, lng:-157.8583};
+    try {
+      TASTE_DEMO = true; TASTE_SUSPEND = 0; TU.who = 'me';
+      var prevLog = r17Log().concat([{t:'save', id:'v532-save', x:{e:1, v:0, p:0, w:0}, at:'2026-11-11T10:00:00.000Z'}]);
+      DATA = cityItems(ALL_DATA, 'oahu'); LOOP.lat = hon.lat; LOOP.lng = hon.lng;   // her situation: the app showing Oahu (LOOP follows the city)
+      var oldPool = deckPool(DATA, nowMs()), on = 0; DECK_DIALS.forEach(function(d){ on += oldPool.dial[d]['1'].length + oldPool.dial[d]['-1'].length; });
+      ok('V532-1 the bug: the Oahu list alone (what v5.31 built the deck from) has only ' + on + ' photo card(s) for the dials, fewer than the 12 swipe slots, so the deck ran dry (in her case after card 1) and ended', on < 12, String(on));
+      ok('V532-2 deckSource() is Chicago\'s list whatever city the app shows', deckSource().length === cityItems(ALL_DATA, 'chicago').length && deckSource().every(function(it){ return cityOf(it) === 'chicago'; }), deckSource().length + ' vs ' + cityItems(ALL_DATA, 'chicago').length);
+      var nearC = {id:'v532-near', name:'Near the Loop', kind:'place', city:'chicago', category:'games-arcade', tags:[], lat:41.89, lng:-87.63};
+      ok('V532-3 a Chicago place by the Loop is not "far" while the app shows Oahu (far = from the item\'s own city)', !isFarItem(nearC), '');
+      ['en', 'ru'].forEach(function(lg){
+        LANG = lg;
+        TASTE = ext(emptyTaste(), {log:prevLog.slice(), done:'2026-11-10'}); TASTE_REV++;
+        var ty0 = funType(tasteMine()), log0 = JSON.stringify(TASTE.log);
+        var D = newDeck(deckPool(deckSource(), nowMs()), deckNameFor('retake'), seededRng(lg === 'en' ? 11 : 12), {});
+        D.retake = true; D.base = TASTE.log.slice(); TU.D = D; TU.mode = 'deck';
+        var c1 = deckFill(D), h1 = deckScreenHTML(); deckAnswer(D, c1.kind === 'wyr' ? 'b' : 'yes', 2000); deckKeep(D);
+        var c2 = deckFill(D), h2 = deckScreenHTML();
+        ok('V532-4 ' + lg + ': Retake card 1 and card 2 are on screen ("1 / 35", "2 / 35")', !!c1 && !!c2 && />1 <span>\/ 35</.test(h1) && />2 <span>\/ 35</.test(h2), (h2 || '').slice(0, 120));
+        ok('V532-5 ' + lg + ': after an answer her previous result is untouched (log and character the same)', JSON.stringify(TASTE.log) === log0 && (funType(tasteMine()) || {}).code === (ty0 || {}).code, String(TASTE.log.length));
+        var guard = 0, wyrH = '';
+        while (deckFill(D) && guard < 60) { var cc = D.cards[D.log.length]; if (cc.kind === 'wyr' && !wyrH) wyrH = deckScreenHTML(); deckAnswer(D, cc.kind === 'wyr' ? (guard % 2 ? 'a' : 'b') : guard % 3 ? 'yes' : 'no', 2000); deckKeep(D); guard++; }
+        var nS = D.log.filter(function(x){ return x.kind !== 'wyr'; }).length, nW = D.log.filter(function(x){ return x.kind === 'wyr'; }).length;
+        eq('V532-6 ' + lg + ': the Retake runs the full deck: 12 swipes + 23 would-you-rather = 35', nS + ' + ' + nW + ' = ' + D.log.length, '12 + 23 = 35');
+        ok('V532-7 ' + lg + ': the would-you-rather screen shows ("13 / 35" style count, two halves)', /class="wy"/.test(wyrH) && />13 <span>\/ 35</.test(wyrH) && (wyrH.match(/data-tk-wyr=/g) || []).length === 2, wyrH.slice(0, 120));
+        ok('V532-8 ' + lg + ': still the old result until the deck is finished', JSON.stringify(TASTE.log) === log0, '');
+        var nl = retakeLog(TASTE.log, D.log);
+        ok('V532-9 ' + lg + ': finished -> the new 35 answers replace the old deck answers; saves and thumbs are kept', nl.filter(function(x){ return x.t === 'card'; }).length === 35 && !nl.some(function(x){ return x.t === 'pair'; }) && nl.some(function(x){ return x.t === 'save' && x.id === 'v532-save'; }), String(nl.length));
+        if (lg === 'ru') ok('V532-10 ru: the deck words are the Russian ones (Skip -> ' + tx('tk.skip', 'Skip') + ')', tx('tk.skip', 'Skip') !== 'Skip' && h1.indexOf(esc(tx('tk.skip', 'Skip'))) >= 0, '');
+      });
+      LANG = K.lang;
+      TASTE = emptyTaste(); TASTE_REV++;
+      var Df = newDeck(deckPool(deckSource(), nowMs()), 'main', seededRng(21), {}); Df.retake = false; Df.base = []; TU.D = Df;
+      deckFill(Df); deckAnswer(Df, 'yes', 2000); deckKeep(Df);
+      ok('V532-11 no previous test: a first deck still saves each answer into the profile as before', TASTE.log.length === 1, String(TASTE.log.length));
+      var tiny = newDeck(oldPool, 'main', seededRng(4), {}), tn = 0;
+      while (deckFill(tiny) && tn < 60) { var tc = tiny.cards[tiny.log.length]; deckAnswer(tiny, tc.kind === 'wyr' ? 'a' : 'yes', 2000); tn++; }
+      ok('V532-12 a pool with almost no photo cards no longer stops after card 1: the slots fall back to the would-you-rather questions (' + tn + ' cards)', tn >= 27, String(tn));
+      ok('V532-13 the wiring: Retake shows cards again (no "seen" filter), answers go through deckKeep, deckFinished swaps the log in', String(tasteStartDeck).indexOf('if (!retake)') > 0 && String(tasteStartDeck).indexOf('deckSource()') > 0 && String(swCommit).indexOf('deckKeep(D)') > 0 && String(wyrPick).indexOf('deckKeep(D)') > 0 && String(tkUndo).indexOf('deckKeep(D)') > 0 && String(deckFinished).indexOf('retakeLog(T.log, D.log)') > 0, '');
+    } finally { TASTE = K.T; TASTE_SUSPEND = K.sus; TASTE_DEMO = K.demo; TU.D = K.D; TU.who = K.who; TU.mode = K.mode; DATA = K.data; LANG = K.lang; LOOP.lat = K.loop.lat; LOOP.lng = K.loop.lng; TASTE_REV++; }
   });
   block('v5.17a2 Result extras: runner-up, "Does this fit you?", the character-shift note (test profile in memory, nothing saved)', function(){
     var K = {T:TASTE, sus:TASTE_SUSPEND, demo:TASTE_DEMO};
@@ -19167,6 +19229,7 @@ function init(){
 
 window.__cff = {
   version: VERSION, appName: APP_NAME,
+  m532: {deckSource: deckSource, deckFallback: deckFallback, retakeLog: retakeLog, isFarItem: isFarItem, tasteStartDeck: tasteStartDeck, deck: function(){ return TU.D; }, tasteLog: function(){ return TASTE ? TASTE.log.slice() : null; }},   // v5.32 Retake (testing only)
   m531: {a31: a31, A31: A31, planWhenL: planWhenL, renderAbout: renderAbout, renderSurprise: renderSurprise, openSurprise: openSurprise, spinSurprise: spinSurprise, setVeto: function(a){ surpriseVeto = a || []; }, setLang: setLang, loc30: loc30},   // v5.31 (testing only)
   m530: {tr30: tr30, loc30: loc30, loc30All: loc30All, relang30: relang30, creditL: creditL, leave30: leave30, STR30: STR30, openLocation: function(){ openLocation(false); }, openFriends: openFriends, openPrivacy: openPrivacy, renderTrip: renderTrip, tripOpenList: tripOpenList, grpOpen: grpOpen, popShow: popShow, openAbout: function(){ renderAbout(); openPanel('pAbout'); }, toast: toast, toastText: function(){ return $('toast').textContent; }, openPanel: openPanel},   // v5.30 (testing only)
   m529: {askAnswer: askAnswer, askTopics: askTopics, askDays: askDays, askRun: askRun, partyFits: partyFits, occasionOk: occasionOk, groupRange: groupRange, tripParty: tripParty},   // v5.29 (testing only)
