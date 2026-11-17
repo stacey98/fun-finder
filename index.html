@@ -2253,7 +2253,8 @@ svg.gi{width:20px;height:20px;flex:none}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.33 (2026-11-17)';   // v5.33: party sizes 1 / 2 / 3-8 / 9+ (old 3-4 / 5-8 read as 3-8); "Save all" the places liked in the test (Result, taste profile, one-time pop-up for earlier tests)
+var VERSION = 'v5.34 (2026-11-17)';   // v5.34: the picked half of a would-you-rather counts as a liked place for "Save all"
+// v5.33:   // v5.33: party sizes 1 / 2 / 3-8 / 9+ (old 3-4 / 5-8 read as 3-8); "Save all" the places liked in the test (Result, taste profile, one-time pop-up for earlier tests)
 // v5.32 history:   // v5.32: Retake fix - the taste deck is built from Chicago's places wherever the app's city is (in Oahu it ran out after 1 card), a slot that can't be filled never ends the deck, and a Retake keeps the previous result until the new 35 answers are in. v5.31: the About panel and the Surprise panel in ru / zh-Hans / ko (A31 string table, unverified). v5.30: the rest of the text in ru / zh-Hans / ko (phrase table for the location sheet, friends, privacy, poll, Group Blend, taste result, pop-ups, toasts), rarer leave-now sentences, photo credit words, ko times from Intl, the trip page redrawn on a language switch, the action row at 320 px, stricter food answers. v5.29: Ask about this place (answers only from the item's data), group size + occasion filters, trip party size. v5.28: the app text in ru / zh-Hans / ko (dates and times via Intl, ~230 new keys, data + guide translation plumbing)
 //   // v5.27: Generate my itinerary on the trip page (day-by-day plan from the shortlist + group picks: home base start/end, area clusters, hours/events/sunset, either/or, didn't fit, editable, saved with the trip on this device). v5.26: trip mode lite (on this phone only: city + dates + optional group, a home base that every distance starts from while trip mode is on, a shortlist with a status per trip day, vote link with places only, og.trips.v1 max 5). v5.25: Group Blend v1 (2-5 friends, on this phone only: poster + group match, picks tagged "4 of 5", vote link with places only, saved groups og.groups.v1). v5.24: multi-city (Chicago + Oʻahu): city picker, per-city data, map bounds, spots, travel and badges; open-now in the item's city time zone. v5.23: the rest ofthe UI words in ru / zh-Hans / ko (unverified), Visiting Chicago from the data field us_cities (< 3 US cities; visit_override). v5.22: Google rating line on place pages (edge function, page memory only), holiday status from fields only, more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
 var VERSION_PREV = 'v5.31 (2026-11-15)';   // v5.31: the About and Surprise panels translated. v5.30: the rest of the text in ru / zh-Hans / ko. v5.29: Ask about this place, group size + occasions. v5.28: the app text in ru / zh-Hans / ko. v5.27: Generate my itinerary. v5.26: trip mode lite. v5.25: Group Blend v1
@@ -12777,10 +12778,17 @@ function anyItemById(id){ // any city (the test always uses Chicago, even while 
   if (LIKE_IDX.d !== src || LIKE_IDX.n !== src.length) { var m = {}; src.forEach(function(it){ m[it.id] = it; }); LIKE_IDX = {d:src, n:src.length, m:m}; }
   return LIKE_IDX.m.hasOwnProperty(id) ? LIKE_IDX.m[id] : null;
 }
+function wyrPlaceId(q, end){ // the place behind the picked half of a would-you-rather (its photo is photos/<place id>-N.jpg); '' for Neither / skip / unknown
+  var Q = typeof q === 'string' ? wyrQ(q) : null; if (!Q || (end !== 1 && end !== -1)) return '';
+  var s = Q[end === 1 ? 'b' : 'a'], m = s && /^photos\/(.+?)-\d+\.(?:jpe?g|png|webp)$/i.exec(String(s.img || ''));
+  return m ? m[1] : '';
+}
 function tasteLikedIds(T, saved, been, exists){ // pure given its inputs -> ids she liked in the test, newest answer first; her latest answer on a place wins
   var L = (T && Array.isArray(T.log)) ? T.log : [], seen = {}, out = [];
   for (var i = L.length - 1; i >= 0; i--) {
-    var x = L[i]; if (!x || x.t !== 'card' || x.kind === 'wyr' || typeof x.id !== 'string' || !x.id || seen[x.id]) continue;
+    var x = L[i]; if (!x || x.t !== 'card') continue;
+    if (x.kind === 'wyr') { x = {id:wyrPlaceId(x.q, x.end), ans:'yes'}; }   // v5.33b (owner: "if there's two choices ... you still chose it"): the picked half counts as a like; Neither / skip count for nothing
+    if (typeof x.id !== 'string' || !x.id || seen[x.id]) continue;
     seen[x.id] = 1;
     if (x.ans !== 'yes' && x.ans !== 'love') continue;
     if (saved(x.id) || been(x.id) || !exists(x.id)) continue;   // already saved, already been, or no longer in the list
@@ -12799,7 +12807,9 @@ function saveMany(ids){ // one write and one refresh for many saves (toggleSave 
   if (!$('pSaved').hidden) renderSaved();
   return n;
 }
-function likesAsked(){ if (TASTE && !TASTE.likeAsk) { TASTE.likeAsk = new Date().toISOString(); tasteSave(TASTE); } }
+var LIKE_ASK_V = 'v2:';   // v5.33b: would-you-rather picks joined the list, so anyone asked under v5.33 is asked once more
+function likesWereAsked(){ return !!(TASTE && typeof TASTE.likeAsk === 'string' && TASTE.likeAsk.indexOf(LIKE_ASK_V) === 0); }
+function likesAsked(){ if (TASTE && !likesWereAsked()) { TASTE.likeAsk = LIKE_ASK_V + new Date().toISOString(); tasteSave(TASTE); } }
 function likesBoxHTML(){ // the Result and the taste profile
   if (TU.who === 'guest') return '';
   if (TU.likesSaved) return '<div class="ty-likes done"><p class="ty-likes-t">' + glyphSvg('i-check') + esc(tx('lk.done', 'Saved {n}. They\'re in Saved.', {n:TU.likesSaved})) + '</p></div>';
@@ -13013,7 +13023,7 @@ function popCtx(now){
   if (cloud && (Acct.syncing || (Acct.state === 'cached' && !Acct.user && now - POPS.t0 < 8000))) busy = true;   // let the account (and a synced taste profile) arrive first
   return {busy:busy, cloud:cloud, acct:Acct.state, everIn:!!(Platform.store.get(EVERIN_KEY, false) || Acct.cachedUid || Acct.user),
     welcomeAt:tsOf(Platform.store.get(WELCOME_KEY, '')), tasteDone:tasteIsDone(), tasteAt:tsOf(Platform.store.get(TASTEINV_KEY, '')), now:now, shown:POPS.shown,
-    likeAsked:!!(TASTE && TASTE.likeAsk), likes:busy || !TASTE || TASTE.likeAsk ? 0 : likedToSave().length};
+    likeAsked:likesWereAsked(), likes:busy || !TASTE || likesWereAsked() ? 0 : likedToSave().length};
 }
 function popInit(){
   POPS.t0 = Date.now();
@@ -15658,7 +15668,7 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.33 (2026-11-17)');
+    eq('version', VERSION, 'v5.34 (2026-11-17)');
     eq('previous version', VERSION_PREV, 'v5.31 (2026-11-15)');
   });
 
@@ -18018,6 +18028,9 @@ function v529SelfTest(ok, eq, info){ // v5.29: Ask about this place + group size
   var LT = {log:[{t:'card', id:'a', ans:'yes'}, {t:'card', id:'b', ans:'love'}, {t:'card', id:'c', ans:'no'}, {t:'card', id:'d', ans:'yes'}, {t:'card', id:'d', ans:'never'}, {t:'card', id:'e', ans:'no'}, {t:'card', id:'e', ans:'yes'},
     {t:'card', kind:'wyr', id:'wyr-E1', ans:'yes'}, {t:'save', id:'f', ans:'yes'}, {t:'card', id:'g', ans:'yes'}, {t:'card', id:'h', ans:'yes'}, {t:'card', id:'gone', ans:'love'}]};
   eq('V533-2 liked in the test: yes + love, newest first, her latest answer wins, not WYR, not saved (b) / been (g) / gone', tasteLikedIds(LT, function(id){ return id === 'b'; }, function(id){ return id === 'g'; }, function(id){ return id !== 'gone'; }).join(','), 'h,e,a');
+  var LW = {log:[{t:'card', kind:'wyr', q:'E1', end:-1}, {t:'card', kind:'wyr', q:'E3', end:1}, {t:'card', kind:'wyr', q:'V1', end:0}, {t:'card', kind:'wyr', q:'ZZ', end:1}]};
+  eq('V533-5 would-you-rather: the picked half counts as a like (E1 a = fireboat, E3 b = First Ascent); Neither and unknown questions count for nothing', tasteLikedIds(LW, function(){ return false; }, function(){ return false; }, function(){ return true; }).join(','), 'fgr-first-ascent-west-loop,ig-chicago-fireboat-tours');
+  eq('V533-5 every would-you-rather photo belongs to a place', WYR_QS.filter(function(Q){ return !wyrPlaceId(Q.q, -1) || !wyrPlaceId(Q.q, 1); }).map(function(Q){ return Q.q; }).join(), '');
   eq('V533-2 empty / junk log -> none', [tasteLikedIds(null, isSaved, isSaved, isSaved).length, tasteLikedIds({log:[null, 5, {t:'card'}]}, isSaved, isSaved, isSaved).length].join(), '0,0');
   eq('V533-3 the one-time pop-up: only after a finished test with unsaved likes, never twice, never before the taste invite', [popNext({tasteDone:true, likes:3, now:1, shown:{}}), popNext({tasteDone:true, likes:3, likeAsked:true, now:1, shown:{}}), popNext({tasteDone:true, likes:0, now:1, shown:{}}), popNext({tasteDone:true, likes:3, now:1, shown:{likes:true}}), popNext({tasteDone:false, likes:3, now:1, shown:{}})].join('|'), 'likes||||taste');
   (function(){ // V533-4: the box and one bulk save, on a made-up profile and made-up places; her saves, storage and the list are put back
