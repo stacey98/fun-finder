@@ -1375,6 +1375,13 @@ body{background:var(--paper)}
 .ty-fit-q{margin:0;flex:1 1 auto;font:600 14px/1.3 var(--f-body);color:var(--ink)}
 .ty-fit .tk-yn{display:flex;gap:6px}.ty-fit .chip{height:34px;min-width:48px}
 .ty-fit-t{flex-basis:100%;font:500 12.5px var(--f-body);color:var(--ink-3)}
+/* v5.33 "Save all" the places liked in the test (Result + taste profile) */
+.ty-likes{display:flex;flex-direction:column;gap:10px;margin:4px 0 14px;padding:12px 14px;border-radius:14px;background:var(--paper-2)}
+.ty-likes-ph{display:flex;gap:6px}
+.ty-likes-ph img{display:block;flex:1 1 0;min-width:0;width:0;height:auto;max-height:84px;aspect-ratio:1;object-fit:cover;border-radius:10px;background:var(--paper)}
+.ty-likes-t{margin:0;font:600 14px/1.35 var(--f-body);color:var(--ink);display:flex;align-items:center;gap:6px}
+.ty-likes-t svg{width:16px;height:16px;flex:none}
+.ty-likes .btn-primary{width:100%}
 .ty-shift{display:grid;grid-template-columns:40px 1fr;gap:6px 12px;align-items:center;margin:0 0 14px;padding:12px 14px;border-radius:14px;background:var(--paper-2);box-shadow:inset 0 0 0 1px var(--rule)}
 .ty-shift p{margin:0;font:500 14px/1.35 var(--f-body);color:var(--ink)}
 .ty-shift .tk-yn{grid-column:2;display:flex;gap:6px}.ty-shift .chip{height:34px;min-width:56px}
@@ -2246,7 +2253,8 @@ svg.gi{width:20px;height:20px;flex:none}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.32 (2026-11-15)';   // v5.32: Retake fix - the taste deck is built from Chicago's places wherever the app's city is (in Oahu it ran out after 1 card), a slot that can't be filled never ends the deck, and a Retake keeps the previous result until the new 35 answers are in. v5.31: the About panel and the Surprise panel in ru / zh-Hans / ko (A31 string table, unverified). v5.30: the rest of the text in ru / zh-Hans / ko (phrase table for the location sheet, friends, privacy, poll, Group Blend, taste result, pop-ups, toasts), rarer leave-now sentences, photo credit words, ko times from Intl, the trip page redrawn on a language switch, the action row at 320 px, stricter food answers. v5.29: Ask about this place (answers only from the item's data), group size + occasion filters, trip party size. v5.28: the app text in ru / zh-Hans / ko (dates and times via Intl, ~230 new keys, data + guide translation plumbing)
+var VERSION = 'v5.33 (2026-11-17)';   // v5.33: party sizes 1 / 2 / 3-8 / 9+ (old 3-4 / 5-8 read as 3-8); "Save all" the places liked in the test (Result, taste profile, one-time pop-up for earlier tests)
+// v5.32 history:   // v5.32: Retake fix - the taste deck is built from Chicago's places wherever the app's city is (in Oahu it ran out after 1 card), a slot that can't be filled never ends the deck, and a Retake keeps the previous result until the new 35 answers are in. v5.31: the About panel and the Surprise panel in ru / zh-Hans / ko (A31 string table, unverified). v5.30: the rest of the text in ru / zh-Hans / ko (phrase table for the location sheet, friends, privacy, poll, Group Blend, taste result, pop-ups, toasts), rarer leave-now sentences, photo credit words, ko times from Intl, the trip page redrawn on a language switch, the action row at 320 px, stricter food answers. v5.29: Ask about this place (answers only from the item's data), group size + occasion filters, trip party size. v5.28: the app text in ru / zh-Hans / ko (dates and times via Intl, ~230 new keys, data + guide translation plumbing)
 //   // v5.27: Generate my itinerary on the trip page (day-by-day plan from the shortlist + group picks: home base start/end, area clusters, hours/events/sunset, either/or, didn't fit, editable, saved with the trip on this device). v5.26: trip mode lite (on this phone only: city + dates + optional group, a home base that every distance starts from while trip mode is on, a shortlist with a status per trip day, vote link with places only, og.trips.v1 max 5). v5.25: Group Blend v1 (2-5 friends, on this phone only: poster + group match, picks tagged "4 of 5", vote link with places only, saved groups og.groups.v1). v5.24: multi-city (Chicago + Oʻahu): city picker, per-city data, map bounds, spots, travel and badges; open-now in the item's city time zone. v5.23: the rest ofthe UI words in ru / zh-Hans / ko (unverified), Visiting Chicago from the data field us_cities (< 3 US cities; visit_override). v5.22: Google rating line on place pages (edge function, page memory only), holiday status from fields only, more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
 var VERSION_PREV = 'v5.31 (2026-11-15)';   // v5.31: the About and Surprise panels translated. v5.30: the rest of the text in ru / zh-Hans / ko. v5.29: Ask about this place, group size + occasions. v5.28: the app text in ru / zh-Hans / ko. v5.27: Generate my itinerary. v5.26: trip mode lite. v5.25: Group Blend v1
 var CONTACT_EMAIL = '';               // v4 (public release): where to ask for a photo to be removed. About shows the line only when this is set.
@@ -4186,7 +4194,9 @@ function isFar(c, mode){
    The size filter only hides an item whose own fields rule the party out: the whole band is under group_min or over group_max, or
    "1" is picked and the item's occasions are listed without solo. An item without these fields is never hidden by size. Occasions
    use the occasions list when the item has one, else good_for, tags and moods (birthday: the birthday-party tag). Pure functions. */
-var PARTY_BANDS = {'1':[1, 1], '2':[2, 2], '3-4':[3, 4], '5-8':[5, 8], '9+':[9, Infinity]}, PARTY_ORDER = ['1', '2', '3-4', '5-8', '9+'];
+var PARTY_BANDS = {'1':[1, 1], '2':[2, 2], '3-8':[3, 8], '9+':[9, Infinity]}, PARTY_ORDER = ['1', '2', '3-8', '9+'];   // v5.33 (owner 2026-11-17: "3 to 8 is fine"): 3-4 and 5-8 merged
+var PARTY_OLD = {'3-4':'3-8', '5-8':'3-8'};   // v5.33: sizes saved before (filters, trips) read as 3-8
+function partyKey(v){ v = PARTY_OLD.hasOwnProperty(v) ? PARTY_OLD[v] : v; return typeof v === 'string' && PARTY_BANDS.hasOwnProperty(v) ? v : ''; }
 var OCCASIONS = ['date', 'friends', 'solo', 'birthday', 'group'];
 function wholeN(v){ var n = typeof v === 'number' ? v : (typeof v === 'string' && /^\s*\d+\s*$/.test(v) ? +v : NaN); return isNum(n) && n >= 1 && n <= 1000 && Math.round(n) === n ? n : null; }
 function groupRange(it){ // -> {min, max} (either may be null) or null when the data has no usable size
@@ -4210,14 +4220,14 @@ function occasionOk(it, k){
   return false;
 }
 function partyFits(it, band){ // true unless the item's own fields rule this party size out
-  var b = PARTY_BANDS[band]; if (!b) return true;
+  band = partyKey(band); var b = PARTY_BANDS[band]; if (!b) return true;
   var r = groupRange(it);
   if (r && r.max !== null && b[0] > r.max) return false;
   if (r && r.min !== null && b[1] < r.min) return false;
   if (band === '1') { var oc = occList(it); if (oc && oc.length && oc.indexOf('solo') < 0) return false; }
   return true;
 }
-function partyOfCount(n){ n = wholeN(n); if (n === null) return ''; return n === 1 ? '1' : n === 2 ? '2' : n <= 4 ? '3-4' : n <= 8 ? '5-8' : '9+'; }
+function partyOfCount(n){ n = wholeN(n); if (n === null) return ''; return n === 1 ? '1' : n === 2 ? '2' : n <= 8 ? '3-8' : '9+'; }
 function groupSizeText(it){ // "For 2–6 people" / "For 4+ people" / "Up to 10 people" / ''
   var r = groupRange(it); if (!r) return '';
   if (r.min !== null && r.max !== null) return r.min === r.max ? tx('pz.people', '{n} people', {n:r.min}) : tx('pz.range', 'For {a}–{b} people', {a:r.min, b:r.max});
@@ -4544,7 +4554,7 @@ function appliedFilters(F){ // removable chips under the result line (Baymard pa
   var a = [], k;
   var WHO = {date:'Date', friends:'Friends', solo:'Solo', kids:'Kids OK', birthday:'Birthday', group:'Group'};
   for (k in F.who) if (F.who[k]) a.push({code:'who:' + k, label:WHO[k] ? (STR['who.' + k] ? i18L('who.' + k, WHO[k]) : WHO[k]) : tagLabel(k)});
-  if (F.party && PARTY_BANDS[F.party]) a.push({code:'party', label:tx('pz.chip', 'Party of {n}', {n:F.party})});   // v5.29
+  if (partyKey(F.party)) a.push({code:'party', label:tx('pz.chip', 'Party of {n}', {n:partyKey(F.party)})});   // v5.29; v5.33: an old 3-4 / 5-8 shows as 3-8
   for (k in F.price) if (F.price[k]) a.push({code:'price:' + k, label:k === 'free' ? 'Free' : k});
   if (F.io !== 'either') a.push({code:'io', label:F.io === 'indoor' ? 'Indoors' : 'Outdoors'});
   if (F.mode === 'walk') a.push({code:'mode', label:'Walk only'}); else if (F.mode === 'transit') a.push({code:'mode', label:'Walk + CTA'});   // v5.5: Drive is the default, so it has no chip
@@ -4934,6 +4944,13 @@ var STR29 = {
   'ask.bookLink':['Booking link:', 'Ссылка для брони:', '预约链接：', '예약 링크:'],
   // group size and occasions
   'pz.q':['How many of you?', 'Сколько вас?', '你们几个人？', '몇 명이에요?'],
+  // v5.33 "save the places you liked in the test"
+  'lk.title':['From your test', 'Из вашего теста', '来自你的测试', '테스트 결과에서'],
+  'lk.q':['You liked {n} places in the test. Save them?', 'В тесте вам понравились места: {n}. Сохранить их?', '测试里你喜欢了 {n} 个地方。要收藏吗？', '테스트에서 마음에 든 곳이 {n}곳이에요. 저장할까요?'],
+  'lk.all':['Save all {n}', 'Сохранить все ({n})', '全部收藏（{n}）', '모두 저장 ({n})'],
+  'lk.not':['Not now', 'Не сейчас', '以后再说', '나중에'],
+  'lk.done':['Saved {n}. They\'re in Saved.', 'Сохранено: {n}. Они в «Сохранённом».', '已收藏 {n} 个，都在“已收藏”里。', '{n}곳을 저장했어요. 저장 목록에 있어요.'],
+  'lk.none':['All the places you liked are saved.', 'Все понравившиеся места уже сохранены.', '你喜欢的地方都已收藏。', '마음에 든 곳은 모두 저장돼 있어요.'],
   'occ.birthday':['Birthday', 'День рождения', '生日', '생일'], 'occ.group':['Group', 'Компания', '团体', '단체'],
   'pz.range':['For {a}–{b} people', 'Для {a}–{b} человек', '适合 {a}–{b} 人', '{a}–{b}명용'],
   'pz.min':['For {a}+ people', 'От {a} человек', '{a} 人以上', '{a}명 이상'],
@@ -5809,7 +5826,7 @@ function clamp1(x){ return Math.max(-1, Math.min(1, x)); }
 function sgn(x){ return x > 0 ? 1 : x < 0 ? -1 : 0; }
 function hideProp(o, k, v){ try { Object.defineProperty(o, k, {value:v, enumerable:false, configurable:true, writable:true}); } catch (e) {} return v; }
 function hasMood(it, k){ return Array.isArray(it.moods) && it.moods.indexOf(k) >= 0; }
-function emptyTaste(){ return {v:2, vv:TASTE_VV, log:[], tags:{}, hard:{budget:null, no21:false, noBar:false, noCar:false, quiet:false, barAsked:false}, mine:{}, use:true, acc:{p26:[], saves:[]}, nag:{shown:0}, done:'', name:'', updated_at:'', typeSeen:'', shiftAsked:'', typeKeep:'', fits:[]}; }
+function emptyTaste(){ return {v:2, vv:TASTE_VV, log:[], tags:{}, hard:{budget:null, no21:false, noBar:false, noCar:false, quiet:false, barAsked:false}, mine:{}, use:true, acc:{p26:[], saves:[]}, nag:{shown:0}, done:'', name:'', updated_at:'', typeSeen:'', shiftAsked:'', typeKeep:'', fits:[], likeAsk:''}; }
 function cleanTaste(o){ // anything from storage or the account -> a safe profile
   var t = emptyTaste(); if (!o || typeof o !== 'object' || o.v !== 2) return t;
   if (Array.isArray(o.log)) t.log = o.log.filter(function(x){ return x && typeof x === 'object' && (x.t === 'card' || x.t === 'pair' || x.t === 'save' || x.t === 'ck'); }).slice(-400);
@@ -5824,6 +5841,7 @@ function cleanTaste(o){ // anything from storage or the account -> a safe profil
   var isCode = function(s){ return typeof s === 'string' && /^[A-Z]{3}$/.test(s); };
   t.typeSeen = isCode(o.typeSeen) ? o.typeSeen : ''; t.shiftAsked = isCode(o.shiftAsked) ? o.shiftAsked : ''; t.typeKeep = isCode(o.typeKeep) ? o.typeKeep : '';
   t.fits = Array.isArray(o.fits) ? o.fits.filter(function(f){ return f && (f.a === 'yes' || f.a === 'kind' || f.a === 'no') && isCode(f.code); }).map(function(f){ return {a:f.a, code:f.code, n:isNum(f.n) ? f.n : 0, at:typeof f.at === 'string' ? f.at : ''}; }).slice(-20) : [];
+  t.likeAsk = typeof o.likeAsk === 'string' ? o.likeAsk.slice(0, 40) : '';   // v5.33: when the one-time "save the places you liked" offer was shown
   return t;
 }
 function tasteVector(it){ // §2b -> {e, v, p, w}; e and v may be null (unknown)
@@ -10718,7 +10736,7 @@ function tripsPut(store, t){ // add or replace (by id), newest first -> the stor
   if (!had && l.length >= TRIPS_MAX) return null;
   var h = tripHomeOk(t.home, t.city) ? {label:String(t.home.label).replace(/\s+/g, ' ').trim().slice(0, 60), sub:String(t.home.sub || '').replace(/\s+/g, ' ').trim().slice(0, 80), lat:+t.home.lat, lng:+t.home.lng} : null;
   var rec = {id:(had || tripIdOk(t.id)) ? t.id : groupNewId(), city:t.city, from:t.from, to:t.to, gid:tripIdOk(t.gid) ? t.gid : '', home:h, sids:pollSids(t.sids || []).slice(0, TRIP_SL_MAX), at:typeof t.at === 'string' && t.at ? t.at : new Date().toISOString()};
-  if (PARTY_BANDS[t.party]) rec.party = t.party;   // v5.29: a picked party size (else the group's head count is used)
+  if (partyKey(t.party)) rec.party = partyKey(t.party);   // v5.29: a picked party size (else the group's head count is used)
   var itn = itinClean(t.itin); if (itn) rec.itin = itn;   // v5.27: the generated itinerary lives inside the trip (this device only)
   l = l.filter(function(x){ return x.id !== rec.id; }); l.unshift(rec);
   store.set(TRIPS_KEY, l.slice(0, TRIPS_MAX)); return rec;
@@ -10895,13 +10913,13 @@ function tripFormHTML(d){
   h += '<p class="tp-lab">' + esc(tripT('datesL')) + '</p><div class="tp-dd"><label><small>' + esc(tripT('fromL')) + '</small><input id="tpFrom" type="date" value="' + esc(d.from) + '"></label><label><small>' + esc(tripT('toL')) + '</small><input id="tpTo" type="date" value="' + esc(d.to) + '"></label></div>';
   if (TRIP.err) h += '<p class="tp-err" role="alert">' + esc(TRIP.err) + '</p>';
   if (gs.length) h += '<p class="tp-lab">' + esc(tripT('groupL')) + ' <small>' + esc(tripT('optional')) + '</small></p><div class="chips-w">' + [{id:'', name:tripT('none')}].concat(gs).map(function(g){ return '<button class="chip" type="button" data-trip="gid" data-v="' + esc(g.id) + '" aria-pressed="' + (d.gid === g.id) + '">' + esc(g.name) + '</button>'; }).join('') + '</div>';
-  var pz = tripParty(d), pzDef = !PARTY_BANDS[d.party] && !!pz;   // v5.29: the group's head count until she picks a size
+  var pz = tripParty(d), pzDef = !partyKey(d.party) && !!pz;   // v5.29: the group's head count until she picks a size
   h += '<p class="tp-lab">' + esc(i18t('pz.q')) + ' <small>' + esc(pzDef ? i18t('pz.fromGroup') : tripT('optional')) + '</small></p><div class="chips-w tp-party">' + PARTY_ORDER.map(function(b){ return '<button class="chip" type="button" data-trip="party" data-v="' + esc(b) + '" aria-pressed="' + (pz === b) + '">' + esc(b) + '</button>'; }).join('') + '</div>';
   return h + '<p class="tp-lab">' + esc(tripT('stay')) + ' <small>' + esc(tripT('optional')) + '</small></p>' + tripHomeCardHTML(d.home);
 }
 function tripParty(t){ // v5.29: the trip's party size: her pick, else the group's head count (her + friends), else none
   if (!t) return '';
-  if (PARTY_BANDS[t.party]) return t.party;
+  if (partyKey(t.party)) return partyKey(t.party);
   var g = t.gid ? tripGroup(t) : null;
   return g && Array.isArray(g.uids) ? partyOfCount(g.uids.length + 1) : '';
 }
@@ -11051,7 +11069,7 @@ function tripClick(el){
     case 'del2': tripDel(); break;
     case 'city': tripReadForm(); if (TRIP.draft && CITY_BY[v]) { TRIP.draft.city = v; if (TRIP.draft.home && !tripHomeOk(TRIP.draft.home, v)) TRIP.draft.home = null; } renderTrip(); break;
     case 'gid': tripReadForm(); if (TRIP.draft) TRIP.draft.gid = v; renderTrip(); break;
-    case 'party': tripReadForm(); if (TRIP.draft && PARTY_BANDS[v]) TRIP.draft.party = TRIP.draft.party === v ? '' : v; renderTrip(); break;   // v5.29
+    case 'party': tripReadForm(); if (TRIP.draft && PARTY_BANDS[v]) TRIP.draft.party = partyKey(TRIP.draft.party) === v ? '' : v; renderTrip(); break;   // v5.29
     case 'home': if (TRIP.mode === 'new' || TRIP.mode === 'edit') tripReadForm(); TRIP.prev = TRIP.mode; TRIP.mode = 'home'; TRIP.q = ''; TRIP.list = null; TRIP.msg = ''; TRIP.warn = false; renderTrip(); tripTop(); break;
     case 'hpick': tripHomePick(v); break;
     case 'save': tripSave(); break;
@@ -11952,8 +11970,8 @@ function renderDetail(c, keepScroll){
   facts.push(['i-door', it.booking === 'required' ? i18L('bk.required', 'Booking required. Pick a time online before you go.') : it.booking === 'recommended' ? i18L('bk.recommended', 'Booking recommended.') : it.booking === 'walk-in' ? i18L('bk.walkin', 'Walk-ins welcome.') : i18L('bk.none', 'Booking: not stated.')]);   // v5.22 (tester M1)
   if (it.age_note) { var anl = placeText(it, 'age_note'); facts.push(['i-age', i18L('dt.ages', 'Ages: {x}').replace('{x}', function(){ return anl.lang !== 'en' ? anl.v : fmt24Ranges(it.age_note); })]); }   // v5.23: the label in the picked language; the note is data (English)
   var gsz = groupSizeText(it);   // v5.29: group size from group_min / group_max; "not posted" only while a party size is picked
-  if (gsz) facts.push(['i-people', gsz + (S.f.party && !partyFits(it, S.f.party) ? ' · ' + tx('pz.noFit', 'Not for a party of {n}', {n:S.f.party}) : '')]);
-  else if (S.f.party) facts.push(['i-people', tx('pz.notPosted', 'Group size not posted')]);
+  if (gsz) facts.push(['i-people', gsz + (S.f.party && !partyFits(it, S.f.party) ? ' · ' + tx('pz.noFit', 'Not for a party of {n}', {n:partyKey(S.f.party)}) : '')]);
+  else if (partyKey(S.f.party)) facts.push(['i-people', tx('pz.notPosted', 'Group size not posted')]);
   h += '<section class="dt-sec"><h2>' + esc(i18t('dt.practical')) + '</h2><ul class="hl">' + facts.map(function(x){ return '<li>' + glyphSvg(x[0]) + '<span>' + esc(x[1]) + '</span></li>'; }).join('') + '</ul>';
   if (it.phone) h += phoneHTML(it.phone, Platform.telOk);
   else if (web) { var npw = i18L('dt.noPhone', 'No phone listed. Check {w}.').split('{w}'); h += '<p class="small" style="margin-top:10px">' + esc(npw[0]) + '<a href="' + esc(web) + '" target="_blank" rel="noopener">' + esc(i18L('dt.theirWeb', 'their website')) + '</a>' + esc(npw[1] || '') + '</p>'; }   // v5.23
@@ -12130,6 +12148,7 @@ function closePanel(id){
   if (id === 'pTime' || id === 'pFilters') { UI.showRing = false; updateRing(); if (id === 'pFilters') { UI.draft = null; UI.draftB = null; } }
   if (id === 'pFriend' && !UI.friendHide) wlClosed();
   if (id === 'pWelcome' || id === 'pTasteInv') popClosed(id);   // v5.14
+  if (id === 'pSmall' && POPS.cur === 'likes') POPS.cur = '';   // v5.33
   bkRelease();   // v5.24 (waits a moment: a sheet that hands over to another keeps the entry)
   if (id === 'pPoll' && !UI.pollReturn) { pollClearHash(); PL.cur = null; if (UI.locAfterPoll) { UI.locAfterPoll = false; if (UI.firstOpen) setTimeout(function(){ if (UI.firstOpen && $('pLoc').hidden) openLocation(true); }, 340); } }   // v5.8 (not when it only steps aside for a place's detail)
   syncScrim();
@@ -12429,7 +12448,7 @@ function applyDraft(F, code){
     case 'who': case 'price': if (F[k][v]) delete F[k][v]; else F[k][v] = true; break;
     case 'int': if (F.interests[v]) delete F.interests[v]; else F.interests[v] = true; break;
     case 'int-clear': F.interests = {}; break;
-    case 'party': F.party = F.party === v || !PARTY_BANDS[v] ? '' : v; break;   // v5.29: the same size again clears it
+    case 'party': F.party = partyKey(F.party) === v || !PARTY_BANDS[v] ? '' : v; break;   // v5.29: the same size again clears it
     case 'io': F.io = v; break;
     case 'mode': F.mode = v; break;
     case 'radius': F.radius = +v; break;
@@ -12450,8 +12469,8 @@ function renderFilters(){
   // v5.21 "Visiting Chicago" (only-here / classic places and the must-sees), first: it is a whole way of looking
   h += '<div class="fsec fs-visit">' + sw('visit', F.visit, L('f.visit'), '') + sw('ohere', F.ohere, L('f.ohere'), '') + '</div>';   // v5.23: Only in Chicago / Rare find   // no helper line (owner: fewer words; the sheet test counts notes)
   // v5.1 (tester L1): Who (Date / Friends / Solo) is on Home, so it is not repeated here. "Time I have" stays: it is the only place to turn it on.
-  // v5.29: "How many of you?" (1 / 2 / 3-4 / 5-8 / 9+) and the occasions (Date, Friends, Solo, Birthday, Group: the same who{} Home uses)
-  h += '<div class="fsec fs-who">' + H(L('pz.q'), 'who') + seg(PARTY_ORDER.map(function(b){ return ['party:' + b, esc(b), F.party === b]; })) +
+  // v5.29: "How many of you?" (v5.33: 1 / 2 / 3-8 / 9+) and the occasions (Date, Friends, Solo, Birthday, Group: the same who{} Home uses)
+  h += '<div class="fsec fs-who">' + H(L('pz.q'), 'who') + seg(PARTY_ORDER.map(function(b){ return ['party:' + b, esc(b), partyKey(F.party) === b]; })) +
     '<div class="chips-w" style="margin-top:8px">' + OCCASIONS.map(function(k){ return '<button class="chip" type="button" data-d="who:' + k + '" aria-pressed="' + !!F.who[k] + '">' + L(k === 'birthday' || k === 'group' ? 'occ.' + k : 'who.' + k) + '</button>'; }).join('') + '</div></div>';
   h += '<div class="fsec">' + H(L('f.price'), 'price') + chips([['price:free', L('f.free'), F.price.free], ['price:$', '$', F.price.$], ['price:$$', '$$', F.price.$$], ['price:$$$', '$$$', F.price.$$$], ['sale', L('f.sale'), F.sale]]) + '</div>';
   h += '<div class="fsec">' + H(L('f.far'), 'reach') + seg(CITY.transit ? [['mode:car', L('f.drive'), F.mode === 'car'], ['mode:transit', L('f.cta'), F.mode === 'transit'], ['mode:walk', L('f.walk'), F.mode === 'walk']] : [['mode:car', L('f.drive'), F.mode !== 'walk'], ['mode:walk', L('f.walk'), F.mode === 'walk']])   // v5.24: no CTA choice outside Chicago +
@@ -12499,7 +12518,7 @@ function applyF(code){ // single filter change (pSmall panels, the "Make it 2 hr
     case 'radius': F.radius = +v; Platform.store.set('cff.radius.v3', F.radius); break;
     case 'mode': F.mode = v; Platform.store.set('cff.mode.v1', F.mode); break;
     case 'who': F.who[v] = !F.who[v]; if (!F.who[v]) delete F.who[v]; break;
-    case 'party': F.party = F.party === v || !PARTY_BANDS[v] ? '' : v; break;   // v5.29
+    case 'party': F.party = partyKey(F.party) === v || !PARTY_BANDS[v] ? '' : v; break;   // v5.29
     case 'io': F.io = v; break;
     case 'price': F.price[v] = !F.price[v]; if (!F.price[v]) delete F.price[v]; break;
     case 'walkin': F.walkin = !F.walkin; break;
@@ -12749,6 +12768,57 @@ function tasteSave(T, quiet){ // T = TASTE or TASTE_GUEST
 }
 function tasteInitial(T){ var n = T && T.name ? T.name : T === TASTE ? (acctName() || 'Me') : 'Guest'; return String(n).charAt(0).toUpperCase(); }
 function tasteChanged(){ TASTE_REV++; UI.homeHTML = null; if (DATA_LOADED) refresh(); }
+/* v5.33 (owner 2026-11-17: "when you take the test ... save all of the locations ... at the end, do you want to save your locations in saves?
+   ... do that for people that already took the test"): the places she answered Into it / Love it are offered as one "Save all" on the
+   Result and in the taste profile, and once as a pop-up for anyone who finished the test before this version. Never saves without the tap. */
+var LIKE_IDX = {d:null, m:null};
+function anyItemById(id){ // any city (the test always uses Chicago, even while the app shows Oahu)
+  var src = ALL_DATA && ALL_DATA.length ? ALL_DATA : (typeof DATA !== 'undefined' ? DATA : null); if (!src) return null;
+  if (LIKE_IDX.d !== src || LIKE_IDX.n !== src.length) { var m = {}; src.forEach(function(it){ m[it.id] = it; }); LIKE_IDX = {d:src, n:src.length, m:m}; }
+  return LIKE_IDX.m.hasOwnProperty(id) ? LIKE_IDX.m[id] : null;
+}
+function tasteLikedIds(T, saved, been, exists){ // pure given its inputs -> ids she liked in the test, newest answer first; her latest answer on a place wins
+  var L = (T && Array.isArray(T.log)) ? T.log : [], seen = {}, out = [];
+  for (var i = L.length - 1; i >= 0; i--) {
+    var x = L[i]; if (!x || x.t !== 'card' || x.kind === 'wyr' || typeof x.id !== 'string' || !x.id || seen[x.id]) continue;
+    seen[x.id] = 1;
+    if (x.ans !== 'yes' && x.ans !== 'love') continue;
+    if (saved(x.id) || been(x.id) || !exists(x.id)) continue;   // already saved, already been, or no longer in the list
+    out.push(x.id);
+  }
+  return out;
+}
+function likedToSave(){ return TASTE ? tasteLikedIds(TASTE, isSaved, function(id){ return !!checkinOf(id); }, function(id){ return !!anyItemById(id); }) : []; }
+function saveMany(ids){ // one write and one refresh for many saves (toggleSave would refresh once per place)
+  var at = new Date().toISOString(), n = 0;
+  (ids || []).forEach(function(id){ if (typeof id !== 'string' || isSaved(id)) return; savedIds.push(id); SAVED_META = metaWith(SAVED_META, id, true, at); Acct.dirtyS[id] = 1; n++; });
+  if (!n) return 0;
+  if (!Platform.store.set('cff.saved.v1', savedIds)) toast('This browser isn\'t keeping your saves. They\'ll be lost when you close it.');
+  Platform.store.set(SAVEDMETA_KEY, SAVED_META); acctPushSoon();
+  UI.homeHTML = null; refresh();
+  if (!$('pSaved').hidden) renderSaved();
+  return n;
+}
+function likesAsked(){ if (TASTE && !TASTE.likeAsk) { TASTE.likeAsk = new Date().toISOString(); tasteSave(TASTE); } }
+function likesBoxHTML(){ // the Result and the taste profile
+  if (TU.who === 'guest') return '';
+  if (TU.likesSaved) return '<div class="ty-likes done"><p class="ty-likes-t">' + glyphSvg('i-check') + esc(tx('lk.done', 'Saved {n}. They\'re in Saved.', {n:TU.likesSaved})) + '</p></div>';
+  var ids = likedToSave(); if (!ids.length) return '';
+  var pics = ids.map(anyItemById).filter(function(it){ return it && firstPhoto(it); }).slice(0, 4);
+  return '<div class="ty-likes">' + (pics.length ? '<div class="ty-likes-ph" aria-hidden="true">' + pics.map(function(it){ return '<img src="' + esc(firstPhoto(it).file) + '" alt="" data-fb="1">'; }).join('') + '</div>' : '') +
+    '<p class="ty-likes-t">' + esc(tx('lk.q', 'You liked {n} places in the test. Save them?', {n:ids.length})) + '</p>' +
+    '<button class="btn-primary" type="button" data-tk="savelikes">' + esc(tx('lk.all', 'Save all {n}', {n:ids.length})) + '</button></div>';
+}
+function smallLikes(){ // the one-time pop-up for anyone who finished the test before v5.33
+  var b = $('pSmallBody'), ids = likedToSave();
+  if (!ids.length) { b.innerHTML = '<p class="pop-s">' + esc(tx('lk.none', 'All the places you liked are saved.')) + '</p>'; return; }
+  var pics = ids.map(anyItemById).filter(function(it){ return it && firstPhoto(it); }).slice(0, 3);
+  b.innerHTML = (pics.length ? '<div class="pop-pics" aria-hidden="true">' + pics.map(function(it){ return '<img src="' + esc(firstPhoto(it).file) + '" alt="" data-fb="1" loading="eager">'; }).join('') + '</div>' : '') +
+    '<p class="pop-s">' + esc(tx('lk.q', 'You liked {n} places in the test. Save them?', {n:ids.length})) + '</p>' +
+    '<div class="btns" style="display:flex;gap:8px;margin-top:14px"><button class="btn-primary" type="button" data-lk="all" style="flex:1">' + esc(tx('lk.all', 'Save all {n}', {n:ids.length})) + '</button><button class="mini-btn" type="button" data-close="pSmall" style="flex:1;justify-content:center">' + esc(tx('lk.not', 'Not now')) + '</button></div>';
+  wireImages(b);
+  var s = b.querySelector('[data-lk="all"]'); if (s) s.onclick = function(){ var n = saveMany(likedToSave()); closePanel('pSmall'); if (n) toast(tx('lk.done', 'Saved {n}. They\'re in Saved.', {n:n})); };
+}
 function tasteOnSave(id, from){ // a save: a light vote (0.3) and, with a profile, where it sat in the taste-only ranking (§8b)
   if (!TASTE || TASTE_SUSPEND) return;
   var it = findItem(id); if (!it) return;
@@ -12921,6 +12991,7 @@ function popNext(o){ // pure. o: {busy, cloud, acct, everIn, welcomeAt, tasteDon
   if (o.cloud && o.acct === 'loading') return 'wait';   // a sign-in is coming back: wait for it
   if (o.cloud && o.acct === 'out' && !o.everIn && !sh.welcome && !(o.welcomeAt && o.now - o.welcomeAt < POP_WEEK)) return 'welcome';
   if (!o.tasteDone && !sh.taste && !(o.tasteAt && o.now - o.tasteAt < POP_WEEK)) return 'taste';
+  if (o.tasteDone && o.likes > 0 && !o.likeAsked && !sh.likes) return 'likes';   // v5.33: once, for a test finished before "Save all" existed
   return '';
 }
 function popTestHash(h){ // test hooks and screenshots keep the screen clean; real links (place, poll, been, friend list, invite, guide) only make the pop-ups wait
@@ -12941,7 +13012,8 @@ function popCtx(now){
   var cloud = cloudHost(), busy = !DATA_LOADED || popBlocked() || (POPS.link && now - POPS.t0 < 5000);
   if (cloud && (Acct.syncing || (Acct.state === 'cached' && !Acct.user && now - POPS.t0 < 8000))) busy = true;   // let the account (and a synced taste profile) arrive first
   return {busy:busy, cloud:cloud, acct:Acct.state, everIn:!!(Platform.store.get(EVERIN_KEY, false) || Acct.cachedUid || Acct.user),
-    welcomeAt:tsOf(Platform.store.get(WELCOME_KEY, '')), tasteDone:tasteIsDone(), tasteAt:tsOf(Platform.store.get(TASTEINV_KEY, '')), now:now, shown:POPS.shown};
+    welcomeAt:tsOf(Platform.store.get(WELCOME_KEY, '')), tasteDone:tasteIsDone(), tasteAt:tsOf(Platform.store.get(TASTEINV_KEY, '')), now:now, shown:POPS.shown,
+    likeAsked:!!(TASTE && TASTE.likeAsk), likes:busy || !TASTE || TASTE.likeAsk ? 0 : likedToSave().length};
 }
 function popInit(){
   POPS.t0 = Date.now();
@@ -12981,6 +13053,7 @@ function tasteInvHTML(pics){
 function popShow(which){
   POPS.cur = which; POPS.shown[which] = true; POPS.log.push(which);
   if (which === 'welcome') { $('pWelcomeTitle').innerHTML = '<small class="wl">Welcome to </small>' + brandHTML(0, 22); /* v5.15: the drawn name never wraps */ $('pWelcomeBody').innerHTML = welcomeHTML(); openPanel('pWelcome'); }
+  else if (which === 'likes') { likesAsked(); openSmall(tx('lk.title', 'From your test'), smallLikes); }   // v5.33: asked once (any close = asked)
   else { var b = $('pTasteInvBody'); b.innerHTML = tasteInvHTML(popPics()); wireImages(b); openPanel('pTasteInv'); }
 }
 function popClosed(id){ // any close (X, Not now, the scrim, Escape) counts as "not now" for a week
@@ -13017,7 +13090,7 @@ function tasteAfterSync(){
 function tasteEl(){ return $('taste'); }
 function openTaste(mode){
   if (!TASTE) tasteLoad();
-  TU.mode = mode; TU.addOpen = ''; TU.confirmReset = false;
+  TU.mode = mode; TU.addOpen = ''; TU.confirmReset = false; TU.likesSaved = 0;
   var el = tasteEl(); el.hidden = false; el.setAttribute('data-mode', mode);
   document.documentElement.classList.add('tk-open');
   tasteRender();
@@ -13349,6 +13422,7 @@ function tasteShowResult(){
   var st = tasteMine();
   if (st.suggestBar && TASTE && !TASTE.hard.barAsked) { TASTE.hard.noBar = true; TASTE.hard.barAsked = true; tasteSave(TASTE); tasteChanged(); }   // R4: shown switched on, once; she can flip it off
   if (TASTE && TU.who !== 'guest') { var tyS = funType(st); if (tyS && TASTE.typeSeen !== tyS.code) { TASTE.typeSeen = tyS.code; tasteSave(TASTE, true); } }   // v5.17a2: what she has now seen (the shift note compares against it)
+  if (TASTE && TU.who !== 'guest') likesAsked();   // v5.33: the Result carries the "Save all" box, so the one-time pop-up isn't needed
   TU.mode = 'result'; TU.enterChar = true; tasteRender(); TU.enterChar = false;
 }
 function doneMomentHTML(){
@@ -13369,6 +13443,7 @@ function resultHTML(){ // the Result (spec §5): hero in the type color, the cha
   h += '<p class="ty-para">' + esc(t.para) + '</p>';
   h += '<ul class="ty-chips" aria-label="Your dials">' + chips.map(function(c){ return '<li' + (c.mid ? ' class="mid"' : '') + '><small>' + esc(c.name) + '</small> ' + esc(c.word) + '</li>'; }).join('') + '</ul>';
   h += '<p class="ty-lab">Your kind of places</p><p class="ty-kinds">' + esc(t.kinds.join(' · ')) + '</p>';
+  h += likesBoxHTML();   // v5.33: "You liked N places in the test. Save them?"
   h += tasteFitHTML(t.code);   // v5.17a2 (owner): "Does this fit you?"
   if (st.suggestBar) h += '<div class="ty-sugg"><div class="sw-row"><span>Skip bar-centered stuff<small>You passed on ' + st.barNo + ' bar cards</small></span><button class="switch" type="button" data-tk-hard="noBar" aria-pressed="' + !!TASTE.hard.noBar + '" aria-label="Skip bar-centered stuff"></button></div></div>';
   h += '<p class="ty-not"><button class="linkbtn" type="button" data-tk="profile">Not you? Adjust your sliders ›</button></p><p class="ty-learn">Your picks get smarter as you save places.</p>';
@@ -13530,6 +13605,7 @@ function profileHTML(){
   typeSeenInit(ty); h += typeShiftHTML();   // v5.17a2: the one-time shift note sits above the header
   h += '<div class="ty-head" id="tyHead" data-id="' + (ty ? ty.id : 0) + '">' + typeHeadInner(ty) + '</div>';
   h += '<p class="tk-sub">' + (nC || nS ? 'From ' + nC + (nC === 1 ? ' swipe' : ' swipes') + ' and ' + nS + (nS === 1 ? ' save.' : ' saves.') + ' Move a dial and your type follows.' : 'Swipe a few photos and the picks follow your taste.') + '</p>';
+  if (nC) h += likesBoxHTML();   // v5.33
   if (!nC) h += '<div class="tk-foot2"><button class="btn-primary" type="button" data-tk="startmain">Start · ' + esc(deckMinutesLine(DECK_TOTAL).replace(/^.*about /, '')) + '</button></div>';
   h += '<div class="tk-sliders">' + DIALS.map(function(d){
     var v = Math.round((st.m[d] || 0) * 100);
@@ -13616,6 +13692,7 @@ function tasteClick(e){
     else if (TU.D && TU.D.cfg.name !== 'mini' && TU.D.log.length && funType(tasteMine())) { TASTE.done = TASTE.done || cparts(nowMs()).key; tasteSave(TASTE); tasteChanged(); tasteShowResult(); }   // v5.17 §2.6: 12+ answers -> straight to the Result
     else closeTaste(); }
   else if (a === 'close') closeTaste();
+  else if (a === 'savelikes') { var nL = saveMany(likedToSave()); likesAsked(); if (nL) { TU.likesSaved = nL; var bx = b.closest('.ty-likes'); if (bx) bx.outerHTML = likesBoxHTML(); else tasteRender(); } }   // v5.33: in place, so the Result doesn't jump to the top
   else if (a === 'result') tasteShowResult();
   else if (a === 'tshare') typeShare();
   else if (a === 'fine') { TU.fineOpen = !TU.fineOpen; tasteRender(); }
@@ -15581,7 +15658,7 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.32 (2026-11-15)');
+    eq('version', VERSION, 'v5.33 (2026-11-17)');
     eq('previous version', VERSION_PREV, 'v5.31 (2026-11-15)');
   });
 
@@ -17935,21 +18012,42 @@ function v529SelfTest(ok, eq, info){ // v5.29: Ask about this place + group size
   } finally { LANG = LG; }
   // group size + occasions
   var ESC = fx({group_min:2, group_max:6}), NO = fx({});
-  eq('V529-6 escape room 2-6: hidden for 1 and 9+, shown for 2, 3-4, 5-8', PARTY_ORDER.map(function(b){ return partyFits(ESC, b) ? b : '-'; }).join(' '), '- 2 3-4 5-8 -');
-  eq('V529-6 no group fields: never hidden by size', PARTY_ORDER.map(function(b){ return partyFits(NO, b) ? 1 : 0; }).join(''), '11111');
-  eq('V529-6 solo: listed occasions without solo hide it for 1; with solo it stays; min only / max only', [partyFits(fx({occasions:['date', 'friends']}), '1'), partyFits(fx({occasions:['solo', 'friends']}), '1'), partyFits(fx({group_min:4}), '2'), partyFits(fx({group_min:4}), '3-4'), partyFits(fx({group_max:4}), '5-8')].join(), 'false,true,false,true,false');
+  eq('V529-6 escape room 2-6: hidden for 1 and 9+, shown for 2, 3-8', PARTY_ORDER.map(function(b){ return partyFits(ESC, b) ? b : '-'; }).join(' '), '- 2 3-8 -');
+  eq('V529-6 no group fields: never hidden by size', PARTY_ORDER.map(function(b){ return partyFits(NO, b) ? 1 : 0; }).join(''), '1111');
+  eq('V529-6 solo: listed occasions without solo hide it for 1; with solo it stays; min only / max only', [partyFits(fx({occasions:['date', 'friends']}), '1'), partyFits(fx({occasions:['solo', 'friends']}), '1'), partyFits(fx({group_min:4}), '2'), partyFits(fx({group_min:4}), '3-8'), partyFits(fx({group_max:2}), '3-8')].join(), 'false,true,false,true,false');
+  var LT = {log:[{t:'card', id:'a', ans:'yes'}, {t:'card', id:'b', ans:'love'}, {t:'card', id:'c', ans:'no'}, {t:'card', id:'d', ans:'yes'}, {t:'card', id:'d', ans:'never'}, {t:'card', id:'e', ans:'no'}, {t:'card', id:'e', ans:'yes'},
+    {t:'card', kind:'wyr', id:'wyr-E1', ans:'yes'}, {t:'save', id:'f', ans:'yes'}, {t:'card', id:'g', ans:'yes'}, {t:'card', id:'h', ans:'yes'}, {t:'card', id:'gone', ans:'love'}]};
+  eq('V533-2 liked in the test: yes + love, newest first, her latest answer wins, not WYR, not saved (b) / been (g) / gone', tasteLikedIds(LT, function(id){ return id === 'b'; }, function(id){ return id === 'g'; }, function(id){ return id !== 'gone'; }).join(','), 'h,e,a');
+  eq('V533-2 empty / junk log -> none', [tasteLikedIds(null, isSaved, isSaved, isSaved).length, tasteLikedIds({log:[null, 5, {t:'card'}]}, isSaved, isSaved, isSaved).length].join(), '0,0');
+  eq('V533-3 the one-time pop-up: only after a finished test with unsaved likes, never twice, never before the taste invite', [popNext({tasteDone:true, likes:3, now:1, shown:{}}), popNext({tasteDone:true, likes:3, likeAsked:true, now:1, shown:{}}), popNext({tasteDone:true, likes:0, now:1, shown:{}}), popNext({tasteDone:true, likes:3, now:1, shown:{likes:true}}), popNext({tasteDone:false, likes:3, now:1, shown:{}})].join('|'), 'likes||||taste');
+  (function(){ // V533-4: the box and one bulk save, on a made-up profile and made-up places; her saves, storage and the list are put back
+    var real = ['t533-a', 't533-b', 't533-c'], kA = ALL_DATA;
+    var kT = TASTE, kS = savedIds.slice(), kM = SAVED_META, kSet = Platform.store.set, kPush = acctPushSoon, kWho = TU.who, kLS = TU.likesSaved, kD = JSON.stringify(Acct.dirtyS || {}), wrote = [];
+    try {
+      ALL_DATA = real.map(function(id){ return {id:id, name:id, category:'games'}; }).concat([{id:'t533-x', name:'x'}]);
+      TASTE = ext(emptyTaste(), {log:real.map(function(id){ return {t:'card', id:id, ans:'yes'}; })}); TU.who = 'me'; TU.likesSaved = 0;
+      var bx = likesBoxHTML();
+      ok('V533-4 Result / profile box: "You liked 3 places" + "Save all 3"', /You liked 3 places in the test/.test(bx) && /data-tk="savelikes"[^>]*>Save all 3</.test(bx), bx.slice(0, 160));
+      Platform.store.set = function(k, v){ wrote.push(k); return true; }; acctPushSoon = function(){};
+      var n = saveMany(likedToSave());
+      ok('V533-4 one tap saves all 3 in one write, then nothing is left to offer', n === 3 && real.every(isSaved) && likedToSave().length === 0 && wrote.filter(function(k){ return k === 'cff.saved.v1'; }).length === 1, n + ' / ' + wrote.join());
+      TU.likesSaved = n; ok('V533-4 after the tap the box says "Saved 3"', /Saved 3\. They're in Saved\./.test(likesBoxHTML().replace(/&#39;|&#x27;/g, '\'')), likesBoxHTML().slice(0, 160));
+      TU.who = 'guest'; ok('V533-4 never offered during a guest deck', likesBoxHTML() === '', '');
+    } finally { ALL_DATA = kA; LIKE_IDX = {d:null, m:null}; TASTE = kT; savedIds.length = 0; Array.prototype.push.apply(savedIds, kS); SAVED_META = kM; Platform.store.set = kSet; acctPushSoon = kPush; TU.who = kWho; TU.likesSaved = kLS; Acct.dirtyS = JSON.parse(kD); TASTE_REV++; UI.homeHTML = null; refresh(); }
+  })();
+  eq('V533-1 sizes: 1 / 2 / 3-8 / 9+; an old 3-4 or 5-8 reads as 3-8 (filters, trips); junk reads as none', [PARTY_ORDER.join(' '), partyKey('3-4'), partyKey('5-8'), partyKey('3-8'), partyKey('7'), partyKey(null), partyFits(fx({group_max:4}), '5-8'), partyFits(fx({group_min:9}), '3-4')].join(','), '1 2 3-8 9+,3-8,3-8,3-8,,,true,false');
   eq('V529-6 bad data never hides (min > max, 0, text); "2"/"6" strings are read', [partyFits(fx({group_min:8, group_max:2}), '1'), partyFits(fx({group_min:0}), '1'), partyFits(fx({group_max:'lots'}), '9+'), partyFits(fx({group_min:'2', group_max:'6'}), '1')].join(), 'true,true,true,false');
   eq('V529-6 occasions: the list wins; else good_for / tags / moods / birthday-party tag', [occasionOk(fx({occasions:['birthday'], tags:['date']}), 'date'), occasionOk(fx({occasions:['birthday']}), 'birthday'), occasionOk(fx({tags:['birthday-party']}), 'birthday'), occasionOk(fx({good_for:['groups']}), 'group'), occasionOk(fx({moods:['romantic']}), 'date'), occasionOk(fx({good_for:['solo']}), 'solo'), occasionOk(fx({group_max:10}), 'group'), occasionOk(NO, 'birthday')].join(), 'false,true,true,true,true,true,true,false');
   var pf = function(it, F){ return passFilters({item:it, st:{key:'open', open:true}, dist:1, deal:null}, ext(defaultFilters(), F)); };
   eq('V529-7 filter: party 1 hides the escape room, keeps an item without fields; Birthday shows only birthday items', [pf(ESC, {party:'1'}), pf(NO, {party:'1'}), pf(ESC, {party:'2'}), pf(fx({tags:['birthday-party']}), {who:{birthday:true}}), pf(NO, {who:{birthday:true}}), pf(fx({occasions:['group']}), {who:{group:true, date:true}})].join(), 'false,true,true,true,false,true');
   var Fp = ext(appDefaultFilters(), {party:'3-4'});
-  eq('V529-7 the chip, removing it, the count, the sheet toggle', [appliedFilters(Fp).map(function(a){ return a.label; }).join(), removeFilter(Fp, 'party').party, filterCount(Fp, 'now') - filterCount(appDefaultFilters(), 'now'), applyDraft(copyF(Fp), 'party:3-4').party, applyDraft(copyF(Fp), 'party:9+').party].join('|'), 'Party of 3-4||1||9+');
+  eq('V529-7 the chip, removing it, the count, the sheet toggle', [appliedFilters(Fp).map(function(a){ return a.label; }).join(), removeFilter(Fp, 'party').party, filterCount(Fp, 'now') - filterCount(appDefaultFilters(), 'now'), applyDraft(copyF(Fp), 'party:3-8').party, applyDraft(copyF(Fp), 'party:9+').party].join('|'), 'Party of 3-8||1||9+');   // v5.33: a saved 3-4 shows as 3-8; tapping 3-8 clears it
   eq('V529-7 group size words on the place page', [groupSizeText(ESC), groupSizeText(fx({group_min:4})), groupSizeText(fx({group_max:10})), groupSizeText(fx({group_min:2, group_max:2})), groupSizeText(NO)].join(' | '), 'For 2–6 people | For 4+ people | Up to 10 people | 2 people | ');
   var keep = UI.draft, keepB = UI.draftB; UI.draft = copyF(S.f); UI.draftB = {on:false, val:120};
-  try { renderFilters(); var ws = $('pFiltersBody').querySelector('.fs-who'); eq('V529-7 filter sheet: "How many of you?" with 5 sizes and 5 occasions', ws ? ws.querySelectorAll('[data-d^="party:"]').length + '+' + ws.querySelectorAll('[data-d^="who:"]').length + '|' + /How many of you\?/.test(ws.textContent) : 'none', '5+5|true'); }
+  try { renderFilters(); var ws = $('pFiltersBody').querySelector('.fs-who'); eq('V529-7 filter sheet: "How many of you?" with 4 sizes and 5 occasions', ws ? ws.querySelectorAll('[data-d^="party:"]').length + '+' + ws.querySelectorAll('[data-d^="who:"]').length + '|' + /How many of you\?/.test(ws.textContent) : 'none', '4+5|true'); }
   finally { UI.draft = keep; UI.draftB = keepB; if (!$('pFilters').hidden && UI.draft) renderFilters(); }
   // trip mode
-  eq('V529-8 trip party size: her pick, else the group head count, else none; head count -> band', [tripParty({party:'5-8'}), tripParty({}), partyOfCount(1), partyOfCount(2), partyOfCount(4), partyOfCount(7), partyOfCount(12)].join(','), '5-8,,1,2,3-4,5-8,9+');
+  eq('V529-8 trip party size: her pick, else the group head count, else none; head count -> band', [tripParty({party:'5-8'}), tripParty({}), partyOfCount(1), partyOfCount(2), partyOfCount(4), partyOfCount(7), partyOfCount(12)].join(','), '3-8,,1,2,3-8,3-8,9+');
   var OF = fx({city:'oahu', lat:21.2810, lng:-157.8300, hours:allDays(['09:00', '17:00']), duration_minutes:90, group_min:2, group_max:6});
   var ib = function(party){ return itinBuild({days:['2026-12-11'], city:CITY_BY.oahu, home:{lat:21.2800, lng:-157.8320}, list:[{sid:1, it:OF}], party:party}); }, i1 = ib('1'), i2 = ib('');
   eq('V529-8 itinerary: a 2-6 place goes to "Didn\'t fit" (group size) for 1, is planned with no size', (i1.miss[0] ? i1.miss[0].why : '-') + '|' + i1.days[0].stops.length + '|' + i2.days[0].stops.length + '|' + itT(IT_WHY.size), 'size|0|1|Doesn\'t fit your group size');
