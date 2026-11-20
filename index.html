@@ -1906,6 +1906,20 @@ svg.gi{width:20px;height:20px;flex:none}
 .tp-d.unknown .tp-ds{color:var(--ink-2)}
 .tp-d.today{box-shadow:inset 0 0 0 2px var(--ink)}
 .tp-note{margin:10px 0 0;font:500 13px/1.4 var(--f-body);color:var(--ink-2)}
+/* v5.35 shared trips */
+.panel.p-under{visibility:hidden}
+.tp-sh:empty{display:none}
+.tp-inv{margin-top:12px}
+.tp-who{list-style:none;margin:6px 0 0;padding:0}
+.tp-who li{display:flex;align-items:center;gap:12px;min-height:52px;border-bottom:1px solid var(--rule)}
+.tp-av{flex:none;width:34px;height:34px;border-radius:17px;display:flex;align-items:center;justify-content:center;background:var(--rule);color:var(--ink);font:700 15px var(--f-body)}
+.tp-wn{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;overflow:hidden}
+.tp-wn b{font:600 15px/1.25 var(--f-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tp-wn small{font:500 12px/1.3 var(--f-body);color:var(--ink-3)}
+.tp-who .mini-btn{flex:none;min-height:36px}
+.tp-sync{display:block;margin:10px 0 0;padding:0;border:0;background:none;font:500 13px/1.4 var(--f-body);color:var(--ink-2);text-align:left}
+.tp-sync.bad{color:var(--danger,#B42318);cursor:pointer;min-height:44px}
+.tp-home.ro{cursor:default}
 .tp-lab{margin:18px 0 8px;font:650 14px/1.2 var(--f-body);color:var(--ink)}
 .tp-lab:first-child{margin-top:4px}
 .tp-lab small{font-weight:500;color:var(--ink-3)}
@@ -2253,7 +2267,7 @@ svg.gi{width:20px;height:20px;flex:none}
 'use strict';
 
 var APP_NAME = 'Off-Grid';  // THE app name: page title, wordmark, About and the share text all read this one constant. The owner picked "Off-Grid" as the working name (2026-11-13).
-var VERSION = 'v5.34 (2026-11-17)';   // v5.34: the picked half of a would-you-rather counts as a liked place for "Save all"
+var VERSION = 'v5.35 (2026-11-17)';   // v5.35: shared trips with an invite link (#t_<token>, supabase/trips.sql). v5.34: the picked half of a would-you-rather counts as a liked place for "Save all"
 // v5.33:   // v5.33: party sizes 1 / 2 / 3-8 / 9+ (old 3-4 / 5-8 read as 3-8); "Save all" the places liked in the test (Result, taste profile, one-time pop-up for earlier tests)
 // v5.32 history:   // v5.32: Retake fix - the taste deck is built from Chicago's places wherever the app's city is (in Oahu it ran out after 1 card), a slot that can't be filled never ends the deck, and a Retake keeps the previous result until the new 35 answers are in. v5.31: the About panel and the Surprise panel in ru / zh-Hans / ko (A31 string table, unverified). v5.30: the rest of the text in ru / zh-Hans / ko (phrase table for the location sheet, friends, privacy, poll, Group Blend, taste result, pop-ups, toasts), rarer leave-now sentences, photo credit words, ko times from Intl, the trip page redrawn on a language switch, the action row at 320 px, stricter food answers. v5.29: Ask about this place (answers only from the item's data), group size + occasion filters, trip party size. v5.28: the app text in ru / zh-Hans / ko (dates and times via Intl, ~230 new keys, data + guide translation plumbing)
 //   // v5.27: Generate my itinerary on the trip page (day-by-day plan from the shortlist + group picks: home base start/end, area clusters, hours/events/sunset, either/or, didn't fit, editable, saved with the trip on this device). v5.26: trip mode lite (on this phone only: city + dates + optional group, a home base that every distance starts from while trip mode is on, a shortlist with a status per trip day, vote link with places only, og.trips.v1 max 5). v5.25: Group Blend v1 (2-5 friends, on this phone only: poster + group match, picks tagged "4 of 5", vote link with places only, saved groups og.groups.v1). v5.24: multi-city (Chicago + Oʻahu): city picker, per-city data, map bounds, spots, travel and badges; open-now in the item's city time zone. v5.23: the rest ofthe UI words in ru / zh-Hans / ko (unverified), Visiting Chicago from the data field us_cities (< 3 US cities; visit_override). v5.22: Google rating line on place pages (edge function, page memory only), holiday status from fields only, more UI words in ru / zh-Hans / ko, Visiting Chicago without chains. v5.21: languages (ru / zh-Hans / ko, picker, per-field English fallback), Only in Chicago badge, Visiting Chicago filter, tester fixes. v5.20: weather (Open-Meteo chip + sheet, weather-aware re-ranking, idea lines, rain/snow on the map). v5.19: Blend with a friend (match %, both characters, tagged picks, share card), friends' stars + one-line reviews. v5.18: guides as articles, been date month/none, friend profile
@@ -6557,7 +6571,7 @@ function searchItems(items, q){ // [{it, score, fuzzy}] best first
 
 /* Hash links: "#<id>" opens that place. Only plain "#name" hashes pass through claude.ai, so the id is the whole hash. */
 var HASH_WORDS = {selftest:1, tip:1, home:1, browse:1, map:1, been:1, saved:1, search:1};
-function hashItemId(hash){ var s = String(hash || '').replace(/^#/, ''); try { s = decodeURIComponent(s); } catch (e) {} if (/^[wf]_/i.test(s)) return '';   // v5.8 (v5.11: "#f_..." is a friend invite): "#w_..." is a friend's list link, never a place
+function hashItemId(hash){ var s = String(hash || '').replace(/^#/, ''); try { s = decodeURIComponent(s); } catch (e) {} if (/^[wft]_/i.test(s)) return '';   /* v5.35: "#t_..." is a trip invite */   // v5.8 (v5.11: "#f_..." is a friend invite): "#w_..." is a friend's list link, never a place
   return (/^[A-Za-z0-9][A-Za-z0-9_.-]{1,80}$/.test(s) && !HASH_WORDS[s.toLowerCase()]) ? s : ''; }
 
 /* Share text and calendar entry */
@@ -8959,7 +8973,7 @@ function wlTestHooks(){ // testing hooks (made-up, never saved): #savedsid=3.17.
    what protects the data is the row-level security, not the key. */
 var SB_URL = 'https://dhpfjmlukcznwypdpfuu.supabase.co', SB_KEY = 'sb_publishable_l0OHDqK7x_YFXCbhjzFDlQ_ZqXYnuoN';
 var SB_JS = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js';   // pinned exact version (published 2026-10-15)
-var SAVEDMETA_KEY = 'cff.savedmeta.v1', CKGONE_KEY = 'cff.checkins.gone.v1', KEPTGONE_KEY = 'cff.friends.gone.v1', ACCT_KEY = 'cff.acct.v1', PENDINV_KEY = 'cff.pendinginvite.v1';
+var SAVEDMETA_KEY = 'cff.savedmeta.v1', CKGONE_KEY = 'cff.checkins.gone.v1', KEPTGONE_KEY = 'cff.friends.gone.v1', ACCT_KEY = 'cff.acct.v1', PENDINV_KEY = 'cff.pendinginvite.v1', TRIPJOIN_KEY = 'og.tripjoin.v1';   // v5.35: a trip invite waiting for sign-in
 var SAVED_META = {}, CK_GONE = {}, KEPT_GONE = {}, LIVE = [];
 var Acct = {client:null, loading:null, user:null, profile:null, settings:null, state:'off', offline:false, lastSync:'', errMsg:'', friends:[], invites:[], syncing:null, again:false, pushTm:null, dirtyS:{}, dirtyC:{}, demo:false, askedName:false, cachedName:'',
   syncStart:0, syncTimeoutMs:10000, failN:0, backTm:null, wakeAt:0, wakeLog:[]};   // v5.16b: sync states, the 10 s timeout and retries (account-sheet spec §3)
@@ -9162,7 +9176,7 @@ function acctBoot(){
   if (/[?&#]error(_description)?=/.test(q + h)) { toast('Sign-in didn\'t finish. Try again.'); acctCleanUrl(true); }
   var back = /[?&]code=/.test(q);
   if (back) Acct.state = 'loading';
-  if (back || Acct.cachedUid || /^#f_/.test(h) || Platform.store.get(PENDINV_KEY, '')) setTimeout(function(){ acctLoad(); }, back ? 0 : 900);
+  if (back || Acct.cachedUid || /^#[ft]_/.test(h) || Platform.store.get(PENDINV_KEY, '') || Platform.store.get(TRIPJOIN_KEY, '')) setTimeout(function(){ acctLoad(); }, back ? 0 : 900);
   wlRebuild();
 }
 function acctCleanUrl(hashToo){
@@ -9348,6 +9362,8 @@ function acctSync(why){
     acctSaveCache(); acctRedraw();
     if (!Acct.profile && !Acct.askedName) { Acct.askedName = true; acctAskName(); }
     else if (Acct.profile) { var pi = Platform.store.get(PENDINV_KEY, ''); if (pi && INVITE_RE.test(pi)) { Platform.store.set(PENDINV_KEY, ''); inviteOpen(pi); } }
+    if (Acct.profile) { var ptj = tripTokOk(Platform.store.get(TRIPJOIN_KEY, '')); if (ptj) { Platform.store.set(TRIPJOIN_KEY, ''); tripJoinOpen(ptj); } }   // v5.35: a trip invite opened before sign-in
+    tripShSync();   // v5.35 shared trips (supabase/trips.sql); missing tables = shared parts hidden, local trips unchanged
     return true;
   });
   job['catch'](function(){});   // a late failure after the timeout is already reported
@@ -10731,7 +10747,7 @@ function tripHomeOk(h, slug){ return !!h && isNum(h.lat) && isNum(h.lng) && type
 function tripOk(t){ return !!t && tripIdOk(t.id) && !!CITY_BY[t.city] && tripDatesOk(t.from, t.to).ok && Array.isArray(t.sids); }
 function tripsGet(store){ var l = (store || tripStore()).get(TRIPS_KEY, []); return Array.isArray(l) ? l.filter(tripOk).slice(0, TRIPS_MAX) : []; }
 function tripFind(store, id){ var l = tripsGet(store); for (var i = 0; i < l.length; i++) if (l[i].id === id) return l[i]; return null; }
-function tripsPut(store, t){ // add or replace (by id), newest first -> the stored trip, or null (bad city or dates, or a 6th trip: never drops an old one)
+function tripsPut(store, t, fromRemote){ // (v5.35: fromRemote = written by the sync, so not marked for a push) add or replace (by id), newest first -> the stored trip, or null (bad city or dates, or a 6th trip: never drops an old one)
   if (!t || !CITY_BY[t.city] || !tripDatesOk(t.from, t.to).ok) return null;
   var l = tripsGet(store), had = tripIdOk(t.id) && l.some(function(x){ return x.id === t.id; });
   if (!had && l.length >= TRIPS_MAX) return null;
@@ -10739,8 +10755,65 @@ function tripsPut(store, t){ // add or replace (by id), newest first -> the stor
   var rec = {id:(had || tripIdOk(t.id)) ? t.id : groupNewId(), city:t.city, from:t.from, to:t.to, gid:tripIdOk(t.gid) ? t.gid : '', home:h, sids:pollSids(t.sids || []).slice(0, TRIP_SL_MAX), at:typeof t.at === 'string' && t.at ? t.at : new Date().toISOString()};
   if (partyKey(t.party)) rec.party = partyKey(t.party);   // v5.29: a picked party size (else the group's head count is used)
   var itn = itinClean(t.itin); if (itn) rec.itin = itn;   // v5.27: the generated itinerary lives inside the trip (this device only)
+  var sh = tripShClean(t); if (sh) { rec = ext(rec, sh); if (!fromRemote) { rec.dirty = true; rec.eat = new Date().toISOString(); } }   // v5.35: a shared trip's cache fields; an edit here is pushed
   l = l.filter(function(x){ return x.id !== rec.id; }); l.unshift(rec);
-  store.set(TRIPS_KEY, l.slice(0, TRIPS_MAX)); return rec;
+  store.set(TRIPS_KEY, l.slice(0, TRIPS_MAX));
+  if (sh && !fromRemote) tripShSoon(rec.id);
+  return rec;
+}
+/* ----- v5.35 shared trips (supabase/trips.sql): pure parts -----
+   A shared trip is still a normal og.trips.v1 record (it counts toward the 5) plus cache fields: shared, rid (the server's id),
+   role ('owner' | 'member'), tok (the link token, owner only), n (head count), rat (the server's updated_at), dirty + eat
+   (an edit not pushed yet, and when). Sync: push the whole trip after each edit, pull on open / join / account sync,
+   last writer wins by time; the server keeps the owner's city, dates and hotel whatever a member sends. No realtime. */
+var TRIP_TOK_RE = /^[A-Za-z0-9_-]{22,64}$/, TRIP_RID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/, TRIP_MEMBERS_MAX = 20;
+function tripTokOk(s){ return typeof s === 'string' && TRIP_TOK_RE.test(s) ? s : ''; }
+function tripTokParse(raw){ var m = /(?:^|#)t_([A-Za-z0-9_-]{22,64})(?:$|[&?\s])/.exec(String(raw || '')); return m ? m[1] : ''; }   // "#t_<token>" -> the token ('' if none)
+function tripShClean(t){
+  if (!t || t.shared !== true || !TRIP_RID_RE.test(String(t.rid || ''))) return null;
+  var n = Math.round(+t.n); n = isNum(n) && n >= 1 ? Math.min(n, TRIP_MEMBERS_MAX) : 1;
+  return {shared:true, rid:t.rid, role:t.role === 'owner' ? 'owner' : 'member', tok:t.role === 'owner' ? tripTokOk(t.tok) : '', n:n, rat:typeof t.rat === 'string' ? t.rat : '', dirty:!!t.dirty, eat:typeof t.eat === 'string' ? t.eat : ''};
+}
+var TRIP_OWNER_ONLY = {city:1, dates:1, home:1, members:1, link:1, del:1};
+function tripCanEdit(role, field){ // mirrors the server's rules (save_trip, remove_trip_member, reset_trip_token, delete_trip, leave_trip)
+  if (field === 'leave') return role === 'member';
+  if (role === 'local' || role === 'owner') return true;   // a trip on this phone only: everything is hers
+  if (role !== 'member') return false;
+  return !TRIP_OWNER_ONLY[field] && (field === 'sids' || field === 'itin' || field === 'party');
+}
+function tripRole(t){ return t && t.shared ? (t.role === 'owner' ? 'owner' : 'member') : 'local'; }
+function tripShData(t){ var d = {v:1, city:t.city, from:t.from, to:t.to, home:t.home || null, sids:pollSids(t.sids || []).slice(0, TRIP_SL_MAX)}; if (partyKey(t.party)) d.party = partyKey(t.party); var it = itinClean(t.itin); if (it) d.itin = it; return d; }   // what is sent (never the group)
+function tripTs(s){ var v = Date.parse(s || ''); return isNum(v) ? v : 0; }
+function tripMerge(local, remote){ // local cache + one my_trips row -> the record to store, or null (the server's copy doesn't make a valid trip)
+  if (!remote || !TRIP_RID_RE.test(String(remote.id || '')) || !remote.data || typeof remote.data !== 'object') return null;
+  var d = remote.data, role = remote.role === 'owner' ? 'owner' : 'member';
+  var base = {id:local && tripIdOk(local.id) ? local.id : '', city:d.city, from:d.from, to:d.to, gid:local ? local.gid || '' : '', home:d.home || null, sids:Array.isArray(d.sids) ? d.sids : [], party:d.party, itin:d.itin, at:local ? local.at : ''};
+  var keepLocal = !!(local && local.shared && local.dirty && tripTs(local.eat) > tripTs(remote.updated_at));
+  if (keepLocal) {
+    base.sids = local.sids; base.itin = local.itin; base.party = local.party;
+    if (role === 'owner') { base.city = local.city; base.from = local.from; base.to = local.to; base.home = local.home; }
+  }
+  var rec = ext(base, {shared:true, rid:remote.id, role:role, tok:role === 'owner' ? tripTokOk(remote.token) || (local && local.tok) || '' : '', n:remote.members || (local && local.n) || 1, rat:String(remote.updated_at || ''), dirty:keepLocal, eat:keepLocal ? local.eat : ''});
+  if (!tripIdOk(rec.id)) rec.id = groupNewId();
+  return tripOk(rec) && tripDatesOk(rec.from, rec.to).ok ? rec : null;
+}
+function tripShErrMissing(e){ var m = String(e && (e.message || e.code) || ''); var c = String(e && e.code || ''); return /^(PGRST202|PGRST205|42P01|42883)$/.test(c) || /Could not find the (function|table)|(relation|function) \S+ does not exist/i.test(m); }   /* v5.35 check fix: codes only, so a constraint error (trips_data_size) can't switch shared trips off */
+function tripShApply(store, rows){ // a successful my_trips answer -> merge into the phone's list -> {added, updated, dropped, over}
+  var out = {added:0, updated:0, dropped:0, over:0}, seen = {};
+  (Array.isArray(rows) ? rows : []).forEach(function(r){
+    if (!r || !TRIP_RID_RE.test(String(r.id || ''))) return; seen[r.id] = 1;
+    var loc = tripsGet(store).filter(function(t){ return t.shared && t.rid === r.id; })[0] || null;
+    var rec = tripMerge(loc, r); if (!rec) return;
+    if (!loc && tripsGet(store).length >= TRIPS_MAX) { out.over++; return; }
+    if (tripsPut(store, rec, true)) { if (loc) out.updated++; else out.added++; if (rec.dirty) tripShSoon(rec.id); }
+  });
+  tripsGet(store).forEach(function(t){ if (t.shared && !seen[t.rid]) { if (TRIP.on === t.id && store === tripStore()) tripOff(true); tripsForget(store, t.id); out.dropped++; } });   // left, removed or deleted by the owner
+  return out;
+}
+function tripFootText(t){ // the trip page's last line
+  if (!t || !t.shared) return tripT('foot');
+  var others = Math.max(0, (t.n || 1) - 1);
+  return others ? tx(others === 1 ? 'ts.foot1' : 'ts.footN', others === 1 ? 'Shared with 1 person' : 'Shared with {n} people', {n:others}) : tx('ts.foot0', 'Invite link ready. No one has joined yet.');
 }
 function tripsForget(store, id){ var l = tripsGet(store), k = l.filter(function(x){ return x.id !== id; }); store.set(TRIPS_KEY, k); if (store.get(TRIP_ON_KEY, '') === id) store.set(TRIP_ON_KEY, ''); return k.length !== l.length; }
 function tripSl(store, id, sid, on){ // the shortlist: add (on true), remove (false) or toggle (undefined) one place -> {ok, on, n, full}
@@ -10853,7 +10926,7 @@ function tripAddBtnHTML(it){
 function tripAcctHTML(){ // the account sheet's Trips rows (signed in or not: trips live on this phone)
   var h = '<div class="tp-list">';
   tripsGet(tripStore()).forEach(function(t){
-    h += '<button class="frrow" type="button" data-trip="open" data-v="' + esc(t.id) + '">' + glyphSvg('i-cal') + '<span>' + esc(CITY_BY[t.city].name + ' · ' + tripRange(t.from, t.to)) + '<small>' + esc(tripT('places', {n:t.sids.length}) + (t.home ? ' · ' + t.home.label : '')) + '</small></span><span class="tp-on">' + (TRIP.on === t.id ? esc(tripT('active')) : '') + '</span>' + glyphSvg('i-right', 'i chev') + '</button>';
+    h += '<button class="frrow" type="button" data-trip="open" data-v="' + esc(t.id) + '">' + glyphSvg('i-cal') + '<span>' + esc(CITY_BY[t.city].name + ' · ' + tripRange(t.from, t.to)) + '<small>' + esc(tripT('places', {n:t.sids.length}) + (t.home ? ' · ' + t.home.label : '') + (t.shared ? ' · ' + tx('ts.sharedS', 'Shared') : '')) + '</small></span><span class="tp-on">' + (TRIP.on === t.id ? esc(tripT('active')) : '') + '</span>' + glyphSvg('i-right', 'i chev') + '</button>';
   });
   return h + '<button class="frrow" type="button" data-trip="new">' + glyphSvg('i-pin') + '<span>' + esc(tripT('plan')) + '</span><span></span>' + glyphSvg('i-right', 'i chev') + '</button></div>';
 }
@@ -10867,7 +10940,8 @@ function tripPosterHTML(t, g, n){
     '<div class="tp-pt" aria-hidden="true"><span class="tp-k">' + esc(tripT('trip')) + '</span><b class="tp-city">' + esc(c.name) + '</b><span class="tp-dates">' + esc(rg) + '</span></div>' +
     '<div class="tp-pb" aria-hidden="true"><span class="tp-chip">' + glyphSvg('i-cal') + esc(tripT(n === 1 ? 'day1' : 'days', {n:n})) + '</span>' + (g ? '<span class="tp-chip">' + glyphSvg('i-people') + esc(g.name + ' · ' + (PARTY_BANDS[t.party] ? t.party : (g.uids.length + 1))) + '</span>' : PARTY_BANDS[t.party] ? '<span class="tp-chip">' + glyphSvg('i-people') + esc(tx('pz.chip', 'Party of {n}', {n:t.party})) + '</span>' : '') + '</div></div>';   // v5.29: a picked party size replaces the head count
 }
-function tripHomeCardHTML(home){
+function tripHomeCardHTML(home, ro){
+  if (ro) return '<div class="tp-home ro"><span class="tp-hic">' + glyphSvg('i-pin') + '</span><span class="tp-hl"><small>' + esc(tripT('stay')) + '</small><b>' + esc(home ? home.label : tx('ts.noHotel', 'Not added yet')) + '</b>' + (home && home.sub ? '<small>' + esc(home.sub) + '</small>' : '') + '</span></div>';   // v5.35: a member sees the planner's hotel, read-only
   return home ? '<button class="tp-home" type="button" data-trip="home"><span class="tp-hic">' + glyphSvg('i-pin') + '</span><span class="tp-hl"><small>' + esc(tripT('stay')) + '</small><b>' + esc(home.label) + '</b>' + (home.sub ? '<small>' + esc(home.sub) + '</small>' : '') + '</span><span class="tp-edit">' + esc(tripT('change')) + '</span></button>' :
     '<button class="tp-home none" type="button" data-trip="home"><span class="tp-hic">' + glyphSvg('i-pin') + '</span><span class="tp-hl"><b>' + esc(tripT('stayQ')) + '</b><small>' + esc(tripT('stayWhy')) + '</small></span><span class="tp-edit">' + esc(tripT('addB')) + '</span></button>';
 }
@@ -10890,7 +10964,8 @@ function tripGroupPicksHTML(t, g){ // "Your group's picks" for this trip (her ph
 }
 function tripPageHTML(t){
   var g = tripGroup(t), days = tripDays(t), today = tripTodayKey(t, nowMs()), vs = tripVoteSids(t), h = tripPosterHTML(t, g, days.length);
-  h += tripHomeCardHTML(t.home);
+  h += tripHomeCardHTML(t.home, !tripCanEdit(tripRole(t), 'home'));
+  h += '<div id="tpSh" class="tp-sh">' + tripShInnerHTML(t) + '</div>';   // v5.35: Invite to trip, Who's going, the sync line
   h += '<div class="gp-acts">' + (vs.length >= POLL_MIN ? '<button class="btn-primary gp-send" type="button" data-trip="vote">' + glyphSvg('i-share') + '<span>' + esc(grpT('sendT')) + '</span></button>' : '') +
     '<button class="gp-save" type="button" data-trip="browse">' + glyphSvg('i-search') + '<span>' + esc(tripT('addPl')) + '</span></button></div>';
   h += itinHTML(t);   // v5.27: Generate itinerary / the day-by-day plan
@@ -10906,7 +10981,7 @@ function tripPageHTML(t){
     }).join('') + '</ul><p class="tp-note">' + esc(tripT(t.home ? 'crow' : 'crowGps')) + '</p>';
   }
   h += tripGroupPicksHTML(t, g);
-  return h + '<p class="gp-fn">' + esc(tripT('foot')) + '</p>';
+  return h + '<p class="gp-fn" id="tpFn">' + esc(tripFootText(t)) + '</p>';   // v5.35: "Shared with N people" / "Saved on this phone only..."
 }
 function tripFormHTML(d){
   if (!d) return '';
@@ -11022,6 +11097,7 @@ function tripOpenPage(id){
   var t = tripActivate(id); if (!t) { toast(tripT('gone')); return; }
   TRIP.cur = t.id; TRIP.mode = 'page'; TRIP.prev = '';
   renderTrip(); openPanel('pTrip'); tripTop();
+  if (t.shared) { tripShMembers(t); tripShSync(); if (t.dirty) tripShSoon(t.id); }   // v5.35: pull on open (no realtime)
 }
 function tripOpenList(){ TRIP.mode = 'list'; renderTrip(); openPanel('pTrip'); tripTop(); }
 function tripAddFromPlace(sid, el){
@@ -11037,22 +11113,230 @@ function tripAddFromPlace(sid, el){
 function tripMenu(){
   var t = tripFind(tripStore(), TRIP.cur); if (!t) return;
   openSmall(tripT('tripOf', {c:CITY_BY[t.city].name}), function(){
-    $('pSmallBody').innerHTML = '<button class="frrow" type="button" data-trip="edit">' + glyphSvg('g-pencil') + '<span>' + esc(tripT('edit')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>' +
+    var rl = tripRole(t);   // v5.35: a member can't edit dates / hotel or delete; they can leave. The planner can make a new link.
+    $('pSmallBody').innerHTML = (tripCanEdit(rl, 'dates') ? '<button class="frrow" type="button" data-trip="edit">' + glyphSvg('g-pencil') + '<span>' + esc(tripT('edit')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>' : '') +
       (TRIP.on === t.id ? '<button class="frrow" type="button" data-trip="exit2">' + glyphSvg('i-target') + '<span>' + esc(tripT('exitL')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>' : '') +
-      '<button class="frrow" type="button" data-trip="del">' + glyphSvg('i-close') + '<span>' + esc(tripT('del')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>';
+      (t.shared && rl === 'owner' && t.tok ? '<button class="frrow" type="button" data-trip="newlink">' + glyphSvg('i-share') + '<span>' + esc(tx('ts.newLink', 'New invite link (old links stop working)')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>' : '') +
+      (tripCanEdit(rl, 'leave') ? '<button class="frrow" type="button" data-trip="leave">' + glyphSvg('i-close') + '<span>' + esc(tx('ts.leaveB', 'Leave trip')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>' :
+      '<button class="frrow" type="button" data-trip="del">' + glyphSvg('i-close') + '<span>' + esc(tripT('del')) + '</span>' + glyphSvg('i-right', 'i chev') + '</button>');
   });
 }
 function tripDelAsk(){
   var t = tripFind(tripStore(), TRIP.cur); if (!t) return;
   openSmall(tripT('del'), function(){
-    $('pSmallBody').innerHTML = '<p class="p-note">' + esc(tripT('delQ', {c:CITY_BY[t.city].name, d:tripRange(t.from, t.to)})) + '</p><div class="confirm2"><button class="btn-primary danger" type="button" data-trip="del2">' + esc(tripT('delB')) + '</button><button class="mini-btn" type="button" data-close="pSmall">' + esc(grpT('cancel')) + '</button></div>';
+    $('pSmallBody').innerHTML = '<p class="p-note">' + esc(t.shared ? tx('ts.delQ', 'Delete the {c} trip ({d}) for everyone on it?', {c:CITY_BY[t.city].name, d:tripRange(t.from, t.to)}) : tripT('delQ', {c:CITY_BY[t.city].name, d:tripRange(t.from, t.to)})) + '</p><div class="confirm2"><button class="btn-primary danger" type="button" data-trip="del2">' + esc(tripT('delB')) + '</button><button class="mini-btn" type="button" data-close="pSmall">' + esc(grpT('cancel')) + '</button></div>';
   });
 }
-function tripDel(){ var id = TRIP.cur; closePanel('pSmall'); if (TRIP.on === id) tripOff(true); tripsForget(tripStore(), id); TRIP.cur = ''; TRIP.mode = 'list'; renderTrip(); toast(tripT('deleted')); }
+function tripDel(){ var id = TRIP.cur, ts0 = tripFind(tripStore(), id); closePanel('pSmall'); if (ts0 && ts0.shared) { if (ts0.role === 'owner') tripShDelete(ts0); return; }   /* v5.35: a shared trip is deleted on the server first */ if (TRIP.on === id) tripOff(true); tripsForget(tripStore(), id); TRIP.cur = ''; TRIP.mode = 'list'; renderTrip(); toast(tripT('deleted')); }
 function tripSendOpen(){ // the group's "Send a vote" panel with the shortlist: pick 2-4, "Make vote link" -> grpVoteGo -> pollGoWith(sids)
   var t = tripFind(tripStore(), TRIP.cur), vs = tripVoteSids(t); if (vs.length < POLL_MIN) { toast(grpT('noVote')); return; }
   GRP.vlist = vs.slice(0, 12); GRP.vote = GRP.vlist.slice(0, POLL_MAX); GRP.vmore = false;
   openSmall(grpT('sendT'), grpSendRender);
+}
+/* ----- v5.35 shared trips: talking to the server (always through tripRpc: a 10 s cap, so never an endless "Syncing") ----- */
+var TRIPSH = {missing:false, busy:{}, err:{}, mem:{}, memErr:{}, tm:{}, fake:null, fakeMe:'', joinTok:'', lastPull:0, over:0, timeoutMs:10000};
+function tripShVisible(){ return (!!TRIPSH.fake || cloudHost()) && !TRIPSH.missing; }   // the website (or the self-test's fake server), and trips.sql has run
+function tripShCan(){ return !TRIPSH.missing && (!!TRIPSH.fake || (cloudHost() && !!Acct.client && !!Acct.user && !Acct.demo)); }
+function tripMeId(){ return TRIPSH.fake ? TRIPSH.fakeMe : Acct.user ? Acct.user.id : ''; }
+function tripRpc(fn, args){
+  var p = TRIPSH.fake ? Promise.resolve().then(function(){ return TRIPSH.fake(fn, args || {}); }) : acctRpc(fn, args || {});
+  var tm = null, to = new Promise(function(res, rej){ tm = setTimeout(function(){ rej({message:'timeout'}); }, TRIPSH.timeoutMs || 10000); });
+  return Promise.race([p, to]).then(function(v){ clearTimeout(tm); return v; }, function(e){ clearTimeout(tm); if (tripShErrMissing(e)) TRIPSH.missing = true; throw e; });
+}
+function tripShErrText(e){ return acctErrKind(e) === 'offline' && !/timeout/i.test(String(e && e.message || '')) ?tx('ts.offline', 'Offline. Your changes stay on this phone for now.') : tx('ts.retry', 'Can\'t sync this trip · Tap to retry'); }   // never the token or ids
+function tripShSoon(id){ if (!tripShCan()) return; clearTimeout(TRIPSH.tm[id]); TRIPSH.tm[id] = setTimeout(function(){ TRIPSH.tm[id] = null; tripShPush(id); }, 700); }
+function tripShRedraw(id){ // only the shared block and the last line of the open trip page (keeps her scroll place)
+  if ($('pTrip').hidden || TRIP.mode !== 'page' || (id && TRIP.cur !== id)) return;
+  var t = tripFind(tripStore(), TRIP.cur), box = $('tpSh'), fn = $('tpFn'); if (!t) return;
+  if (box) box.innerHTML = tripShInnerHTML(t);
+  if (fn) fn.textContent = tripFootText(t);
+}
+function tripShPush(id){
+  var st = tripStore(), t = tripFind(st, id); if (!t || !t.shared || !t.dirty || !tripShCan()) return Promise.resolve(false);
+  if (TRIPSH.busy[t.rid]) { tripShSoon(id); return Promise.resolve(false); }
+  var rid = t.rid, sentAt = t.eat; TRIPSH.busy[rid] = 1; TRIPSH.err[rid] = ''; tripShRedraw(id);
+  return tripRpc('save_trip', {p_trip:rid, p_data:tripShData(t)}).then(function(r){
+    delete TRIPSH.busy[rid];
+    if (r && r.status === 'gone') { if (TRIP.on === id) tripOff(true); tripsForget(st, id); toast(tx('ts.gone', 'This trip isn\'t shared with you anymore.')); if (!$('pTrip').hidden && TRIP.cur === id) { TRIP.mode = 'list'; renderTrip(); } return false; }
+    if (!r || r.status !== 'ok') throw {message:'save ' + (r && r.status)};
+    var cur = tripFind(st, id); if (cur) { var again = cur.eat !== sentAt; tripsPut(st, ext(cur, {rat:String(r.updated_at || ''), dirty:again}), true); if (again) tripShSoon(id); }
+    tripShRedraw(id); return true;
+  }, function(e){ delete TRIPSH.busy[rid]; TRIPSH.err[rid] = TRIPSH.missing ? '' : tripShErrText(e); tripShRedraw(id); return false; });
+}
+function tripShSync(force){ // pull: my shared trips -> this phone (on account sync, on opening a trip page, after joining)
+  if (!tripShCan()) return Promise.resolve(false);
+  if (!force && Date.now() - TRIPSH.lastPull < 15000) return Promise.resolve(false);
+  TRIPSH.lastPull = Date.now(); var st = tripStore();
+  return tripRpc('my_trips', {}).then(function(rows){
+    var o = tripShApply(st, rows); TRIPSH.over = o.over;
+    if (!$('pTrip').hidden && (TRIP.mode === 'list' || TRIP.mode === 'page')) renderTrip();
+    try { if (!$('pAcct').hidden) renderAcctSheet(); } catch (e) {}
+    return true;
+  }, function(){ TRIPSH.lastPull = 0; if (TRIPSH.missing && !$('pTrip').hidden && TRIP.mode === 'page') renderTrip(); return false; });
+}
+function tripShMembers(t){
+  if (!t || !t.shared || !tripShCan() || TRIPSH.busy['m' + t.rid]) return Promise.resolve(false);
+  var rid = t.rid; TRIPSH.busy['m' + rid] = 1; TRIPSH.memErr[rid] = '';
+  return tripRpc('trip_member_list', {p_trip:rid}).then(function(rows){
+    delete TRIPSH.busy['m' + rid];
+    TRIPSH.mem[rid] = (Array.isArray(rows) ? rows : []).filter(function(m){ return m && m.user_id; }).slice(0, TRIP_MEMBERS_MAX).map(function(m){ return {uid:String(m.user_id), un:String(m.username || ''), dn:String(m.display_name || ''), role:m.role === 'owner' ? 'owner' : 'member'}; });
+    var st = tripStore(), cur = tripFind(st, t.id), n = TRIPSH.mem[rid].length;
+    if (cur && n && cur.n !== n) tripsPut(st, ext(cur, {n:n}), true);
+    tripShRedraw(t.id); return true;
+  }, function(e){ delete TRIPSH.busy['m' + rid]; TRIPSH.memErr[rid] = TRIPSH.missing ? '' : tripShErrText(e); tripShRedraw(t.id); return false; });
+}
+function tripShInnerHTML(t){ // the trip page's shared block: Invite (owner / a trip on this phone), Who's going, the sync line
+  if (!tripShVisible()) return '';
+  var role = tripRole(t), h = '';
+  if (role !== 'member') h += '<div class="gp-acts tp-inv"><button class="gp-save" type="button" data-trip="invite">' + glyphSvg('i-people') + '<span>' + esc(tx('ts.inviteB', 'Invite to trip')) + '</span></button>' + (t.shared && t.tok ? '<button class="gp-save" type="button" data-trip="copylink">' + glyphSvg('i-share') + '<span>' + esc(tx('ts.copyB', 'Copy link')) + '</span></button>' : '') + '</div>';
+  if (!t.shared) return h;
+  var mem = TRIPSH.mem[t.rid], me = tripMeId();
+  h += '<h3 class="sec-h gp-h"><span>' + esc(tx('ts.who', 'Who\'s going')) + '</span><span>' + (mem ? mem.length : t.n || 1) + '</span></h3>';
+  if (!mem) h += TRIPSH.memErr[t.rid] ? '<button class="tp-sync bad" type="button" data-trip="shretry">' + esc(TRIPSH.memErr[t.rid]) + '</button>' : '<p class="tp-note">' + esc(tx('ts.loading', 'Loading…')) + '</p>';
+  else h += '<ul class="tp-who">' + mem.map(function(m){
+    var nm = m.dn ? m.dn.split(/\s+/)[0] : m.un ? '@' + m.un : '?', f = m.uid === me ? null : acctFriendBy(m.uid), act;
+    if (m.uid === me) act = '<span class="fr-st">' + esc(tx('ts.you', 'You')) + '</span>';
+    else if (f && f.status === 'accepted') act = '<span class="fr-st">' + esc(tx('ts.friends', 'Friends')) + '</span>';
+    else if (f && f.status === 'pending' && f.direction === 'out') act = '<span class="fr-st">' + esc(tx('ts.sent', 'Request sent')) + '</span>';
+    else if (f && f.status === 'blocked') act = '';
+    else if (m.un) act = '<button class="mini-btn" type="button" data-trip="fradd" data-v="' + esc(m.un) + '">' + esc(f && f.direction === 'in' ? tx('ts.accept', 'Accept') : tx('ts.addFr', 'Add friend')) + '</button>';   // the existing friend request: they still accept it
+    else act = '';
+    return '<li><span class="tp-av" aria-hidden="true">' + esc(nm.replace(/^@/, '').charAt(0).toUpperCase() || '?') + '</span><span class="tp-wn"><b>' + esc(nm) + '</b>' + (m.role === 'owner' ? '<small>' + esc(tx('ts.planner', 'Planner')) + '</small>' : '') + '</span>' + act + '</li>';
+  }).join('') + '</ul>';
+  var e = TRIPSH.err[t.rid];
+  if (e) h += '<button class="tp-sync bad" type="button" data-trip="shretry">' + esc(e) + '</button>';
+  else if (TRIPSH.busy[t.rid]) h += '<p class="tp-sync">' + esc(tx('ts.syncing', 'Syncing…')) + '</p>';
+  return h;
+}
+function tripShareLink(t){
+  if (!t || !t.tok) return Promise.resolve(false);
+  var link = wlBase() + '#t_' + t.tok, text = tx('ts.msg', 'Join my {c} trip on {app} ({d})', {c:CITY_BY[t.city].name, app:APP_NAME, d:tripRange(t.from, t.to)});
+  return Platform.share({title:APP_NAME, text:text, url:link}).then(function(x){ if (x === 'copied') toast(tx('ts.copied', 'Link copied')); return x; }, function(){
+    openSmall(tx('ts.inviteB', 'Invite to trip'), function(){ $('pSmallBody').innerHTML = '<p class="p-note">' + esc(tx('ts.hold', 'Press and hold the link to copy it. Anyone with it can join (up to 20 people).')) + '</p><pre class="calbox">' + esc(link) + '</pre>'; });
+  });
+}
+function tripCopyLink(){ var t = tripFind(tripStore(), TRIP.cur); if (!t || !t.tok) return; Platform.copy(wlBase() + '#t_' + t.tok).then(function(){ toast(tx('ts.copied', 'Link copied')); }, function(){ tripShareLink(t); }); }
+function tripInvite(){
+  var st = tripStore(), t = tripFind(st, TRIP.cur); if (!t || tripRole(t) === 'member') return;
+  if (!tripShVisible()) { toast(tx('ts.web', 'Inviting works on the website.')); return; }
+  if (!tripShCan()) {
+    openSmall(tx('ts.inviteB', 'Invite to trip'), function(){ $('pSmallBody').innerHTML = '<p class="p-note">' + esc(tx('ts.signFirst', 'Sign in with Google first, so friends see who invited them.')) + '</p><div class="confirm2"><button class="btn-primary" type="button" data-acct="signin">' + esc(tx('ts.signB', 'Sign in with Google')) + '</button><button class="mini-btn" type="button" data-close="pSmall">' + esc(grpT('cancel')) + '</button></div>'; });
+    return;
+  }
+  if (t.shared && t.tok) { tripShareLink(t); return; }
+  if (TRIPSH.busy.create) return;
+  TRIPSH.busy.create = 1; toast(tx('ts.making', 'Making the link…'));
+  return tripRpc('create_trip', {p_data:tripShData(t)}).then(function(r){
+    delete TRIPSH.busy.create;
+    if (r && r.status === 'username') { acctAskName(); return; }
+    if (!r || r.status !== 'ok' || !TRIP_RID_RE.test(String(r.id || '')) || !tripTokOk(r.token)) { toast(r && r.status === 'limit' ? tx('ts.limit', 'That\'s a lot of shared trips. Delete an old one first.') : 'That didn\'t work. Try again.'); return; }
+    var cur = tripFind(st, t.id) || t, rec = tripsPut(st, ext(cur, {shared:true, rid:r.id, role:'owner', tok:r.token, n:1, rat:String(r.updated_at || ''), dirty:false, eat:''}), true);
+    TRIPSH.mem[r.id] = null; renderTrip();
+    if (rec) { tripShMembers(rec); return tripShareLink(rec); }
+  }, function(e){ delete TRIPSH.busy.create; if (TRIPSH.missing) { toast(tx('ts.notYet', 'Shared trips aren\'t switched on yet.')); renderTrip(); } else acctFail(e); });
+}
+function tripJoinClearHash(){ try { if (/^#t_/.test(location.hash || '')) history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }   // the token leaves the address bar
+function tripJoinCard(title, body, btns){ openSmall(title, function(){ $('pSmallBody').innerHTML = '<p class="p-note">' + esc(body) + '</p>' + (btns ? '<div class="confirm2">' + btns + '</div>' : ''); }); }
+function tripJoinOpen(tok){
+  tripJoinClearHash(); tok = tripTokOk(tok); if (!tok) return Promise.resolve(false);
+  var T = tx('ts.joinT', 'Trip invite');
+  if (!TRIPSH.fake && !cloudHost()) { tripJoinCard(T, tx('ts.onWeb', 'Open this invite on the website to join:')); try { $('pSmallBody').insertAdjacentHTML('beforeend', '<pre class="calbox">' + esc(SITE_URL + '#t_' + tok) + '</pre>'); } catch (e) {} return Promise.resolve(false); }
+  TRIPSH.joinTok = tok;
+  var go = TRIPSH.fake ? Promise.resolve(!!TRIPSH.fakeMe) : acctLoad().then(function(cl){ if (!cl) return null; return cl.auth.getSession().then(function(r){ var s = r && r.data ? r.data.session : null; if (s && !Acct.user) Acct.user = s.user; return !!s; }); });
+  return go.then(function(signed){
+    if (signed === null) { tripJoinCard(T, offlineText(Acct.lastSync) + '. ' + tx('ts.later', 'Open the link again later.')); return false; }
+    if (!signed) { Platform.store.set(TRIPJOIN_KEY, tok); tripJoinCard(T, tx('ts.joinSign', 'You\'re invited to a trip on {app}. Sign in with Google to see it and join.', {app:APP_NAME}), '<button class="btn-primary" type="button" data-acct="signin">' + esc(tx('ts.signB', 'Sign in with Google')) + '</button><button class="mini-btn" type="button" data-trip="jno">' + esc(tx('ts.noThanks', 'No thanks')) + '</button>'); return false; }
+    return tripRpc('trip_by_token', {p_token:tok}).then(function(r){
+      if (r && r.status === 'already') return tripJoin();
+      if (!r || r.status !== 'ok') { TRIPSH.joinTok = ''; tripJoinCard(T, r && r.status === 'full' ? tx('ts.full', 'This trip is full (20 people).') : tx('ts.dead', 'This trip link isn\'t working. Ask for a new one.')); return false; }
+      var c = CITY_BY[r.city] ? CITY_BY[r.city].name : '', d = isKey(r.from) && isKey(r.to) ? ' · ' + tripRange(r.from, r.to) : '';
+      tripJoinCard(tx('ts.joinQ', 'Join {o}\'s {c} trip', {o:String(r.owner || '').slice(0, 30) || tx('ts.aFriend', 'a friend'), c:c}) + d, tx('ts.joinBody', '{n} going. You\'ll see the plan, the shortlist and where everyone is staying. Joining doesn\'t make you friends.', {n:+r.members || 1}),
+        '<button class="btn-primary" type="button" data-trip="join">' + esc(tx('ts.joinB', 'Join')) + '</button><button class="mini-btn" type="button" data-trip="jno">' + esc(tx('ts.noThanks', 'No thanks')) + '</button>');
+      return true;
+    });
+  })['catch'](function(e){ tripJoinCard(T, TRIPSH.missing ? tx('ts.notYet2', 'Shared trips aren\'t switched on yet. Try the link again later.') : acctErrKind(e) === 'offline' ? offlineText(Acct.lastSync) + '. ' + tx('ts.later', 'Open the link again later.') : tx('ts.fail', 'That didn\'t work. Open the link again later.')); return false; });
+}
+function tripJoin(){
+  var tok = TRIPSH.joinTok, st = tripStore(), T = tx('ts.joinT', 'Trip invite'); if (!tok) return Promise.resolve(false);
+  if (tripsGet(st).length >= TRIPS_MAX) { tripJoinCard(T, tx('ts.fullPhone', 'This phone already has 5 trips. Delete one, then open the link again.')); return Promise.resolve(false); }
+  return tripRpc('join_trip', {p_token:tok}).then(function(r){
+    if (r && r.status === 'username') { Platform.store.set(TRIPJOIN_KEY, tok); closePanel('pSmall'); acctAskName(); return false; }
+    if (!r || (r.status !== 'ok' && r.status !== 'already')) { TRIPSH.joinTok = ''; tripJoinCard(T, r && r.status === 'full' ? tx('ts.full', 'This trip is full (20 people).') : tx('ts.dead', 'This trip link isn\'t working. Ask for a new one.')); return false; }
+    var loc = tripsGet(st).filter(function(x){ return x.shared && x.rid === r.id; })[0] || null;
+    var rec = tripMerge(loc, {id:r.id, role:r.role, token:r.token, data:r.data, updated_at:r.updated_at, members:r.members});
+    rec = rec ? tripsPut(st, rec, true) : null;
+    TRIPSH.joinTok = ''; Platform.store.set(TRIPJOIN_KEY, ''); closePanel('pSmall');
+    if (!rec) { toast('That didn\'t work. Try again.'); return false; }
+    TRIPSH.mem[rec.rid] = null; tripOpenPage(rec.id);
+    toast(r.status === 'ok' ? tx('ts.joined', 'You\'re on the trip') : tx('ts.already', 'You\'re already on this trip'));
+    return true;
+  }, function(e){ tripJoinCard(T, TRIPSH.missing ? tx('ts.notYet2', 'Shared trips aren\'t switched on yet. Try the link again later.') : tx('ts.fail', 'That didn\'t work. Open the link again later.')); return false; });
+}
+function tripLeaveAsk(){
+  var t = tripFind(tripStore(), TRIP.cur); if (!t) return;
+  openSmall(tx('ts.leaveB', 'Leave trip'), function(){ $('pSmallBody').innerHTML = '<p class="p-note">' + esc(tx('ts.leaveQ', 'Leave the {c} trip? It goes off this phone. You can join again with the link.', {c:CITY_BY[t.city].name})) + '</p><div class="confirm2"><button class="btn-primary danger" type="button" data-trip="leave2">' + esc(tx('ts.leaveB', 'Leave trip')) + '</button><button class="mini-btn" type="button" data-close="pSmall">' + esc(grpT('cancel')) + '</button></div>'; });
+}
+function tripLeave(){
+  var st = tripStore(), t = tripFind(st, TRIP.cur); closePanel('pSmall'); if (!t || !t.shared) return Promise.resolve(false);
+  if (!tripShCan()) { toast(tx('ts.signNeed', 'Sign in to change a shared trip.')); return Promise.resolve(false); }
+  return tripRpc('leave_trip', {p_trip:t.rid}).then(function(r){
+    if (r !== 'ok' && r !== 'gone') { toast('That didn\'t work. Try again.'); return false; }
+    if (TRIP.on === t.id) tripOff(true); tripsForget(st, t.id); TRIP.cur = ''; TRIP.mode = 'list'; renderTrip(); toast(tx('ts.left', 'You left the trip')); return true;
+  }, function(e){ toast(tripShErrText(e)); return false; });
+}
+function tripNewLink(){
+  var st = tripStore(), t = tripFind(st, TRIP.cur); closePanel('pSmall'); if (!t || !t.shared || t.role !== 'owner' || !tripShCan()) return Promise.resolve(false);
+  return tripRpc('reset_trip_token', {p_trip:t.rid}).then(function(r){
+    if (!r || r.status !== 'ok' || !tripTokOk(r.token)) { toast('That didn\'t work. Try again.'); return false; }
+    var cur = tripFind(st, t.id); if (cur) tripsPut(st, ext(cur, {tok:r.token}), true);
+    tripShRedraw(t.id); toast(tx('ts.newLinkT', 'New link made. Old links don\'t work anymore.')); return true;
+  }, function(e){ toast(tripShErrText(e)); return false; });
+}
+function tripShDelete(t){ // the owner deletes a shared trip for everyone (the server first, then this phone)
+  if (!tripShCan()) { toast(tx('ts.signNeed', 'Sign in to change a shared trip.')); return Promise.resolve(false); }
+  return tripRpc('delete_trip', {p_trip:t.rid}).then(function(r){
+    if (r !== 'ok') { toast('That didn\'t work. Try again.'); return false; }
+    if (TRIP.on === t.id) tripOff(true); tripsForget(tripStore(), t.id); TRIP.cur = ''; TRIP.mode = 'list'; renderTrip(); toast(tripT('deleted')); return true;
+  }, function(e){ toast(tripShErrText(e)); return false; });
+}
+// Screenshot hook "#tripshdemo=page|member|join" (best with #city=oahu): a made-up shared trip on a FAKE server in memory (nothing stored on the phone or sent).
+function tripShFakeServer(){ // an in-memory stand-in for supabase/trips.sql (same answers and the same rules), for the self-test and the hook
+  var db = {trips:{}, mem:{}, prof:{'u-me':{username:'avery.test', display_name:'Avery Test'}, 'u-2':{username:'sam.test', display_name:'Sam Test'}, 'u-3':{username:'jo.test', display_name:''}}}, k = 0;
+  function uuid(){ k++; return ('0000000' + k).slice(-8) + '-0000-4000-8000-' + ('00000000000' + k).slice(-12); }
+  function now(){ return new Date(Date.UTC(2026, 10, 17, 12, 0, 0) + (k++) * 1000).toISOString(); }
+  function clean(d){ var o = {v:1}; ['city', 'from', 'to', 'home', 'party', 'sids', 'itin'].forEach(function(x){ if (d && d[x] !== undefined && d[x] !== null) o[x] = JSON.parse(JSON.stringify(d[x])); }); return o; }
+  function role(tid, u){ var m = db.mem[tid] || []; for (var i = 0; i < m.length; i++) if (m[i].u === u) return m[i].r; return ''; }
+  var srv = {db:db, me:'u-me', fn:function(fn, a){
+    var me = srv.me, t;
+    if (!me) return {status:'signin'};
+    if (srv.down) throw {message:'Could not find the function public.' + fn + ' in the schema cache', code:'PGRST202'};
+    switch (fn) {
+      case 'create_trip': t = {id:uuid(), owner:me, token:'Tk' + ('0000000000000000000000' + k).slice(-22), data:clean(a.p_data), updated_at:now()}; db.trips[t.id] = t; db.mem[t.id] = [{u:me, r:'owner'}]; return {status:'ok', id:t.id, token:t.token, updated_at:t.updated_at};
+      case 'save_trip': t = db.trips[a.p_trip]; if (!t || !role(t.id, me)) return {status:'gone'}; var d = clean(a.p_data); if (t.owner !== me) ['city', 'from', 'to', 'home'].forEach(function(x){ if (t.data[x] !== undefined) d[x] = t.data[x]; else delete d[x]; }); t.data = d; t.updated_at = now(); return {status:'ok', updated_at:t.updated_at};
+      case 'my_trips': return Object.keys(db.trips).filter(function(id){ return !!role(id, me); }).map(function(id){ t = db.trips[id]; return {id:id, role:role(id, me), token:t.owner === me ? t.token : null, data:JSON.parse(JSON.stringify(t.data)), updated_at:t.updated_at, members:db.mem[id].length}; });
+      case 'trip_member_list': if (!role(a.p_trip, me)) return []; return db.mem[a.p_trip].map(function(m){ var p = db.prof[m.u] || {}; return {user_id:m.u, username:p.username || '', display_name:p.display_name || '', role:m.r}; });
+      case 'trip_by_token': for (var id in db.trips) { t = db.trips[id]; if (t.token === a.p_token) { var p0 = db.prof[t.owner] || {}; return {status:role(id, me) ? 'already' : db.mem[id].length >= 20 ? 'full' : 'ok', owner:String(p0.display_name || p0.username || '').split(' ')[0], city:t.data.city, from:t.data.from, to:t.data.to, members:db.mem[id].length}; } } return {status:'not_found'};
+      case 'join_trip': for (var j in db.trips) { t = db.trips[j]; if (t.token === a.p_token) { var r0 = role(j, me), st = 'already'; if (!r0) { if (db.mem[j].length >= 20) return {status:'full'}; db.mem[j].push({u:me, r:'member'}); r0 = 'member'; st = 'ok'; } return {status:st, id:j, role:r0, data:JSON.parse(JSON.stringify(t.data)), updated_at:t.updated_at, members:db.mem[j].length, token:t.owner === me ? t.token : null}; } } return {status:'not_found'};
+      case 'leave_trip': var rl = role(a.p_trip, me); if (!rl) return 'gone'; if (rl === 'owner') return 'owner'; db.mem[a.p_trip] = db.mem[a.p_trip].filter(function(m){ return m.u !== me; }); return 'ok';
+      case 'remove_trip_member': t = db.trips[a.p_trip]; if (!t || t.owner !== me) return 'not_owner'; if (a.p_user === me) return 'self'; db.mem[t.id] = db.mem[t.id].filter(function(m){ return m.u !== a.p_user; }); return 'ok';
+      case 'reset_trip_token': t = db.trips[a.p_trip]; if (!t || t.owner !== me) return {status:'not_owner'}; t.token = 'Tn' + ('0000000000000000000000' + (k++)).slice(-22); return {status:'ok', token:t.token};
+      case 'delete_trip': t = db.trips[a.p_trip]; if (!t || t.owner !== me) return 'not_owner'; delete db.trips[t.id]; delete db.mem[t.id]; return 'ok';
+    }
+    throw {message:'unknown ' + fn};
+  }};
+  return srv;
+}
+function tripShDemo(mode, n){
+  if (!DATA_LOADED) { if ((n || 0) < 120) setTimeout(function(){ tripShDemo(mode, (n || 0) + 1); }, 200); return; }
+  if (CITY.slug !== 'oahu' && ALL_DATA.some(function(it){ return cityOf(it) === 'oahu'; })) setCity('oahu', 'test');
+  UI.tripDemo = 'shared';   // in-memory trips (tripStore)
+  var srv = tripShFakeServer(); TRIPSH.fake = srv.fn; TRIPSH.fakeMe = 'u-me'; TRIPSH.missing = false;
+  var sids = DATA.filter(function(it){ return ID_SID[it.id] && cityOf(it) === 'oahu'; }).slice(0, 3).map(function(it){ return ID_SID[it.id]; });
+  var base = {city:CITY.slug, from:'2026-12-11', to:'2026-12-16', gid:'', home:CITY.slug === 'oahu' ? TRIP_DEMO_HOME : null, sids:sids};
+  var r = srv.fn('create_trip', {p_data:base}); srv.db.mem[r.id].push({u:'u-2', r:'member'}, {u:'u-3', r:'member'});
+  if (mode === 'join') { srv.me = 'u-3'; srv.db.mem[r.id] = srv.db.mem[r.id].filter(function(m){ return m.u !== 'u-3'; }); TRIPSH.fakeMe = 'u-3'; tripJoinOpen(r.token); return; }
+  if (mode === 'member') { srv.me = 'u-2'; TRIPSH.fakeMe = 'u-2'; }
+  tripShSync(true).then(function(){ var t = tripsGet(tripStore()).filter(function(x){ return x.shared; })[0]; if (t) tripOpenPage(t.id); });
 }
 function tripClick(el){
   var a = el.getAttribute('data-trip'), v = el.getAttribute('data-v') || '', t0;
@@ -11071,7 +11355,7 @@ function tripClick(el){
     case 'city': tripReadForm(); if (TRIP.draft && CITY_BY[v]) { TRIP.draft.city = v; if (TRIP.draft.home && !tripHomeOk(TRIP.draft.home, v)) TRIP.draft.home = null; } renderTrip(); break;
     case 'gid': tripReadForm(); if (TRIP.draft) TRIP.draft.gid = v; renderTrip(); break;
     case 'party': tripReadForm(); if (TRIP.draft && PARTY_BANDS[v]) TRIP.draft.party = partyKey(TRIP.draft.party) === v ? '' : v; renderTrip(); break;   // v5.29
-    case 'home': if (TRIP.mode === 'new' || TRIP.mode === 'edit') tripReadForm(); TRIP.prev = TRIP.mode; TRIP.mode = 'home'; TRIP.q = ''; TRIP.list = null; TRIP.msg = ''; TRIP.warn = false; renderTrip(); tripTop(); break;
+    case 'home': if (TRIP.mode === 'page' && (t0 = tripFind(tripStore(), TRIP.cur)) && !tripCanEdit(tripRole(t0), 'home')) break;   /* v5.35: only the trip's planner changes the hotel */ if (TRIP.mode === 'new' || TRIP.mode === 'edit') tripReadForm(); TRIP.prev = TRIP.mode; TRIP.mode = 'home'; TRIP.q = ''; TRIP.list = null; TRIP.msg = ''; TRIP.warn = false; renderTrip(); tripTop(); break;
     case 'hpick': tripHomePick(v); break;
     case 'save': tripSave(); break;
     case 'add': tripAddFromPlace(+v, el); break;
@@ -11081,6 +11365,15 @@ function tripClick(el){
     case 'browse': closePanel('pTrip'); toast(tripT('slEmpty2')); break;
     case 'vote': tripSendOpen(); break;
     case 'itgen': case 'itpick': case 'itmove': case 'itmv': case 'itrm': case 'itback': case 'itshare': case 'itvote': itinClick(a, v, el); break;
+    case 'invite': tripInvite(); break;   // v5.35 shared trips
+    case 'copylink': tripCopyLink(); break;
+    case 'shretry': t0 = tripFind(tripStore(), TRIP.cur); if (t0 && t0.shared) { TRIPSH.err[t0.rid] = ''; tripShPush(t0.id); tripShMembers(t0); tripShSync(true); tripShRedraw(t0.id); } break;
+    case 'fradd': if (USERNAME_RE.test(v)) { if (TRIPSH.fake) toast('Test mode: nothing was sent.'); else acctRequest(v); el.disabled = true; } break;   // the existing friend request (they still accept it)
+    case 'join': tripJoin(); break;
+    case 'jno': TRIPSH.joinTok = ''; Platform.store.set(TRIPJOIN_KEY, ''); closePanel('pSmall'); break;
+    case 'leave': closePanel('pSmall'); tripLeaveAsk(); break;
+    case 'leave2': tripLeave(); break;
+    case 'newlink': tripNewLink(); break;
   }
 }
 // Testing hook "#tripdemo=list|new|home|page|vote|empty" (best with #city=oahu; add #acctdemo=1&cpdemo=1 for a made-up group): a made-up trip Dec 11-16
@@ -12154,7 +12447,13 @@ function closePanel(id){
   if (id === 'pPoll' && !UI.pollReturn) { pollClearHash(); PL.cur = null; if (UI.locAfterPoll) { UI.locAfterPoll = false; if (UI.firstOpen) setTimeout(function(){ if (UI.firstOpen && $('pLoc').hidden) openLocation(true); }, 340); } }   // v5.8 (not when it only steps aside for a place's detail)
   syncScrim();
 }
+function sheetsTuck(){ // v5.35 (her screenshot: the Friends / account sheet peeked above the Trip sheet): sheets under the top TALL sheet are hidden until it closes
+  var top = -1; openStack.forEach(function(id, i){ var el = $(id); if (el && el.classList.contains('tall')) top = i; });
+  openStack.forEach(function(id, i){ var el = $(id); if (el) el.classList.toggle('p-under', i < top); });
+  Array.prototype.forEach.call(document.querySelectorAll('.panel.p-under'), function(el){ if (openStack.indexOf(el.id) < 0) el.classList.remove('p-under'); });
+}
 function syncScrim(){
+  try { sheetsTuck(); } catch (e) {}
   var sc = $('scrim'), need = openStack.some(function(id){ return $(id).dataset.modal !== '0'; });
   if (need) { sc.hidden = false; void sc.offsetWidth; sc.classList.add('on'); }
   else { sc.classList.remove('on'); setTimeout(function(){ if (!sc.classList.contains('on')) sc.hidden = true; }, 220); }
@@ -13006,7 +13305,7 @@ function popNext(o){ // pure. o: {busy, cloud, acct, everIn, welcomeAt, tasteDon
 }
 function popTestHash(h){ // test hooks and screenshots keep the screen clean; real links (place, poll, been, friend list, invite, guide) only make the pop-ups wait
   h = String(h || '');
-  if (/^#(been=|poll=|w_|f_|guide=)/.test(h)) return false;
+  if (/^#(been=|poll=|w_|f_|t_|guide=)/.test(h)) return false;   // v5.35: + a shared-trip invite "#t_"
   return /selftest|=/.test(h);
 }
 function tasteIsDone(){ return !!(TASTE && (TASTE.done || tasteCardCount(TASTE) >= 8)); }
@@ -13032,8 +13331,8 @@ function popInit(){
   POPS.off = popTestHash(h) && !POPS.force;
   if (POPS.off) return;
   var hid = null; try { hid = hashItemId(h); } catch (e) {}
-  POPS.link = /^#(been=|poll=|w_|f_|guide=)/.test(h) || !!hid;   // a link opens first; its screen may need a moment (the invite checks the account first)
-  if (/^#f_/.test(h)) POPS.shown.welcome = true;   // a friend invite brings its own "Sign in to accept"
+  POPS.link = /^#(been=|poll=|w_|f_|t_|guide=)/.test(h) || !!hid;   // a link opens first; its screen may need a moment (the invite checks the account first)
+  if (/^#[ft]_/.test(h)) POPS.shown.welcome = true;   // a friend invite (v5.35: or a trip invite) brings its own "Sign in to accept"
   clearInterval(POPS.iv); POPS.iv = setInterval(popTick, 700);
 }
 function popTick(){
@@ -14106,6 +14405,7 @@ function runSelfTest0(){
   block('v5.30 the rest of the text in ru / zh-Hans / ko (phrase table), rarer sentences, photo credits, ko times, food answers, the action row', function(){ v530SelfTest(ok, eq, info); });
   block('v5.31 the About and Surprise panels in ru / zh-Hans / ko (A31 table), English unchanged', function(){ v531SelfTest(ok, eq, info); });
   block('v5.29 Ask about this place (data answers, "not in our info", no guessing) + group size and occasion filters + trip party size', function(){ v529SelfTest(ok, eq, info); });
+  block('v5.35 shared trips (#t_ token, who may edit what, local + server merge, footer, hidden without the tables, sheet stacking)', function(){ v535SelfTest(ok, eq, info); });
 
   block('time zone', function(){
     eq('Chicago noon Jul 4 2026 = 17:00 UTC (CDT)', fromChicago('2026-07-04', 720), Date.UTC(2026, 6, 4, 17, 0));
@@ -15668,7 +15968,7 @@ function runSelfTest0(){
     eq('8 tiles: Limited time + 7 kinds', $('tiles') ? $('tiles').querySelectorAll('.tile').length : -1, 8);
     ok('no chip row on the main screen', !document.getElementById('chips'), 'found #chips');
     ok('Relax glyph and genre colors are defined', !!document.getElementById('g-steam') && getComputedStyle(document.documentElement).getPropertyValue('--g-relax').trim() !== '', 'missing');
-    eq('version', VERSION, 'v5.34 (2026-11-17)');
+    eq('version', VERSION, 'v5.35 (2026-11-17)');
     eq('previous version', VERSION_PREV, 'v5.31 (2026-11-15)');
   });
 
@@ -16397,7 +16697,7 @@ function runSelfTest0(){
     eq('taste invite closed 3 days ago -> nothing; 8 days ago -> again', [P({welcomeAt:N - D, tasteAt:N - 3 * D}), P({welcomeAt:N - D, tasteAt:N - 8 * D})].join(), ',taste');
     eq('both shown this visit -> nothing more (never twice in one visit)', P({shown:{welcome:true, taste:true}}), '');
     eq('anything else on screen (a link, a panel, the location sheet) -> wait, never stack', P({busy:true}), 'wait');
-    eq('test hooks keep the screen clean; real links only make pop-ups wait', ['#selftest', '#loc=41.9,-87.6', '#poll=0123456789ab.3.17', '#been=1_1_3-2601', '#w_1abc', '#f_ABCDEFGH', '#pa-puttery-chicago', '#guide=date-night', ''].map(popTestHash).join(), 'true,true,false,false,false,false,false,false,false');
+    eq('test hooks keep the screen clean; real links only make pop-ups wait', ['#selftest', '#loc=41.9,-87.6', '#poll=0123456789ab.3.17', '#been=1_1_3-2601', '#w_1abc', '#f_ABCDEFGH', '#pa-puttery-chicago', '#guide=date-night', '', '#t_AbCdEfGhIjKlMnOpQrStUv_-'].map(popTestHash).join(), 'true,true,false,false,false,false,false,false,false,false');
     ok('this page (#selftest): no pop-ups', POPS.off && !POPS.cur, 'off=' + POPS.off + ' cur=' + POPS.cur);
     var kT = TASTE, cards = function(n){ var t = emptyTaste(); for (var i = 0; i < n; i++) t.log.push({t:'card', id:'x' + i, ans:'yes'}); return t; };
     try { var r = []; TASTE = cards(3); r.push(tasteIsDone()); TASTE = cards(8); r.push(tasteIsDone()); TASTE = ext(emptyTaste(), {done:'2026-11-14'}); r.push(tasteIsDone()); TASTE = emptyTaste(); r.push(tasteIsDone());
@@ -17177,7 +17477,7 @@ function runSelfTestAsync(){ // checks that need promises or the map files
         eq('real data v5.16b: test finished -> no taste card', tasteCardHTML(), '');
       } finally { TASTE = KT2; }
     } catch (e) { ok('real data v5.16b: Opening soon check crashed', false, e && e.message); }
-    return acctSyncFailChecks(R).then(function(){ return blendServerChecks(R); }).then(function(){ return R; });
+    return acctSyncFailChecks(R).then(function(){ return blendServerChecks(R); }).then(function(){ return tripShareAsyncChecks(R); }).then(function(){ return R; });
   });
 }
 function blendServerChecks(R){ // v5.19: the blend.sql functions as run (2026-11-14), through a MOCKED client with their exact row shapes. No real account, nothing sent.
@@ -17640,6 +17940,146 @@ function v525SelfTestReal(ok, eq, note){ // Group Blend checks on the loaded fil
     } finally { host.parentNode.removeChild(host); }
     eq('G8 page at ' + W + ' px content width: no sideways scroll, one band per person, characters fit their band, 6 tagged cards (3 and 6 people)', res.join(' '), '3:true:3:true:6 6:true:6:true:6');
   }
+}
+function v535SelfTest(ok, eq, info){ // v5.35 shared trips, pure parts: stand-in stores only (her real trips are never touched); fixtures use "Avery Test"
+  function mem(){ var m = {}; return {get:function(k, d){ return m.hasOwnProperty(k) ? JSON.parse(m[k]) : d; }, set:function(k, v){ m[k] = JSON.stringify(v); return true; }}; }
+  var TOK = 'AbCdEfGhIjKlMnOpQrStUv_-', RID = '00000001-0000-4000-8000-000000000001', RID2 = '00000002-0000-4000-8000-000000000002';
+  // 1. the link
+  eq('S1 "#t_<token>" gives the token; too short, a friend invite, junk and extra "&..." handled', [tripTokParse('#t_' + TOK), tripTokParse('#t_' + TOK + '&city=oahu'), tripTokParse('#t_abc'), tripTokParse('#f_ABCDEFGH'), tripTokParse('#t_' + TOK.slice(0, 20) + '!!'), tripTokParse('')].join('|'), TOK + '|' + TOK + '||||');
+  eq('S1 a trip link is not a place link, and the pop-ups wait for it', [hashItemId('#t_' + TOK), popTestHash('#t_' + TOK)].join('|'), '|false');
+  eq('S1 the pending-join key is an og.* key (testers touch only og.* / cff.* / offgrid.*)', /^og\./.test(TRIPJOIN_KEY), true);
+  // 2. who may edit what (mirrors save_trip / delete_trip / reset_trip_token / remove_trip_member / leave_trip in supabase/trips.sql)
+  var F = ['sids', 'itin', 'party', 'city', 'dates', 'home', 'members', 'link', 'del', 'leave'];
+  eq('S2 owner: everything but leaving', F.map(function(f){ return tripCanEdit('owner', f) ? 1 : 0; }).join(''), '1111111110');
+  eq('S2 member: shortlist, itinerary, party size and leaving only', F.map(function(f){ return tripCanEdit('member', f) ? 1 : 0; }).join(''), '1110000001');
+  eq('S2 a trip on this phone only: hers to change (no "leave")', F.map(function(f){ return tripCanEdit('local', f) ? 1 : 0; }).join(''), '1111111110');
+  eq('S2 an unknown role may change nothing', F.map(function(f){ return tripCanEdit('x', f) ? 1 : 0; }).join(''), '0000000000');
+  // 3. the cache fields
+  var c1 = tripShClean({shared:true, rid:RID, role:'member', tok:TOK, n:99}), c2 = tripShClean({shared:true, rid:'nope', role:'owner'}), c3 = tripShClean({shared:true, rid:RID, role:'owner', tok:'short'});
+  eq('S3 a member never keeps the token; head count capped at 20; a bad server id = not shared; a bad token is dropped', [c1.tok, c1.n, c1.role, c2, c3.tok].join('|'), '|20|member||');
+  var ms = mem(), base = {city:'chicago', from:'2026-12-11', to:'2026-12-13', gid:'', home:null, sids:[1, 2]};
+  var loc = tripsPut(ms, base), sh = tripsPut(ms, ext(base, {shared:true, rid:RID, role:'owner', tok:TOK, n:2, rat:'2026-11-17T10:00:00.000Z'}), true);
+  eq('S3 tripsPut keeps a shared trip\'s fields; a write from the sync is not marked for a push', [sh.shared, sh.rid === RID, sh.role, sh.tok === TOK, sh.n, sh.dirty].join('|'), 'true|true|owner|true|2|false');
+  var ed = tripSl(ms, sh.id, 3, true), shE = tripFind(ms, sh.id);
+  eq('S3 an edit on the phone marks it for a push (dirty + time); a trip on this phone only gets no shared fields', [ed.ok, shE.dirty, !!shE.eat, tripFind(ms, loc.id).shared === undefined, tripsGet(ms).length].join('|'), 'true|true|true|true|2');
+  var dd = tripShData(ext(shE, {gid:'abcdefgh', party:'2'}));
+  eq('S3 what is sent: city, dates, hotel, party, places, plan; never the group or the cache fields', [Object.keys(dd).sort().join(','), dd.sids.join()].join('|'), 'city,from,home,party,sids,to,v|1,2,3');
+  // 4. merge local + server (last writer wins by time; the owner's city / dates / hotel always win for a member)
+  var rem = {id:RID, role:'owner', token:TOK, data:{city:'chicago', from:'2026-12-11', to:'2026-12-14', sids:[7, 8]}, updated_at:'2026-11-17T12:00:00.000Z', members:3};
+  var m1 = tripMerge(ext(shE, {dirty:false}), rem);
+  eq('S4 server newer -> the server\'s copy (same phone id, places, dates, head count)', [m1.id === shE.id, m1.sids.join(), m1.to, m1.n, m1.dirty].join('|'), 'true|7,8|2026-12-14|3|false');
+  var m2 = tripMerge(ext(shE, {dirty:true, eat:'2026-11-17T13:00:00.000Z'}), rem);
+  eq('S4 her unsent edit is newer -> her places and dates stay, still marked for a push', [m2.sids.join(), m2.to, m2.dirty].join('|'), '1,2,3|2026-12-13|true');
+  var m3 = tripMerge(ext(shE, {role:'member', dirty:true, eat:'2026-11-17T13:00:00.000Z', to:'2026-12-20', home:{label:'Mine', lat:41.9, lng:-87.6}}), ext(rem, {role:'member', token:null}));
+  eq('S4 a member\'s newer edit keeps the places but never the dates or the hotel', [m3.sids.join(), m3.to, m3.home, m3.role, m3.tok].join('|'), '1,2,3|2026-12-14||member|');
+  eq('S4 a server copy that isn\'t a valid trip is refused; a new one gets a phone id', [tripMerge(null, ext(rem, {data:{city:'chicago', from:'2026-12-14', to:'2026-12-11', sids:[]}})), tripIdOk((tripMerge(null, rem) || {}).id)].join('|'), '|true');
+  // 5. applying a my_trips answer
+  var ms2 = mem(); tripsPut(ms2, base); var own = tripsPut(ms2, ext(base, {shared:true, rid:RID2, role:'owner', tok:TOK, n:1}), true);
+  var ap = tripShApply(ms2, [rem]);
+  eq('S5 apply: a new shared trip is added, one no longer on the server is dropped, the phone-only trip is untouched', [ap.added, ap.dropped, tripsGet(ms2).length, tripsGet(ms2).filter(function(t){ return !t.shared; }).length, !tripFind(ms2, own.id)].join('|'), '1|1|2|1|true');
+  var ms3 = mem(); for (var q = 0; q < 5; q++) tripsPut(ms3, {city:'chicago', from:'2026-12-1' + q, to:'2026-12-1' + (q + 1), sids:[]});
+  var ap3 = tripShApply(ms3, [rem]);
+  eq('S5 shared trips count toward the 5: a 6th is not added (and nothing of hers is dropped)', [ap3.added, ap3.over, tripsGet(ms3).length].join('|'), '0|1|5');
+  // 6. the last line and the error words
+  eq('S6 footer: phone only / no one yet / 1 person / 3 people', [tripFootText(loc), tripFootText(ext(sh, {n:1})), tripFootText(ext(sh, {n:2})), tripFootText(ext(sh, {n:4}))].join(' # '), tripT('foot') + ' # Invite link ready. No one has joined yet. # Shared with 1 person # Shared with 3 people');
+  eq('S6 "tables not there yet" errors are recognised; a network error is not one', [tripShErrMissing({code:'PGRST202', message:'Could not find the function public.my_trips without parameters in the schema cache'}), tripShErrMissing({message:'relation "public.trips" does not exist'}), tripShErrMissing({message:'Failed to fetch'}), tripShErrMissing({code:'23514', message:'new row for relation "trips" violates check constraint "trips_data_size"'})].join(), 'true,true,false,false');   /* v5.35 check fix: a constraint error is not "missing" */
+  ok('S6 the sync words never carry the link token', tripShErrText({message:'x ' + TOK}).indexOf(TOK) < 0 && tripShErrText({message:'Failed to fetch'}).indexOf(TOK) < 0, '');
+  // 7. the screens (a stand-in server flag only; nothing sent)
+  var K = {fake:TRIPSH.fake, me:TRIPSH.fakeMe, miss:TRIPSH.missing, mem:TRIPSH.mem, fr:Acct.friends};
+  try {
+    TRIPSH.fake = null; TRIPSH.missing = false;
+    var hid = cloudHost() ? null : tripShInnerHTML(loc);
+    if (hid === null) info('S7 this run is on the website: the "no server" check is skipped'); else eq('S7 off the website (file / claude.ai): no Invite, no Who\'s going', hid, '');
+    TRIPSH.fake = function(){ return null; }; TRIPSH.fakeMe = 'u-me'; TRIPSH.missing = true;
+    eq('S7 tables missing: the shared block is hidden, the trip page keeps the old footer', [tripShInnerHTML(loc), /id="tpFn">Saved on this phone only/.test(tripPageHTML(loc))].join('|'), '|true');
+    TRIPSH.missing = false;
+    var pl = tripPageHTML(loc), po = tripPageHTML(sh), mb = ext(sh, {role:'member', tok:'', home:{label:'Test hotel', sub:'Loop', lat:41.88, lng:-87.63}}), pm = tripPageHTML(mb);
+    eq('S7 phone-only trip: "Invite to trip", no Copy link; owner: Invite + Copy link; member: neither', [/data-trip="invite"/.test(pl), /data-trip="copylink"/.test(pl), /data-trip="invite"/.test(po), /data-trip="copylink"/.test(po), /data-trip="invite"/.test(pm), /data-trip="copylink"/.test(pm)].join(), 'true,false,true,true,false,false');
+    eq('S7 member: the hotel shows read-only (no Change button); owner can change it', [/tp-home ro/.test(pm) && /Test hotel/.test(pm), /data-trip="home"/.test(pm), /data-trip="home"/.test(po)].join(), 'true,false,true');
+    TRIPSH.mem = {}; TRIPSH.mem[RID] = [{uid:'u-me', un:'avery.test', dn:'Avery Test', role:'owner'}, {uid:'u-2', un:'sam.test', dn:'Sam Test', role:'member'}, {uid:'u-3', un:'jo.test', dn:'', role:'member'}];
+    Acct.friends = [{user_id:'u-2', username:'sam.test', display_name:'Sam Test', status:'accepted'}];
+    var w = tripShInnerHTML(sh);
+    eq('S7 Who\'s going: me = "You", a friend = "Friends", anyone else = "Add friend" (the existing request, by username); no one is auto-friended', [/>You</.test(w), /Sam<\/b>[\s\S]*?>Friends</.test(w), /data-trip="fradd" data-v="jo.test"/.test(w), (w.match(/data-trip="fradd"/g) || []).length, (w.match(/<li>/g) || []).length].join(), 'true,true,true,1,3');
+  } finally { TRIPSH.fake = K.fake; TRIPSH.fakeMe = K.me; TRIPSH.missing = K.miss; TRIPSH.mem = K.mem; Acct.friends = K.fr; }
+  // 8. sheet stacking (her screenshot): a tall sheet on top hides the sheets under it, and they come back when it closes
+  var ks = openStack.slice();
+  try {
+    openStack.splice(0); openStack.push('pAcct', 'pTrip'); sheetsTuck(); var u1 = $('pAcct').classList.contains('p-under') && !$('pTrip').classList.contains('p-under');
+    openStack.splice(0); openStack.push('pAcct'); sheetsTuck(); var u2 = !$('pAcct').classList.contains('p-under');
+    openStack.splice(0); openStack.push('pTrip', 'pSmall'); sheetsTuck(); var u3 = !$('pTrip').classList.contains('p-under');
+    openStack.splice(0); sheetsTuck();
+    eq('S8 account sheet under the Trip sheet is hidden; back when the Trip sheet closes; a small card keeps the trip visible', [u1, u2, u3].join(), 'true,true,true');
+  } finally { openStack.splice(0); Array.prototype.push.apply(openStack, ks); sheetsTuck(); }
+}
+function tripShareAsyncChecks(R){ // v5.35: the whole invite -> join -> edit -> sync -> leave path against an IN-MEMORY fake of trips.sql (nothing sent, her trips untouched)
+  function ok(name, cond, info){ R.push({ok:!!cond, name:name, info:cond ? '' : (info || '')}); }
+  function eq(name, got, exp){ ok(name, got === exp, 'got ' + show(got) + ', expected ' + show(exp)); }
+  var K = {fake:TRIPSH.fake, me:TRIPSH.fakeMe, miss:TRIPSH.missing, mem:TRIPSH.mem, to:TRIPSH.timeoutMs, demo:UI.tripDemo, trips:TRIP_MEMSTORE.get(TRIPS_KEY, null), on:TRIP_MEMSTORE.get(TRIP_ON_KEY, null), share:Platform.share, cur:TRIP.cur, mode:TRIP.mode, tron:TRIP.on};
+  if (TRIP.on) { R.push({ok:true, info:'', note:true, name:'v5.35 shared-trip flow skipped: trip mode is on'}); return Promise.resolve(); }
+  var srv = tripShFakeServer(), st, tok = '', rid = '', shared = 0;
+  function restore(){
+    Object.keys(TRIPSH.tm).forEach(function(k){ clearTimeout(TRIPSH.tm[k]); }); TRIPSH.tm = {};
+    if (TRIP.on) tripOff(true);
+    TRIPSH.fake = K.fake; TRIPSH.fakeMe = K.me; TRIPSH.missing = K.miss; TRIPSH.mem = K.mem; TRIPSH.timeoutMs = K.to; TRIPSH.busy = {}; TRIPSH.err = {}; TRIPSH.joinTok = ''; TRIPSH.lastPull = 0;
+    TRIP_MEMSTORE.set(TRIPS_KEY, K.trips === null ? [] : K.trips); TRIP_MEMSTORE.set(TRIP_ON_KEY, K.on === null ? '' : K.on);
+    Platform.share = K.share; UI.tripDemo = K.demo; TRIP.cur = K.cur; TRIP.mode = K.mode;
+    closePanel('pSmall'); closePanel('pTrip');
+  }
+  try {
+    UI.tripDemo = 'selftest'; st = tripStore(); st.set(TRIPS_KEY, []); st.set(TRIP_ON_KEY, '');
+    TRIPSH.fake = srv.fn; TRIPSH.fakeMe = 'u-me'; srv.me = 'u-me'; TRIPSH.missing = false; TRIPSH.mem = {}; TRIPSH.busy = {}; TRIPSH.err = {}; TRIPSH.lastPull = 0;
+    Platform.share = function(d){ shared++; return Promise.resolve('shared'); };
+    var t = tripsPut(st, {city:'chicago', from:'2026-12-11', to:'2026-12-13', gid:'', home:{label:'Test hotel', sub:'Loop', lat:41.88, lng:-87.63}, sids:[1, 2]});
+    TRIP.cur = t.id; TRIP.mode = 'page';
+  } catch (e) { restore(); ok('v5.35 shared-trip flow crashed (setup)', false, e && e.message); return Promise.resolve(); }
+  return Promise.resolve(tripInvite()).then(function(){
+    var a = tripFind(st, TRIP.cur); tok = a && a.tok; rid = a && a.rid;
+    var sv = rid && srv.db.trips[rid];
+    ok('v5.35 F1 Invite: the trip is made on the server (owner), the phone copy is shared with a 24-character token, the share sheet opens once', !!a && a.shared && a.role === 'owner' && tripTokOk(tok).length === 24 && !!sv && sv.data.sids.join() === '1,2' && !sv.data.gid && shared === 1, JSON.stringify(a && {sh:a.shared, role:a.role, n:shared}));
+    // the friend's phone: an empty list, signed in as someone else
+    st.set(TRIPS_KEY, []); srv.me = 'u-2'; TRIPSH.fakeMe = 'u-2'; TRIPSH.lastPull = 0;
+    return tripJoinOpen(tok);
+  }).then(function(){
+    var title = $('pSmallTitle').textContent, body = $('pSmallBody').innerHTML;
+    ok('v5.35 F2 the join card: "Join Avery\'s Chicago trip · Dec 11 – 13", a Join button, the head count, never the hotel (' + title + ')', /^Join Avery's Chicago trip/.test(title) && /data-trip="join"/.test(body) && /1 going/.test(body) && !/Test hotel/.test(title + body), title + ' / ' + body.slice(0, 160));
+    return tripJoin();
+  }).then(function(j){
+    var m = tripsGet(st)[0];
+    ok('v5.35 F3 Join: on the friend\'s phone as a member, with the planner\'s hotel, no token; 2 on the server', j === true && !!m && m.shared && m.role === 'member' && !m.tok && m.home && m.home.label === 'Test hotel' && srv.db.mem[rid].length === 2, JSON.stringify(m && {role:m.role, tok:m.tok}));
+    TRIP.cur = m.id;
+    tripSl(st, m.id, 5, true); tripsPut(st, ext(tripFind(st, m.id), {to:'2026-12-20', home:null}));   // she adds a place and (not allowed) changes the dates and hotel
+    Object.keys(TRIPSH.tm).forEach(function(k){ clearTimeout(TRIPSH.tm[k]); }); TRIPSH.tm = {};
+    return tripShPush(m.id);
+  }).then(function(p){
+    var sv = srv.db.trips[rid];
+    ok('v5.35 F4 a member\'s edit is pushed: the new place is on the server; the planner\'s dates and hotel are kept (server-side guard)', p === true && sv.data.sids.join() === '1,2,5' && sv.data.to === '2026-12-13' && sv.data.home && sv.data.home.label === 'Test hotel' && !tripFind(st, TRIP.cur).dirty, JSON.stringify(sv.data));
+    TRIPSH.lastPull = 0; return tripShSync(true);
+  }).then(function(){
+    var m = tripFind(st, TRIP.cur);
+    ok('v5.35 F5 pull: the member\'s phone gets the planner\'s dates and hotel back (last writer wins, owner fields guarded)', !!m && m.to === '2026-12-13' && !!m.home && m.sids.join() === '1,2,5', JSON.stringify(m && {to:m.to, sids:m.sids}));
+    return tripShMembers(m);
+  }).then(function(){
+    var w = tripShInnerHTML(tripFind(st, TRIP.cur));
+    ok('v5.35 F6 Who\'s going on the member\'s phone: 2 people, "You" for her, "Add friend" for the planner (not friends yet)', (w.match(/<li>/g) || []).length === 2 && />You</.test(w) && /data-trip="fradd" data-v="avery.test"/.test(w), w.slice(0, 200));
+    return tripLeave();
+  }).then(function(l){
+    ok('v5.35 F7 Leave: off the friend\'s phone, 1 left on the server', l === true && tripsGet(st).length === 0 && srv.db.mem[rid].length === 1, 'l=' + l);
+    // the planner's phone again: degrade when the tables are gone
+    st.set(TRIPS_KEY, []); srv.me = 'u-me'; TRIPSH.fakeMe = 'u-me'; tripsPut(st, {city:'chicago', from:'2027-01-08', to:'2027-01-10', sids:[4]});
+    srv.down = true; TRIPSH.lastPull = 0; return tripShSync(true);
+  }).then(function(v){
+    var only = tripsGet(st);
+    ok('v5.35 F8 no tables yet (PGRST202): the sync gives up quietly, shared parts are hidden, the phone-only trip is unchanged', v === false && TRIPSH.missing && !tripShVisible() && tripShInnerHTML(only[0]) === '' && only.length === 1 && only[0].sids.join() === '4' && !only[0].shared, 'v=' + v + ' missing=' + TRIPSH.missing);
+    // a hanging server: the trip page says "Tap to retry", never a stuck "Syncing"
+    TRIPSH.missing = false; srv.down = false; TRIPSH.timeoutMs = 60; TRIPSH.fake = function(){ return new Promise(function(){}); };
+    var x = tripsPut(st, {city:'chicago', from:'2027-02-01', to:'2027-02-02', sids:[], shared:true, rid:'00000009-0000-4000-8000-000000000009', role:'owner', tok:'', n:1});   // a local edit -> dirty
+    Object.keys(TRIPSH.tm).forEach(function(k){ clearTimeout(TRIPSH.tm[k]); }); TRIPSH.tm = {};
+    return tripShPush(x.id).then(function(r){ return {r:r, x:x}; });
+  }).then(function(o){
+    var e = TRIPSH.err[o.x.rid] || '';
+    ok('v5.35 F9 a hanging save times out to "Can\'t sync this trip · Tap to retry" (not busy any more, still marked for a push)', o.r === false && /Tap to retry/.test(e) && !TRIPSH.busy[o.x.rid] && tripFind(st, o.x.id).dirty === true, e);
+    restore();
+  })['catch'](function(e){ restore(); ok('v5.35 shared-trip flow crashed', false, e && (e.message || JSON.stringify(e))); });
 }
 function v526SelfTest(ok, eq, info){ // trip mode lite: stand-in stores only (her real trips are never touched)
   function mem(){ var m = {}; return {get:function(k, d){ return m.hasOwnProperty(k) ? JSON.parse(m[k]) : d; }, set:function(k, v){ m[k] = JSON.stringify(v); return true; }}; }
@@ -18534,6 +18974,8 @@ function readHash(){
   if (/^#poll=/.test(hsh)) { if (mapEl) pollOpen(hsh); return; }   // v5.13: a poll link (or the same link as a plain list without the vote server)
   if (/(?:^#|&)polldemo=1/.test(hsh) && mapEl) { PL.demo = true; setTimeout(function(){ var go = function(n){ if (DATA_LOADED) { var ss = DATA.filter(function(it){ return ID_SID[it.id] && firstPhoto(it); }).slice(0, 3).map(function(it){ return ID_SID[it.id]; }); PL.cur = {code:'0123456789ab', sids:ss, own:true}; PL.res = {counts:[3, 1, 0], total:4, mine:0, open:true}; PL.mine = 0; renderPoll(); openPanel('pPoll'); } else if (n < 100) setTimeout(function(){ go(n + 1); }, 200); }; go(0); }, 0); }   // testing hook: a poll with made-up votes (nothing sent)   // v5.11: her private one-time import link (confirm screen first)
   var ivc = inviteCode(hsh); if (ivc) { if (mapEl) inviteOpen(ivc); return; }   // v5.11: a friend invite
+  var tjt = tripTokParse(hsh); if (tjt) { if (mapEl) tripJoinOpen(tjt); return; }   // v5.35: a shared-trip invite
+  if (/(?:^#|&)tripshdemo=(page|join|member)\b/.test(hsh) && mapEl) tripShDemo(/tripshdemo=(\w+)/.exec(hsh)[1], 0);   // v5.35 screenshot hook (in memory only, nothing sent)
   if (/(?:^#|&)acctdemo=1/.test(hsh) && mapEl) acctDemo();
   if (/(?:^#|&)acctsheet=1/.test(hsh) && mapEl) (function w(){ if (!DATA_LOADED) { setTimeout(w, 200); return; } setTimeout(function(){ try { syncAcctButtons(); openAccount(); } catch (e) {} }, 400); })();   // v5.17 screenshot hook: the account sheet (with #acctdemo=1 / #tastedemo=1)
   var tdm = /(?:^#|&)tripdemo=(list|new|home|page|vote|empty|place|itin)\b/.exec(hsh); if (tdm && mapEl) { UI.tripDemo = tdm[1]; tripDemo(tdm[1], 0); }   // v5.26 testing hook: trip mode with a made-up trip, in memory only (nothing stored or sent)
