@@ -60240,7 +60240,11 @@
                     },
         "sid":  412,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-wk-escape-game-honolulu-1.jpg",
+                           "credit":  "The Escape Game Honolulu (official site)",
+                           "page_url":  "https://theescapegame.com/honolulu/"
+                       }
                    ]
     },
     {
@@ -60464,7 +60468,11 @@
                     },
         "sid":  414,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-wk-lucky-strike-honolulu-1.jpg",
+                           "credit":  "Lucky Strike Honolulu (official site)",
+                           "page_url":  "https://www.luckystrikeent.com/location/lucky-strike-honolulu"
+                       }
                    ]
     },
     {
@@ -60702,7 +60710,11 @@
                     },
         "sid":  417,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-wk-aya-golf-lounge-1.jpg",
+                           "credit":  "Aya Golf Lounge (official site)",
+                           "page_url":  "https://www.ayagolflounge.com/"
+                       }
                    ]
     },
     {
@@ -60796,7 +60808,11 @@
                     },
         "sid":  418,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-wk-royal-hawaiian-center-classes-1.jpg",
+                           "credit":  "Royal Hawaiian Center (official site)",
+                           "page_url":  "https://www.royalhawaiiancenter.com/events"
+                       }
                    ]
     },
     {
@@ -60861,7 +60877,11 @@
                     },
         "sid":  419,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-wk-kraftstories-chinatown-1.jpg",
+                           "credit":  "KraftStories (official site)",
+                           "page_url":  "https://kraftstories.com/pages/craft-classes-honolulu"
+                       }
                    ]
     },
     {
@@ -60986,7 +61006,11 @@
                     },
         "sid":  420,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-wk-waikiki-aquarium-1.jpg",
+                           "credit":  "Waikiki Aquarium (official site)",
+                           "page_url":  "https://www.waikikiaquarium.org/visit/"
+                       }
                    ]
     },
     {
@@ -61095,7 +61119,11 @@
                     },
         "sid":  421,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-wk-honolulu-zoo-1.jpg",
+                           "credit":  "Honolulu Zoo Society (official site)",
+                           "page_url":  "https://www.honoluluzoo.org/"
+                       }
                    ]
     },
     {
@@ -61269,7 +61297,11 @@
                        ],
         "sid":  423,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-wk-foster-botanical-garden-1.jpg",
+                           "credit":  "City and County of Honolulu, Dept. of Parks and Recreation (official site)",
+                           "page_url":  "https://www.honolulu.gov/dpr/honolulu-botanical-gardens/foster-botanical-garden/"
+                       }
                    ]
     },
     {
@@ -61379,7 +61411,11 @@
         "phone":  "808-900-4240",
         "sid":  424,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-wk-sky-waikiki-1.jpg",
+                           "credit":  "SKY Waikiki (official site)",
+                           "page_url":  "https://www.skywaikiki.com/"
+                       }
                    ]
     },
     {
@@ -61673,7 +61709,11 @@
                     },
         "sid":  426,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-wk-twas-the-light-on-ice-1.jpg",
+                           "credit":  "Aloha Immersive (official site)",
+                           "page_url":  "https://alohaimmersive.com/"
+                       }
                    ]
     },
     {
@@ -61745,7 +61785,11 @@
                     },
         "sid":  427,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-wk-kakaako-farmers-market-1.jpg",
+                           "credit":  "Ward Village (official site)",
+                           "page_url":  "https://www.wardvillage.com/explore/activities/farmers-market/"
+                       }
                    ]
     },
     {
@@ -61822,7 +61866,11 @@
                     },
         "sid":  428,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-tw-holokai-sunset-sail-1.jpg",
+                           "credit":  "Holokai Catamaran Sunset Sail (Waikiki) (official site)",
+                           "page_url":  "https://www.sailholokai.com/adventures-cruises/sunset-sail/"
+                       }
                    ]
     },
     {
@@ -61982,7 +62030,11 @@
                     },
         "sid":  430,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-tw-holokai-whale-watch-sail-1.jpg",
+                           "credit":  "Holokai Catamaran Whale Watch Sail (Waikiki) (official site)",
+                           "page_url":  "https://www.sailholokai.com/adventures-cruises/whale-watching-sail/"
+                       }
                    ]
     },
     {
@@ -62060,7 +62112,11 @@
                     },
         "sid":  431,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-tw-hawaii-nautical-ko-olina-dolphin-watch-1.jpg",
+                           "credit":  "Hawaii Nautical Dolphin Watch and Turtle Snorkel Sail (Ko Olina) (official site)",
+                           "page_url":  "https://hawaiinautical.com/oahu/ko-olina/west-oahu-dolphin-watch-and-turtle-snorkel-sail-with-lunch/"
+                       }
                    ]
     },
     {
@@ -63013,7 +63069,11 @@
                     },
         "sid":  442,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-tw-bike-hawaii-ebike-rainforest-1.jpg",
+                           "credit":  "Bike Hawaii E-Bike Tour: Honolulu Rainforest Ride (official site)",
+                           "page_url":  "https://bikehawaii.com/oahu-hawaii-tours/electric-bike-hawaii-tour-rainforest/"
+                       }
                    ]
     },
     {
@@ -63316,7 +63376,11 @@
                     },
         "sid":  446,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-tw-coral-crater-atv-1.jpg",
+                           "credit":  "Coral Crater Adventure Park: 2-Person ATV (official site)",
+                           "page_url":  "https://coralcrater.com/tour/2-person-atv/"
+                       }
                    ]
     },
     {
@@ -63573,7 +63637,11 @@
                       },
         "sid":  448,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-bh-hanauma-bay-1.jpg",
+                           "credit":  "(c) Don Loarie, some rights reserved (CC BY) / Wikimedia Commons (CC BY 4.0)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Scarus_psittacus,_Hanauma_Bay_Beach_Park,_Honolulu,_Hawaii,_United_States_imported_from_iNaturalist_photo_29805444.jpg"
+                       }
                    ]
     },
     {
@@ -63854,7 +63922,11 @@
                     },
         "sid":  451,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-bh-koko-crater-botanical-garden-1.jpg",
+                           "credit":  "Honolulu Botanical Gardens (City and County of Honolulu)",
+                           "page_url":  "https://www.honolulu.gov/dpr/honolulu-botanical-gardens/koko-crater-botanical-garden/"
+                       }
                    ]
     },
     {
@@ -63936,7 +64008,11 @@
                     },
         "sid":  452,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-bh-manoa-falls-trail-1.jpg",
+                           "credit":  "Hawaiʻi DLNR",
+                           "page_url":  "https://dlnr.hawaii.gov/blog/2024/07/03/nr24-83/"
+                       }
                    ]
     },
     {
@@ -64455,7 +64531,11 @@
                     },
         "sid":  457,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-bh-ala-moana-magic-island-1.jpg",
+                           "credit":  "City and County of Honolulu, Department of Parks and Recreation",
+                           "page_url":  "https://www.honolulu.gov/dpr/ala-moana-regional-park/"
+                       }
                    ]
     },
     {
@@ -64582,7 +64662,11 @@
                       },
         "sid":  458,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-bh-kuhio-waikiki-beach-1.jpg",
+                           "credit":  "Antonio Salsedo / Wikimedia Commons (CC BY 3.0)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Hula_dancer_at_Kuhio_Beach_park,_Honolulu,_Oahu,_Hawaii,_2006.jpg"
+                       }
                    ]
     },
     {
@@ -64734,7 +64818,11 @@
                     },
         "sid":  460,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-bh-sandy-beach-1.jpg",
+                           "credit":  "Robert Linsdell from St. Andrews, Canada / Wikimedia Commons (CC BY 2.0)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Sandy_Beach_Park,_Kalanianaole_Hwy,_Honolulu_(503323)_(17852385636).jpg"
+                       }
                    ]
     },
     {
@@ -64809,7 +64897,11 @@
                     },
         "sid":  461,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-bh-makapuu-beach-1.jpg",
+                           "credit":  "Prayitno / Thank you for (12 millions +) view from Los Angeles, USA / Wikimedia Commons (CC BY 2.0)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Makapu%27u_Beach_Park_(15392587249).jpg"
+                       }
                    ]
     },
     {
@@ -65051,7 +65143,11 @@
                     },
         "sid":  463,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-bh-kakaako-waterfront-park-1.jpg",
+                           "credit":  "Daniel Ramirez from Honolulu, USA / Wikimedia Commons (CC BY 2.0)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Kakaako_Waterfront_Park_hilltop_S_20100422.jpg"
+                       }
                    ]
     },
     {
@@ -65636,7 +65732,11 @@
                     },
         "sid":  468,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-ns-laniakea-beach-1.jpg",
+                           "credit":  "Laniakea Beach (Turtle Beach) (official site)",
+                           "page_url":  "https://www.fisheries.noaa.gov/feature-story/turtles-tourism-and-traffic-keeping-hawaii-honu-safe"
+                       }
                    ]
     },
     {
@@ -65777,7 +65877,11 @@
                     },
         "sid":  470,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-ns-haleiwa-town-1.jpg",
+                           "credit":  "Unknown author / Wikimedia Commons (Public domain)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:USMC-00942.jpg"
+                       }
                    ]
     },
     {
@@ -65849,7 +65953,11 @@
                    },
         "sid":  471,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-ns-waimea-bay-1.jpg",
+                           "credit":  "Travisthurston / Wikimedia Commons (CC BY-SA 3.0)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:WaimeaBay.jpg"
+                       }
                    ]
     },
     {
@@ -65990,7 +66098,11 @@
                        ],
         "sid":  473,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-ns-sunset-beach-1.jpg",
+                           "credit":  "Diego Delso / Wikimedia Commons (CC BY-SA 3.0)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Sunset_Beach,_Oahu,_Hawaii,_USA1.jpg"
+                       }
                    ]
     },
     {
@@ -66195,7 +66307,11 @@
                     },
         "sid":  475,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-ns-polynesian-cultural-center-1.jpg",
+                           "credit":  "Krzysztof W. Zieliński / Wikimedia Commons (CC BY-SA 3.0)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Hawaje_Oahu_154_mormo%C5%84ski_Polynesian_Cultural_Center_tancerze_z_Aotearoa.JPG"
+                       }
                    ]
     },
     {
@@ -66440,7 +66556,11 @@
                     },
         "sid":  478,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-lw-ko-olina-lagoons-1.jpg",
+                           "credit":  "https://www.olaproperties.com/ / Wikimedia Commons (CC BY-SA 4.0)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Ko_Olina_Sunset.jpg"
+                       }
                    ]
     },
     {
@@ -67127,7 +67247,11 @@
                     },
         "sid":  481,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-lw-hawaiian-railway-1.jpg",
+                           "credit":  "Brian Burger from Victoria, Canada / Wikimedia Commons (CC BY 2.0)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Red_Engine_(4598157114).jpg"
+                       }
                    ]
     },
     {
@@ -67283,7 +67407,11 @@
                     },
         "sid":  483,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-pd-chiefs-luau-1.jpg",
+                           "credit":  "Chief\u0027s Luau website",
+                           "page_url":  "https://chiefsluauhawaii.com/"
+                       }
                    ]
     },
     {
@@ -67416,7 +67544,11 @@
                     },
         "sid":  484,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-pd-ka-moana-luau-1.jpg",
+                           "credit":  "Ka Moana Luau website",
+                           "page_url":  "https://www.moanaluau.com/"
+                       }
                    ]
     },
     {
@@ -67536,7 +67668,11 @@
                     },
         "sid":  485,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-pd-aloha-kai-luau-sea-life-park-1.jpg",
+                           "credit":  "Sea Life Park Hawaii website",
+                           "page_url":  "https://www.sealifeparkhawaii.com/things-to-do/luau"
+                       }
                    ]
     },
     {
@@ -67611,7 +67747,11 @@
                     },
         "sid":  486,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-pd-toa-luau-waimea-valley-1.jpg",
+                           "credit":  "Waimea Valley website",
+                           "page_url":  "https://www.waimeavalley.net/toaluau"
+                       }
                    ]
     },
     {
@@ -67696,7 +67836,11 @@
                     },
         "sid":  487,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-pd-germaines-luau-1.jpg",
+                           "credit":  "Germaine\u0027s Luau website",
+                           "page_url":  "https://www.germainesluau.com/"
+                       }
                    ]
     },
     {
@@ -67781,7 +67925,11 @@
                     },
         "sid":  488,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-pd-waikiki-starlight-luau-1.jpg",
+                           "credit":  "Hilton Hawaiian Village website",
+                           "page_url":  "https://hiltonhawaiianvillage.com/experience/waikiki-starlight-luau/"
+                       }
                    ]
     },
     {
@@ -68155,7 +68303,11 @@
                     },
         "sid":  492,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-pd-star-of-honolulu-sunset-dinner-cruise-1.jpg",
+                           "credit":  "Star of Honolulu website",
+                           "page_url":  "https://starofhonolulu.com/cruise-ship-gallery"
+                       }
                    ]
     },
     {
@@ -68774,7 +68926,11 @@
                     },
         "sid":  497,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-ev-jake-shimabukuro-holidays-blue-note-2026-1.jpg",
+                           "credit":  "Jake Shimabukuro\u0027s Holidays in Hawai\u0027i (Blue Note) (official site)",
+                           "page_url":  "https://www.bluenotejazz.com/hawaii/tm-event/jake-shimabukuro-9/"
+                       }
                    ]
     },
     {
@@ -68864,7 +69020,11 @@
                     },
         "sid":  498,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-ev-mo-amer-blue-note-2026-1.jpg",
+                           "credit":  "Mo Amer stand-up (Blue Note Hawaii) (official site)",
+                           "page_url":  "https://www.bluenotejazz.com/hawaii/tm-event/mo-amer/"
+                       }
                    ]
     },
     {
@@ -68943,7 +69103,11 @@
                     },
         "sid":  499,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-ev-local-comedy-showcase-blue-note-2026-12-14-1.jpg",
+                           "credit":  "Local Comedy Showcase: Mele KalikiHAHA (Blue Note Hawaii) (official site)",
+                           "page_url":  "https://www.bluenotejazz.com/hawaii/tm-event/local-comedy-showcase-mele-kalikihaha/"
+                       }
                    ]
     },
     {
@@ -69077,7 +69241,11 @@
                     },
         "sid":  500,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-pd-ko-hana-rum-distillery-tour-1.jpg",
+                           "credit":  "Kō Hana Distillers website",
+                           "page_url":  "https://kohanarum.com/visit"
+                       }
                    ]
     },
     {
@@ -69206,7 +69374,11 @@
                     },
         "sid":  501,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-pd-manoa-chocolate-factory-tour-1.jpg",
+                           "credit":  "Mānoa Chocolate website",
+                           "page_url":  "https://manoachocolate.com/pages/tours"
+                       }
                    ]
     },
     {
@@ -69534,7 +69706,11 @@
                     },
         "sid":  504,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-pc-battleship-missouri-1.jpg",
+                           "credit":  "Wigglefoot / Wikimedia Commons (CC BY-SA 4.0)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:USS_Missouri_in_Pearl_Harbor,_Oahu_Hawaii.JPG"
+                       }
                    ]
     },
     {
@@ -69897,7 +70073,11 @@
                   },
         "sid":  507,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-pc-iolani-palace-1.jpg",
+                           "credit":  "Don Ramey Logan / Wikimedia Commons (CC BY-SA 3.0)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Iolani_Palace_Oahu_Hawaii_Photo_Don_Ramey_Logan.jpg"
+                       }
                    ]
     },
     {
@@ -70339,7 +70519,11 @@
                     },
         "sid":  511,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-pc-lyon-arboretum-1.jpg",
+                           "credit":  "Daderot / Wikimedia Commons (Public domain)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Lyon_Arboretum,_Oahu,_Hawaii_-_trees.jpg"
+                       }
                    ]
     },
     {
@@ -71481,7 +71665,11 @@
                        ],
         "sid":  523,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-nl-green-lady-cocktail-room-1.jpg",
+                           "credit":  "Green Lady Cocktail Room (official site)",
+                           "page_url":  "https://www.greenladycocktailroom.com/"
+                       }
                    ]
     },
     {
@@ -71583,7 +71771,11 @@
         "hours_note":  "Open daily 10am-2am. Which nights have live music, DJs or karaoke is not listed; check before going.",
         "sid":  524,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-nl-the-dragon-upstairs-1.jpg",
+                           "credit":  "The Dragon Upstairs (official site)",
+                           "page_url":  "https://dragonupstairs.com/"
+                       }
                    ]
     },
     {
@@ -72231,7 +72423,11 @@
                      },
         "sid":  531,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-nl-lewers-lounge-1.jpg",
+                           "credit":  "Halekulani (official site)",
+                           "page_url":  "https://www.halekulani.com/dining/lewers-lounge/"
+                       }
                    ]
     },
     {
@@ -72335,7 +72531,11 @@
         "group_max":  10,
         "sid":  532,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-nl-heart-moon-karaoke-1.jpg",
+                           "credit":  "Heart Moon (official site)",
+                           "page_url":  "https://heartmoon-hawaii.com/"
+                       }
                    ]
     },
     {
@@ -72426,7 +72626,11 @@
         "hours_note":  "Kitchen: Tue-Thu 10am-2pm and 4pm-11:30pm; Fri 10am-2pm, 4pm-10pm and 11pm-1am; Sat 5pm-10pm and 11pm-1am. Sunday and Monday hours not posted.",
         "sid":  533,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-nl-the-manifest-1.jpg",
+                           "credit":  "The Manifest (official site)",
+                           "page_url":  "https://www.manifesthawaii.com"
+                       }
                    ]
     },
     {
@@ -72595,7 +72799,11 @@
         "hours_note":  "Closed Monday. Hours for the other days are not confirmed; check before going.",
         "sid":  535,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-nl-hana-koa-brewing-1.jpg",
+                           "credit":  "Hana Koa Brewing Co. (official site)",
+                           "page_url":  "https://www.hanakoabrewing.com/"
+                       }
                    ]
     },
     {
@@ -72752,7 +72960,11 @@
         "hours_note":  "Closed Tuesdays. Adults-only evening on the 1st and 3rd Friday, 4:30-7:30pm.",
         "sid":  537,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-ox-sea-life-park-1.jpg",
+                           "credit":  "Sea Life Park Hawaii (official site)",
+                           "page_url":  "https://www.sealifeparkhawaii.com/"
+                       }
                    ]
     },
     {
@@ -73638,7 +73850,11 @@
         "age_note":  "Age rules not posted; the tours stop at breweries and bars",
         "sid":  547,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-ox-paradise-pedals-1.jpg",
+                           "credit":  "Paradise Pedals Hawaii (official site)",
+                           "page_url":  "https://paradisepedals.com/"
+                       }
                    ]
     },
     {
@@ -74008,7 +74224,11 @@
                    },
         "sid":  552,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-pd-matsumoto-shave-ice-1.jpg",
+                           "credit":  "Anthony Quintano from Honolulu, HI, United States / Wikimedia Commons (CC BY 2.0)",
+                           "page_url":  "https://commons.wikimedia.org/wiki/File:Ore_Haleiwa_Hawaii_Oahu_Matsumoto_Shave_Ice_(33673669505).jpg"
+                       }
                    ]
     },
     {
@@ -74138,7 +74358,11 @@
                    },
         "sid":  553,
         "photos":  [
-
+                       {
+                           "file":  "photos/oahu-pd-leonards-bakery-malasadas-1.jpg",
+                           "credit":  "Leonard\u0027s Bakery website",
+                           "page_url":  "https://www.leonardshawaii.com/"
+                       }
                    ]
     }
 ]
